@@ -1,0 +1,21 @@
+Fundamentals of Linux
+    1.History
+      a. What is Linux?
+        - An operating system, a collection of software that manages hardware resources and provides an environment where applications can run.
+        - A Kernel, core of the OS, sits between hardwares and applications.
+        - Created in 1991 by Linus Torvalds, 1st version released in 1994
+        - Free Open Source Software
+      b. What is a Linux Distribution?
+        - A Kernel plus additional software
+        - Examples: DistroWatch.com
+          - Red Hat Enterprise
+          - Fedora
+          - Ubuntu
+          - Debian
+      c. Why Linux?
+        - Runs on many hardware platforms
+        - Small footprint
+        - Stable, Reliable, Secure
+        - Great for Servers
+        - FOSS
+    2.
