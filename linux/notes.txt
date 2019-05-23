@@ -53,3 +53,36 @@ Fundamentals of Linux
             - sftp, secure file transfer protocol
                 - sftp host
             - sshd, OpenSSH server process
+     3. Directory Structure
+        a. Common Directories
+            - / , Root, the top of the file system hierarchy
+            - /bin, Binaries and other executable programs
+            - /etc, System configuration files
+            - /home, User home directories
+            - /opt, Optional or third party software
+            - /tmp, Temporary space, typically cleared on reboot
+            - /usr, User related programs
+            - /var, Variable data, most notably log files
+        b. Other Important Directies
+            - /cdrom, Mount point for CD-ROMs
+            - /cgroup, Control Groups hierarchy
+            - /boot, files needed to boot the operating system
+            - /dev, device files, typically controlled by the operating system and the adminstrators
+            - /export, shared file systems
+            - /lib, System libraries
+            - /media, Used to mount removable media like CD-ROMs
+            - /mnt, Used to moutn external files systems
+            - /proc, Provides info about running processes
+            - /sbin, System administration binaries
+            - /selinux, Used to display information about SELinux
+            - /srv, Contains data which is served by the system
+            - /srv/www. Web server files
+            - /srv/ftp, FTP files
+            - /sys, Used to display and sometimes configure the devices known to the linux kernel
+            - /usr/bin, Binaries and other executable programs
+            - /user/local, locally installed software that is not part of the base operating system
+        c. Application Directory Structures
+            - usr/local/programname/path
+            - opt/organizationname
+            
+            
