@@ -1,4 +1,4 @@
-# Example SSH Commands
+# Example SSH Commands, Secure Shell, provides a secure encrypted connection between two hosts over an insecure network
 
 ssh remoteComputer # Enter Username and Password
 ssh username@remoteComputer
