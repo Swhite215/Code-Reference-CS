@@ -53,7 +53,7 @@ Fundamentals of Linux
             - sftp, secure file transfer protocol
                 - sftp host
             - sshd, OpenSSH server process
-     3. Directory Structure
+    3. Directory Structure
         a. Common Directories
             - / , Root, the top of the file system hierarchy
             - /bin, Binaries and other executable programs
@@ -84,5 +84,23 @@ Fundamentals of Linux
         c. Application Directory Structures
             - usr/local/programname/path
             - opt/organizationname
-            
+    4. Shell
+        a. What is the shell?
+            - Default user interface to a linux system
+            - Start a terminal to gain access to a shell if you start in a GUI
+            - A program that accepts your commands and executes those commands
+            - Often times more powerful
+            - Shell Prompt
+                - username@linuxSystem
+                - $ using as normal user
+                - # super user or root
+                - current directory
+                - ~ represents home directory
+        b. How do you access the shell?
+            - Open the terminal...
+        c. What is the super user account?
+            - A powerful account
+            - Access restricted to system administrators
+            - Access may be required to install, start, or stop an application
+            - Day to day will be performed by a normal account
             
