@@ -1,0 +1,11 @@
+Fundamentals of Networking
+    1.Basics
+        a. What is a network?
+            - Nothing more than two connected computers sharing resources with one another
+        b. What is it composed of?
+            - Physical Connection (wires, cables, wireless media)
+            - Logical Connection (data transporting across physical media)
+        c. SOHO
+            - Small Office & Home Office Network
+            - Internet -> DSL -> Wireless Firewall/Router -> Switch -> PC/Devices + Wireless
+    2.
