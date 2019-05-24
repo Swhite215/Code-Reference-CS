@@ -1,9 +1,16 @@
 # Basic Linux Commands
 
 ls # lists directory contents
-ls -l
-ls -al
+ls -l # permissions, number of links, owner, group, bytes, last modification time, file/directory name
+ls -al # shows hidden files
+ls -F # reveals file types, /Directory, @Link, *Executable
+ls -t # lists files by time
+ls -r # lists files in reverse order
 ls /bin
+
+tree # displays tree structure
+tree -d # displays only directories
+tree -C #display in color
 
 cd # changes the current directory
 cd path/to/directory/file
