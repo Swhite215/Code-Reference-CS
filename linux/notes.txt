@@ -103,4 +103,8 @@ Fundamentals of Linux
             - Access restricted to system administrators
             - Access may be required to install, start, or stop an application
             - Day to day will be performed by a normal account
-            
+    5. PATH
+        a. What is Path?
+            - An environment variable
+            - Controls the command search path
+            - Contains a list of directories
