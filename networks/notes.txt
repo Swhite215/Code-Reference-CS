@@ -29,3 +29,82 @@ Fundamentals of Networking
             - Centralized Security & Configuration Management
             - Increased Speed
             - Greater Productivity and Cost Savings
+    4. How Networks Work
+        a. Network Protocols
+            - Physical Protocols
+                - Wiring
+                - Connections
+                - Electrical Signal
+            - Logical Protocols
+                - Software controlling how and when data is sent
+            - TCP/IP Suite Examples
+                - Web Communication: HTTP
+                - E-Mail: POP3, SMTP, IMAP
+                - File Transfers: FTP
+        b. OSI Model Overview
+            - Open Systems Interconnection Reference Model
+                - A conceptual framework showing us how data moves throughout a network
+                - Refernce model to give us a guide to understand how networks operate
+                - Not implemented in the real world
+            - 7 Layers
+                - Upper Layers (Host Layers)
+                    - Handled by the host computer and performs application specific functions such as data formatting, encryption and connection management
+                    - Application
+                    - Presentation
+                    - Session
+                    - Transport
+                - Lower Layers (Media Layers)
+                    - Provides network specific functions such as routing, addressing and flow control
+                    - Network
+                    - Data Link
+                    - Physical
+                - Order
+                    - Sending Top to Bottom
+                    - Receiving Bottom to Top
+                    - Please Do Not Throw Sausage Pizza Away
+                        - Physical Data Network Transport Session Presentation Application
+            - Benefits
+                - Reduces Complexity
+                - Standardizes Interfaces
+                - Faciliates Modular Engineering
+                - Ensures Interoperable Technology
+                - Accelerates Evolution
+        c. TCP/IP Overview
+            - Transmission Control Protocol/Internet Protocol
+                - Protocol suite in which the internet was built
+                - Standard for computer networking
+                - 4-Layer model that is similar to OSI
+            - 4 Layers
+                - Application Layer
+                    - Telnet, FTP, SMTP
+                    - DNS, RIP, SNMP
+                    - HTTP
+                - Host-To-Host Transport Layer
+                    - TCP, UDP
+                - Internet Layer
+                    - IP
+                - Network Interface Layer
+                    - Ethernet, Token Ring, Frame Relay, ATM
+        d. MAC Addresses
+            - Media Access Control (MAC)
+                - Physical address of the network adapter card
+                - OSI Layer 2 (Data Link) Layer Address
+                - TCP/IP Network Interface Layer Address
+                - Six bytes (48 bits), Hexadecimal
+                    - First three bytes Organizatioanlly Unique Identifier
+                    - Last three bytes are usually assigned sequentially and are unique
+                - Permanent
+            - Finding your MAC address
+                - Linux - ifconfig (en1)
+                - Windows - ipconfig /all 
+                    Ethernet or Wireless LAN Adapter (Physical Address)
+            - Allows internetwork communication via hubs, switches, and routers
+            - Local Area Network
+        e. IP Addresses
+            - Internet Protocol version 4
+                - 192.168.1.131
+                - Dotted Decimal Format -> Binary Format
+                - Network OSI Layer 3 Address
+                - Address can change
+            - Allows network to network communication via routers
+            - Wide Area Network
