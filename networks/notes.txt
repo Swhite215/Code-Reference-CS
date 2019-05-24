@@ -1,5 +1,5 @@
 Fundamentals of Networking
-    1.Basics
+    1. Basics
         a. What is a network?
             - Nothing more than two connected computers sharing resources with one another
         b. What is it composed of?
@@ -8,4 +8,8 @@ Fundamentals of Networking
         c. SOHO
             - Small Office & Home Office Network
             - Internet -> DSL -> Wireless Firewall/Router -> Switch -> PC/Devices + Wireless
-    2.
+    2. Basic Networking Rules
+        a. Communication Protocols
+            - Computers must use same procedures for sending and receiving data
+            - Date should be delivered uncorrupted
+            - Computer must be capable of determining origin and destination of piece of information IP and Mac Address
