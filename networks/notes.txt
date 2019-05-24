@@ -13,3 +13,19 @@ Fundamentals of Networking
             - Computers must use same procedures for sending and receiving data
             - Date should be delivered uncorrupted
             - Computer must be capable of determining origin and destination of piece of information IP and Mac Address
+    3. Why build a network?
+        a. Ease and Efficiency
+            - Prior to networks, information was sent and received by hand
+            - Enables faster and more efficient communication
+            - Encourages use of standard policies and procedures
+            - Redundancy. backup and recovery support for our data
+            - Cost savings
+        d. Impacting Daily Life
+            - Instantenous communication supports and improves our lives
+            - Online banking, news, weather, traffic conditions, social media
+        c. Benefits of Networking
+            - Centralized File Management
+            - Shared Resource Capabilities
+            - Centralized Security & Configuration Management
+            - Increased Speed
+            - Greater Productivity and Cost Savings
