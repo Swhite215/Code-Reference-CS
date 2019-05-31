@@ -30,7 +30,7 @@ echo $ENVIRONMENT_VARIABLE
 echo "string"
 echo $PATH # displays command search directories and order
 
-man # displays the online manual
+man # displays the command's manual
 man command
 
 which # shows location or full path to the command that you're executing
