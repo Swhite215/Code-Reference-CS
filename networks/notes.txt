@@ -163,3 +163,22 @@ Fundamentals of Networking
                 - Web Server, manages web based activities
                 - Application Server, manages network applications
                 - Database Server, stores data in the form of a relational database
+        e. Physical Network Topologies
+            - Why are these important?
+                - Useful in planning a new network
+                - Shows the network on a map, where devices are located and arrangement of network cabling
+            - Common Physical Network Topologies
+                - Star Topology
+                    - All devices conntected to a central device
+                    - Built-In fault tolerance
+                    - Central device is single point of failure
+                - Mesh Topology
+                    - Each device is connected to every other device by separate cabling
+                    - Highly redundant and fault-tolerant
+                    - Used in WANs
+                - Point-To-Point Topology
+                    - One-to-One connection
+                    - Used in WANs
+                    - Doesn't provide redunancy
+                - Hybrid Topology
+                    - Combination Star w/ Mesh w/ Point-to-Point
