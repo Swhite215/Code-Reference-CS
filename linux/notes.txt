@@ -176,3 +176,8 @@ Fundamentals of Linux
                 - :$, position cursor at the last line
         c. Emacs
             - emacs myFile
+    8. Finding Files and Directories
+        a. find
+            - find [path] [expression]
+        b. locate (not in real time)
+            - locate pattern
