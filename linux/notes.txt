@@ -108,3 +108,38 @@ Fundamentals of Linux
             - An environment variable
             - Controls the command search path
             - Contains a list of directories
+    6. Permissions
+        a. What are file permission types?
+            - Symbolic
+            - Numeric/Octal
+            - File
+            - Directory
+        b. [-dl] u[---] g[---] o[---]
+            - 1st dash is file
+            - d is directory
+            - l is symbolic link
+            - u is user or owner
+            - g is group
+            - o is other
+        c. File Permissions
+            - r = Read, can view its contents e.g. cat
+            - w = Write, can modify the file
+            - x = Execute, can run that file as a program
+        d. Directory Permissions
+            - r = Read, allows files names in the directory to be read
+            - w = Write, allows entries to be modified within the directory
+            - x = Execute, allows access to contents and metadata for entries
+        e. Permission Categories
+            - User
+            - Group
+            - Other
+            - All
+        f. Groups
+            - Every user is in at least one group
+            - Users can belong to many grousp
+            - Groups command
+        g. Changing Permissions
+            - chmod, change mode command
+            - ugoa, user cateogry
+            - +-=, add/subtract/set
+            - rwx, Read/Write/Execute
