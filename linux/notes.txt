@@ -126,9 +126,9 @@ Fundamentals of Linux
             - w = Write, can modify the file
             - x = Execute, can run that file as a program
         d. Directory Permissions
-            - r = Read, allows files names in the directory to be read
-            - w = Write, allows entries to be modified within the directory
-            - x = Execute, allows access to contents and metadata for entries
+            - r = Read, allows files names in the directory to be read (4)
+            - w = Write, allows entries to be modified within the directory (2)
+            - x = Execute, allows access to contents and metadata for entries (1)
         e. Permission Categories
             - User
             - Group
@@ -143,3 +143,36 @@ Fundamentals of Linux
             - ugoa, user cateogry
             - +-=, add/subtract/set
             - rwx, Read/Write/Execute
+    7. Viewing and Editing Files
+        a. Ways to Display
+            - cat, display contents
+            - more, browse through a text file
+            - less, more features than more
+            - head, output the beginning of a file
+            - tail, output the tail of a file
+        b. Vi
+            - Command Mode and Navigation (ESC)
+                - k, up one line
+                - j, down one line
+                - h, left one character
+                - l, right one character
+                - w, right one word
+                - b, left one word
+                - ^, beginning of the line
+                - $, end of the line
+            - Insert Mode (i, I, a, A)
+                - i, insert at the cursor position
+                - I, insert at the beginning of the line
+                - a, append after the cursor position
+                - A, append at the end of the line
+            - Line Mode
+                - :w, saves the file
+                - :w!, forces the file to be saved
+                - :q, quit
+                - :q!, quit without saving changes
+                - :wq!, write and quit
+                - :x, same as :wq
+                - :n, positions the cursor at line n
+                - :$, position cursor at the last line
+        c. Emacs
+            - emacs myFile
