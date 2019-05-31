@@ -118,3 +118,19 @@ Fundamentals of Networking
                 - Internetwork, multiple LANs connected together that spans a large geographic region
                 - Examples: Internet, Campus Network (Gonzaga)
                 - Usually employs routers and public links (ISP provided or private)
+        b. Peer-to-Peer Architecture
+            - Characteristics
+                - All computers on the network are peers
+                - No dedicated servers
+                - No centralized control over shared resources
+                - Any machine can share its resources as it pleases
+            - Advantages
+                - Easy to install and configure
+                - Does not depend on dedicated server
+                - Inexpensive to purchase and operate
+                - No dedicated adminstrators
+            - Disadvantages
+                - Network security applies only to a single resource at a time
+                - Users may be forced to use many passwords
+                - Each machine must be backed up individually to protect shared data
+                - There is no centralized organizational scheme
