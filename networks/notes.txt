@@ -108,3 +108,13 @@ Fundamentals of Networking
                 - Address can change
             - Allows network to network communication via routers
             - Wide Area Network
+    5. Network Topologies
+        a. LANs and WANs
+            - Local Area Network
+                - Collection of computers and other networked devices that fit within a single physical network
+                - Examples: office building, home office, classroom
+                - Usually restricted to a partiular geographic region
+            - Wide Area Network
+                - Internetwork, multiple LANs connected together that spans a large geographic region
+                - Examples: Internet, Campus Network (Gonzaga)
+                - Usually employs routers and public links (ISP provided or private)
