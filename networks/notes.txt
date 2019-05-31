@@ -148,3 +148,18 @@ Fundamentals of Networking
                 - Server failure renders a network unusable or results in loss of network resources
                 - Complex, special-purpose server software requires expert staff
                 - Dedicated hardware and specialized software add to the cost
+        d. Common Network Components
+            - Router
+                - Connects LANs to other LAns, routes traffic across the internet
+            - Firewall
+                - Protects network from malicious packets of data
+            - Switch
+                - Connects devices together within a LAN
+            - Servers
+                - Authentication Server, manages access control on the network
+                - File Server, stores and dispenses files
+                - Mail Server, handles email functions
+                - Print Server, manages printers on the network
+                - Web Server, manages web based activities
+                - Application Server, manages network applications
+                - Database Server, stores data in the form of a relational database
