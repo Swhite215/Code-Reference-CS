@@ -134,3 +134,17 @@ Fundamentals of Networking
                 - Users may be forced to use many passwords
                 - Each machine must be backed up individually to protect shared data
                 - There is no centralized organizational scheme
+        c. Client-Server Architecture
+            - Characteristics
+                - Network is composed of clients and servers
+                - Servers provide centralized control over network resources i.e. files, printers, auth, etc
+                - Clients receives resources
+                - Servers provide resources
+            - Advantages
+                - Centralized user accounts, security, and access controls
+                - More powerful servers = more efficient acess to network resources
+                - A single password for network logon delivers access to all resourecs
+            - Disadvantages
+                - Server failure renders a network unusable or results in loss of network resources
+                - Complex, special-purpose server software requires expert staff
+                - Dedicated hardware and specialized software add to the cost
