@@ -15,6 +15,8 @@ tree # displays tree structure
 tree -d # displays only directories
 tree -C #display in color
 
+groups # displays groups user is a part of
+
 cd # changes the current directory
 cd path/to/directory/file
 
