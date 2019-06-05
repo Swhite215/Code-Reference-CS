@@ -1,0 +1,12 @@
+Various Read Whitepapers and Dissertations:
+
+1. Web
+  a. REST: https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf
+  
+2. Blockchain
+  a. Bitcoin: https://bitcoin.org/bitcoin.pdf
+  b. Ethereum: https://whitepaperdatabase.com/ethereum-eth-whitepaper/
+  c. Quorum: https://github.com/jpmorganchase/quorum/blob/master/docs/Quorum%20Whitepaper%20v0.2.pdf
+
+3. Algorithms
+  a. Raft: https://raft.github.io/raft.pdf
