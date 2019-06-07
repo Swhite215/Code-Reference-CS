@@ -9,4 +9,5 @@ tar # flags
 # f, file
 
 tar cf file/folder # create a tar archive
+tar zcf file/folder # create a compressed tar archive
 tar xf file.tar/folder.tar # extract files
