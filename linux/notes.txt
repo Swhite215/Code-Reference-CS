@@ -254,3 +254,25 @@ Fundamentals of Linux
             - side by side comparison
         c. vimdiff
             - highlight differences in vim
+    13. Searching and Pipes
+        a. Grep
+            - grep pattern file
+            - i, case insensitive
+            - c, number of occurences in a file
+            - n, precede output with line numbers
+            - v, invert match
+        b. Pipe
+            - command-output | command-input
+    14. Customizing the shell prompt
+        a. PS1 environment variable, echo $PS1
+            - \d, Date in "Weekday Month Date"
+            - \h, Hostname up to the first period
+            - \H, Hostname
+            - \n, Newline
+            - \t, Current time in 24HR HH:MM:SS
+            - \T, Current time in 12HR HH:MM:SS
+            - \@, Current time in 12HR AM/PM
+            - \A, Current time in 24HR HH:MM
+            - \u, username of the current user
+            - \w, Current working directory
+            - \W, basename of the current working directory
