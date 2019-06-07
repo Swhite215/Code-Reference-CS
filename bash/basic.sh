@@ -66,6 +66,14 @@ sort file
 sort -u file
 sort -r file
 
+du # disk usage of all files in current directory
+du file
+
+gzip # compressing files to save space
+gzip file
+gunzip file
+
+
 clear # clears the screen
 
 exit # exits the shell or your current session
