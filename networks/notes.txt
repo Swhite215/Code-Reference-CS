@@ -182,3 +182,76 @@ Fundamentals of Networking
                     - Doesn't provide redunancy
                 - Hybrid Topology
                     - Combination Star w/ Mesh w/ Point-to-Point
+    6. Network Devices
+        a. Network Interface Cards (NIC)
+            - Network Adapter Installed on Computer
+            - Provides the physical and electrical connections to the network media
+            - Expansion card or built directly into motherboard
+        b. Hubs
+            - No longer used, replaced with switches
+            - Used to connect devices together within a network
+            - Multi-Port Repeater
+                - Traffic goes in one port and is repeated out every other port
+                - OSI Layer 1 Device
+                - Dumb Network Device
+            - Much less efficient than a switch
+        c. Switches
+            - Connects devices together within a network
+            - Memorizes the MAC address of each device via a MAC Address Table
+            - Source and Destination MAC Addresses
+            - Traffic goes in one port, and is repeated out to only destination port
+            - Designed for high bandwith
+            - Industry standard
+        d. Hubs vs. switches
+            - Hub
+                - Dumb Device
+                - Floods All Ports
+                - Inefficient
+                - OSI Layer 1 Device
+                - Less Secure
+            - Switch
+                - Intelligent Device
+                - MAC Addresses
+                - Efficient
+                - OSI Layer 2 Device
+                - More Secure
+        e. Switch and MAC Address
+            - Learn MAC address by source MAC address
+            - Packet information includes Source MAC and Destination MAC
+            - Order
+                - Computer A sends packet with Computer C MAC Destination to switch
+                - Switch records Computer A MAC Address
+                - Switch looks in table to see if it knows port Computer C is located on
+                - Switch sends packet of information to all ports
+                - Other computers will disregard the packed, since it is not addressed to it
+                - Computer C will respond to COmputer A acknowledging receiving the packet
+                - Switch records Computer C MAC address
+                - Now switch will know where to send data
+        f. Wireless Access Points
+            - NOT a wireless router
+            - WAP is a bridge, extends the wired network onto the wireless network
+            - IEE 802.11 Security Standards
+        g. Routers
+            - Used to connect different network together
+            - Uses IP Addresses
+            - Intelligent Decisions
+            - OSI Layer 3 Device
+        h. Packet Routing Process
+            - Order
+                - Computer A wants to Communicate with Computer C
+                - Computer A sends packet of data through switch to Router 1 (default gateway)
+                    - Packet includes IP Address
+                - Router 1, the Default Gateway, using a selected routing protocol,
+                    - routes the packet of information through the internet or a WAN,
+                    - via router hops until the packet either reaches its destination network or the packet is timed out.
+        i. Firewalls
+            - Protects your LAN from malicious activity on the internet
+            - Prevents unwanted network traffic from accessing your network and vice versa
+            - You create network acces rule sets to setup and maintain a firewall
+            - Can be standalone network device or software on a computer system
+        j.DHCP Servers
+            - Dynamic Host Configuration Protocol
+            - Automatically assignes IP addresses to hosts
+            - Makes administering a network much easier
+        k. All-In-One SOHO Devices
+            - Router, Firewall, Switch, Wireless Access Point, DHCP Server
