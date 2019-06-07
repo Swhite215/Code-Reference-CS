@@ -210,3 +210,27 @@ Fundamentals of Linux
             - gunzip file 
         g. Disk Usage
             - du file
+    10. Wildcarding
+        a. What
+            - Chararcter or string used for pattern matching
+            - Globbing expands the wildcard pattern into a list of files and or directories
+        b. *
+            - matches zero or more characters
+            - *.txt, *.html, *.css, a*, a*.txt
+        c. ?
+            - matches exactly one character
+            - a?
+            - ?.txt
+        d. []
+            - Character class
+            - ca[nt]* matches can, cat, candy, catch
+            - [!aeiou]* matches any files that don't start with a vowel
+            - [a-g]* range
+            - [[:alpha:]]
+            - [[:alnum:]]
+            - [[:digit:]]
+            - [[:lower:]]
+            - [[:space:]]
+            - [[:upper:]]
+        e. \
+            - escape character
