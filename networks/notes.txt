@@ -287,7 +287,7 @@ Fundamentals of Networking
                 - Single-mode Fiber SMF
                     - Longer distance, up to 40 miles
         e. Twisted Pair Copper Wiring Standards
-            - 568A and 586B
+            - 568A and 568B
         f. Networking Cable Selection Criteria
             - Cost Constraints
             - Transmission Speed Requirements
