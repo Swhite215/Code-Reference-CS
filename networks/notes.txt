@@ -255,3 +255,48 @@ Fundamentals of Networking
             - Makes administering a network much easier
         k. All-In-One SOHO Devices
             - Router, Firewall, Switch, Wireless Access Point, DHCP Server
+    7. Network Cabling
+        a. Importance of Cabling
+            - Backbone of your network
+        b. Types of Network Cabling
+            - Coaxial
+            - Twisted Pair
+            - Fiber Optic
+        c. Twisted Pair Copper Network Cabling
+            - 4 Color Coded Twisted Pairs
+            - Each pair positive and negative
+            - Twisting reduces electromagnetic inteference and crosstalk
+            - 100M maximum distance, signal attenuation
+            - Shielded Twisted Pair
+                - Additional shielding protects against electrical inteference
+            - Unshielded Twister Pair
+                - No shielding
+                - most common LAN cabling
+            - Copper Cable Categories
+                - Category 5, 3-4 twists, 100mb/s
+                - Category 5e, more twists per inch, 1gb/s
+                - Category 6, more twists per inch, 10gb/s
+        d. Fiber Optic Network Cabling
+            - Glass or plastic fiber that carries light
+            - High bandwidth (up to 100gb/sec)
+            - Immune to electromagnetic interference
+            - Long Distances
+            - Modes
+                - Multi-mode Fiber MMF
+                    - Shorter distance, up to 6 miles
+                - Single-mode Fiber SMF
+                    - Longer distance, up to 40 miles
+        e. Twisted Pair Copper Wiring Standards
+            - 568A and 586B
+        f. Networking Cable Selection Criteria
+            - Cost Constraints
+            - Transmission Speed Requirements
+            - Distance Requirements
+            - Noise & Interference Immunity
+        g. Straight-Through vs. Crossover Network Cables
+            - Straight-Through
+                - Used to connect non-similar devices
+                - Switch to Router, Computer to Switch, Switch to WAP
+            - Crossover
+                - Used to connect similar devices
+                - Computer to Computer, Switch to Switch, Router to Host
