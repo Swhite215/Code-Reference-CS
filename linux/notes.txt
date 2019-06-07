@@ -244,3 +244,13 @@ Fundamentals of Linux
             - >> Redirects standard output to a file, appends
             - < Redirects input from a file to a command
             - >/dev/null remove useless
+    12. Comparing Files
+        a. diff
+            - compare two files
+            - < first file
+            - - - - separator
+            - > second file
+        b. sdiff
+            - side by side comparison
+        c. vimdiff
+            - highlight differences in vim
