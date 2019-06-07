@@ -48,6 +48,23 @@ rmdir # removes a directory
 rmdir -p
 
 rm - rf directory
+rm file
+rm -r dir
+rm -f file
+
+cp # copy
+cp source_file destination_file
+cp source_file1 source_filen dest_dir
+cp -r source_directory destination
+
+mv # move or rename
+mv source destination
+mv firstName newName
+
+sort # sort a files content
+sort file
+sort -u file
+sort -r file
 
 clear # clears the screen
 
