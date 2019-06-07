@@ -181,3 +181,32 @@ Fundamentals of Linux
             - find [path] [expression]
         b. locate (not in real time)
             - locate pattern
+    9. Deleting, Copying, Removing, Renaming Files, Sorting, Archiving, Compressing
+        a. Removing Files
+            - rm file, remove file
+            - rm -r dir, remove directory and content recursively
+            - rm -f file, force removal
+        b. Copying
+            - cp source_file destination_file
+            - cp source_file1 source_filen dest_dir
+            - cp -r source_directory destination
+        c. Move or Rename
+            - mv
+            - mv source destination
+            - mv firstName newName
+        d. Sort
+            - sort file
+            - sort -u file, unique
+            - sort -r file, reverse
+        e. Tar
+            - c, creates a tar archive
+            - x, extracts file from the archive
+            - t, displays table of contents
+            - v, verbose
+            - z, use compression
+            - f, file
+        f. Compressings
+            - gzip file
+            - gunzip file 
+        g. Disk Usage
+            - du file
