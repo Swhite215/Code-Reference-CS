@@ -234,3 +234,13 @@ Fundamentals of Linux
             - [[:upper:]]
         e. \
             - escape character
+    11. Input, Output, and Redirection
+        a. Types
+            - Standard Input, stdin 0
+            - Standard Output, stdout 1
+            - Standard Error, stderr 2
+        b. Redirection
+            - > Redirects standard output to a file, overwrites
+            - >> Redirects standard output to a file, appends
+            - < Redirects input from a file to a command
+            - >/dev/null remove useless
