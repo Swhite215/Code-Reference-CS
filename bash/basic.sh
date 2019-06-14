@@ -30,6 +30,11 @@ echo $ENVIRONMENT_VARIABLE
 echo "string"
 echo $PATH # displays command search directories and order
 
+export # set environment variable
+export VAR="value"
+unset VAR # unsets environment variable
+
+VAR="value"
 printenv # displays evnironment variables
 printenv # displays all environment variables
 printenv variable # displays specific environment variable
