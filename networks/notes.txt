@@ -338,3 +338,84 @@ Fundamentals of Networking
         i. Decapsulation
             - When we remove chunks of information from network data
                 - Occurs when we receive data at a computer
+    9. TCP/IP
+        a. Introduction
+            - A Suite of Protocols
+            - Application, Transport, Network/Internet, Data Link, Physical/Network Access
+        b. Network Layer Protocols
+            - Address Resolution Procotol ARP
+                - Resolves IP Addresses to MAC Addresses
+                - arp comamnd
+            - Internet Protocol v4
+                - Primary internet protocol
+                - Addresses and transport data from one network node to another
+                - 32 bit addresses
+            - Internet Protocol v6
+                - Next generation internet protocol
+                - 128 bit addresses
+            - Internet Control Message Protocol
+                - provides error checking and functionality
+                - Sends management messages between systems
+                - Echo request and echo reply
+                - ping command
+        c. Transport Layer Protocols
+            - Transmission Control Protocol
+                - Connection Oriented 3-Way Handshake
+                    - SYN from you to server
+                    - SYN/ACK from server to you
+                    - ACK from you to server
+                - Assures delivery of packets through error checking
+            - User Datagram Protocol
+                - Scaled down economic version of TCP
+                - Connectionless & Unreliable
+                - No data re-transmissions
+                - used for streaming real-time data: VoIP, video streams, audio streams
+            - TCP vs UDP
+        d. Application Layer Protocols
+            - Management Protocols
+                - DNS - Domain Name Services
+                    - Converts domain name to ip address
+                    - google.com -> 74.125.224.52
+                    - nslookup
+                - NTP - Network Time Protocol
+                    - Automatically synchronized clocks on network devices
+                - SNMP - Simple Network Management Protocol
+                    - Collects and manipulates network information for managements and maintenance  
+            - Remote Authentication/Communication Protocols
+                - TCP - Telnet - Telecommunication Network
+                    - Provides a virtual terminal protocol for logging into and managing devies remotely
+                    - Unencrypted
+                - SSH - Secure Shell
+                    - Encrypted protocol similar to Telnet
+            - File Transfer Application Protocols
+                - FTP, File Transfer Protocol
+                    - Tranfers files between systems
+                    - Authentication with username and password
+                    - Full-featured functionality (list, add, delete, etc)
+                - TFTP, Trivial File Tranfer Protocol
+                    - Very simple file transfer applicaiton
+                    - Can send and receive files
+                    - No authentication
+            - Mail Application Protocols
+                - SMTP - Simple Mail Transfer Protocols
+                    - Used most often for sending mail
+                    - Transfer between mail servers
+                - POP3 - POst Office Protocol v3
+                    - Receive email
+                    - Designed for intermittent connectivity
+                - IMAP4 - Internet Message Access Protocol v3
+                    - Allows users to access email on servers and either read or download email
+            - Browser Protocols
+                - HTTP - Hypertext Transfer Protocol
+                    - Allows for browsing service for the internet
+                - HTTPS - Hypertext Transfer Protocol Secure
+                    - Allows for secure browsing service for the internet
+                    - Encryption via TLS/SSL
+                - TLS/SSL - Transport Layer Security & Secure Socket Layer
+                    - Cryptographic protocols for enabling secure online data-transfer activity
+            - Voice over IP VoIP Protocols
+                - SIP - Session Initiation Protocol
+                    - Sets up and tears down voice and video calls over the internet with TCP
+                - RTP - Real-Time Transport Protocol
+                    - Standard for delivering audio and video over the internet with UDP
+                    - Commonly employed for streaming media, video conferencing and VoIP
