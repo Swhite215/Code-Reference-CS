@@ -30,6 +30,10 @@ echo $ENVIRONMENT_VARIABLE
 echo "string"
 echo $PATH # displays command search directories and order
 
+printenv # displays evnironment variables
+printenv # displays all environment variables
+printenv variable # displays specific environment variable
+
 man # displays the command's manual
 man command
 
