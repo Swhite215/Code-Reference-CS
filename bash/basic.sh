@@ -82,6 +82,11 @@ gzip # compressing files to save space
 gzip file
 gunzip file
 
+su # switch to user
+su [username]
+
+whoami # shows what user you are
+
 
 clear # clears the screen
 
