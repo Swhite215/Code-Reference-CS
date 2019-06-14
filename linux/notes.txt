@@ -309,3 +309,28 @@ Fundamentals of Linux
             - kill
             - kill pid
             - kill signal pid
+    17.Cron
+        a. Cron Service
+            - A time based job scheduling system that starts when the system boots
+        b. Crontab
+            - A program to create, read, update, and delete your job schedules
+            - Minute Hour DayOfMonth MonthOfYear DayOfWeek or * * * * *
+                - Minute 0 - 59
+                - Hour 0 - 23
+                - DayOfMonth 1 - 31
+                - MonthOfYear 1 - 12
+                - DayOfTheWeek 0 - 6 (0 is Sunday)
+            - 0,1 * * * *
+            - Shortcuts
+                - @yearly - 0 0 1 1 *
+                - @annually - 0 0 1 1 *
+                - @monthly - 0 0 1 * *
+                - @weekly - 0 0 * * 0
+                - @daily - 0 0 * * *
+                - @midnight - 0 0 * * *
+                - @hourly - 0 * * * *
+            - Commands
+                - crontab file
+                - crontab -l, list cron jobs
+                - crontab -e, edit your cron jobs
+                - crontab -r, remove all of your cron jobs
