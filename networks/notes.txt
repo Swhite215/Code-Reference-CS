@@ -300,3 +300,35 @@ Fundamentals of Networking
             - Crossover
                 - Used to connect similar devices
                 - Computer to Computer, Switch to Switch, Router to Host
+    8. OSI Model, Open Systems Interconnection Model
+        a. Layer 7 - Application
+            - Where users communicate to the computer
+            - Applications interact here with protocols, they don't exist here
+            - e.g. Chrome application interacting with HTTP protocol
+        b. Layer 6 - Presentation
+            - Ensures that data transferred from one system's application layer can be ready by the application layer of another
+            - Character encoding, translator and formattor
+            - e.g. HTML converted to ASCII format
+            - encryption/decryption
+        c. Layer 5 - Session
+            - Setting up, managinng, and then tearing down sessions between presentation layer entities
+            - Coordinates communication between systems (start, stop, restart)
+            - Interhost communication
+        d. Layer 4 - Transport
+            - TCP, Transmission Control Protocol
+            - UDP, User Datagram Protocol
+            - Ensures that data arrives safely to its destination
+            - Segments and reassembles data into a data stream
+        e. Layer 3 - Network
+            - Routing Layer
+            - Provides addressing and routing services
+            - Source Address and Destination address
+            - Internet Protocol (IP)
+        f. Layer 2 - Data Link
+            - Physical transmission of data
+            - Ensures messages are delivered to the proper device on a LAN using hardware address
+            - Switching Layer
+            - Media Access Control (MAC)
+        g. Layer 1 - Physical
+            - Send bits and receives bits
+            - Signaling, cabling, connectors, punch-downs, adapter cards
