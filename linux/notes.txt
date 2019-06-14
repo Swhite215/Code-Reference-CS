@@ -334,3 +334,8 @@ Fundamentals of Linux
                 - crontab -l, list cron jobs
                 - crontab -e, edit your cron jobs
                 - crontab -r, remove all of your cron jobs
+    18. Switching Accounts and Running Command 
+        a. Switching
+            - su, switch user
+            - whoami, shows username
+            - sudo, super user do
