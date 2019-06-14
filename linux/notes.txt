@@ -276,3 +276,15 @@ Fundamentals of Linux
             - \u, username of the current user
             - \w, Current working directory
             - \W, basename of the current working directory
+    15. Environment Variables
+        a. Structure
+            - Name/Value Pars
+            - KEY=value
+        b. Create
+            - export VAR=value
+        c. View
+            - printenv VAR
+            - printenv
+            - echo $VAR
+        d. Remove
+            - unset VAR
