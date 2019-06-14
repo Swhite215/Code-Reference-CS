@@ -85,6 +85,13 @@ gunzip file
 su # switch to user
 su [username]
 
+sudo # super user do, install, start, and stop applications requiring higher access
+sudo -l # list commands
+sudo command # run command as super user
+sudo -u root command # run command as super user
+sudo -u user command # run command as another user
+sudo su # switch to super user
+
 whoami # shows what user you are
 
 
