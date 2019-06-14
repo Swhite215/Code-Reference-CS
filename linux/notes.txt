@@ -339,3 +339,16 @@ Fundamentals of Linux
             - su, switch user
             - whoami, shows username
             - sudo, super user do
+    19. Shell History
+        a. Where
+            - ~/.bash_history
+            - ~/.history
+            - ~/.histfile
+        b. History
+            - history, displays shell history
+            - HISTSIZE, number of commands to retain in history
+            - !N, repeat command line number N
+            - !!, repeat previous command line
+            - !string, repeat most recent command starting with "string"
+        c. Tab Completion
+            - hit tab to perform autocompletion
