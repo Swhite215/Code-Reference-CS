@@ -332,3 +332,9 @@ Fundamentals of Networking
         g. Layer 1 - Physical
             - Send bits and receives bits
             - Signaling, cabling, connectors, punch-downs, adapter cards
+        h. Encapsulation
+            - When we add chunks of information to network data
+                - Occurs when we send data from a computer
+        i. Decapsulation
+            - When we remove chunks of information from network data
+                - Occurs when we receive data at a computer
