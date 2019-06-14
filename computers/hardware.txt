@@ -44,3 +44,4 @@ Fundamentals of Computer Hardware
                 - Hard Disk Drive, normal
                 - Solid State Drive, faster and more durable
             - Storage or Drive Bays
+                - Area to add additional drives
