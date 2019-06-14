@@ -352,3 +352,33 @@ Fundamentals of Linux
             - !string, repeat most recent command starting with "string"
         c. Tab Completion
             - hit tab to perform autocompletion
+    20. Installing Software
+        a. Packages
+            - A collection of files, data/metadata, instructions
+        b. Package Manager
+            - Install, upgrade, and remove packages
+        c. RPM
+            - RedHat, CentOS, Fedora, Oracle Linux, Scientific Linux
+            - yum
+                - yum search string
+                - yum info [package]
+                - yum install [-y] package
+                - yum remove package
+            - rpm
+                - rpm -qa, list all installed packages
+                - rpm -qf /path/to/file, list the files package
+                - rpm -ql package, list package's files
+                - rpm -ivh package.rpm, install package
+                - rpm -e package
+        d. DEB
+            - apt, advanced packing tool
+                - apt-cache search string, search for string
+                - apt-get install -y package, install a package
+                - apt-get remove package, remove package
+                - apt-get purge package, remove package and metadata
+                - apt-cache show package, show package
+            - dpkg, debian package
+                - dpkg -l, list installed Packages
+                - depkg -S /path/to/file, list file's package
+                - dpkg -L, list all files in package
+                - depkg -i .deb file, install package
