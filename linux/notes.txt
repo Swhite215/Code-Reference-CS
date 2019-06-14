@@ -288,3 +288,24 @@ Fundamentals of Linux
             - echo $VAR
         d. Remove
             - unset VAR
+    16. Process and Job Control
+        a. List Processes
+            - ps (current session)
+                - -e, all
+                - -f, format listing
+                - -u username, displays usernames processes
+                - -p pid, display process specific information 
+            - top
+            - htop
+        b. Foreground vs. Background
+            - Foreground, blocks entering further commands
+                - kill with ctrl-c
+                - suspend ctrl-z
+                - fg [%num]
+            - Background, doesn't block
+                - bg [%num]
+            c. Launch Background Processes
+        d. Kill Processes
+            - kill
+            - kill pid
+            - kill signal pid
