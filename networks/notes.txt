@@ -462,3 +462,10 @@ Fundamentals of Networking
             - Non-Routable IP Address
             - Network Address Translation to route traffic from network to network
             - Used for efficiency and reusability
+    12. Subnetting
+        a. What is subnetting?
+            - Process of breaking up Class A, B, and C networks into smaller, more manageable networks
+            - We borrow host bits top create more sub-networks
+            - When you borrow you increase the amount of sub-networks, aka subnets available and decrease the amount of host IP addresses available
+        b. Why subnet?
+            - Allows you to create multiple logical networks that exist within a single Class A, B, or C network.
