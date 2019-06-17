@@ -469,3 +469,19 @@ Fundamentals of Networking
             - When you borrow you increase the amount of sub-networks, aka subnets available and decrease the amount of host IP addresses available
         b. Why subnet?
             - Allows you to create multiple logical networks that exist within a single Class A, B, or C network.
+    13. Network Design Process
+        a. Identify Uses of the Network
+            - Determing why the organization needs a network
+            - Interview owners, executives, managers, operations staff, etc.
+        b. List Which Tasks Execute on Which Computers
+            - Which applications and tasks have to be performed on each of the computers on the network
+            - You need to know how powerfl each computer should be (CPU, RAM, HD Space, Monitor Size)
+        c. Select the Type of Network: Centralized or Not
+            - Peer-to-Peer or Client-Server Architecture?
+            - Servers Services
+                - File Server, Print Server, Email Server, Application Server, Web Server, Authentication Server, Backup Server
+        d. Select the Proper Equipment
+            - Consider: uses, tasks, monetary constraints, reliability, security, availability, scalability
+        e. Draw the Network
+        f. Write the Specifications 
+        g. Build It
