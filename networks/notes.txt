@@ -419,3 +419,30 @@ Fundamentals of Networking
                 - RTP - Real-Time Transport Protocol
                     - Standard for delivering audio and video over the internet with UDP
                     - Commonly employed for streaming media, video conferencing and VoIP
+    10. Computer Networking Ports
+        a. Why do we need ports?
+            - Network application multi-tasking
+            - Ports allow you to associate packets with TCP/IP protocols
+            - Network services are assigned a Port Number (DNS, HTTP, SMTP, FTP, POP3, TELNET)
+            - HTTP TCP Port 80, SMTP TCP Port 25, POP3 TCP Port 110
+            - Firewalls filter network traffic by port numbers
+            - TCP/IP has 65,536 ports available
+        b. Well Known Ports (TCP or UDP)
+            - Numbers < 1024
+            - FTP 20, 21
+            - SSH 22
+            - Telnet 23
+            - SMTP 25
+            - DNS 53
+            - TFTP 69
+            - HTTP 80
+            - POP3 110
+            - IMAP4 143
+            - HTTPS 443
+        c. Process
+            - Initialzie high random port to communicate
+            - Send various requests at different ports
+                - IP address UDP/53 for DNS
+                - Web Information TCP/80 for HTTP
+                - Secure Web Information TCP/443 for HTTPS
+            - Receive responses on high random port selected earlier
