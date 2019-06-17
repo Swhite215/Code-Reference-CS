@@ -413,7 +413,7 @@ Fundamentals of Networking
                     - Encryption via TLS/SSL
                 - TLS/SSL - Transport Layer Security & Secure Socket Layer
                     - Cryptographic protocols for enabling secure online data-transfer activity
-            - Voice over IP VoIP Protocols
+            - Voice Over IP VoIP Protocols
                 - SIP - Session Initiation Protocol
                     - Sets up and tears down voice and video calls over the internet with TCP
                 - RTP - Real-Time Transport Protocol
@@ -446,3 +446,19 @@ Fundamentals of Networking
                 - Web Information TCP/80 for HTTP
                 - Secure Web Information TCP/443 for HTTPS
             - Receive responses on high random port selected earlier
+    11. Internet Protocol Addressing v4 (IPv4)
+        a. IP Address Components
+            - Network Address
+            - Host Address
+        b. Classes
+            - A = N.H.H.H
+            - B = N.N.H.H
+            - C = N.N.N.H
+        c. Identifying Classes
+            - 0 - 127 = Class A
+            - 128 - 191 = Class B
+            - 192 - 223 = Class C
+        d. Private Addresses
+            - Non-Routable IP Address
+            - Network Address Translation to route traffic from network to network
+            - Used for efficiency and reusability
