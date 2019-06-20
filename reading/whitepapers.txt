@@ -7,7 +7,8 @@ Various Read Whitepapers and Dissertations:
   a. Bitcoin: https://bitcoin.org/bitcoin.pdf
   b. Ethereum: https://whitepaperdatabase.com/ethereum-eth-whitepaper/
   c. Quorum: https://github.com/jpmorganchase/quorum/blob/master/docs/Quorum%20Whitepaper%20v0.2.pdf
-  d. EOS.IO: https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md 
+  d. EOS.IO: https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md
+  e. IOTA: https://iota.org/IOTA_Whitepaper.pdf
 
 3. Algorithms
   a. Paxos: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf
