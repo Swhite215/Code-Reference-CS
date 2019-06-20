@@ -10,6 +10,7 @@ Various Read Whitepapers and Dissertations:
   d. EOS.IO: https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md
   e. IOTA: https://iota.org/IOTA_Whitepaper.pdf
   f. Stellar: https://www.stellar.org/papers/stellar-consensus-protocol.pdf
+  g. VeChain: https://cdn.vechain.com/vechainthor_development_plan_and_whitepaper_en_v1.0.pdf
 
 3. Algorithms
   a. Paxos: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf
