@@ -9,6 +9,7 @@ Various Read Whitepapers and Dissertations:
   c. Quorum: https://github.com/jpmorganchase/quorum/blob/master/docs/Quorum%20Whitepaper%20v0.2.pdf
   d. EOS.IO: https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md
   e. IOTA: https://iota.org/IOTA_Whitepaper.pdf
+  f. Stellar: https://www.stellar.org/papers/stellar-consensus-protocol.pdf
 
 3. Algorithms
   a. Paxos: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf
