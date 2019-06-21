@@ -1,0 +1,18 @@
+Fundamentals of Computer Storage
+    1. Overview
+        a. Primary Storage
+            - Memory (RAM)
+        b. Secondary Storage (Non-Volatile)
+            - Optical
+                - CD, DVD, Blu-Ray
+            - Magnetic
+            - Solid State Storage
+            - Hard Disk Drive
+                - Platters with Read/Write Heads reading + and - charges
+            - Tape Storage, Archival
+        c. Ways of Storing
+            - Direct Access
+            - Sequential Access
+        d. Location
+            - Internal
+            - External
