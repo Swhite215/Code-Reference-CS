@@ -16,3 +16,11 @@ Fundamentals of Computer Storage
         d. Location
             - Internal
             - External
+            - Remote, Mirrored
+    2. HDD & File Systems
+        a. HDD
+            - Magnetic Storage
+            - Read/Write Head aligns magnetic particles in one of two ways as it moves across disk surface
+            - Components
+                - Spindle, Platters, Read/Write Head, Actuator Arm, Actuator Axis, Actuator
+                - Power Connector, SATA Connector, Jumper
