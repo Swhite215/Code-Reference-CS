@@ -69,6 +69,7 @@ cp -r source_directory destination
 mv # move or rename
 mv source destination
 mv firstName newName
+mv folder/* /path/to/newFolder # moves all files in a folder to a new folder
 
 sort # sort a files content
 sort file
