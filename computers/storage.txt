@@ -63,4 +63,6 @@ Fundamentals of Computer Storage
             - PNP Transistor
             - Bipolar - Two charges needed
             - Unipolar - One charge needed
+            - SLC - Single Level Cell, store 1 bit of data in each cell
+            - MLC - Multi-Level Cell, store 2 or more bits of data in each cell
  
