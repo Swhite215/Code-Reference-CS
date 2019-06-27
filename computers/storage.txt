@@ -24,3 +24,15 @@ Fundamentals of Computer Storage
             - Components
                 - Spindle, Platters, Read/Write Head, Actuator Arm, Actuator Axis, Actuator
                 - Power Connector, SATA Connector, Jumper
+            - Internal and External Hard Drives
+            - Head Crash - Read/Write Head hits platter, causing an issue
+            - Logical vs. Physical File Representation
+                - Logical - One Platter Cylinder
+                - Physical - Multiple Platters
+            - Tracks - Data is stored on circular tracks
+            - Sector - Disk is divided into pie-shaped sectors 
+            - Cluster - The part of track that crosses two ore more adjacent sectors, smalles addressable unit of disk storage
+            - File System - Attached to one or many clusters (File Allocation Table or New Technology File System)
+            - Fragmentation & Defragmentation
+                - Fragmentation - Files stored all over the place
+                - Defragmentation - Files stored in consecutive/less clusters
