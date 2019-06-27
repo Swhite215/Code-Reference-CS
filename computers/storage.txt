@@ -36,3 +36,30 @@ Fundamentals of Computer Storage
             - Fragmentation & Defragmentation
                 - Fragmentation - Files stored all over the place
                 - Defragmentation - Files stored in consecutive/less clusters
+    3. Optical Storage
+        a. Overview
+            - Uses light to store information
+            - Direct access
+            - Track - Single grooved track spirals from the center of the disc outward, recorded datat is stored in groove
+            - Sector - Track is divided into multiple sectors for data organization
+            - Writing Data - Laser beam creates datk, nonreflective areas on the disk to function as pits
+            - Reading Data - Low intensity laser beam reads the disc, transitions between the pits and lands represent the 1s, the length of time between transitions represent the 0s
+        b. Examples
+            - DVD
+            - Blu-Ray
+            - CD
+            - ROM, R, RW
+    4. Solid State Storage
+        a. Overview
+            - Flash Memory
+            - Transistors - Transmit and Resist
+            - Silicon - Semiconductor material, doesn't really conduct or insulate
+                - N-Type, silicon gains extra electtrons, so electrons flow out of it more naturally
+                - P-Type, silicon loses electrons, so electrons in nearby materials will tend to flow into it
+                - Sandwich, junction or depletion zone where N-Type and P-Type come together, doesn't conduct electricity
+                - Add electricity, electrons get pushed across junction or depletion zone
+                - LED, Light Emitting Diode that emits light when current flows through it
+            - NPN Transistor
+            - PNP Transistor
+            - Bipolar - Two charges needed
+            - Unipolar - One charge needed
