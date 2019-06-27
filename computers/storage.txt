@@ -63,3 +63,4 @@ Fundamentals of Computer Storage
             - PNP Transistor
             - Bipolar - Two charges needed
             - Unipolar - One charge needed
+ 
