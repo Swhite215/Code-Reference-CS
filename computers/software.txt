@@ -38,3 +38,37 @@ Fundamentals of Software
             - Core of a computer's operating system, with complete control over everything in the system
             - Translates input/output requests from software into data-processing instructions for the central processing unit
             - Connects application software to the hardware of a computer
+    3. Utility Software
+        a. Overview
+            - Software designed to help analyze, configure, optimize, or maintain a computer.
+        b. System Utilities
+            - Computer Access Control
+            - Anti-Virus
+            - Clipboard Managers
+            - Memory Testers
+            - Package Managers
+            - Registry Cleaners
+            - Screensavers
+            - Network Utilities
+            - System Monitors
+            - System Profiles
+        c. Storage Device Management Utilities
+            - Disk Checkers
+            - Disk Compression
+            - Disk Defragmentation
+            - Disk Formatters
+            - Disk Partition Editors
+            - Disk Space Analyzers
+        d. File Management Utilities
+            - Archivers
+            - Backup Software
+            - Cryptographic
+            - Data Compression
+            - Data Synchronization
+            - Disk Cleaners
+            - File Managers
+        e. MISC Utilities
+            - Data Generators
+            - Hex Editors
+            - HTML Checkers
+            - Sort/Merge Programs
