@@ -1,0 +1,40 @@
+Fundamentals of Software
+    1. Overview
+        a. System Software
+            - Any software that makes your computer run'
+            - OS
+            - Utilities
+            - Drivers
+        b. Application Software
+            - Any software needed that makes an application run
+    2. Operating Systems
+        a. Definition
+            - A collection of programs that manage and coordinate the activities taking place within a computer
+        b. Functions
+            - User Interface, CLI and GUI
+            - Finish booting after BIOS
+            - Interfaces and runs the hardware
+            - Manage resources and schedule jobs
+            - File management
+            - Device Management
+            - Storage Management
+        c. Categories
+            - Embedded
+            - Mobile
+                - iOS, Android, Windows
+            - Desktop
+                - Windows, MacOS, Unix, Linux, ChromeOS, Ubuntu
+            - Server
+            - Mainframe
+            - Super Computers
+                - Sierra, Titan, Frontier, Summit
+            - Single and Multi-Tasking
+            - Single and Multi-User
+            - Distributed
+            - Templated
+            - Real-Time
+            - Library
+        d. Kernel
+            - Core of a computer's operating system, with complete control over everything in the system
+            - Translates input/output requests from software into data-processing instructions for the central processing unit
+            - Connects application software to the hardware of a computer
