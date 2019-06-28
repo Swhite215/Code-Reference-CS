@@ -1,0 +1,14 @@
+Input/Output Devices
+    1. Examples
+        a. Keyboard
+        b. Mouse
+        c. Scanners
+        d. Microphones
+        e. Digital Cameras
+        f. Brain Interface
+        g. Monitors/Displays
+        h. VR
+        i. AR
+        j. Projectors 
+        k. Printers
+        l. Speakers
