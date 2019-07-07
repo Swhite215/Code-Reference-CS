@@ -400,7 +400,7 @@ Fundamentals of Networking
                 - SMTP - Simple Mail Transfer Protocols
                     - Used most often for sending mail
                     - Transfer between mail servers
-                - POP3 - POst Office Protocol v3
+                - POP3 - Post Office Protocol v3
                     - Receive email
                     - Designed for intermittent connectivity
                 - IMAP4 - Internet Message Access Protocol v3
@@ -465,7 +465,7 @@ Fundamentals of Networking
     12. Subnetting
         a. What is subnetting?
             - Process of breaking up Class A, B, and C networks into smaller, more manageable networks
-            - We borrow host bits top create more sub-networks
+            - We borrow host bits to create more sub-networks
             - When you borrow you increase the amount of sub-networks, aka subnets available and decrease the amount of host IP addresses available
         b. Why subnet?
             - Allows you to create multiple logical networks that exist within a single Class A, B, or C network.
@@ -475,7 +475,7 @@ Fundamentals of Networking
             - Interview owners, executives, managers, operations staff, etc.
         b. List Which Tasks Execute on Which Computers
             - Which applications and tasks have to be performed on each of the computers on the network
-            - You need to know how powerfl each computer should be (CPU, RAM, HD Space, Monitor Size)
+            - You need to know how powerful each computer should be (CPU, RAM, HD Space, Monitor Size)
         c. Select the Type of Network: Centralized or Not
             - Peer-to-Peer or Client-Server Architecture?
             - Servers Services
