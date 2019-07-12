@@ -72,3 +72,14 @@ Fundamentals of Software
             - Hex Editors
             - HTML Checkers
             - Sort/Merge Programs
+    4. Application Software
+        a. Production
+            - Written for a specific platform, hardware and operating system
+        b. Examples
+            - Word Processing, Spreadsheets, 3D Modeling, Database Management, Games, Presentation, CAD, Video Editing, Audio Editing
+        c. Licenses
+            - EULA, End User License Agreement
+            - Own the right to use the software
+            - Open Source
+                - MIT, Apache, BSD 3-Clause, BSD 2-Cluse, GNU General Public License (GPL), GNU Library or "Lesser" General Public License
+                - Mozilla Public License, Common Development and Distribution License, Eclipse Public License Version 2.0
