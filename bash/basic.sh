@@ -41,6 +41,7 @@ printenv variable # displays specific environment variable
 
 man # displays the command's manual
 man command
+man -k keyword # finds commands associated with keyword
 
 which # shows location or full path to the command that you're executing
 which node
