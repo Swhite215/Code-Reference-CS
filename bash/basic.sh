@@ -82,6 +82,8 @@ rm file
 rmdir # removes a directory
 rmdir -p
 
+script file # makes a typescript of everything printed on your terminal
+
 sort # sort a files content
 sort -r file
 sort -u file
