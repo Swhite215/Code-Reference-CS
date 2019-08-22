@@ -15,6 +15,10 @@ command -h
 
 command; command; command # multiple commands chained together
 
+command | sort | less # sort and analyze output from command
+command | sort | uniq | less # sort and anaylze unique output from command
+command | tee file | less 
+
 cp # copy
 cp -r source_directory destination
 cp source_file destination_file
@@ -27,6 +31,8 @@ echo "string"
 echo # displays arguments to the screen
 echo $ENVIRONMENT_VARIABLE
 echo $PATH # displays command search directories and order
+echo {A...Z} # brace expansion
+echo {0...N}
 
 exit # exits the shell or your current session
 
@@ -55,6 +61,7 @@ man command
 
 mkdir # creates a directory
 mkdir -p
+mkdir duplicates/dir-{001-100} # brace expansion
 
 mv # move or rename
 mv firstName newName
@@ -89,6 +96,9 @@ sudo -u root command # run command as super user
 sudo -u user command # run command as another user
 sudo command # run command as super user
 sudo su # switch to super user
+
+touch file # creates a file
+touch duplicates/dir-{001-100}/file-{A...Z} # brace expansion
 
 tree # displays tree structure
 tree -C #display in color
