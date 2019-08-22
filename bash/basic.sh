@@ -1,5 +1,7 @@
 # Basic Linux Commands
 
+apropos command # same as man -k keyword
+
 cat # concatenates and displays files
 cat filename
 
