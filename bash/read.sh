@@ -1,3 +1,5 @@
+# Example READ Command, a tool for reading user input
+
 read -t 10 -sp "Enter a number quickly >" INT
 
 if [ -z "$INT" ]; then
