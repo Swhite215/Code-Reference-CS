@@ -89,6 +89,8 @@ sort -r file
 sort -u file
 sort file
 
+source ~/.bashrc # reloads the .bashrc file
+
 su # switch to user
 su [username]
 
