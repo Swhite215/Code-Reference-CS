@@ -112,6 +112,8 @@ tree -d # displays only directories
 
 unset VAR # unsets environment variable
 
+wc file # displays the number of lines, words, and bytes in the file
+
 which # shows location or full path to the command that you're executing
 which ls
 which node
