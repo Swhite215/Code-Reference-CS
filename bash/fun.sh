@@ -20,6 +20,9 @@ while [[ -n "$1" ]]; do
         -a | -armadias) echo "Armadias von Elgin, the Shield, comes to your defense."
                         shift
                         ;;
+        -f | -flare)    echo "Flare, the Dragon, flys to your rescue with tooth, talon, and flame."
+                        shift
+                        ;;
         -t | -tranquility) echo "Tranquility, the hero of the story, is here."
                         shift
                         ;;
