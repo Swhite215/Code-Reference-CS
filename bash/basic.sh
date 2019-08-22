@@ -36,6 +36,9 @@ groups # displays groups user is a part of
 ifconfig # configures and shows network interface parameters
 ifconfig -a
 
+info program # displays info documents for program or command
+info coreutils
+
 ls # lists directory contents
 ls -F # reveals file types, /Directory, @Link, *Executable
 ls -al # shows hidden files
