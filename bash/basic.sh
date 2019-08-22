@@ -91,6 +91,8 @@ sort file
 
 source ~/.bashrc # reloads the .bashrc file
 
+stat file # displays information about the file
+
 su # switch to user
 su [username]
 
