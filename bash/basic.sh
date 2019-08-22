@@ -13,6 +13,8 @@ clear # clears the screen
 command --help
 command -h
 
+command; command; command # multiple commands chained together
+
 cp # copy
 cp -r source_directory destination
 cp source_file destination_file
