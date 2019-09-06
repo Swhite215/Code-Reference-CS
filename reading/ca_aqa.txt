@@ -1,0 +1,64 @@
+Title: Computer Architecture: A Quantitative Approach
+Authors: John L. Hennessy and David A. Patterson
+
+Summarization of Content
+
+1. Chapter 1 - Fundamentals of Quantitative Design and Analysis
+    a. Classes of Computers
+        - Personal/Mobile Devices PMD
+        - Desktop
+        - Server
+        - Warehouse
+        - IoT/Embedded
+    b. Parallelism
+        - Data-Level Parallelism
+            - Instruction Level Parallelism
+            - Vector Architectures, Graphic Processor Units, and Multimedia Instruction Sets
+            - Thread Level Parallelism
+        - Task-Level Parallelism 
+            - Thread Level Parallelism
+            - Request Level Parallelism
+        - Categories
+            - Single Instruction, Single Data Stream SISD
+            - Single Instruction, Multiple Data Stream SIMD
+            - Multiple Instruction, Singel Data Stream MISD
+            - Multiple Instruction, Multiple Data Stream MIMD
+    c. Instruction Set Architecture Dimensions
+        - Class - General Purpose Registers
+        - Memory Addressing
+        - Addresing Modes
+        - Types and Sizes of Operands
+        - Operations
+        - Control Flow Instructions
+        - Encoding an ISA
+    d. Trends in Technology
+        - Integrated Circuit Technology
+        - Semiconductor DRAM
+        - Semiconductor Flash
+        - Magnetic Disks
+    e. Performance Trends
+        - Bandwidth or Throughput
+        - Latency or Response Time
+    f. Dependability
+        - Mean Time to Failure
+        - Mean Time Between Failures
+        - Mean Time to Recover
+    g. Benchmarks
+        - Electronic Design News Embedded Microprocessor Benchmark Consortium
+        - Standard Performance Evaluation Corporation
+        - Transaction Processing Council
+    h. Quantitative Principles of Computer Design
+        - Parallelism
+        - Locality
+        - Common Case
+        - Amdahl's Law
+        - Processor Performance Equation
+    i. Fallacies and Pitfalls
+        - P: All exponential laws must come to an end.
+        - F: Multiprocessors are a silver bullet.
+        - P: Falling prey to Amdahl's Law.
+        - P: A single point of failure.
+        - F: Hardware enhancements that increase performance also improve energy efficiency, or at worst are energy neutral.
+        - F: Benchmarks remain valid indefinitely.
+        - F: Disks never fail.
+        - F: Peak performance tracks observed performance.
