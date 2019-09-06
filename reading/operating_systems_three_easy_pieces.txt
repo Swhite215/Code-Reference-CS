@@ -58,11 +58,26 @@ Summarization of Content
         - Mechanisms: Splitting and Coalescing
         - Strategies: Best Fit, Worst Fit, First Fit, Next Fit, Segregated Lists, Binary Buddy Allocator
     f. Paging
-        - 
+        - Splitting up a process's address space into fixed size units called pages
+        - Page Frames, are fixed-size slots in physical memory, each containing a single virtual memory page
+        - Page Table, a per process structure that records where each virtual page of the address is placed in physical memory
+            - Virtual Page Number, Physical Frame Number, and Offset
+            - Valid Bit, Protection Bit, Present Bit, Dirty Bit, Reference Bit, 
     g. Translation Lookaside Buffer
-    h. Smaller Tables
-    i. Beyond Physical Memory Mechanisms
-    j. Beyond Phyiscal Memory Policies
+        - Part of the Memory Management Unit, cache of popular virtual to physical address translations
+        - TLB Hit, virtual to address translation exists
+        - TLB Miss, virtual to address translation does not exist
+        - Software vs. Hardware Managed
+        - Fully Associative, Virtual Page Number, Physical Frame Number, Other Bits
+        - Replacement Policies: FIFO, LIFO, LRU, Random
+        - Multiple Levels
+    h. Beyond Physical Memory Mechanisms
+        - Swap Space, reserved space for moving pages back and forth
+        - Page Fault, if the present bit is zero, page does not exist, must be swapped into memory
+    i. Beyond Phyiscal Memory Policies
+        - Metrics: Cache Misses, Cache Hits, Average Memory Access Time
+        - Page Replacement Policies: Furthest in the Future, FIFO, Random, LRU, LFU, Prefetching Paging, Demand Paging
+        - Issues: Thrashing, system is constantly paging
 3. Topic #3 - Concurrency
     a. Concurrency
     b. Thread API
