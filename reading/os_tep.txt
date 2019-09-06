@@ -1,0 +1,85 @@
+Title: Operating Systems: Three Easy Pieces
+Authors: Remzi and Andrea Arpaci-Dusseau
+
+Summarization of Content
+
+1. Topic #1 - Virtualization of CPU
+    a. The Process
+        - A running program
+        - How can the OS provide the illusion of nearly endless CPUs? 
+            - Virtualization
+            - Time Sharing (Context Switch)
+            - Space Sharing (Partitions)
+    b. Process API
+        - Methods: Create, Destroy, Wait, Miscellaneous, Status
+        - States: Ready, Blocked, Runnnig
+        - Commands on Linux: ps, top, htop
+        - System Calls: fork(), exec(), wait(), kill()
+    c. Limited Direct Execution
+        - Run directly on the CPU
+        - Issues: Restricted Operations, Switching
+        - Terms: Run, Trap, Trap/Interrupt Handler, Timer Interrupt, Concept Switch
+    d. Scheduling - Introduction
+        - Metrics: Turnaround Time, Fairness, Response Time
+        - Policies: FIFO, SJF, STCF, Round Robin
+    e. Scheduling - Multi-Level Feedback Queue
+        - Rule 1: Priority A > Priorty B, A runs.
+        - Rule 2: Priority A = Priority B, A & B run in RR.
+        - Rule 3: When entering, job is placed at highest priority.
+        - Rule 4: Once a job uses its time allotment, its priority is reduced.
+        - Rule 5: After some time period, move all the jobs in the system to the topmost queue.
+    f. Scheduling - Proportional Share
+        - Lottery Scheduling
+        - Randomness to Achieve Proportion (Ticket Share Determinant)
+        - Stride Scheduling, Deterministic Fair Share Scheduler
+    g. Multi-Processor Scheduling
+        - Single-Queue Scheduling
+        - Multi-Queue Scheduling
+2. Topic #2 - Virtualization of Memory
+    a. Address Spaces
+        - Running processes view of memory in the system
+        - Goals: Transparency, Efficiency, Protection
+    b. Memory API
+        - Methods:
+        - System Calls: malloc(), free(), calloc(), realloc()
+        - Common Errors: Forgetting to Allocate, Forgetting to Free, Not Allocating Enough
+        - More Errors: Forgetting to Initialize, Freeing Memory Before You Are Done, Freeing Memory Repeatedly
+    c. Address Translation
+        - Hardware transform each memory access, changing the virtual address provided by the instruction to a physical address where the information is located
+        - Program has the illusion of it's own memory
+        - Base and Bounds, Dynamic Relocation, Add Base to Address, use Memory Management Unit
+    d. Segmentation
+        - Continuous portion of the address space of a particular length
+        - Sharing is enabled through protection bits
+        - Coarse-grained = large chunks
+        - Fine-grained = small chunks
+    e. Free Space Management
+        - The problem: external fragmentation and internal fragmentation
+        - Mechanisms: Splitting and Coalescing
+        - Strategies: Best Fit, Worst Fit, First Fit, Next Fit, Segregated Lists, Binary Buddy Allocator
+    f. Paging
+        - 
+    g. Translation Lookaside Buffer
+    h. Smaller Tables
+    i. Beyond Physical Memory Mechanisms
+    j. Beyond Phyiscal Memory Policies
+3. Topic #3 - Concurrency
+    a. Concurrency
+    b. Thread API
+    c. Locks
+    d. Lock-based Concurrent Data Structures
+    e. Condition Variables
+    f. Sempahores
+    g. Concurrency Problems
+3. Topic #4 - Persistence
+    a. I/O Devices
+    b. Hard Disk Drives
+    c. Redundant Array of Inexpensive Disks
+    d. Files and Directories
+    e. File System Implementation
+    f. Locality and The Fast File System
+    g. Crash Consistency
+    h. Log-structured File Systems
+    i. Date Integrity and Protection
+    j. File System Examples
+    k. Flash SSD
