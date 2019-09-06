@@ -1,0 +1,15 @@
+Title: Algorithms to Live By
+Authors: Brian Christian and Tom Griffiths
+
+Algorithms
+    1. Cache
+    2. Random - Simulated Annealing
+    3. Game Theory
+    4. Optimal Stopping
+    5. Explore/Exploit
+    6. Scheduling
+    7. Baye's Rules
+    8. Relaxation
+    9. Sorting
+    10. Overfitting
+    11. Networking
