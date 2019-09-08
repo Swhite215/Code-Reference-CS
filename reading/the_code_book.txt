@@ -1,0 +1,83 @@
+Title: The Code Book
+Authors: Simon Singh
+
+Summarization of Content
+
+1. Chapter 1: The Cipher of Mary Queent of Scots
+    a. Monoalphabetic Cipher
+    b. Polyalphabetic Cipher
+    c. Caesar Cipher
+    d. Cryptanalysis - Arab
+    e. Secret Writing
+        - Stenography
+        - Cryptogrphy
+            - Substitution
+                - Code
+                - Cipher
+            - Transposition
+    f. Frequency Analysis
+2. Chapter 2: Le Chiffre Indechiffrable
+    a. Vignere Cipher
+    b. Viennese Black Chamber
+    c. Beale Papers and Beale's Cipher
+3. Chapter 3: The Mechanization of Secrecy
+    a. German ADFGVX
+    b. Room 40
+    c. One Time Pad Cipher
+    d. Cipher Disks, Code-o-Graph
+    e. Engima
+4. Chapter 4: Cracking the Engima
+    a. Poland with Rejewski and Bombes
+    b. Bletchley Park
+    c. Government Code and Cypher School
+    d. Turing Machine
+    e. Difference Engine No. 2
+    f. Operation Ultra
+5. Chapter 5: The Language Barrier
+    a. Purple, Japanese Cipher
+    b. SIGABA or M-143-C American Cipher Machine
+    c. Navajo Code Talkers
+    d. Egytian Hieroglyphics, Hieratic and Demotic
+    e. Coptic Language
+    f. Rosetta Stone
+    g. Linear A and Linear B
+6. Chapter 6: Alice and Bob Go Public
+    a. Lorenz Cipher
+    b. Colossus
+    c. Lucifer by Horst Feistel
+    d. Data Encryption Standard
+    e. Issue of Key Distribution
+    f. COMSEC - Communications Security
+    g. Alice and Bob
+    h. Public Key Cryptography
+    i. The Codebreakers by David Khan
+    j. Asymmetric Cryptography
+    k. RSA
+    l. Communications-Electronics Security Group
+7. Chapter 7: Pretty Good Privacy
+    a. Phil Zimmermann and PGP
+    b. IDEA Cipher
+    c. American Escrowed Enryption Standard
+8. Chapter 8: A Quantum Leap into the Future
+    a. Quantum Computer
+    b. Quantum Cryptography
+9. Important People
+    a. Caesar
+    b. Leon Alberti
+    c. Ralph, Hellman, Diffie
+    d. Rivest, Shavir, Alderman
+    e. Vignere
+    f. Turing
+    g. Charles Babbage
+    h. George Painvin
+    i. Montgomery and de Grey
+    j. Arthur Scherbius
+    k. Marian Rejewski
+    l. Athanasisus Kircher
+    m. Thomas Young and Champollion
+    n. Alice Kober and Michael Ventris and John Chadwick
+    o. Max Newman
+    p. James Ellis and Clifford Cocks
+    q. Phil Zimmermann
+    r. David Deutsch
+    s. Stephen Wiesner and Charles Bennett and Gilles Brassard
