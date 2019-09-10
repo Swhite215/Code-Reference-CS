@@ -3,7 +3,7 @@ Authors: Simon Singh
 
 Summarization of Content
 
-1. Chapter 1: The Cipher of Mary Queent of Scots
+1. Chapter 1: The Cipher of Mary Queen of Scots
     a. Monoalphabetic Cipher
     b. Polyalphabetic Cipher
     c. Caesar Cipher
