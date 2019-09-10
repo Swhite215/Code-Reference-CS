@@ -62,3 +62,35 @@ Summarization of Content
         - F: Benchmarks remain valid indefinitely.
         - F: Disks never fail.
         - F: Peak performance tracks observed performance.
+
+2. Chapter 2 - Memory Hierarchy Design
+    a. Memory Technology
+        - Primary Memory
+            - L1, L2, L3 Cache
+        - Secondary Memory
+            - HDD
+            - SDD
+            - Optical Drives CD/DVD
+        - Caches Misses
+            - Compulsory, Capacity, Conflict
+        - Six Basic Cache Optimizations
+            - Larger Block Size to Reduce Miss Rate
+            - Bigger Caches to Reduce Miss Rate
+            - Higher Associativity to Reduce Miss Rate
+            - Multilevel Caches to Reduce Miss Penalty
+            - Priority to Read Misses Over Writes to Reduce Miss Penalty
+            - Avoiding Address Translation During Indexing of Cache to Reduce Hit Time
+    b. Memory Technology and Optimizations
+        - RAM
+            - Dynamic RAM - DRAM
+            - Static RAM - SRAM
+            - Synchronous DRAM - SDRAM
+            - Double Data Rate - DDR
+            - Graphics SDRAM - GSDRAM
+        - Flash Memory
+            - EEPROM
+        - Phase-Change Memory Technology
+    c. Ten Advanced Optimizations of Cache Performance
+    d. Virtual Memory and Virtual Machines
+    e. Pitfalls and Fallacies
+3. Chapter 3 - Instruction Level Parallelism
