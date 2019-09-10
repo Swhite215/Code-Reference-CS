@@ -91,6 +91,49 @@ Summarization of Content
             - EEPROM
         - Phase-Change Memory Technology
     c. Ten Advanced Optimizations of Cache Performance
+        - Categories
+            - Reducing the Hit Time
+                - Small and Simple First Level Caches
+                - Way Prediction
+            - Increasing Cache Bandwidthq
+                - Pipelined and Multibanked Caches
+                - Non-Blocking Caches
+            - Reducing the Miss Penalty
+                - Critical Word First and Early Restart
+                - Merging Write Buffer
+            - Reducing the Miss Rate
+                - Compiler Optimizations
+            - Reducing the Miss Penalty or Miss Rate Via Parallelism
+                - Hardware Prefetching
+                - Compile Prefetching
+            - Miscellaneous
+                - High-Bandwidth Memory 
     d. Virtual Memory and Virtual Machines
+        - Virtual Machine Monitor
+            - Provides an environment for programs which is essentially identical with the original machine
+            - Programs run in this environment show at worst only minor decreases in speed
+            - VMM is in complete control of system resources
+        - Protection via Virtual Memory
+            - Kernel and User Mode
+            - User Process Use w/ supervisor mode bit, exception enable/disable bit, and memory protection information
+            - Mechanism to go to supervisor mode and back to user mode
+            - Mechanisms to limit memory access without having to swap the process on disk on a context switch
+        - Protection Via Virtual Machines
+            - Increase importance of isolation and security
+            - Failures in security and reliability of standard operating systems
+            - Sharing of a single computer among unrelated users
+            - Dramatic increases in the raw speed of processors
+        - VM
+            - All emulation methods that provide a standard software interface
+            - Interest: VMs that provide a complete system-level environment at the binary instruction set architecture level
+        - VM Benefits
+            - Managing Software and Hardware
+        - VMM Requirements
+            - Guest hardware should behave on a VM exactly as if it were running on the native hardware
+            - Guest software should not be able to directly change allocation of real system resources
     e. Pitfalls and Fallacies
+        - F: Predicting Cache Performance of One Program from Another
+        - P: Simulating Enough Instructions to Get Accurate Performance Measure of the Memory Hierarchy
+        - P: Not Delivering High Memory Bandwidth in a Cache-Based System
+        - P: Implementing a Virtual Machine Monitor on an Instruction Set Architecture that was not designed to be Virtualizable
 3. Chapter 3 - Instruction Level Parallelism
