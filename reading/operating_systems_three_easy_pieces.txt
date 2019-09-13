@@ -10,6 +10,7 @@ Summarization of Content
             - Virtualization
             - Time Sharing (Context Switch)
             - Space Sharing (Partitions)
+        - Process Control Block - State of Process
     b. Process API
         - Methods: Create, Destroy, Wait, Miscellaneous, Status
         - States: Ready, Blocked, Runnnig
@@ -80,12 +81,88 @@ Summarization of Content
         - Issues: Thrashing, system is constantly paging
 3. Topic #3 - Concurrency
     a. Concurrency
+        - Thread, Point of execution
+        - Context Switch, Switching between Processes
+        - Thread Control Block - State of Thread
+        - Issue: Shared Resource, Uncontrolled Scheduling, Waiting
+        - Atomicity: Non-interruptable execution of instruction
+        - Synchornization Primitives: Helps achieve concurrency
+        - Vocabulary
+            - Critical Section, a piece of code that accesses a shared resource
+            - Race Condition, multiple threads of execution enter the critical section at roughly the same time, both attempt to update resource
+            - Indeterminate, program consists of one or more race conditions
+            - Mutual Exclusion, gurantees only a single thread ever enters a critical section
     b. Thread API
+        - System Calls: pthread_create(), pthread_join()
     c. Locks
+        - Mutual Exlcusion to a critical section
+        - Routines: pthread_mutext_init(), pthread_mutex_lock(), pthread_mutex_unlock(),pthread_mutex_destroy()
+        - Order: Intialize, Lock, Unlock, Destroy
+        - States: Available, Unlocked, Free or Acquired, Locked, Held
+        - Meaures: Achieves mutual exclusion, fairness, performance
+        - Early Solution: Lock that Disables Interrupts
+        - Hardware Support:
+            - Test and Set or Atomic Exchange
+            - Compare and Swap
+            - Load-Linked + Store-Conditional
+            - Fetch And Add
+        - Issues: Spin-Waiting
+            - Solution: Yield, Sleep with Queue
     d. Lock-based Concurrent Data Structures
+        - Counters (Sloppy), Linked Lists (Hand Over Hand), Queues, Hash Table
     e. Condition Variables
+        - Explicit queu that threads can put themselves on when some state of execution is not as desired Dijkstra's
+        - System Calls: pthread_cond_t
+        - Operation: wait() = sleep, signal() = wake
+        - Producer/Consumer Bounded Buffer Problem
+            - Producer threads filling buffer that consumer threads consume, buffer is critical section
+            - Mesa and Hoare Semantics - Building condition variable tha will run immediately upon being woken
+            - Solution: Use while loops and two conditional variables fill and empty
     f. Sempahores
+        - Synchronization Primitive
+        - Object with an integer value that we can manipulate with two routines
+        - Routings: sem_init(), sem_wait(), sem_post()
+        - Binary Sempahores (Locks) - initial value is 1
+        - Conditional Variables - initial value is 0
+        - Reader-Writer Lock, rwlock_acquire_writelock(), rwlock_release_writelock()
     g. Concurrency Problems
+        - Non-Deadlock Bugs
+            - Atomicity-Violation
+                - The desired serializability among multiple memory accesses is violated (atomicity is not enforced)
+            - Order-Violation
+                - The desired order between two groups of memory accesses is flipped (order is not enforced)
+        - Deadlock Bugs
+            - Causes: Dependencies and Encapsulation
+            - Conditions
+                - Mutual Exclusion
+                    - Threads claim exclusive control of resources that they require
+                - Hold-and-Wait
+                    - Threads hold resources allocated to them while waiting for additional resources
+                - No Preemption
+                    - Resources cannot be forcibly removed from threads that are holding them
+                - Circular Wait
+                    - Each thread hohlds one or more resources that are being requested by the next thread in the chain
+            - Prevention
+                - Circular Wait
+                    - Provide a total ordering or partial ordering on lock acquisition
+                - Hold and Wait
+                    - Acquire all locks at once
+                - No Preemption
+                    - Try Lock
+                - Mutual Exclusion
+                    - Wait-Free, use powerful hardware instructions to build data structures that do not require explicit locking
+            - Scheduling
+                - Know which locks might be grabbed and schedule threads to guarantee no deadlock can occur
+            - Detect and Recover
+                - Deadlock detector runs periodically and checks for cycles (deadlocks), in the event of deadlock, restart the system
+    h. Event Based Concurrency
+        - Problems: Concurrency is challenging and developer has little or no control over what is scheduled
+        - Event Loop: Wait for event, check what it is, and do required work
+        - Event Handler, processes each event
+        - API: select(), and poll()
+        - Asynchronous I/O
+        - Problem State Management: Manual Stack Management
+            - Continuation: record the needed information to finish processing this event in some data structure, look up the needed information and process the event
 3. Topic #4 - Persistence
     a. I/O Devices
     b. Hard Disk Drives
