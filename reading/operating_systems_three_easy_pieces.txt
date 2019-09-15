@@ -165,12 +165,161 @@ Summarization of Content
             - Continuation: record the needed information to finish processing this event in some data structure, look up the needed information and process the event
 3. Topic #4 - Persistence
     a. I/O Devices
+        - Connected via I/O Bus (PCI) or Peripheral Bus (SCSI, SATA, USB)
+        - Canonical Device
+            - Hardware Interface/Firmware
+            - Status, Command, and Data Register
+        - Order
+            - Polling
+            - OS -> Data Register (PIO)
+            - OS -> Command Register
+            - Check for Finish
+        - Important Mechanism - The Interrupt
+            - Interrupt
+            - Interrupt Service Routine
+            - Interrupt Handler
+            - Coalescing
+            - Two-Phased - Polling and Interrupt
+        - Livelock - Processing Interrupts Forever
+        - DMA - Direct Memory Access
+            - Orchestrates Transfers between Devices and Main Memory
+        - Device Communication
+            - I/O Instructions
+            - Memory Mapped I/O
+        - Device Driver
+            - Abstract device interactions within a piece of software
     b. Hard Disk Drives
+        - Interface
+            - Address Space: Array of Sectors
+            - Atomic Writes
+            - Platter, Spindle, Disk Head, Disk Arm, Actuator, Track
+            - Rotations Per Minute RPM
+        - Issues
+            - Rotational Delay
+            - Seek Time
+        - Scheduling
+            - Shortest Seek Time First SSTF
+            - Nearest Block First NBF
+            - Elevator, SCAN, C-SCAN, F-SCAN Sweep
+            - Shortesst Positioning Time First SPTF
+        - Miscellaneous
+            - I/O Merging
+            - OS vs Internal Disk Scheduling
+            - Work-Conserving vs. Non-Work-Conserving
     c. Redundant Array of Inexpensive Disks
+        - Using Multiple Disks for Faster, Bigger, and Reliable Disk Systems
+        - Components
+            - Multiple Disks, Memory Non-Volatile and Volatile, and Processors
+            - Chunk Size
+        - Advantages
+            - Performance, Capacity, Redundancy/Reliability, Transparency, Deployability
+        - Fault Model
+            - Fail-Stop, Disk = Working or Failed
+        - Evaluating
+            - Capacity, Reliability, Performance
+            - Single-Request Latency
+            - Steady-State Throughput
+        - RAID Level 0: Striping
+            - No Redundancy
+            - Strip = Blocks in a Row
+        - RAID Level 1: Mirroring
+            - Creates a Copy
+            - RAID 01-10 Possible
+            - Issue - Consistent Update Problem
+        - RAID Level 4: Parity
+            - XOR to Determing Values Held in Disk
+            - Additive Parity and Substractive Parity
+        - RAID Level 5: Rotating Parity
+            - Rotates Block Across Drives
     d. Files and Directories
+        - Abstractions in Virtualization of Storage
+        - File = Linear array of bytes
+            - Inode and Name
+        - Director = List of Name and Inodes
+        - Directory Tree ex. Root Directory
+        - Interface
+            - open(), read(), write(), close(), lseek(), fsync(), rename()
+            - stat(), fstat()
+            - mkdir(), rmdir(), opendir(), readdir(), closedir()
+        - Links
+            - Hard and Soft/Symbolic
+            - link(), unlink()
+            - Reference Count
+        - Make and Mounting
+            - mkfs(), mount()
     e. File System Implementation
+        - Very Simple File System
+        - Important Ideas
+            - Data Structures (Blocks)
+            - Access Methods (open(), write(), read())
     f. Locality and The Fast File System
+        - Cylinder and Block Groups
+        - Locality - Files Near are Accessed Together
+        - Internal Fragmentation, Sub-Blocks
     g. Crash Consistency
+        - Issues: Power Loss, System Crash, and Inconsistency
+        - File System Checker fsck()
+            - Let issues happen and fix them later
+            - Checks Superblock
+            - Frees Blocks
+            - Checks Inode
+            - Checks Inode Links
+            - Checks for Duplicates
+            - Checks for Bad Blocks
+            - Checks Directories
+        - Journaling or Write-Ahead Logging
+            - Prior to Update, Write Down Note
+            - If Issue, Check Note and Proceed
+            - Journal Write to Log
+            - Journal Commit
+            - Checkpoint, Write Data Updates and Pending Metadata
+            - Free
+            - Use Logs to Recover, Replay/Redo
+            - Batch Log Files for Efficiency
+        - Copy-On Write COW
+        - Bakpointer Based Consistency BBC
+        - Optimistic Crash Consistency
+    h. Log-structured File Systems
+        - Buffer Sement -> Long Sequential Write Transfers
+        - Inode Map
+        - Checkpoint Region CR
+        - Garbage Collection is Important
+    i. Date Integrity and Protection
+        - Latent Sector Errors
+            - Head Crash
+            - Error Correcting Codes
+            - Use Redundancy Mechanism
+        - Block Corruption
+            - Silent Faults
+            - Fail-Partial
+            - Checksum to Detect Corruption
+                - Result of a function that takes chunk of data as input and produces a summary of the contents
+            - Check Sum Functions
+                - XOR, Fletcher, Cyclic Redundancy
+                - Stored Checksum, Computer Checksum
+    j. File System Examples
+        - Sun's Network File System
+        - Andrew File System
+    k. Flash SSD
+        - Solid State Storage
+        - Single Level Cell, Multi-Level Cell, Triple-Level Cell
+        - Banks - Blocks - Pages
+        - Basic Operations
+            - Read, Erase, Program
+        - Order
+            - Erase Entire Block, Program
+        - Issues
+            - Wear Out, Disturbance
+        - Flash Translation Layer
+            - Converts read and write requests on logical blocks into low-level read, erase and prgram commands on the physical blocks
+        - Log Structured FTL > Direct Mapping
+        - Garbage Collection - Reclaiing Dead Blocks
+        - Hybrid Mapping - Log Blocks Erase and Write
+        - Wear Leveling - Spread Out Write Load
+        - Performance
+            - Superior Read and Write either Raadom or Sequential
+        - Cost
+            - 10x More Expensive per GB than HDD
     h. Log-structured File Systems
     i. Date Integrity and Protection
     j. File System Examples
