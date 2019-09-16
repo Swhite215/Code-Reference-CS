@@ -137,3 +137,55 @@ Summarization of Content
         - P: Not Delivering High Memory Bandwidth in a Cache-Based System
         - P: Implementing a Virtual Machine Monitor on an Instruction Set Architecture that was not designed to be Virtualizable
 3. Chapter 3 - Instruction Level Parallelism
+    a. Instruction Level Parallelism: Concepts and Challenges
+        - Metric - Cycles Per Instruction
+            - Pipeline CPI = Ideal Pipeline CPI + Structural Stalls + Data Hazard Stalls + Control Stalls
+        - Approaches
+            - Hardware to Exploit ILP Dynamically
+            - Software to Exploit ILP Statically at Compile Time
+        - Dependences (Data, Name, Control)
+            - Data Dependences: Instruction is dependent on result or of an instruction dependent on another
+            - Name Dependences: Two instructions use the same register or memory location
+            - Control Dependences: Instruction should be executed in correct order
+        - Data Hazards
+            - WAW Write After Write
+            - RAW Read After Write
+            - WAR Write After Read
+    b. Basic Compiler Techniques for Exposing ILP
+        - Pipeline Scheduling and Loop Unrolling
+            - Possible if all of a loops iteration are independent
+    c. Reducing Branch Costs with Advanced Branch Prediction
+        - Correlating Branch Predictors - Look at recent behavior of other branches
+        - Tournament Predictors - Use of Global (most recent branch history) and Local Predictor (address of branch)
+        - Tagged Hybrid Predictors - Prediction tables with varying lengths and tags
+    d. Overcoming Data Hazards with Dynamic Scheduling
+        - Hardwre reorders the instruction execution to reduce the stalls while maintaing data flow and exception behavior
+        - Advantages: 
+            - Code compiled with one pipeline in mind to run efficiently on a different pipeline
+            - Enables handling some cases where dependences are unknown at compile time
+            - Allows the processor to tolerate unpredictable delays such as cache misses
+        - Out-Of-Order - Execution as ssoon as instruction and data operands are available
+        - Tomasulo's Approach
+            - Issue - Get instruction FIFO order, issue instruction to reservation station, rename registers (Avoids WAW and WAR)
+            - Execute - Place operands into any awaiting reservation station, execute operation when ready (Avoids RAW)
+            - Write Result - Write result on Common Data Bus to registers and into any reservation stations awaiting results, stores are buffered until value and address are available
+    e. Dynamic Scheduling: Examples and Algorithms
+        - Tomasulo's Advantages
+            - Distribution of Hazard Detection Logic and Elimination fo Stalls for WAR and WAW hazards
+    f. Hardware-Based Speculation
+        - Speculation - To address control dependences - fetch, issue, and execute
+        - Key Ideas
+            - Dynamic Branch Prediction
+            - Speculation - to allow the execution of instructions before control dependences are resolved
+            - Dynamic Scheduling
+        - Steps in Instruciton Execution
+            - Issue - Get an instruction from queue
+            - Execute - Execute when both operands are available
+            - Write Result - When available, write result to CDB and then into Read Only Buffer and any reservation stations
+            - Commit
+    g. Exploiting ILP Using Multiple-Issue and Static Scheduling
+    h. Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation
+    i. Advanced Techniques for Instruction Delivery and Speculation
+    j. Cross-Cutting Issues
+    k. Multithreading: Exploiting TLP
+    l. Fallacies and Pitfalls
