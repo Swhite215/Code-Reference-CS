@@ -320,7 +320,3 @@ Summarization of Content
             - Superior Read and Write either Raadom or Sequential
         - Cost
             - 10x More Expensive per GB than HDD
-    h. Log-structured File Systems
-    i. Date Integrity and Protection
-    j. File System Examples
-    k. Flash SSD
