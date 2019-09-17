@@ -184,8 +184,37 @@ Summarization of Content
             - Write Result - When available, write result to CDB and then into Read Only Buffer and any reservation stations
             - Commit
     g. Exploiting ILP Using Multiple-Issue and Static Scheduling
+        - Flavors
+            - Statically Scheduled Superscalar Processors
+            - Very Long Instruction Word Processors
+            - Dynamically Scheduled Superscalar Processors
+        - Goal - Decrease CPI below one
     h. Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation
+        - Use all three
     i. Advanced Techniques for Instruction Delivery and Speculation
+        - Goal - High-bandwidth instruction stream (4-8) instructions every clock cycle
+        - Branch Target Buffers
+            - Branch-Prediction cache that stores the predicted address for the next instruction after a branch
+        - Integrated Instruction Fetch Unit
+            -  Feeds instructions to the pipeline
+            -  Integrated Branch Prediction
+            -  Instruction Prefetch
+            -  Instruction Memory Access and Buffering
+        - Speculation Implementation
+            - Support - Register Renaming Vs. Reorder Buffers
+            - Issue - Speculation has a cost
+            - Inefficiency - Unused speculation results and undoing speculation
     j. Cross-Cutting Issues
+        - Hardware vs. Software Speculation
     k. Multithreading: Exploiting TLP
+        - Hardware Approaches
+            - Fine-grained - switch between threads on each cycle
+            - Coarse-grained - only switches threads on costly stalls
+            - Simulaneous Multithreading - Allows multiple instructions from independent threads to be executed without regard to the depedencesm which are handled by the dynamic scheduling capability
     l. Fallacies and Pitfalls
+        - F: It is easy to predict the performance and energy efficiency of two different versions of the same instruction set architecture, if we hold the technology constant
+        - F: Processors with lower CPIs will always be faster
+        - F: Processors with faster clock rates will always be faster
+        - P: Sometimes bigger and dumber is better
+        - P: And sometimes smarter is bettern than bigger and dumber
+        - P: Believing that there are large amounts of ILP available, if only we had the right techniques
