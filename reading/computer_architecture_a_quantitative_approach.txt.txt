@@ -135,7 +135,8 @@ Summarization of Content
         - F: Predicting Cache Performance of One Program from Another
         - P: Simulating Enough Instructions to Get Accurate Performance Measure of the Memory Hierarchy
         - P: Not Delivering High Memory Bandwidth in a Cache-Based System
-        - P: Implementing a Virtual Machine Monitor on an Instruction Set Architecture that was not designed to be Virtualizable
+        - P: Implementing a Virtual Machine Monitor on an Instruction Set Architecture that was not designed to be virtualizable
+        
 3. Chapter 3 - Instruction Level Parallelism
     a. Instruction Level Parallelism: Concepts and Challenges
         - Metric - Cycles Per Instruction
@@ -218,3 +219,106 @@ Summarization of Content
         - P: Sometimes bigger and dumber is better
         - P: And sometimes smarter is bettern than bigger and dumber
         - P: Believing that there are large amounts of ILP available, if only we had the right techniques
+
+
+4. Chapter 4 - Data-Level Parallelism
+    a. Introduction
+        - Data-Level Parallelism
+            - Scientific Computing
+            - Media-Oriented Image and Sound Processing
+            - Machine Learning
+        - Variations of Single Instruction Multiple Data
+            - Vector Architectures
+            - SIMD Multimedia Instruction Set Extensions
+            - Graphical Processing Units
+    b. Vector Architecture
+        - Order
+            - Grab sets of data elements scattered across memory
+            - Place them into large sequentail register files
+            - Operate on data in the register files
+            - Disperse the results back into memory
+        - RV64V
+            - Components
+                - Vector Registers - holds a single vector
+                - Vector Functional Units - pipelined with control unit to detect structural and data hazards
+                - Vector Load/Store Unit - loads or stores a vector to or from memory
+                - Scalar Registers - can also provide data as input to vector functional units
+            - Unique Vector Instruction Set
+        - How Vector Processes Work
+            - Single-Precisison A * X + Y SAXPY
+            - Double-Precisions A * X + Y DAXPY
+        - Vector Execution Time
+            - Dependencies
+                - Length of operand vectors
+                - Structural hazards among operations
+                - Data dependences
+            - Vocabulary
+                - Convoy - set of vector instructions that could potentially execute together
+                - Chime - unit of time taken to execute one convoy
+                - Flexible Chaining - allows a vector instruction to chain to eseentially any other vector instruction, assuming we dont generate a structural hazard
+            - Optimizations
+                - Multiple Lanes: Beyond One Element per Clock Cycle
+                - Vector-Length Registers: Handling Loops Not Equal to 32
+                - Predicate Registers: Hanlding IF Statements in Vector Loops
+                - Memory Banks: Supplying Bandwidth for Vector Load/Store Units
+                - Gather Scatter: Handling Sparse Matrices in Vector Architectures
+    c. SIMD Instruction Set Extensions for Multimedia
+        - Goal: Taks with data types lesss than 32-bit
+        - Omissions
+            - No Vector Length Register
+            - No Strided or Gather/Scatter Data Transfer Instructions
+            - No Mask Registers
+        - Popularity
+            - Cost
+            - Require little extra processor state 
+            - Require less memory bandwidth
+            - Dont deal with virtual memory issues from a single instructions 32 memory access
+            - Cache concern with vector architectures
+        - Programming Multimedia SIMD Architectures
+            - Libraries or Assembly Language
+        - Roofline Visual Performance Model
+            - Arithmetic Intensity - ratio of FP operations per byte of memory accessed
+            - Floating Point Performance - FLOPS - Floating Point Operations per Second
+    d. Graphics Processing Units
+        - Enables
+            - Multithreading, MIMD, SIMD, and Instruction-Level
+        - Programming the GPU
+            - CUDA - Compute Unified Device Architecture
+            - CUDA Thread - Lowest Level of Parallelism
+            - Thread Block - Grouped Threads
+            - Multithreaded SIMD Processor - Exeutes Thread Blocks
+            - GPU - Handles Parallel Execution and Thread Management
+        - NVIDIA/CUDA Terms
+            - Grid - code that runs on a GPU that consists of a set of Thread Blocks
+            - Thread Block Scheduler - Assigns Thread Blocks to Processors
+            - SIMD Lanes - Parallel Funtional Units to Perform Operations
+        - NVIDIA GPU Instruction Set Architecture
+            - PTX - Parallel Thread Execution
+            - PTX Format - opcode.type destination, a source, b source, c source
+        - Conditional Branching in GPUs
+            - PX Assembler Level - branch, call, return, exit, and per-thread-lane predicate registers
+            - GPU Hardware Instruction Level - branch, jump, jump indexed, call, call indexed, return, exit, and special instructions
+        - NVIDIA GPU Memory Structures
+            - Private Memory per SI<D Lane
+            - Local Memory per Multithreaded SMIMD Processesor
+            - GPU Memory shared by the whole GPU and all Thread Blocks that is off-chip DRAM
+        - Innovations in the Pascal GPU Architecture
+            - Fast single-precision, double-precisions, and half-precision floating point arithmetic
+            - High-bandwidth memory
+            - High-speed chip-to-chip interconnect
+            - Unified virtual memory and paging support
+    e. Detecting and Enhancing Loop-Level Parallelism
+        - Goal: Discovering the amount of parallelism that we can exploit in a program as well as hardware support
+        - Loop-Carried Dependence - Data accesses in later iterations are dependent on data values produced in earlier iterations
+        - Affine - A one-dimensional array index is affine if it can be written in the form a * i + b
+    f. Cross-Cutting Issues
+        - Energy and DLP: Slow and Wide Versus Fast and Narrow
+            - Goal: Lower the voltage while dropping the clock rate and increasing execution resources
+        - Banked Memory and Graphics Memory
+            - High-bandwidth Memory - Stacked DRAMS
+    g. Fallacies and Pitfalls
+        - F: GPUs suffer from being coprocessors
+        - P: Concentrating on peak performance in vector architectures and ignoring start-up overhead
+        - P: Incresing vector performance, without comparable increases in scalar performance
+        - F: You can get good vector performance without providing memory bandwidth
+        - F: On GPUs, just add more threads if you don't have enough memory performance
