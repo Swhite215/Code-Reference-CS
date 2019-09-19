@@ -36,6 +36,7 @@ Summarization of Content
     g. Multi-Processor Scheduling
         - Single-Queue Scheduling
         - Multi-Queue Scheduling
+        
 2. Topic #2 - Virtualization of Memory
     a. Address Spaces
         - Running processes view of memory in the system
@@ -79,6 +80,7 @@ Summarization of Content
         - Metrics: Cache Misses, Cache Hits, Average Memory Access Time
         - Page Replacement Policies: Furthest in the Future, FIFO, Random, LRU, LFU, Prefetching Paging, Demand Paging
         - Issues: Thrashing, system is constantly paging
+        
 3. Topic #3 - Concurrency
     a. Concurrency
         - Thread, Point of execution
@@ -163,6 +165,7 @@ Summarization of Content
         - Asynchronous I/O
         - Problem State Management: Manual Stack Management
             - Continuation: record the needed information to finish processing this event in some data structure, look up the needed information and process the event
+            
 3. Topic #4 - Persistence
     a. I/O Devices
         - Connected via I/O Bus (PCI) or Peripheral Bus (SCSI, SATA, USB)
