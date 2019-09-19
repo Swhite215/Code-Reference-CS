@@ -16,16 +16,19 @@ Summarization of Content
                 - Cipher
             - Transposition
     f. Frequency Analysis
+    
 2. Chapter 2: Le Chiffre Indechiffrable
     a. Vignere Cipher
     b. Viennese Black Chamber
     c. Beale Papers and Beale's Cipher
+    
 3. Chapter 3: The Mechanization of Secrecy
     a. German ADFGVX
     b. Room 40
     c. One Time Pad Cipher
     d. Cipher Disks, Code-o-Graph
     e. Engima
+    
 4. Chapter 4: Cracking the Engima
     a. Poland with Rejewski and Bombes
     b. Bletchley Park
@@ -33,6 +36,7 @@ Summarization of Content
     d. Turing Machine
     e. Difference Engine No. 2
     f. Operation Ultra
+    
 5. Chapter 5: The Language Barrier
     a. Purple, Japanese Cipher
     b. SIGABA or M-143-C American Cipher Machine
@@ -41,6 +45,7 @@ Summarization of Content
     e. Coptic Language
     f. Rosetta Stone
     g. Linear A and Linear B
+    
 6. Chapter 6: Alice and Bob Go Public
     a. Lorenz Cipher
     b. Colossus
@@ -54,14 +59,17 @@ Summarization of Content
     j. Asymmetric Cryptography
     k. RSA
     l. Communications-Electronics Security Group
+    
 7. Chapter 7: Pretty Good Privacy
     a. Phil Zimmermann and PGP
     b. IDEA Cipher
     c. American Escrowed Enryption Standard
+    
 8. Chapter 8: A Quantum Leap into the Future
     a. Quantum Computer
     b. Quantum Cryptography
-9. Important People
+    
+9. Important Cryptanalsts/Cryptographers
     a. Caesar
     b. Leon Alberti
     c. Ralph, Hellman, Diffie
