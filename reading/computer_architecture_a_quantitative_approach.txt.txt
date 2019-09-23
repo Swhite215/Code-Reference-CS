@@ -322,3 +322,101 @@ Summarization of Content
         - P: Incresing vector performance, without comparable increases in scalar performance
         - F: You can get good vector performance without providing memory bandwidth
         - F: On GPUs, just add more threads if you don't have enough memory performance
+
+5. Chapter 5 - Thread Level Parallelism
+    a. Introduction
+        - TLP achieved with multiple program counters and MIMDs
+        - Multiprocessors - computers consisting of tigthly coupled processors whose coordination and usage are typically controlled by a single operating system and that share memory
+        - Software Models
+            - Parallel Processing - tighlty coupled set of threads collaborating on a single task
+            - Request-Level Parallelism - execution of multiple, relatively independent processes that may originate from one or more users
+        - Multiprocessor Architecture: Issues and Approaches
+            - Symmetric (Shared Memory) Multiprocessors
+                - Non-Uniform Cache Access NUCA
+                - Uniform Memory Access UMA
+            - Distributed Shared Memory
+                - Non-Uniform Memory Access NUMA
+        - Challenges of Parallel Processing
+            - Limited Parallelism in Program
+            - High Cost of Communication - Latency of Remote Access
+    b. Centralized Shared-Memory Architectures
+        - Use large multi-level cache to reduce memory bandwidth demands of a processor
+        - Private Data - used by only one processor
+        - Shared Data - used by multiple processors
+        - Multiprocessor Cache Coherence
+            - Processors could view different values for the same memory location if shared between them
+            - Coherence - defines what values can be returned by a read
+            - Consistency - determines when a written value will be returned by a read
+        - Basic Schemes for Enforcing Coherence
+            - Migration - moving data item to a local cache
+            - Replication - duplicate of data taht can be read simultaneously
+            - Cache Coherence Protocols - protocols to maintain coherence (Directory or Snooping)
+        - Snooping Coherence Protocols
+            - Write Invalidate Protocol - processor has exclusive access to a data item
+            - Write Broadcast/Update Protocol - update all cached copies of a data item when that item is written
+        - Basic Implementation Techniques
+            - Use the bus to perform invalidates and have controllers listening who perform the necessary changes to a cached data item
+            - States: Invalid, Shared, or Modified
+        - Extensions to the Basic Coherence Protocol
+            - Modified, Exclusive, Shared, or Invalid MESI
+            - Modified, Owned, Exclusive, Shared or Invalid MOESI
+        - Limitation in Symmetric Shared Memory Multiprocessors and Snooping Protocols
+            - Snooping Bandwidth
+            - Increasing Snooping Bandwidth
+                - Duplicate Tags
+                - Shared Outermost Cache
+                - Directory at Outermost Cache
+        - Implementing Snooping Cache Coherence
+            - Issue - write and upgrade misses are not atomic
+    c. Performance of Symmetric Shared-Mmeory Multiprocessors
+        - Uniprocessor Miss Rate - capcaity, compulsory, and conflict
+        - Coherence Misses
+            - True Sharing Misses - arise from communication of data through the cache coherence mechanism
+            - False Sharing - occurs when a block is invalidated and a subsequent reference causes a miss because some word in the block is written into
+        - Commercial Workload
+            - Online Transaction-Processing by TPC-B
+            - Measure time spent Instruction, Capacity/Conflict, Compulsory, False Sharing and True Sharing
+        - A Multiprogramming and OS Workload
+            - Phases - Compiling the Benchmarks, Installing Object Files in Library, and Removing the Object Files
+            - measure time spent User Execution, Kernel Execution, Synchronization Wait, Processor Idle
+    d. Distributed Shared-Memory and Directory-Based Coherence
+        - Goal: Keep the state of every block that may be cached replicated and distributed across processors
+        - The Basics
+            - States - Shared, Uncached, Modified
+            - Message Types - Read Miss, Write Miss, Invalidate, Fetch, Fetch/Invalidate, Data Value Reply, Data Write-Back
+            - Local Node - Where request originates
+            - Home Node - Where memory location and directory entry of an address reside
+            - Remote Node - Where copies exist
+        - Example Directory Protocol
+            - Cache Blocks transitions between Invalid, Shared, and Modified
+            - Directory transitions between Uncached, Shared, and Exclusive
+            - Directory Requests - Read miss, Write Miss and Data Write-Back
+    e. Synchronization: The Basics
+        - User-level software routings that rely on hardware-supplied synchronization instructions
+        - Goal: Enable atomicity
+        - Basic Hardware Primitives
+            - Atomic Exchange - interchanges a value in a register for a value in memor
+            - Test-And-Set - tests a value and sets it if the value passes the test
+            - Fetch-And-Increment - retursnt he value of a memory location and atomically increments it
+            - RISC-V Load Reserved and Store Conditional - load the contents onto memory address and then store the value or values that can be used to check if atomic operation occurred
+        - Implementing Locks Using Coherence
+            - Spin Locks - locks that a processor continously tries to acquire, spinning around a loop until it succeeds
+    f. Models of Memory Consistency: An Introduction
+        - Sequential Consistency - requires that the result of any exeuction be the sa,e as though the memory accesses executed by each processor were kept in order and the access among different processors were arbitrarily interleaved
+        - Programmer's View
+            - Synchronzied - if all accesses to shared data are ordered by synchronization operations
+            - Data-Race-Free - no cases where variable may be updated without ordering by synchronization causing execution outcome to be unpredictable
+        - Relaxed Consistency Models: The Basics and Release Consistency
+            - Goal: Allow read and writes to complete out of order, but use synchronization operations to enforce ordering so that a synchronized pogram behaves as though the processor were sequential
+            - Total Store Ordering/Processor Consistency - relaxing the W -> R
+            - Partial Store Order - relaxing both the W -> R and W -> W
+            - Release Consistency + Weak Ordering - relaxing W -> R, W -> W, R -> R, R -> W
+    g. Cross-Cutting Issues
+        - Compiler Optimzations and the Consistency Model
+        - Using Speculation to Hide Latency in Strict Consistency Models
+        - Inclusion and Its Implementation
+    h. Fallacies and Pitfalls
+        - P: Measuring performance of multiprocessors by linear speedup versus execution time
+        - F: Amdahl's Law doesn't apply to parallel computers
+        - F: Linear speedups are needed to make multiprocessors cost-effective
+        - P: Not developing the software to take advantage of, or optimize for, a multiprocessor architecture
