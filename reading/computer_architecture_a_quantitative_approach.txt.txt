@@ -420,3 +420,85 @@ Summarization of Content
         - F: Amdahl's Law doesn't apply to parallel computers
         - F: Linear speedups are needed to make multiprocessors cost-effective
         - P: Not developing the software to take advantage of, or optimize for, a multiprocessor architecture
+
+Chapter 6 - Warehouse-Scale Computers to Exploit Requet-Level and Data-Level Parallelism
+    a. Introduction
+        - WSC: Foundation of Internet services billions of people use every day
+        - Goals
+            - Cost-Performance
+            - Energy Efficiency
+            - Dependability via Redundancy
+            - Network I/O
+            - Interactive and Batch Processing Workloads
+        - Differences with Server Architecture
+            - Ample Parallelism
+            - Operational Costs Count
+            - Location Counts
+            - Computing Efficiently at Low Utilization
+            - Scale and the Opportunities/Problems Associated with Scale
+    b. Programming Models and Workloads for WSC
+        - MapReduce
+            - Map - applies a programmer-supplied function to each logical input record
+            - Reduce - collects the output of those distributed tasks and collapses them using another programmer-defined function
+        - Scalable Storage Systems
+            - Google File System
+            - Colossus
+            - Dynamo
+            - BigTable
+    c. Computer Architecture of WSC
+        - Components
+            - Rack - structure that holds the servers
+            - Top of Rack Switch - network cable switch
+            - Rack to Rack Switch
+            - Cooling Systems (Fan and Water)
+            - Power Systems AC Conversion
+            - Networking Systems
+        - Storage
+            - Disks on Rack
+            - Network-Attached Storage
+        - Memory Hierarchy
+            - Memory, Flash, and Disk
+    d. Efficiency and Cost of WSC
+        - Power Distribution
+        - Cooling
+            - Computer Room Air-Conditioning CRAC
+        - Measuring Efficiency
+            - Power Utilization Effectiveness
+        - Costs of a WSC
+            - Operational Expenditures OPEX
+            - Capital Expenditures CAPEX
+            - Cost per Watt per Year < $2
+    e. Cloud Computing - The Return of Utility Computing
+        - Advantages
+            - Reduction in Storage Costs
+            - Reduction in Administrative Costs
+            - Reduction in Networking Costs
+            - Data Potentially Safer in the Cloud
+        - Amazon Web Services Example
+            - Amazon Simple Storage Service
+            - Amazon Elastic ComputerCloud
+            - Smart Choices
+                - Virtual Machines, Low Cost, Open Source Software, No Initial Guarantee of Service, No Contract Required
+    f. Google Example
+        - Power Distribution
+            - High Voltage Lines - 110K AC V to Substations - 10K-35K V to Building Unit - 400-480 V to Indoor Power Cables - 240-277 V to Rack Power Converters -  48 V DC to Boards
+        - Cooling
+            - Run at Slightly Higher Temperatures 80F
+            - Hot and Cold Air Aisles
+            - Internal Fans and Large-Scale Fan-Coils
+            - Cool Water Pipes
+            - Cooling Towers
+        - Racks
+            - Network Swtiches, Power Conversion, Payload Bay, and Batter Backup
+        - Networking
+            - Clos Topology
+    g. Fallacies and Pitfalls
+        - F: Cloud computing providers are losing money
+        - P: Focusing on average performance instead of 99th percentile performance
+        - P: Using too wimpy a processor when trying to improve WSC cost-performance
+        - P: Inconsistent measure of PUE by different companies
+        - F: Capital costs of the WSC facility are higher than for the servers that it houses
+        - P: Trying to save power with inactive low power modes versus active low power modes
+        - F: Given improvements in DRAM and the fault tolerance of WSC systems software, there is no need to spend extra for ECC memory in a WSC
+        - P: Coping effectively with microsecond delays as opposed to nanosecond or millisecond delays
+        - F: Turning off hardware during periods of low activity improves cost-performance of a WSC
