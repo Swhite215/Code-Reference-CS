@@ -583,3 +583,73 @@ Chapter 7 - Doman Specific Architectures
         - F: Architects tackling the right DNN tasks
         - F: For DNN hardware, inferences per second IPS is a fair summary performance metric
         - F: Being ignorant of architecture history when designing a DSA
+
+Appendix A - Instruction Set Principles
+    a. Classifying Instruction Set Architectures
+        - Stack
+        - Accumulator
+        - Registers
+            - Register-Memory - acccess memory as part of any instruction
+            - Load-Store - access memory only with load and store instructions
+            - Memory-Memory - keeps all operands in memory
+        - General Purpose Register
+            - Faster than memory and more efficient for a compiler to user
+            - Two or Three Operands ALU
+            - Zero to Three Memory Operands
+    b. Memory Addressing
+        - Little Endian - puts the byte whose address is "x ... x000" at the least significant position in the double world
+        - Big Endian - puts the byte whose address is "x ... x000" at the most significant position in the double world
+        - Addressing Modes (PC Relative Addressing)
+            - Register, Immediate, Displacement, Register Indirect, Indexed, Direct or Absolute, Memory Indirect, Autoincrement, Autodecrement, Scaled
+        - Displacement Addressing Mode
+        - Immediate or Literal Addressing Mode
+    c. Types and Size of Operands
+        - Character 8 bits
+        - Half Word 16 bits
+        - Word 32 bits
+        - Single-Precision Floating Point
+        - Double-Precision Floating Point
+        - Two's Complement Binary Numbers
+        - Packed Decimal or Binary-Coded Decimal
+    d. Operations in the Instruction Set
+        - Arithmetic and Logical, Data Transfer, Control, System, Floating Point, Decimal, String, Graphics
+    e. Instruction for Control Flow
+        - Conditional Branches
+            - Condition Code
+            - Condition Register/Limited Comparison
+            - Compare and Branch 
+        - Jumps
+            - Case or Switch, Virtual Function or Methods, High-Order Functions, Dynamically Shared Libraries
+        - Procedure Calls
+        - Procedure Returns
+    f. Encoding an Instruction Set
+        - Variable - allows virtually all addressing modes to be with all operations
+        - Fixed - combines the operation and the addressing mode into the opcode
+        - Hybrid - reduce the variability in size and provide multiple instruction lengths to reduce code size
+    g. Cross-Cutting Issues: Role of Compilers
+        - Instruction Set Architecture is a compile target
+        - Goals - Correctness and Speed
+        - Structure of Recent Compilers
+            - Front end per Language
+            - High-level Optimizations
+            - Global Optimizer
+            - Code Generator
+        - Optimizations
+            - High-Level
+            - Local
+            - Global
+            - Register Allocation
+            - Process-Dependent
+        - Register Allocation
+            - Graph Coloring - construct a graph representing the possible candidates for allocation to a register and then to use the graph to allocate registers
+        - Architect Helping the Compiler Write
+            - Provide Regularity
+            - Provide Primitives
+            - Simplify Trade-Offs Among Alternatives
+            - Provide Instruction that Bind the Quantities Known at Compile Time as Constants
+    h. Fallacies and Pitfalls
+        - P: Designing a "high-level" instruction set feature specifically oriented to supporting a high-level language structure
+        - F: There is such a thing as a typical program
+        - P: Innovating at the instruction set architecture to reduce code size without accounting for the compiler
+        - F: An architecture with flaws cannot be successful
+        - F: You can design a flawless architecture
