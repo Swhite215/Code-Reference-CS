@@ -502,3 +502,84 @@ Chapter 6 - Warehouse-Scale Computers to Exploit Requet-Level and Data-Level Par
         - F: Given improvements in DRAM and the fault tolerance of WSC systems software, there is no need to spend extra for ECC memory in a WSC
         - P: Coping effectively with microsecond delays as opposed to nanosecond or millisecond delays
         - F: Turning off hardware during periods of low activity improves cost-performance of a WSC
+
+Chapter 7 - Doman Specific Architectures
+    a. Guidelines for DSA
+        - Use Dedicated Memories to Minimize the Distance Ocer Which Data is Moved
+        - Invest the Resources Saved from Dropping Advanced Microarchtiectural Optimizations into more Arithmetic Units or Bigger Memories
+        - Use the Easiest Form of Parallelism that Matches the Domain
+        - Reduce Data Size and Type to the Simplest Needed for the Domain
+        - Use a Domain-Specific Programming Language to Port Code to the DSA
+    b. Deep Neural Networks
+        - Machine Learning - Deep Neural Networks
+        - Neuron - computes the sum over a set of products of weights or parameters and data values that is then put through a nonlinear function to determine its output
+        - Rectified Linear Unit or ReLU - f(x) = max(x, 0)
+        - Activation - output of nonlinear function
+        - Operational Intensity - Operations per Weight
+        - Traning vs. Inference
+            - Training or Learning - the development phaes where the goal is to learn the wieghts associated with each edge in the neural network graph
+            - Production - inference, predicting, scoring, implementation, evaluation, running, or testing
+            - Supervised Learning - given a set of training data to learn from where the data is preprocessed to have correct labels
+        - Popular DNNs
+            - MultiLayer Perceptrons MLP
+            - Convolutional Neural Networks CNN
+                - Computer Vision
+            - Recurrent Neural Networks RNN
+                - Speech Recognition and Language Translation
+                - Long Short-Term Memory LSTM
+        - Batches - reuse the weights ocne they have been fetched from memory across a set of inputs
+        - Quantization - conversion between fixed point and floating point for the inference phase
+    c. Google's Tensor Processing Unit
+        - Custom Application Specific Integrated Circuit ASIC
+        - TPU Architecture
+            - Coprocessor on the PCIe I/O Bus
+            - Host server sends instruction over the PCIe bus directly to the TPU
+            - Matrix Multiply Unit - ALUs to perform 8-bit multiple-and-adds on signed or unsigned integers
+            - Accumulator - collects 16-bit products
+        - TPU Instruction Set Architecture
+            - Read_Host_Memory, Read_Weights, MatrixMultiple/Convolve, Activate, Write_Host_Memory
+        - TPU Microarchitecture
+            - Systolic Array - a two-dimensional collection of arithmetic units that each independently compute a partial result as a function of inputs from other arithmetic units that are considered upstream to each unit
+        - TPU Software
+            - TensorFlow
+            - User Space Driver and Kernel Driver
+    d. Microsoft Catapult
+        - Data Center Accelerator
+        - Hardware-Description Language Verilog or VHDL
+        - Register Transfer Level RTL - shell (system library) and role (application logic)
+        - Search Acceleration
+            - Feature Extraction, Free-Form Expressions, Machine-Learned Scoring
+            - 1 FGPA FE, 2 FPGA FFE, 1 FGPA Compression Stage, 3 FGPA Machine-Learned Scoring
+        - Feature Functional Unit - collection of finite state machines that measure standard features in Search
+        - Dynamic Programming Feature - creates a Microsoft proprietary set of features using dynamic programming
+    e. Intel Crest
+        - Data Center Accelerator for Training
+    f. Pixel Visual Core
+        - PMD DSA for Image Processing and Computer Vision
+        - Sytem on a Chip SOC
+        - Image Processing Units IPUs - analyze and modify an input image in contract to generating an output image
+        - Two-Dimensional Array of Processing Elements - makes it easy to perform stencil computations
+        - Image Signal Processor ISP - hardwired accelerator for enhancing input images
+        - Pxiel Visual Core Software
+            - Directed Acyclic Graph DAG of Kernels
+        - Architecture Philosophy
+            - Two-Dimensional > One-Dimensional
+            - Closer > Farther
+        - Halo - extended region with simplified PEs that leave out the ALUs
+        - PE Array or Vector Array - main computation unit
+        - Sheet Generator SHG - load-store unit to access blocks in memory of size 1x1 to 256x256
+        - Scalar Lane SCL - vector lane tha adds instructions to handle jumps, branches, and interrupts, controls instruction flow to the vector array, and schedules all the loads and store for the SHG
+        - Instruction Set Architecture
+            - Compile Halide -> vISA -> pISA
+        - Two-Dimensional Line Buffer - minimizes DRAM access
+    g. Cross-Cutting Issues
+        - Heteogenity and System on a Chip SOC
+            - Intellectual Property Block to be integrated into the SOC
+        - Open Instruction Set
+            - RISC-V a viable free and open instruction set
+    h. Fallacies and Pitfalls
+        - F: It costs $100 million to design a custom chip
+        - P: Performance counters added as an afterthought for DSA hardware
+        - F: Architects tackling the right DNN tasks
+        - F: For DNN hardware, inferences per second IPS is a fair summary performance metric
+        - F: Being ignorant of architecture history when designing a DSA
