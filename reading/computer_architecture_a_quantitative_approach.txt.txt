@@ -653,3 +653,71 @@ Appendix A - Instruction Set Principles
         - P: Innovating at the instruction set architecture to reduce code size without accounting for the compiler
         - F: An architecture with flaws cannot be successful
         - F: You can design a flawless architecture
+
+Appendix B - Memory Hierarchy
+    a. Introduction
+        - Cache - highest or first level of the memory hierarchy
+        - Cache-Hit - processor finds requested data item
+        - Block - fixed size collection of data
+        - Temporal Locality - likely to need this word again in the future
+        - Spatial Locality - likely to need other words in this block as well
+        - Virtual Memory - objects reside on disk
+        - Page - a fixed-size block of address space
+        - Page Fault - an item is not present in cache or main memory
+    b. Questions
+        - Where can a block be placed in a cache?
+            - Direct Mapped - one place
+            - Fully Associative - placed anywhere
+            - Set Associative - only in a restricted set of places
+        - How is a block found if it is in the cache?
+            - Address tag on each block frame that gives block address, each tag is checked in parallel
+            - Valid bit to say if this entry contains a valid address or not
+        - Which block should be replaced on a cache miss?
+            - Random, Least Recently Used LRU, First In, First Out FIFO
+        - What happens on a write?
+            - Write Through - written to block in the cache and the block in the lower-level memory
+            - Write Back - written only to block in the cache
+            - Dirty Bit - indicats whether the block has been modified while in cache (dirty) or unmodified (clean)
+            - Write Stall - processor must wait for writes to complete during write through
+            - Write Buffer - mechanism to allow processor to continue as soon as data is written to buffer
+    c. Cache Performance
+        - Average Memory Access Time and Processor Performance
+        - Miss Penalty
+        - Out of Order Execution
+    b. Six Basic Cache Optimizations
+        - Reducing the Miss Rate
+            - Larger Block Size
+            - Larger Cache Size
+            - Higher Associativity
+        - Reducing the Miss Penalty
+            - Multilevel Caches
+            - Reads Priority over Writes
+        - Reducing the Time to Hit in the Cache
+            - Avoiding Address Translation when Indexing the Cache
+        - Misses
+            - Compulsory - first access
+            - Capacity - cache cannot contain all the blocks needed
+            - Conflict - block may have been discarded
+            - Coherency - msis due to cache flushes
+    c. Virtual Memory
+        - Sharing Physical Memory among Processes
+        - Where can a block be placed in main memory?
+            - Fully associative
+        - How is a block found if it is in main memory?
+            - Page Table - contains the physical page addresses
+            - Translation Lookaside Buffer - cache dedicated to address translations
+        - Which blocks should be replaced on a virtual memory miss?
+            - Least Recently Used LRU
+            - Use Bit or Reference Bit- set whenever a page is accessed
+        - What happens on a write?
+            - Write-Back
+        - Techniques for Fast Address Translation
+            - Translation Look Aside Buffer TLB
+    d. Protection
+        - Process - running program plus any statet needed to continue running it
+        - Process/Context Switch - switching from one process to another
+        - Rings - levels of memory access protection
+    e. Fallacies and Pitfalls
+        - P: Too small an address space
+        - P: Ignoring the impact of the operating system on the performance of the memory hierarchy
+        - P: Relying on the operating systems to change the page size over time
