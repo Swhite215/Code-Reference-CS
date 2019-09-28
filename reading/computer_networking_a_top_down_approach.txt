@@ -1,0 +1,93 @@
+Title: Computer Networking: A Top-Down Approach
+Authors: Jim Kurose and Keith Resources
+
+Summarization of Content
+
+Chapter 1 - Computer Networks and the Internet
+    a. What is the Internet?
+        - Nuts and Bolts
+            - End Systems
+            - Communication Links and Packet Switches - Connect End Systems
+            - Transmission Rate - Bits/Second
+            - Packets - Segments of Data with Header Bytes
+            - Routers and Link-Layer Switches - Connect End Systems
+            - Route or Path - Sequence of Communication Links and Packet Switches Traversed by a Packet
+            - Internet Service Providers - Provide End Systems Access to Internet
+            - Transmission Control Protocol and Internet Protocol
+            - Internet STandards - Request For Comments RFC
+        - A Service Description
+            - Internet is infrastructure that provides services to applications
+            - Socket Interface - How program on end system asks internet to deliver data to program on another end system
+        - What is a Protocol?
+            - Defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions
+            taken on the transmission and/or receipt of a message or other event
+    b. The Network Edge
+            - Hosts - Clients or Servers
+            - Access Networks
+                - Network that physically connectes a end system to the first router on a
+                path to any other distance end system
+            - Home Access - Digital Subscriber Line DSL
+                - Obtained from telephone company
+                - Telephone line to Digital Subscriber Line Access Multiplexer DSLAM
+                - Telephone Line Frequencies - High-Speed Downstream 50 kHz to 1MHz
+                - Telephone Line Frequencies - Medium-Speed Upstream Channel 4kHz to 50 kHz
+                - Telephone Line Frequencies - Ordinary Two-Way Channel 0 to 4kHz
+            - Home Access - Cable
+                - Cabel Modem -> Coaxial Cable -> Fiber Node -> Fiber Cable -> Cable Modem Terination System
+            - Home Access - Fiber to the Home
+                - Optical Network Terminator -> Customer Fiber -> CO Fiber -> Optical Line Terminator
+            - Home Access - Satellite and Dial-Up Access
+            - Physical Media
+                - Physical Medium - Where bit is sent across by propagating electromagnetic waves or optical pulses
+                - Physical Medium - Guided or Unguided
+                - Twister-Pair Copper Wire - Shielded vs. Unshielded
+                - Coaxial Cable
+                - Fiber Optics
+                - Terrestrial Radio Channels
+                - Satellite Radio Channels - Geostationary and Low-Earth Orbiting
+    c. The Network Core
+        - Packet Switching
+            - Messages broken down into chunkcs of data
+            - Packets pass through routers/link-layer switches and communication links
+            - Store-And-Forward Transmission - Packet switch must receive entire packet before transmissions
+            - Queing Delays - Caused by packets collecting in output buffer
+            - Packet Loss - Packets are lost when output buffer is full
+            - Forwarding Tables - Maps destination addresses to that router's outbound link
+            - Routing Protocols - Used to automatically set the forwarding tables
+        - Circuit Switching
+            - Resources are reserved for the duration of the communication session between end systems
+            - Uses dedicated end-to-end connections
+            - Multiplexing - Frequency-Division or Time-Division Multiplexing
+                - Link dedicates a frequency band for each connection, width is bandwidth
+        - Network of Networks
+            - Network Structure 1 - All access ISPs connected with a single global transit ISP
+            - Network Structure 2 - 100,000s of access ISPs and multiple global ISPs
+            - Network Structure 3 - Access ISPs to Regional ISPs to Tier-1 ISPs
+            - Network Structure 4 - Points of Presence PoP, Multi-Homing, Peering, and Internet Exchange Points IXPs
+            - Network Structure 5 - Content-Provider Networks  - Like Google
+    d. Delay, Loss, and Throughput in Packet-Switched Networks
+        - Nodal Processig Delay - Time required to examing packets headers and determing where to direct the packet
+        - Queuing Delay - Time till entire packet is in output buffer
+        - Transmission Delay - Time required to push all of the packet's bits into the link
+        - Propogation Delay - Time required to propagate from beginning of link to router
+        - Total Delay = Nodal + Queuing + Transmission + Propogation
+        - Traffic Intensity - Bits * Average Rate of Packet Arrival to Queue / Transmission Rate La/R
+        - Traceroute
+        - Throughput - Average = Bits / Transfer Time, Transmission Rate of the Bottleneck Link
+    e. Protocol Layers and Their Service Models
+        - Layered Architecture - Protocol Layering
+        - Application Layer - Network applications and their application-layer protocols reside
+        - Transport Layer - Transports application-layer messages between application endpoints
+        - Network Layer - Moving datagrams from one host to another TCP/UDP
+        - Link Layer - Routes a datagram through a series of routers between the source and destination
+        - Physical Layer - Move bits witin the frame from one node to the next
+        - OSI - Physical, Data Link, Network, Transport, Session, Presentation, Application
+        - Encapsuation - Up and Down Encapuslation and Decapsulation
+    f. Networks Under Attack
+        - Malware - Trojans, Worms, Virus, Botnet, DoS, DDoS, Packet Sniffing, IP Spoofing
+    g. History of Computer Networking and the Internet
+        - Packet Switching 1961 - 1972
+        - Proprietary Networks and Internetworking - 1972 - 1980
+        - Proliferation of Networks - 1980 - 1990
+        - Internet Explosion - 1990s
+        - New Millenium - Broadband, High-Speed WiFi, Online Social Networs, Content Provider Networks, Cloud
