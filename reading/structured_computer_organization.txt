@@ -178,7 +178,54 @@ Chapter 4 - The Microarchitecture Level
             - Basic Blocks, Hoisting, Poison Bit
 
 Chapter 5 - The Instruction Set Architecture
-
+    a. Overview of the ISA Level
+        - Properties
+            - How the machine appears to a machine-langauge programmer
+            - Normative Sections - Requirements
+            - Informative Sections - Help
+            - Kernel and User Modes
+        - Registers
+            - Control program execution, hold temporary results, and other purposes
+            - Program Status Word or Flags Register
+        - Instructions
+            - Instructions control what the machine does
+    b. Data Types
+        - Numeric Data Types
+            - Integers - 8, 16, 32, and 64 Bits, Signed and Unsigned
+            - Floating Point
+        - Nonnumeric Data Types
+            - Characters, Booleas
+    c. Instruction Formats
+        - Design Criteria for Instruction Formats
+            - Short vs. Long
+            - Room in th einstruction format to express all the operations desired
+            - Number of bits in an address field
+    d. Addressing
+        - Addressing Modes
+            - Immediate Addressing - Address part of instruction contains operand
+            - Direct Addresssing - Full address specifying operand in memory
+            - Register Addressing - Full address specifying register in memory
+            - Register Indirect Addressing - Address is pointer to address contained in register
+            - Indexed Addressing - Giving a register plus a constant offset
+            - Based-Indexed Addressing - Addres is two registers added plus an optional offset
+            - Stack Addressing - Reverse Polish Notation - Postfix ABCx+
+            - Addressing Modes for Branch Instructions - Offset in instruction is added to program counter
+            - Orthogonality of Opcodes and Addressing Modes
+    e. Instruction Types
+        - Data Movement - Creating new object with the identical bit pattern
+        - Dyadic Operations - Combine two operands to produce a result
+        - Monadic Operations - Single operand to produce one result
+        - Comparisons and Conditional Branches - Test and alter sequence of instructions
+        - Procedure Call - Call to group of instructions to perform some task - subrouting
+        - Loop Control - Execute a group of instructions a fixed number of times
+        - Input/Output - Programmed, Interrupt-Drive, and DMA
+    f. Flow of Control
+        - Sequnetial Flow of Control and Branches
+        - Procedures - Recursion
+        - Coroutines
+        - Traps - Automatic procedure call initiated by some condition caused by the program
+        - Interrupts - Changes in the flow of control caused not by the running program
+        
 Chapter 6 - The Operating System
 
 Chapter 7 - The Assembly Language Level
