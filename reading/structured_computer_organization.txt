@@ -1,0 +1,49 @@
+Title: Structured Computer Organization
+Authors: Andrew S. Tanenbaum and Todd Austin
+
+Summarization of Content
+
+Chapter 1 - Introduction
+    a. Languages, Levels and Virtual Machines
+        - Translation - Replace L1 program with L0 program equivalent and then run
+        - Interpretation - At exeuction time, replace L1 code with L0 equivalent
+    b. Contemporary Multilevel Machines
+        - Problem Oriented Language Level - C, C++, Go, Java, Perl, Python, PHP
+        - Assembly Language Level- Method to write programs for Levels 1, 2, and 3 translated by assembler
+        - Operating System Machine Level - Instructions interpreted by OS and some by the microprogram or hardwired control
+        - Instruction Set Architecture - Instructions carried out interpretively by the microprogram or hardware execution circuits
+        - Microarchitecture Levels - Registers, ALUs, Data Paths, Microprogram
+        - Digital Logical Level - Gates and Boolean Algebra
+    c. Evolution of Multilevel Machines
+        - Electronic Circuits = Hardware
+        - Algorithms in Code = Software
+        - Microprogramming - 1951
+        - Operating System - 1960 - Systems Calls, Batch System, Tiesharing Systems
+        - Microprogram Expansion
+        - Microprogrmming Elimination - post 1970s
+    d. Milestones in Computer Architecture
+        - Zeroth Generation - Mechanical Computers 1642-1945
+            - Add, Substract, Multiple and Divide, Difference Engine, Analytical Engine
+        - First Generation - Vacuum Tubes 1945-1955
+            - ENIAC, EDVAC, IAS, von Neumann
+        - Second Generation - Transistors 1955-1965
+        - Third Generation - Integrated Circuits 1965-1980
+        - Fourth Generation - Very Large Scale Integration 1980-?
+            - CISC, RISC, FPGA, GUI
+        - Fifth Generation - Low-Power and Invisible Computers
+    e. Computer Zoo
+        - Moore's Law - Predicts a 60% annual increase in the number of transistors that can be put on a chip
+        - Computer Spectrum - Disposable, Microcontroller, Mobile and Game Computers, Personal Computer, Server, Mainframe
+        - Disposable
+            - Radio Frequency Identification Chip
+        - Microcontrollers
+            - Processor, Memory, I/O, Networking
+    f. Metric Units
+        - Bits, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes
+Chapter 2 - Computer Systems
+Chapter 3 - The Digital Logic Level
+Chapter 4 - The Microarchitecture Level
+Chapter 5 - The Instruction Set Architecture
+Chapter 6 - The Operating System
+Chapter 7 - The Assembly Language Level
+Chapter 8 - Parallel Computer Architectures
