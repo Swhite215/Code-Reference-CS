@@ -41,6 +41,67 @@ Chapter 1 - Introduction
     f. Metric Units
         - Bits, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes
 Chapter 2 - Computer Systems
+    a. Processors
+        - Central Processing Unit - ALU, Registers, Cache, Buses, Control Unit, Data Path
+        - Instruction Execution - fetch-decode-execute
+        - Interpreter - fetches, decodes, and executes another programs instructions
+        - RISC vs. CISC
+            - Reduced Instruction Set Computer
+            - Complex Instruction Set Computer
+        - Design Principles
+            - Maximize the rate at which instructions are issued
+            - Instructions should be easy to decode
+            - Only loads and stores should reference memory
+            - Provide plenty of registers
+        - Instruction-Level Parallelism
+            - Pipelining - multiple stages for instruction exection
+            - Latency - how long it takes to execute an instruction
+            - Processor Bandwidth - Million Instructions Per Seconds MIPS
+            - Superscalar - Single pipeline with multiple functional units
+        - Processor-Level Parallelism
+            - Multiple CPUs
+            - SIMD, SISD, MISD, MIMD
+            - Multiprocessors - multiple CPUs sharing a common memory
+            - Multicomputers - interconnected systems with no common memory
+    b. Primary Memory
+        - Bits  - 0 or 1, Binary Coded Decimal, Byte is 8-bit cell, Word is 4-bytes or 32-bits
+        - Memory Addresses - address for each cell
+        - Byte Ordering
+            - Little Endian (low-order) vs. Big Endian (high-order)
+        - Error-Correcting Codes
+            - XOR codewords, Hamming Distance, Parity Bit
+        - Cache Memory
+            - L1 - L4
+            - Locality and Temporality Principles
+            - Hit/Miss Ratios
+        - Memory Packaging Types
+            - Single Inline Memory Module
+            - Dual Inline Memory Module
+    c. Secondary Memory
+        - Memory Hierarchy - Registers Cache, Main Memory Magnetic or Solid State Disk, Tape/Optical
+        - Magnetic Disks
+            - Platter, Actuator, Read/Write Head, Spindle, Track, Sectors, Seek, Rotational Latency, Disk Controller
+        - IDE Disks
+            - Integrated Drive Electronics IDE
+            - Extended Integrated Drive Electronics EIDE and Logical Block Addressing LBA
+        - Small Computer System Interface Disks SCSI
+        - Redundant Array of Inexpensive Disks RAID
+            - Levels 0 through Level 5
+            - Striping - distributing data over multiple drives
+        - Solid State Disks SSDs
+            - Non-Volatile Memory
+            - Single-Level Cells vs. Multi-Level Cells and Triple-Level Cells
+            - Wear Leveling
+        - Compact Disk-Read Only Memories CD-ROMS - Lands, Pits, Transition
+        - CD-Recordables, CD-Rewritables, DVD, Blu-Ray
+    d. Input/Output
+        - Buses
+            - Connects components of microarchitecture
+        - Direct Memory Access - controller reads or writes data to or from memory without CPU intervention
+        - Peripheral Component Interconnect PCI Bus and PCIe Bus
+        - Terminals, Keyboards, Touch Screen, Flat Panel Display, Video RAM, Mice, Game Controllers, Printers, 
+        - Telecommunications Equipment - Modems, DSLs, Routers, Communication Linsks and Switches
+        - Character Code - ASCII, Unicode, UTF-8,
 Chapter 3 - The Digital Logic Level
 Chapter 4 - The Microarchitecture Level
 Chapter 5 - The Instruction Set Architecture
