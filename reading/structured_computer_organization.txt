@@ -40,6 +40,7 @@ Chapter 1 - Introduction
             - Processor, Memory, I/O, Networking
     f. Metric Units
         - Bits, Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes
+
 Chapter 2 - Computer Systems
     a. Processors
         - Central Processing Unit - ALU, Registers, Cache, Buses, Control Unit, Data Path
@@ -102,6 +103,7 @@ Chapter 2 - Computer Systems
         - Terminals, Keyboards, Touch Screen, Flat Panel Display, Video RAM, Mice, Game Controllers, Printers, 
         - Telecommunications Equipment - Modems, DSLs, Routers, Communication Linsks and Switches
         - Character Code - ASCII, Unicode, UTF-8
+
 Chapter 3 - The Digital Logic Level
     a. Gates and Boolean Algebra
         - Gates
@@ -133,8 +135,52 @@ Chapter 3 - The Digital Logic Level
         - Universal Asynchronous Receiver Transmitter UART, USART
         - Parallel Input/Output
         - Address Decoding - Memory-Mapped I/O and Partial Address Decoding
+
 Chapter 4 - The Microarchitecture Level
+    a. Example Microarchitecture
+        - The Data Path - ALU, Inputs, Outputs, Bus, ALU Control, Registers 
+            - Cycle - control signals are set up, registers loaded onto bus, alu and shifter operate, results stored in registers
+        - Memory Operation
+            - Control signals drive registers
+        - Microinstructions
+            - Writing data, enabling registers, ALU, shifter, memory read/write, memory fetch
+    b. Example ISA: IJVM
+        - Stacks
+            - Operand stack, local variable frame
+        - Memory Model
+            -  Constant pool, local variable frame, operand stack, method area
+        - IJVM Instruction Set
+            - Push, Pop, Invoke, Return, Delete, Swap, Branch
+    c. Design of the Microarchitecture Level
+        - Speed vs. Cost
+            - Reduce the number of clock cycles needed to execute an instruction
+            - Simplify the organization so that the clock cycle can be shorter
+            - Overlap the execution of instructions
+            - Path Length - number o clock cycles needed to execute a set of operations
+        - Reducing the execution path length
+            - Merging the Interpreter Loop with the Microcode
+            - Three Bus Architecture
+            - Instruction Fetch Unit
+    d. Improving Performance
+        - Cache Memory
+            - L1 to L3 Cache with replacement policy considering spatial and temporal locality
+            - Direct-Mapped Caches
+            - Set-Associative, N-Way Set Associative, and Full Associative
+            - Replacement Policy - Least Recently Used
+        - Branch Prediction
+            - Static and Dynamic Branch Prediction
+        - Out of Order Execution and Register Renaming
+            - Interleaveing
+            - WAR, WAW, RAW, RAR Issues
+            - Tomasulo's Algorithm
+        - Speculation
+            - Executing code before it is known if it is needed
+            - Basic Blocks, Hoisting, Poison Bit
+
 Chapter 5 - The Instruction Set Architecture
+
 Chapter 6 - The Operating System
+
 Chapter 7 - The Assembly Language Level
+
 Chapter 8 - Parallel Computer Architectures
