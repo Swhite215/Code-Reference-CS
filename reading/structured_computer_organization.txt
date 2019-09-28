@@ -101,8 +101,38 @@ Chapter 2 - Computer Systems
         - Peripheral Component Interconnect PCI Bus and PCIe Bus
         - Terminals, Keyboards, Touch Screen, Flat Panel Display, Video RAM, Mice, Game Controllers, Printers, 
         - Telecommunications Equipment - Modems, DSLs, Routers, Communication Linsks and Switches
-        - Character Code - ASCII, Unicode, UTF-8,
+        - Character Code - ASCII, Unicode, UTF-8
 Chapter 3 - The Digital Logic Level
+    a. Gates and Boolean Algebra
+        - Gates
+            - Transistor acts as a binary switch
+            - Collector, Base, Eitter, Inverter
+            - NAND, NOT, NOR, AND, OR
+        - Boolean Algebra and Functions
+            - Switching Algebra w/ Truth Table
+        - Circuit Equivalence
+            - Identity, Null, Idempotent, Inverse, Commutative, Associative, Distributive, Absoprtion, De Morgan's Laws
+            - Positive and Negative Logic
+    b. Basic Digital Logic Circuits
+        - Integrated Circuits
+            - Dual-in-Line, Pin Grid Array, and Land Grid Array packages
+        - Combinational Circuits
+            - Outputs are unique determiend by the current input values
+            - Multiplexers, Decoders, Comparators
+    c. Arithmetic Circuits
+        - Shifters, Adders, Arithmetic Logic Units, Clocks
+    d Memory
+        - Latches, Clocked SR Latched, Clocked D Latches, Flip-Flops, Registers, Memory Chips, RAM, DRAM, ROM
+        - RAM, SRAM, DRAM, SDRAM, ROM, PROM, EPROM, EEPROM, Flash
+    e. CPU Chips and Buses
+        - CPU Chips
+        - Buses - Driver, Receiver, Transceiver, Open-Collector, Wired-OR
+        - Bus Width, Clocking, Async
+        - Bus Arbitration - Daisy Chaining, Signals, Interrupts, Transactions
+    f. Interfacing
+        - Universal Asynchronous Receiver Transmitter UART, USART
+        - Parallel Input/Output
+        - Address Decoding - Memory-Mapped I/O and Partial Address Decoding
 Chapter 4 - The Microarchitecture Level
 Chapter 5 - The Instruction Set Architecture
 Chapter 6 - The Operating System
