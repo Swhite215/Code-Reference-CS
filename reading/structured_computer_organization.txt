@@ -227,7 +227,61 @@ Chapter 5 - The Instruction Set Architecture
         - Interrupts - Changes in the flow of control caused not by the running program
         
 Chapter 6 - The Operating System
-
+    a. Virtual Memory
+        - Paging
+            - Automatically creating overlays for virtual memory management
+            - Pages - chunks of data read in from disk
+            - Virtual Address Space - addresses programs refer to
+            - Physical Address Space - actual hardwired physical memory locations
+            - Transparent - programmer is not worried abut pages, that is handled by the OS
+        - Implementation of Paging
+            - Page Frame - pieces of main meory into which the pages go
+            - Memory Management Unit - performs the virtual to physical address mapping
+            - Present/Absent Bit - used to check whether the page referenced is currently in main memory
+        - Demand Paging and the Working-Set Model
+            - Page Fault - reference is made to an address on a page not present in main memory
+            - Demand Paging - when a page fault occurs, load the missing page into memory
+        - Page Replacement Policy
+            - Locality Principle - references tend to cluster on a small number of pages, your next request will be near current location
+            - Working Set - a set of all pages used by the k most recent memory references
+            - Least Recently Used LRU
+            - First-In First-Out FIFO
+            - Thrashing - program that generates page faults frequently and continously
+        - Page Size and Fragmentation
+            - Internal Fragmentation - wasted bytes within pages
+        - Segmentation
+            - Segments - independent address spaces identified by segment number and address within segment
+        - Implementation of Segmentation
+            - Swapping and Paging
+            - External Fragmentation - memory divided into a number of chunks, some containing segments and some containing holes
+            - Best Fit - hole management algorithm which choosest the smallest hole into which the needed segment will fit
+            - First Fit - hole management algorithm that chooses the first hole big enough for the segment to fit into
+            - Multiplexed Information and Computing Service MULTICS - os that combined segmentation with paging
+    b. Hardware Virtualization
+        - Vocabulary
+            - Hardware Virtualization - combination of hardware and software suppor that enables simultaneous execution of multiple operating systems on a single physical computer
+            - Virtual Machine - virtualized operating system running on a host machine
+            - Hypervisor - software component that creates and manages instances of virtual machines using hardware provided events to implement sharing policies for the CPU, storage and I/O devices        
+    c. OSM-Level I/O Instructions
+        - Contains most of the ISA-level instructions
+        - Vocabulary
+            - File - sequence of bytes writetn to an I/O device
+            - File Index - table which gives the allocation units and their actual disk addresses
+            - Free List - list of which blocks are available and which are already in use, specifically all the holes that exist
+        - Implementation
+            - Programmer File - linear sequence of bytes
+            - OS File - ordered but not necessarily consecutive collocation of allocation units on disk
+        - Directory Management Instructions
+            - Directories - a file which contains a group of files
+    d. OSM-Level Instructions for Parallel Processing
+        - Process Creation
+            - Process - characterized by a state and an address space where the program and data can be accessed
+            - System call needed to create a process
+        - Race Conditions - any situation where two processes or threads are altering the same memory location
+        - Semaphores - mechanism to implement conditional variables and locks by Dijkstra
+    e. Example Operating Systems
+        - UNIX, POSIX, Linux, MacOS, Windows
+        
 Chapter 7 - The Assembly Language Level
 
 Chapter 8 - Parallel Computer Architectures
