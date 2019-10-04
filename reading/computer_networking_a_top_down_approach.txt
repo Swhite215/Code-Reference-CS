@@ -91,3 +91,134 @@ Chapter 1 - Computer Networks and the Internet
         - Proliferation of Networks - 1980 - 1990
         - Internet Explosion - 1990s
         - New Millenium - Broadband, High-Speed WiFi, Online Social Networs, Content Provider Networks, Cloud
+        
+Chapter 2 - Application Layer
+    a. Principles of Networking Applications
+        - Network Application Architectures
+            - Client-to-Server - host called a server that handles requests from a host called a client
+                - Google, Amazon, Netflix
+            - Peer-to-Peer - direct communication between pairs of intermittenly connected hosts called peers
+                - Bitcoin and BitTorrent
+        - Processes Communicating
+            - Process - a program that is running within an end system
+            - IPC - interprocess communication among programs running on same end system
+            - Client and Server Processes
+                - Browser = Client and Web Server = Server
+            - Interface Between the Process and Computer Networks
+                - Process -> Socket -> Transport Layer -> Socket -> Another Process
+            - Addressing Processes
+                - Receiving Process - address of the host and an identifier (port/socket) specifiying the receiving process
+                - Internet Protocol - address identifying hosts on the internet
+                - Port Number - identifier specifying the port/socket related to the receiving process
+        - Transport Services Available to Applications
+            - Goal - handle the responsibility of getting messages from sending socket to receiving socket
+            - Reliable Data Transfer - guarantees quality data delivery
+            - Loss-Tolerant Applications - transport layer protocol does not provide reliable data transfer
+            - Throughput - rate at which the sending process can deliver bits to the receiving process
+                - Bandwidth-Sensitive Applications - applications that have throughput requirements
+                - Elastic Applications - can make use of as much or as little throuhgput as happens to be available
+            - Timing Guarantees
+            - Security - Encryptiong and Decryption of Data
+        - Transport Services Provided by the Internet
+            - TCP Services
+                - Connection-Oriented Service
+                - Reliable Data Transfer Service
+            - UDP Services
+                - Connectionless Service
+                - Unreliable Data Transfer Service
+        - Securing TCP
+            - Secure Socket Layer SSL
+            - Transport Layer Security TSL
+        - Examples
+            - Electronic Mail - SMTP - TCP
+            - Remote Terminal Access - Telnet - TCP
+            - Web - HTTP - TCP
+            - File Transfer - FTP - TCP
+            - Streaming Multimedia - HTTP - TCP
+            - Internet Telephony - SIP/RTP - UDP or TCP
+        - Application Layer Protocols
+            - Goal - defines how an application's processes, running on different end systems, pass messages to each other
+            - Defines - type of messages, syntax, semantics, rules
+    b. The Web and HTTP
+        - Overview of HTTP
+            - Hyper Text Transfer Protocol
+            - Pull Protocol
+        - Vocabulary
+            - Web Page - document consisting of objects (files)
+            - Web Browsers - implement client side of HTTP
+            - Web Servers - implement the server side of HTTP
+            - Transport Layer Protocol - TCP
+        - Non-Persistent and Persistent Connections
+            - HTTP with Non-Persistent Connections
+                - TCP Handshake -> HTTP Client TCP Connection to Server -> HTTP Client HTTP Request Message -> 
+                HTTP Server HTTP Response Message -> HTTP Client Received Message -> TCP Connections Close
+            - HTTP with Persistent Connections
+                - TCP connections do not close 
+        - HTTP Request Message Format
+            - Request Line, Header Lines, Body
+        - HTTP Response Message Format
+            - Status Line, Header Lines, Body
+        - Cookies
+            - HTTP Client Request -> HTTP Server Set-Cookie Response -> HTTP Client Request w/ Cookie -> HTTP Server Response -> Repeat HTTP Request w/ Cookie and HTTP Server Response
+        - Web Caching
+            - Cache or Proxy Server - network entity that satisfies HTTP request on behalf of an origin web server
+            - HTTP Client Request -> Proxy Server -> Proxy Server Cache Check + Request -> HTTP Server Response -> Proxy Server Receival -> HTTP Client Receival
+            - Content Delivery Networks - Utilize cache systems with servers
+        - Conditional Get
+            - HTTP mechanism that allows a cache to verify that its objects are up to date
+    c. Electronic Mail and the Internet
+        - Components - User Agents, Mail Servers, and Simple Main Transfer Protocol SMTP
+        - SMTP
+            - Alice Agent -> Alice's Mail Server Message Queue -> SMTP to Bob's Mail Server Message Queue -> Bob's Agent
+            - Push Protocol 
+        - Mail Message Formats
+            - Header Lines, and Body
+        - Mail Access Protocols
+            - Post Office Protocol Version 3 POP3 - Mail Server to User Agent
+                - TCP Connection - Authorization, Transaction, and Update
+            - Internet Mail Access Protocol IMAP - Mail Server to User Agent
+                - TCP Connection - Folders Capability
+            - Simple Mail Transfer Protocol - Mail Server to Mail Server
+    d. DNS - The Internet Directory Service
+        - Domain Name System DNS - Distributed database used to translate hostnames into IP addresses
+        - Services Provided By DNS
+            - Host Aliasing, Mail Server Aliasing, Load Distribution
+        - Process
+            - User Client-Side DNS Application -> Hostname to Client-Side DNS Application -> DNS Client Query to DNS Root Server ->
+            DNS Client Query to DNS Top-Level Domain Server -> DNS Client Query to Authoritative DNS Server -> Host HTTP Client Request w/ Server Address
+        - Overview Hierarchy
+            - Root, Top-Level Domain (org, com, net, edu) and Authoritative
+            - Local DNS Server - proxy to DNS server hierarchy
+        - DNS Caching
+            - Cache mapping of hostname to ip address
+        - DNS Records and Messages
+            - Resource Record - Fourt uple (Name, Value, Type, TTL)
+            - Type = A - Name = Hostname, Value = IP Address
+            - Type = NS - Name = Domain, Value = Hostname of Authoritative DNS Server
+            - Type = CNAME - Name = Domain, Value = Canonical Hostname for Alias
+            - Type = MX - Name = DOmain, Value = Canoncail Name of Mail Server for Alias
+        - DNS Messages
+            - Query and Reply Messages
+            - Header (Identification, Number of Question, Number of Authority RRs), Questions, Answers, Authority, Additional Information
+        - Inserting Records into the DNS Database
+            - Registrar - commercial entity that verifies the uniqueness of the domain name, enters the domain name into the dns database, and collects a small fee
+    e. Peer-to-Peer Applications
+        - Scalability of P2P
+        - BitTorrent
+    f. Video Streaming and Content Distribution Networks
+        - Internet Video
+        - HTTP Streaming and DASH
+            - Dynamic Adaptive Streaming over HTTP - multiple versions wirh different bit rates and quality levels
+        - Content Distribution Networks CDN
+            - Private CDN - owned by the content provider itself such as Google
+            - Third-Party CDN - distributes content on behalf of multiple content providers
+            - Server Placement Philosophies
+                - Enter Deep - server clusetrs in access ISPs all over the world in order to get close to users
+                - bring Home - building larger clusters at a small number of sites, usually Internet Exhange Points IXP
+            - Examples - Youtube, Netflix, and Kankan
+    g. Socket Programming: Creating Network Applications
+        - Socket Programming with UDP
+            - Client Socket -> Client Socket Send Message -> Server Socket Listenting at Port -> Server Socket Rceive and Send Back Message -> Client Socket Receive Message -> Client Socket Closes
+        - Socket Programming with TCP
+            - Client Socket -> Client Socket Connect -> Server Socket Listening at Port -> Server Socket Accept Connection -> Client Socket Send Message ->
+            Server Connection Socket Receive and Send Back Message -> Server Connection Socket Close -> Client Socket Receive Message -> Client Socket Close
