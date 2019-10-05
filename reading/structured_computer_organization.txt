@@ -283,5 +283,49 @@ Chapter 6 - The Operating System
         - UNIX, POSIX, Linux, MacOS, Windows
         
 Chapter 7 - The Assembly Language Level
-
+    a. Introduction
+        - Translator - converts a user's program written in some langauge to another language
+        - Source Language - language in which the original program was written
+        - Target Langauge - language that original language is converted into 
+    b. Introduction to Assembly Language
+        - Assembler - converts assemby language into numerical machine language
+        - Compiler - converts high-level language into a numerical machine language or a symbolic representation of one
+        - What is an Assembly Language?
+            - Langauge where each statement produces exactly one machine instruction
+        - Why use Assembly Language?
+            - Performance and access to the machine
+        - Format of Assembly Language Statement
+            - Label, Opcode, Operand, Comments
+        - Pseudoinstructions or Assembler Directive - commands to the assembler itself
+    c. Macros
+        - Macro Definition, Call, and Expansion
+            - Macro Definition - a way to give a name to a piece of text
+            - Macro Call - use of a macro name as an opcode
+            - Macro Expansion - replacement of macro name by the macro body
+        - Macros with Parameters
+            - Formal/Actual Parameters - providing formal parameters that are replaced by actual parameters
+        - Advanced Features
+            - Local labels for unique value on expansion
+            - Macros within macros
+            - Macros calling other macros
+    d. The Assembly Process
+        - Two-Pass Assemblers
+            - Pass One - definitions of symbols are collected and stored in a table
+            - Pass Two - reading assembly program once, converting into an intermediate form, and storing this in a table in memory
+        - Forward Reference Problem - reference made to a symbol whose definition occurs later
+        - The Symbol Table
+            - Associative Memory
+            - Array of Pairs (Symbol, Value), Sort Symbol with Binary Search, Hashing
+    e. Linking and Loading
+        - Function - collect procedures translated separately and link them together to be run as a unit called an executable binary program
+        - Tasks Performed by the Linker
+            - Bring object modules from disk into main memory to form the image of the executable binary program
+            - Relocation Problem - each module brought together represents a separate address space
+            - Externel Reference Problem - address of module is not known until linking time
+        - Structure of an Object Module
+            - Identification, Entry Point Table, External Reference Table, Relocation Dictionary, End
+        - Binding Time and Dynamic Relocation
+            - Binding Time - time at which the actual main memory address corresponding to symbolic name is determined
+            - Dynamic Linking - link each procedure at the time it is first called
+            
 Chapter 8 - Parallel Computer Architectures
