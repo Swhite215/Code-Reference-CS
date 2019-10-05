@@ -327,5 +327,69 @@ Chapter 7 - The Assembly Language Level
         - Binding Time and Dynamic Relocation
             - Binding Time - time at which the actual main memory address corresponding to symbolic name is determined
             - Dynamic Linking - link each procedure at the time it is first called
-            
+
 Chapter 8 - Parallel Computer Architectures
+    a. On-Chip Parallelism
+        - Instruction-Level Parallelism
+            - Superscalar - issuing multiple instructions to different functional units in a single clock cycle
+            - Very Long Instruction Word - long words with instructions that used mulitple functional units
+            - VLIW Example - TriMedia VLIW CPU
+        - On-Chip Multithreading
+            - Fine-Grained - switch between threads on each clock cycle
+            - Coarse-Grained - only switching between threads on stalls
+            - Simulatenous - single thread is allowed to issue two instructions per cycle and when it stalls, immediately takes instructions from next thread in the sequence
+        - Single Chip Multiprocessors
+            - Homogenous - placing two or more powerful CPUs on a single chip
+            - Heterogenous - placing two ore more cores, each specialized for one particular task, on a single chip
+    b. Co-Processors
+        - Goal - add a second specialized processor
+        - Network Processors
+            - Goal - handle network traffic
+            - Actions - where to send packet, fragmenting or reassembling, managing its quality, managing security, compression/decompression
+            - Protocol/Programmable/Packet Processing Engines PPEs
+            - Application Specific-Integrated Circuit
+            - Field Programmable Gate Array - collection of gates organized into desired circuit
+            - Packet Processing
+                - Checksum Verfication -> Field Extraction -> Packet Classification -> Path Selection -> Destination Network Determination ->
+                Route Lookup -> Fragmentation and Reassembly -> Computation -> Header Management -> Queue Management -> Checksum Generation -> Accounting/Statistics
+        - Graphic Processors
+            - Graphic Processing Units
+            - Compute Unified Device Architecture CUDA
+            - Sinlge Insstruction Multiple Data Stream SIMD
+            - General Purpose Graphics Processing Units GPGPUs
+        - Cryptoprocessors
+            - Symmetric and Public-Key Cryptography
+    c. Shared Memory Multiprocessors
+        - Multiprocessor - a computer in whch all the CPUs shared a common memory
+        - Multicomputer - a computer in which all the CPUs have their own private local memory
+        - Distributed Shared Memory DSM - multicomputer hardware ad have the operating system simulate shared memory by providing a single system-wide paged shared virtual address space
+        - Taxonomy - SIMD, SISD, MISD, MIMD
+            - SISD - Vector Processor, Array Processor
+            - MIMD - Multi-Processor (Uniform Memory Access, Cache Only Memory Access, Non Uniform Memory Access)
+            - MIMD - Multi-Computers (Massive Parallel Processors, Cluster Of Workstations)
+        - Memory Semantics
+            - Consistency Models - Strict, Sequenctial, Processor, Weak, Release
+        - Unfirorm Memory Access Symmetric Multiprocessor Architecture
+            - Snooping, Cache Coherence, 
+            - Cache Coherence Protocols - Write-Through or Modified, Exclusive, Shared, Invalid MESI
+        - NonUniform Memory Access Multiprocessors
+        - Cache Only Memory Access Multiprocessors
+    d. Message-Passing Multicomputers
+        - Interconnection Networks
+            - Topology - Star, Tree, Ring, Torus, Grid, Complete, Cube, Hyercube
+            - Dimensionality - number of choices there are to get from one source to the destination
+        - Massively Parallel Processors
+            - High-Performance proprietary interconnection network, enormous i/o capacity, fault tolerance
+            - Examples - BlueGene, Red Storm, 
+        - Cluster Computing
+        - Communication Sofware for Multicomputers
+            - Synchronous, Buffered, Nonblocking
+            - Message-Passing Interface
+                - Parallel Virtual Machine PVM
+                - Message-Passing Interface - communicator, message data types, communication operations, and virtual topologies
+        - Application-Level Shared Memory
+            - Distributed Shared Memory - collection of CPUs on a multicomputer share a common paged virtual address space
+        - Performance - CPU and I/O Speeds, Bandwidth, Latency
+        - Achieving High-Performance - prefetching, data replication, multithreading, and nonblocking writes
+    e. Grid Computing
+        - Hierarchy - Physical Resources, Secure Individual Resources, Resource Groups, Applications
