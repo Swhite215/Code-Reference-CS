@@ -222,3 +222,99 @@ Chapter 2 - Application Layer
         - Socket Programming with TCP
             - Client Socket -> Client Socket Connect -> Server Socket Listening at Port -> Server Socket Accept Connection -> Client Socket Send Message ->
             Server Connection Socket Receive and Send Back Message -> Server Connection Socket Close -> Client Socket Receive Message -> Client Socket Close
+
+Chapter 3 - Transport Layer
+    a. Introduction and Transport Layer Services
+        - Relationship Between Transport and Network
+            - Logical Communication - as if the hosts running the processes were directly connected
+            - Transport Layer Segments -> Network Layer Datagrams
+            - Transport - Connection between processes on different hosts
+            - Network - Connection between hosts
+        - Overview of the Transport Layer in the Internet
+            - User Datagram Protocol - connectionless, unreliable
+            - Transmission Control Protocol - connection-oriented, reliable, congestion control
+            - Network Protocol - Internet Protocol - best-effort, unreliable delivery service
+            - Tranport-Layer Multiplexing and Demultiplexing - extending host-to-host delivery to process-to-process delivery
+    b. Multiplexing and Demultiplexing
+        - Demultiplexing - delivering data in a transport-layer segment to the correct socket
+        - Multiplexing - gathering data chunks at source host, encapsulating each data chunk with header information to create segments, and passing segment to the network Layer
+        - Segment Fields - source port nunmber field and destination port number field
+        - Connectionless - UDP source port number and destination port number
+        - Connection-Oriented - TCP source port number, source IP address, destination port number and destination IP address for back and forth transmission
+    c. Connectionless Transport: UDP
+        - Characteristics
+            - Finer application-level control over what data is sent and when
+            - No connection establishment
+            - No connection state
+            - Smal packet header overhead
+        - UDP Segment Structure
+            - Source Port, Destination Port, Length, Checksum, Application Data
+            - Error checking but no recovery
+    d. Principles of Reliable Data Transfer
+        - Goal - no tranferred data bits are corrupted, or lost, and all are delivered in the order in which they were sent
+        - Reliable Data Transfer v1.0
+            - Underlying channel is completely reliable
+        - RDT with Bit Errors v2.0
+            - Positive and Negative Acknowledgements = Automatic Repeat reQuest Protocol
+            - Error Detection, Receiver Feedback, Retransmission
+            - Stop and Wait Protocol
+            - Handling corrupt ACK or NAK - Repeat, checksum, retransmission, sequence number
+        - RDT over Lossy Channel with Bit Errors v3.0
+            - Add countdown timer for retransmission
+        - Pipelined RDT Protocols
+            - Goal - sending multiple packets without waiting for acknowledgements
+        - Go-Back-N GBN
+            - Goal - allowed to transmit multiple packets but is constrained to have no more than some maximum allowable number of unacknowledged packets in the pipeline
+            - Sliding-Window protocol - window size is maximum allowable number of packets
+            - Events - invocation from above, receipt of an ACK, a timeout
+        - Selective Repeat SR
+            - Goal - allowed to transmit multiple packets whil reducing unnecessary retransmission by sending only those packets that is suspects were received in error
+            - Events - invocation from above, timeout, receipt of an ACK
+    e. Connection-Oriented Transport: TCP
+        - The TCP Connection
+            - Connection-Oriented, Full Duplex Service, Point to Point
+            - Three-Way Handshake
+            - Send Buffer - edge of socket buffer before network layer
+            - Maximum Segment Size - maxmimum amount of daat that can be placed in a segment
+            - Process A -> Socket A -> Client TCP Send Buffer -> Segments over Network -> TCP Server Receive Buffer -> Socket B -> Process B
+            - Cumulative Acknowledgements - acknowledge bytes up to the first missing byte
+        - TCP Segment Structure
+            - Source Port, Destination Port, Sequence Nu,ber, Receive Window, header Length Field, Options Field, Flag Field, SYN, FIN, CWR, ECE, URG, ACK, PSH, RST, Checksum, Urgent Data Pointer
+        - Round Trip Time Estimation and Timeout
+            - Estimated Round Trip Time EstimatedRTT
+            - Sample Round Trip Time SampleRTT
+        - Reliable Data Transfer
+            - Single Transmission Timer
+            - Doubling the Timeout Interval - doubles timeout interval each time TCP retransmits
+            - Fast Retransmit - retransmitting the missing segment before the segment's timer expires after receiving three duplicate ACKs
+            - Flow Control - eliminate overflowing the receiver's buffer by matching the rate at which the sender is sending against the rate at whcih the receiving application is reading
+        - TCP Connection Management
+            - Connecting - Client SYN -> Server SYNACK -> Client SYNACK
+            - Closing - Client FIN -> Server ACK -> Server FIN -> Client ACK
+            - TCP Client States - CLOSED, SYN_SENT, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, TIME_WAIT
+            - TCP Servere States - LISTEN, SYN_RCVD, ESTABLISHED, CLOSE_WAIT, LAST_ACK
+    f. Principles of Congestion Control
+        - Causes and Cost of Congestion
+            - Large queuing delays as the packet arrival rate nears the link capacity
+            - Sender must performa retransmissions in order to compensate for dropped packets due to buffer overflow
+            - When a packet is dropped, the transmission capacity that was used at each of the upstream links to forward that packet ends up being wasted
+        - Approaches to Congestion Control
+            - End-To-End
+            - Netrwork-Assisted Congestion Control
+    g. TCP Congestion Control
+        - Senders rate is congestion window / RTT bytes/sec
+        - Adjust congestion window to adjust the rate at whcih data is sent into the connection
+        - How do TCP senders detemine their sending rates such that they dont congest the network but at the same time make use of all the available bandwidth?
+            - A lost segment implies congestion, and hence, the TCP sender's rate should be decreased
+            - An ACK indicates that the netork is delivering the sender's segments to the receiver, and hence, the sender's rate can be increased
+            - Bandwidth probing cycle of checking
+        - TCP Congestion-Control Algorithm
+            - Slow-Start - congestion widnow increased by 1 MSS every time a transmitted segment is first ACK
+            - Congestion-Avoidance - when cwnd equals slow start threshold, cwnd is havled and increases only by one
+            - Fast-Recovery - value o cwnd is increased by 1 MSS for every duplicate ACK received for the missing segment that caused TCP to enter fast-Recovery
+            - Retrospective
+                - Additive-Increase, Multiplicative Decrease AIMD
+            - Fairness - average transmission rate of each connection is R Transmission Rate / K Connections
+            - Explicit Congestion Notification ECN: Network-Assisted Congestion Control
+                - Network explicilty signlas congestion to TCP sender and receiver
+                - Two Bits, Four Values, in the Type of Service field of the IP datagram header
