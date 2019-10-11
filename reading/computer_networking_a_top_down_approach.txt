@@ -318,3 +318,75 @@ Chapter 3 - Transport Layer
             - Explicit Congestion Notification ECN: Network-Assisted Congestion Control
                 - Network explicilty signlas congestion to TCP sender and receiver
                 - Two Bits, Four Values, in the Type of Service field of the IP datagram header
+
+Chapter 4 - Network Layer: Data Plane
+    a. Overview of Network Layer
+        - Forwarding and Routing: The Data and Control Planes
+            - Forwarding - moving packets from the input link to the appropriate output link
+            - Routing - the network layer determing the route or path taken by packets
+            - Routing Algorithm - algorithm that calculates routing paths
+            - Forwarding Table - used with packet's header values to indicate output link
+        - Control Plane: The Traditional Approach
+            - Routing algorithm runs in each and every router and both forwarding and routing are contained within the router
+        - Control Plane: The SDN Approach
+            - Software Defined Networking - network is software defining because the controller that computes forwarding tables and interacts with routers is implemented in software
+        - Network Service Model
+            - Guaranteed Delivery, Guaranteed Deliver with Boudned Delay, In-Order Packet Delivery, Guaranteed Minimal Bandwidth, Security
+            - Internet's Network Layer - Best-Effort Service
+    b. What's Inside a Router?
+        - Architecture
+            - Input Port - terminates incoming physical link, lookup function
+            - Switching Fabric - connects the router's input ports with output ports
+            - Output Ports - stores packets received from switching fabric and transmits these packets on the outgoing link
+            - Routing Processor - performs control plane funtions
+        - Forwarding
+            - Destination Based Forwarding and Generalized Forwarding
+        - Input Processing and Destination-Based Forwarding
+            - Line termination -> Data link processing protocol and decapsulation -> Lookup, forwarding and queuing -> Switching fabric
+        - Switching
+            - Memory - copy from input port to processor memory to output port
+            - Bus - transfer a packet from input to output directly over a shared bus
+            - Interconnection Network - non-blocking cross-bar switch forwarding mulitple packets in parallel
+        - Output Processing
+            - Queuing buffer -> Data link processing protocl and encapsulation -> Line termination
+        - Where does Queuing Occur?
+            - Input Queuing - switch fabric is not fast enough to tranafer all arriving packets without delay
+                - Head-of-the-Line Blokcing - a queued packet in an input queue must wait for tranfer through fabric, even though its output port is free, because it is blocked by another packet
+            - Output Queuing - output port transmits packets slower than switching fabric provides them
+                - Drop-Tail - output port drops packet or removes alreay-queued packets
+                - Active Queue Management AQM and Random Early Detection RED
+        - Packet Scheduling
+            - First-In-First-Out FIFO, Priority Queuing, Round Robin and Weighted Fair Queuing
+    c. The Internet Protocol: IPv4. Addressing, and IPv6
+        - IPv4 Datagram Format
+            - Version Number, Header Length, Type of Service TOS, Datagram Length, Identifier, Flags, Fragmentation Offset, Time-to-Live TTL, Protocol, Header Checksum, Source and Destination IP Addresses, Options, Data
+        - IPv4 Datagram Fragmentation
+            - Link-layer frames have different Maxmimum Transmission Units MTUs
+            - Fragmentation - converting large datagrams into smaller datagrams
+        - IPv4 Addressing
+            - Interface - boundary between host and the physical link
+            - Dotted-Decimal Notation - xxx.xxx.xxx.xxx
+            - Subnet - multiple interfaces interconnected to a single router
+            - Subnet Mask - value indicating number of bits that define the subnet address xxx.xxx.xxx.xxx/mask
+            - Classless Interdomain Routing - internet's address asigment strategy
+            - Classful Addressing - Class A, B, and C
+            - Address Aggregration - Using a single prefix to advertise multiple networks
+        - Dynamic Host Configuration Protocol
+            - Goal - Dynamic allocation of ip addresses automatically
+            - Process - Host Sends DHCP Discover Message -> DHCP Server Sends DHCP Offer Message -> Host Sends DHCP Request Message -> DHCP Server Sends ACK Message
+        - Network Address Translation NAT
+            - Private LAN Addresses, Single NAT Enabled Router IP, NAT Translation LAN to WAN and WAN to LAN with IPs and Ports
+        - IPv6
+            - Goal - deal with dwindling number of available IPv4 addresses
+        - IPv6 Datagram Format
+            - Version, Traffic Class, Flow Label, Payload Length, Next HRD, Hop Limit, Source Address, Destination Address, Data
+            - Missing Fields - Fragmentation, Header Checksum, Options
+        - Transitioning from IPv4 to IPv6
+            - IPv6 enabled router places IPv6 datagram as payload for IPv4 datagram, IPv6 destintion router extracts IPv6 and then routes datagram
+    d. Generalized Forwarding and SDN
+        - Packet switches that use match-plus-action table
+        - Match
+            - OpenFlow can match on Source and Destination Mac, Eth Type, VLAN, Source and Destination IP, Source and Destination TCP/UDP Port
+        - Action
+            - Forwarding, Dropping, or Modify Field
+        - Examples - Forwarding, Load Balancing, and Firewalling
