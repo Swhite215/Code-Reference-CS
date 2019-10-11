@@ -22,7 +22,10 @@ echo $SSH_AGENT_SOCK,check if ssh-agent has been used
 ssh-add # add default files to agent
 ssh-add -l # lists private keys currently accessible to the agent
 
-# Local Forwarding
+# Local Forwarding - Connect my local machine port to process running on server at port
 ssh -L PORT:localhost:PORT USER@VM_IP
+
+# Remote Forwarding - Connect my server port to process running on my local machine at port
+ssh -R PORT:localhost:PORT USER@VM_IP
 
 # Default Files ~/.ssh/id_rsa, .ssh/id_dsa, ~/.ssh/id_ecdsa,~/.ssh/ed25519, ~/.ssh/identity
