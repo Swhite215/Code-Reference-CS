@@ -18,12 +18,12 @@ Chapter 1 - Introduction
         - Electronic Circuits = Hardware
         - Algorithms in Code = Software
         - Microprogramming - 1951
-        - Operating System - 1960 - Systems Calls, Batch System, Tiesharing Systems
+        - Operating System - 1960 - Systems Calls, Batch System, Timesharing Systems
         - Microprogram Expansion
-        - Microprogrmming Elimination - post 1970s
+        - Microprogramming Elimination - post 1970s
     d. Milestones in Computer Architecture
         - Zeroth Generation - Mechanical Computers 1642-1945
-            - Add, Substract, Multiple and Divide, Difference Engine, Analytical Engine
+            - Add, Substract, Multiply and Divide, Difference Engine, Analytical Engine
         - First Generation - Vacuum Tubes 1945-1955
             - ENIAC, EDVAC, IAS, von Neumann
         - Second Generation - Transistors 1955-1965
@@ -57,7 +57,7 @@ Chapter 2 - Computer Systems
         - Instruction-Level Parallelism
             - Pipelining - multiple stages for instruction exection
             - Latency - how long it takes to execute an instruction
-            - Processor Bandwidth - Million Instructions Per Seconds MIPS
+            - Processor Bandwidth - Million Instructions Per Second MIPS
             - Superscalar - Single pipeline with multiple functional units
         - Processor-Level Parallelism
             - Multiple CPUs
@@ -79,7 +79,7 @@ Chapter 2 - Computer Systems
             - Single Inline Memory Module
             - Dual Inline Memory Module
     c. Secondary Memory
-        - Memory Hierarchy - Registers Cache, Main Memory Magnetic or Solid State Disk, Tape/Optical
+        - Memory Hierarchy - Registers, Cache, Main Memory Magnetic or Solid State Disk, Tape/Optical
         - Magnetic Disks
             - Platter, Actuator, Read/Write Head, Spindle, Track, Sectors, Seek, Rotational Latency, Disk Controller
         - IDE Disks
@@ -101,19 +101,19 @@ Chapter 2 - Computer Systems
         - Direct Memory Access - controller reads or writes data to or from memory without CPU intervention
         - Peripheral Component Interconnect PCI Bus and PCIe Bus
         - Terminals, Keyboards, Touch Screen, Flat Panel Display, Video RAM, Mice, Game Controllers, Printers, 
-        - Telecommunications Equipment - Modems, DSLs, Routers, Communication Linsks and Switches
+        - Telecommunications Equipment - Modems, DSLs, Routers, Communication Links and Switches
         - Character Code - ASCII, Unicode, UTF-8
 
 Chapter 3 - The Digital Logic Level
     a. Gates and Boolean Algebra
         - Gates
             - Transistor acts as a binary switch
-            - Collector, Base, Eitter, Inverter
+            - Collector, Base, Emitter, Inverter
             - NAND, NOT, NOR, AND, OR
         - Boolean Algebra and Functions
             - Switching Algebra w/ Truth Table
         - Circuit Equivalence
-            - Identity, Null, Idempotent, Inverse, Commutative, Associative, Distributive, Absoprtion, De Morgan's Laws
+            - Identity, Null, Idempotent, Inverse, Commutative, Associative, Distributive, Absorption, De Morgan's Laws
             - Positive and Negative Logic
     b. Basic Digital Logic Circuits
         - Integrated Circuits
@@ -156,7 +156,7 @@ Chapter 4 - The Microarchitecture Level
             - Reduce the number of clock cycles needed to execute an instruction
             - Simplify the organization so that the clock cycle can be shorter
             - Overlap the execution of instructions
-            - Path Length - number o clock cycles needed to execute a set of operations
+            - Path Length - number of clock cycles needed to execute a set of operations
         - Reducing the execution path length
             - Merging the Interpreter Loop with the Microcode
             - Three Bus Architecture
@@ -198,7 +198,7 @@ Chapter 5 - The Instruction Set Architecture
     c. Instruction Formats
         - Design Criteria for Instruction Formats
             - Short vs. Long
-            - Room in th einstruction format to express all the operations desired
+            - Room in the instruction format to express all the operations desired
             - Number of bits in an address field
     d. Addressing
         - Addressing Modes
@@ -216,7 +216,7 @@ Chapter 5 - The Instruction Set Architecture
         - Dyadic Operations - Combine two operands to produce a result
         - Monadic Operations - Single operand to produce one result
         - Comparisons and Conditional Branches - Test and alter sequence of instructions
-        - Procedure Call - Call to group of instructions to perform some task - subrouting
+        - Procedure Call - Call to group of instructions to perform some task - subroutine
         - Loop Control - Execute a group of instructions a fixed number of times
         - Input/Output - Programmed, Interrupt-Drive, and DMA
     f. Flow of Control
@@ -235,7 +235,7 @@ Chapter 6 - The Operating System
             - Physical Address Space - actual hardwired physical memory locations
             - Transparent - programmer is not worried abut pages, that is handled by the OS
         - Implementation of Paging
-            - Page Frame - pieces of main meory into which the pages go
+            - Page Frame - pieces of main memory into which the pages go
             - Memory Management Unit - performs the virtual to physical address mapping
             - Present/Absent Bit - used to check whether the page referenced is currently in main memory
         - Demand Paging and the Working-Set Model
@@ -259,18 +259,18 @@ Chapter 6 - The Operating System
             - Multiplexed Information and Computing Service MULTICS - os that combined segmentation with paging
     b. Hardware Virtualization
         - Vocabulary
-            - Hardware Virtualization - combination of hardware and software suppor that enables simultaneous execution of multiple operating systems on a single physical computer
+            - Hardware Virtualization - combination of hardware and software support that enables simultaneous execution of multiple operating systems on a single physical computer
             - Virtual Machine - virtualized operating system running on a host machine
             - Hypervisor - software component that creates and manages instances of virtual machines using hardware provided events to implement sharing policies for the CPU, storage and I/O devices        
     c. OSM-Level I/O Instructions
         - Contains most of the ISA-level instructions
         - Vocabulary
-            - File - sequence of bytes writetn to an I/O device
+            - File - sequence of bytes written to an I/O device
             - File Index - table which gives the allocation units and their actual disk addresses
             - Free List - list of which blocks are available and which are already in use, specifically all the holes that exist
         - Implementation
             - Programmer File - linear sequence of bytes
-            - OS File - ordered but not necessarily consecutive collocation of allocation units on disk
+            - OS File - ordered but not necessarily consecutive collection of allocation units on disk
         - Directory Management Instructions
             - Directories - a file which contains a group of files
     d. OSM-Level Instructions for Parallel Processing
@@ -332,7 +332,7 @@ Chapter 8 - Parallel Computer Architectures
     a. On-Chip Parallelism
         - Instruction-Level Parallelism
             - Superscalar - issuing multiple instructions to different functional units in a single clock cycle
-            - Very Long Instruction Word - long words with instructions that used mulitple functional units
+            - Very Long Instruction Word - long words with instructions that use mulitple functional units
             - VLIW Example - TriMedia VLIW CPU
         - On-Chip Multithreading
             - Fine-Grained - switch between threads on each clock cycle
@@ -355,7 +355,7 @@ Chapter 8 - Parallel Computer Architectures
         - Graphic Processors
             - Graphic Processing Units
             - Compute Unified Device Architecture CUDA
-            - Sinlge Insstruction Multiple Data Stream SIMD
+            - Single Instruction Multiple Data Stream SIMD
             - General Purpose Graphics Processing Units GPGPUs
         - Cryptoprocessors
             - Symmetric and Public-Key Cryptography
@@ -369,10 +369,10 @@ Chapter 8 - Parallel Computer Architectures
             - MIMD - Multi-Computers (Massive Parallel Processors, Cluster Of Workstations)
         - Memory Semantics
             - Consistency Models - Strict, Sequenctial, Processor, Weak, Release
-        - Unfirorm Memory Access Symmetric Multiprocessor Architecture
-            - Snooping, Cache Coherence, 
+        - Uniform Memory Access Symmetric Multiprocessor Architecture
+            - Snooping, Cache Coherence
             - Cache Coherence Protocols - Write-Through or Modified, Exclusive, Shared, Invalid MESI
-        - NonUniform Memory Access Multiprocessors
+        - Non-Uniform Memory Access Multiprocessors
         - Cache Only Memory Access Multiprocessors
     d. Message-Passing Multicomputers
         - Interconnection Networks
@@ -380,10 +380,10 @@ Chapter 8 - Parallel Computer Architectures
             - Dimensionality - number of choices there are to get from one source to the destination
         - Massively Parallel Processors
             - High-Performance proprietary interconnection network, enormous i/o capacity, fault tolerance
-            - Examples - BlueGene, Red Storm, 
+            - Examples - BlueGene, Red Storm
         - Cluster Computing
         - Communication Sofware for Multicomputers
-            - Synchronous, Buffered, Nonblocking
+            - Synchronous, Buffered, Non-Blocking
             - Message-Passing Interface
                 - Parallel Virtual Machine PVM
                 - Message-Passing Interface - communicator, message data types, communication operations, and virtual topologies
