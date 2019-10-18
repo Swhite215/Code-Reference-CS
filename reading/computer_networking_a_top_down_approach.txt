@@ -222,3 +222,122 @@ Chapter 2 - Application Layer
         - Socket Programming with TCP
             - Client Socket -> Client Socket Connect -> Server Socket Listening at Port -> Server Socket Accept Connection -> Client Socket Send Message ->
             Server Connection Socket Receive and Send Back Message -> Server Connection Socket Close -> Client Socket Receive Message -> Client Socket Close
+
+Chapter 5 - The Network Layer: Control Plane
+    a. Introduction
+        - Control Plane - network-wide logic that controls not only how a datagram is forwarded among routers along an end-to-end path from the source host to the destination host,
+        but also how network-layer components and services are configured and managed
+        - Methods for Computing Forwarding and Flow Tables
+            - Per-Router Control - algorithm runs in each and every router
+            - Logically Centralized Control - through SDN controller and network applications 
+    b. Routing Algorithms
+        - Goal - determine good paths from senders to receivers, through the network of routes
+        - Graph - used to formulate routing problems, G = (nodes N, edges E)
+        - Path - sequence of nodes connected by edges leading from sender to receiver
+        - Least-Cost Path - find a path between between the source and destination that has the least cost
+        - Shortest Path - not always the least cost path, it is when all edges have the same cost 
+        - Centralized Routing Algorithm - computes the least cost path between source and destination using complete global knowledge of the network
+        - Decentralized Routing Algorithm - calculation of least cost path is iterative, occuring at each router
+        - Static Routing Algorithms - routes change very slowly over time, often as a resutl of human intervention
+        - Dynamic Routing Algorithms - routes change as the network traffic load or topology changes
+        - Load Sensitive Algorithm - links cost vary dynamically to reflect the current level of congestion in the underlying link
+        - Load Insensitive Algorithm - links cost does not explicitly reflect its current or past level of congestion
+        - Link-State Routing Algorithm
+            - Network topology and all links costs are known
+            - Link-State Broadcast - each node broadcasts link-state packets to all other nodes
+        - Distance-Vector Routing Algorithm
+            - Iterative, asynchronous, and distributed
+            - Each node receives some information from one or more of its directly attached neighbors
+    c. Intra-AS Routing in the Internet: OSPF
+        - Autonomous System AS - groups of routers under the same administrative control
+        - Intra-Autonomous System Routing Protocol - algorithm running within an AS
+        - Open Shortest Path First OSPF
+            - Flooding of linkpstate information and Dijkstra's least-cost path Algorithm
+            - Each router calculate shortest path to all subnets and broadcasts
+            - Security - exchanges between OSPF routers can be authenticated
+            - Multiple Same-Cost Paths - allowing multiple paths
+            - Integrated Support for Unicat and Multicast Routing
+            - Support for Hierarchy
+    d. Routing Among the ISPs: BGP
+        - Inter-Autonomous Syste Routing Protocol - coordinate routing between multiple AS
+        - Border Gateway Protocol - all ASs run the same inter-AS routing protocol
+        - Obtain Prefix reachability Information from Neighboring AS
+        - Determing the Best Routes to the Prefixes
+        - Advertising BGP Route Information
+            - Gateway Router - router on the edge of an AS that directly connects to one or more router in other ASs
+            - Internal Router - only connects to hosts and routers within its own AS
+        - External BGP Connection - spans two ASs
+        - Internal BGP Connection - a BGP sessions betwen routers in the same AS
+        - Determining the Best Routes
+            - BGP Attributes - prefix with Attributes
+            - AS-PATH - list of ASs through which the advertisement has passed
+            - NEXT-HOP - IP address of the router interace that begins the AS-PATH
+        - Hot Potato Routing - route chosen is the route with the least cost to te NEXT-HOP router
+        - Route-Selection Algorithm
+            - Route assigned a local preference value as one of its attributes, routes with highest local preference values are selected
+            - From remaining routes, route with the shortest AS-PATh is selected
+            - From remaining routes, hot potato routing is used
+            - If more than one route still remains, router uses BGP identifiers
+        - IP-Anycast
+            - Used in DNS
+            - CDN copnay assigns the asme IP address to each of its servers
+            - Use BGP to advertise this IP addres from each of the servers
+            - BGP router treats each route advertisements as providing different routes to the same location
+    e. The SDN Control Plane
+        - Characteristics
+            - Flow Based Forwarding - packet forwarding can be based on any number of header fields
+            - Separation of Data Plane and Control Plane
+            - Network Control Functions External to Data Plane Switches
+            - Programmable Network
+        - Structure
+            - SDN-Controlled Switches -> SDN Controller -> Network-Control Applications
+        - SDN Control Plane: SDN Controller and SDN Network-Control Applications
+            - Communication Layer -> Network-Wide State Management Layer -> Interface to the Network-Control Application Layer
+        - OpenFlow Protocol
+            - Operates between a SDN controller and an SDN controlled switch
+            - Messages from Controller to Controlled Switch
+                - Configuration, Modify-State, Read-State, Send-Packet
+            - Messages from Controlled Switch to Controller
+                - Flow-Remvoed, Port-Status, Packet-In
+        - Data and Control Plane Interaction: An Example
+            - Switch1, experiencing link failure, notifies SDN Controller with Port-Status message
+            - SDN Controller notifies the link-state manager, which updates a link-state database
+            - Network Control Application with Link-State Routing is notified
+            - Link-State Routing Application interacts with Link-State Manager to get updated Link-State
+            - Link-State Routing Application interacts with Flow Table Manager
+            - Flow Table Manager uses OpenFlow protocol to update Flow Table Entries of affected switches
+    f. ICMP: The Internet Control Message Protocol
+        - Goal - used by hosts and routers to communicate network-layer information to each other e.g. error reporting
+        - ICMP messages are carried inside IP datagrams e.g. as IP payloads like TCP or UDP segemnts
+        - Ping and Traceroute
+        - Message Types
+            - 1 - 0 - echo reply
+            - 3 - 0 - destination network unreachable
+            - 3 - 1 - destination host unreachable
+            - 3 - 2 - destination protocol unreachable
+            - 3 - 3 - destination port unreachable
+            - 3 - 6 - destination network unknown
+            - 3 - 7 - destintation host unknown
+            - 4 - 0 - source quench
+            - 8 - 0 - echo request
+            - 9 - 0 - router advertisement
+            - 10 - 0 - router discovery
+            - 11 - 0 - TTL expired
+            - 12 - 0 - IP header bad
+    g. Network Management and SNMP
+        - Saydam on "What is network management?"
+            - Network management includes the deployment integration, and coordination of the hardware, software,
+            and human elements to monitor, test, poll, configure, analyze, evaluate, and control the network and 
+            element resources to meet the real-time operation performance and quality of service requirements at 
+            a reasonable cost
+        - The Network Management Framework
+            - Managing Server - application running in a centralized network management station, locus for network management
+            - Managed Device - piece of network equipment tha resides on a managed network, composed of managed objects
+            - Management Information Base - information on managed object
+            - Network Management Agent - process running in the managed device that communicates with the managing server
+            - Network Management Protocol - runs between server and devie, allowing server to query status and indirectly take actions
+        - The Simple Network Management Protocol
+            - Application-Layer Potocol used to convey network-management control and information messages between a managing server and an agent
+            - Request-Response Format - SNMP server sends request to SNMP agent -> agent performs some action -> SNMP agent sends a reply to the request
+            - Message Types
+                - GetRequest, GetNextRequest, GetBulkRequest, InformRequest, SetRequest, Response, SNMPv2 Trap
