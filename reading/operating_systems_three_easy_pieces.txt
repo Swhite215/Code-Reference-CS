@@ -7,9 +7,7 @@ Summarization of Content
     a. The Process
         - A running program
         - How can the OS provide the illusion of nearly endless CPUs? 
-            - Virtualization
-            - Time Sharing (Context Switch)
-            - Space Sharing (Partitions)
+            - Virtualization, Time Sharing (Context Switch), Space Sharing (Partitions)
         - Process Control Block - State of Process
     b. Process API
         - Methods: Create, Destroy, Wait, Miscellaneous, Status
@@ -143,7 +141,7 @@ Summarization of Content
                 - No Preemption
                     - Resources cannot be forcibly removed from threads that are holding them
                 - Circular Wait
-                    - Each thread hohlds one or more resources that are being requested by the next thread in the chain
+                    - Each thread holds one or more resources that are being requested by the next thread in the chain
             - Prevention
                 - Circular Wait
                     - Provide a total ordering or partial ordering on lock acquisition
@@ -185,7 +183,7 @@ Summarization of Content
             - Two-Phased - Polling and Interrupt
         - Livelock - Processing Interrupts Forever
         - DMA - Direct Memory Access
-            - Orchestrates Transfers between Devices and Main Memory
+            - Orchestrates transfers between devices and main memory
         - Device Communication
             - I/O Instructions
             - Memory Mapped I/O
@@ -204,7 +202,7 @@ Summarization of Content
             - Shortest Seek Time First SSTF
             - Nearest Block First NBF
             - Elevator, SCAN, C-SCAN, F-SCAN Sweep
-            - Shortesst Positioning Time First SPTF
+            - Shortest Positioning Time First SPTF
         - Miscellaneous
             - I/O Merging
             - OS vs Internal Disk Scheduling
@@ -315,11 +313,11 @@ Summarization of Content
             - Wear Out, Disturbance
         - Flash Translation Layer
             - Converts read and write requests on logical blocks into low-level read, erase and prgram commands on the physical blocks
-        - Log Structured FTL > Direct Mapping
-        - Garbage Collection - Reclaiing Dead Blocks
+        - Log Structured FTL -> Direct Mapping
+        - Garbage Collection - Reclaiming Dead Blocks
         - Hybrid Mapping - Log Blocks Erase and Write
         - Wear Leveling - Spread Out Write Load
         - Performance
-            - Superior Read and Write either Raadom or Sequential
+            - Superior Read and Write either Random or Sequential
         - Cost
             - 10x More Expensive per GB than HDD
