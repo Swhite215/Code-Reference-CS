@@ -509,3 +509,103 @@ Chapter 5 - The Network Layer: Control Plane
             - Request-Response Format - SNMP server sends request to SNMP agent -> agent performs some action -> SNMP agent sends a reply to the request
             - Message Types
                 - GetRequest, GetNextRequest, GetBulkRequest, InformRequest, SetRequest, Response, SNMPv2 Trap
+                
+Chapter 6 - The Link Layer and LANS
+    a. Introduction to the Link Layer
+        - Vocabulary
+            - Node - any device that runs a link layer protocol
+            - Links - communicataion channles that connect adjacent nodes along the communication path
+            - Link-Layer Frame - datagrame encapsulated to be sent over a given link
+        - Services Provided by the Link Layer
+            - Framing - encapsulation of network-layer datagram within a link-layer frame before transmission
+            - Link Access - medium access control protocol specificies the rules by which a frame is transmitted onto the link
+            - Reliable Delivery - guarantees to move each network-layer datagram across the link without error
+        - Where is the Link Layer Implemented?
+            - Network Adapter or Network Interface Card - where the link layer is implemented
+            - Link-Layer Controller - a special purpose chip that implements many of the link-layer services
+    b. Error-Detection and Correction Techniques
+        - Parity Checks
+            - Parity Bit - added bit that makes total number of 1s in the d + 1 bits even or odd 
+            - Two-Dimensional Parity - d bits are divided into rows and columns and a parity for each row and column is calculated
+            - Forward Error Correction - receiver detects and corrects errors
+        - Checksumming Methods
+            - Goal - d bits of data are treated as a sequence of k-bit integers
+            - Internet Checksum - bytes of data are treated as 16-bit integers and summed, then 1s complement of this sum is checksum
+        - Cyclic Redundancy Check
+            - Generator G - r + 1 bit pattern
+            - Goal - sender will choose r additional bits and append them to D such that d + r is divisble by G
+            - Error Checking - receiver divides the d + r received bits by G, and the remainder should be zero if no error
+    c. Multiple Access Links and protocols
+        - Vocabulary
+            - Point-to-Point Link - consists of a single sender at one end and a single reciever at the other end of the link
+            - Broadcast Link - can have multiple sending and receiving nodes all connected to the same broadcast channel
+            - Multiple Access Problem - how top coordinate the access of multiple sending and receiving nodes
+            - Collision - more than two nodes transmit frames at the same time
+            - Categories - channel partitioning, random access, taking-turns
+        - Channel Partitioning Protocols
+            - Time Division Multiplexing - divides time into time frames and further divides each frame into time slots
+            - Frequency Division Multiplexing - divides the R bps channel into different frequencies and assigns each frequency to one of the nodes
+            - Code Division Multiple Access CDMA - assigns a different code to each node
+        - Random Access Protocols
+            - Random Wait - if a collision occurs, each node waits a random delay before retransmitting the frame
+            - Slotted ALOHA - if a collision occurs, node tosses a coin and heads/tails is retransmit or wait
+            - ALOHA - node will immediately retransmit the frame with probability p, otherwise the node waits for a frame transmission time
+            - Carrier Sensning Multiple Access
+                - Listen Before Speaking and Stop Talking if Another is Speaking
+                - Channel Propogation Delay - time it takes for a singal to propagate from one of the nodes to another
+                - Binary Exponential Backoff - value for wait is determined by random value between 0...2^n-1
+        - Taking-Turns Protocols
+            - Polling - master node polls each of the nodes in a RR
+            - Token Passing - nodes pass permission token, and while holding token, may transmit
+        - Data-Over-Cable Service Interface Specifications DOCSIS
+            - Frequency Division Multiplexing to divide the downstream and upstream network segments into multiple frequency channels
+            - Time Division Multiplexing to divide upstream channel into intervals of time
+            - Random Access for cable modems sending mini-slot request frames
+            - Binary Exponential Backoff when collisions occur
+    d. Switched Local Area Networks
+        - Link-Layer Addressing and Address Resolution Protocol
+            - Mac Address, LAN Address, Physical Address
+                - Each adapter has a specific MAC Address
+            - Address Resolution Protocol
+                - Translate IP address with MAC Addresses
+                - ARP Module in sending host takes IP Address and returns MAC Address only within same subnet
+                - Each Host and Router has an ARP Table, which contains mapping of IP Addresses to MAC Addresses
+                - If value is not on table, host passes ARP query packet to adapter with FF-FF-FF-FF-FF-FF which hits all adapters and corresponding ARP modules
+        - Ethernet
+            - Hub - physical-layer device that acts on individual bits rather than frames
+            - Switch - collision-less, store-and-forward packet switch
+            - Ethernet Frame Structure
+                - Data Field, Destination Address, Source Address, Type Field, Cyclic Redundancy Check, Preamble
+            - Ethernet Technologies
+                - 10BASE-T, 10BASE-2, 100BASE-T, 1000BASE-LX, 10GBASE-T, 40GBASE-T
+                - Speed - Baseboard, physical media
+                - Repeater - physical-layer device that receives a signal on the input side and regenerates the signal on the output side
+        - Link-Layer Switches
+            - Forwarding and Filtering
+                - Filtering - switch function that determines whether a frame should be forwarded to some interface or just dropped
+                - Forwarding - a switch function that determines the interfaces to which a frame should be directed and then moves the frame to those interfaces
+                - Switch Table - contains entries for hosts and routers on the LAN
+            - Self-Learning
+                - Switch Table is initially empty
+                - For each frame, swtich stores MAC address, interface from which the frame arrived, and current time
+                - Switch deletes an address in the table if no frames are received after the aging time
+            - Properties of Link-Layer Switching
+                - Elimination of Collisions, Heterogenous Links, Management
+        - Virtual Local Area Networks
+            - Allows multiple virtual local area noetworks to be defined over a single physical local area network infrastructure
+            - VLAN Trunking - spceical port on each switch is configured as a strunk port to interconnect the two VLAN switches
+            - VLAN Tag - identity of the VLAN to which the frame belongs
+    e. Link Virtualization: A Network as a Link Layer
+        - Link as a channel rather than a wire
+        - Multiprotocol Label Switching
+            - Headers - PPP or Ethernet Header, MPLS Header, IP Header, Remainder of Link-Layer Frame
+            - Label Switched Router
+            - Traffic Engineering - forward packets along routes that would not be possible using standard IP routing protocols
+            - Virtual Private Networks - isolate both the resources and addressing used by the customers VPN from that of other users crossing the ISPs network
+    f. Data Center Networking
+        - Hosts/Blades - servers serving content
+        - Top of Rack Switch - interconnects the hosts in the rack with each other and with other switches in the data center
+        - Border Routers - handle flows between external clients and internal hosts
+        - Load Balancing - distribute requests to the hosts, balancing the load across the hsots as a function of their current load
+        - Hierarchial Structure - Internet - Border Router - Access Routers - Load Balancers/Tier-1 Switches - Tier-2 Switches - TOR Switches - Server
+        - Trendes in Data Center Networking - Fully Connected Topology
