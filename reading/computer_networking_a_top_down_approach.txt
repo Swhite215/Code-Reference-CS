@@ -610,7 +610,7 @@ Chapter 6 - The Link Layer and LANS
         - Hierarchial Structure - Internet - Border Router - Access Routers - Load Balancers/Tier-1 Switches - Tier-2 Switches - TOR Switches - Server
         - Trendes in Data Center Networking - Fully Connected Topology
 
-Appendix A - A Day in the Life of a Web Page Request
+Appendix A - A Day in the Life of a Web Page Request (Does not include security, NAT, web caching, or wireless protocols)
     a. Getting Started: DHCP, UDP, IP, and Ethernet (Getting own IP, DNS, and Default Gateway Addresses)
         - Bob's laptop creates a DHCP request message
         - Places this within a UDP segment with destination port 67 (DHCP server) and a source port 68 (DHCP client)
