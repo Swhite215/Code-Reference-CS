@@ -609,3 +609,51 @@ Chapter 6 - The Link Layer and LANS
         - Load Balancing - distribute requests to the hosts, balancing the load across the hsots as a function of their current load
         - Hierarchial Structure - Internet - Border Router - Access Routers - Load Balancers/Tier-1 Switches - Tier-2 Switches - TOR Switches - Server
         - Trendes in Data Center Networking - Fully Connected Topology
+
+Appendix A - A Day in the Life of a Web Page Request
+    a. Getting Started: DHCP, UDP, IP, and Ethernet (Getting own IP, DNS, and Default Gateway Addresses)
+        - Bob's laptop creates a DHCP request message
+        - Places this within a UDP segment with destination port 67 (DHCP server) and a source port 68 (DHCP client)
+        - UDP segment is placed within an IP datagram with a broadacst IP destination address 255.255.255.255 and a source IP address of 0.0.0.0
+        - IP Datagrame is placed within an Ethernet frame with destination FF:FF:FF:FF:FF:FF to broadcast to all devices, source MAC is Bob's laptop
+        - Switch broadcasts the incoming frame on all outgoing ports
+        - Router Receives the Ethernet frame and IP datagram is extracted
+        - IP Datagram payload is demutiplexed to UDP
+        - DCHP request message is extracted from the UDP segment and the DHCP server now has the DHCP request message
+        - DHCP server allocates IP address to Bob's laptop and creates a DHCP ACK message is created
+            - DHCP ACK Message includes new IP address, DNS Server IP address, default gateway router IP address and subnet mask
+        - DHCP ACK message is put in a UDP Segment, which is put in a IP datagram, which is put in an Ethernet frame
+        - Ethernet frame has a source MAC of the router and a destination MAC of Bob's laptop
+        - Ethernet frame is sent by the router to the switch
+        - Bob's laptop receives the Ethernet Frame, extracts the IP datagrame, extracts the UDP segment, and extracts the DHCP Ack message
+        - Bob's DHCP client records its IP and the IP address of the DNS server and stores default gateway into its IP forwarding table
+    b. Still Getting Started: DNS and ARP (Getting Access to Gateway Router)
+        - Bob's OS creates a DNS query message, putting "www.domain.com" in the question section
+        - DNS message is placed within UDP segment with destination port 53 (DNS server), which is placed within IP datagram with IP address of DNS server
+        - IP datagram is placed within Ethernet frame and the frame is sent to Default Gateway Router (MAC address is unknown)
+        - Bob's laptop creates An ARP query message within IP address of default gateway, places message within Ethernet frame with broadcast MAC FF:FF:FF:FF:FF:FF
+        - Ethernet frame is sent to switch, which is broadcast to all devices including the gateway router
+        - Gatway router receives frame and extracts ARP query message, checks IP address, and prepares ARP reply with its own MAC address
+        - ARP reply message is placed in ethernet frame and sent back to Bob's laptop
+        - Bob's laptop extracts the ARP reply message from the Ethernet frame and saves MAC address of the default gateway router
+        - Bob addresses the Ethernet frame containing the DNS query message with MAC address of default gateway router
+        - Bob sends Ethernet frame to switch, which devlivers the frame to the default gateway router
+    c. Still Getting Started: Intra-Domain Routing to the DNS Server (Getting IP Address of Domain)
+        - Default gateway router receives frame and extracts IP datagram containing DNS query
+        - Using forwarding table, determins datagram should be sent to specific network router
+        - IP datagram is placed inside link-layer frame and frame is sent over link
+        - This network router receives the frame, extracts the IP datagram, and determines the interface needed to forward datagram to DNS server
+        - IP datagram containing DNS query arrices at the DNS server, DNS server extracts the DNS query message, looks up domain, finds DNS resource record with IP address assuming cached
+        - DNS server forsm a DNS reply message, places the message in a UDP segment, within an IP datagram that is forwarded back through the network to school's router and via the Ethernet switch to Bob's laptop
+        - Bob extracts the IP address and is now ready to connect to the domain
+    d. Web Client-Server Interaction: TCP and HTTP (Actually Fetching the Web Page)
+        - Bob's creates TCP socket, which starts three-way handskae with TCP in domain
+        - Bob's laptop creates a TCP SYN segment with destination poret 80 (for HTTP), places the TCP segment within an IP datagram, within a frame and sends frame to switch
+        - Frame, and specifically datagram is forwarded to domain, TCP SYN message is extracted and demultiplexed to the welcome socket associated with port 80
+        - A connection socket is created for the TCP connection, a TCP SYNACK segment is generated, placed within a IP datagrame, and placed within a link-layer frame appropriate for the link connecting google.com to its first-hop router
+        - The datagram containing the TCP SYNACK is forwarded throughnetwork arriving at the Ethernet card in Bob's laptop
+        - The datagram is multiplexed within the operating system to the TCP socket initially created, which enters the connected state
+        - Bob's browser creates HTTP GET message, which is written into socket, the GET message becoming the payload of a TCP segment, which is placed in an IP datagram and then a frame and sent and delivered to domain
+        - HTTP server at domain reads the HTTP GET message from the TCP socket, creates an HTTP response message, and places this into the TCP socket
+        - This response messaeg becomes the payload of a TCP segment, which is placed inside an IP datagram, which is placed inside a link-layer frame
+        - The datagram containing the HTTP response message is forwarded to Bob's laptop, Bob's browser reads the HTTP response, extracts the html from the body, and finally displays the message
