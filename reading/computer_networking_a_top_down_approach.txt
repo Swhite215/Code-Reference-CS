@@ -610,6 +610,151 @@ Chapter 6 - The Link Layer and LANS
         - Hierarchial Structure - Internet - Border Router - Access Routers - Load Balancers/Tier-1 Switches - Tier-2 Switches - TOR Switches - Server
         - Trendes in Data Center Networking - Fully Connected Topology
 
+Chapter 7 - Wireless and Mobile Networks
+    a. Introduction
+        - Wireless Hosts - end-sytem devices that run applications
+        - Wireless Communication Link - connection to a base station or another wireless host
+        - Base Station - responsible for sending and receiving data (e.g. packets) to and froma wireless host that is associated with that base station (cell towers and access points)
+        - Infrastructure Mode - traditioal network services are provided by the network to which a host is connected via the base station
+        - Ad Hoc Networks - wireless hosts have no infrastructure so the hosts themselves must provide for services such as routing, address assignment, DNS and more
+        - Handoff - when a mobile host moves beyond the range of one base station and into the range of another, changing its point of attachment
+        - Classifications
+            - Single-hop infrastructure based - base station connected to a larger wired network and communication between wireless host and base station is one hop
+            - Single-hop infrastructure-less - no base station connected to a wireless network (Bluetooth)
+            - Multi-hop infrastructure based - base station is present bit some wireless nodes may have to relay their communication through other nodes (Wireless Mesh Networks)
+            - Multi-hop infrastructure less - no base station and nodes may have to relay their communication through other nodes (Mobile Ad Hoc Networks or Vehicular Ad Hoc Network)
+    b. Wireless Links and Network Characteristics
+        - Link Layer Differences
+            - Decreasing signal strength - signal disperses, resulting in decreased signal strength sometimes called path loss
+            - Interference from other sources - radio sources in same frequency band can interfere with each other
+            - Multipath propogation - portions of electromagnetic wave reflect off objects, taking paths of different length
+        - Signal-to-Noise Ratio - relative measure of the strength of the received signal and the noise
+        - Hidden Terminal Problem - due to interference, stations may not hear each other
+        - Code Divison Multiple Access - each bit is mulitplied by a signal code effectively partioning transmitted packets 
+    c. WiFi: 802.11 Wireless LANs
+        - 802.11 Architecture
+            - Basic Service Set - contains one or more wireless stations and a central base station known as the access point
+            - Infrastructure Wireless LANs - wireless LANs that deploy access points
+            - Channels and Association
+                - Each access point has a Service Set Identifier SSID and a channel number within 2.4 GHz to 2.4835 GHz
+                - WiFi Jungle - any physical location where a wireless station receives a sufficiently strong signal from two or more access points
+                - Associate - wireless device needs to join exactly one subnet associated with one access point
+                - Beacon Frames - access points send these which include the AP SSID and MAC address to wireless stations, which choose a AP from the frames to associate with
+                - Passive Scanning - scanning channels and listening for beacon frames
+                - Active Scanning - wireless device broadcasts a probe frame that will be received by all AP within the wireless device's range
+        - 802.11 Multiple Access Control Protocol
+            - Classes - Channel Parititioning, Random and Taking Turns
+            - Carrier Sense Multiple Access CSMA
+            - Link-Layer Acknowledgement - station rceives a frame that passes CRC, waits Short Inter-frame Spacing SIFS, then sends back acknowledgement
+        - Dealing with Hidden Terminals
+            - IEEE 802.11 protocol allows a station to use Request to Send RTS control frame and a short Clear to Send CTS control frame to reserve the channel
+        - 802.11 Frame
+            - Payload and CRC Fields - IP datagram or ARP packet
+            - Address Fields - MAC address of station that transmits frame, MAC of wireless station to receive frame, MAC of router interface connecting to other subnets
+            - Sequence Number, Duration, and Frame Control Fields
+        - Mobility in the Same IP Subnet
+            - Host moves from BSS 1 to BSS 2
+            - H1 has weak signal with AP 1 and starts to scan
+            - H1 receives beacon frame from AP 2
+            - H1 leaves AP 1 and associates with AP 2, keeping its IP address and TCP session
+        - Advanced Features in 802.11
+            - Rate Adaptation, Power Management
+        - Personal Area Networks
+            - Bluetooth - short range, low power and low cost
+                - Piconet with a Master, Slaves, and Parked Devices
+            - Zigbee - lower power, lower data rate, and lower duty cycle applications
+                - Reduced function devices i.e. slaves or full-function device i.e. master
+    d. Cellular Internet Access
+        - Overview of Cellular Network Architecture
+            - Global System for Mobile Communication GSM
+            - Generations
+                - 1G - voice traffic
+                - 2G - voice traffice
+                - 3G - voice and data
+                - 4G LTE - voice and data at multi-Megabit speeds
+            - Cellular - regions covered by a cellular network partitioned into a number of geographic areas called cells
+            - 2G Voice Connections to the Telephone Network
+                - Base Transceiver Stations - transmits signal to and receives signals from mobile stations in its cell
+                - Frequency Division Multiplexing and Time Division Multiplexing - Channel into F sub-bands where time is partitioned into T slots
+                - Base Station Controller - typically serice several tens of base transceiver stations and allocate BTS radio channels to mobile subscribers and perform handoffs
+                - Base Station Subsystem - base station controller and its controlled base transceiver stations
+                - Mobile Switching Center - plays central role in authorization and accounting, call establishments, teardown, and handoff
+        - 3G Extending the Internet to Cellular Subscribers
+            - GOAL - connect radio access networks to the public internet
+            - Serving GPRS Support nodes - delivers datgrams to/from mobile nodes in the radio access network to which the SGSN is attached
+            - Gateway GPRS Support Nodes - connects multiple SGSNs into the larger internet, looks like a gateway router
+            - Generalized Packet Radio Service GPRS
+            - 3G Radio Access: The Wireless Edge
+                - 3G Radio Access Network - first-hop network that we see as a 3G user
+                - Radio Network Controller - controls several cell base transceiver stations, Node Bs, connects to MSC cellular voice network, and SGSN packet swtiched internet
+                - Direct Sequence Wideband DS-WCDMA
+        - On to 4G LTE
+            - 4G System Architecture: An All-IP Core Network
+                - User Equipment UE - wireless devices
+                - Unified All-IP Network Architecture - voice and data are carried in IP datagrams
+                - Clear Separation of the 4G control plane and 4G data plane
+                - Clear Separation between the radio access network and the all-IP core network
+                - eNodeB - base station or radio network controller equivalent, data grams are tunneled to Packet Data Network Gateway
+                - Packet Data Network Gateway - allocates IP addresses to the UEs and performs QoS enforcement and performs encapsulation and decapsulation
+                - Serving Gateway - date-plane mobility anchor point, charging and billing functions and lawful traffic interception
+                - Mobility Management Entity - performs connection and mobility management on behalf of the UE residents in the cell it controls
+                - Home Subscriber Server - contains the US information including roaming capabilities, QoS profiles, and authentication information
+            - LTE Radio Access Network
+                - Orthogonal Frequency Division Multiplexing
+    e. Mobility Management: Principles
+        - How Mobile
+            - User Moves Within Same Network -> User Moves Between Access Networks Shutting Down in Between - User Moves Between Access Networks While Maintaining Connections
+            - Home Network - permanent home of a mobile node
+            - Home Agent - performs the mobility management functions on behalf of the mobile node
+            - Foreign or Visited Network - network in which the mobile node is currently residing
+            - Foreign Agent - agent within the foreign network that helps the mobile node with mobility management
+            - Correspondent - entity wishing to communicate with the mobile node
+        - Addressing
+            - Care-of-Address COA - address where mobile device is currently residing
+            - Permanent Address - mobile device's home address
+        - Routing to a Mobile Node
+            - Indirect Routing
+                - Correspondent addresses the datagram to the mobile node's permanent address and sends the datagram into the network
+                - Home agent receives datagram, encapsulates it and sends to foreign agent using COA, and from there to the mobile node itself
+            - Direct Routing
+                - Correspondent agent learns about the COA of a mobile node by querying the home agent then sends datagram using COA to foreing agent, and from there to the mobile node itself
+                - Mobile User Location Protocol
+                - Anchor Foreign Agent
+    f. Mobile IP
+        - Agent Discovery
+            - Goal - learn identity of the corresponding foreign agent or home agent
+            - Agent Advertisement - foreign or home agent advertises its services using an extension to the existing router discovery protocol ICMP message
+            - Agent Solicitation - mobile node broadcasts a solicitation message, and agent will send an advertisement directly to the mobile node
+        - Registration with Home Agent
+            - Goal - COA must be registered with home agent
+            - Node sends mobile IP registration mesage to foreing agent with COA, Home Agent address HA, Mobile Node permanent addres MA, life time of registration and 64-bit registration ID.
+            - Foreign agent records mobile node's permanent address and sends IP registration message to port 434 of home agent
+            - Home agent receives, checks for authenticity, and binds mobile node's IP with COA, then sends reply which is forwarded from foreign agent back to mobile node
+        - Indirect Routing of Datagrams
+    g. Managing Mobility in Cellular Networks
+        - Home Public Land Mobile Network Home PLMN - mobile user's home network
+        - Visited PLMN - foreign or visited network
+        - Home Location Regsiter - database which contains the permanent cell phone number and subscriber profile information
+        - Gateway Mobile Switching Center GMSC - contacted by a correspondent when a call is placed 
+        - Visitor Location Register - contains an entry for each mobile user that is currently in the portion of the network served by the VLR
+        - Routing Calls to a Mobile User
+            - Correspondent dials mobile user's phone number, leading digits identify home network, routed through Public Switch Telephone Network to Home MSC
+            - Home MSC receives and interrogates HLR, some cases it will have mobile station roaming number, if not, returns address of VLR and querys it for roaming number
+            - Given the roaming number, the home MSC sets up call through the network to the MSC in the visited network
+        - Handoffs in GSM
+            - Reasons - signal is getting too weak or cell is overloaded
+            - Old BS informs the visited MSC that a handoff is to be performed
+            - Visited MSC initiates path set up to the new BS, allocating resources for the call
+            - The new BS allocates and activates a radio channel for use by the mobile
+            - The new BS signals back to the visited MSC and the old BS that the visited MSC to new BS path has been established
+            - Mobile is informed that it should perform a handoff
+            - The mobile and the new BS exchange one or more messages to fully activate the channel
+            - Mobile sends a handoff complete message to the new BS, which is forwarded to the visited MSC, which then reroutes the ongoing call to the mobile via the BS
+            - The resources allocated along the path to the old BS are then released
+    h. Wirelss and Mobility: Impact on Higher-Layer Protocols
+        - Approaches for Dealing with TCP Congestion
+            - Local Recovery, TCP Sender Awareness of Wireless Links, Split-Connection Approaches
+
 Appendix A - A Day in the Life of a Web Page Request (Does not include security, NAT, web caching, or wireless protocols)
     a. Getting Started: DHCP, UDP, IP, and Ethernet (Getting own IP, DNS, and Default Gateway Addresses)
         - Bob's laptop creates a DHCP request message
