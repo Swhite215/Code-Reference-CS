@@ -755,6 +755,172 @@ Chapter 7 - Wireless and Mobile Networks
         - Approaches for Dealing with TCP Congestion
             - Local Recovery, TCP Sender Awareness of Wireless Links, Split-Connection Approaches
 
+Chapter 8 - Security in Computer Networks
+    a. What is Network Security?
+        - Properties of Secure Communication
+            - Confidentiality, Message Integrity, End-Point Authentication, Operational Security
+        - Intruder Might
+            - Steal, Alter, or Delete Messages
+    b. Principles of Cryptography
+        - Vocabulary
+            - Plaintext or Cleartext - a message in its original form
+            - Encryption Algorithm - used to encrypt a message
+            - Ciphertext - encrypted message
+            - Decryption Algorithm - used to decrypt messages
+            - Symmetric Key Systems - Alice and Bob's keys are identical and are secret
+            - Public Key Systems - pair of keys is used, public one for Alice and Bob each, and a private one for each
+        - Symmetric Key Cryptography
+            - Caesar Cipher - shift cipher
+            - Monoalphabetic Cipher - single letter substituted with another letter
+            - Polyalphabetic Cipher - letter is substituted with multiple letters
+            - Frequency Analysis - identifying cipher letters based on common usage and pairing
+            - Attacks
+                - Ciphertext-Only Attack, Known-Plaintext Attack, Chosen-Plaintext Attack
+            - Block Ciphers - message to be encrypted is processed in blocks of k bits
+            - Cipher-Block Chaining - send one random value along with the very first message, 
+            and then have the sender and receiver use the computed code blocks in place of the subsequent random number
+        - Public Key Encryption
+            - Public Key - everyone in the world knows
+            - Private Key - known only to Bob
+            - Things signed with Public Key can only be decrypted with Private Key using modular arithmetic
+            - RSA - Rivest, Shamir, Adelman
+                - Choose two large prime numbers, so large that brute force attacks will take an unreasonable long time
+            - Session Keys - key used to encode data, encrypted using RSA and then sent where it is decrypted and known for when Alice encrypts the data transfer
+    c. Message Integrity and Digital Signatures
+        -  Validate - message is from sender and has not been tampered with
+        - Cryptographic Hash Functions
+            - Goal - takes an input and computes a fixed size string e.g. Internet Checksum
+            - Requirement - it is computationally infeasible to find any two different messages x and y such that H(x) = H(y)
+            - Examples - MD5 by Ron Rivest, Secure Hash Algorithm-1 and -2
+        - Message Authentication Code MAC
+        - Digital Signatures
+            - Goal - crytopgraphic technique for indicating user authenticity
+        - Public Key Certification
+            - Certificate Authority - binds a public key to a particular entity
+    d. End-Point Authentication
+        - Goal - process of one entity proving it's identity to another entity over a computer network
+        - Example v4.0
+            - Alice sends the message "I am Alice" to Bob
+            - Bob chooses a nonce, R, and sends it to Alice
+            - Alice encrypts the nonce using Alice and Bob's symmetric key, and sends the encrypted nonce back to Bob
+            - Bob uses symmetric key to decrypt the received message and check nonce, if the nonce matches, Alice is authenticated
+    e. Securing E-Mail
+        - Secure E-Mail No Confidentiality
+            - Alice applies a hash function to her message to obtain a message digest
+            - Alice signs the result of the hash function with her private key to create a digital signature
+            - Alice concatenates the original message with the signature to create a package
+            - Alice sends this package to Bob's email address
+            - Bob applies Alice's public key to the signed message digest and compares the result with his own hash of the message
+        - Secure E-Mail Confidentiality, Security, and Message Integrity
+            - Alice applies a hash function to her message to obtain a message digest
+            - Alice signs the result of the hash function with her private key to create a digital signature
+            - Alice concatenates the original message with the signature to create a package
+            - Alice then selects a random symmetric session key
+            - Alice encrypts the package with the symmetric key and encrypts the symmetric key with Bob's public key
+            - Alice concatenates the encrypted package and the encrypted symmetric key to form a new package
+            - Alice sends this package within a package to Bob
+            - Bob uses his private key to obtain the symmetric key
+            - Bob uses the symmetric key to decrypt the package
+            - Bob applies Alice's public key to the signed message digest and comapres the result with his own hash of the message
+            - From now own, Alice and Bob can just use the shared symmetric key to encrypt and decrypt data
+        - Pretty Good Privacy PGP
+    f. Securing TCP Connections: SSL
+        - Three Phases - Handshake, Key Derivation, and Data Transfer
+        - Handshake
+            - Bob sends TCP SYN to Alice
+            - Alice replies with TCP SYNACK
+            - Bob replies with ACK
+            - Bob sends a SSL Hello Message
+            - Alice responds with her public key
+            - Bob generates a Master Secret and then encrypts the MS with Alice's public key to create the Encrypted Master Secret
+            - Bob sends the EMS to Alice, who decrypts it with her private key
+            - Now Bob and Alice will use the Master Secret for the SSL session
+        - Key Derivatio
+            - Alice and Bob us the MS to generate
+                - Session Encryption key for data sent from Bob to Alice
+                - Session Encryption key for data sent from Alice to Bob
+                - Session MAC key for data sent from Bob to Alice
+                - Session MAC key for data sent from Alice to Bob
+        - Data Transfer
+            - SSL breaks the data stream into records, appends a MAC to each record for integrity checking, and then encrypts the record + MAC
+            - The MAC is created by putting the record data along with the Session MAC key into a hash function
+            - The package record + MAC is encrypted using the Session Encryption key
+            - This package is handed to TCP for transportation over the Internet
+            - Sequence numbers are used to ensure someone is not inserting, deleting or replacing segments passed to TCP
+        - SSL Record
+            - Type, Version, Length, Datat, and MAC
+        - A More Complete Picture
+            - Client sends a list of cryptogrpaic algorithms it supports along with a client nonce to Server
+            - Server chooses a symmetric algorithm, a public key algorithm, and a MAC algorithm, sending back its choices along with a certificate and server nonce
+            - Client verifies the certificate, extracts Server's public key, generates a Pre-Master Secret, encrypts the PMS with Server's public key and sends encrypted PMS to the Server
+            - Client and Server independently computer the Master Secret from the PMS and nonces using the chosen symmetric key algorithm
+            - The Master Secret is used to generate two Encryption and two MAC keys
+            - Client sends a MAC of all the handshake messages (protect from tampering)
+            - Server sends a MAC of all the handshake messages (protect from tampering)
+            - Indicate in the type field of the SSL session record whether the record servers to terminate the SSL session
+    g. Network-Layer Security: IPsec and Virtual Private Networks
+        - Goal - provides security at the network layer, secures IP datagrams between any two network-layer entities
+        - Blanket Coverage - all data sent from one entity to another, including all types o fmessages, would be hidden from any third party that might be sniffing
+        - IPSec and Virtual Networks
+            - VPN - encrypting data when communication over a path traverses the public Internet
+        - Authentication Header AH - provides source authentication and data integrity
+        - Encapsulation Security Payload ESP Protocols - provides source authentication, data integrity, and confidentiality
+        - Security Associations
+            - SA - source and destination entities create two unidirectional network-layer logical associations between them
+            - SA Information - Security Parameter Index, origin and destination of the SA, type of encryption, encryption key, type of integrity check, authentication key
+            - Security Association Database - storage for the state of all SAs a IPsec entity has
+        - IPsec Datagram
+            - Tunnel Mode - appropriate for VPNs, and Transport Mode
+            - Format - New IP Header, ESP Header, Original IP Header, Original IP payload, ESP trailer, ESP MAC
+            - Convert IPv4 datagram into IPsec Datagram
+            - Routers will process the IPsec datagram as if it were an ordinary datagram, oblivious to the face that the datagram is carrying IPsec encrypted data
+            - Security Policy Database - indicates type of datagrams that are to be IPsec processed and which SA to use
+        - Internet Key Exchange IKE: Key Management in IPsec
+            - Two sides yse Diffie-Hellman to create a bi-direcitonal IKE SA between the routers
+            - IKE SA provides an authentication and encrypted channel between the two routers
+            - First message pass - keys are established for encryption and authentication for the IKE SA and a master secret is also created
+            - Second message pass - both sides reveal their identity by signing their messages, and encryption and authentication algorithms are chosen
+            - SAs are created in both directions
+    h. Securing Wireless LANs
+        - Wired Equivalent Privacy
+            - Wireless host request authentication to an acces point
+            - The access point responds to the authentication request with a 128-byte nonce value
+            - The wireless host encrypts the nonce using the symmetric key that it shares with the access point
+            - The access point decrypts the host-encrypted nonce
+        - IEEE 802.11i
+            - Four Phases - Discovery, Mutual Authentication and Master Key Generation, Pairwise Master Key Generation, Temporal Key Generation
+            - Discovery
+                - Access Point advertises its presence and the forms of authentication and encryption that ca be provided
+                - Client requests specific forms of authentication and encryption
+            - Mutual Authentication and Master Key Generation
+                - Access Point acts as a relay, forwarding message between client and the authentication server
+                - Extensible Authentication protocol defines end-to-end message format
+                - EAPol - EAP over LAN from client to AP and then RADIUS from AP to server
+                - Authentication server uses EAP TLS public key techniques to allow the server and client to authenticate each other and derive a Master Key
+            - Pairwise Master Key Generation
+                - MK used to generate PMK, and PMK is sent to AP, now client and AP have a shared key
+            - Temporal Key Generation
+                - Using the PMK, client and ap can generate additional keys used for communication, like Temporal Key used to perform link-level encryption of data sent over the wireless link
+    i. Operational Security: Firewalls and Intrusion Detection System
+        - Firewalls
+            - Goals
+                - All traffic from outside, and vice versa, passes through the firewall
+                - Only authorized traffic, as defined by the local security policy, will be allowed to pass
+                - The firewall itself is immune to penetration
+            - Traditional Packet Filters
+                - Packet filter examines each data fram in isolation, determing whether the datagram should be allowed to pass
+                - Filter considerations - source or destination IP, protocol type (UDP, TCP, ICMP, OSPF), source or destination UDP or TCP port, TCP flags, ICMP type
+            - Stateful Packet Filters
+                - Track TCP connections and use this knowledge to make filtering decisions
+            - Application Gateway
+                - Application specific server (Telnet, SMTP, HTTP, and FTP), that looks beyond the IP/TCP/UDP headers and make policy decisions based on application data
+        - Intrusion Detection Systems and Intrustion Prevention Systems
+            - Deep Packet Inspection - deeper than headers
+            - Detects - network mapping, port scans, TCP stack scans, DoS attacks, worms and viruses, OS vulnerability and applicaiton vulnerability attacks
+            - Signature-Based - maintain a database of attack signatures and checks each packet against the signatures in the database
+            - Anomaly-Based - creates a traffic profile as it observes traffic and looks for packet streams that are statistically unusual
+            - Snort - open source IDS
+
 Appendix A - A Day in the Life of a Web Page Request (Does not include security, NAT, web caching, or wireless protocols)
     a. Getting Started: DHCP, UDP, IP, and Ethernet (Getting own IP, DNS, and Default Gateway Addresses)
         - Bob's laptop creates a DHCP request message
