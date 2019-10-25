@@ -1,5 +1,5 @@
 Title: Computer Networking: A Top-Down Approach
-Authors: Jim Kurose and Keith Resources
+Authors: Jim Kurose and Keith Ross
 
 Summarization of Content
 
@@ -920,6 +920,101 @@ Chapter 8 - Security in Computer Networks
             - Signature-Based - maintain a database of attack signatures and checks each packet against the signatures in the database
             - Anomaly-Based - creates a traffic profile as it observes traffic and looks for packet streams that are statistically unusual
             - Snort - open source IDS
+
+Chapter 9 - Multimedia Networking
+    a. Multimedia Networking Applications
+        - Properties of Video
+            - High Bit Rate - 100 kbps to 3 Mbps
+            - Spatial Redundancy - redundancy within a given image e.g. a lot of white
+            - Temporal Redundancy - repetition from image to image
+            - Multiple Versions - using compression to trade video quality with bit rate
+        - Properties of Audio
+            - Conversion
+                - Sampled at some rate i.e. 8K samples per second, samples are rounded to one of a finite number of values (quantization), values are represented by a fixed number of bits
+            - Pulse Code Modulation - encoding technique described above
+            - MPEG 1 layer 3 MP3 - compression technique for near CD-quality stereo music
+            - Advanced Audio Coding
+        - Types of Multimedia Network Applications
+            - Streaming Stored Audio and Video
+                - Streaming, Interactivity, Continuous Playout
+            - Conversational Voice/Video over IP
+                - Internet Telephony or VoIP
+                - Highly Delay Sensitive but Loss-Tolerant
+            - Streaming Stored Audio and Video
+                - Live braodcast through CDNs
+    b. Streaming Stored Video
+        - UDP Streaming
+            - Server transmits video at a rate that matches the client's video consumption rate
+            - Video chunks encapsulated within Real-Time Transport Protocol RTP packets then UDP and IP datagrams
+            - Separate channel is maintained over which the clients sends commands regarding session state changes
+            - Drawbacks - can fail to provide continuous playout, requires media control server, and firewalls could be configured to block UDP traffic
+        - HTTP Streaming
+            - Video is stored in an HTTP server and delivered when it receives HTTP GET requests
+            - Prefetching Video - client attempts to download video at a rate higher than the consumption rate
+            - Client Application Buffer and TCP Buffers - Server -> TCP Send Buffer -> TCP Receive Buffer -> TCP Application Buffer
+            - Earyl Termination and Repositioning - HTTP Byte-Range Header in the HTTP Get request message
+        - Adaptive HTTP Streaming
+            - Dynamic Adaptive Streaming over HTTP DASH - uses multile versions of the video compressed at a different rate 
+        - Client Side Application Buffering
+            - Absorb variations in server-to-client delay and covers brief bandwidth loss
+    c. Voice-over-IP
+        - Limitations of Best Effort IP Service
+            - Packet Loss, End-to-End Delay, and Packet Jitter
+        - Removing the Jitter at Receiver for Audio
+            - Prepending each chunk with a timestamp and delaying playout of chunks at the receiver
+            - Fixed Playout Delay - waiting a pre-determined time to guarantee packets have been received
+            - Adaptive Playout Delay - estimate the network delay and adjust the playout delay accordingly at the beginning of each spurt
+        - Recovering from Packet Loss
+            - Forward Error Correction - add redundant information to the original packet stream
+                - Redundanct encoded chunk after every n chunks, or lower resolution audio stream in parallel
+            - Interleaving - results in mulitple small gaps rather than singular large ones
+            - Error Concealment - attempt to produce a replacement for a lost packet that is similar to the original
+        - Case Study: Skype
+    d. Protocols for Real-Time Conversational Applications
+        - Real-Time Transport Protocol RTP
+            - Media Chunk -> RTP Packet -> UDP Segment -> IP Datagram
+            - RTP Header - payload type, sequence number, timestamp, synchronization source identifier SSRC, miscellaneous
+            - RTP Packet - audio chunk plus RTP header
+            - Allows each source to be assigned its own independent RTP stream of packets, one-to-many, many-to-many and one-to-one
+        - Session Initiation Protocol SIP
+            - Provides mechanisms for establishing calls between a caller and callee over an IP network
+            - Provides mechanisms for the caller to determine the current IP address of the callee
+            - Provides mechanisms for call managements such as adding new media streams, changing encoding, inviting participants, call transfer, and call holding
+            - Setting Up A Call with Known Address
+                - Alice sends INVITE to Bob over UDP to port 5060 for SIP includes type of media and encoding format
+                - Bob sends a SIP response message over UDP to port 5060 for SIP includes encoding format
+                - Alice sends Bob an SIP acknowledgement
+                - They may both now talk in a two-way fashiom
+            - SIP Proxy - handles INVITE requests when name translation needs to occur
+            - SIP Registrar - every SIP user has an associated registrar which needs to be informed of the user's current IP address
+            - Setting UP a Call with Unknown Address
+                - Alice sends INVITE to SIP Proxy
+                - SIP Proxy does a DNS lookup on the SIP registrar and forwards the message to the SIP Registrar Server
+                - SIP Registrar knows Bob's IP address and forwards the INVITE to Bob
+                - Bob sends SIP response message back through SIP Registrar and SIP Proxy
+                - Media is now sent directly between the two clients
+    e. Network Support for Multimedia
+        - Making the Best of Best-Effort Service
+            - Bandwidth Provisioning - providing capacity at network links to achieve a given level of performance
+            - Network Dimensioning - how to design a network topology to achieve a given level of end-to-end performance
+            - Issues to be Addressed
+                - Models of traffic demand between network end points
+                - Well-defined performance requirements
+                - Models to predict end-to-end performance for a given workload model, 
+                and techniques to find a minimum cost bandwidth allocation that will result in all user requirements being met
+        - Differentiated Services
+            - Insight 1: Packet marking allows a router to distinguish among packets belonging to different classes of traffic
+            - Insight 2: It is desirable to provide a degree of traffic isolation among classes so that one class is not adversely affected by another class of traffic that misbehaves
+            - Insight 3: While providing isolation among classes or flows, it is desirable to use resources as efficiently as possible
+            - Insight 4: If sufficient resource will not always be available and QoS is guaranteed, a call admission process is needed for access to network
+            - The Leaky Bucket
+                - Policing Criteria: Average Rate, Peak Rate, and Burst Size
+            - Diffserv - Differentiated Service field is used in combination with Per-Hop Beahvior PHB to provide different externally observable forwarding behaviors
+        - Pre-Connection Quality-of-Service Guarantees
+            - Goal - guarantee that a call will have the resources needed to meet its desire QoS
+            - Resource Reservation - ability to explicitly allocate resources to a call
+            - Call Admission - mechanism for calls to request and reserve resources i.e. access to the network
+            - Call Setup Protocol - call used to reserve sufficient resources at each and every network router on it's source-to-destination path
 
 Appendix A - A Day in the Life of a Web Page Request (Does not include security, NAT, web caching, or wireless protocols)
     a. Getting Started: DHCP, UDP, IP, and Ethernet (Getting own IP, DNS, and Default Gateway Addresses)
