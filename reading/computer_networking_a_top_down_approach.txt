@@ -14,13 +14,12 @@ Chapter 1 - Computer Networks and the Internet
             - Route or Path - Sequence of Communication Links and Packet Switches Traversed by a Packet
             - Internet Service Providers - Provide End Systems Access to Internet
             - Transmission Control Protocol and Internet Protocol
-            - Internet STandards - Request For Comments RFC
+            - Internet Standards - Request For Comments RFC
         - A Service Description
             - Internet is infrastructure that provides services to applications
             - Socket Interface - How program on end system asks internet to deliver data to program on another end system
         - What is a Protocol?
-            - Defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions
-            taken on the transmission and/or receipt of a message or other event
+            - Defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event
     b. The Network Edge
             - Hosts - Clients or Servers
             - Access Networks
@@ -47,7 +46,7 @@ Chapter 1 - Computer Networks and the Internet
                 - Satellite Radio Channels - Geostationary and Low-Earth Orbiting
     c. The Network Core
         - Packet Switching
-            - Messages broken down into chunkcs of data
+            - Messages broken down into chunks of data
             - Packets pass through routers/link-layer switches and communication links
             - Store-And-Forward Transmission - Packet switch must receive entire packet before transmissions
             - Queing Delays - Caused by packets collecting in output buffer
@@ -167,7 +166,7 @@ Chapter 2 - Application Layer
         - Conditional Get
             - HTTP mechanism that allows a cache to verify that its objects are up to date
     c. Electronic Mail and the Internet
-        - Components - User Agents, Mail Servers, and Simple Main Transfer Protocol SMTP
+        - Components - User Agents, Mail Servers, and Simple Mail Transfer Protocol SMTP
         - SMTP
             - Alice Agent -> Alice's Mail Server Message Queue -> SMTP to Bob's Mail Server Message Queue -> Bob's Agent
             - Push Protocol 
@@ -184,41 +183,40 @@ Chapter 2 - Application Layer
         - Services Provided By DNS
             - Host Aliasing, Mail Server Aliasing, Load Distribution
         - Process
-            - User Client-Side DNS Application -> Hostname to Client-Side DNS Application -> DNS Client Query to DNS Root Server ->
-            DNS Client Query to DNS Top-Level Domain Server -> DNS Client Query to Authoritative DNS Server -> Host HTTP Client Request w/ Server Address
+            - User Client-Side DNS Application -> Hostname to Client-Side DNS Application -> DNS Client Query to DNS Root Server -> DNS Client Query to DNS Top-Level Domain Server -> DNS Client Query to Authoritative DNS Server -> Host HTTP Client Request w/ Server Address
         - Overview Hierarchy
             - Root, Top-Level Domain (org, com, net, edu) and Authoritative
             - Local DNS Server - proxy to DNS server hierarchy
         - DNS Caching
             - Cache mapping of hostname to ip address
         - DNS Records and Messages
-            - Resource Record - Fourt uple (Name, Value, Type, TTL)
+            - Resource Record - Four tuple (Name, Value, Type, TTL)
             - Type = A - Name = Hostname, Value = IP Address
             - Type = NS - Name = Domain, Value = Hostname of Authoritative DNS Server
             - Type = CNAME - Name = Domain, Value = Canonical Hostname for Alias
-            - Type = MX - Name = DOmain, Value = Canoncail Name of Mail Server for Alias
+            - Type = MX - Name = DOmain, Value = Canonical Name of Mail Server for Alias
         - DNS Messages
             - Query and Reply Messages
             - Header (Identification, Number of Question, Number of Authority RRs), Questions, Answers, Authority, Additional Information
         - Inserting Records into the DNS Database
-            - Registrar - commercial entity that verifies the uniqueness of the domain name, enters the domain name into the dns database, and collects a small fee
+            - Registrar - commercial entity that verifies the uniqueness of the domain name, enters the domain name into the DNS database, and collects a small fee
     e. Peer-to-Peer Applications
         - Scalability of P2P
         - BitTorrent
     f. Video Streaming and Content Distribution Networks
         - Internet Video
         - HTTP Streaming and DASH
-            - Dynamic Adaptive Streaming over HTTP - multiple versions wirh different bit rates and quality levels
+            - Dynamic Adaptive Streaming over HTTP - multiple versions with different bit rates and quality levels
         - Content Distribution Networks CDN
             - Private CDN - owned by the content provider itself such as Google
             - Third-Party CDN - distributes content on behalf of multiple content providers
             - Server Placement Philosophies
-                - Enter Deep - server clusetrs in access ISPs all over the world in order to get close to users
-                - bring Home - building larger clusters at a small number of sites, usually Internet Exhange Points IXP
+                - Enter Deep - server clusters in access ISPs all over the world in order to get close to users
+                - Bring Home - building larger clusters at a small number of sites, usually Internet Exhange Points IXP
             - Examples - Youtube, Netflix, and Kankan
     g. Socket Programming: Creating Network Applications
         - Socket Programming with UDP
-            - Client Socket -> Client Socket Send Message -> Server Socket Listenting at Port -> Server Socket Rceive and Send Back Message -> Client Socket Receive Message -> Client Socket Closes
+            - Client Socket -> Client Socket Send Message -> Server Socket Listenting at Port -> Server Socket Receive and Send Back Message -> Client Socket Receive Message -> Client Socket Closes
         - Socket Programming with TCP
             - Client Socket -> Client Socket Connect -> Server Socket Listening at Port -> Server Socket Accept Connection -> Client Socket Send Message ->
             Server Connection Socket Receive and Send Back Message -> Server Connection Socket Close -> Client Socket Receive Message -> Client Socket Close
@@ -238,7 +236,7 @@ Chapter 3 - Transport Layer
     b. Multiplexing and Demultiplexing
         - Demultiplexing - delivering data in a transport-layer segment to the correct socket
         - Multiplexing - gathering data chunks at source host, encapsulating each data chunk with header information to create segments, and passing segment to the network Layer
-        - Segment Fields - source port nunmber field and destination port number field
+        - Segment Fields - source port number field and destination port number field
         - Connectionless - UDP source port number and destination port number
         - Connection-Oriented - TCP source port number, source IP address, destination port number and destination IP address for back and forth transmission
     c. Connectionless Transport: UDP
@@ -253,9 +251,9 @@ Chapter 3 - Transport Layer
     d. Principles of Reliable Data Transfer
         - Goal - no tranferred data bits are corrupted, or lost, and all are delivered in the order in which they were sent
         - Reliable Data Transfer v1.0
-            - Underlying channel is completely reliable
+            - Underlying channel is completely unreliable
         - RDT with Bit Errors v2.0
-            - Positive and Negative Acknowledgements = Automatic Repeat reQuest Protocol
+            - Positive and Negative Acknowledgements = Automatic Repeat Request Protocol
             - Error Detection, Receiver Feedback, Retransmission
             - Stop and Wait Protocol
             - Handling corrupt ACK or NAK - Repeat, checksum, retransmission, sequence number
@@ -268,18 +266,18 @@ Chapter 3 - Transport Layer
             - Sliding-Window protocol - window size is maximum allowable number of packets
             - Events - invocation from above, receipt of an ACK, a timeout
         - Selective Repeat SR
-            - Goal - allowed to transmit multiple packets whil reducing unnecessary retransmission by sending only those packets that is suspects were received in error
+            - Goal - allowed to transmit multiple packets while reducing unnecessary retransmission by sending only those packets that it suspects were received in error
             - Events - invocation from above, timeout, receipt of an ACK
     e. Connection-Oriented Transport: TCP
         - The TCP Connection
             - Connection-Oriented, Full Duplex Service, Point to Point
             - Three-Way Handshake
             - Send Buffer - edge of socket buffer before network layer
-            - Maximum Segment Size - maxmimum amount of daat that can be placed in a segment
+            - Maximum Segment Size - maxmimum amount of data that can be placed in a segment
             - Process A -> Socket A -> Client TCP Send Buffer -> Segments over Network -> TCP Server Receive Buffer -> Socket B -> Process B
             - Cumulative Acknowledgements - acknowledge bytes up to the first missing byte
         - TCP Segment Structure
-            - Source Port, Destination Port, Sequence Nu,ber, Receive Window, header Length Field, Options Field, Flag Field, SYN, FIN, CWR, ECE, URG, ACK, PSH, RST, Checksum, Urgent Data Pointer
+            - Source Port, Destination Port, Sequence Number, Receive Window, Header Length Field, Options Field, Flag Field, SYN, FIN, CWR, ECE, URG, ACK, PSH, RST, Checksum, Urgent Data Pointer
         - Round Trip Time Estimation and Timeout
             - Estimated Round Trip Time EstimatedRTT
             - Sample Round Trip Time SampleRTT
@@ -287,16 +285,16 @@ Chapter 3 - Transport Layer
             - Single Transmission Timer
             - Doubling the Timeout Interval - doubles timeout interval each time TCP retransmits
             - Fast Retransmit - retransmitting the missing segment before the segment's timer expires after receiving three duplicate ACKs
-            - Flow Control - eliminate overflowing the receiver's buffer by matching the rate at which the sender is sending against the rate at whcih the receiving application is reading
+            - Flow Control - eliminate overflowing the receiver's buffer by matching the rate at which the sender is sending against the rate at which the receiving application is reading
         - TCP Connection Management
             - Connecting - Client SYN -> Server SYNACK -> Client SYNACK
             - Closing - Client FIN -> Server ACK -> Server FIN -> Client ACK
             - TCP Client States - CLOSED, SYN_SENT, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, TIME_WAIT
-            - TCP Servere States - LISTEN, SYN_RCVD, ESTABLISHED, CLOSE_WAIT, LAST_ACK
+            - TCP Server States - LISTEN, SYN_RCVD, ESTABLISHED, CLOSE_WAIT, LAST_ACK
     f. Principles of Congestion Control
         - Causes and Cost of Congestion
             - Large queuing delays as the packet arrival rate nears the link capacity
-            - Sender must performa retransmissions in order to compensate for dropped packets due to buffer overflow
+            - Sender must perform retransmissions in order to compensate for dropped packets due to buffer overflow
             - When a packet is dropped, the transmission capacity that was used at each of the upstream links to forward that packet ends up being wasted
         - Approaches to Congestion Control
             - End-To-End
@@ -309,14 +307,14 @@ Chapter 3 - Transport Layer
             - An ACK indicates that the netork is delivering the sender's segments to the receiver, and hence, the sender's rate can be increased
             - Bandwidth probing cycle of checking
         - TCP Congestion-Control Algorithm
-            - Slow-Start - congestion widnow increased by 1 MSS every time a transmitted segment is first ACK
+            - Slow-Start - congestion window increases by 1 MSS every time a transmitted segment is first ACK
             - Congestion-Avoidance - when cwnd equals slow start threshold, cwnd is havled and increases only by one
-            - Fast-Recovery - value o cwnd is increased by 1 MSS for every duplicate ACK received for the missing segment that caused TCP to enter fast-Recovery
+            - Fast-Recovery - value of cwnd is increased by 1 MSS for every duplicate ACK received for the missing segment that caused TCP to enter Fast-Recovery
             - Retrospective
                 - Additive-Increase, Multiplicative Decrease AIMD
             - Fairness - average transmission rate of each connection is R Transmission Rate / K Connections
             - Explicit Congestion Notification ECN: Network-Assisted Congestion Control
-                - Network explicilty signlas congestion to TCP sender and receiver
+                - Network explicilty signals congestion to TCP sender and receiver
                 - Two Bits, Four Values, in the Type of Service field of the IP datagram header
 
 Chapter 4 - Network Layer: Data Plane
@@ -331,7 +329,7 @@ Chapter 4 - Network Layer: Data Plane
         - Control Plane: The SDN Approach
             - Software Defined Networking - network is software defining because the controller that computes forwarding tables and interacts with routers is implemented in software
         - Network Service Model
-            - Guaranteed Delivery, Guaranteed Deliver with Boudned Delay, In-Order Packet Delivery, Guaranteed Minimal Bandwidth, Security
+            - Guaranteed Delivery, Guaranteed Delivery with Bounded Delay, In-Order Packet Delivery, Guaranteed Minimal Bandwidth, Security
             - Internet's Network Layer - Best-Effort Service
     b. What's Inside a Router?
         - Architecture
@@ -348,16 +346,16 @@ Chapter 4 - Network Layer: Data Plane
             - Bus - transfer a packet from input to output directly over a shared bus
             - Interconnection Network - non-blocking cross-bar switch forwarding mulitple packets in parallel
         - Output Processing
-            - Queuing buffer -> Data link processing protocl and encapsulation -> Line termination
+            - Queuing buffer -> Data link processing protocol and encapsulation -> Line termination
         - Where does Queuing Occur?
             - Input Queuing - switch fabric is not fast enough to tranafer all arriving packets without delay
-                - Head-of-the-Line Blokcing - a queued packet in an input queue must wait for tranfer through fabric, even though its output port is free, because it is blocked by another packet
+                - Head-of-the-Line Blokcing - a queued packet in an input queue must wait for transfer through fabric, even though it's output port is free, because it is blocked by another packet
             - Output Queuing - output port transmits packets slower than switching fabric provides them
-                - Drop-Tail - output port drops packet or removes alreay-queued packets
+                - Drop-Tail - output port drops packet or removes already-queued packets
                 - Active Queue Management AQM and Random Early Detection RED
         - Packet Scheduling
             - First-In-First-Out FIFO, Priority Queuing, Round Robin and Weighted Fair Queuing
-    c. The Internet Protocol: IPv4. Addressing, and IPv6
+    c. The Internet Protocol: IPv4 Addressing, and IPv6
         - IPv4 Datagram Format
             - Version Number, Header Length, Type of Service TOS, Datagram Length, Identifier, Flags, Fragmentation Offset, Time-to-Live TTL, Protocol, Header Checksum, Source and Destination IP Addresses, Options, Data
         - IPv4 Datagram Fragmentation
@@ -368,11 +366,11 @@ Chapter 4 - Network Layer: Data Plane
             - Dotted-Decimal Notation - xxx.xxx.xxx.xxx
             - Subnet - multiple interfaces interconnected to a single router
             - Subnet Mask - value indicating number of bits that define the subnet address xxx.xxx.xxx.xxx/mask
-            - Classless Interdomain Routing - internet's address asigment strategy
+            - Classless Interdomain Routing - internet's address assigment strategy
             - Classful Addressing - Class A, B, and C
             - Address Aggregration - Using a single prefix to advertise multiple networks
         - Dynamic Host Configuration Protocol
-            - Goal - Dynamic allocation of ip addresses automatically
+            - Goal - Dynamic allocation of IP addresses automatically
             - Process - Host Sends DHCP Discover Message -> DHCP Server Sends DHCP Offer Message -> Host Sends DHCP Request Message -> DHCP Server Sends ACK Message
         - Network Address Translation NAT
             - Private LAN Addresses, Single NAT Enabled Router IP, NAT Translation LAN to WAN and WAN to LAN with IPs and Ports
@@ -393,8 +391,7 @@ Chapter 4 - Network Layer: Data Plane
 
 Chapter 5 - The Network Layer: Control Plane
     a. Introduction
-        - Control Plane - network-wide logic that controls not only how a datagram is forwarded among routers along an end-to-end path from the source host to the destination host,
-        but also how network-layer components and services are configured and managed
+        - Control Plane - network-wide logic that controls not only how a datagram is forwarded among routers along an end-to-end path from the source host to the destination host, but also how network-layer components and services are configured and managed
         - Methods for Computing Forwarding and Flow Tables
             - Per-Router Control - algorithm runs in each and every router
             - Logically Centralized Control - through SDN controller and network applications 
@@ -406,10 +403,10 @@ Chapter 5 - The Network Layer: Control Plane
         - Shortest Path - not always the least cost path, it is when all edges have the same cost 
         - Centralized Routing Algorithm - computes the least cost path between source and destination using complete global knowledge of the network
         - Decentralized Routing Algorithm - calculation of least cost path is iterative, occuring at each router
-        - Static Routing Algorithms - routes change very slowly over time, often as a resutl of human intervention
+        - Static Routing Algorithms - routes change very slowly over time, often as a result of human intervention
         - Dynamic Routing Algorithms - routes change as the network traffic load or topology changes
         - Load Sensitive Algorithm - links cost vary dynamically to reflect the current level of congestion in the underlying link
-        - Load Insensitive Algorithm - links cost does not explicitly reflect its current or past level of congestion
+        - Load Insensitive Algorithm - link cost does not explicitly reflect its current or past level of congestion
         - Link-State Routing Algorithm
             - Network topology and all links costs are known
             - Link-State Broadcast - each node broadcasts link-state packets to all other nodes
@@ -420,14 +417,14 @@ Chapter 5 - The Network Layer: Control Plane
         - Autonomous System AS - groups of routers under the same administrative control
         - Intra-Autonomous System Routing Protocol - algorithm running within an AS
         - Open Shortest Path First OSPF
-            - Flooding of linkpstate information and Dijkstra's least-cost path Algorithm
+            - Flooding of link-state information and Dijkstra's least-cost path Algorithm
             - Each router calculate shortest path to all subnets and broadcasts
             - Security - exchanges between OSPF routers can be authenticated
             - Multiple Same-Cost Paths - allowing multiple paths
-            - Integrated Support for Unicat and Multicast Routing
+            - Integrated Support for Unicast and Multicast Routing
             - Support for Hierarchy
     d. Routing Among the ISPs: BGP
-        - Inter-Autonomous Syste Routing Protocol - coordinate routing between multiple AS
+        - Inter-Autonomous System Routing Protocol - coordinate routing between multiple AS
         - Border Gateway Protocol - all ASs run the same inter-AS routing protocol
         - Obtain Prefix reachability Information from Neighboring AS
         - Determing the Best Routes to the Prefixes
@@ -443,13 +440,13 @@ Chapter 5 - The Network Layer: Control Plane
         - Hot Potato Routing - route chosen is the route with the least cost to te NEXT-HOP router
         - Route-Selection Algorithm
             - Route assigned a local preference value as one of its attributes, routes with highest local preference values are selected
-            - From remaining routes, route with the shortest AS-PATh is selected
+            - From remaining routes, route with the shortest AS-PATH is selected
             - From remaining routes, hot potato routing is used
             - If more than one route still remains, router uses BGP identifiers
         - IP-Anycast
             - Used in DNS
-            - CDN copnay assigns the asme IP address to each of its servers
-            - Use BGP to advertise this IP addres from each of the servers
+            - CDN company assigns the asme IP address to each of its servers
+            - Use BGP to advertise this IP address from each of the servers
             - BGP router treats each route advertisements as providing different routes to the same location
     e. The SDN Control Plane
         - Characteristics
@@ -466,7 +463,7 @@ Chapter 5 - The Network Layer: Control Plane
             - Messages from Controller to Controlled Switch
                 - Configuration, Modify-State, Read-State, Send-Packet
             - Messages from Controlled Switch to Controller
-                - Flow-Remvoed, Port-Status, Packet-In
+                - Flow-Removed, Port-Status, Packet-In
         - Data and Control Plane Interaction: An Example
             - Switch1, experiencing link failure, notifies SDN Controller with Port-Status message
             - SDN Controller notifies the link-state manager, which updates a link-state database
@@ -485,7 +482,7 @@ Chapter 5 - The Network Layer: Control Plane
             - 3 - 2 - destination protocol unreachable
             - 3 - 3 - destination port unreachable
             - 3 - 6 - destination network unknown
-            - 3 - 7 - destintation host unknown
+            - 3 - 7 - destination host unknown
             - 4 - 0 - source quench
             - 8 - 0 - echo request
             - 9 - 0 - router advertisement
@@ -500,12 +497,12 @@ Chapter 5 - The Network Layer: Control Plane
             a reasonable cost
         - The Network Management Framework
             - Managing Server - application running in a centralized network management station, locus for network management
-            - Managed Device - piece of network equipment tha resides on a managed network, composed of managed objects
+            - Managed Device - piece of network equipment that resides on a managed network, composed of managed objects
             - Management Information Base - information on managed object
             - Network Management Agent - process running in the managed device that communicates with the managing server
-            - Network Management Protocol - runs between server and devie, allowing server to query status and indirectly take actions
+            - Network Management Protocol - runs between server and device, allowing server to query status and indirectly take actions
         - The Simple Network Management Protocol
-            - Application-Layer Potocol used to convey network-management control and information messages between a managing server and an agent
+            - Application-Layer Protocol used to convey network-management control and information messages between a managing server and an agent
             - Request-Response Format - SNMP server sends request to SNMP agent -> agent performs some action -> SNMP agent sends a reply to the request
             - Message Types
                 - GetRequest, GetNextRequest, GetBulkRequest, InformRequest, SetRequest, Response, SNMPv2 Trap
@@ -514,8 +511,8 @@ Chapter 6 - The Link Layer and LANS
     a. Introduction to the Link Layer
         - Vocabulary
             - Node - any device that runs a link layer protocol
-            - Links - communicataion channles that connect adjacent nodes along the communication path
-            - Link-Layer Frame - datagrame encapsulated to be sent over a given link
+            - Links - communicataion channels that connect adjacent nodes along the communication path
+            - Link-Layer Frame - datagram encapsulated to be sent over a given link
         - Services Provided by the Link Layer
             - Framing - encapsulation of network-layer datagram within a link-layer frame before transmission
             - Link Access - medium access control protocol specificies the rules by which a frame is transmitted onto the link
@@ -539,7 +536,7 @@ Chapter 6 - The Link Layer and LANS
         - Vocabulary
             - Point-to-Point Link - consists of a single sender at one end and a single reciever at the other end of the link
             - Broadcast Link - can have multiple sending and receiving nodes all connected to the same broadcast channel
-            - Multiple Access Problem - how top coordinate the access of multiple sending and receiving nodes
+            - Multiple Access Problem - how to coordinate the access of multiple sending and receiving nodes
             - Collision - more than two nodes transmit frames at the same time
             - Categories - channel partitioning, random access, taking-turns
         - Channel Partitioning Protocols
@@ -550,7 +547,7 @@ Chapter 6 - The Link Layer and LANS
             - Random Wait - if a collision occurs, each node waits a random delay before retransmitting the frame
             - Slotted ALOHA - if a collision occurs, node tosses a coin and heads/tails is retransmit or wait
             - ALOHA - node will immediately retransmit the frame with probability p, otherwise the node waits for a frame transmission time
-            - Carrier Sensning Multiple Access
+            - Carrier Sensing Multiple Access
                 - Listen Before Speaking and Stop Talking if Another is Speaking
                 - Channel Propogation Delay - time it takes for a singal to propagate from one of the nodes to another
                 - Binary Exponential Backoff - value for wait is determined by random value between 0...2^n-1
@@ -593,7 +590,7 @@ Chapter 6 - The Link Layer and LANS
                 - Elimination of Collisions, Heterogenous Links, Management
         - Virtual Local Area Networks
             - Allows multiple virtual local area noetworks to be defined over a single physical local area network infrastructure
-            - VLAN Trunking - spceical port on each switch is configured as a strunk port to interconnect the two VLAN switches
+            - VLAN Trunking - special port on each switch is configured as a trunk port to interconnect the two VLAN switches
             - VLAN Tag - identity of the VLAN to which the frame belongs
     e. Link Virtualization: A Network as a Link Layer
         - Link as a channel rather than a wire
@@ -608,20 +605,20 @@ Chapter 6 - The Link Layer and LANS
         - Border Routers - handle flows between external clients and internal hosts
         - Load Balancing - distribute requests to the hosts, balancing the load across the hsots as a function of their current load
         - Hierarchial Structure - Internet - Border Router - Access Routers - Load Balancers/Tier-1 Switches - Tier-2 Switches - TOR Switches - Server
-        - Trendes in Data Center Networking - Fully Connected Topology
+        - Trends in Data Center Networking - Fully Connected Topology
 
 Chapter 7 - Wireless and Mobile Networks
     a. Introduction
         - Wireless Hosts - end-sytem devices that run applications
         - Wireless Communication Link - connection to a base station or another wireless host
-        - Base Station - responsible for sending and receiving data (e.g. packets) to and froma wireless host that is associated with that base station (cell towers and access points)
-        - Infrastructure Mode - traditioal network services are provided by the network to which a host is connected via the base station
+        - Base Station - responsible for sending and receiving data (e.g. packets) to and from a wireless host that is associated with that base station (cell towers and access points)
+        - Infrastructure Mode - traditional network services are provided by the network to which a host is connected via the base station
         - Ad Hoc Networks - wireless hosts have no infrastructure so the hosts themselves must provide for services such as routing, address assignment, DNS and more
         - Handoff - when a mobile host moves beyond the range of one base station and into the range of another, changing its point of attachment
         - Classifications
             - Single-hop infrastructure based - base station connected to a larger wired network and communication between wireless host and base station is one hop
             - Single-hop infrastructure-less - no base station connected to a wireless network (Bluetooth)
-            - Multi-hop infrastructure based - base station is present bit some wireless nodes may have to relay their communication through other nodes (Wireless Mesh Networks)
+            - Multi-hop infrastructure based - base station is present but some wireless nodes may have to relay their communication through other nodes (Wireless Mesh Networks)
             - Multi-hop infrastructure less - no base station and nodes may have to relay their communication through other nodes (Mobile Ad Hoc Networks or Vehicular Ad Hoc Network)
     b. Wireless Links and Network Characteristics
         - Link Layer Differences
@@ -669,14 +666,14 @@ Chapter 7 - Wireless and Mobile Networks
             - Global System for Mobile Communication GSM
             - Generations
                 - 1G - voice traffic
-                - 2G - voice traffice
+                - 2G - voice traffic
                 - 3G - voice and data
                 - 4G LTE - voice and data at multi-Megabit speeds
             - Cellular - regions covered by a cellular network partitioned into a number of geographic areas called cells
             - 2G Voice Connections to the Telephone Network
                 - Base Transceiver Stations - transmits signal to and receives signals from mobile stations in its cell
                 - Frequency Division Multiplexing and Time Division Multiplexing - Channel into F sub-bands where time is partitioned into T slots
-                - Base Station Controller - typically serice several tens of base transceiver stations and allocate BTS radio channels to mobile subscribers and perform handoffs
+                - Base Station Controller - typically service several tens of base transceiver stations and allocate BTS radio channels to mobile subscribers and perform handoffs
                 - Base Station Subsystem - base station controller and its controlled base transceiver stations
                 - Mobile Switching Center - plays central role in authorization and accounting, call establishments, teardown, and handoff
         - 3G Extending the Internet to Cellular Subscribers
@@ -686,7 +683,7 @@ Chapter 7 - Wireless and Mobile Networks
             - Generalized Packet Radio Service GPRS
             - 3G Radio Access: The Wireless Edge
                 - 3G Radio Access Network - first-hop network that we see as a 3G user
-                - Radio Network Controller - controls several cell base transceiver stations, Node Bs, connects to MSC cellular voice network, and SGSN packet swtiched internet
+                - Radio Network Controller - controls several cell base transceiver stations, Node Bs, connects to MSC cellular voice network, and SGSN packet switched internet
                 - Direct Sequence Wideband DS-WCDMA
         - On to 4G LTE
             - 4G System Architecture: An All-IP Core Network
@@ -703,7 +700,7 @@ Chapter 7 - Wireless and Mobile Networks
                 - Orthogonal Frequency Division Multiplexing
     e. Mobility Management: Principles
         - How Mobile
-            - User Moves Within Same Network -> User Moves Between Access Networks Shutting Down in Between - User Moves Between Access Networks While Maintaining Connections
+            - User Moves Within Same Network - User Moves Between Access Networks Shutting Down in Between - User Moves Between Access Networks While Maintaining Connections
             - Home Network - permanent home of a mobile node
             - Home Agent - performs the mobility management functions on behalf of the mobile node
             - Foreign or Visited Network - network in which the mobile node is currently residing
@@ -717,7 +714,7 @@ Chapter 7 - Wireless and Mobile Networks
                 - Correspondent addresses the datagram to the mobile node's permanent address and sends the datagram into the network
                 - Home agent receives datagram, encapsulates it and sends to foreign agent using COA, and from there to the mobile node itself
             - Direct Routing
-                - Correspondent agent learns about the COA of a mobile node by querying the home agent then sends datagram using COA to foreing agent, and from there to the mobile node itself
+                - Correspondent agent learns about the COA of a mobile node by querying the home agent then sends datagram using COA to foreign agent, and from there to the mobile node itself
                 - Mobile User Location Protocol
                 - Anchor Foreign Agent
     f. Mobile IP
@@ -727,7 +724,7 @@ Chapter 7 - Wireless and Mobile Networks
             - Agent Solicitation - mobile node broadcasts a solicitation message, and agent will send an advertisement directly to the mobile node
         - Registration with Home Agent
             - Goal - COA must be registered with home agent
-            - Node sends mobile IP registration mesage to foreing agent with COA, Home Agent address HA, Mobile Node permanent addres MA, life time of registration and 64-bit registration ID.
+            - Node sends mobile IP registration mesage to foreign agent with COA, Home Agent Address HA, Mobile Node Permanent Address MA, life time of registration and 64-bit registration ID
             - Foreign agent records mobile node's permanent address and sends IP registration message to port 434 of home agent
             - Home agent receives, checks for authenticity, and binds mobile node's IP with COA, then sends reply which is forwarded from foreign agent back to mobile node
         - Indirect Routing of Datagrams
@@ -787,7 +784,7 @@ Chapter 8 - Security in Computer Networks
                 - Choose two large prime numbers, so large that brute force attacks will take an unreasonable long time
             - Session Keys - key used to encode data, encrypted using RSA and then sent where it is decrypted and known for when Alice encrypts the data transfer
     c. Message Integrity and Digital Signatures
-        -  Validate - message is from sender and has not been tampered with
+        - Validate - message is from sender and has not been tampered with
         - Cryptographic Hash Functions
             - Goal - takes an input and computes a fixed size string e.g. Internet Checksum
             - Requirement - it is computationally infeasible to find any two different messages x and y such that H(x) = H(y)
@@ -835,7 +832,7 @@ Chapter 8 - Security in Computer Networks
             - Bob generates a Master Secret and then encrypts the MS with Alice's public key to create the Encrypted Master Secret
             - Bob sends the EMS to Alice, who decrypts it with her private key
             - Now Bob and Alice will use the Master Secret for the SSL session
-        - Key Derivatio
+        - Key Derivation
             - Alice and Bob us the MS to generate
                 - Session Encryption key for data sent from Bob to Alice
                 - Session Encryption key for data sent from Alice to Bob
@@ -848,7 +845,7 @@ Chapter 8 - Security in Computer Networks
             - This package is handed to TCP for transportation over the Internet
             - Sequence numbers are used to ensure someone is not inserting, deleting or replacing segments passed to TCP
         - SSL Record
-            - Type, Version, Length, Datat, and MAC
+            - Type, Version, Length, Data, and MAC
         - A More Complete Picture
             - Client sends a list of cryptogrpaic algorithms it supports along with a client nonce to Server
             - Server chooses a symmetric algorithm, a public key algorithm, and a MAC algorithm, sending back its choices along with a certificate and server nonce
@@ -860,7 +857,7 @@ Chapter 8 - Security in Computer Networks
             - Indicate in the type field of the SSL session record whether the record servers to terminate the SSL session
     g. Network-Layer Security: IPsec and Virtual Private Networks
         - Goal - provides security at the network layer, secures IP datagrams between any two network-layer entities
-        - Blanket Coverage - all data sent from one entity to another, including all types o fmessages, would be hidden from any third party that might be sniffing
+        - Blanket Coverage - all data sent from one entity to another, including all types of messages, would be hidden from any third party that might be sniffing
         - IPSec and Virtual Networks
             - VPN - encrypting data when communication over a path traverses the public Internet
         - Authentication Header AH - provides source authentication and data integrity
@@ -876,7 +873,7 @@ Chapter 8 - Security in Computer Networks
             - Routers will process the IPsec datagram as if it were an ordinary datagram, oblivious to the face that the datagram is carrying IPsec encrypted data
             - Security Policy Database - indicates type of datagrams that are to be IPsec processed and which SA to use
         - Internet Key Exchange IKE: Key Management in IPsec
-            - Two sides yse Diffie-Hellman to create a bi-direcitonal IKE SA between the routers
+            - Two sides use Diffie-Hellman to create a bi-direcitonal IKE SA between the routers
             - IKE SA provides an authentication and encrypted channel between the two routers
             - First message pass - keys are established for encryption and authentication for the IKE SA and a master secret is also created
             - Second message pass - both sides reveal their identity by signing their messages, and encryption and authentication algorithms are chosen
@@ -890,7 +887,7 @@ Chapter 8 - Security in Computer Networks
         - IEEE 802.11i
             - Four Phases - Discovery, Mutual Authentication and Master Key Generation, Pairwise Master Key Generation, Temporal Key Generation
             - Discovery
-                - Access Point advertises its presence and the forms of authentication and encryption that ca be provided
+                - Access Point advertises its presence and the forms of authentication and encryption that can be provided
                 - Client requests specific forms of authentication and encryption
             - Mutual Authentication and Master Key Generation
                 - Access Point acts as a relay, forwarding message between client and the authentication server
@@ -916,7 +913,7 @@ Chapter 8 - Security in Computer Networks
                 - Application specific server (Telnet, SMTP, HTTP, and FTP), that looks beyond the IP/TCP/UDP headers and make policy decisions based on application data
         - Intrusion Detection Systems and Intrustion Prevention Systems
             - Deep Packet Inspection - deeper than headers
-            - Detects - network mapping, port scans, TCP stack scans, DoS attacks, worms and viruses, OS vulnerability and applicaiton vulnerability attacks
+            - Detects - network mapping, port scans, TCP stack scans, DoS attacks, worms and viruses, OS vulnerability and application vulnerability attacks
             - Signature-Based - maintain a database of attack signatures and checks each packet against the signatures in the database
             - Anomaly-Based - creates a traffic profile as it observes traffic and looks for packet streams that are statistically unusual
             - Snort - open source IDS
@@ -952,7 +949,7 @@ Chapter 9 - Multimedia Networking
             - Video is stored in an HTTP server and delivered when it receives HTTP GET requests
             - Prefetching Video - client attempts to download video at a rate higher than the consumption rate
             - Client Application Buffer and TCP Buffers - Server -> TCP Send Buffer -> TCP Receive Buffer -> TCP Application Buffer
-            - Earyl Termination and Repositioning - HTTP Byte-Range Header in the HTTP Get request message
+            - Early Termination and Repositioning - HTTP Byte-Range Header in the HTTP Get request message
         - Adaptive HTTP Streaming
             - Dynamic Adaptive Streaming over HTTP DASH - uses multile versions of the video compressed at a different rate 
         - Client Side Application Buffering
@@ -989,7 +986,7 @@ Chapter 9 - Multimedia Networking
             - SIP Registrar - every SIP user has an associated registrar which needs to be informed of the user's current IP address
             - Setting UP a Call with Unknown Address
                 - Alice sends INVITE to SIP Proxy
-                - SIP Proxy does a DNS lookup on the SIP registrar and forwards the message to the SIP Registrar Server
+                - SIP Proxy does a DNS lookup on the SIP Registrar and forwards the message to the SIP Registrar Server
                 - SIP Registrar knows Bob's IP address and forwards the INVITE to Bob
                 - Bob sends SIP response message back through SIP Registrar and SIP Proxy
                 - Media is now sent directly between the two clients
@@ -1021,45 +1018,45 @@ Appendix A - A Day in the Life of a Web Page Request (Does not include security,
         - Bob's laptop creates a DHCP request message
         - Places this within a UDP segment with destination port 67 (DHCP server) and a source port 68 (DHCP client)
         - UDP segment is placed within an IP datagram with a broadacst IP destination address 255.255.255.255 and a source IP address of 0.0.0.0
-        - IP Datagrame is placed within an Ethernet frame with destination FF:FF:FF:FF:FF:FF to broadcast to all devices, source MAC is Bob's laptop
+        - IP Datagram is placed within an Ethernet frame with destination FF:FF:FF:FF:FF:FF to broadcast to all devices, source MAC is Bob's laptop
         - Switch broadcasts the incoming frame on all outgoing ports
         - Router Receives the Ethernet frame and IP datagram is extracted
         - IP Datagram payload is demutiplexed to UDP
         - DCHP request message is extracted from the UDP segment and the DHCP server now has the DHCP request message
-        - DHCP server allocates IP address to Bob's laptop and creates a DHCP ACK message is created
+        - DHCP server allocates IP address to Bob's laptop and creates a DHCP ACK message
             - DHCP ACK Message includes new IP address, DNS Server IP address, default gateway router IP address and subnet mask
         - DHCP ACK message is put in a UDP Segment, which is put in a IP datagram, which is put in an Ethernet frame
         - Ethernet frame has a source MAC of the router and a destination MAC of Bob's laptop
         - Ethernet frame is sent by the router to the switch
-        - Bob's laptop receives the Ethernet Frame, extracts the IP datagrame, extracts the UDP segment, and extracts the DHCP Ack message
+        - Bob's laptop receives the Ethernet Frame, extracts the IP datagram, extracts the UDP segment, and extracts the DHCP ACK message
         - Bob's DHCP client records its IP and the IP address of the DNS server and stores default gateway into its IP forwarding table
     b. Still Getting Started: DNS and ARP (Getting Access to Gateway Router)
         - Bob's OS creates a DNS query message, putting "www.domain.com" in the question section
         - DNS message is placed within UDP segment with destination port 53 (DNS server), which is placed within IP datagram with IP address of DNS server
-        - IP datagram is placed within Ethernet frame and the frame is sent to Default Gateway Router (MAC address is unknown)
-        - Bob's laptop creates An ARP query message within IP address of default gateway, places message within Ethernet frame with broadcast MAC FF:FF:FF:FF:FF:FF
+        - IP datagram is placed within an Ethernet frame and the frame is sent to Default Gateway Router (MAC address is unknown)
+        - Bob's laptop creates an ARP query message within IP address of default gateway, places message within Ethernet frame with broadcast MAC FF:FF:FF:FF:FF:FF
         - Ethernet frame is sent to switch, which is broadcast to all devices including the gateway router
         - Gatway router receives frame and extracts ARP query message, checks IP address, and prepares ARP reply with its own MAC address
         - ARP reply message is placed in ethernet frame and sent back to Bob's laptop
         - Bob's laptop extracts the ARP reply message from the Ethernet frame and saves MAC address of the default gateway router
         - Bob addresses the Ethernet frame containing the DNS query message with MAC address of default gateway router
-        - Bob sends Ethernet frame to switch, which devlivers the frame to the default gateway router
+        - Bob sends Ethernet frame to switch, which delivers the frame to the default gateway router
     c. Still Getting Started: Intra-Domain Routing to the DNS Server (Getting IP Address of Domain)
         - Default gateway router receives frame and extracts IP datagram containing DNS query
-        - Using forwarding table, determins datagram should be sent to specific network router
+        - Using forwarding table, determines datagram should be sent to specific network router
         - IP datagram is placed inside link-layer frame and frame is sent over link
         - This network router receives the frame, extracts the IP datagram, and determines the interface needed to forward datagram to DNS server
-        - IP datagram containing DNS query arrices at the DNS server, DNS server extracts the DNS query message, looks up domain, finds DNS resource record with IP address assuming cached
-        - DNS server forsm a DNS reply message, places the message in a UDP segment, within an IP datagram that is forwarded back through the network to school's router and via the Ethernet switch to Bob's laptop
+        - IP datagram containing DNS query arrives at the DNS server, DNS server extracts the DNS query message, looks up domain, finds DNS resource record with IP address assuming cached
+        - DNS server forsm a DNS reply message, places the message in a UDP segment, within an IP datagram, within an Ethernet frame that is forwarded back through the network to school's router and via the Ethernet switch to Bob's laptop
         - Bob extracts the IP address and is now ready to connect to the domain
     d. Web Client-Server Interaction: TCP and HTTP (Actually Fetching the Web Page)
         - Bob's creates TCP socket, which starts three-way handskae with TCP in domain
         - Bob's laptop creates a TCP SYN segment with destination poret 80 (for HTTP), places the TCP segment within an IP datagram, within a frame and sends frame to switch
         - Frame, and specifically datagram is forwarded to domain, TCP SYN message is extracted and demultiplexed to the welcome socket associated with port 80
-        - A connection socket is created for the TCP connection, a TCP SYNACK segment is generated, placed within a IP datagrame, and placed within a link-layer frame appropriate for the link connecting google.com to its first-hop router
-        - The datagram containing the TCP SYNACK is forwarded throughnetwork arriving at the Ethernet card in Bob's laptop
+        - A connection socket is created for the TCP connection, a TCP SYNACK segment is generated, placed within a IP datagram, and placed within a link-layer frame appropriate for the link connecting domain.com to its first-hop router
+        - The datagram containing the TCP SYNACK is forwarded through network arriving at the Ethernet card in Bob's laptop
         - The datagram is multiplexed within the operating system to the TCP socket initially created, which enters the connected state
         - Bob's browser creates HTTP GET message, which is written into socket, the GET message becoming the payload of a TCP segment, which is placed in an IP datagram and then a frame and sent and delivered to domain
         - HTTP server at domain reads the HTTP GET message from the TCP socket, creates an HTTP response message, and places this into the TCP socket
-        - This response messaeg becomes the payload of a TCP segment, which is placed inside an IP datagram, which is placed inside a link-layer frame
+        - This response message becomes the payload of a TCP segment, which is placed inside an IP datagram, which is placed inside a link-layer frame
         - The datagram containing the HTTP response message is forwarded to Bob's laptop, Bob's browser reads the HTTP response, extracts the html from the body, and finally displays the message
