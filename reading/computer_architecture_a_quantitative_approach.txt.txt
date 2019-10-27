@@ -21,12 +21,12 @@ Summarization of Content
         - Categories
             - Single Instruction, Single Data Stream SISD
             - Single Instruction, Multiple Data Stream SIMD
-            - Multiple Instruction, Singel Data Stream MISD
+            - Multiple Instruction, Single Data Stream MISD
             - Multiple Instruction, Multiple Data Stream MIMD
     c. Instruction Set Architecture Dimensions
         - Class - General Purpose Registers
         - Memory Addressing
-        - Addresing Modes
+        - Addressing Modes
         - Types and Sizes of Operands
         - Operations
         - Control Flow Instructions
@@ -69,7 +69,7 @@ Summarization of Content
             - L1, L2, L3 Cache
         - Secondary Memory
             - HDD
-            - SDD
+            - SSD
             - Optical Drives CD/DVD
         - Caches Misses
             - Compulsory, Capacity, Conflict
@@ -95,7 +95,7 @@ Summarization of Content
             - Reducing the Hit Time
                 - Small and Simple First Level Caches
                 - Way Prediction
-            - Increasing Cache Bandwidthq
+            - Increasing Cache Bandwidth
                 - Pipelined and Multibanked Caches
                 - Non-Blocking Caches
             - Reducing the Miss Penalty
@@ -145,7 +145,7 @@ Summarization of Content
             - Hardware to Exploit ILP Dynamically
             - Software to Exploit ILP Statically at Compile Time
         - Dependences (Data, Name, Control)
-            - Data Dependences: Instruction is dependent on result or of an instruction dependent on another
+            - Data Dependences: Instruction is dependent on result of an instruction dependent on another
             - Name Dependences: Two instructions use the same register or memory location
             - Control Dependences: Instruction should be executed in correct order
         - Data Hazards
@@ -165,21 +165,21 @@ Summarization of Content
             - Code compiled with one pipeline in mind to run efficiently on a different pipeline
             - Enables handling some cases where dependences are unknown at compile time
             - Allows the processor to tolerate unpredictable delays such as cache misses
-        - Out-Of-Order - Execution as ssoon as instruction and data operands are available
+        - Out-Of-Order - Execution as soon as instruction and data operands are available
         - Tomasulo's Approach
             - Issue - Get instruction FIFO order, issue instruction to reservation station, rename registers (Avoids WAW and WAR)
             - Execute - Place operands into any awaiting reservation station, execute operation when ready (Avoids RAW)
             - Write Result - Write result on Common Data Bus to registers and into any reservation stations awaiting results, stores are buffered until value and address are available
     e. Dynamic Scheduling: Examples and Algorithms
         - Tomasulo's Advantages
-            - Distribution of Hazard Detection Logic and Elimination fo Stalls for WAR and WAW hazards
+            - Distribution of Hazard Detection Logic and Elimination of Stalls for WAR and WAW hazards
     f. Hardware-Based Speculation
         - Speculation - To address control dependences - fetch, issue, and execute
         - Key Ideas
             - Dynamic Branch Prediction
             - Speculation - to allow the execution of instructions before control dependences are resolved
             - Dynamic Scheduling
-        - Steps in Instruciton Execution
+        - Steps in Instruction Execution
             - Issue - Get an instruction from queue
             - Execute - Execute when both operands are available
             - Write Result - When available, write result to CDB and then into Read Only Buffer and any reservation stations
@@ -211,13 +211,13 @@ Summarization of Content
         - Hardware Approaches
             - Fine-grained - switch between threads on each cycle
             - Coarse-grained - only switches threads on costly stalls
-            - Simulaneous Multithreading - Allows multiple instructions from independent threads to be executed without regard to the depedencesm which are handled by the dynamic scheduling capability
+            - Simulaneous Multithreading - Allows multiple instructions from independent threads to be executed without regard to the depedences which are handled by the dynamic scheduling capability
     l. Fallacies and Pitfalls
         - F: It is easy to predict the performance and energy efficiency of two different versions of the same instruction set architecture, if we hold the technology constant
         - F: Processors with lower CPIs will always be faster
         - F: Processors with faster clock rates will always be faster
         - P: Sometimes bigger and dumber is better
-        - P: And sometimes smarter is bettern than bigger and dumber
+        - P: And sometimes smarter is better than bigger and dumber
         - P: Believing that there are large amounts of ILP available, if only we had the right techniques
 
 
@@ -234,7 +234,7 @@ Summarization of Content
     b. Vector Architecture
         - Order
             - Grab sets of data elements scattered across memory
-            - Place them into large sequentail register files
+            - Place them into large sequential register files
             - Operate on data in the register files
             - Disperse the results back into memory
         - RV64V
@@ -259,11 +259,11 @@ Summarization of Content
             - Optimizations
                 - Multiple Lanes: Beyond One Element per Clock Cycle
                 - Vector-Length Registers: Handling Loops Not Equal to 32
-                - Predicate Registers: Hanlding IF Statements in Vector Loops
+                - Predicate Registers: Handling IF Statements in Vector Loops
                 - Memory Banks: Supplying Bandwidth for Vector Load/Store Units
                 - Gather Scatter: Handling Sparse Matrices in Vector Architectures
     c. SIMD Instruction Set Extensions for Multimedia
-        - Goal: Taks with data types lesss than 32-bit
+        - Goal: Taks with data types less than 32-bit
         - Omissions
             - No Vector Length Register
             - No Strided or Gather/Scatter Data Transfer Instructions
@@ -281,7 +281,7 @@ Summarization of Content
             - Floating Point Performance - FLOPS - Floating Point Operations per Second
     d. Graphics Processing Units
         - Enables
-            - Multithreading, MIMD, SIMD, and Instruction-Level
+            - Multithreading, MIMD, SIMD, and Instruction-Level Parallelism
         - Programming the GPU
             - CUDA - Compute Unified Device Architecture
             - CUDA Thread - Lowest Level of Parallelism
@@ -299,8 +299,8 @@ Summarization of Content
             - PX Assembler Level - branch, call, return, exit, and per-thread-lane predicate registers
             - GPU Hardware Instruction Level - branch, jump, jump indexed, call, call indexed, return, exit, and special instructions
         - NVIDIA GPU Memory Structures
-            - Private Memory per SI<D Lane
-            - Local Memory per Multithreaded SMIMD Processesor
+            - Private Memory per SIMD Lane
+            - Local Memory per Multithreaded SIMD Processesor
             - GPU Memory shared by the whole GPU and all Thread Blocks that is off-chip DRAM
         - Innovations in the Pascal GPU Architecture
             - Fast single-precision, double-precisions, and half-precision floating point arithmetic
@@ -319,7 +319,7 @@ Summarization of Content
     g. Fallacies and Pitfalls
         - F: GPUs suffer from being coprocessors
         - P: Concentrating on peak performance in vector architectures and ignoring start-up overhead
-        - P: Incresing vector performance, without comparable increases in scalar performance
+        - P: Increasing vector performance, without comparable increases in scalar performance
         - F: You can get good vector performance without providing memory bandwidth
         - F: On GPUs, just add more threads if you don't have enough memory performance
 
@@ -349,7 +349,7 @@ Summarization of Content
             - Consistency - determines when a written value will be returned by a read
         - Basic Schemes for Enforcing Coherence
             - Migration - moving data item to a local cache
-            - Replication - duplicate of data taht can be read simultaneously
+            - Replication - duplicate of data that can be read simultaneously
             - Cache Coherence Protocols - protocols to maintain coherence (Directory or Snooping)
         - Snooping Coherence Protocols
             - Write Invalidate Protocol - processor has exclusive access to a data item
@@ -368,8 +368,8 @@ Summarization of Content
                 - Directory at Outermost Cache
         - Implementing Snooping Cache Coherence
             - Issue - write and upgrade misses are not atomic
-    c. Performance of Symmetric Shared-Mmeory Multiprocessors
-        - Uniprocessor Miss Rate - capcaity, compulsory, and conflict
+    c. Performance of Symmetric Shared-Memory Multiprocessors
+        - Uniprocessor Miss Rate - capacity, compulsory, and conflict
         - Coherence Misses
             - True Sharing Misses - arise from communication of data through the cache coherence mechanism
             - False Sharing - occurs when a block is invalidated and a subsequent reference causes a miss because some word in the block is written into
@@ -378,7 +378,7 @@ Summarization of Content
             - Measure time spent Instruction, Capacity/Conflict, Compulsory, False Sharing and True Sharing
         - A Multiprogramming and OS Workload
             - Phases - Compiling the Benchmarks, Installing Object Files in Library, and Removing the Object Files
-            - measure time spent User Execution, Kernel Execution, Synchronization Wait, Processor Idle
+            - Measure time spent User Execution, Kernel Execution, Synchronization Wait, Processor Idle
     d. Distributed Shared-Memory and Directory-Based Coherence
         - Goal: Keep the state of every block that may be cached replicated and distributed across processors
         - The Basics
@@ -390,19 +390,19 @@ Summarization of Content
         - Example Directory Protocol
             - Cache Blocks transitions between Invalid, Shared, and Modified
             - Directory transitions between Uncached, Shared, and Exclusive
-            - Directory Requests - Read miss, Write Miss and Data Write-Back
+            - Directory Requests - Read Miss, Write Miss and Data Write-Back
     e. Synchronization: The Basics
         - User-level software routings that rely on hardware-supplied synchronization instructions
         - Goal: Enable atomicity
         - Basic Hardware Primitives
-            - Atomic Exchange - interchanges a value in a register for a value in memor
+            - Atomic Exchange - interchanges a value in a register for a value in memory
             - Test-And-Set - tests a value and sets it if the value passes the test
-            - Fetch-And-Increment - retursnt he value of a memory location and atomically increments it
+            - Fetch-And-Increment - returns the value of a memory location and atomically increments it
             - RISC-V Load Reserved and Store Conditional - load the contents onto memory address and then store the value or values that can be used to check if atomic operation occurred
         - Implementing Locks Using Coherence
             - Spin Locks - locks that a processor continously tries to acquire, spinning around a loop until it succeeds
     f. Models of Memory Consistency: An Introduction
-        - Sequential Consistency - requires that the result of any exeuction be the sa,e as though the memory accesses executed by each processor were kept in order and the access among different processors were arbitrarily interleaved
+        - Sequential Consistency - requires that the result of any exeuction be the same as though the memory accesses executed by each processor were kept in order and the access among different processors were arbitrarily interleaved
         - Programmer's View
             - Synchronzied - if all accesses to shared data are ordered by synchronization operations
             - Data-Race-Free - no cases where variable may be updated without ordering by synchronization causing execution outcome to be unpredictable
@@ -423,7 +423,7 @@ Summarization of Content
 
 Chapter 6 - Warehouse-Scale Computers to Exploit Requet-Level and Data-Level Parallelism
     a. Introduction
-        - WSC: Foundation of Internet services billions of people use every day
+        - WSC: Foundation of Internet which services billions of people use every day
         - Goals
             - Cost-Performance
             - Energy Efficiency
@@ -441,10 +441,7 @@ Chapter 6 - Warehouse-Scale Computers to Exploit Requet-Level and Data-Level Par
             - Map - applies a programmer-supplied function to each logical input record
             - Reduce - collects the output of those distributed tasks and collapses them using another programmer-defined function
         - Scalable Storage Systems
-            - Google File System
-            - Colossus
-            - Dynamo
-            - BigTable
+            - Google File System, Colossus,Dynamo, BigTable
     c. Computer Architecture of WSC
         - Components
             - Rack - structure that holds the servers
@@ -505,7 +502,7 @@ Chapter 6 - Warehouse-Scale Computers to Exploit Requet-Level and Data-Level Par
 
 Chapter 7 - Doman Specific Architectures
     a. Guidelines for DSA
-        - Use Dedicated Memories to Minimize the Distance Ocer Which Data is Moved
+        - Use Dedicated Memories to Minimize the Distance Over Which Data is Moved
         - Invest the Resources Saved from Dropping Advanced Microarchtiectural Optimizations into more Arithmetic Units or Bigger Memories
         - Use the Easiest Form of Parallelism that Matches the Domain
         - Reduce Data Size and Type to the Simplest Needed for the Domain
@@ -517,7 +514,7 @@ Chapter 7 - Doman Specific Architectures
         - Activation - output of nonlinear function
         - Operational Intensity - Operations per Weight
         - Traning vs. Inference
-            - Training or Learning - the development phaes where the goal is to learn the wieghts associated with each edge in the neural network graph
+            - Training or Learning - the development phase where the goal is to learn the wieghts associated with each edge in the neural network graph
             - Production - inference, predicting, scoring, implementation, evaluation, running, or testing
             - Supervised Learning - given a set of training data to learn from where the data is preprocessed to have correct labels
         - Popular DNNs
@@ -534,7 +531,7 @@ Chapter 7 - Doman Specific Architectures
         - TPU Architecture
             - Coprocessor on the PCIe I/O Bus
             - Host server sends instruction over the PCIe bus directly to the TPU
-            - Matrix Multiply Unit - ALUs to perform 8-bit multiple-and-adds on signed or unsigned integers
+            - Matrix Multiply Unit - ALUs to perform 8-bit multiply-and-adds on signed or unsigned integers
             - Accumulator - collects 16-bit products
         - TPU Instruction Set Architecture
             - Read_Host_Memory, Read_Weights, MatrixMultiple/Convolve, Activate, Write_Host_Memory
@@ -557,9 +554,9 @@ Chapter 7 - Doman Specific Architectures
     f. Pixel Visual Core
         - PMD DSA for Image Processing and Computer Vision
         - Sytem on a Chip SOC
-        - Image Processing Units IPUs - analyze and modify an input image in contract to generating an output image
+        - Image Processing Units IPUs - analyze and modify an input image in contrast to generating an output image
         - Two-Dimensional Array of Processing Elements - makes it easy to perform stencil computations
-        - Image Signal Processor ISP - hardwired accelerator for enhancing input images
+        - Image Signal Processor ISP - hardware accelerator for enhancing input images
         - Pxiel Visual Core Software
             - Directed Acyclic Graph DAG of Kernels
         - Architecture Philosophy
@@ -673,11 +670,11 @@ Appendix B - Memory Hierarchy
             - Address tag on each block frame that gives block address, each tag is checked in parallel
             - Valid bit to say if this entry contains a valid address or not
         - Which block should be replaced on a cache miss?
-            - Random, Least Recently Used LRU, First In, First Out FIFO
+            - Random, Least Recently Used LRU, First In First Out FIFO
         - What happens on a write?
             - Write Through - written to block in the cache and the block in the lower-level memory
             - Write Back - written only to block in the cache
-            - Dirty Bit - indicats whether the block has been modified while in cache (dirty) or unmodified (clean)
+            - Dirty Bit - indicates whether the block has been modified while in cache (dirty) or unmodified (clean)
             - Write Stall - processor must wait for writes to complete during write through
             - Write Buffer - mechanism to allow processor to continue as soon as data is written to buffer
     c. Cache Performance
@@ -714,7 +711,7 @@ Appendix B - Memory Hierarchy
         - Techniques for Fast Address Translation
             - Translation Look Aside Buffer TLB
     d. Protection
-        - Process - running program plus any statet needed to continue running it
+        - Process - running program plus any state needed to continue running it
         - Process/Context Switch - switching from one process to another
         - Rings - levels of memory access protection
     e. Fallacies and Pitfalls
