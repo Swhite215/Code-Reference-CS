@@ -1,0 +1,146 @@
+  
+Title: Getting Started with Bluetooth Low Energy
+Authors: Kevin Townsend, Carles Cufi, Akiba, and Robert Davidson
+
+Summarization of Content
+
+Chapter 1 - Introduction
+    a. What Makes BLE Different
+        - Right Technology, Right Compromises, and Right Time
+    b. The Specification
+        - Bluetooth Core Specification v4.0
+    c. Configurations
+        - Wirelesss Technologies
+            - Classic Bluetooh BR/EDR
+                - SPP, RFCOMM, L2CAP, Link Manager, BR/EDR PHY
+            - Bluetooth Low Energy BLE
+                - GAP, GATTT, SMP, ATT, L2CAP, Link Layer LE PHY
+        - Device Types
+            - Single Mode BLE, Bluetooth Smart Device
+            - Dual-Mode BR/EDR/BLE, Bluetooth Smart Ready Device
+        - System on a Chip SOC
+            - A single IC runs the application, host, and controller
+        - Dual Integrated Circuit IC over Host Controller Interface HCI
+            - One IC runs the application and the host and communicates using HCI with a second IC running the controller
+        - Dual Integrated Circuit IC with Connectivity Device
+            - One IC runs the application and communicates using a proprietary prtocool with a second IC running both the host and the controller
+    d. Key Limitations
+        - Data Throughput - < .125 Mbit/s or < 125 kbit/s
+        - Operating Range - 2 to 5 and possible 30 with line-of-sight
+    e. Network Topology
+        - Broadcasting - sending data out to any scanning device or receiver in listening range, connectionless
+            - Broadcaster - sends nonconnectable advertising packets periodically to anyone willin gto receive them
+            - Observer - scans frequencies to receive advertising packets currently being broadcasted
+        - Connections - permanent, periodical data exchange of packets between two devices
+            - Central (Master) - scans frequencies for connectable advertising packets, and initiates connections. Manages timing and initiates data exchanges
+            - Peripheral (Slave) - sends connectable advertising packets and accepts connections. Follows centrals timing and exchnages data regularly
+            - Connection Process - Peripheral sends packets, Central picks up and sends request to connect, Peripheral accepts
+    f. Protocols versus Profiles
+        - Protocol - building blocks to conform to Bluetooth specification, layers that implement packet formats, routing, multiplexing, encoding, and decoding
+        - Profiles - "Vertical Slices" of functionality covering either basic modes of operation or specific use cases, define how protocols should be used to achieve goal
+            - Generic Profiles
+                - Generic Access Profile GAP - Covers the usage model of lower-level radion protocols to define roles, procedures, and modes that allow device to broadcast data, discover devices,
+                establish connections, manage connections, and negotiate security levels. Topmost control layer of BLE and mandatory for all BLE devices
+                - Generic Attribute Profile GATT - dealing with data exchange in BLE, defines a basic data model and procedure to allow devices to discover, read, write, and push data elements
+            - Use-Case-Specific Profiles
+                - SIG-Defined GATT Based Profiles
+                    - Find Me, Proximity, HID over GATT, Glucose, Health Thermometer, and Cycling Speed and Cadence Profiles
+                - Vendor Specific Profiles - Apple iBeacon 
+
+Chapter 2 - Protocol Basics
+    a. BLE Protocol Stack
+        - Application  - responsible for logic, user interface and data handling
+        - Host
+            - Generic Access Profile, Generic Attribute Profile, Logical Link Control and Adaptation Protocol , Attribute Protocol, Security Manager and Host Controller Interface
+        - Controller
+            - Host Controller Interface, Link Layer, Physical Layer
+    b. Physical Layer - contains the analog communications circuitry, capable of modulating and demodulating signals and transforming them into digital symbols
+        - 2.4GHz Industrial, Scientific, and Medical Band
+        - 40 Channels from 2.4000 GHz to 2.4835 GHz
+        - Frequency Hopping Spectrum - radio hops between channels on each connection
+    c. Link Layer - directly interfaces with the Physical Layer
+        - Hardware Functionality
+            - Preamble, Access Address, Air Protocol Framing, CRC Generation and Verification, Data Whitening, Random Number Generation, and AES Encryption
+        - Software Functionality
+            - Manages the link state of the radio, which is how the device connects to other devices
+        - Roles
+            - Advertiser - a device sending advertising packets
+            - Scanner - a device scanning for advertising packets
+            - Master - a device that initiates a connection and manages it later
+            - Slave - a device that accepts a connection request and follows the master's timing
+        - Bluetooth Device Address
+            - Public Device Address - fixed BR/EDR factory programmed address, registered with the IEEE Registration Authority and will never change
+            - Random Device Address - dynamically generated at runtime
+        - Advetising and Scanning
+            - Packet Purpose - broadcast data for applications and to discover slaves and connect to them
+            -  31 Bytes of advertising data payload along with basic header information
+            - Scanning Procedures
+                - Passive Scanning - scanner listens for packets and advertiser is never aware packets are actually received
+                - Active Scanning - scanner issues a Scan Request packet after receiving and advertising packet. Advertisier responds with Scan Response packet. 
+            - Packet Classifications
+                - Connectable, Non-Connectable - can connections occur
+                - Scannable, Non-Scannable - can scan requests be issued
+                - Directed, Undirected - is user data allowed
+        - Connections
+            - Parameters
+                - Connection Interval - time between the beginning of two consecutive events - 7.5ms to 4s 
+                - Slave Latency - number of connection events that a slave can choose to skip without risking a disconnection
+                - Connection Supervision Timeout - maximum time between two received valid data packets before a connection is considered lost
+        - White Lists - allow hosts to filter devices when advertising, scanning, and connecting
+        - Critical Processes
+            - Changing the Connection Parameters - allows master and slave to request new connection parameters and to set them
+            - Encryption - performs actual data encryption and decryption
+    d. Host Controller Interface HCI
+        - Set of commands and events for the host and t he controller to interact with each other, along with a data packet formate and a set of rules for flow control and other procedures
+    e. Logical Link Control and Adaption Protocol L2CAP
+        - Protocol Multiplexer 
+            - Takes multiple protocols from the upper layers and encapsulates them into the standard BLE packet format (and vice versa)
+        - Fragmentation and Recombination
+            - Takes large packets from upper layers and breaks them into chunks that if into the 27-byte maximum payload size
+            - Receives multiple packets that have been fragmented and recombines them into a single large packet that will be sent upstream to the appropriate upper layer entity
+        - Routes Attribute and Security Manager Protocols
+        - Can Create User Defined Channels for High-Throughput without ATT
+    f. Attribute Protocol
+        - Client/Server Stateless Protocol based on Attributes
+        - Attribute Handle - identifier used to access and attribute value
+        - ATT Operations
+            - Error Handling - Error Response - server sends a response in lieu of the corresponding operation response whenever an error prevented the request from being executed
+            - Server Configuration - MTU Request/Response - exchange between client and server of their Maximum Transmission Units MTU accepted
+            - Find Information
+                - Find Information Request/Response - obtain a list of all attributes in a particular handler range
+                - Find by Type Value - obtain the handle range between an attribute identified by its UUID and its value and the next group delimeter
+            - Read Operations
+                - Read by Type Request/Response - obtain the value of one or more attributes using a UUID
+                - Read Request/Response - obtain the value of attributes using a handle
+                - Read Blob Request/Response - obtain the part of a value of a long attribute using a handle
+                - Read Multiple Request/Response - obtain the value of one or more attributes using multiple handles
+                - Read by Group Type Request/Response - Similar to Read by Type, but UUID must be of a grouping type
+            - Write Operations
+                - Write Request/Response - write to the value of an attribute and expect a response from the server
+                - Write Command - write to the value of an attribute without any response
+                - Signed Write Command - similar to Write Command but using a signature
+            - Queued Writes
+                - Prepare Write Request/Response - queue a write operation in the server for a handle, after which the successful queuing is acknowledged by the server
+                - Execute Write Request/Response - execute all pending queued write operations, server then reports success of failure to the client
+            - Server Initiated
+                - Handle Value Indication/Confirmation - server update of an attribute's value and identified by it's handle
+                - Handle Value Notification - server update of an attribute's value and indeitified by its handle
+    g. Security Manager
+        - Protocol and security algorithms designed to provide the BLE protocol stack with the ability to generate and exchange security keys, which allows peers to communicate
+        securely over an encrypted link, to trust the identity of the remote devices, and to hide the pubilc address if required to avoid malicious peers
+        - Roles
+            - Initiator - always corresponds to the Link Layer master and therefore the GAP central
+            - Responder - always corresponds to the Link Layer slave and therefore the GAP peripheral
+        - Procedures
+            - Pairing - temporary common security encryption key is generate to be able to switch to a secure, encrypted link. Not reusable
+            - Bonding - pairing followed by generation and exchange of permanent security keys
+            - Encryption Re-establishment - defines how to use permanent keys in subsequent connections to re-establish a secure, encrypted connection
+        - Pairing Algorithms
+            - Just Works - Short Term Key is generated on both sides, based on packets exchanged in plain text, vulnerable to Man-in-the-Middle MITM Attacks
+            - Passkey Display - One peer displays a six-deigit passkey and other side is asked to enter the key, protects against MITM
+            - Out of Band - additional data is transferred by means other than BLE radio, protects against MITM
+        - Security Mechanisms - Encryption of packets, Privacy for advertisers Bluetooth address, Signing of packets to verify identity
+        - Security Keys
+            - Encryption Information (Long Term Key LTK) and Master Identification
+            - Identitiy Information (Identity Resolving Key IRK) and Identity Address Information (Address Type and Bluetooth Device Address)
+            - Signing Information (Connection Signature Resolving Key CSRK)
