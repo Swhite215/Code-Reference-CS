@@ -1034,7 +1034,7 @@ Appendix A - A Day in the Life of a Web Page Request (Does not include security,
         - Bob's OS creates a DNS query message, putting "www.domain.com" in the question section
         - DNS message is placed within UDP segment with destination port 53 (DNS server), which is placed within IP datagram with IP address of DNS server
         - IP datagram is placed within an Ethernet frame and the frame is sent to Default Gateway Router (MAC address is unknown)
-        - Bob's laptop creates an ARP query message within IP address of default gateway, places message within Ethernet frame with broadcast MAC FF:FF:FF:FF:FF:FF
+        - Bob's laptop creates an ARP query message with IP address of default gateway, places message within Ethernet frame with broadcast MAC FF:FF:FF:FF:FF:FF
         - Ethernet frame is sent to switch, which is broadcast to all devices including the gateway router
         - Gatway router receives frame and extracts ARP query message, checks IP address, and prepares ARP reply with its own MAC address
         - ARP reply message is placed in ethernet frame and sent back to Bob's laptop
@@ -1047,7 +1047,7 @@ Appendix A - A Day in the Life of a Web Page Request (Does not include security,
         - IP datagram is placed inside link-layer frame and frame is sent over link
         - This network router receives the frame, extracts the IP datagram, and determines the interface needed to forward datagram to DNS server
         - IP datagram containing DNS query arrives at the DNS server, DNS server extracts the DNS query message, looks up domain, finds DNS resource record with IP address assuming cached
-        - DNS server forsm a DNS reply message, places the message in a UDP segment, within an IP datagram, within an Ethernet frame that is forwarded back through the network to school's router and via the Ethernet switch to Bob's laptop
+        - DNS server forms a DNS reply message, places the message in a UDP segment, within an IP datagram, within an Ethernet frame that is forwarded back through the network to school's router and via the Ethernet switch to Bob's laptop
         - Bob extracts the IP address and is now ready to connect to the domain
     d. Web Client-Server Interaction: TCP and HTTP (Actually Fetching the Web Page)
         - Bob's creates TCP socket, which starts three-way handskae with TCP in domain
