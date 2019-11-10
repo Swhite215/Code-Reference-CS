@@ -136,7 +136,7 @@ Fundamentals of Linux
             - All
         f. Groups
             - Every user is in at least one group
-            - Users can belong to many grousp
+            - Users can belong to many groups
             - Groups command
         g. Changing Permissions
             - chmod, change mode command
@@ -243,7 +243,7 @@ Fundamentals of Linux
             - > Redirects standard output to a file, overwrites
             - >> Redirects standard output to a file, appends
             - < Redirects input from a file to a command
-            - >/dev/null remove useless
+            - > /dev/null remove useless
     12. Comparing Files
         a. diff
             - compare two files
@@ -278,7 +278,7 @@ Fundamentals of Linux
             - \W, basename of the current working directory
     15. Environment Variables
         a. Structure
-            - Name/Value Pars
+            - Name/Value Pairs
             - KEY=value
         b. Create
             - export VAR=value
