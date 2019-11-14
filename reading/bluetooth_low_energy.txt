@@ -144,3 +144,98 @@ Chapter 2 - Protocol Basics
             - Encryption Information (Long Term Key LTK) and Master Identification
             - Identitiy Information (Identity Resolving Key IRK) and Identity Address Information (Address Type and Bluetooth Device Address)
             - Signing Information (Connection Signature Resolving Key CSRK)
+
+Chapter 3 - GAP (Advertising and Connections)
+    a. Aspects of Device Interaction
+        - Roles - imposes restrictions and enforces certain behavioral requirements
+        - Modes - state in which the device can switch to for a certain amount of time to achieve a particular goal,
+        specifically to allow a peer to perform a particular procedure
+        - Procedues - sequence of actions that allows a device to attain a certain goal, associated with mode
+        - Security - specify how peers set the level of security required by a particular data exchange, and later
+        how that security level is enforced
+    b. Roles
+        - Broadcaster - transmit-only, distributing advertising packets with data at regular intervals
+        - Observer - receive-only, listens for data embedded in advertising packets from broadcasting peers
+        - Central - Link Layer Master, capable of establishing multiple connections to peers, intiator of connections
+        and allows devices into the network, listens for advertising packets and establishes a connection
+        - Peripheral - Link Layer Slave, uses advertising packets to allow centrals to find it and establish a connection
+        - Notes - each device can operate in one or more roles at a time
+    c. Modes and Procedures
+        - Broadcast and Observation
+            - Goal - Devices can send data unidirectionally from broadcaster to observer
+            - Mode Broadcast to Peer Procedure Observation
+        - Discovery Modes
+            - Discoverability - how the peripheral advertises its presence to other devices and what those device can
+            or should do with that information
+            - Non-Discoverable - other devices cannot learn about the presence of a peripheral
+            - Limited Discoverable - discoverable for a limited period of time and with a lowered priority
+            - General Discoverable - device is discoverable for as long as it is required or deemed necessary
+        - Discovery Procedures
+            - Limited Discovery Procedure - central starts active scanning with no white list, if LD flag is set, per device
+            is reported to the application for further action
+            - General Discovery Procedure - central starts active scanning with no white lists, if LD or GD is set, peer devices
+            is repoted to the application for further action
+        - Connection Establishment Mode
+            - Non-Connectable - No advertising packets of ADV_NONCONN_IND or ADV_SCAN_IND APs
+            - Directed Connectable - ADV_DIRECT_IND APs at a high frequency and for a short time, with no user data payload
+            and with a target central Bluetooth Address
+            - Undirected Connectable - ADV_IND APs, standard connectable mode through which a peripheral makes itself
+            connectable for a longer period of time
+        - Connection Establishment Procedures
+            - Auto Connection  - host populates a white list with an array on known peripherals and then instructs the controller
+            to connect to the first one detected
+            - General Connection - central scans without a white list or APs, for each peripheral detected, application decides
+            whether to connect, using a prompt for the user or parsing advertising data, once chosen, direct connection is used
+            - Selective Connection - central scans with a white list or APs, for each peripheral detected, application decides
+            whether to connect, using a prompt for the user or parsing advertising data, once chosen, direct connection is used
+            - Direct Connection - host uses Link Layer to initiate a connection to on single device, identified by its
+            Bluetooth Address, without previous knowledge of its presence
+        - Additional Procedures
+            - Name Discovery - allows a peripheral or central to retrieve the device name over an established connection using
+            a GATT transaction
+            - Connection Parameter Update - changing connections parameters that are set by the central, either through
+            a peripheral request or straight from the central
+            - Terminate Connection - peripheral and central can terminate at any time, while providing a reason code
+    d. Security
+        - Pillars
+            - Security Manager and Protocols - implements the actual cryptographic algorithms and protocol exchanges that allow two devices
+            to securely exchange data and privately detect each other
+            - GAP Security Aspects - set of modes and procedures related to security that allow the implementation to trust
+            the connection to carry sensitive data and to confidently accept the identity of a peer device
+        - Address Types
+            - Static - random number generated either at every device oot or can stay the same for the lifetime of the device
+            - Non-Resolvable Private - random number that represents a temporary address used for a certain time
+            - Resolvable Private - generated from an Identity Resolving Key IRK and a random number, and can change often
+        - Authentication
+            - Procedure - enforcing security on the current connection, pairing or re-establishing security using a stored encryption key
+            - Qualifier - using an algorithm to create MITM protection during pairing procedure and/or key exchange
+        - Security Modes
+            - Mode 1 - enforces security by means of encryption
+                - Level 1 - No Security
+                - Level 2 - Unauthenticated Encryption
+                - Level 3 - Authenticated Encryption
+            - Mode 2 - enforces security by means of data signing
+                - Level 1 - Unauthenticated Data Signing
+                - Level 2 - Authenticated Data Signing
+        - Modes and Procedures
+            - Non-Bondable Mode - device does not allow a bonding procedure to take place, although pairing procedures can occur
+            - Bondable Mode - enables device to create a bond with a peer, permanently storing security keys
+            - Bonding Procedure - central can initiate bonding procedure at any time
+            - Authentication Procedure - enforces the transition to a security mode on a connection currently in a lower security mode
+            - Authorization Procedure - giving user opportunity to reject or accept a particular transaction
+            - Encryption Procedure -use Link Layer's encryption capabilities to start the encryption of all traffic over connection
+    e. Additional Gap Definitions
+        - Advertising Data Format/Types
+            - Flag - 1 Byte - Sets Limited or General Discovery Mode
+            - Local Name - Variable Length - User-Readable Local Name
+            - Appearance - 2 Bytes - Describes Sending Device Type
+            - TX Power Level - 1 Byte - Power Level in dBm
+            - Service UUID - Variable Length - List of Offered GATT Services
+            - Slave Connection Interval Range - 4 Bytes - Ideal Connection Interval Range for Peripheral
+            - Service Solicitation - List of Supported GATT Services
+            - Service Data - Variable Length - UUID of GATT Service and Data
+            - Manufacturer Specific Data - Free Format Data
+        - GAP Service
+            - Device Name Characteristic - User-Readable UTF-8 String
+            - Appearance Characteristic - Device Category, Used for Icon
+            - Peripheral Preferred Connection Parameters Characteristic - central can read this and then perform connection parameter update
