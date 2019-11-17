@@ -1,4 +1,3 @@
-  
 Title: Getting Started with Bluetooth Low Energy
 Authors: Kevin Townsend, Carles Cufi, Akiba, and Robert Davidson
 
@@ -239,3 +238,70 @@ Chapter 3 - GAP (Advertising and Connections)
             - Device Name Characteristic - User-Readable UTF-8 String
             - Appearance Characteristic - Device Category, Used for Icon
             - Peripheral Preferred Connection Parameters Characteristic - central can read this and then perform connection parameter update
+
+Chapter 5 - Hardware Platforms, and Debugging and Application Tools
+    a. Nordic Semiconductors
+        - Technical Specifications
+            - ARM Cortext-M0 Core - 16MHz
+            - 128 or 256 KB Flash Memory
+            - 16 KB SRAM
+        - SoftDevice Architecture
+            - Blackbox w/ BLE stack and peripheral role support
+            - User App. makes calls to SoftDevice
+            - S110 - Peripheral Only, S120 - Central and Peripheral
+            - Advantages - simplifies to API, no RF configuration needed, one hardware design to many, non-intrusive
+            - Disadvantages - requires system resources
+        - nRF51822-K
+            - Development Boards
+                - PCA10001 - full function main developing board
+                - PCA10000 - USB dongle simulating central or sniffer
+        - Other Tools
+            - Keil's uVision
+    b. Texas Instruments
+        - CC2541DK-Mini Technical Specifications
+            - 8051 Core w/ 2.4 GHz Radio
+            - 128 or 256 KB Flash Memory
+            - 8 KB SRAM
+        - Advantages
+            - Full BLE feature stack
+            - Reliable and well built hardware
+            - Development kit closely resembles a readl product
+        - Weakness  
+            - Dated 8051 Core driving SoC
+    c. Other Hardware Platforms and Modules
+        - Modules - pre-certified intentional emitters that should pass standards assessment
+        - Advantages
+            - RF design is done for you
+            - High-Level development languages
+        - Costs
+            - Per-unit price of modules is higher than designing your own hardware
+        - Modules
+            - Laird's BL600 Module
+            - Blueiggia's BLE112/1113
+            - RFDuino
+    d. Debugging Tools
+        - PCA10000 USB Dongle and Master Control Panel MCP
+            - MCP - Windows based utility that turns PCA10000 into simulation tool
+        - PCA10000 USB Dongle and Wireshark
+        - CC2540 USB Dongle and SmartRF Sniffer
+        - CC2540 USB Dongle w/ smartRFtoPcap to Wireshark
+        - Bluez hcitool and gatttool
+    e. Application Design Tools
+        - Bluetooth Application Accelerator - software templates for BLE applications
+        - SensorTag - Sensor device covering temperature, humidty, pressure, accelerometer, gyroscope, and magnetometer
+        - Light Blue for iOS
+        - nRF Master Control Panel for Android
+       
+        
+- Windows based utility that turns PCA10000 into simulation tool for BLE central device
+- PCA10000 USB Dongle and Wireshark
+- CC2540 USB Dongle and SmartRF Sniffer
+- CC2540 USB Dongle w/ smartRFtoPcap to Wireshark
+- Bluez hcitool and gatttool
+e. Application Design Tools
+- Bluetooth Application Accelerator - software templates for BLE aaplications on Android, iOS, and Windows
+- SensorTag - Sensor device coverig temperature, humidity, pressure, accelerometer, gyroscope, and magnetometer
+- LightBlue for iOS
+- nRF Master Control Panel for Android
+
+Chapter 10 - Embedded Application Development
