@@ -239,6 +239,79 @@ Chapter 3 - GAP (Advertising and Connections)
             - Appearance Characteristic - Device Category, Used for Icon
             - Peripheral Preferred Connection Parameters Characteristic - central can read this and then perform connection parameter update
 
+Chapter 4 - GATT (Services and Characteristics)
+    Objective - How to exchange all profile and user data over a BLE connection
+    a. Overview
+        - Roles
+            - Client - sends requests to a server and receives responses, and server intiated updates, from it
+            - Server - recieves requests from a client and sends responses back, and sends server initiated updates
+        - UUIDs - 16, 32, or 128-bit
+        - Attributes - smallest addressable data entity defined by GATT that can contain relevant user data
+        - Handle - Unique 16-bit identifier for each attribute on a particular GATT server
+        - Type - determines the kind of data present in the value of the attribute
+        - Permissions - metadata that specify which ATT operations can be executed on each attribute
+            - Access Permissions - None, Readable, Writable, Readable and Writable
+            - Encryption - None Required, Unauthenticated Encryption Required, Authenticated Encryption Required
+            - Authorization - None Required, Authorization Required
+        - Value - holds the actual data content of the attribute
+    b. Attributes and Data Hierarchy
+        - Service - group of attributes which contains zero or more characteristics, which in turn, can include
+        zero or more descriptors
+        - Definition - whole group of attributes that make the data up
+        - Declaration - single attribute that is placed first in handle order and introduces most of the metadata
+    c. Services - group conceptually related attributes in one common section of the attribute information set
+        - Primary Service - standard type of GATT service that includes relevant, standard functionality
+        - Secondary Service - modifier, has no real meaning on its own, rarely used
+        - Service = Class, complete with instantiation, include definitions to other services
+    d. Characteristics - container for user data
+        - Declaration - provides metdata about the actual user data
+        - Value - full attribute that contains the user data in its value field
+        - Definition - characteristic declaration, balue and any descriptors
+        - Properties - operations and procedures that can be used with this characteristics
+            - Broadcast, Read, Write without Response, Write, Notify, Indicate, Signed Write Command, Queued Write, Writable Auxillaries
+    e. Characteristic Descriptors - provides client with additional information about the characteristic and its value
+        - GATT-Defined - fundamental and widely used types
+        - Profile or Vendor
+        - Extended Properties - valid operations and procedures
+        - Characteristic User Description - user-readable description
+        - Client Characteristic Configuration - acts as a switch, enabling or disabling server-initiated updates
+        - Characteristic Presentation Format Descriptor - format of the characteristic value (boolean, strings, integers, float, buffers)
+    f. Advanced Attribute Concepts
+        - Attribute Caching - handles of the attributes are cached
+        - GATT Attribute Data in Advertising Packets - adding attribute data to advertising packets
+    g. Features - procedures that allow GATT based data exchanges to take place
+        - Exchange MTU - ATT peers let each other know about Maximum Transmission Unit
+        - Service and Characteristic Discovery
+            - Primary Service Discovery
+                - Discover all primary services
+                - Discover primary service by service UUID
+            - Relationship Discovery
+                - Find included services
+            - Characteristic Discovery
+                - Discover all characteristics of a service
+                - Discover characteristics by UUID
+            - Characteristic Descriptor Discovery
+                - Discover all characteristic descriptors
+        - Reading Characteristics and Descriptors
+            - Read characteristic value or descriptor
+            - Read long characteristic value or descriptor
+            - Read characteristic value using characteristic UUID
+            - Read multiple characteristic values
+        - Writing Characteristic and Descriptors
+            - Write characteristic value or descriptor
+            - Write long characteristic value or descriptor
+            - Write without response
+            - Reliable writes
+        - Server Initiated Updates
+            - Characteristic Value Notification
+            - Characteristic Value Indication
+    h. Security
+        - GATT transactions can at of triggers of authentication procedure
+        - Error Codes
+            - Insufficient Authentication and Insufficient Encryption
+    i. GATT Service
+        - Service changed characteristic value
+
 Chapter 5 - Hardware Platforms, and Debugging and Application Tools
     a. Nordic Semiconductors
         - Technical Specifications
