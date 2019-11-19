@@ -14,3 +14,5 @@ To provide reference materials for a variety of topics encountered within Comput
   6. Databases - CouchDB and PostGres
   7. Containers - Docker and Kubernetes
   8. Hacking - White Hat
+  9. Networking - TCP/IP, DNS, DHCP, ARP, IMCP
+  10. Programming Languages - JavaScript, Go, C, C++
