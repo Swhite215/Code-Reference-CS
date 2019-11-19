@@ -18,4 +18,3 @@ apt install exploitdb
 apt install proxychains
 apt install tor
 apt install firefox-esr
-
