@@ -62,7 +62,7 @@ Summarization of Content
         - Page Frames, are fixed-size slots in physical memory, each containing a single virtual memory page
         - Page Table, a per process structure that records where each virtual page of the address is placed in physical memory
             - Virtual Page Number, Physical Frame Number, and Offset
-            - Valid Bit, Protection Bit, Present Bit, Dirty Bit, Reference Bit, 
+            - Valid Bit, Protection Bit, Present Bit, Dirty Bit, Reference Bit
     g. Translation Lookaside Buffer
         - Part of the Memory Management Unit, cache of popular virtual to physical address translations
         - TLB Hit, virtual to address translation exists
@@ -86,21 +86,21 @@ Summarization of Content
         - Thread Control Block - State of Thread
         - Issue: Shared Resource, Uncontrolled Scheduling, Waiting
         - Atomicity: Non-interruptable execution of instruction
-        - Synchornization Primitives: Helps achieve concurrency
+        - Synchronization Primitives: Helps achieve concurrency
         - Vocabulary
             - Critical Section, a piece of code that accesses a shared resource
             - Race Condition, multiple threads of execution enter the critical section at roughly the same time, both attempt to update resource
             - Indeterminate, program consists of one or more race conditions
-            - Mutual Exclusion, gurantees only a single thread ever enters a critical section
+            - Mutual Exclusion, guarantees only a single thread ever enters a critical section
     b. Thread API
         - System Calls: pthread_create(), pthread_join()
     c. Locks
         - Mutual Exlcusion to a critical section
-        - Routines: pthread_mutext_init(), pthread_mutex_lock(), pthread_mutex_unlock(),pthread_mutex_destroy()
+        - Routines: pthread_mutext_init(), pthread_mutex_lock(), pthread_mutex_unlock(), pthread_mutex_destroy()
         - Order: Intialize, Lock, Unlock, Destroy
         - States: Available, Unlocked, Free or Acquired, Locked, Held
         - Meaures: Achieves mutual exclusion, fairness, performance
-        - Early Solution: Lock that Disables Interrupts
+        - Early Solution: Lock that disables interrupts
         - Hardware Support:
             - Test and Set or Atomic Exchange
             - Compare and Swap
@@ -111,12 +111,12 @@ Summarization of Content
     d. Lock-based Concurrent Data Structures
         - Counters (Sloppy), Linked Lists (Hand Over Hand), Queues, Hash Table
     e. Condition Variables
-        - Explicit queu that threads can put themselves on when some state of execution is not as desired Dijkstra's
+        - Explicit queue that threads can put themselves on when some state of execution is not as desired - Dijkstra's
         - System Calls: pthread_cond_t
         - Operation: wait() = sleep, signal() = wake
         - Producer/Consumer Bounded Buffer Problem
             - Producer threads filling buffer that consumer threads consume, buffer is critical section
-            - Mesa and Hoare Semantics - Building condition variable tha will run immediately upon being woken
+            - Mesa and Hoare Semantics - Building condition variable that will run immediately upon being woken
             - Solution: Use while loops and two conditional variables fill and empty
     f. Sempahores
         - Synchronization Primitive
@@ -312,7 +312,7 @@ Summarization of Content
         - Issues
             - Wear Out, Disturbance
         - Flash Translation Layer
-            - Converts read and write requests on logical blocks into low-level read, erase and prgram commands on the physical blocks
+            - Converts read and write requests on logical blocks into low-level read, erase and program commands on the physical blocks
         - Log Structured FTL -> Direct Mapping
         - Garbage Collection - Reclaiming Dead Blocks
         - Hybrid Mapping - Log Blocks Erase and Write
