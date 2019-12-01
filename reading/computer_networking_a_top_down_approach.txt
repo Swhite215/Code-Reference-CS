@@ -23,7 +23,7 @@ Chapter 1 - Computer Networks and the Internet
     b. The Network Edge
             - Hosts - Clients or Servers
             - Access Networks
-                - Network that physically connectes a end system to the first router on a
+                - Network that physically connects an end system to the first router on a
                 path to any other distance end system
             - Home Access - Digital Subscriber Line DSL
                 - Obtained from telephone company
@@ -32,7 +32,7 @@ Chapter 1 - Computer Networks and the Internet
                 - Telephone Line Frequencies - Medium-Speed Upstream Channel 4kHz to 50 kHz
                 - Telephone Line Frequencies - Ordinary Two-Way Channel 0 to 4kHz
             - Home Access - Cable
-                - Cabel Modem -> Coaxial Cable -> Fiber Node -> Fiber Cable -> Cable Modem Terination System
+                - Cabel Modem -> Coaxial Cable -> Fiber Node -> Fiber Cable -> Cable Modem Termination System
             - Home Access - Fiber to the Home
                 - Optical Network Terminator -> Customer Fiber -> CO Fiber -> Optical Line Terminator
             - Home Access - Satellite and Dial-Up Access
@@ -65,7 +65,7 @@ Chapter 1 - Computer Networks and the Internet
             - Network Structure 4 - Points of Presence PoP, Multi-Homing, Peering, and Internet Exchange Points IXPs
             - Network Structure 5 - Content-Provider Networks  - Like Google
     d. Delay, Loss, and Throughput in Packet-Switched Networks
-        - Nodal Processig Delay - Time required to examing packets headers and determing where to direct the packet
+        - Nodal Processing Delay - Time required to examine packets headers and determe where to direct the packet
         - Queuing Delay - Time till entire packet is in output buffer
         - Transmission Delay - Time required to push all of the packet's bits into the link
         - Propogation Delay - Time required to propagate from beginning of link to router
@@ -77,11 +77,11 @@ Chapter 1 - Computer Networks and the Internet
         - Layered Architecture - Protocol Layering
         - Application Layer - Network applications and their application-layer protocols reside
         - Transport Layer - Transports application-layer messages between application endpoints
-        - Network Layer - Moving datagrams from one host to another TCP/UDP
+        - Network Layer - Moving datagrams from one host to another
         - Link Layer - Routes a datagram through a series of routers between the source and destination
         - Physical Layer - Move bits witin the frame from one node to the next
         - OSI - Physical, Data Link, Network, Transport, Session, Presentation, Application
-        - Encapsuation - Up and Down Encapuslation and Decapsulation
+        - Encapsulation - Up and Down Encapuslation and Decapsulation
     f. Networks Under Attack
         - Malware - Trojans, Worms, Virus, Botnet, DoS, DDoS, Packet Sniffing, IP Spoofing
     g. History of Computer Networking and the Internet
@@ -117,7 +117,7 @@ Chapter 2 - Application Layer
                 - Bandwidth-Sensitive Applications - applications that have throughput requirements
                 - Elastic Applications - can make use of as much or as little throuhgput as happens to be available
             - Timing Guarantees
-            - Security - Encryptiong and Decryption of Data
+            - Security - Encryption and Decryption of Data
         - Transport Services Provided by the Internet
             - TCP Services
                 - Connection-Oriented Service
@@ -194,7 +194,7 @@ Chapter 2 - Application Layer
             - Type = A - Name = Hostname, Value = IP Address
             - Type = NS - Name = Domain, Value = Hostname of Authoritative DNS Server
             - Type = CNAME - Name = Domain, Value = Canonical Hostname for Alias
-            - Type = MX - Name = DOmain, Value = Canonical Name of Mail Server for Alias
+            - Type = MX - Name = Domain, Value = Canonical Name of Mail Server for Alias
         - DNS Messages
             - Query and Reply Messages
             - Header (Identification, Number of Question, Number of Authority RRs), Questions, Answers, Authority, Additional Information
@@ -244,7 +244,7 @@ Chapter 3 - Transport Layer
             - Finer application-level control over what data is sent and when
             - No connection establishment
             - No connection state
-            - Smal packet header overhead
+            - Small packet header overhead
         - UDP Segment Structure
             - Source Port, Destination Port, Length, Checksum, Application Data
             - Error checking but no recovery
@@ -301,10 +301,10 @@ Chapter 3 - Transport Layer
             - Netrwork-Assisted Congestion Control
     g. TCP Congestion Control
         - Senders rate is congestion window / RTT bytes/sec
-        - Adjust congestion window to adjust the rate at whcih data is sent into the connection
+        - Adjust congestion window to adjust the rate at which data is sent into the connection
         - How do TCP senders detemine their sending rates such that they dont congest the network but at the same time make use of all the available bandwidth?
             - A lost segment implies congestion, and hence, the TCP sender's rate should be decreased
-            - An ACK indicates that the netork is delivering the sender's segments to the receiver, and hence, the sender's rate can be increased
+            - An ACK indicates that the network is delivering the sender's segments to the receiver, and hence, the sender's rate can be increased
             - Bandwidth probing cycle of checking
         - TCP Congestion-Control Algorithm
             - Slow-Start - congestion window increases by 1 MSS every time a transmitted segment is first ACK
@@ -366,7 +366,7 @@ Chapter 4 - Network Layer: Data Plane
             - Dotted-Decimal Notation - xxx.xxx.xxx.xxx
             - Subnet - multiple interfaces interconnected to a single router
             - Subnet Mask - value indicating number of bits that define the subnet address xxx.xxx.xxx.xxx/mask
-            - Classless Interdomain Routing - internet's address assigment strategy
+            - Classless Interdomain Routing - internet's address assignment strategy
             - Classful Addressing - Class A, B, and C
             - Address Aggregration - Using a single prefix to advertise multiple networks
         - Dynamic Host Configuration Protocol
@@ -437,7 +437,7 @@ Chapter 5 - The Network Layer: Control Plane
             - BGP Attributes - prefix with Attributes
             - AS-PATH - list of ASs through which the advertisement has passed
             - NEXT-HOP - IP address of the router interace that begins the AS-PATH
-        - Hot Potato Routing - route chosen is the route with the least cost to te NEXT-HOP router
+        - Hot Potato Routing - route chosen is the route with the least cost to the NEXT-HOP router
         - Route-Selection Algorithm
             - Route assigned a local preference value as one of its attributes, routes with highest local preference values are selected
             - From remaining routes, route with the shortest AS-PATH is selected
@@ -491,7 +491,7 @@ Chapter 5 - The Network Layer: Control Plane
             - 12 - 0 - IP header bad
     g. Network Management and SNMP
         - Saydam on "What is network management?"
-            - Network management includes the deployment integration, and coordination of the hardware, software,
+            - Network management includes the deployment, integration, and coordination of the hardware, software,
             and human elements to monitor, test, poll, configure, analyze, evaluate, and control the network and 
             element resources to meet the real-time operation performance and quality of service requirements at 
             a reasonable cost
@@ -511,7 +511,7 @@ Chapter 6 - The Link Layer and LANS
     a. Introduction to the Link Layer
         - Vocabulary
             - Node - any device that runs a link layer protocol
-            - Links - communicataion channels that connect adjacent nodes along the communication path
+            - Links - communication channels that connect adjacent nodes along the communication path
             - Link-Layer Frame - datagram encapsulated to be sent over a given link
         - Services Provided by the Link Layer
             - Framing - encapsulation of network-layer datagram within a link-layer frame before transmission
@@ -589,7 +589,7 @@ Chapter 6 - The Link Layer and LANS
             - Properties of Link-Layer Switching
                 - Elimination of Collisions, Heterogenous Links, Management
         - Virtual Local Area Networks
-            - Allows multiple virtual local area noetworks to be defined over a single physical local area network infrastructure
+            - Allows multiple virtual local area networks to be defined over a single physical local area network infrastructure
             - VLAN Trunking - special port on each switch is configured as a trunk port to interconnect the two VLAN switches
             - VLAN Tag - identity of the VLAN to which the frame belongs
     e. Link Virtualization: A Network as a Link Layer
@@ -603,7 +603,7 @@ Chapter 6 - The Link Layer and LANS
         - Hosts/Blades - servers serving content
         - Top of Rack Switch - interconnects the hosts in the rack with each other and with other switches in the data center
         - Border Routers - handle flows between external clients and internal hosts
-        - Load Balancing - distribute requests to the hosts, balancing the load across the hsots as a function of their current load
+        - Load Balancing - distribute requests to the hosts, balancing the load across the hosts as a function of their current load
         - Hierarchial Structure - Internet - Border Router - Access Routers - Load Balancers/Tier-1 Switches - Tier-2 Switches - TOR Switches - Server
         - Trends in Data Center Networking - Fully Connected Topology
 
@@ -833,7 +833,7 @@ Chapter 8 - Security in Computer Networks
             - Bob sends the EMS to Alice, who decrypts it with her private key
             - Now Bob and Alice will use the Master Secret for the SSL session
         - Key Derivation
-            - Alice and Bob us the MS to generate
+            - Alice and Bob use the MS to generate
                 - Session Encryption key for data sent from Bob to Alice
                 - Session Encryption key for data sent from Alice to Bob
                 - Session MAC key for data sent from Bob to Alice
@@ -938,7 +938,7 @@ Chapter 9 - Multimedia Networking
                 - Internet Telephony or VoIP
                 - Highly Delay Sensitive but Loss-Tolerant
             - Streaming Stored Audio and Video
-                - Live braodcast through CDNs
+                - Live broadcast through CDNs
     b. Streaming Stored Video
         - UDP Streaming
             - Server transmits video at a rate that matches the client's video consumption rate
@@ -951,7 +951,7 @@ Chapter 9 - Multimedia Networking
             - Client Application Buffer and TCP Buffers - Server -> TCP Send Buffer -> TCP Receive Buffer -> TCP Application Buffer
             - Early Termination and Repositioning - HTTP Byte-Range Header in the HTTP Get request message
         - Adaptive HTTP Streaming
-            - Dynamic Adaptive Streaming over HTTP DASH - uses multile versions of the video compressed at a different rate 
+            - Dynamic Adaptive Streaming over HTTP DASH - uses multiple versions of the video compressed at a different rate 
         - Client Side Application Buffering
             - Absorb variations in server-to-client delay and covers brief bandwidth loss
     c. Voice-over-IP
@@ -1006,7 +1006,7 @@ Chapter 9 - Multimedia Networking
             - Insight 4: If sufficient resource will not always be available and QoS is guaranteed, a call admission process is needed for access to network
             - The Leaky Bucket
                 - Policing Criteria: Average Rate, Peak Rate, and Burst Size
-            - Diffserv - Differentiated Service field is used in combination with Per-Hop Beahvior PHB to provide different externally observable forwarding behaviors
+            - Diffserv - Differentiated Service field is used in combination with Per-Hop Behavior PHB to provide different externally observable forwarding behaviors
         - Pre-Connection Quality-of-Service Guarantees
             - Goal - guarantee that a call will have the resources needed to meet its desire QoS
             - Resource Reservation - ability to explicitly allocate resources to a call
