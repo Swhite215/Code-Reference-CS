@@ -1,0 +1,47 @@
+Fundamentals of Microsoft Azure
+
+    1. Module 1: Cloud Concepts - Principles of Cloud Computing
+        a. What is cloud computing?
+            - Pay for what you use, rental of computing resources on another company's computers
+            - Resources - compute power, storage, networking, analytics
+            - Compute Power
+                - Virtual Machines, Containers and Serverless Computing
+        b. Benefits of Cloud Computing
+            - Cost-Effective, Scalable, Elastic, Current, Reliable, Global, Secure
+        c. Compliance Terms and Requirements
+            - Criminal Justice Information Services
+            - Cloud Security Alliance STAR Certification
+            - General Data Protection Regulation
+            - EU Model Clauses
+            - Health Insurance Portability and Accountability Act
+            - International Organization for Standardization
+            - International Electrotechnical Commission
+            - Multi-Tier Cloud Security
+            - Service Organization Controls
+            - National Institute of Standards and Technology Cybersecurity Framework
+            - UK Government G-Cloud
+        d. Economies of Scale
+            - Abilitry to do things more efficiently or at a lower-cost per unit when operating at a larger scale
+        e. Capital Expenditure CapEx vs. Operational Expenditure OpEx
+            - Capital Expenditure - spending of money on physical infrastructure up front, and then deducting that 
+            expense from your tax bill over time. Upfront cost with a value that reduces over time.
+            - Operating Expenditure - spending money on services or products now and being billed for them now. You
+            can deduct this expense from your tax bill in the same year.
+            - CapEx Costs - Server, Storage, Network, Backup and Archive, Continuity, Disaster Recovery, Infrastructure, Personnel
+            - OpEx Costs - Software and Features, Scaling based on Demand, User/Org Billing
+        f. Cloud Deployment Models
+            - Defines - where your data is stored and how customers interact with it
+            - Public - all cloud resources are owned and managed by cloud provider, access delievered over internet
+                - Advantages - Scalability, Agility, Pay as You Go, Responsibility, Minimumn Knowledge
+                - Disadvantages - unment security, legal, policy, business requirements 
+            - Private - computing resource used by one organization, on-premise or cloud
+                - Advantages - Configuration, Security, and Policy Control
+                - Disadvantages - CapEx, Limited Agility, Requires IT Skills
+            - Hybrid - some applications and data on private infrastructure and some on cloud
+                - Advantages - Version Control, Flexibility, Economies of Scale, Use Own Equipemnt
+                - Disadvantages - Expensive, Complicated
+        g. Cloud Services
+            - Infrastructure as a Service IaaS - server in the cloud you have complete control over
+            - Platform as a Service SaaS - support complete application lifecycle
+            - Software as a Service PaaS - web based alternate software that is frequently subscription based
+                - Office 365, and Skype 
