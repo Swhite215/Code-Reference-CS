@@ -15,4 +15,4 @@ To provide reference materials for a variety of topics encountered within Comput
   7. Containers - Docker and Kubernetes
   8. Hacking - White Hat, Pen Testing: OSSTMM, PTES, NIST 800-115, ISSAF and OWASP
   9. Networking - TCP/IP, DNS, DHCP, ARP, IMCP
-  10. Programming Languages - JavaScript, Go, C, C++
+  10. Programming Languages - JavaScript/Typescript, Go, C, C++
