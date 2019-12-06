@@ -44,4 +44,48 @@ Fundamentals of Microsoft Azure
             - Infrastructure as a Service IaaS - server in the cloud you have complete control over
             - Platform as a Service SaaS - support complete application lifecycle
             - Software as a Service PaaS - web based alternate software that is frequently subscription based
-                - Office 365, and Skype 
+                - Office 365, and Skype
+    
+    2. Module 2: Core Cloud Services - Introduction to Azure
+        a. What is Azure?
+            - Microsoft's Cloud Computing Platform
+        b. Tour of Azure Services
+            - Computer Services - VMs, Containers, and Serverless Computing
+                - VMs, VM Scale Sets, Kubernetes, Service Fabric, Batch, Container, Functions
+            - Cloud Storage - Disks, File Shares, Databases
+                - Blog, File, Queue, and Table
+                - Databases
+                    - Cosmos, SQL, MySQL, PostgreSQL, SQL Server, SQL Data Warehouse, Migration, Redis, MariaDB
+            - Networking - VPN to On-Premise
+                - Virtual Network, Load Balancer, Application Gateway, VPN Gateway, DNS, CDN, DDoS Protection
+                - Traffic Manager, ExpressRoute, Network Watcher, Firewall, Virtual WAN
+            - App Hosting - Host Application on Windows or Linux
+                - App Service, Notification Hubs, APIs, Cognitive Search, SignalR
+            - Artificial Intelligence - Models
+                - ML Service, ML Studio, Vision, Speech, Knowledge Mapping, Bing Search, NLP
+            - Internet of Things - Sensors, Devices, and Hubs
+                - IoT Central, IoT Hub, IoT Edge
+            - Integration - Logic Apps and Service Bus
+                - DevOps and DevTest Labs
+            - Security - Integrated, Hardened, Monitoring
+        c. Deploy a Website Hosted in App Service
+            - Create a Resource Group
+            - Search Azure Marketplace
+            - Select Service
+            - Select Create
+            - Configure Deployment
+            - Setup App Service Plan
+            - Select Create
+        d. Configure an App Service
+            - Scale Up Your App Service
+                - Settings -> Scale Up or Scale Out -> Dev/Test, Production, Isolated
+        e. Access an App Service using Azure Cloud Shell
+            - What is Azure Cloud Shell?
+                - Browser based command line experience for managing and developing Azure resources
+                - Access using Cloud Shell Icon
+            - Commands
+                - List Azure Subscriptions: az account list --output table
+                - List Resource Groups in Subscription: az group list --output table
+                - List Resources in Resource Group: az resource list --resource-group resourceGroup --resource-type Microsoft.Web/Sites
+                - Stop WebApp: az webapp stop --resource-group resourceGroup --name webAppName
+                - Start WebApp: az webapp start --resource-group resourceGroup --name webAppName
