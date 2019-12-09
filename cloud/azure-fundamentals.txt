@@ -89,3 +89,38 @@ Fundamentals of Microsoft Azure
                 - List Resources in Resource Group: az resource list --resource-group resourceGroup --resource-type Microsoft.Web/Sites
                 - Stop WebApp: az webapp stop --resource-group resourceGroup --name webAppName
                 - Start WebApp: az webapp start --resource-group resourceGroup --name webAppName
+    
+    3. Module 3: Core Cloud Services - Azure Architecture and Service Guarantees
+        a. Understand Datacenters and Regions in Azure
+            - What is a region?
+                - Geographical area containing at least one, but potentially multiple, data centers that are networked together
+            - Special Azure Regions
+                - US DOD Central, US Gov. Virginia, US Gov Iowa, China East, China North
+        b. Understand Geographies in Azure
+            - Geography - discrete market typically containing two or more regions that preserve data residency and compliance boundaries
+            - Data Residency - physical or geographic locaiton of an organization's data or information. Defines the legal or regulatory
+            requirements impost on data based on the country or region in which it resides
+        c. Understand Availability Zones in Azure
+            - What is an availability zone?
+                - Physically separate datacenters within an Azure region
+                - Made up of one or more datacenters equipped with independent power, cooling, and networking
+                - Supported Regions: Central, East, West US, West Europe, France Central, North Europe, Southeast Asia
+                - Used by VMs, managd disks, load balancers, and SQL databases
+        d. Understand Region Pairs in Azure
+            - What is a region pair?
+                - Region paired with another region with the same geography at least 300 miles away
+        e. Understand Service-Level Agreements for Azure
+            - What is an SLA?
+                - Microsoft's commitment to providing Azure  customers with specific performance standards
+                - Performance Targets
+                - Uptime and Connectivity Guarantees - 99.9 Three 9s to 99.999 Five 9s
+                - Service Credits - discounts and compensation
+        f. Compose SLAs Across Services
+            - What is a composite SLA?
+                - Combining SLAs across different service offersing
+            - Calculating Downtime
+                - Web App 99.95% * SQL Database 99.99%
+        g. Improve Your App Reliability in Azure
+            - Understand Your App Requirements
+            - Resiliency
+            - Cost and Complexity vs. High Availability
