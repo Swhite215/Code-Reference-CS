@@ -124,3 +124,21 @@ Fundamentals of Microsoft Azure
             - Understand Your App Requirements
             - Resiliency
             - Cost and Complexity vs. High Availability
+    
+    4. Module 4: Sign Up for Azure
+        a. Free Account
+            - 12-months of Access, $200 Credit for 30 Days, > 25 Free Products
+        b. Purchasing Options
+            - Azure.com, Microsoft Representative, Microsoft Partner
+        c. Create an Azure Account
+            - azure.microsoft.com/free
+        d. Understand Azure Billing
+            - Azure Subscription
+                - Monthly Invoice
+                - Subscriptions for Environment, Limits, Organizational Structures, or Billing Partitions
+                - Invoice Section - line item on the invoice that shows the charges incurred that month
+                - Billing Profile - independent monthly invoice and payment method
+        e. Azure Support Options
+            - Free - documentation, community support, demos, quickstart center, service health, advisor
+            - Support Plans - Developer, Standard, Professional Direct
+            - Community Support - Azure Knowledge Center, Microsoft Developer Network, Stack Overflow, Server Fault, Azure Feedback, Twitter
