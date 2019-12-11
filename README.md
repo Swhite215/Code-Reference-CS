@@ -10,6 +10,7 @@ To provide reference materials for a variety of topics encountered within Comput
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Hardware](https://github.com/Swhite215/Code-Reference-Hardware)
   2. Cloud Infrastructure - Microsoft Azure 
   3. Operating System - Linux
+      ###### &nbsp;&nbsp;&nbsp;&nbsp; [Linux](https://github.com/Swhite215/Code-Reference-Linux)
   4. Front-End Frameworks - Angular and React
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [MEAN](https://github.com/Swhite215/Code-Reference-MEAN)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [MERN](https://github.com/Swhite215/Code-Reference-MERN)
