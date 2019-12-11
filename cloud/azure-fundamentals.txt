@@ -142,3 +142,27 @@ Fundamentals of Microsoft Azure
             - Free - documentation, community support, demos, quickstart center, service health, advisor
             - Support Plans - Developer, Standard, Professional Direct
             - Community Support - Azure Knowledge Center, Microsoft Developer Network, Stack Overflow, Server Fault, Azure Feedback, Twitter
+
+    5. Module 5: Core Cloud Services - Manage Service with the Azure Portal
+        a. Azure Management Options
+            - Azure Portal
+                - Public website accessible with a browser
+            - Azure Powershell
+                - Module installable for Windows PowerShell or PowerShell Core (Windows, Linux, MacOS)
+            - Azure CLI
+                - Cross-platform command-line program
+            - Azure Cloud Shell
+                - Interactive, authenticated, browser-accessible shell
+            - Azure Mobile App
+                - Access, manage, and monitor all your Azure accounts and resources from your iOS or Android phone or table
+        b. Navigate the Portal
+            - Azure Portal Layout
+                - Resource Panel  - lists the main resource types
+                - Pane - slide-out panel containing the UI for a single level in a navigation sequence
+            - Azure Marketplace - find, try, purchase, and provision applications and services from hundreds of leading service providers
+            - Configuring Settings in the Azure Portal
+                - Notifications, Cloud Shell, Settings, Feedback Pane, Help Pane
+                - Azure Advisor - recommendations on high availability, security, performance, and cost
+            - Azure Portal Dashboards
+                - Customizable collection of UI tiles displayed in the Azure portal
+                - Design a Dashboard, Share with Resource Group, Manage Users
