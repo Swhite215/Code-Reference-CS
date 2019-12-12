@@ -166,3 +166,34 @@ Fundamentals of Microsoft Azure
             - Azure Portal Dashboards
                 - Customizable collection of UI tiles displayed in the Azure portal
                 - Design a Dashboard, Share with Resource Group, Manage Users
+    
+    6. Module 6: Core Cloud Services - Azure Compute Options
+        a. Essential Azure Compute Concepts
+            - What is Azure Compute?
+                - On-demand computing service for running cloud-based applications.
+                - Virtual Machines, Containers, Azure App Service, Serverless Computing
+                - Virtual Machines - software emulations of physical computers. Processor, memory, storage, and networking resources
+                - Containers - virtualization environment for running applications
+                - Azure App Service - platform-as-a-service PaaS
+                - Serverless Computing - cloud-hosted, execution environment that runs your code but completely abstracts the underlying host environment
+            - Exlore Azure Virtual Machines
+                - Infrastructure-as-a-Service
+                - Good For - total control of the operating system, ability to run custom software, custom hosting configurations
+                - Use Cases - testing and development, applications in the cloud, extending datacenter, disaster recovery
+                - Scaling - Availability Sets, Virual Machine Scale Sets, Azure Batch
+                    - Availability Sets - logical grouping of two or more VMs that help keep your application available
+                    - Virtual Machine Scalee Sets - Manage, configure, and update a large number of VMs in minutes
+                    - Azure Batch - large-scale job scheduling and compute management
+            - Explore Containers in Azure
+                - Azure Container Instance ACI - Platform-as-a-Service PaaS
+                - Azure Kubernetes Service AKS - Orchestration Service
+            - Explore Azure App Service
+                - Web Apps - Web, API, WebJobs, Mobile
+            - Explore Serverless Computing in Azure
+                - Azure manages server infrastructure and allocation/deallocation of resources based on demand
+                - Abstraction of Servers, Event-Drive Scale, Micro-Billing
+                - Azure Functions - code and no underlying platform or infrastructure
+                    - Stateless - same behavior
+                    - Durable - context is passed through the function
+                - Azure Logic Apps - Execute workflows designed to automate business scenarios
+                    - Trigger based on event -> logic app instance is created -> actions occur
