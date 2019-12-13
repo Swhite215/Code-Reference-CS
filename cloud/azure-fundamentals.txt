@@ -197,3 +197,32 @@ Fundamentals of Microsoft Azure
                     - Durable - context is passed through the function
                 - Azure Logic Apps - Execute workflows designed to automate business scenarios
                     - Trigger based on event -> logic app instance is created -> actions occur
+    
+    7. Module 7: Core Cloud Services - Azure Data Storage Options
+        a. Benefits of Using Azure to Store Data
+            - Cloud-Based, Secure, and Scalable
+            - Automated Backup and Recovery - mitigates the risk of losing your data
+            - Replication Across the Globe - copies data to protect against unplanned or planned events
+            - Support for Data Analytics - can perform analytics on data consumption
+            - Encryption Capabilities - highly secure encrypted data
+            - Multiple Data Types - video, text, binary, relational, and NoSQL
+            - Data Storage in Virtual Disks - up to 32 TB of data in virtual disks
+            - Storage Tiers - tiers to prioritize access to data based on frequency
+            - Types of Data - structured, semi-structured, unstructured
+        b. How Azure Data Storage Can Meet Your Business Storage Needs
+            - Azure SQL Database - Database-as-a-Service
+            - Azure Cosmos DB - gloablly distributed database service, schema less
+            - Azure Blob Storage - unstructured, scalable, large
+            - Azure Data Lake Storage - repository to store structured and unstructured data
+            - Azure Files - fully managed file shared in the cloud
+            - Azure Queue - store large number of messages that can be accessed anywhere
+            - Disk Storage - disks for virtual machines, applications and other services
+            - Storage Tiers
+                - Hot - optimized for storing data that is accessed frequently
+                - Cool - optimized for data that are infrequently accessed and stored for at least 30 days
+                - Archive - data that is rarely accessed and stored for at least 180 days
+            - Encryption and Replication
+                - Azure Storage Service Encryption (SSE) - encrypts and decrypts
+                - Client-Side Encryption - stores data in encrypted state at rest, decrypted on retrieval
+        c. Comparison Between Azure Data Storage and On-Premise Storage
+            - Cost-Effectiveness, Reliability, Storage Types, Agility
