@@ -32,3 +32,90 @@ Chapter 1 - History
         - X/Open COmpany and The Open Group
         - SUSv3 and POSIX.1-2001
         - SUSv4 and POSIX.1-2008
+
+Chapter 2 - Fundamental Concepts
+    a. Core Operating System: The Kernel
+        - Kernel - central software that manages and allocates computer resources i.e. CPU, RAM, and Devices
+        - Tasks: Process Scheduling, Memory Management, Provision of File System, Processes Management, Device Access, Networking, System API
+        - Modes: Kernel vs. User
+    b. Shell
+        - Versions: Bourne (sh), C (csh), Korn (ksh), Bourne Again (bash)
+        - Capabilities: variables, loops, conditional statements, functions, I/O
+    c. Users and Groups
+        - Users - Group ID, Home Directory, Login Shell
+        - Groups - Group Name, Group ID, User List
+        - Superuser - ID = 0, Name = root
+    d. Single Directory
+        - / -> bin,boot,etc,home,usr
+        - File Types - link, directory, devices, pipes, sockets, directories
+        - Directory - special file whose contents take the form of a table of filenames coupled with refernces to files
+        - Symbolic Links - contains name of another file
+        - Filenames - 255 char portable filename character set
+        - Pathhnames - string of / separated directories ending in a file or directory
+    e. File I/O Model
+        - System Calls - open(), read(), writre(), close()
+        - Descriptors - 0 is standard input, 1 is standard output, and 2 is standard error
+        - stdio - fopen(), fclose(), scan(), printf(), fgets(), fputs()
+    f. Programs
+        - Source-Code - human-readable text
+        - Binary - machine-language instructions that a computer can understand
+        - Filter - program reads from stdin, performs a transformation, and writes transformed data to stdout
+        - CLI Arguments
+            - int main(int argc, char *argv[])
+            - arcg is total number of arguments
+            - argv is array of individual arguments
+    g. Processes - instance of an executing program
+        - Segments
+            - Text - instruction of the program
+            - Data - static variables used by the program
+            - Heap - area from which programs can dynamically allocate extra memory
+            - Stack - piece of memory that grows and shrinks as functions are called and returned
+        - Create - parent process uses fork() to create child process that inherits parent's data, stack, and heap
+        - Process Identifier PID and Parent Process Identifier PPID
+        - Termination - _exit() or kill w/ signal
+        - IDs
+            - Process Real User ID and Real Group ID
+            - Effective User ID and Effective Group ID
+            - Supplementary Group IDs
+        - Privilege Process - effective user id is 0 and bypasses permission restrictions
+        - Init - parent of all processes, /sbin/init, creates and monitors a range of processes required by a running system
+        - Daemon - special purpose process that is long-lived and runs in the background
+        - Environment List - environment variables used to communicate information to processes
+        - Resource Limits - setrlimit() to set soft limit and hard limit
+    h. Memory Mappings
+        - File Mapping - maps a region of a file into the calling process's virtual memory
+        - Anonymous Mapping - initialized to 0
+    i. Static and Shared Libraries
+        - Static - structured bundle of compiled object modules
+        - Shared - grabbed by dynamic linker and loaded into memory when needed by program
+    j. Interprocess Communication
+        - Mechanisms
+            - Signals - indicate an event has occurred, "software interrupts"
+            - Pipes - transfers data between processes
+            - Sockets - transfer data from one process to another, either on same host or different hosts connected by a network
+            - File Locking - allows a process to lock regions of a file in order to prevent other processes from reading or updating
+            - Message Queues - used to exchange messages (packets of data) between processes
+            - Semaphores - used to synchronize the actions of processes
+            - Shared Memory - allows two or more processes to share a piece of memory
+    k. Threads
+        - Processes that share the same virtual memory as well as a range of other attributes
+    l. Sessions, Controlling Terminals, and Controlling Processes
+        - Session - collection of process groups
+        - Controlling Terminal - established when session leader process first opens a terminal device
+        - Foreground Process - may read input from terminal and send output to it
+        - Background Process
+    m. Pseudoterminals
+        - Pair of connected virtual devices, known as master and slave with an IPC channel allowing two way data transfer
+        - Slave provides an interface that behaves like a terminal, allowing anotrher porogram to drive the terminal-oriented program connected to slave device
+        - Examples Telnet and SSH
+    n. Date and Time
+        - Real Time - calendar time since Midnight on 01/01/1970
+        - Process Time - total amount of CPU time that a process has used since starting
+            - System CPU Time - time spent executing code in kernel mode
+            - User CPU Time - time spent executing code in user mode
+        - Time command - real, system CPU, and user CPU time
+    o. Client-Server Architecture
+        - Client - asks the server to carry out some service by sending it a request message
+        - Server - examines client's request, performs appropriate actions, and then sends a response message back to client
+    p. Realtime
+        - Extensions - asynchronous I/O, shared memory, memory-mapped files, memory locking, realtime clocks and timers, scheduling policies, realtime signals, message queues and semaphores
