@@ -226,3 +226,22 @@ Fundamentals of Microsoft Azure
                 - Client-Side Encryption - stores data in encrypted state at rest, decrypted on retrieval
         c. Comparison Between Azure Data Storage and On-Premise Storage
             - Cost-Effectiveness, Reliability, Storage Types, Agility
+    
+    8. Module 8: Core Cloud Services - Azure Networking Options
+        a. Deploy Your Site to Azure
+            - N-Tier Architecture
+            - Three Tier Ex. Web -> Application -> Data
+        b. Scale with Azure Load Balancer
+            - Availability - Five 9s, how long your service is up and running without interruption
+            - Resiliency - systems ability to stay operational during abnormal conditions
+            - Load Balancer - distributes traffic evenly among each system in a pool
+            - Azure Application Gateway - load balancer designed for web applications
+                - Cookie Affinity, SSL Termination, Web Application Firewall, URL Rule-Based Routes, Rewrite HTTP Headers
+            - Content Delivery Network - distributed network of servers that can efficiently deliver web content to users
+            - DNS - map user-friendly names to IP addresses
+        c. Reduce Latency with Azure Traffic Manager
+            - Latency - time it dates for data to travel over the network
+            - Bandwidth - amount of data that can fit on the connection
+            - Scale to Different Azure Regions
+            - Traffic Manager - uses DNS server that is closest to the user to direct user traffic to a globally distributed endpoint
+            - Load Balancer - traffic within the same region, Traffic Manager - DNS level directs client to preferred endpoint
