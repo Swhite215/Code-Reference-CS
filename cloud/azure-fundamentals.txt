@@ -245,3 +245,88 @@ Fundamentals of Microsoft Azure
             - Scale to Different Azure Regions
             - Traffic Manager - uses DNS server that is closest to the user to direct user traffic to a globally distributed endpoint
             - Load Balancer - traffic within the same region, Traffic Manager - DNS level directs client to preferred endpoint
+    
+    9. Module 9: Security, Responsibility, and Trust in Azure
+        a. Cloud Security is a Shared Responsibility
+            - Types: Physical and Digital
+                - Physical - Walls, Cameras, Gates, Security Personnel
+                - Digital - Authentication, Authorization, TLS/SSL, Two-Factor Authentication, Encryption, Monitoring, Firewalls
+            - Security Threats
+            - Customer to Azure Security Responsibility
+                - On-Premise - IaaS - PaaS - SaaS
+            - Responsibility - Data, Endpoints, Accounts, Access Management
+            - Defense in Depth - employ a series of mechanisms to slow the advance of an attack
+                - Data = Core, Application, Compute, Networking, Perimeter, Identity and Access, Physical Security
+        b. Tips from Azure Security Center
+            - Monitoring service that provides threat protection across all of your services both in Azure and on-premise
+            - Security Recommendations, Automatic Security to New Services, Monitoring, Block Malware, Analyze and Identify Potential Inbound Attacks, Just-In-Time Access Control
+            - Tiers
+                - Free - available as part of your Azure subscription
+                - Standard - full suite of security-related services including monitoring, threat detection, just-in-time access and more
+            - Usage Scenarios
+                - Security Center for Incident Response - Detect, Assess, Diagnose, Stabilize, Close
+        c. Identity and Access
+            - Authentication and Authorization
+                - Authentication - process of establishing identity of a person or service looking to access a resource
+                - Authorization - process of establishing what level of access an authenticated person or service has
+            - Azure Active Directory
+                - Cloud Based Identity Service
+                - Multi-Factor Authentication, Single-Sign-On, Application Management, Business to Business, Device Management
+                - Providing Identities to Services
+                    - Service Principals - identity is a thing to be authenticate and a principal is an identity acting with certain roles or claims
+                    - Managed Identity - account on organization's Active Directory
+                - Role Based Access Control
+                    - Sets of permissions that users can be granted, identities normally mapped to roles
+                - Privileged Identity Management
+                    - Paid offering that provides oversight of role assignments, self-service, and just-in-time role activation
+        d. Encryption
+            - Process of making data unreadable and unusable to unauthorized viewers
+            - Symmetric - same key to encrypt and decrypt that is shared between parties
+            - Asymmetric - public and private key pair
+            - Encryption At Rest - data that has been stored on a physical medium
+            - Encryption in Transit - data actively moving from one location to another
+            - Azure Options
+                - Encrypt Raw Storage - Azure Storage Service Encryption
+                - Encrypt Virtual Machine Disks - Azure Disk Encryption
+                - Encrypt Databases - Transparent Data Encryption
+                - Encrypt Secrets - Azure Key Vault
+        e. Overview of Azure Certificates
+            - Types: Service and Management
+            - Service Certificates - used for cloud services
+            - Management Certificates - used for authenticating with the management API
+        f. Protect Your Network
+            - Internet Protection - limit and eliminate attacks from the itnernet, allow only necessary inbound and outbound communication
+            - Firewall - service that grants server access based on originating IP address of each request
+            - Azure Firewall - managed, cloud based network security service that protects your Azure Virtual Network resources
+            - Azure Application Gateway - load balancer that includes a Web Application Firewall that provides protection from common, known vulnerabilities in websites
+            - Network Virtual Appliances - ideal option for non-HTTP services or advanced configurations
+            - Stopping Distributed Denial of Service DDOS
+                - Azure DDos Protection w/ design best practices includes Basic or Standard
+                - Volumetric Attacks - goal is to flood the network layer with a substantial amount of seemingly legitimate traffic
+                - Protocol Attacks - attacks render a target inaccessible by exploiting a weakness in layer 3 and layer 4 of protocol stack
+                - Resource (Application) Layer Attacks - target web application packets to disrupt the transmission of data between hosts
+            - Controlling Traffic Inside Virtual Network
+                -  Network Security Groups- allow you to filter network traffic to and from Azure resources in an Azure virtual network
+                -  Network Integration - Virtual Private Networks, Azure ExpressRoute
+        g. Protect Your Shared Documents
+            - Azure Informatiom Protection - cloud-based solution that helps organizations classify and optionally protect documents and emails by applying labels
+            - Enables
+                - Analyzing data flows to gain insight, detecting risky behavior, tracking document access, preventing data leakage or misuse
+        h. Azure Advanced Threat Protection
+            - Azure ATP - cloud-based security solution that identifies, detects, and helps you investigate advanced threats, compromised identities, and malicious insider actions
+            - Azure ATP Portal - portal to monitor sensors and respond to suspicious activity
+            - Azure ATP Sensor - installed directly on domain controllers to monitor traffic
+            - Azure ATP Cloud Service - connected to intelligent security graph
+        i. Understand Security Considerations for Application Lifecycle Management Solutions
+            - Microsoft Security Development Lifecycle
+                - Provide Training
+                - Define Security Requirements
+                - Define Metrics and Compliance Reporting
+                - Perform Thread Modeling
+                - Establish Design Requirements
+                - Define and Use Cryptography Standards
+                - Manage Security Risks from Using Third-Party Components
+                - Use Approved Tools
+                - Perform Static and Dynamic Analysis Security Testing
+                - Perform Penetration Testing
+                - Establish Standard Incident Response Process
