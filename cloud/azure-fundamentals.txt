@@ -330,3 +330,64 @@ Fundamentals of Microsoft Azure
                 - Perform Static and Dynamic Analysis Security Testing
                 - Perform Penetration Testing
                 - Establish Standard Incident Response Process
+    
+    10. Module 10: Apply and Monitor Infrastructure Standards with Azure Policy
+        a. When Governance is Needed
+            - Multiple Engineering Teams working in Azure
+            - Multiple Subscriptions in Your Tenant
+            - Regulatory Requirements
+            - Ensure Standards are Followed for all IT Allocated Resources
+        b. Define IT Compliance with Azure Policy
+            - Azure Policy - used to create, assign, and manage policies that enforce different rules and effects over your resources
+            - Create a Policy
+                - Create a policy definition - conditions under which it is enforced
+                    - Allowed Storage Acccount SKUs
+                    - Allowed Resource Type
+                    - Allowed Locations
+                    - Allowed Virtual Machine SKUs
+                    - Not Allowed Resource Types
+                - Assign a definition to a scope of resources
+                - View policy evaluation results
+            - Identifying Non-Compliant Resources
+            - Assign a Definition to a Scope of Resources
+                - Scope = full subscription to a single resource group
+            - Policy Effects - Deny, Disabled, Append, Audit, DeployIfNotExists
+            - View Policy Evaluation Results
+        c. Organize Policy with Initiatives
+            - Initiative Definition - set or group of policy definitions to help track your compliance state for a larger goal
+            - Initiative Assignment - definition assigned to a specific scope
+        d. Enterprise Governance Management
+            - Azure Management Groups - containers for managing access, policies, and compliance across multiple Azure subscriptions
+        e. Define Standard Resources with Azure Blueprints
+            - Enables cloud architects and central information technology groups to define a repeatrable saet of Azure resources that adheres
+            to an organization's standards, patterns, and requirements
+            - Blueprint for: Role Assignments, Policy Assignments, Azure Resource Manager Templates, Resource Groups
+            - Steps - Create an Azure Blueprint, Assign the Blueprint, Track the Blueprint assignments
+        f. Compliance Manager
+            - Microsoft Privacy Statement - explains what personal data MS processes, how, and for what purpose
+            - Microsoft Trust Center - website resource containing information and details about how MS implemetns and supports security,
+            privacy, compliance, and transparency
+            - Service Trust Portal - hosts Compliance Manager service and publications of audits and other compliance related information
+                - Standards - ISO, SOC, NIST, FedRAMP, GDPR
+            - Compliance Manager - workflow-based risk assessment dashboard that enables tracking, assigning, and verifying organizations regulatory compliance
+                - Detailed infromation provided by MS to auditors and regulators, as part of various third-party audits of MS's cloud services
+                - Information that MS compiles internally for its compliance with regulations
+                - Organization self-assessment of own compliance with standards and regulations
+                - Enables assign, track, and record compliance and assessment related activities
+                - Provides a Compliance Score
+                - Secure repository in which to upload and manage evidence and other artificates related to compliance
+                - Rich reports in MS excel that document compliance performed by MS and organization
+        g. Monitor Your Service Health
+            - Azure Monitor - maximizes the availability and performance of your applications by delivering a comprehensive solution for collecting,
+            analyzing, and acting on telemetry from your cloud and on-premise environments
+                - Data Sources
+                    - Application Monitoring, Guest OS Monitoring, Azure Resource Monitoring, Azure Subscription Monitoring, Azure Tenant Monitoring
+                - Activity Logs - record when resources are created or modified
+                - Metrics - tell you how the resource is performing and that resources that it is consuming
+                - Diagnostics - guest-level, performance counters, event logs, crash dumps, sinks, agent
+                - Resources
+                    - Application Insights, Azure Monitor for Containers, Azure Monitor for VMs, 
+            - Azure Service Health - suite of experiences that provide personalized guidance and support when issues with Azure services affect you
+                - Azure Status - global view of the health state of Azure services
+                - Service Health - customizable dashboard that tracks the state of your Azure services in the regions where you use them
+                - Resource Health - help diagnose and obtain support when an Azure service issue affects your resources
