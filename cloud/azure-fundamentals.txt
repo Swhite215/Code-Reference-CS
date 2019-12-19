@@ -391,3 +391,30 @@ Fundamentals of Microsoft Azure
                 - Azure Status - global view of the health state of Azure services
                 - Service Health - customizable dashboard that tracks the state of your Azure services in the regions where you use them
                 - Resource Health - help diagnose and obtain support when an Azure service issue affects your resources
+
+    11. Module 11: Azure Resource Manager
+        a. Principles of Resource Groups
+            - Resource Groups - logical container for resources deployed on Azure, one resource group per resource
+            - Lifecycle - if you delete a resource group, all resources within are also deleted
+            - Resource Groups are a scope for Role-Based Access Control
+            - Create a Resource Group
+                - Azure Portal, Azure PowerShell, Azure CLI, Templates, Azure SDKs
+            - Organization
+                - Consistent Naming Convention, Category, Environment, Department
+                - Authorization - RG for Azure SQL Databases to DBAs
+                - Life Cycle - Easy Tear Down
+                - Billing -  Grouped into Billing Reports
+        b. Use Tagging to Organize Resources
+            - Tags - name/value pairs of text data that can apply to resources or resource groups
+            - 50 Tags, each name is 512 characters long except for 128 character storage accounts, tag value is limited to 256 characters
+            - Azure Policy can be used to automatically add or enforce tags for resources
+            - Apply Tags to Resources
+        c. Use Policies to Enforce Standards
+            - Create New Policy -> Assignments -> Assign Policy -> Create Assignment
+            - Create a resource within subscription and confirm the policy works
+        d. Secure Resources with Role-Based Access Control
+            - Give Role -> RBAC allows specific actions such as read, write, or delete
+            - Best Practices - Segregate Duties, Use Lowest Level Privilege Needed, Use Resource Locks
+        e. Use Resource Locks to Protect Resources
+            - Resource Locks - setting that can be applied to any resource to block modification or deletion
+            - Create a Resource Lock -> Name and Lock Type
