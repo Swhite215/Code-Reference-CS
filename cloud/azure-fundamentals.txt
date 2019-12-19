@@ -418,3 +418,45 @@ Fundamentals of Microsoft Azure
         e. Use Resource Locks to Protect Resources
             - Resource Locks - setting that can be applied to any resource to block modification or deletion
             - Create a Resource Lock -> Name and Lock Type
+    
+    12. Module 12: Predict Costs and Optimize Spending for Azure
+        a. Questions
+            - What will this solution cost this fiscal year?
+            - Is there an alternate configuration you could use to save money?
+            - Can you estimate how a change would imapct your cost and performance without putting it into a production system?
+        b. Purchase Azure Products and Services
+            - Usage Meter Examples
+                - Compute Hours, IP Address Hours, Data Transfer In, Data Transfer Out, Standard Managed Disk
+                - Standard Managed Disk Operations, Standard IO-Disk, Standard IO-Block Blob Read, Write and Delete
+        c. Factors Affecting Costs
+            - Resource Type, Services, Location, Azure Billing Zones
+        d. Estimate Costs with the Azure Pricing Calculator
+            - Configuration Options - Region, Tier, Billing Options, Support Options, Progams and Offers, Azure Dev/Test Pricing
+        e. Predict and Optimize with Cost Managemnt and Azure Advisor
+            - Azure Advisor - recommendation on high availability, security, performance, and cost
+            - Cost Recommendations
+                - Reduce cost by eliminating unprovisioned Azure ExpressRoute circuits
+                - Buy reserved instances to save money over pay-as-you-go
+                - Right size or shutdown underutilized virtual machines
+            - Azure Cost Management
+        f. Estimate the Total Cost of Ownership with the Azure TCO Calculator
+            - Step 1: Open the TCO Calculator
+            - Step 2: Define Your Workloads
+                - Configuration for Migration - Servers, databases, storage, networking
+            - Step 3: Adjust Assumptions
+                - Storage, IT, Hardware, Software, Electricity, Virtualization, Datacenter, Networking, and Database Costs
+            - Step 4: View the Report
+        g. Save on Infrastructure
+            - Azure Credits - $50/month for VS Professional, $150/month for Enterprise
+            - Spending Limits - Automatically shutdown resources once limit is met
+            - Reserved Instances - 1-3 Year Terms
+            - Low Cost Locations and Regions
+            - Research Cost-Saving Offers
+            - Right-Size Underutilized Virtual Machines
+            - Deallocate Virtual Machines in Off Hours
+            - Delete Unused Virtual Machines
+            - Migrate to PaaS or SaaS Services
+        h. Save on Licensing Costs
+            - Linux vs. Windows
+            - Azure Hybrid Benefit - use Windows Server or SQL Server Licenses on Azure
+            - Dev/Test Subscription Offers
