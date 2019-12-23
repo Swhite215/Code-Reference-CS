@@ -3,4 +3,22 @@ Microsoft Certified: Azure Developer Associate
 Serverless Applications in Microsoft Azure
 
     1. Module 1: Choosing the Best Azure Service to Automate Business Process
-    
+        a. Identify the Technology Options
+            - Workflow Tools - Logic Apps, Microsoft Flow, WebJobs, and Azure Functions
+            - Inputs, Actions - Simple executed operations, Conditions, Outputs
+            - Logic Apps - automate, orchestrate, and integrate disparate components
+                - Connector - Logic Apps component that provides an interface to an external service
+            - Microsoft Flow - service to create workflows
+                - Flows - automated, button, scheduled, business process
+            - WebJobs - part of Azure App Service that you can use to run a program automatically
+                - Continuous - looping, Triggered - manually started
+            - Azure Functions
+                - Templates - HTTPTrigger, TimerTrigger, BlobTrigger, CosmosDBTrigger
+        b. Analyze the Decision Criteria
+            - Design First vs. Code First
+            - Integration vs. Brand New
+            - User vs. Business vs. Developer
+        c. Best Technology to Automate Business Needs
+        d. When to Choose Azure Functions
+            - Code-First and As Needed Use/Payment and Integrations with Logic Apps
+        
