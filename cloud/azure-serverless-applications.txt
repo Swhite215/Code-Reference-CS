@@ -47,3 +47,28 @@ Serverless Applications in Microsoft Azure
             - Quickstart Templates
             - Testing - Manual or Within Portal
             - View Files - function.json and index.js
+    
+    3. Module 3: Execute an Azure Function with Triggers
+        a. Determine the Best Triggers
+            - Trigger - object that defines how an Azure function is invoked
+            - Types - Timer, HTTP, Blob, Queue, Azure Cosmos DB, Event Hub
+            - Binding - connection to data within your function
+        b. Execute an Azure Function on a Schedule
+            - CROM - second, minute, hour, day, month, day of the week
+        c. Exercise - Create a Time Trigger
+            - Function + -> Timer Trigger w/ CRON Schedule
+        d. Execute an Azure Function off a HTTP Request
+            - Authorization - Function, Anonymous and Admin
+                - Function and Admin are key based - function or host keys
+                - Anonymous - no authentication required
+        e. Exercise - Create an HTTP Trigger
+            - Function + -> HTTP Trigger w/ Authorization Level
+        f. Execute an Azure Function when a Blob is Created
+            - Azure Storage - Microsoft's cloud storage solution - Highly Available, Secure, Scalable, and Managed
+            - Azure Blob Storage - storage solution designed to store large amounts of unstructured data
+            - Types of Blobs - Block Blobs, Append Blobs, and Page Blobs
+            - Blob Trigger - executes a function when a file is uploaded or updated in Azure Blob Storage
+            - Path = blob-container/{parameter}.type
+        g. Exercise - Create a Blob Trigger
+            - Function + -> Blog Storage Trigger w/Storage Account
+            
