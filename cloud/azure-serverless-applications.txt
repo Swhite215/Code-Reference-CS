@@ -21,4 +21,29 @@ Serverless Applications in Microsoft Azure
         c. Best Technology to Automate Business Needs
         d. When to Choose Azure Functions
             - Code-First and As Needed Use/Payment and Integrations with Logic Apps
-        
+    
+    2. Module 2: Create Serveless Logic with Azure Functions
+        a. Is Serverless Computing Right for You?
+            - Serverless Compute - function-as-a-service FaaS
+            - Azure Functions - serverless application platform
+            - Benefits
+                - Automatic Scaling, Language of Your Choice, No Servers to Manage, Only Charged on Use
+            - Good For
+                - Stateless Logic, Event Driven
+            - Drawbacks
+                - Timeout of 5 - 10 Minutes, HTTP Timeout of 7.5 - 12.5 Minutes
+                - Execution Frequency
+        b. Create a Function App in Azure Portal
+            - Function App - Execution Context for Azure Functions
+                - Service Plans
+                    - Consumption Service - Azure Serverless Application
+                    - Azure App Service - run function on VM
+                - Storage Account - function must be linked to one
+        c. Run Your Code On-Demand
+            - Triggers
+                - Blob Storage, Azure CosmosDB, Event Grid, HTTP, Microsoft Graph Events, Queue Storage, Service Bus, Timer
+            - Bindings - connect data and services declaratively
+                - read data from input bindings and write data to output bindings
+            - Quickstart Templates
+            - Testing - Manual or Within Portal
+            - View Files - function.json and index.js
