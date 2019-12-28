@@ -71,4 +71,15 @@ Serverless Applications in Microsoft Azure
             - Path = blob-container/{parameter}.type
         g. Exercise - Create a Blob Trigger
             - Function + -> Blog Storage Trigger w/Storage Account
+    
+    4. Module 4: Chain Azure Function with Input and Output Bindings
+        a. Explore Input and Output Binding Types
+            - Binding - declarative way to connect to data from within your code
+            - Input Binding - connection to a data source
+            - Output Binding - connection to a data destination
+            - Types of Bindings - Blob Storage, Azure Service Bus Queue, Cosmos DB, Event Hubs, External Files, External Tables, HTTTP Endpoints
+            - Binding Properties - Name, Type, Direction, Connection
+        b. Exercise - Explore Input and Output Bindings
+            - Function App -> Trigger -> Integrate -> +Input or +Output
+        c. Read and Write Data with Bindings
             
