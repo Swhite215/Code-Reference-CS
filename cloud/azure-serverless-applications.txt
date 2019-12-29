@@ -83,3 +83,27 @@ Serverless Applications in Microsoft Azure
             - Function App -> Trigger -> Integrate -> +Input or +Output
         c. Read and Write Data with Bindings
             
+    5. Module 5: Durable Functions
+        a. What are Durable Functions?
+            - Enables implementation of complex stateful functions in a serverless environment
+            - Benefits - event driven code, chain functions, orchestrate and coordinate, state is managed
+            - Types
+                - Cilent - entry point for creating an instance of a Durable Functions orchestration.
+                - Orchestrator - function describes how actions are executed and the order
+                - Activity - basic units in a durable function orchestration, actual work performed
+            - Patterns
+                - Function Chaining - execute a sequence of functions in a specific order
+                - Fan In/Fan Out - executes multiple functions in parallel
+                - Async HTTP APIs - HTTP Trigger start and then redirection of client to status endpoint
+                - Monitor - reoccuring process, looking for change in state
+                - Human Interaction - combine automation with human interaction
+            - Durable vs. Logic Apps
+                 - Durable - custom long running logic
+                 - Logic Apps - integrating Azure services and components
+        b. Design a Workflow based on Durable Functions
+            - Workflow - Design Submitted -> Manager gets Approval Task -> Approve or Reject -> Optional: Escalation
+            - Workflow Function Types - Client -> Orchestration -> Activity -> Activity
+        c. Exercise - Create a Workflow using Durable Functions
+        d. Control Long-Running Tasks using Others
+            - Use Timers instead of setTimeout() and setInterval()
+        e. Exercise - Add a Durable Timer to Manage Long-Running Task
