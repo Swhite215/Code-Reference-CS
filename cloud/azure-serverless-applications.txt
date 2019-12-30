@@ -107,3 +107,31 @@ Serverless Applications in Microsoft Azure
         d. Control Long-Running Tasks using Others
             - Use Timers instead of setTimeout() and setInterval()
         e. Exercise - Add a Durable Timer to Manage Long-Running Task
+    
+    6. Module 6: Azure Functions Core Tools
+        a. Azure Functions using Core Tools
+            - Core Tools - CLI Toolset
+            - Purpose
+                - Generate files and folders needed to develop functions on local computer
+                - Run functions locally to test and debug
+                - Public functions to Azure
+            - Core Tools - func
+            - Order
+                - Create Functions App (Project) w/ func init
+                - Create Function w/ func new
+                - Host Function Locally w/ func start
+            - Function Project - host.json and local.settings.json
+        b. Exercise - Create a Function Locally using Core Tools
+            - mkdir function-project
+            - cd function-project
+            - func init
+            - func new -> Choose Trigger -> Configure
+            - code . -> Edit FIles
+            - func start
+            - func azure functionapp publish <azure-function-app-name>
+        c. Exercise - Publish a Function To Azure
+            - Create a Function App using Azure CLI
+        d. Create Storage Account with Azure CLI/Azure Cloud Shell
+            - az storage account create --resource-group "$RESOURCEGROUP" --name "$STORAGEACCT" --kind StorageV2 --location centralus
+        e. Create A Function App with Azure CLI/Azure Cloud Shell
+            - az functionapp create --resource-group "$RESOURCEGROUP" --name "$FUNCTIONAPP" --storage-account "$STORAGEACCT" --runtime node --consumption-plan-location centralus
