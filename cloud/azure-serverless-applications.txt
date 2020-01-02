@@ -135,3 +135,31 @@ Serverless Applications in Microsoft Azure
             - az storage account create --resource-group "$RESOURCEGROUP" --name "$STORAGEACCT" --kind StorageV2 --location centralus
         e. Create A Function App with Azure CLI/Azure Cloud Shell
             - az functionapp create --resource-group "$RESOURCEGROUP" --name "$FUNCTIONAPP" --storage-account "$STORAGEACCT" --runtime node --consumption-plan-location centralus
+    
+    7. Module 7: Azure Functions with Azure Studio
+        a. Visual Studio
+            - Azure Function Tools Extension
+            - v2 Triggers
+            - Access Rights - Anonymous, Function, Admin
+        b. Visual Studio Steps
+            - Install Azure Functions and Web Jobs Tools
+            - Function App
+                - New Project -> Visual C# -> Cloud -> Azure Functions
+                - Azure Functions v2 -> Http Trigger -> Storage Account -> Acess Rights = Anonymous
+            - Azure Function
+                - Add -> New Azure Function -> Name -> Htop Trigger -> Access Rights = Anonymous
+                - Add Code
+            - Test Locally
+                - Start Debugging
+                - Add Break Points
+        c. Publish Azure Function from Visual Studio
+            - Create a Function App in Azure
+            - Deploy Function in VS to Function App
+            - Verify Function in Function App
+            - Update through VS Code and Re-Publish
+        d. Unit Test an Azure Function
+            - Unit Test Project (xUnit Test Project .NET Core)
+            - Manage NuGet Packages -> Install Microsoft.AspNetCore.Mvc
+            - Rename UnitTest1 to New Name
+            - Add Unit Tests
+            - Test -> Run -> All Tests
