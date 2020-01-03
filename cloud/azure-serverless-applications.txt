@@ -163,3 +163,19 @@ Serverless Applications in Microsoft Azure
             - Rename UnitTest1 to New Name
             - Add Unit Tests
             - Test -> Run -> All Tests
+    
+    8. Module 8: Monitor Github Event using Webhook with Azure Functions
+        a. Create a Function Triggered by Webhook
+            - What is a Webhook? User-Defined HTTP Callbacks
+            - What is Azure Function? Serverless Computer Service
+        b. Exercise - Azure Function w/ Webhook
+            - Function App -> New Function -> Webhook/API Trigger
+        c. Set up Webhook for Github Repository
+            - Repository -> Settings -> Webhooks -> Configure Webhook (Payload URL, Content-Type, Events)
+        d. Trigger Azure Function with Github Event
+            - Function App -> Function -> Index.JS to Parse Payload
+        e. Secure Webhook Payloads with a Secret
+            - Webhook Secret - ensures POST reuests sent to the payload URL are from Github
+            - Function -> Require crypto -> Manage -> Click to Show Default Key -> Place Key in Webhook
+            - Function -> index.js -> Code to Hash Using Secret and Compare to Sent Secret (X-Hub-Signature)
+            - Run Code is Hash is Good or Send Error if Hash is Bad
