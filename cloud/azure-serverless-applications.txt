@@ -179,3 +179,26 @@ Serverless Applications in Microsoft Azure
             - Function -> Require crypto -> Manage -> Click to Show Default Key -> Place Key in Webhook
             - Function -> index.js -> Code to Hash Using Secret and Compare to Sent Secret (X-Hub-Signature)
             - Run Code is Hash is Good or Send Error if Hash is Bad
+    
+    9. Module 9: Web Application Automatic Updates with Azure Functions and SignalR Service
+        a. Limitations of Web Polling vs. Server Side Events
+            - Uses a lot of network resources
+            - Data delay is equal to polling interval
+            - Polling connects to server even if no new data is available
+        b. Exercise - Limitations of Polling-Based Web App
+            - Create A Storage Account: mslsigrstoragea7874b4a22
+                - az storage account create --name $STORAGE_ACCOUNT_NAME --resource-group learn-4135f086-8bbc-499b-b506-0d2adc4c2704 --kind StorageV2 --sku Standard_LRS
+            - Create Azure Cosmos DB Account
+                - az cosmosdb create --name msl-sigr-cosmos-$(openssl rand -hex 5) --resource-group learn-4135f086-8bbc-499b-b506-0d2adc4c2704
+            - Update Local Settings JSON
+        c. Enable Automatic Updates using SignalR Service
+            - Change Feed in Azure Cosmos DB -> Binding to This Feed
+        d. Exercise - Enable Automatic Updates using SignalR Service
+            - Create a SignalR Account
+                - SIGNALR_SERVICE_NAME=msl-sigr-signalr$(openssl rand -hex 5)
+                - az signalr create --name $SIGNALR_SERVICE_NAME --resource-group learn-4135f086-8bbc-499b-b506-0d2adc4c2704 --sku Free_DS2 --unit-count 1
+            - Set SignalR Service Mode to Serverless
+                - az resource update --resource-type Microsoft.SignalRService/SignalR --name $SIGNALR_SERVICE_NAME --resource-group learn-4135f086-8bbc-499b-b506-0d2adc4c2704 --set properties.features[flag=ServiceMode].value=Serverless
+            - Add SignalR to Local Settings JSON
+            - Detect and Broadcast Database Changes
+            
