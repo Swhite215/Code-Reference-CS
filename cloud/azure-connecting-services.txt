@@ -1,0 +1,59 @@
+Microsoft Certified: Azure Developer Associate
+
+Connect Your Services Together
+
+    1. Module 1: Choose a Messaging Model for Loose Connection
+        a. Choose Message or Events
+            - Sender or Receiver
+            - Message - raw data, one component, consumed by another, contains data
+            - Event - light weight notification that something happened, does not contain data
+                - sender - publisher, receiver - subscriber
+                - publish-subscribe architecture - components subscribe through intermediary and intermediary routes events
+            - Options - Storage Queues, Event Hubs, Event Grid, or Service Bus
+        b. Choose a Message Based Delivery with Queues
+            - Azure Queue Storage - stores a large number of messages that can be securely accessed from anywhere using a REST API
+            - Azure Service Bus - message broker system intended for enterprise applications
+            - Azure Service Bus Topics - queues with multiple subscribers
+            - Benefits of Queues - increased reliability, message delivery guarantees (At-Least-Once, At-Most-Once, First-In-First-Out),
+            transaction support (all messages are processed or none)
+            - Choose Service Bus Topics IF:
+                - You need multiple receivers to handle each message
+            - Choose Service Bus Queues IF:
+                - You need At-Most-Once
+                - You need a FIFO
+                - You want to group messages into transactions
+                - You want messages without polling the queue
+                - You need to provide a RBAC model to queues
+                - You handle messages larger than 64 KB and less than 256 KB
+                - You queue will not grow larger than 80GB
+                - You would like to be able to publish and consume batches of messages
+            - Choose Queue Storage IF:
+                - You need an audit trail of all messages that pass through the queue
+                - You expect the queue to exceed 80 GB in size
+                - You want to track progess for processing a message inside of the queue
+        c. Choose Azure Event Grid
+            - Azure Event Grid - fully managed event routing service running on Azure Service Fabric
+                - distributes events from different sources, such as Azure Blob Storage or Azure Media Services, to different handlers
+                such as Azure Functions or Webhooks
+            - Concepts
+                - Events - What happened, data messages
+                - Event Sources - Where the event took place
+                - Topics - Endpoints where publishers send events
+                - Subscriptions - endpoint or mechanism to route events, somtetimes to multiple handlers
+                - Event Handlers - app or service reacting to the event
+            - Choose Azure Event Grid IF:
+                - Simplicity, Advanced Filtering, Fan-Out, Reliability, and Pay-Per-Event
+                - One Event at A Time
+        d. Choose Azure Event Hubs
+            - Azure Event Hubs - intermediary for the publish-subscribe communication pattern, optimized for extremely high-throughput,
+            a large number of publishers, security, and resiliency
+            - Additional Services
+                - Partitions - buffers into which the communications are saved
+                - Real-Time and Batch Processing
+                - Capture to Azure Data Lake and Azure Blob Storage
+                - Authentication through token
+            - Choose Event Hubs IF:
+                - You need to support authenticating a large number of publishers
+                - You need to save a stream of events to a Data Lake or Blob Storage
+                - You need aggregation or analytics on your event stream
+                - You need reliable messaging or resiliency
