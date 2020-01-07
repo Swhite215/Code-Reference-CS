@@ -57,3 +57,117 @@ Connect Your Services Together
                 - You need to save a stream of events to a Data Lake or Blob Storage
                 - You need aggregation or analytics on your event stream
                 - You need reliable messaging or resiliency
+    
+    2. Module 2: Implement Message-Based Communication Workflows with Azure Service Bus
+        a. Choose a Messaging Platform
+            - Messages and Events are both datagrams - packages of data senbt from one component to another
+            - Messages - important component contributing to integrity of the application, contains data
+            - Events - triggers a notification that something has occurred, contains no data
+            - Pizza Example - Pizza Order = Message, Pizza Status = Events
+            - Service Bus Topics, Queues, and Relays
+                - Queue - simple temporary storage location for messages
+                - Topic - similar to a queue but multiple subscriptions
+                - Relay - object that performs synchronous, two-way communication between applications
+            - Service Bus Queues and Storage Queues
+                - Advantages of Service Bus Queues
+                    - Supports large message sizes 256KB to 1MB
+                    - Supports at-least-once and at-most-once delivery
+                    - Guarantees FIFO order
+                    - Can group multiple messages into a transaction
+                    - Supports RBAC
+                    - Does not require destination components to continuously poll
+                - Advantages of Storage Queues
+                    - Supports unlimited queue size
+                    - Maintains a log of all messages
+            - How to Choose
+                - Is the communication an event, i.e. no data and notification? Event Grid or Event Hubs
+                - Should a single message be delivered to more than one destination? Service Bus, Else Queue
+                - If you decide queue
+                    - Choose Service Bus IF:
+                        - At-most-once, FIFO, group messages, no pollling, RBAC, 64KB to 256KB, queue < 80GB
+                    - Chose Queue Storage IF:
+                        - Simple queue, audit trail, queue > 80GB, track progress for processing a message in queue
+        b. Exercise - Implement a Service Bus Topic and Queue
+            - Create A Service Bus Namespace - container with a unique fully qualified domain name for queues, topics, and relays
+                - All Services -> Integration -> Service Bus
+                - Service Bus Namespace -> + Queue
+            - Create A Service Bus Topic and Subscriptions
+                - + Topic
+                - Entities -> Topics -> Topic -> + Subscription x N
+        c. Write Code that Uses Service Bus Queues
+            - Microsoft.Azure.ServiceBus NuGet Package
+            - Connection Strings and Keys
+                - Location of Service Bus - Endpoint - Fully Qualified Domain
+                - Access Key - Service Bus restricst access to queues, topics, and relays by requiring an access key
+                - Location + Access Key - provided in the form of a connection string
+            - Calling Methods Asynchronously
+                - Async/Await Pattern
+            - Sending #1: Service Bus Queue Code
+                - using System.Threading;
+                - using System.Threading.Tasks;
+                - using Microsoft.Azure.ServiceBus;
+            - Sending #2: Create QueueClient Object and Provide Connection String
+                - queueClient = new QueueClient(TextAppConnectionString, "PrivateMessageQueue");
+            - Sending #3: Send Message
+                - string message = "This is a test message";
+                - var encodedMessage = new Message(Encoding.UTF8.GetBytes(message));
+                - await queueClient.SendAsync(encodedMessage);
+            - Receiving #1: Register Message Handler
+                - queueClient.RegisterMessageHandler(MessageHandler, messageHandlerOptions);
+            - Receiving #2: Process the Message inside MessageHandler function
+            - Receiving #3: Remove Message from Queue
+                - await queueClient.CompleteAsync(message.SystemProperties.LockToken);\
+        d. Exercise - Write Code that Uses Service Bus Queues
+            - Clone Starter Application and Open
+                - cd ~
+                - git clone https://github.com/MicrosoftDocs/mslearn-connect-services-together.git
+                - cd mslearn-connect-services-together/implement-message-workflows-with-service-bus/src/start
+                - code .
+            - Configure a Connection String to a Service Bus Namespace
+                - Display Primary Connection String
+                    - az servicebus namespace authorization-rule keys list --resource-group learn-8735aa38-33b7-485a-9b51-b97ca841857c --name RootManageSharedAccessKey --query primaryConnectionString --output tsv --namespace-name salesteamappsw2020
+            - Write Code that Sends a Message to Queue
+            - Send a Message to Queue
+                - dotnet run -p -privatemessagesender
+            - Check Messages in Queue
+                - az servicebus queue show --resource-group learn-8735aa38-33b7-485a-9b51-b97ca841857c --name salesmessage --query messageCount --namespace-name salesteamappsw2020
+            - Write Code that Receives a Message from the Queue
+            - Retrieve a Message from the Queue
+                - dotnet run -p privatemessagereceiver
+        e. Write Code that Uses Service Bus Topics
+            - Microsoft.Azure.ServiceBus NuGet Package
+            - Connection Strings and Keys
+                - Location of Service Bus - Endpoint - Fully Qualified Domain
+                - Access Key - Service Bus restricst access to queues, topics, and relays by requiring an access key
+                - Location + Access Key - provided in the form of a connection string
+            - Calling Methods Asynchronously
+                - Async/Await Pattern
+            - Sending #1: Service Bus Topic Code
+                - using System.Threading;
+                - using System.Threading.Tasks;
+                - using Microsoft.Azure.ServiceBus
+            - Sending #2: Create a TopicClient Object and Provide Connection String
+                - topicClient = new TopicClient(TextAppConnectionString, "GroupMessageTopic");
+            - Sending #3: Send A Message
+                - string message = "This is a test message"
+                - var encodedMessage = new Message(Encoding.UTF8.GetBytes(message));
+                - await topicClient.SendAsync(encodedMessage)
+            - Receiving #1: Create SubscriptionClient with ConnectionString, Topic and Subscription
+                - subscriptionClient = new SubscriptionClient(ServiceBusConnectionString, "GroupMessageTopic", "NorthAmerica");
+            - Receiving #2: Register a Message Handler
+                - subscriptionClient.RegisterMessageHandler(MessageHandler, messageHandlerOptions);
+            - Receiving #3: Process the Message inside MessageHandler function
+            - Receiving #4: Remove Message from Queue
+                - await subscriptionClient.CompleteAsync(message.SystemProperties.LockToken);
+        f. Exercise - Write Code that Uses Service Bus Topics
+            - Configure a Connection String to a Service Bus Namespace
+                - Display Primary Connection String
+                    - az servicebus namespace authorization-rule keys list --resource-group learn-8735aa38-33b7-485a-9b51-b97ca841857c --name RootManageSharedAccessKey --query primaryConnectionString --output tsv --namespace-name salesteamappsw2020
+            - Write Code that Sends a Message to Topic
+            - Send a Message to Topic
+                - dotnet run -p -privatemessagesender
+            - Check Messages in Topic
+                - az servicebus queue show --resource-group learn-8735aa38-33b7-485a-9b51-b97ca841857c --topic-name salesperformancemessage --name Americas --query messageCount --namespace-name salesteamappsw2020
+            - Write Code that Receives a Message from the Topic
+            - Retrieve a Message from the Topic
+                - dotnet run -p privatemessagereceiver
