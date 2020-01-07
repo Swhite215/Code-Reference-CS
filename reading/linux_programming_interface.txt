@@ -119,3 +119,63 @@ Chapter 2 - Fundamental Concepts
         - Server - examines client's request, performs appropriate actions, and then sends a response message back to client
     p. Realtime
         - Extensions - asynchronous I/O, shared memory, memory-mapped files, memory locking, realtime clocks and timers, scheduling policies, realtime signals, message queues and semaphores
+
+Chapter 3: System Programming Concepts
+    a. System Calls
+        - Goal - controlled entry point into the kernel, allowing a process to request that the kernel perform some action on the processe's behalf
+        - System Call API
+        - System Calls
+            - Change the processor state from user mode to kernel mode
+            - Set of system calls is fixed
+            - Each system call may have a set of arguments that specify information transferred from user space to kernel space and vice-versa
+        - Order
+            - Application Program makes a system call by invoking a wrapper function in the C Library
+            - Wrapper function makes system call arguments available to the system by copying arguments into specific registers
+            - Wrapper function copies system call number into CPU register %eax
+            - Wrapper function executes a trap machine instruction, which causes the processor to switch from user mode to kernel mode and execute code pointed to by location 0x80
+            - Kernel invokes system_call() routine
+                - Saves regiter values onto the kernel stack
+                - Checks validity of the system cal number
+                - Invokes appropriate system call service routine using system call number to index a table of all system calls sys_call_table
+                - Service routine performs the required task and then returns a result status to system_call() routine
+                - Restores register values from the kernel stack and places the system call return value on the stack
+                - Returns to the wrapper function
+            - Processor switches back to user mode
+            - If return value of system call indicates an error, wrapper function sets errno using the value
+            - Wrapper function returns to the caller, providing an integer return value indicating the success or failure of the system call
+        - Overhead - system calls have a small but apprciable overhead
+    b. Library Functions
+        - Goal - one of the multitude of functions that constitutes the standard C library
+        - Some use system calls and others do not
+        - Standard C Library
+            - GNU C Library - glibc
+            - Version - /lib/libc.so.6
+    c. Handling Errors
+        - Important - always check status value from system call and library functionss for an error
+        - System Call Errors
+            - Error is normally indicated by -1
+            - Check Example - fd = system call, if (fd == -1) {/* Code to Handle an Error */}
+            - Print Error Message - perror() and strerror()
+        - Library Function Errors
+            - Return in same way as system calls
+            - Set errno to indicate specific error condition aand returns a value other than -1 on error
+            - Errno is not used at all
+    d. Example Programs in this Book
+        - Command-Line Options and Arguments
+            - standard getopt() library
+        - Common Functions and Header Files
+            - Header File - tlpi_hdr.h pg. 51
+            - Error Diagnostic Functions - error_functions.h
+                - errMsg() - prints a message on standard error
+                - errExit() - prints a message on standard error and termiantes the program
+                - err_exit() - similar to errExit() but dones not flush standard output before print error and does not flush stdio buffers or invoke exit handlers
+                - errExitEN)() - similar to errExit() but prints error number instead
+                - fatal() - used to diagnose general errors, including errors that don't set errno
+                - usageErr() - diagnose errors in command-line argument usage
+                - cmdLineErr() - diagnose errors in command-line arguments specified to a program
+                - Parsing Command Line Arguments
+                    - getInt()
+                    - getLong()
+    e. Portability Issues
+        - Feature Test Macros - have header files expose the definitions (constants, function prototypes, and so on) that follow a particular standard
+        - System Data Types - pg. 65
