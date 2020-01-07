@@ -18,12 +18,13 @@ To provide reference materials for a variety of topics encountered within Comput
   5. Testing - Mocha, Chai
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Mocha and Sinon](https://github.com/Swhite215/Code-Reference-MERN/tree/master/testing)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Chai - Assert, Should, Expect](https://github.com/Swhite215/Code-Reference-MEAN/tree/master/test)
-  6. Databases - CouchDB and PostGres
+  6. Databases - CouchDB, MongoDB, and PostGres
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [CouchDB](https://github.com/Swhite215/Code-Reference-DB/tree/master/couchdb)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [MongoDB](https://github.com/Swhite215/Code-Reference-DB/tree/master/mongodb)
   7. Containers - Docker and Kubernetes
   8. Hacking - White Hat, Pen Testing: OSSTMM, PTES, NIST 800-115, ISSAF and OWASP
   9. Networking - TCP/IP, DNS, DHCP, ARP, IMCP
+      ##### &nbsp;&nbsp;&nbsp;&nbsp; [Computer Networking](https://github.com/Swhite215/Code-Reference-CS/blob/master/reading/computer_networking_a_top_down_approach.txt)
   10. Programming Languages - JavaScript/TypeScript, Go, C, C++
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Golang](https://github.com/Swhite215/Code-Reference-Go)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Design Patterns in Node](https://github.com/Swhite215/Code-Reference-MERN/tree/master/designPatterns)
