@@ -244,7 +244,7 @@ Connect Your Services Together
                 - Call SendMethod in Main() while passing appropriate arguments
             - Check Your Results
                 - All Resources -> Storage Account -> Storage Explorer -> Queues -> QueueName
-                - Azure CLI - az storage message peek --queue-name newsqueue --connection-string DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=uniquename12345;AccountKey=uHRE2/J9YmY089k4G9Nf01n8x+7ODdY37F/UvG0Z6b27cMJ7AhBfM9gGjUfJXrcnKp2g8BTDfhca/hBdBp4Kug==
+                - Azure CLI - az storage message peek --queue-name newsqueue --connection-string DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=<account-name>;AccountKey=<account-key>
         g. Exercise - Retrieve a Message From the Queue
             - Add A Method to Receive
                 - Above Steps Sending #1-4 and Receiving #1
