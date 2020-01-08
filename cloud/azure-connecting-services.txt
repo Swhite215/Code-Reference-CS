@@ -171,3 +171,80 @@ Connect Your Services Together
             - Write Code that Receives a Message from the Topic
             - Retrieve a Message from the Topic
                 - dotnet run -p privatemessagereceiver
+    
+    3. Module 3: Communicate Between Applications with Azure Queue Storage
+        a. Create Azure Storage Infrastructure
+            - Azure Queue Storage - cloud-based queues
+            - Why use Queues? - increases resiliency by temporarily storing waiting messages - 500TB - 2000 messages/second
+            - Message - byte array of up to 64KB
+            - Storage Account -> Queue
+                - General Purposae Storage Account v1 or v2
+                - Access Tier in StorageV2 applies to Blob Storage
+                - Location that is close
+                - Locally Redundant Storage LRS Geo-Redundant Storage GRS replication
+                - Standard HDD and Performance SSD
+                - Require secure transfer
+        b. Exercise - Create a Storage Account
+            - az storage account create --name <unique-name> -g <resource-group> --kind StorageV2 --sku Standard_LRS
+        c. Identify a Queue
+            - Three Key Pieces of Information
+                - Storage Account Name, Queue Name, Authorization Token
+            - Queue Identity
+                - Unique Name
+            - Access Authorization
+                - Azure Active Directory - RBAC
+                - Shared Key - Encrypted Key
+                - Shared Access Signature - URI that grants limited access
+            - Retrieivng Account Key
+                - Azure CLI - az storage account keys list ...
+                - PowerShell - Get-AzStorageAccountKey ...
+            - Accessing Queues
+                - REST API - http://<storage account>/queue.core.windows.net/<queue name>
+                - Authorization Header inclufed with every request
+            - Azure Storage Client Library for .NET
+                - Connection String - string connectionString = "DefaultEndpointsProtocol=https;AccountName=<your storage account name>;AccountKey=<your key>;EndpointSuffix=core.windows.net"
+        d. Exercise - Identify a Queue
+            - Create the Application
+                - dotnet new console -n QueueApp
+                - cd QueueApp
+                - dotnet build
+            - Get Connection String
+                - az storage account show-connection-string --name uniquename12345 --resource-group learn-87115c20-3ba8-48c5-a77b-8ed52595855b
+            - Add Connection String to Queue Access Program
+        e. Programmatically Access a Queue
+            - Azure Storage Client Library
+                - CloudStorageAccount - represents your Azure Storage Account
+                - CloudQueueClient - represents Azure Queue Storage
+                - CloudQueue - represents one of your queue instances
+                - CloudQueueMesssage - represents a message
+            - Sending #2: How to Connect to a Queue
+                - CloudStorageAccount account = CloudStorageAccount.Parse(connectionString);
+                - CloudQueueClient client = account.CreateCloudQueueClient();
+                - CloudQueue queue = client.GetQueueReference("myqueue")
+            - Sending #3: How to Create a Queue
+                - await queue.CreateIfNotExistsAsync();
+            - Sending #4: How to Send a Message
+                - var message = new CloudQueueMessage("Test Message");
+                - await queue.AddMessageAsync(message);
+            - Receiving #1: How to Receive and Delete a Message
+                - CloudQueue queue;
+                - CloudQueueMessage message = await queue.GetMessageAsync();
+                - if (message != null) {//Process the Message await queue.DeleteMessageAsync(message)}
+        f. Exercise - Add A Message to the Queue
+            - Add Client Library for Azure Storage
+                - dotnet add package WindowsAzure.Storage
+            - Add A Method to Sends a News Alert
+                - Sending #1: Add Namespaces
+                    - using System.Threading.Tasks;
+                    - using Microsoft.WindowsAzure.Storage;
+                    - using Microsoft.WindowsAzure.Storage.Queue;
+                - SendMethod - String Parameters and Task Return Value
+                - Above Steps #1-4 in Programmatically Access a Queue
+            - Add Code to Send Message
+                - Call SendMethod in Main() while passing appropriate arguments
+            - Check Your Results
+                - All Resources -> Storage Account -> Storage Explorer -> Queues -> QueueName
+                - Azure CLI - az storage message peek --queue-name newsqueue --connection-string DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=uniquename12345;AccountKey=uHRE2/J9YmY089k4G9Nf01n8x+7ODdY37F/UvG0Z6b27cMJ7AhBfM9gGjUfJXrcnKp2g8BTDfhca/hBdBp4Kug==
+        g. Exercise - Retrieve a Message From the Queue
+            - Add A Method to Receive
+                - Above Steps Sending #1-4 and Receiving #1
