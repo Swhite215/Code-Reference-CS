@@ -248,3 +248,95 @@ Connect Your Services Together
         g. Exercise - Retrieve a Message From the Queue
             - Add A Method to Receive
                 - Above Steps Sending #1-4 and Receiving #1
+    
+    4. Module 4: Enable Reliable Messaging for Big Data Applications using Azure Event Hubs
+        a. Create an Event Hub using Azure CLI
+            - Azure Event Hub - cloud-based, event processing service thats capable of receiving and processing millions of events per second
+            - Publisher - sends data to Event Hubs
+            - Consumer or Subscriber - read data from Event Hubs
+            - Publisher -> Event Hub -> Consumer/Subscriber
+            - Event - small packet of information that contains a notificaiton
+            - Publishers use either HTTPS or Advanced Message Queuing Protocol AMQP
+            - Subscribers use EventHubReceiver or EventProcessorHost
+            - Consumer Groups - specific view of an Event Hub data stream
+            - Pricing - Basic, Standard, and Dedicated
+            - Steps
+                - Define an Event Hubs namespace - containing entity for managing one or more Event Hubs
+                - Create Event Hub in namespace
+            - CLI
+                - az eventhubs namespace create and az eventhubs namespace authorization-rule 
+                - az eventhubs eventhub create and az eventhubs eventhub show
+        b. Exercise - Use the Azure CLI to Create an Event Hub
+            - Create an Event Hubs Namespace
+                - Set default resource group and location
+                    - az configure --defaults group=learn-4e764130-6606-48e7-acfe-1c3d1e3abe48 location=westus2
+                - Create Event Hubs namespace
+                    - NS_NAME=namespacenameone
+                    - az eventhubs namespace create --name $NS_NAME
+                - Fetch Connection String
+                    - az eventhubs namespace authorization-rule keys list --name RootManageSharedAccessKey --namespace-name $NS_NAME
+            - Create an Event Hub
+                - Create Event Hub
+                    - HUB_NAME=eventhubnameone
+                    - az eventhubs eventhub create --name $HUB_NAME --namespace-name $NS_NAME
+                - Show Event Hub Details
+                    - az eventhubs eventhub show --namespace-name $NS_NAME --name $HUB_NAME
+        c. Configure Applications to Send or Receive Messagee through an Event Hub
+            - Minimum Requirements for Application Sending to Event Hub
+                - Event Hub Namespace Name, Event Hub Name, Shared Access Policy Name,, Primary SHared Access Key
+            - Minimum Requirements for Application Receiving from Event Hub
+                - Event Hub Namespace Name, Event Hub Na,e, Shared Access Policy Name, Primary Shared Access Key, Storage Account Name, Storage Account Connection String, Storage Account Container Name
+            - Azure CLI Commands for Creating a General Purpose Standard Storage Account
+                - storage account create
+                - storage account key list
+                - storage account show-connection-string
+                - storage container create
+        d. Exercise - Configure Applications to Send or Receive Messages through Event Hub
+            - Create a General Purpose Standard Storage Account
+                - STORAGE_NAME=storagenameone
+                - az storage account create --name $STORAGE_NAME --sku Standard_RAGRS --encryption blob
+            - List Access Keys
+                - az storage account keys list --account-name $STORAGE_NAME
+            - View Connection String
+                - az storage account show-connection-string -n $STORAGE_NAME
+            - Create Container
+                - az storage container create -n messages --connection-string "<connection string here>" 
+            - Clone Event Hubs Github Repository
+                - git clone https://github.com/Azure/azure-event-hubs.git
+            - Edit SimpleSend
+                - cd azure-event-hubs/samples/Java/Basic/SimpleSend/src/main/java/com/microsoft/azure/eventhubs/samples/SimpleSend
+                - code .
+                - Add Event Hub Namespace Name, Event Hub Name, Policy Name, and Primary SAS Key
+            - Use Maven to build SimpleSend
+                - cd ~/azure-event-hubs/samples/Java/Basic/SimpleSend
+                - mvn clean package -DskipTests
+            - Edit EventProcessorSample
+                - cd ~/azure-event-hubs/samples/Java/Basic/EventProcessorSample/src/main/java/com/microsoft/azure/eventhubs/samples/eventprocessorsample
+                - code .
+                - Add Event Hub Namespace Name, Event Hub Name, Policy Name, Primary SAS Key, Storage Account Connection String, Storage Container Name, and Storage Account Name
+            - use Maven to Build EventProcessorSample
+                - cd ~/azure-event-hubs/samples/Java/Basic/EventProcessorSample
+                - mvn clean package -DskipTests
+            - Start the Sender and Receiver Apps
+                - cd ~/azure-event-hubs/samples/Java/Basic/SimpleSend
+                - java -jar ./target/simplesend-1.0.0-jar-with-dependencies.jar
+                - press ENTER
+                - cd ~/azure-event-hubs/samples/Java/Basic/EventProcessorSample
+                - java -jar ./target/eventprocessorsample-1.0.0-jar-with-dependencies.jar
+                - press ENTER
+        e. Evaluate the Performance of the Deployed Event Hub using Azure Portal
+            - Using Azure Portal
+                - Azure Portal -> Event Hub Overview
+            - useful Metrics - Throttled Requests, Active Connections, Incoming/Outgoing Bytes
+        f. Exercise - Evaluate the Performance of the Deployed Event Hub using Azure Portal
+            - Test Resilience
+                - cd ~
+                - cd azure-event-hubs/samples/Java/Basic/SimpleSend
+                - java -jar ./target/simplesend-1.0.0-jar-with-dependencies.jar
+                - Disable Event Hub
+                - Wait Five Minutes
+                - Activate Event Hub
+                - cd ~
+                - cd azure-event-hubs/samples/Java/Basic/EventProcessorSample
+                - java -jar ./target/eventprocessorsample-1.0.0-jar-with-dependencies.jar
+                - All Resources -> Namespace -> Monitoring: Metrics
