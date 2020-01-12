@@ -24,7 +24,7 @@ Serverless Applications in Microsoft Azure
     
     2. Module 2: Create Serveless Logic with Azure Functions
         a. Is Serverless Computing Right for You?
-            - Serverless Compute - function-as-a-service FaaS
+            - Serverless Compute - Function-as-a-service FaaS
             - Azure Functions - serverless application platform
             - Benefits
                 - Automatic Scaling, Language of Your Choice, No Servers to Manage, Only Charged on Use
@@ -54,7 +54,7 @@ Serverless Applications in Microsoft Azure
             - Types - Timer, HTTP, Blob, Queue, Azure Cosmos DB, Event Hub
             - Binding - connection to data within your function
         b. Execute an Azure Function on a Schedule
-            - CROM - second, minute, hour, day, month, day of the week
+            - CRON - second, minute, hour, day, month, day of the week
         c. Exercise - Create a Time Trigger
             - Function + -> Timer Trigger w/ CRON Schedule
         d. Execute an Azure Function off a HTTP Request
@@ -114,7 +114,7 @@ Serverless Applications in Microsoft Azure
             - Purpose
                 - Generate files and folders needed to develop functions on local computer
                 - Run functions locally to test and debug
-                - Public functions to Azure
+                - Publish functions to Azure
             - Core Tools - func
             - Order
                 - Create Functions App (Project) w/ func init
@@ -126,7 +126,7 @@ Serverless Applications in Microsoft Azure
             - cd function-project
             - func init
             - func new -> Choose Trigger -> Configure
-            - code . -> Edit FIles
+            - code . -> Edit Files
             - func start
             - func azure functionapp publish <azure-function-app-name>
         c. Exercise - Publish a Function To Azure
@@ -136,7 +136,7 @@ Serverless Applications in Microsoft Azure
         e. Create A Function App with Azure CLI/Azure Cloud Shell
             - az functionapp create --resource-group "$RESOURCEGROUP" --name "$FUNCTIONAPP" --storage-account "$STORAGEACCT" --runtime node --consumption-plan-location centralus
     
-    7. Module 7: Azure Functions with Azure Studio
+    7. Module 7: Azure Functions with Visual Studio
         a. Visual Studio
             - Azure Function Tools Extension
             - v2 Triggers
