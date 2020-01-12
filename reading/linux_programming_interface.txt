@@ -17,7 +17,7 @@ Chapter 1 - History
         - 3BSD - December 1979 - Berkely Software Distribution
         - System V - 1989 - Commercial Licensing
     b. A Brief History of Linux
-        - GNU Project - 19084 - Richard Stallman develops free UNIX-like system without kernel
+        - GNU Project - 1984 - Richard Stallman develops free UNIX-like system without kernel
         - GNU Public License
         - Linux - March 1994
         - Linux 2.6 - December 2003
@@ -29,7 +29,7 @@ Chapter 1 - History
             - Institute of Electrical and Electronic Engineers - POSIX.1 1988
             - POSIX.2 1992
         - FIPS 151-1 and FIPS 151-2
-        - X/Open COmpany and The Open Group
+        - X/Open Company and The Open Group
         - SUSv3 and POSIX.1-2001
         - SUSv4 and POSIX.1-2008
 
@@ -42,18 +42,18 @@ Chapter 2 - Fundamental Concepts
         - Versions: Bourne (sh), C (csh), Korn (ksh), Bourne Again (bash)
         - Capabilities: variables, loops, conditional statements, functions, I/O
     c. Users and Groups
-        - Users - Group ID, Home Directory, Login Shell
+        - Users - User ID, Home Directory, Login Shell
         - Groups - Group Name, Group ID, User List
         - Superuser - ID = 0, Name = root
     d. Single Directory
         - / -> bin,boot,etc,home,usr
-        - File Types - link, directory, devices, pipes, sockets, directories
-        - Directory - special file whose contents take the form of a table of filenames coupled with refernces to files
+        - File Types - link, directory, devices, pipes, sockets
+        - Directory - special file whose contents take the form of a table of filenames coupled with references to files
         - Symbolic Links - contains name of another file
         - Filenames - 255 char portable filename character set
         - Pathhnames - string of / separated directories ending in a file or directory
     e. File I/O Model
-        - System Calls - open(), read(), writre(), close()
+        - System Calls - open(), read(), write(), close()
         - Descriptors - 0 is standard input, 1 is standard output, and 2 is standard error
         - stdio - fopen(), fclose(), scan(), printf(), fgets(), fputs()
     f. Programs
@@ -62,7 +62,7 @@ Chapter 2 - Fundamental Concepts
         - Filter - program reads from stdin, performs a transformation, and writes transformed data to stdout
         - CLI Arguments
             - int main(int argc, char *argv[])
-            - arcg is total number of arguments
+            - argc is total number of arguments
             - argv is array of individual arguments
     g. Processes - instance of an executing program
         - Segments
@@ -106,7 +106,7 @@ Chapter 2 - Fundamental Concepts
         - Background Process
     m. Pseudoterminals
         - Pair of connected virtual devices, known as master and slave with an IPC channel allowing two way data transfer
-        - Slave provides an interface that behaves like a terminal, allowing anotrher porogram to drive the terminal-oriented program connected to slave device
+        - Slave provides an interface that behaves like a terminal, allowing another porogram to drive the terminal-oriented program connected to slave device
         - Examples Telnet and SSH
     n. Date and Time
         - Real Time - calendar time since Midnight on 01/01/1970
@@ -122,20 +122,20 @@ Chapter 2 - Fundamental Concepts
 
 Chapter 3: System Programming Concepts
     a. System Calls
-        - Goal - controlled entry point into the kernel, allowing a process to request that the kernel perform some action on the processe's behalf
+        - Goal - controlled entry point into the kernel, allowing a process to request that the kernel perform some action on the process' behalf
         - System Call API
         - System Calls
             - Change the processor state from user mode to kernel mode
             - Set of system calls is fixed
             - Each system call may have a set of arguments that specify information transferred from user space to kernel space and vice-versa
         - Order
-            - Application Program makes a system call by invoking a wrapper function in the C Library
+            - Application program makes a system call by invoking a wrapper function in the C Library
             - Wrapper function makes system call arguments available to the system by copying arguments into specific registers
             - Wrapper function copies system call number into CPU register %eax
             - Wrapper function executes a trap machine instruction, which causes the processor to switch from user mode to kernel mode and execute code pointed to by location 0x80
             - Kernel invokes system_call() routine
                 - Saves regiter values onto the kernel stack
-                - Checks validity of the system cal number
+                - Checks validity of the system call number
                 - Invokes appropriate system call service routine using system call number to index a table of all system calls sys_call_table
                 - Service routine performs the required task and then returns a result status to system_call() routine
                 - Restores register values from the kernel stack and places the system call return value on the stack
@@ -143,7 +143,7 @@ Chapter 3: System Programming Concepts
             - Processor switches back to user mode
             - If return value of system call indicates an error, wrapper function sets errno using the value
             - Wrapper function returns to the caller, providing an integer return value indicating the success or failure of the system call
-        - Overhead - system calls have a small but apprciable overhead
+        - Overhead - system calls have a small but appreciable overhead
     b. Library Functions
         - Goal - one of the multitude of functions that constitutes the standard C library
         - Some use system calls and others do not
@@ -156,7 +156,7 @@ Chapter 3: System Programming Concepts
             - Error is normally indicated by -1
             - Check Example - fd = system call, if (fd == -1) {/* Code to Handle an Error */}
             - Print Error Message - perror() and strerror()
-        - Library Function Errors
+        - Library Function Errors Three Types
             - Return in same way as system calls
             - Set errno to indicate specific error condition aand returns a value other than -1 on error
             - Errno is not used at all
@@ -167,8 +167,8 @@ Chapter 3: System Programming Concepts
             - Header File - tlpi_hdr.h pg. 51
             - Error Diagnostic Functions - error_functions.h
                 - errMsg() - prints a message on standard error
-                - errExit() - prints a message on standard error and termiantes the program
-                - err_exit() - similar to errExit() but dones not flush standard output before print error and does not flush stdio buffers or invoke exit handlers
+                - errExit() - prints a message on standard error and terminates the program
+                - err_exit() - similar to errExit() but does not flush standard output before print error and does not flush stdio buffers or invoke exit handlers
                 - errExitEN)() - similar to errExit() but prints error number instead
                 - fatal() - used to diagnose general errors, including errors that don't set errno
                 - usageErr() - diagnose errors in command-line argument usage
