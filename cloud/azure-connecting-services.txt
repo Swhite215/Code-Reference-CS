@@ -30,7 +30,7 @@ Connect Your Services Together
             - Choose Queue Storage IF:
                 - You need an audit trail of all messages that pass through the queue
                 - You expect the queue to exceed 80 GB in size
-                - You want to track progess for processing a message inside of the queue
+                - You want to track progress for processing a message inside of the queue
         c. Choose Azure Event Grid
             - Azure Event Grid - fully managed event routing service running on Azure Service Fabric
                 - distributes events from different sources, such as Azure Blob Storage or Azure Media Services, to different handlers
@@ -39,7 +39,7 @@ Connect Your Services Together
                 - Events - What happened, data messages
                 - Event Sources - Where the event took place
                 - Topics - Endpoints where publishers send events
-                - Subscriptions - endpoint or mechanism to route events, somtetimes to multiple handlers
+                - Subscriptions - endpoint or mechanism to route events, sometimes to multiple handlers
                 - Event Handlers - app or service reacting to the event
             - Choose Azure Event Grid IF:
                 - Simplicity, Advanced Filtering, Fan-Out, Reliability, and Pay-Per-Event
@@ -60,7 +60,7 @@ Connect Your Services Together
     
     2. Module 2: Implement Message-Based Communication Workflows with Azure Service Bus
         a. Choose a Messaging Platform
-            - Messages and Events are both datagrams - packages of data senbt from one component to another
+            - Messages and Events are both datagrams - packages of data sent from one component to another
             - Messages - important component contributing to integrity of the application, contains data
             - Events - triggers a notification that something has occurred, contains no data
             - Pizza Example - Pizza Order = Message, Pizza Status = Events
@@ -116,7 +116,7 @@ Connect Your Services Together
                 - queueClient.RegisterMessageHandler(MessageHandler, messageHandlerOptions);
             - Receiving #2: Process the Message inside MessageHandler function
             - Receiving #3: Remove Message from Queue
-                - await queueClient.CompleteAsync(message.SystemProperties.LockToken);\
+                - await queueClient.CompleteAsync(message.SystemProperties.LockToken);
         d. Exercise - Write Code that Uses Service Bus Queues
             - Clone Starter Application and Open
                 - cd ~
@@ -200,7 +200,7 @@ Connect Your Services Together
                 - PowerShell - Get-AzStorageAccountKey ...
             - Accessing Queues
                 - REST API - http://<storage account>/queue.core.windows.net/<queue name>
-                - Authorization Header inclufed with every request
+                - Authorization Header included with every request
             - Azure Storage Client Library for .NET
                 - Connection String - string connectionString = "DefaultEndpointsProtocol=https;AccountName=<your storage account name>;AccountKey=<your key>;EndpointSuffix=core.windows.net"
         d. Exercise - Identify a Queue
@@ -239,7 +239,7 @@ Connect Your Services Together
                     - using Microsoft.WindowsAzure.Storage;
                     - using Microsoft.WindowsAzure.Storage.Queue;
                 - SendMethod - String Parameters and Task Return Value
-                - Above Steps #1-4 in Programmatically Access a Queue
+                - Above Steps #1-4 to Programmatically Access a Queue
             - Add Code to Send Message
                 - Call SendMethod in Main() while passing appropriate arguments
             - Check Your Results
@@ -283,9 +283,9 @@ Connect Your Services Together
                     - az eventhubs eventhub show --namespace-name $NS_NAME --name $HUB_NAME
         c. Configure Applications to Send or Receive Messagee through an Event Hub
             - Minimum Requirements for Application Sending to Event Hub
-                - Event Hub Namespace Name, Event Hub Name, Shared Access Policy Name,, Primary SHared Access Key
+                - Event Hub Namespace Name, Event Hub Name, Shared Access Policy Name,, Primary Shared Access Key
             - Minimum Requirements for Application Receiving from Event Hub
-                - Event Hub Namespace Name, Event Hub Na,e, Shared Access Policy Name, Primary Shared Access Key, Storage Account Name, Storage Account Connection String, Storage Account Container Name
+                - Event Hub Namespace Name, Event Hub Name, Shared Access Policy Name, Primary Shared Access Key, Storage Account Name, Storage Account Connection String, Storage Account Container Name
             - Azure CLI Commands for Creating a General Purpose Standard Storage Account
                 - storage account create
                 - storage account key list
