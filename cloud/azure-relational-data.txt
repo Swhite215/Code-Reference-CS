@@ -1,0 +1,48 @@
+Microsoft Certified: Azure Developer Associate
+
+Working with Relational Data
+
+    1. Module 1: Provision an Azure SQL Database to Store Application Data
+        a. Plan Your Azure SQL Database
+            - Why choose Azure SQL Database?
+                - Convenience, Cost, Scale, Security
+        b. Exercise - Create Your Azure SQL Database
+            - Azure SQL Logical Server - administrative container for databases
+                - Control logins, firewall rules, and security policies
+            - DTUs vs. vCores
+                - DTU - Database Transaction Unit - measure of compute, storage and IO resources
+                - eDTU - elastic DTU
+                - vCore - Virtual Cores - configure compute, storage, and IO independently
+            - SQL Elastic Pools - enable you to buy a set of compute and storage resources that are shared among all the DBs in the pool
+            - Collation - rules that sort and compare data dealing with case sensitivity, accent marks, and other language characteristics
+                - SQL_Latin1_General_CP1_CI_AS
+                    - Latin1_General - Western European Languages
+                    - CP1 - Code Page 1252
+                    - CI - Case Insensitive
+                    - AS - Accent Sensitive
+            - Create Azure SQL Database
+                - Create A Resource -> Databases -> SQL Database
+                - Configure Server Admin
+                - Configure Application Needs
+                - Configure Additional Settings
+            - Set the Server Firewall
+                - Logistics SQL Database -> Set Server Firewall -> Add Client IP
+        c. Exercise - Connect to Your Database and Add Sample Data
+            - Get Information About SQL Database
+                - az configure --defaults group=learn-a789d569-c53f-404f-ae6f-25a657dc892b sql-server=servernameswhit
+                - az sql db list
+                - az sql db list | jq '[.[] | {name: .name}]'
+                - az sql db show --name Logistics
+                - az sql db show --name Logistics | jq '{name: .name, maxSizeBytes: .maxSizeBytes, status: .status}'\
+            - Connect to Database
+                - az sql db show-connection-string --client sqlcmd --name Logistics
+                - sqlcmd -S tcp:servernameswhit.database.windows.net,1433 -d Logistics -U adminlogin -P Password1234 -N -l 30
+            - Work with Database
+                - Database -> Query Editor -> Run Queries
+                - CREATE TABLE Drivers (DriverID int, LastName varchar(255), FirstName varchar(255), OriginCity varchar(255));
+                - SELECT name FROM sys.tables;
+                - INSERT INTO Drivers (DriverID, LastName, FirstName, OriginCity) VALUES (123, 'Zirne', 'Laura', 'Springfield');
+                - SELECT DriverID, OriginCity FROM Drivers;
+                - UPDATE Drivers SET OriginCity='Boston' WHERE DriverID=123;
+                - DELETE FROM Drivers WHERE DriverID=123;
+                - SELECT COUNT(*) FROM DRIVERS;
