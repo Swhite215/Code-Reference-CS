@@ -46,3 +46,45 @@ Working with Relational Data
                 - UPDATE Drivers SET OriginCity='Boston' WHERE DriverID=123;
                 - DELETE FROM Drivers WHERE DriverID=123;
                 - SELECT COUNT(*) FROM DRIVERS;
+    
+    2. Module 2: Create an Azure Database for PostgreSQL
+        a. Benefits
+            - High Availability, Simple and Flexible Pricing, Scaling, Automatic Backups and Restores, Enterprise Grade Security
+        b. Create an Azure Database for PostgreSQL using Azure Portal
+            - Azure Database for PostgreSQL - parent resource for the database
+            - Server Resource - container with stong lifetime implicaitons for  your server and databases
+            - Server Name - <resource-name>.postgres.database.azure.com
+            - Connection Scope - login, firewall, users, roles, and configuration
+            - Pricing Tiers - Basic, General Purpose, Memory Optimized
+            - Steps
+                - Create a Resource -> Databases -> Azure Database for PostgreSQL
+                - Provide - name, subscription, resource group, source, server admin login name, password, confirm password, location, version, pricing tier
+        c. Create an Azure Database for PostgreSQL using Azure CLI
+            -  as postgres server create ...
+        d. Exercise - Create an Azure Database for PostgreSQL via Azure CLI
+            - serverName=wingtiptoys-$RANDOM
+            - userName=azureuser
+            - az postgres server create --name $serverName --resource-group learn-2b48ea79-6cc9-4290-8cc7-e6aac23f199d --location centralus --sku-name B_Gen5_1 --storage-size 20480 --backup-retention 15 --version 10 --admin-user $userName --admin-password "P@ssw0rd"
+        e. Server Security Considerations
+            - Restricting Access - User Accounts, Virtual Networks, Firewalls
+            - Add Firewall using Azure CLI
+                - az postgres server firewall-rule create --resource-group learn-2b48ea79-6cc9-4290-8cc7-e6aac23f199d --server <server-name> --name AllowAll --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
+            - Remove Firewall using Azure CLI
+                - az postgres server firewall-rule delete --name AllowAll --resource-group learn-2b48ea79-6cc9-4290-8cc7-e6aac23f199d --server-name <server-name>
+            - Connecting to Server - psql
+                - psql --host=<server-name>.postgres.database.azure.com --username=<admin-user>@<server-name> --dbname=<database>
+        f. Exercise - Connect to Azure Database for PostgreSQL Server
+            - Allow Azure Service Access
+                - Server Resoure -> Connection Security -> Allow Access to Azure Services
+            - Connect to DB with psql
+                - psql --host=$serverName.postgres.database.azure.com --username=$userName@$serverName --dbname=postgres
+            - Run Commands
+                - \l - list all databases, q - to exit
+                - CREATE DATABASE "Adventureworks"
+                - \c Adventureworks
+                - CREATE TABLE PEOPLE(NAME TEXT NOT NULL, AGE INT NOT NULL)
+                - INSERT INTO PEOPLE(NAME, AGE) VALUES ('Bob', 35)
+                - INSERT INTO PEOPLE(NAME, AGE) VALUES ('Sarah', 28)
+                - CREATE TABLE LOCATIONS(CITY TEXT NOT NULL, STATE TEXT NOT NULL)
+                - INSERT INTO LOCATIONS(CITY, STATE) VALUES ('New York', 'NY')
+                - INSERT INTO LOCATIONS(CITY, STATE) VALUES ('Flint', 'MI')
