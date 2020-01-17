@@ -88,3 +88,42 @@ Working with Relational Data
                 - CREATE TABLE LOCATIONS(CITY TEXT NOT NULL, STATE TEXT NOT NULL)
                 - INSERT INTO LOCATIONS(CITY, STATE) VALUES ('New York', 'NY')
                 - INSERT INTO LOCATIONS(CITY, STATE) VALUES ('Flint', 'MI')
+    
+    3. Module 3: Scale Multiple Azure SQL Databases with SQL Elastic Pools
+        a. Create a SQL Elastic Pool
+            - SQL Elastric Pool - resource allocation service used to scale and manage performance and cost of a group of SQL DBs
+            - When? - You have several databases that have low average utilization but infrequent, high utilization spikes
+            - How Many? - combined individual DB resources > 1.5 x Capacity of Elastic Pool
+                - Two S3 or Fifteen S0
+            - Creating
+                - Specify SQL server
+                - az sql elastic-pools create ...
+                - New-AzSqlElasticPool
+            - Add Databases
+                - az sql db create --elastic-pool-name
+                - New-AzSqlDatabase and Set-AzSqlDatabase
+        b. Exercise - Create a SQL Elastic Pool
+            - Create SQL Servers
+                - ADMIN_LOGIN="ServerAdmin"
+                - RESOURCE_GROUP=learn-b6d4edca-ff7a-4504-8ec7-2f74803cf246
+                - SERVERNAME=FitnessSQLServer-$RANDOM
+                - LOCATION=eastus
+                - PASSWORD=Password1234@.?*hgasdfhjgfasycvygjsavdeghjsvcytwexSDS
+                - az sql server create --name $SERVERNAME --resource-group $RESOURCE_GROUP --location $LOCATION --admin-user $ADMIN_LOGIN --admin-password $PASSWORD
+            - Add Databases
+                - az sql db create --resource-group $RESOURCE_GROUP --server $SERVERNAME --name FitnessVancouverDB
+                - az sql db create --resource-group $RESOURCE_GROUP --server $SERVERNAME --name FitnessParisDB
+            - Create Elastic Pool
+                - Create a Resource -> SQL Elastic Database Pool -> Create -> Configuration
+                - Go to Resource -> Settings: Configure -> Databases -> + Add Databases -> Click Databases -> Apply and Save
+        c. Manage SQL Elastic Pools Performance and Cost
+            - DTU-Based Pricing Model - database transaction units - basic, standard, and premium
+            - vCore-Based Pricing Model - logical CPU offered
+            - Review Cost Estimates
+        d. Exercise - Manage SQL Elastic Pools
+            - Adjust Elastic Pool Settings
+                - Go to Resource -> Settings: Configure
+            - Adjust Per Database Settings
+                - Per Database Settings -> Configure
+            - Create a New Database in the Pool
+                - Overview - + Create Database -> Configure
