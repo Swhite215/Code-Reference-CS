@@ -127,3 +127,86 @@ Working with Relational Data
                 - Per Database Settings -> Configure
             - Create a New Database in the Pool
                 - Overview - + Create Database -> Configure
+    
+    4. Module 4: Secure Your Azure SQL Database
+        a. Setting Up
+            - Create an Azure SQL Database
+                - # Set an admin login and password for your database
+                    - export ADMINLOGIN='serverAdmin'
+                    - export PASSWORD='serverPassword!234'
+                - # Set the logical SQL server name. We'll add a random string as it needs to be globally unique.
+                    - export SERVERNAME=server12345678910111213
+                    - export RESOURCEGROUP=learn-46974354-3416-40f7-be94-095717543d07
+                - # Set the location, we'll pull the location from our resource group.
+                    - export LOCATION=$(az group show --name $RESOURCEGROUP | jq -r '.location')
+                - Create Azure SQL Database Logical Server
+                    - az sql server create --name $SERVERNAME --resource-group $RESOURCEGROUP --location $LOCATION --admin-user $ADMINLOGIN --admin-password "$PASSWORD"
+                - Create Database
+                    - az sql db create --resource-group $RESOURCEGROUP --server $SERVERNAME --name marketplaceDb --sample-name AdventureWorksLT --service-objective Basic
+                - Get Connection String
+                    - az sql db show-connection-string --client sqlcmd --name marketplaceDb --server $SERVERNAME | jq -r
+                    - RESULT: sqlcmd -S tcp:server12345678910111213.database.windows.net,1433 -d marketplaceDb -U serverAdmin -P 'serverPassword!234' -N -l 30
+            - Create and Configure a Linux Virtual Machine
+                - Create VM
+                    - az vm create --resource-group $RESOURCEGROUP --name appServer --image UbuntuLTS --size Standard_DS2_v2 --generate-ssh-keys
+                - Connect to VM
+                    - ssh
+                - Install mssql-tools
+                    - echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
+                    - echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+                    - source ~/.bashrc
+                    - curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+                    - curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+                    - sudo apt-get update
+                    - sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
+        b. Restrict Network Access
+            - Firewall Rules
+                - Server-Level - Allow Access tp Azure Web Services, IP Address Rules, Virtual Network Rules
+                - Database-Level - IP Address Rules
+            - Restricting Access in Practice
+                - Use DB Level Firewall Rules in General
+                - Use Server Level for Admins
+            - Create DB Level
+                - EXECUTE sp_set_database_firewall_rule N'My Firewall Rule', '40.112.128.214', '40.112.128.214'
+                - EXECUTE sp_set_database_firewall_rule N'Allow appServer database level rule', '13.83.86.128', '13.83.86.128';
+            - Create Server Level
+                - SQL Server -> Firewalls and Virtual Networks -> Rule Name + Start IP + End IP
+                - SQL Server -> Firewalls and Virtual Networks -> + Add Existing Virtual Network -> Configure
+        c. Control Who Can Access Database
+            - Authentication - Verifying Identity, Authorization - Verifying Access
+            - Types 
+                - SQL Authentication - username and password
+                - Azure Active Directory Authentication - identities managed by Azure Active Directory
+            - Create a DB User
+                - Connect to Database
+                    - sqlcmd -S tcp:server12345678910111213.database.windows.net,1433 -d marketplaceDb -U '[ADMIN]' -P '[PASSWORD]' -N -l 30
+                - Create User
+                    - CREATE USER ApplicationUser WITH PASSWORD = 'YourStrongPassword1'; GO;
+                - Grant Permissions
+                    - ALTER ROLE db_datareader ADD MEMBER ApplicationUser;
+                    - ALTER ROLE db_datawriter ADD MEMBER ApplicationUser;
+                    - GO;
+                    - DENY SELECT ON SalesLT.Address TO ApplicationUser;
+                    - Go
+                - Test
+                    - Login as User: sqlcmd -S tcp:server12345678910111213.database.windows.net,1433 -d marketplaceDb -U '[USER]' -P '[PASSWORD]' -N -l 30
+        d. Secure Data in Transit, At Rest, and on Display
+            - TLS Network Encryption - transit
+            - Transparent Data Encryption - encryption and decryption at the page level, read into memory and then encrypted before written to disk
+                - Database -> Security: Transparent Data Encryption
+            - Dynamic Data Masking - limit data displayed to user
+                - column to apply mask, and how the data should be masked
+                - Masks - default value, credit card, email, number, custom string
+                - Database -> Security: Dynamic Data Masking -> + Add Mask -> Configure
+        e. Monitor Your Database
+            - DB Auditing
+                - Retain an audit trail of selected events
+                - Report on database activity
+                - Analyze reports
+            - Auditing in Practice
+                - Enable Server Level
+                - Server -> Security: Auditing -> ON -> Storage
+            - Advanced Data Security
+                - Data Discovery and Classification, Vulnerability Assessment, Advanced Threat Protection
+                - Setup and Configuration
+                    - SQL Server -> Security: Advanced Data Security -> ON
