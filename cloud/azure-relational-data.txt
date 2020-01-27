@@ -210,3 +210,24 @@ Working with Relational Data
                 - Data Discovery and Classification, Vulnerability Assessment, Advanced Threat Protection
                 - Setup and Configuration
                     - SQL Server -> Security: Advanced Data Security -> ON
+    
+    5. Module 5: Develop and Configure an ASP.NET Application that Queries Azure SQL Database
+        a. Create Tables, Bulk Import, and Query Data
+            - Create Tables - query editor, sqlcmd, sql server management studio
+            - Bulk Import - sql server integration, sql bulk insert statement, bulk copy program (bcp) utility
+        b. Exercise - Create Tables, Bulk Import, and Query Data
+            - Clone Respository
+                - git clone https://github.com/MicrosoftDocs/mslearn-develop-app-that-queries-azure-sql education
+                - mv ~/education/data ~/educationdata
+                - cd ~/educationdata
+                - ls
+            - IMPORT Data
+                - export DATABASE_NAME=coursedatabase987
+                - export DATABASE_SERVER=courseserver987
+                - export AZURE_USER=azuresql
+                - export AZURE_PASSWORD=Password$1234
+                - bcp "$DATABASE_NAME.dbo.courses" format nul -c -f courses.fmt -t, -S "$DATABASE_SERVER.database.windows.net" -U $AZURE_USER -P $AZURE_PASSWORD
+                - bcp "$DATABASE_NAME.dbo.courses" in courses.csv -f courses.fmt -S "$DATABASE_SERVER.database.windows.net" -U $AZURE_USER -P $AZURE_PASSWORD -F 2
+        c. Connect an ASP.NET Application to Azure SQL Database
+            - System.Data.SqlClient Library - types and methods to connect to a SQL Server DB
+            
