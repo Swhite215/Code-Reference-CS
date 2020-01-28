@@ -1,0 +1,23 @@
+Microsoft Certified: Azure Developer Associate
+
+Store Data in Azure
+
+    1. Module 1: Choose a Data Storage Approach in Azure
+        a. Classify Data
+            - Structured - relational data, strict schema
+            - Semi-Structured - tags such as key/value pairs, NoSQL
+                - Serialization Languages - XML, JSON, YAML
+                - NoSQL - key-value, graph, document
+            - Unstructured
+                - files, photos, videos
+        b. Determine Operational Needs
+            - Operations and Latency
+                - Will you be doing lookups using an ID?
+                - Do you need to query the database for one or more fields?
+                - How many create, update, and delete operations do you expect?
+                - Do you need to run complex analytical queries?
+                - How quickly do these operations need to complete?
+        c. Group Multiple Operations in a Transaction
+            - Transaction - logical group of database operations that execute together
+            - ACID - Atomicity, Consistency, Isolation, and Durability
+            - OLTP vs. OLAP - Online Transaction Processing (large volume of data), Online Analytical Processing (large complexity)
