@@ -21,3 +21,26 @@ Store Data in Azure
             - Transaction - logical group of database operations that execute together
             - ACID - Atomicity, Consistency, Isolation, and Durability
             - OLTP vs. OLAP - Online Transaction Processing (large volume of data), Online Analytical Processing (large complexity)
+    
+    2. Module 2: Create an Azure Storage Account
+        a.  Decide How Many Storage Accounts You Need
+            - Azure Storage - Azure Blogs, Azure Files, Azure Queues, and Azure Tables (Primitive and Cloud-Based)
+            - Storage Account - container that groups a set of Azure Storage services together
+                - Subscription - Azure subscription that will be billed for the services in the account
+                - Location - Datacenter that will store the services in the account
+                - Performance - Standard -  Blob, File, Queue, Table or Premium - Page Blob and SSDs
+                - Replication - strategy used to make copies of your data (Locally Redundant Storage)
+                - Access Tier - Blob access speed is either hot = quick or cool = slower
+                - Secure Transfer Required - HTTPs vs. HTTP
+                - Virtual Networks - security feature that allows inbound access requests
+            - How Many? - One for every group of settings that you want to apply for your data 
+                - Data Diversity - e.g. specific to a region or proprietary 
+                - Cost Sensitivity - e.g. critical w/ geo-redundant storage and non-critical w/ locally-redundant storage
+                - Tolerance for MGMT Overhead - e.g. partitions that share characteristics like location, billing and replication, then storage account for each
+        b. Choose Your Account Settings
+            - Name - globally unique, lowercase and digits, between 3 and 24 characters
+            - Deployment Model - Resource Manager w/ Azure Resource Manager API (Recommended) or Classic w/ Azure Service Management API
+            - Account Kind - StorageV2 supports all storage types and features, Storage supports all storage types, Blob supports block blobs and append blobs
+        c. Choose Account Creation Tool
+            - Azure Portal, Azure CLI, Azure PowerShell, and Management Client Libraries
+        d. Exercise - Create a Storage Account
