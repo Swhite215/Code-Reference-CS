@@ -44,3 +44,61 @@ Store Data in Azure
         c. Choose Account Creation Tool
             - Azure Portal, Azure CLI, Azure PowerShell, and Management Client Libraries
         d. Exercise - Create a Storage Account
+    
+    3. Module 3: Connect an App to Azure Storage
+        a. Explore Azure Storage Services
+            - Durable - redundancy through replication
+            - Secure - encrypted
+            - Scalable
+            - Managed - maintenance and critical problems handled by Azure
+            - Types - Blobs, Files, Queues, and Cosmos DB
+            - Blob Storage
+                - Serving images or documents
+                - Storing files for distributed access
+                - Streaming video and audio
+                - Storing data for backup and restoration, disaster recovery, and archiving
+                - Storing data for analysis
+                - Blobs
+                    - Block - test or binary files up to ~5 TB
+                    - Page - random access files up to ~8 TB
+                    - Append - Block blobs optimized for append
+            - Files Storage
+                - network file share using Server Message Block Protocol
+            - Queues
+                - store and retrieve messages up to 64 KB in size
+            - Azure Storage Accounts
+                - Unique namespace in Azure to store and access your data objects
+        b. Exercise - Create a New App to Work with Azure Storge
+            - Create an Azure Storage Account w/ Azure CLI
+                - az storage account create --resource-group learn-43b34866-2683-4dad-a47e-6a0d6e788acc --kind StorageV2 --sku Standard_LRS --access-tier Cool --name storage02032020
+        c. Exercise - Add the Storage Client Library to Your App
+            - npm i azure-storage --save
+        d. Exercise - Connect to Azure Storage Account
+            - Pre-Requisties - access key, REST API endpoint
+            - REST API Endpoints
+                - Blobs - https://[name].blob.core.windows.net/
+                - Queues - https://[name].queue.core.windows.net/
+                - Table - https://[name].table.core.windows.net/
+                - Files - https://[name].file.core.windows.net/
+            - Connection String - DefaultEndpointsProtocol=https;AccountName={your-storage};AccountKey={your-access-key};EndpointSuffix=core.windows.net
+        e. Exercise - Add Azure Storage Configuration to Your App
+            - Create .env configuratio file
+                - touch .env
+                - AZURE_STORAGE_CONNECTION_STRING=<value
+            - Get Connection String
+                - az storage account show-connection-string --resource-group learn-43b34866-2683-4dad-a47e-6a0d6e788acc --query connectionString --name storage02032020
+                - Paste into .env file
+            - Add Support to Read .env File
+                - npm install dotenv --save
+            - Add Code to Read the Configuration File
+                - require('dotenv').config()
+        f. Initialize Storage Account Model
+            - const storage = require('azure-storage')
+            - Services
+                - const blobService = storage.createBlobService();
+                - const fileService = storage.createFileService();
+                - const queueService = storage.createQueueService();
+                - const tableService = storage.createTableService();
+            - Tip: Use util.promisify to convert callback methods into promises, then use async/await
+        g. Exercise - Connect with your Azure Storage Configuration
+            - code - createBlob.js
