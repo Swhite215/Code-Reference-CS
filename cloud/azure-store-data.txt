@@ -134,3 +134,26 @@ Store Data in Azure
             - RBAC, ACLss, Azure Active Directory OAuth 2.0
             - End-to-End Encryption and TLS
 
+    5. Module 5: Store Application Data with Azure Blob Storage
+        a. What are Blobs?
+            - Unstructured files for the cloud
+            - Multiple Containers -> Multiple Blobs w/ name-value metadata
+            - REST Based Storage API
+        b. Design an Organization Strategy
+            - Storage Account -> Containers -> Blobs
+            - Considerations - Naming Limitations, Public Access and Containers as Security Boundaries, Virtual Directories
+            - Considerations - Blob Types: Block, Append, and Page
+        c. Exercise - Create Azure Storage Resources
+            - Create Storage Account - Administrative
+                - az storage account create --kind StorageV2 --resource-group learn-5dda8e33-2dd6-40ae-bdee-5d134e0df0b5 --location centralus --name makingstoragehappen
+            - Create Container - Programmatically
+                - az storage container create -h
+        d. Exercise - Configure and Initialize the Client Library
+            - Workflow - Retrieve Storage Account Configuration, Initialize Client w/ Connection String, Make API Calls
+            - Initialize Blob Storage Object .NET Core
+                - CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString); // or TryParse()
+                - CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+                - CloudBlobContainer container = blobClient.GetContainerReference(containerName);
+        e. Exercise - Get Blob References
+        f. Exercise - Blob Uploads and Downloads
+        
