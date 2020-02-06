@@ -102,3 +102,35 @@ Store Data in Azure
             - Tip: Use util.promisify to convert callback methods into promises, then use async/await
         g. Exercise - Connect with your Azure Storage Configuration
             - code - createBlob.js
+    
+    4. Module 4: Secure Your Storage Account
+        a. Explore Azure Storage Security Features
+            - Encryption at Rest - Storage Service Encruption 256-Bit Advanced Encryption Standard Cipher and Azure Disk Encryption
+            - Encrytion in Transit - HTTPS
+            - CORS Support
+            - Azure Active Directory and Role Based Access Control
+            - Auditing Access - Storage Analytics
+        b. Understand Storage Account Keys
+            - Storage Account Keys - Shared Keys (Primary and Secondary)
+                - View -> Settings -> Access Keys
+            - Protecting Shared Keys
+                - Regenerate Periodically If - hacked, member leavesm etc.
+        c. Understand Access Signatures
+            - Shared Access Signature - for untrusted clients, string with security token
+            - Types of SAS
+                - Service Level - allow access to specific resources in a storage account e.g. allow an app to retrieve a list of files
+                - Account-Level - allow access to anything that a service-level shared access signature can allow e.g. ability to create file systems
+            - Typical Designs w// User Read and Write Data
+                - Clients upload and download data through a front-end proxy service, which performs authentication
+                - Lightweight service authenticates client as needed, then generates a SAS for client, then client uses SAS
+        d. Control Network Access to Your Storage Account
+            - Default Network Access
+                - Storage Account -> Settings: Firewall Rules and Virtual Networks -> Configure
+        e. Understand Advanced Threat Protection for Azure Storage
+            - Goal - detects anomalies in account activity
+            - Available for Blob Service and alerts integrated with Azure Security Center
+            - Storage Account -> Settings: Advanced Threat Protection -> Configure
+        f. Explore Azure Data Lake Storage Security Features
+            - RBAC, ACLss, Azure Active Directory OAuth 2.0
+            - End-to-End Encryption and TLS
+
