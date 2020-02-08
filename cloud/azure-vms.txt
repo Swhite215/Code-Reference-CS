@@ -104,3 +104,21 @@ Websites with Azure Virtual Machines
                     - Rule - source and destination address/range, protocol, port/range, direction (inbound and outbound), numeric priority, allow or deny
                 - Create Inbound Rule Allowing Traffice on Ports
         g. Exercise - Configure Network Settings
+
+    3. Module 3: Create a Windows Virtual Machine
+        a. Create a Windows Virtual Machine in Azure
+            - Refer to Module 2: Section A
+        b. Exercise - Create a Windows Virtual Machine
+            - Create A Resource -> Windows Server -> Image -> Configure
+        c. Use RDP to Connect to Windows Azure Virtual Machines
+            - Remote Desk Protocol - remotve conectivity to the UI of Windows-based computers
+        d. Exercise - Connect to a Windows Virtual Machine using RDP
+            - Connect with RDP
+                - You need - public IP address of the VM and port number
+                - Can download a RDP file
+            - VM -> Connect -> IP and Port -> Download RDP File -> Configure
+            - RDP Client -> Conect -> Install WQoeker Roles -> Install Software
+            - Initialize Data Disks
+                - Disk Management -> OK
+        e. Configure Azure Virtual Machine Network Settings
+            - Refer to Module 2: Section F
