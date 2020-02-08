@@ -1,0 +1,65 @@
+Microsoft Certified: Azure Developer Associate
+
+Websites with Azure Virtual Machines
+
+    1. Module 1: Introduction to Azure Virtual Machines
+        a. Compile a Checklist for Creating an Azure Virtual Machine
+            - IaaS
+                - Maintain: Operating Systems, Patches, Peformances, Disk Usage
+                - Virtual Network Interface
+            - Network
+                - VMs and Services on the same virtual network can access one another
+                - You can configure the network to allow access to the external service
+                - Setup - Address Spaces, Subnets, and Security
+                - Subnets - 10.1.0.0 to VMs, 10.2.0.0. to BE, 10.3.0.0 to SQL Server VMs
+                - Security - Network Security Groups e.g. software firewalls
+            - Plan
+                - What does the server communicate with?
+                - Which ports are open?
+                - Which OS is used?
+                - How much disk space is in use?
+                - What kind of data does this VM use? Are their restrictions?
+                - What sort of CPU, memory, and disk I/O load does the server have? Is there burst traffic to account for?
+            - VM Name
+                - [environment][location][instnace][product][role]
+                - Azure Resource - VM, storage account for the disks, virtual network, network interface, network security group, public internet address
+            - VM Location
+            - VM Size - General Purpose, Compute Optimized, Memory Optimized, Storage Optimized, GPU, High Performance Compute
+            - Price Model
+                - Compute Costs - priced per-hour, billed on a per-minute basis
+                - Storage Costs - pay-as-you-go, and reserved virtual machine instances
+            - VM Storage
+                - Two Virtual Hard Disks VHD - 1 for Operating System amd 1 for Temporary Storage
+                - Azure Storage - MS cloud-based data storage solution
+                - Virtual Disks - standard or premium storage accounts
+                - Disks - managed or unmanaged
+            - VM Operating System
+        b. Create a VM using Azure Portal
+            - Azure Portal -> Create a Resource -> Ubuntu -> Configure
+        c. Options to Create and Manage a Virtual Machine
+            - Azure Resource Manager - JSON templates
+            - Azure PowerShell - one-off interactives and/or the automation of repeated tasks
+            - Azure CLI
+            - Azure REST API
+            - Azure Client SDK
+            - Azure VM Extensions - configure and automate tasks on VMs after initial deployment
+            - Azure Automation Services - process automation, configuration management, and update management
+        d. Manage the Availability of your VMs
+            - Availability - percentage of time a service is available for use
+            - Availability Set - logical feature used to ensure that a group of VMs are deployed so that they aren't sibject to a single point of failure
+            - Fault Domain - logical group of hardware that shares a common power source and network switch
+            - Update Domain - logical group of hardware that can undergo maintenance or be rebooted at the same time
+            - Failover Across Locations
+                - Azure Site Recovery - replicates workloads from a primary site to a secondary location
+        e. Back Up Virtual Machines
+            - Azure Backup - backup as a service offering
+            - Advantages of Azure Backup
+                - Automatic Storage Management
+                - Unlimited Scaling
+                - Multiple Storage Options
+                - Unlimited Data Transfer
+                - Data Encryption
+                - Application-Consistent Backup
+                - Long Term Retention
+            - Components
+                - Azure Backup Agent, System Center Data Protection Manager, Azure Backup Server, Azure Backup VM Extension
