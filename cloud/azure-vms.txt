@@ -63,3 +63,44 @@ Websites with Azure Virtual Machines
                 - Long Term Retention
             - Components
                 - Azure Backup Agent, System Center Data Protection Manager, Azure Backup Server, Azure Backup VM Extension
+    
+    2. Module 2: Linux Virtual Machine in Azure
+        a. Create a Linux Virtual Machine in Azure
+            - Resources
+                - Virtual Machine w/ CPU and Memory Resources, Azure Storage Account, Virtual Disks, Virtual Network, Network Interace, Optional Public IP Address
+            - Sizing Your VM
+                - General Use - B, Dsv3, Dv3, DSv2, Dv2
+                - Heavy Computations - Fsv2, Fs, F
+                - Large Memory Usage - Esv3, Ev3, M, GS, G, DSv2, Dv2
+                - Data Storage and Processing - Ls
+                - Heavy Graphics Rendering - NV, NC, NCv2, NCv3, ND
+                - High Performance Computing - H
+            - Storage
+                - HDD vs. SSD
+                - VHD Operating and Temporary
+                - Data Disks - Unmanaged vs. Managed
+            - Network Communication
+        b. Exercise - Decide an Authentication Method for SSH
+            - SSH Key-Pair
+                - ssh-keygen -t rsa -b 4096
+        c. Exercise - Create a Linux Virtual Machine using Azure Portal
+            - Create A Resource -> Ubuntu 18.04 LTS Canonical -> Configure
+        d. Azure Virtual Machines IP Addresses and SSH Options
+        e. Exercise - Connect to a Linux Virtual Machine with SSH
+            - Access the VM via SSH
+                - ssh user@<public-ip-address>
+            - Set Up Disks
+                - (echo n; echo p; echo 1; echo ; echo ; echo w) | sudo fdisk /dev/sdc
+                - sudo mkfs -t ext4 /dev/sdc1
+                - sudo mkdir /data & sudo mount /dev/sdc1 /data
+            - Install Software
+                - sudo apt-get update
+                - sudo apt-get install apache2 -y
+                - sudo systemctl status apache2 --no-pager
+        f. Network and Security Settings
+            - Opening Ports
+                - Create Network Security Group
+                    - Optional security layer that provides a software firewall by filtering inbound and outbound traffic on the VNet
+                    - Rule - source and destination address/range, protocol, port/range, direction (inbound and outbound), numeric priority, allow or deny
+                - Create Inbound Rule Allowing Traffice on Ports
+        g. Exercise - Configure Network Settings
