@@ -122,3 +122,23 @@ Websites with Azure Virtual Machines
                 - Disk Management -> OK
         e. Configure Azure Virtual Machine Network Settings
             - Refer to Module 2: Section F
+    
+    4. Module 4: MEAN Stack on Linux VM
+        a. Exercise - Create A VM
+            - az vm create --resource-group learn-e60f60f4-cc76-43d2-baf2-278d5355bd66 --name MeanStack --image Canonical:UbuntuServer:16.04-LTS:latest --admin-username azureuser --generate-ssh-keys
+            - az vm open-port --port 80 --resource-group learn-e60f60f4-cc76-43d2-baf2-278d5355bd66 --name MeanStack
+            - ipaddress=$(az vm show --name MeanStack --resource-group learn-e60f60f4-cc76-43d2-baf2-278d5355bd66 --show-details --query [publicIps] --output tsv)
+            - ssh azureuser@$ipaddress
+        b. Exercise - Install Dependencies
+            - sudo apt update && sudo apt upgrade -y
+            - MongoDB
+                - sudo apt-get install -y mongodb
+                - sudo systemctl status mongodb
+                - mongod --version
+            - Node.js
+                - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+                - sudo apt-get install -y nodejs
+                - node -v
+            - Web Application
+                - Create, Build, Serve
+            - Test at IP
