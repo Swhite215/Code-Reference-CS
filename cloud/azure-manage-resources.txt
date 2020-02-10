@@ -1,0 +1,33 @@
+Microsoft Certified: Azure Developer Associate
+
+Manage Resources
+
+    1. Module 1: Align Requirements with Cloud Types and Service Models
+        a. Azure Solutions for Public, Private, and Hybrid Cloud
+            - Cloud Computing - provisioning of service and applications on demand over the internet
+            - Public Cloud
+                - Services are offered over the public internet and availble to anyone who wants to purchase them
+                - Servers and storage are owned and operated by a third-party cloud service provider
+                - Why? - Service consumption is on-demand, no upfront hardware, automation, geographic dispersity, reduced hardware maintenance
+            - Private Cloud
+                - Computing resources used exclusively by users from one business or organization
+                - Located at organization's data center or hosted by a third-party service provider
+                - Why? - Pre-existing environment, legacy applications, data sovereignty and security, regulatory compliance
+            - Hybrid Cloud
+                - Combines public and private cloud by allowing data and applications to be shared between them
+                - Why? - Existing hardware investment, regulatory requirements, unique operating environments, migration
+        b. Cloud Service Models
+            - Infrastructure-as-a-Service IaaS - provides instant computing infrastructure that you can provision and manage over the internet
+            - Platform-as-a-Serice PaaS - provides ready-made development and deployment environments taht you can use to deliver your own cloud service
+            - Software-as-a-Service SaaS - delivers applications over the internet as a web based service
+            - Spectrum
+                - You Manage - On-Premises, IaaS, PaaS, Provider Managers - SaaS
+        c. Infrastructure-as-a-Service
+            - Common Scenarios - Website Hosting, Web Apps, Storage/Backup/Recovery, High-Performance Computing, Big Data Analysis
+            - Advantages - Eliminates capital expense and reduces ongoing costs, improves business continuity, respond quicker to shifting conditions, increase stability, reliability, and supportability
+        d. Platform-as-a-Service
+            - Common Scenarios - Development framework, analytics or business intelligence
+            - Advantages - Reduced development time, develop for multiple platforms, affordable sophisticated tools, support geographically distributed development teams, efficiently manage application lifecycle
+        d. Software-as-a-Service
+            - Common Scenarios - Productivity apps such as email, collaboration, calendaring, and sophisticated business applications
+            - Advantages - Access to sophisticated applications, use free client software, access app data from anywhere
