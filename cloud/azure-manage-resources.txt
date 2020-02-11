@@ -68,3 +68,89 @@ Manage Resources
                 - az webapp deployment source config --name $AZURE_WEB_APP --resource-group $RESOURCE_GROUP --repo-url "https://github.com/Azure-Samples/php-docs-hello-world" --branch master --manual-integration
                 - curl $AZURE_WEB_APP.azurewebsites.net
 
+    3. Module 3: Automate Azure Tasks Using Scripts with Powershell
+        a. Is Powershell right for you?
+            - Module added to PowerShell Core or Windows Powershell to let you connect to azure subscriptions and manage resources
+            - Interactive Mode (Write and Execute) or Scripting Mode
+            - Considerations - automation, learning curve, team skillset
+        b. Install PowerShell
+            - Base - PowerShell on Windows or PowerShell Core on MacOS and Linux
+            - Module - Azure PowerShell
+        c. Exercise - Install Azure PowerShell
+            - brew tap homebrew/cask
+            - brew cask install powershell
+            - pwsh
+        d. Create an Azure Resource using Scripts in PowerShell
+            - PowerShell cmdlets - PowerShell command that should be simple and single-purposed
+                - verb-noun e.g. Get-Process, Format-Table, Start-Service
+                - Get-Help Verb-Noun -detailed
+            - PowerShell Modules - DLL that includes the code to process each available cmdllet
+            - Install Module - Install-Module AZ -AllowClobber
+            - Update a Module - Update-Module -Name <name>
+            - Create a Resource Group
+                - Import Azure Cmdlets
+                    - Import-Module Az
+                - Connect to Azure Subscription
+                    - Connect-AzAccount
+                - Create Resource Group
+                    - Select-AzSubscription -Subscription "Visual Studio Enterprise"
+                    - Get-AzResourceGroup | Format-Table
+                    - New-AzResourceGroup -Name mynewresourcegroup -Location "East US"
+                    - Get-AzResource | ft
+                    - Get-AzResource -ResourceGroupName ExerciseResources
+                - Create Virtual Machine
+                    - New-AzVm -ResourceGroupName <resource group name> -Name <machine name> -Credential <credentials object> -Location <location> -Image <image name>
+                    - New-AzVM -Name MyVm -ResourceGroupName ExerciseResources -Credential (Get-Credential) ...
+                    - $vm = Get-AzVM  -Name MyVM -ResourceGroupName ExerciseResources
+                    - $ResourceGroupName = "ExerciseResources"
+                - Verify Creation                    
+                    - $vm = Get-AzVM  -Name MyVM -ResourceGroupName $ResourceGroupName
+                    - $vm.HardwareProfile.vmSize = "Standard_DS3_v2"
+                    - Update-AzVM -ResourceGroupName $ResourceGroupName  -VM $vm
+        e. Exercise - Create an Azure Resource Using Scripts in PowerShell
+            -  Create Linux VM
+                - New-AzVm -ResourceGroupName learn-05157b5a-6053-4f59-8b2a-d3d6fae06523 -Name "testvm-eus-01" -Credential (Get-Credential) -Location "East US" -Image UbuntuLTS -OpenPorts 22
+                - $vm = Get-AzVM -Name "testvm-eus-01" -ResourceGroupName learn-05157b5a-6053-4f59-8b2a-d3d6fae06523
+                - $vm
+                - $vm.HardwareProfile, $vm.NetworkProfile, $vm.OsProfile, $vm.LinuxConfiguration, $vm.Location, $vm.Type, $vm.Name, $vm.VMId, $vm.StorageProfile
+                - $vm | Get-AzPublicIpAddress
+            - Delete a VM
+                - Stop-AzVM -Name $vm.Name -ResourceGroup $vm.ResourceGroupName
+                - Remove-AzVM -Name $vm.Name -ResourceGroup $vm.ResourceGroupName
+                - Get-AzResource -ResourceGroupName $vm.ResourceGroupName | ft
+            - Delete Resources
+                - Network Interface
+                    - $vm | Remove-AzNetworkInterface –Force
+                - Managed OS Disks and Storage Account
+                    - Get-AzDisk -ResourceGroupName $vm.ResourceGroupName -DiskName $vm.StorageProfile.OSDisk.Name | Remove-AzDisk -Force
+                - Virtual Network
+                    - Get-AzVirtualNetwork -ResourceGroup $vm.ResourceGroupName | Remove-AzVirtualNetwork -Force
+                - Network Security Group
+                    - Get-AzNetworkSecurityGroup -ResourceGroup $vm.ResourceGroupName | Remove-AzNetworkSecurityGroup -Force
+                - Public IP Address
+                    - Get-AzPublicIpAddress -ResourceGroup $vm.ResourceGroupName | Remove-AzPublicIpAddress -Force
+        f. Create anbd Save Scripts in Azure PowerShell
+            - PowerShell Script - text file containing commands and control constructs that are invocations of cmdlets
+            - File Extension - .ps1
+            - Execute - .\myscript.ps1
+            - Variables - $var = value or $adminCredential = Get-Credential
+            - Use Variable - $var
+            - Loops - for ($ = 1; $i -lt 3; $i++) { $i }
+            - Parameters
+                - command - .\setupEnvironment.ps1 -size 5 -location "East US"
+                - inside script - param([string]$location, [int]$size)
+                - command - .\setupEnvironment.ps1 5 "East US"
+                - inside script - param([int]$size, [string]$location)
+        g. Exercise - Create and Save Scripts in Azure PowerShell
+            - Script
+                - touch "./ConferenceDailyReset.ps1"
+                - param([string]$resourceGroup)
+                - $adminCredential = Get-Credential -Message "Enter a username and password for the VM administrator."
+                - For ($i = 1; $i -le 3; $i++) 
+                - {
+                    $vmName = "ConferenceDemo" + $i
+                    Write-Host "Creating VM: " $vmName
+                    New-AzVm -ResourceGroupName $resourceGroup -Name $vmName -Credential $adminCredential -Image UbuntuLTS
+                - }
+            - Execute - .\ConferenceDailyReset.ps1 learn-e475e3df-5e7c-4d05-916e-75e65a12b191
+            - Verify - Get-AzResource -ResourceType Microsoft.Compute/virtualMachines
