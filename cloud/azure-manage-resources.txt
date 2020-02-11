@@ -31,3 +31,40 @@ Manage Resources
         d. Software-as-a-Service
             - Common Scenarios - Productivity apps such as email, collaboration, calendaring, and sophisticated business applications
             - Advantages - Access to sophisticated applications, use free client software, access app data from anywhere
+
+    2. Module 2: Control Azure Services with the CLI
+        a. What is the Azure CLI?
+            - Command-line program to connect to Azure and execute administrative commands on Azure resources
+        b. Exercise - Install
+            - brew update && brew install azure-cli && az --version
+        c. Work with the Azure CLI
+            - What resources? - resource groups, storage, virtual machines, azure active directory, containers, machine learning and more
+            - Group - service provided by Azure
+            - Subgroup - divide commands for service into logical groupings
+            - Example - storage = group, and account, blob, storage, and queue = subgroups
+            - Tips and Tricks
+                - az find subgroup/group, az find "az group", az find "az group command"
+                - az group subgroup --help
+                - az group list --query "[?name == '$RESOURCE_GROUP']"
+                - az appservice plan create --help
+            - Creating a resource
+                - Connect - az login
+                - Create - az group create --name <name> --location <location>
+                - Verify - az group list & az group list --output table
+        d. Exercise - Create an Azure Website Using the CLI
+            - Variables
+                - export RESOURCE_GROUP=learn-d53fd2e7-4def-4e95-8eb7-e10be0d1dd85
+                - export AZURE_REGION=centralus
+                - export AZURE_APP_PLAN=popupappplan-$RANDOM
+                - export AZURE_WEB_APP=popupwebapp-$RANDOM
+            - az group list --output table
+            - Create App Service
+                - az appservice plan create --name $AZURE_APP_PLAN --resource-group $RESOURCE_GROUP --location $AZURE_REGION --sku FREE
+                - az appservice plan list --output table
+            - Create WebApp
+                - az webapp create --name $AZURE_WEB_APP --resource-group $RESOURCE_GROUP --plan $AZURE_APP_PLAN
+                - az webapp list --output table
+            - Deploy Code from Github
+                - az webapp deployment source config --name $AZURE_WEB_APP --resource-group $RESOURCE_GROUP --repo-url "https://github.com/Azure-Samples/php-docs-hello-world" --branch master --manual-integration
+                - curl $AZURE_WEB_APP.azurewebsites.net
+
