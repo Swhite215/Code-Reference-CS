@@ -154,3 +154,35 @@ Manage Resources
                 - }
             - Execute - .\ConferenceDailyReset.ps1 learn-e475e3df-5e7c-4d05-916e-75e65a12b191
             - Verify - Get-AzResource -ResourceType Microsoft.Compute/virtualMachines
+        
+    4. Module 4: Predict Costs and Optmize Spending for Azure
+        a. Notes - Azure Fundamentals Module 12
+    
+    5. Module 5: Control and Organize Azure Resources with Azure Resource Manager
+        a. Notes - Azure Fundamentals Moduel 11
+
+    6. Module 6: Move Azure Resources to Another Resource Group
+        a. Identify Correctly Assigned Resources
+            - Consistent Naming Convention
+            - Resource Group Actions: Search, Filter, Create, Move
+            - Use Tags
+        b. Exercise - Identify Correctly Assignerd Resources
+        c. Access Resources that Can Move
+            - Can Be: Azure Storage Accounts, VMs, Virtual Netoworks
+            - Can't Be: Azure Active Directory Domain Services, Azure Backup Vaults, Azure App Service Gateways
+        d. Validate Resources in Azure
+            - validate move operation from the Azure REST API
+            - az rest --method post --uri https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/<your-source-group>/validateMoveResources?api-version=2019-05-10 --body "{\"resources\": [\"<your-resource-id-1>\", \"<your-resource-id-2>\", \"<your-resource-id-3>\"], \"targetResourceGroup\": \"/subscriptions/<your-subscription-id>/resourceGroups/<your-target-group>\"}"
+            - az rest --method get --uri <returned-location-from-POST>
+        e. Steps to Move Resources Between Azure Resource Groups Azure CLI
+            - Create A Resource Group
+                - az group create --name <destination resource group name> --location <location name>
+            - Get the Resource
+                - yourResource=$(az resource show --resource-group <resource group name> --name <resource name> --query id --output tsv)
+            - Move Resource
+                - az resource move --destination-group <destination resource group name> --ids $yourResource
+            - Verify
+                - az group show --name <destination resource group name>
+        f. Exercise - Move and Verify Resouces Between Azure Resource Groups
+            - Search on Tags -> Select Tag -> Select Resource -> Move: Move to another resource group -> Resource Group: New -> OK
+        
