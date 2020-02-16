@@ -84,7 +84,7 @@ Store Data in Azure
         e. Exercise - Add Azure Storage Configuration to Your App
             - Create .env configuratio file
                 - touch .env
-                - AZURE_STORAGE_CONNECTION_STRING=<value
+                - AZURE_STORAGE_CONNECTION_STRING=<value>
             - Get Connection String
                 - az storage account show-connection-string --resource-group learn-43b34866-2683-4dad-a47e-6a0d6e788acc --query connectionString --name storage02032020
                 - Paste into .env file
@@ -114,7 +114,7 @@ Store Data in Azure
             - Storage Account Keys - Shared Keys (Primary and Secondary)
                 - View -> Settings -> Access Keys
             - Protecting Shared Keys
-                - Regenerate Periodically If - hacked, member leavesm etc.
+                - Regenerate Periodically If - hacked, member leaves, etc.
         c. Understand Access Signatures
             - Shared Access Signature - for untrusted clients, string with security token
             - Types of SAS
@@ -131,7 +131,7 @@ Store Data in Azure
             - Available for Blob Service and alerts integrated with Azure Security Center
             - Storage Account -> Settings: Advanced Threat Protection -> Configure
         f. Explore Azure Data Lake Storage Security Features
-            - RBAC, ACLss, Azure Active Directory OAuth 2.0
+            - RBAC, ACLs, Azure Active Directory OAuth 2.0
             - End-to-End Encryption and TLS
 
     5. Module 5: Store Application Data with Azure Blob Storage

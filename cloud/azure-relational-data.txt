@@ -52,7 +52,7 @@ Working with Relational Data
             - High Availability, Simple and Flexible Pricing, Scaling, Automatic Backups and Restores, Enterprise Grade Security
         b. Create an Azure Database for PostgreSQL using Azure Portal
             - Azure Database for PostgreSQL - parent resource for the database
-            - Server Resource - container with stong lifetime implicaitons for  your server and databases
+            - Server Resource - container with stong lifetime implications for your server and databases
             - Server Name - <resource-name>.postgres.database.azure.com
             - Connection Scope - login, firewall, users, roles, and configuration
             - Pricing Tiers - Basic, General Purpose, Memory Optimized
@@ -91,7 +91,7 @@ Working with Relational Data
     
     3. Module 3: Scale Multiple Azure SQL Databases with SQL Elastic Pools
         a. Create a SQL Elastic Pool
-            - SQL Elastric Pool - resource allocation service used to scale and manage performance and cost of a group of SQL DBs
+            - SQL Elastic Pool - resource allocation service used to scale and manage performance and cost of a group of SQL DBs
             - When? - You have several databases that have low average utilization but infrequent, high utilization spikes
             - How Many? - combined individual DB resources > 1.5 x Capacity of Elastic Pool
                 - Two S3 or Fifteen S0
@@ -103,7 +103,7 @@ Working with Relational Data
                 - az sql db create --elastic-pool-name
                 - New-AzSqlDatabase and Set-AzSqlDatabase
         b. Exercise - Create a SQL Elastic Pool
-            - Create SQL Servers
+            - Create SQL Server
                 - ADMIN_LOGIN="ServerAdmin"
                 - RESOURCE_GROUP=learn-b6d4edca-ff7a-4504-8ec7-2f74803cf246
                 - SERVERNAME=FitnessSQLServer-$RANDOM

@@ -21,7 +21,7 @@ Websites with Azure Virtual Machines
                 - What kind of data does this VM use? Are their restrictions?
                 - What sort of CPU, memory, and disk I/O load does the server have? Is there burst traffic to account for?
             - VM Name
-                - [environment][location][instnace][product][role]
+                - [environment][location][instance][product][role]
                 - Azure Resource - VM, storage account for the disks, virtual network, network interface, network security group, public internet address
             - VM Location
             - VM Size - General Purpose, Compute Optimized, Memory Optimized, Storage Optimized, GPU, High Performance Compute
@@ -46,7 +46,7 @@ Websites with Azure Virtual Machines
             - Azure Automation Services - process automation, configuration management, and update management
         d. Manage the Availability of your VMs
             - Availability - percentage of time a service is available for use
-            - Availability Set - logical feature used to ensure that a group of VMs are deployed so that they aren't sibject to a single point of failure
+            - Availability Set - logical feature used to ensure that a group of VMs are deployed so that they aren't subject to a single point of failure
             - Fault Domain - logical group of hardware that shares a common power source and network switch
             - Update Domain - logical group of hardware that can undergo maintenance or be rebooted at the same time
             - Failover Across Locations
@@ -111,13 +111,13 @@ Websites with Azure Virtual Machines
         b. Exercise - Create a Windows Virtual Machine
             - Create A Resource -> Windows Server -> Image -> Configure
         c. Use RDP to Connect to Windows Azure Virtual Machines
-            - Remote Desk Protocol - remotve conectivity to the UI of Windows-based computers
+            - Remote Desk Protocol - remote conectivity to the UI of Windows-based computers
         d. Exercise - Connect to a Windows Virtual Machine using RDP
             - Connect with RDP
                 - You need - public IP address of the VM and port number
                 - Can download a RDP file
             - VM -> Connect -> IP and Port -> Download RDP File -> Configure
-            - RDP Client -> Conect -> Install WQoeker Roles -> Install Software
+            - RDP Client -> Conect -> Install Worker Roles -> Install Software
             - Initialize Data Disks
                 - Disk Management -> OK
         e. Configure Azure Virtual Machine Network Settings

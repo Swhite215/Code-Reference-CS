@@ -135,7 +135,7 @@ Manage Resources
             - Execute - .\myscript.ps1
             - Variables - $var = value or $adminCredential = Get-Credential
             - Use Variable - $var
-            - Loops - for ($ = 1; $i -lt 3; $i++) { $i }
+            - Loops - for ($i = 1; $i -lt 3; $i++) { $i }
             - Parameters
                 - command - .\setupEnvironment.ps1 -size 5 -location "East US"
                 - inside script - param([string]$location, [int]$size)

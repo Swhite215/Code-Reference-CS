@@ -71,12 +71,7 @@ Fundamentals of Microsoft Azure
             - Security - Integrated, Hardened, Monitoring
         c. Deploy a Website Hosted in App Service
             - Create a Resource Group
-            - Search Azure Marketplace
-            - Select Service
-            - Select Create
-            - Configure Deployment
-            - Setup App Service Plan
-            - Select Create
+                -  Search Azure Marketplace -> Service -> Configure -> App Service Plan -> Create
         d. Configure an App Service
             - Scale Up Your App Service
                 - Settings -> Scale Up or Scale Out -> Dev/Test, Production, Isolated
@@ -106,7 +101,7 @@ Fundamentals of Microsoft Azure
                 - Physically separate datacenters within an Azure region
                 - Made up of one or more datacenters equipped with independent power, cooling, and networking
                 - Supported Regions: Central, East, West US, West Europe, France Central, North Europe, Southeast Asia
-                - Used by VMs, managd disks, load balancers, and SQL databases
+                - Used by VMs, managed disks, load balancers, and SQL databases
         d. Understand Region Pairs in Azure
             - What is a region pair?
                 - Region paired with another region with the same geography at least 300 miles away
@@ -171,7 +166,7 @@ Fundamentals of Microsoft Azure
     6. Module 6: Core Cloud Services - Azure Compute Options
         a. Essential Azure Compute Concepts
             - What is Azure Compute?
-                - On-demand computing service for running cloud-based applications.
+                - On-demand computing service for running cloud-based applications
                 - Virtual Machines, Containers, Azure App Service, Serverless Computing
                 - Virtual Machines - software emulations of physical computers. Processor, memory, storage, and networking resources
                 - Containers - virtualization environment for running applications
@@ -183,7 +178,7 @@ Fundamentals of Microsoft Azure
                 - Use Cases - testing and development, applications in the cloud, extending datacenter, disaster recovery
                 - Scaling - Availability Sets, Virual Machine Scale Sets, Azure Batch
                     - Availability Sets - logical grouping of two or more VMs that help keep your application available
-                    - Virtual Machine Scalee Sets - Manage, configure, and update a large number of VMs in minutes
+                    - Virtual Machine Scale Sets - Manage, configure, and update a large number of VMs in minutes
                     - Azure Batch - large-scale job scheduling and compute management
             - Explore Containers in Azure
                 - Azure Container Instance ACI - Platform-as-a-Service PaaS
@@ -192,7 +187,7 @@ Fundamentals of Microsoft Azure
                 - Web Apps - Web, API, WebJobs, Mobile
             - Explore Serverless Computing in Azure
                 - Azure manages server infrastructure and allocation/deallocation of resources based on demand
-                - Abstraction of Servers, Event-Drive Scale, Micro-Billing
+                - Abstraction of Servers, Event-Driven Scale, Micro-Billing
                 - Azure Functions - code and no underlying platform or infrastructure
                     - Stateless - same behavior
                     - Durable - context is passed through the function
@@ -241,7 +236,7 @@ Fundamentals of Microsoft Azure
             - Content Delivery Network - distributed network of servers that can efficiently deliver web content to users
             - DNS - map user-friendly names to IP addresses
         c. Reduce Latency with Azure Traffic Manager
-            - Latency - time it dates for data to travel over the network
+            - Latency - time it takes for data to travel over the network
             - Bandwidth - amount of data that can fit on the connection
             - Scale to Different Azure Regions
             - Traffic Manager - uses DNS server that is closest to the user to direct user traffic to a globally distributed endpoint
@@ -274,7 +269,7 @@ Fundamentals of Microsoft Azure
                 - Cloud Based Identity Service
                 - Multi-Factor Authentication, Single-Sign-On, Application Management, Business to Business, Device Management
                 - Providing Identities to Services
-                    - Service Principals - identity is a thing to be authenticate and a principal is an identity acting with certain roles or claims
+                    - Service Principals - identity is a thing to be authenticated and a principal is an identity acting with certain roles or claims
                     - Managed Identity - account on organization's Active Directory
                 - Role Based Access Control
                     - Sets of permissions that users can be granted, identities normally mapped to roles
@@ -323,7 +318,7 @@ Fundamentals of Microsoft Azure
                 - Provide Training
                 - Define Security Requirements
                 - Define Metrics and Compliance Reporting
-                - Perform Thread Modeling
+                - Perform Threat Modeling
                 - Establish Design Requirements
                 - Define and Use Cryptography Standards
                 - Manage Security Risks from Using Third-Party Components
@@ -384,7 +379,7 @@ Fundamentals of Microsoft Azure
                 - Data Sources
                     - Application Monitoring, Guest OS Monitoring, Azure Resource Monitoring, Azure Subscription Monitoring, Azure Tenant Monitoring
                 - Activity Logs - record when resources are created or modified
-                - Metrics - tell you how the resource is performing and that resources that it is consuming
+                - Metrics - tell you how the resource is performing and the resources that it is consuming
                 - Diagnostics - guest-level, performance counters, event logs, crash dumps, sinks, agent
                 - Resources
                     - Application Insights, Azure Monitor for Containers, Azure Monitor for VMs, 
