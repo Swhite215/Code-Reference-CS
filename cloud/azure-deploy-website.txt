@@ -1,0 +1,8 @@
+Microsoft Certified: Azure Developer Associate
+
+Deploy a Website to Azure with Azure App Service
+
+    1. Module 1: Prepare Your Development Environment for Azure
+        a. Exercise - Set Up Visual Studio Code
+            - Install Visual Studio Code
+            - Install Azure App Service Extension
