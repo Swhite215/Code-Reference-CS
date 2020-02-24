@@ -75,3 +75,56 @@ Deploy a Website to Azure with Azure App Service
             - bundleconfig.json - preprocessing configuration
             - Program.cs and Startup.cs - configure and launch your web host for your site
         f. Exercise - Publish an update to your site
+
+    4. Module 4: Stage a Web App Deployment and Rollback by Using App Service Deployment Slots
+        a. Create Deployment Slots
+            - Use a Deployment Slot
+                - Slot - seaparate instance of web app with separate host name
+                - Production Slot - what users see when they connect, should be stable and well tested
+                - Swap Slot - instantaneous app and host name switch
+                - Each slot shares the resources of the App Service plan
+            - Deployment Slot Tiers
+                - Only available when your app uses an App Service Plan of; Standard, Premium, or Isolated
+                - Slots Per Tier: Free - 0, Shared - 0, Basic - 0, Standard - 5, Premium - 20, Isolated - 20
+            - Avoid a Cold Start
+                - Swap results in a warm-up of the app
+            - Create
+                - Web App -> Deployment Slots -> Add Slot -> Name -> Clone?
+            - Access A Slot
+                - Click on Slot -> URL and Click on Slot -> FTP
+        b. Exercise - Create Deployment Slots
+            - Create a Web App
+            - Configure Git Deployment
+                - Web App -> Deployment: Deployment Center -> Local Git -> App Service Build Service -> Continue -> Finish
+                - Add New Credentials: Web App -? Deployment: Deployment Center -> FTP/Credentials -> User Credentials -> Add New -> Save Credentials
+            - Configure the Git Client
+                - Azure Cloud Shell -> git config user.name and user.email
+                - mkdir demoapp -> cd demoapp
+                - git clone https://github.com/Azure-Samples/app-service-web-dotnet-get-started.git && cd app-service-web-dotnet-get-started
+            - Configure a Git Remote to Deploy the App to Production
+                - git remote add production <git-clone-url>
+                - git push production
+            - Create a Staging Slot
+                - Web App -> Deployment: Deployment Slots -> Add Slot -> Name -> Add
+            - Set up Git Deployment for the Staging Slot
+                - Web App -> Deployment: Deployment Center -> Local Git -> App Service Build Service -> Continue -> Finish
+            - Set up Git to Deploy the App to the Staging Slot
+                - git remote add staging <git-clone-url>
+                - git push staging
+            - Browse Slots
+                - Slot -> URL
+        c. Deploy a Web App by Swapping Deployment Slots
+            - Manage Configuration for the Swap
+                - Slot Setting Example - Database for production vs. for testing, set database connection string as slot setting
+            - Configure Slot Settings
+                - Slot -> Configuration -> Application Settings -> + New Application Setting -> Set Deployment Slot Setting -> Save
+            - Swap Slots
+                - Slot -> Swap -> Select Source and Target Slots
+            - Slot Swapping Preview
+                - Phase 1 - slot settings from target slot are applied to the web app in the source slot for testing
+                - Phase 2 - host names for the two sites are swapped, source slot receives its slot settings
+            - Auto-Swap
+                - Slot -> Auto Swap Enabled = On -> Save
+        d. Execise - Deploy a Web App by Using Deployment Slots
+            - Roll Back the New Version
+                - Slot -> Swap Staging and Production
