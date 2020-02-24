@@ -6,3 +6,49 @@ Deploy a Website to Azure with Azure App Service
         a. Exercise - Set Up Visual Studio Code
             - Install Visual Studio Code
             - Install Azure App Service Extension
+    
+    2. Module 2: Host a Web Application with Azure App Service
+        a. Create a Web App in the Azure Portal
+            - Step One: Create a Web App/ App Service App
+            - Azure App Service - fully managed web application hosting platform
+            - Deployment Slots - live apps with their own hostnames (development, staging, production)
+            - Continuous Integration/Deployment Support
+                - Azure DevOps, GitHub, Bitbucket, FTP, or Local Git
+            - Built-in Auto Scale Support (automatic scale out based on real world load)
+            - Creating a Web App
+                - Create a Resource -> Web App -> Runtime ~ Operating System
+            - App Service Plans
+                - Set of virtual server resources that run App Service apps
+                - Size or sku or pricing tier, determines the performance characteristics of the virtual servers that run the apps
+                - 1 App Service Plan - Many App Service Web Apps
+        b. Exercise - Create a Web App in the Azure Portal
+            - Create a Resource -> Web: Web App -> Configure -> Resource -> URL -> Confirm Placholder Page
+        c. Exercise - Write Code to Implement a Web Application
+            - mkdir -> npm init -> index.js w/ simple server
+        d. Deploy Code to App Service
+            - Automated Deployment
+                - Azure DevOps, GitHub, Bitbucket, OneDrive, DropBox
+            - Manual Deployment
+                - Git, az webapp up, zip deploy, visual studio, FTP/S
+        e. Exercise - Deploy Your Code to App Service
+            - Necessary Variables
+                - APPNAME=$(az webapp list --query [0].name --output tsv)
+                - APPRG=$(az webapp list --query [0].resourceGroup --output tsv)
+                - APPPLAN=$(az appservice plan list --query [0].name --output tsv)
+                - APPSKU=$(az appservice plan list --query [0].sku.name --output tsv)
+                - APPLOCATION=$(az appservice plan list --query [0].location --output tsv)
+            - Spin Up Web Application
+                - az webapp up --name $APPNAME --resource-group $APPRG --plan $APPPLAN --sku $APPSKU --location "$APPLOCATION"
+            - Spin Up React Web Application
+                - Prepare React Application
+                    - Add web.config to public folder
+                    - Add index.js to public folder
+                    - npm run build
+                - FTP React Application
+                    - App Service -> Deployment Center -> FTP -> FileZilla
+                    - Copy everything in build folder to wwwroot
+                - Install Express
+                    - App Service -> Development Tools: Advanced Tools -> Bash > cd site/wwroot
+                    - npm i express --save
+                    - RESTART Azure Web App
+                
