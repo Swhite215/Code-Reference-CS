@@ -143,3 +143,43 @@ Deploy a Website to Azure with Azure App Service
             - Scale up - increase in tier to provide more instances and more powerful hardware
         d. Exercise - Scale Up a Web App
             - Web App -> Settings: Scale Up -> Select New Pricing Tier
+
+    6. Module 6: Deploy a Containerized Web App with Azure App Service
+        a. Build and Store Images Using Azure Container Registry
+            - Azure Container Registry - enables storing of docker images in the cloud, in an Azure storage account
+            - Using Container Registry
+                - Create
+                    - az acr create --name myregistry --resource-group mygroup --sku standard --admin-enabled true
+                - Build
+                    - az acr build --file Dockerfile --registry myregistry --image myimage .
+        b. Exercise - Build and Store an Image by Using Azure Container Registry
+            - Create a Registry
+                - Create -> Containers: Container Registry -> Configuration
+            - Build a Docker Image and Upload to Registry
+                - git clone https://github.com/MicrosoftDocs/mslearn-deploy-run-container-app-service.git && cd mslearn-deploy-run-container-app-service/node
+                - az acr build --registry <container_registry_name> --image webimage .
+            - Examine Registry
+                - Registry -> Services: Respositories -> Image
+        c. Deploy a Web App by Using an Image from Azure Container Registry
+            - Properties
+                - Registry with image, image, tag/version, startup file
+        d. Exercise - Create and Deploy a Web App from a Docker Image
+            - Create a Web App
+                - Create -> Web -> Web App -> Configure w/ Publish = Docker Image -> Docker
+                - Docker Settings: Container, Image Source, Registry, Image, Tag, Startup Command if applicable
+            - Test the Web App
+        e. Update the Image and Automatically Redeploy the Web App
+            - Webhook - publish events and services and applications can subscribe to the webhook to receive events/notifications
+            - Container Registry Tasks Feature - Task monitors Github and triggers a build each time it changes
+                - Must be created from the command line:
+                    - az acr task create --registry <container_registry_name> --name buildwebapp --image webimage --context https://github.com/MicrosoftDocs/mslearn-deploy-run-container-app-service.git --branch master --file Dockerfile --git-access-token <access_token>
+            - Enable Continuous Integration - Container Settings -> Continuous Deployment = On
+        f. Exercise - Modify the Image and Redeploy the Web App
+            - Configure Continuous Deployment and Create a Webhook
+                - Web App -> Container Settings -> Continuous Deployment = On
+            - Update the Web App and Test the Webhook
+                - Make a change
+                - Rebuild the Image
+                    - az acr build --registry <container_registry_name> --image webimage .
+                - View Webhook
+                    - Container Registry -> Webhooks -> Verify
