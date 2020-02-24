@@ -52,3 +52,26 @@ Deploy a Website to Azure with Azure App Service
                     - npm i express --save
                     - RESTART Azure Web App
                 
+    3. Module 3: Publish a Web App to Azure with Visual Studio
+        a. Install the Necessary Workloads
+            - ASP.NET and Web Development
+            - Azure Development
+        b. Exercise - Create a new ASP.NET Core App
+        c. Explore the Azure App Service
+            - Azure App Service - service for hosting web applications, REST APIs, and mobile backends
+            - App Service Plan - defines the compute resources your app will consume, where those resources are located, how many additional resources and pricing tier
+                - Region, # of VM instances, Size of VM instances, Pricing Tier
+                - Pricing and Reliability
+                    - Shared Compute: Free and Shared
+                    - Dedicated Compute: Basic, Standard, Premium and Premium V2
+                    - Isolated
+        d. Exervise - Publish an ASP.NET app from Visual Studio
+        e. Explore Your Visual Studio App Project
+            - Dependencies - internals needed to run app
+            - Properties - configuration data for where web app is hosted
+            - wwwroot - contains all static assets (where work should be done)
+            - Pages - templates for pages of the site in Razor, .cshtml and .cs
+            - appsetting.json - configuration file for ASP.NET Core
+            - bundleconfig.json - preprocessing configuration
+            - Program.cs and Startup.cs - configure and launch your web host for your site
+        f. Exercise - Publish an update to your site
