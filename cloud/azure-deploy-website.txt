@@ -128,3 +128,18 @@ Deploy a Website to Azure with Azure App Service
         d. Execise - Deploy a Web App by Using Deployment Slots
             - Roll Back the New Version
                 - Slot -> Swap Staging and Production
+
+    5. Module 5: Scale an App Service Web App with Scale Up/Down and Scale In/Out
+        a. Scale A Web App Manually
+            - App Service - run multiple instances and load balance
+            - Scale Out - add more instances to an App Service Plan
+        b. Exercise - Scale a Web App Manually
+            -  When - expect increase in traffic or seeing declining performance
+            - Create an App Service Plan and Web App
+                - Add Metrics - CPU Time, HTTP Server Errors, HTTP 4.xx, Average Response Time
+            - Scale Out
+                - Web App -> Settings: Scale Out -> Instance Count = 5 -> Save
+        c. Scale Up a Web App
+            - Scale up - increase in tier to provide more instances and more powerful hardware
+        d. Exercise - Scale Up a Web App
+            - Web App -> Settings: Scale Up -> Select New Pricing Tier
