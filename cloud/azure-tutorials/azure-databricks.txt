@@ -45,3 +45,26 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-azure-databricks-notebooks-fundamentals/blob/master/DBC/01-notebook-fundamentals.dbc?raw=true
             - Complete Notebooks
                 - 01 - 10, Exploratory Data Analysis
+    
+    3. Module 3: Perform Exploratory Data Analysius with Azure Databricks
+        a. Introduciton
+            - Exploratory Data Analysis EDA - process of analyzing datasets to find anomalies and missing information
+            - Questions to Answer:
+                - What type of data is in the dataset and what is its structure?
+                - Is there missing or incomplete information?
+                - Are there mistakes or anomalies?
+                - What are the relationships between different variables?
+                - How will different assumptions work against the available dataset?
+        b. Exploratory Data Analysis in Azure Databricks
+            - Basic EDA - data cleaninsing, handling of missing values, and correlation analysis
+                - Import -> Load into Spark DataFrames
+            - Advanced EDA
+                - Parsimonious Models - shows you the predictive capability of your data by using a minimum number of variables
+                - One-Hot Encoding and Feature Scaling - for ML
+                - Dimensionality Reduction - transforms data with n dimensions to a represntations of the data in m dimensions, where m is less than n
+        c. Exercise - Perform Exploratory Data Analysis with Databricks
+            - Clone Databricks Archive
+                - Databricks -> Launch Workspace -> User -> Import 
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-exploratory-data-analysis/blob/master/DBC/02-exploratory-data-analysis.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 04
