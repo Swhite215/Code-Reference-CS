@@ -46,7 +46,7 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
             - Complete Notebooks
                 - 01 - 10, Exploratory Data Analysis
     
-    3. Module 3: Perform Exploratory Data Analysius with Azure Databricks
+    3. Module 3: Perform Exploratory Data Analysis with Azure Databricks
         a. Introduciton
             - Exploratory Data Analysis EDA - process of analyzing datasets to find anomalies and missing information
             - Questions to Answer:
