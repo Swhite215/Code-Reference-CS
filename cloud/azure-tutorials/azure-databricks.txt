@@ -118,3 +118,24 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-deep-learning/blob/master/DBC/04-deep-learning.dbc?raw=true
             - Complete Notebooks
                 - 01 - 04
+    
+    6. Module 6: Perform Text Analytics with Azure Databricks
+        a. Introduction
+            - Text Analytics - text mining or text data mining is a process of analyzing unstructured text data to derive high quality meaningful information
+            - Outputs
+                - Who, what, or where from a set of unstructured data
+                - Meaningful, short, and concise summary of large volumes of text data
+                - Derive the theme or concept being conveyed
+                - Sentiment analysis
+        b. Text Analytics with Azure Databricks
+            - Movie Classification
+                - EDA, Split Data, Word Embedding, Train, Evaluate, and Predict
+            - Claims Classification
+                - Normalize Training Data, Extract Feature Vectors, Create and Train DNN Classifier, Predict
+        c. Exercise - Text Analytics using Azure Databricks
+            - Clone Databricks Archive
+                - Databricks -> Launch Workspace -> User -> Import 
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-text-analytics/blob/master/DBC/05-text-analytics.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 03
+    
