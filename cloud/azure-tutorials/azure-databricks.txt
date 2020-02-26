@@ -95,3 +95,26 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
             - Configure Databricks Cluster with Scikit-learn library
             - Complete Notebooks
                 - 01 - 04
+    
+    5. Module 5: Deep Learning with Azure Databricks
+        a. Introduction
+            - Deep Learning - subset of machine learning that uses algorithms based on the structure and functions of the human brain
+                - Advantages - accuracy, scalability, robustness, and adaptability
+        b. Deep Learning with Azure Databricks
+            - Artificial Neural Networks - simpler representations of the complex and dense neural networks of the human brain
+            - Artificial Neuron - mathematical function conceived as a model of a biological neuron
+            - Common Use Cases
+                - Speech and Image Recognition
+                - Health Predictions
+                - Security
+            - Azure Databricks Deep Learning Solutions
+                - Machine Learning Pipelines - open soruce high level deep learning api
+                - TensorFlow - high-level numerical computation
+                - Distributed Deep Learning - Horovod framework enables complex model training
+                - Integrated Libraries - MXNet, Keras, and PyTorch
+        c. Exercise - Deep Learning By Using Azure Databricks
+            - Clone Databricks Archive
+                - Databricks -> Launch Workspace -> User -> Import 
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-deep-learning/blob/master/DBC/04-deep-learning.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 04
