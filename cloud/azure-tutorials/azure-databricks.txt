@@ -28,3 +28,20 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
             - Clone Databricks Archive
                 - Databricks -> Launch Workspace -> User -> Import 
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-azure-databricks-notebooks-fundamentals/blob/master/DBC/01-notebook-fundamentals.dbc?raw=true
+    
+    2. Module 2: Read and Write Data by Using Azure Databricks
+        a. Read and Write Functions
+            - Built-In Functions
+                - Querying Files - use DataFrames (from resilient distributed datasets) to query large data files
+                - Joins and Aggregration
+                - Accessing Data - data store in an existing file, upload a file from local system, mount an Azure blob to Databricks
+                - Work with Hierarchial Data
+                - Data Lakes
+                - Azure Data Lake Storage Gen2 - combines Azure Blob Storage and Azure Data Lake Storage Gen1
+                - Azure Key Vault Backed Secret Scopes - securely store secrets, such as database-connection strings
+        b. Exercise - Read and Write Data By Using Azure Databricks
+            - Clone Databricks Archive
+                - Databricks -> Launch Workspace -> User -> Import 
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-azure-databricks-notebooks-fundamentals/blob/master/DBC/01-notebook-fundamentals.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 10, Exploratory Data Analysis
