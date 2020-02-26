@@ -1,0 +1,30 @@
+Microsoft Certified: Azure Developer Associate
+
+Extract Knowledge and Insights from Your Data with Azure Databricks
+
+    1. Module 1: Introduction to Azure Databricks
+        a. Introduction to Databricks
+            - Azure Databricks - fully-managed version of the open-source Apache Spark analytics and data processing engine
+        b. Create a Databricks Workspace
+            - Deploy an Azure Databricks Workspace
+                - Create a Resource -> Databricks: Azure Databricks -> Configure
+        c. Apache Spark Notebooks
+            - ASN - collection of cell that are run to execute code, render formatted text or display graphic visualizations
+            - Cluster - networked computers that work together to process your data in notebooks
+            - Create a Cluster
+                - Databricks -> Launch Workspace -> Clusters -> Create Cluster -> Configure
+            - Create A Notebook
+                - Databricks -> Create -> Notebook -> Configure
+            - Attach and Detach
+                - To run notebook you must attach it to a cluster
+        d. Exercise - Use Apache Spark Notebooks
+            - Notebooks
+                - Read and process huge files and data sets
+                - Query, explore, and visualize data sets
+                - Join disparte data sets found in data lakes
+                - Train and evaluate machine learning models
+                - Process live streams of data
+                - Peform analysis on large graph data sets and social networks
+            - Clone Databricks Archive
+                - Databricks -> Launch Workspace -> User -> Import 
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-azure-databricks-notebooks-fundamentals/blob/master/DBC/01-notebook-fundamentals.dbc?raw=true
