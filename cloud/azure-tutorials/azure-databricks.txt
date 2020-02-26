@@ -68,3 +68,30 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-exploratory-data-analysis/blob/master/DBC/02-exploratory-data-analysis.dbc?raw=true
             - Complete Notebooks
                 - 01 - 04
+    
+    4. Module 4: Train, Evaluate, and Select ML Models with Azure Databricks
+        a. Introduction
+            - Robust data model - works efficiently, can be used for different kinds of datasets, produces easy to interpret results
+        b. Model Training Techniques
+            - Train
+                - Split the dataset into training and testing
+                - Identify the technique - basic regression, classification, or advanced regression techniques
+                - Tune the model - achieving optimal performance of your ML model
+                    - Select parameteres, train, use model for predictions, correct errors by adjusting parameters
+                - Minimize const functions - how far your model is from correctly predicting the relationship between values
+                - Evaluate and validate your model
+            - Training Techniques
+                - Basic Regression - predicst the value of a dependent variable based on its relationship with one or more independent variables
+                - Classification - 
+                    - Logistic regression - linear regression but dependent variable is either 0 or 1
+                    - Support-vector machines - supervised ML models with algorithms used for classification problems
+                    - Decision-tree classifier - two-class and multi-class classification problems based on decisions trees, Random Forests, boosted trees, and XDGBoost
+                - Advanced Regression
+                    - Polynomial regerssion for complex and distributed datasets that can't be captured by using straight-line linear regression techniques
+        c. Exercise - Train, Evaluate, and Select a ML Model Using Azure Databricks
+            - Clone Databricks Archive
+                - Databricks -> Launch Workspace -> User -> Import 
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-model-training-selection-evaluation/blob/master/DBC/03-model-training-selection-evaluation.dbc?raw=true
+            - Configure Databricks Cluster with Scikit-learn library
+            - Complete Notebooks
+                - 01 - 04
