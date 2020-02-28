@@ -51,3 +51,47 @@ Secure Your Cloud Data
                 - Node Security Platform
                 - WhiteSource
                 - Hdiv
+    
+    3. Module 3: Configure Security Policies to Manage Data
+        a. Classify Your Data at Rest, in Process, and in Transit
+            - States - rest, process, transit
+            - Classiifcation - confidential, non-confidential
+            - Structured or Unstructured
+            - Protect at Rest
+                - Azure Disk Encryption
+            - Protect in Transit
+                - SSL/TLS Protocols
+                - HTTPS or VPN (Azure VPN Gateway)
+            - Data Discovery
+                - Advanced Data Security - package for advanced MSSQL Server security capabilities
+                - Process - Discovery, Labeling, Query Result Set Sensitivity, Visibility
+        b. Exercise - Classify an Azure SQL Database
+            - Create Database
+                - Create a Resource -> Database -> SQL Database -> Configure
+            - SQL Information Protection
+                - SQL IP - Discoevring, Labeling, Monitoring, Visibility
+            - Classify your SQL DB
+                - Database -> Security: Advanced Threat Protection -> Data Discovery and Classification -> (i) -> All Columns -> Accept
+                - Overview -> Classification -> Add Classification
+            - Monitor Access to Sensitive Data
+                - Azure SQL Database Auditing
+        c. Explore Data Recovery, Retention, and Disposal
+            - Data Retention Policy - principles for data recovery and disposal
+            - Immutable Storage and Data Retention
+                - Write Once Read Many
+                - Time-based Retention Policy Support, Legal Hold Policy Support, Support for Blob Tiers, Container-Level Configuration , Audit Logging Support
+        d. Understand Data Sovereignty
+            - Data is subject to the laws of the country or region where it is stored
+            - Geography - area of the world that contains at least one Azure Region
+            - Azure Region - are containing one or more data centers
+            - Paired Region - region paired within another region in the same geogrpahy
+                - Azure Compute - must provision additional compute resources in advance
+                - Azure Storage - Geo-redundant storage is configured by default
+                - Azure SQL Databse - configure asynchronous replication of transactions to a paired region
+                - Azure Resource Manager - inherently provides logical isolcation of components across regions
+            - Benefits of Paired Regions
+                - Physical Isolation - reduces the likelihood of both regions being affected simultaneuosly as a result of natural disasters, civil unrest, power outages, or physical network outages
+                - Platform Provided Replication - geo-redundant storage provides automatic replication
+                - Region Recovery Order - recovery of one region is prioritized out of every pair
+                - Sequential Updates - updates are rolled out to paired regions sequentially
+                - Data Residency - region resides within same geography as pair for tax and law enforcement purposes
