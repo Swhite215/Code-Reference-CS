@@ -95,3 +95,55 @@ Secure Your Cloud Data
                 - Region Recovery Order - recovery of one region is prioritized out of every pair
                 - Sequential Updates - updates are rolled out to paired regions sequentially
                 - Data Residency - region resides within same geography as pair for tax and law enforcement purposes
+    
+    4. Module 4: Configure and Manage Secrets in Azure Key Vault
+        a. Guidelines for Using Azure Key Vault (Server Side)
+            - Key Vault - centralized cloud service for storing application secrets such as encryption keys, certificates, and server-side tokens
+            - Vaults - a secure container
+                - Create a New Vault: 
+                    - az keyvault create --resource-group <resource-group> --name <your-unique-vault-name>
+                    - New-AzKeyVault -Name <your-unique-vault-name> -ResourceGroupName <resource-group>
+            - Keys - cryptographic asset destined for a particular use e.g. asymmetric master key of Microsoft Azure RMS
+                - Applications must use keys by calling cryptography methods on the Key Vault service, never has direct access to the keys
+                - Single instanced - only one key exists
+                - Versioned - key is an object with a primary key and a collection of one or more secondary keys
+                - Hardware Protected Keys - Hardware Software Module - cryptographic operations are performed within the HSM
+                - Software Protected Keys - RSA and ECC algorithms - cryptographic operations are performed in the software
+            - Secrets - data blobs protected by a HSM generate key created with the Key Vault
+                - Used for sensistive settings like storage account keys, .PFX files, SQL connection strings, data encryption keys, passsowrds, API keys, etc.
+            - Key Vault Uses
+                - Secrets, Key, and Certificate Management
+            - Best Practices
+                - Use RBAC in Management Plane and Data Plane
+                - Store Certificates in Key Vault
+                - Enable Soft Delete and Purge Protection Features
+        b. Manage Access to Secrets, Certificates, and Keys
+            - Authentication - Azure actrive Directory
+            - Authorization - RBAC
+                - Key Vault Contributor - access to management but not key vault data
+                - Contributor - full administration rights
+                - Key Vault Access Policy - permission set assigned to a user or managed identity to read, write, and/or delete secrets and keys
+            - Restricting Network Access
+                - Virtual Network Subnets, IP Addresses, and trusted MS Services
+        c. Exercise - Store Secrets in Azure Key Vault]
+            - Create a Azure Key Vault
+                - Create a Resource -> Key Vault -> Configure
+            - Add a Secret
+                - Azure Key Vault -> Settings: Secrets -> Generate/Import -> Create a Secret
+            - Show the Secret
+                - Azure Key Vault -> Settings: Secrets -> Secret -> Show Secret Value
+            - Other Ways to Consume Secret
+                - Powershell
+                    - Get Key Vault: Get-AzureRmKeyVault
+                    - Get Secret: (Get-AzKeyVaultSecret -vaultName <vault-name> -name <secret-name>).SecretValueText
+        d. Manage Certificates
+            - Add Certificates to a Key Vault
+                - Create Self-Signed Certificate - Portal
+                - Create Certificate Signing Request -> Pass to Certificate Authority
+                    - Create Cert Key and Put in Key Vault -> Generate CSR -> Pass CSR to CA -> Receive x509 Certificate -> Merge x509 with Key
+                - Integrated CA
+                    - Create Certificate and Put in Key Vault -> Key Vault Makes SSQL Certificate Request to CA -> CA Returns xz509 Certificate -> Merge x509 with Key
+                - Import Certificates .PFX or .PEM
+            - Retrieve Certificates
+                - Key Vault -> Certificates -> Certificate -> Enable/Disable
+                - App Service -> Settings: TLS/SSL -> Private Key Certificate -> Import Key Vault Certificate -> Vault and Secret -> Setup Custom Domain
