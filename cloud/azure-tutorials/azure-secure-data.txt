@@ -1,0 +1,53 @@
+Microsoft Certified: Azure Developer Associate
+
+Secure Your Cloud Data
+
+    1. Module 1: Security, Responsibility, and Trust in Azure
+        a. Notes - Azure Fundamentals Module 9
+
+    2. Module 2: Top 5 Security Items Before Pushing to Production
+        a. Azure Security Center
+            - Azure Security Center - monitoring service that provides threat protection across all of your services
+                - Provide Security Reccommendations
+                - Monitor Security Settings
+                - Perform Automatic Security Assessments
+                - Use ML to Detect and Block Malware
+                - Analyze and Identify Inbound Attacks
+                - Just-In-Time Access Control
+            - Activating ASC
+                - All Services -> Security Center -> Overview -> Coverage
+                - Tiers - Freee vs. Standard
+            - Deactivate ASC
+                - All Services -> Security Center -> Security Policy -> Edit -> Pricing Tier -> Free
+        b. Inputs and Outputs
+            - Validate Input
+                - Allow list for known good input
+            - Encode Input
+            - Parameterized Queries
+                - CRDB - SQL - sqlService - insertRecord
+        c. Secrets in Key Vault
+            - Azure Key Vault - secret store
+        d. Framework Updates
+            - Choose Your Framework Carefully
+            - Keep Your Framework Updated
+            - Take Advantage of Build-In Security
+        e. Safe Dependencies
+            - Track Known Security Vulnerabilities
+                - Mitre
+            - How to Verify Known Vulnerabilities
+                - OWASP Dependency Check
+                - OWASP SonarQube
+                - Snyk
+                - Black Duck
+                - RubySec
+                - Retire.js
+            - Static Code Analysis
+                - Roslyn Security Guard
+                - Puma Scan
+                - PT Application Inspector
+                - Apache Maven Dependency Plugin
+                - Source Clear
+                - Sonatype
+                - Node Security Platform
+                - WhiteSource
+                - Hdiv
