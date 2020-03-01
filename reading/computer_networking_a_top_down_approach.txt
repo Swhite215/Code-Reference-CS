@@ -17,14 +17,14 @@ Chapter 1 - Computer Networks and the Internet
             - Internet Standards - Request For Comments RFC
         - A Service Description
             - Internet is infrastructure that provides services to applications
-            - Socket Interface - How program on end system asks internet to deliver data to program on another end system
+            - Socket Interface - How program on one end system asks internet to deliver data to program on another end system
         - What is a Protocol?
             - Defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event
     b. The Network Edge
             - Hosts - Clients or Servers
             - Access Networks
                 - Network that physically connects an end system to the first router on a
-                path to any other distance end system
+                path to any other distant end system
             - Home Access - Digital Subscriber Line DSL
                 - Obtained from telephone company
                 - Telephone line to Digital Subscriber Line Access Multiplexer DSLAM
@@ -65,7 +65,7 @@ Chapter 1 - Computer Networks and the Internet
             - Network Structure 4 - Points of Presence PoP, Multi-Homing, Peering, and Internet Exchange Points IXPs
             - Network Structure 5 - Content-Provider Networks  - Like Google
     d. Delay, Loss, and Throughput in Packet-Switched Networks
-        - Nodal Processing Delay - Time required to examine packets headers and determe where to direct the packet
+        - Nodal Processing Delay - Time required to examine packets headers and determin e where to direct the packet
         - Queuing Delay - Time till entire packet is in output buffer
         - Transmission Delay - Time required to push all of the packet's bits into the link
         - Propogation Delay - Time required to propagate from beginning of link to router
@@ -79,7 +79,7 @@ Chapter 1 - Computer Networks and the Internet
         - Transport Layer - Transports application-layer messages between application endpoints
         - Network Layer - Moving datagrams from one host to another
         - Link Layer - Routes a datagram through a series of routers between the source and destination
-        - Physical Layer - Move bits witin the frame from one node to the next
+        - Physical Layer - Move bits within the frame from one node to the next
         - OSI - Physical, Data Link, Network, Transport, Session, Presentation, Application
         - Encapsulation - Up and Down Encapuslation and Decapsulation
     f. Networks Under Attack
@@ -89,7 +89,7 @@ Chapter 1 - Computer Networks and the Internet
         - Proprietary Networks and Internetworking - 1972 - 1980
         - Proliferation of Networks - 1980 - 1990
         - Internet Explosion - 1990s
-        - New Millenium - Broadband, High-Speed WiFi, Online Social Networs, Content Provider Networks, Cloud
+        - New Millenium - Broadband, High-Speed WiFi, Online Social Networks, Content Provider Networks, Cloud
         
 Chapter 2 - Application Layer
     a. Principles of Networking Applications
@@ -349,7 +349,7 @@ Chapter 4 - Network Layer: Data Plane
             - Queuing buffer -> Data link processing protocol and encapsulation -> Line termination
         - Where does Queuing Occur?
             - Input Queuing - switch fabric is not fast enough to tranafer all arriving packets without delay
-                - Head-of-the-Line Blokcing - a queued packet in an input queue must wait for transfer through fabric, even though it's output port is free, because it is blocked by another packet
+                - Head-of-the-Line Blocking - a queued packet in an input queue must wait for transfer through fabric, even though it's output port is free, because it is blocked by another packet
             - Output Queuing - output port transmits packets slower than switching fabric provides them
                 - Drop-Tail - output port drops packet or removes already-queued packets
                 - Active Queue Management AQM and Random Early Detection RED
@@ -549,7 +549,7 @@ Chapter 6 - The Link Layer and LANS
             - ALOHA - node will immediately retransmit the frame with probability p, otherwise the node waits for a frame transmission time
             - Carrier Sensing Multiple Access
                 - Listen Before Speaking and Stop Talking if Another is Speaking
-                - Channel Propogation Delay - time it takes for a singal to propagate from one of the nodes to another
+                - Channel Propogation Delay - time it takes for a signal to propagate from one of the nodes to another
                 - Binary Exponential Backoff - value for wait is determined by random value between 0...2^n-1
         - Taking-Turns Protocols
             - Polling - master node polls each of the nodes in a RR
@@ -724,7 +724,7 @@ Chapter 7 - Wireless and Mobile Networks
             - Agent Solicitation - mobile node broadcasts a solicitation message, and agent will send an advertisement directly to the mobile node
         - Registration with Home Agent
             - Goal - COA must be registered with home agent
-            - Node sends mobile IP registration mesage to foreign agent with COA, Home Agent Address HA, Mobile Node Permanent Address MA, life time of registration and 64-bit registration ID
+            - Node sends mobile IP registration message to foreign agent with COA, Home Agent Address HA, Mobile Node Permanent Address MA, life time of registration and 64-bit registration ID
             - Foreign agent records mobile node's permanent address and sends IP registration message to port 434 of home agent
             - Home agent receives, checks for authenticity, and binds mobile node's IP with COA, then sends reply which is forwarded from foreign agent back to mobile node
         - Indirect Routing of Datagrams
@@ -854,7 +854,7 @@ Chapter 8 - Security in Computer Networks
             - The Master Secret is used to generate two Encryption and two MAC keys
             - Client sends a MAC of all the handshake messages (protect from tampering)
             - Server sends a MAC of all the handshake messages (protect from tampering)
-            - Indicate in the type field of the SSL session record whether the record servers to terminate the SSL session
+            - Indicate in the type field of the SSL session record whether the record serves to terminate the SSL session
     g. Network-Layer Security: IPsec and Virtual Private Networks
         - Goal - provides security at the network layer, secures IP datagrams between any two network-layer entities
         - Blanket Coverage - all data sent from one entity to another, including all types of messages, would be hidden from any third party that might be sniffing
@@ -1051,7 +1051,7 @@ Appendix A - A Day in the Life of a Web Page Request (Does not include security,
         - Bob extracts the IP address and is now ready to connect to the domain
     d. Web Client-Server Interaction: TCP and HTTP (Actually Fetching the Web Page)
         - Bob's creates TCP socket, which starts three-way handskae with TCP in domain
-        - Bob's laptop creates a TCP SYN segment with destination poret 80 (for HTTP), places the TCP segment within an IP datagram, within a frame and sends frame to switch
+        - Bob's laptop creates a TCP SYN segment with destination port 80 (for HTTP), places the TCP segment within an IP datagram, within a frame and sends frame to switch
         - Frame, and specifically datagram is forwarded to domain, TCP SYN message is extracted and demultiplexed to the welcome socket associated with port 80
         - A connection socket is created for the TCP connection, a TCP SYNACK segment is generated, placed within a IP datagram, and placed within a link-layer frame appropriate for the link connecting domain.com to its first-hop router
         - The datagram containing the TCP SYNACK is forwarded through network arriving at the Ethernet card in Bob's laptop
