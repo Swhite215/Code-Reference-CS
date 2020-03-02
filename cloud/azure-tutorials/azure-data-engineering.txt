@@ -1,0 +1,162 @@
+Microsoft Certified: Azure Developer Associate
+
+Perform Data Engineering with Azure Databricks
+
+    1. Module 1: Introduction to Azure Databricks
+        a. Notes - Azure Databricks Module 1
+
+    2. Module 2: Access SQL Data Warehouse Instances with Azure Databricks
+        a. Set up the Environment
+            - Set up SQL Data Warehouse
+                - Create A Resource -> SQL Data Warehouse -> Configure -> Create
+            - Add Client IP Address
+                - SQL Data Warehouse -> Overview: Server Name Link -> Firewalls and Virtual Networks -> Add Client IP
+            - Azure Data Studio
+                - https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-2017
+            - Create Connections in Azure Data Studio
+                - SQL Data Warehouse -> Overview: Server Name Link -> Azure Data Studio -> Add a new Connection -> Configure -> Authenticatio Type = SQL Login -> Databas: SQL Data Warehouse -> Connect
+                - Servers -> New Connection -> SQL Data Warehouse Connection -> Database: Master -> Connect
+            - PowerShell Core and Azure PowerShell Module
+                - https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-6
+                - Install-Module -Name Az -AllowClobber or Install-Module -Name Az -AllowClobber -Scope CurrentUser
+            - Setup Additional Resources
+                - Create Azure Storage Account and Azure Database
+                    - https://raw.githubusercontent.com/MicrosoftDocs/mslearn-understanding-the-sql-dw-connector-with-azure-databricks/master/script/labOneClickDeployment.ps1
+                    - .\labOneClickDeployment.ps1 -> Sign In -> Ressource Group -> SQL Server -> Save New Storage Account Name and New Storage Account Key
+        b. Create Users and Assign a Resource Class
+            - Add a SQL Server Authenticated User to SQL Data Warehouse
+                - Create a server login
+                    - Azure Data Studio -> Servers -> Databases -> System Database -> Master: New Query
+                    - RUN - CREATE LOGIN LabUserLogin WITH PASSWORD = 'Str0ng_password';
+                    - RUN - CREATE USER LabUser FOR LOGIN LabUserLogin;
+                - Add a user to master database by using the new server login
+                - Add a user to SQL Data Warehouse by using the new server login
+                    - SQL Data Warehouse -> Connnection to SQL Server and Database
+                    - Azure Data Studio -> Connection to SQL Data Warehouse -> New Query 
+                    - RUN - CREATE USER LabUser FOR LOGIN LabUserLogin;
+                    - RUN - EXEC sp_addrolemember 'db_datareader', 'LabUser';
+                - Assign a Resource Class
+                    - RUN - EXEC sp_addrolemember 'largerc', 'LabUser';
+        c. Manage SQL Data Warehouse
+            - Scale SQL Data Warehouse in the Azure Portal
+                - Structure - 60 dsitributions distributed across compute nodes
+                    - More compute nodes adds more computing power by reducing number of distributions per compute node
+                - Order
+                    - SQL Data Warehouse -> Scale -> Save
+            - Pause and Resume SQL Data Warehouse
+                - SQL Data Warehouse -> Pause/REsume
+            - Restore a Data Warehouse
+                - SQL Data Warehouse -> Restore -> Automatic Restore Points -> Database Name -> Latest Restore Point -> Destination Server and Performance Level
+            - Restore a Deleted Database
+                - SQL Data Warehouse -> Deleted Databases -> Database -> Restore
+        d. Create Tables and Perform Queries
+            - Create Distributed Tables
+                - 60 Distributions = 60 Databases
+                - Distribtuion Method - Replicated, Round Robin, Hash Distributed
+                - Create Distributed Tables that use Hash Distribution
+                    - Azure Data Studio -> Servers -> New Query:
+                        CREATE TABLE [dbo].[EmployeeBasic]
+                        (
+                        [EmployeeID] int NOT NULL,
+                        [EmployeeName] varchar(30) NOT NULL,
+                        [DOB] date NOT NULL,
+                        [Address] varchar(50) NOT NULL,
+                        [BloodGroup] nvarchar(2) NOT NULL
+                        )
+                        WITH
+                        (
+                        CLUSTERED COLUMNSTORE INDEX,
+                        DISTRIBUTION = HASH([EmployeeID])
+                        );
+                - Create Distributed Tables that use Round Robin Distribution
+                    - Azure Data Studio -> Servers -> New Query:    
+                        CREATE TABLE [dbo].[Sales]
+                        (
+                        [ProductKey] int NOT NULL,
+                        [OrderDateKey] int NOT NULL,
+                        [CustomerKey] int NOT NULL,
+                        [PromotionKey] int NOT NULL,
+                        [SalesOrderNumber] nvarchar(20) NOT NULL,
+                        [OrderQuantity] smallint NOT NULL,
+                        [UnitPrice] money NOT NULL,
+                        [SalesAmount] money NOT NULL
+                        )
+                        WITH
+                        (
+                        CLUSTERED COLUMNSTORE INDEX,
+                        DISTRIBUTION = ROUND_ROBIN
+                        );
+                -Create Distributed Tables that are Replicated
+                    - Azure Data Studio -> Servers -> New Query: 
+                        CREATE TABLE [dbo].[States]
+                        (
+                            [StateKey] int NOT NULL,
+                            [State] nvarchar(20) NOT NULL
+                        )
+                        WITH
+                        (
+                            CLUSTERED COLUMNSTORE INDEX,
+                            DISTRIBUTION = REPLICATE
+                        );
+            - Query SQL Data Warehouse
+                - Creat Tables -> Insert Rows -> Run Queries
+        e. Load Data using Data Factory
+            - Azure Data Factory - cloud based data integration service that allows you to create data driven workflows in the cloud for orcheestrating and automating data movement and transformation
+            - Access Data Warehouse
+                - SQL Data Warehouse -> Common Tasks: Load Data -> Azure Data Factory
+            - Create A Data Factory
+                - Create New Data Factory -> Configure -> Load Data
+            - Configure Data Factory Properties
+                - Properties -> Source -> Destination -> Settings -> Summary -> Deploy
+            - Verify Copy
+                - Azure Data Studio -> Servers: SQL Data Warehouse -> Tables -> New Table -> Select Top 1000
+        f. Load Data by using PolyBase
+            - PolyBase - technology that accesses data outside of a database via the T-SQL Language, outside such as Azure Blob Storage and Azure Data Lake Storage
+            - Make a Connection
+                - Azure Data Studio -> Servers: SQL Data Warehouse -> New Query
+            - Create an External Data Source
+                CREATE EXTERNAL DATA SOURCE LabAzureStorage
+                WITH
+                (
+                TYPE = Hadoop,
+                LOCATION = 'wasbs://labdata@<Name_Of_Storage_Account>.blob.core.windows.net/'
+                );
+            - Define External File Format
+                CREATE EXTERNAL FILE FORMAT TextFileFormat
+                WITH
+                (
+                FORMAT_TYPE = DELIMITEDTEXT,
+                FORMAT_OPTIONS (
+                    FIELD_TERMINATOR = ',',
+                    STRING_DELIMITER = '',
+                    DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss.fff',
+                    USE_TYPE_DEFAULT = FALSE
+                )
+                );
+            - Create a Schema for External Table
+                CREATE SCHEMA [asb];
+            - Create External Table
+            - Create Schema for Table
+                CREATE SCHEMA [cso];
+            - Create a SQL Data Warehouse Table and Load Data
+                CREATE TABLE [cso].[Transaction]
+                WITH
+                (
+                DISTRIBUTION = HASH([TransactionId])
+                )
+                AS
+                SELECT * FROM [asb].[Transaction]
+                OPTION (LABEL = 'CTAS : Load [cso].[Transaction]');
+        g. Integrate with Azure Databricks
+            - Azure Databricks - fully managed, cloud based big data and machine learning platform
+            - Azure Databricks and SQL Data Warehouse
+                - Access Warehouse using SQL Data Warehouse Connector
+            - Make a Connection to SQL Data Warehouse
+                - Azure Data Studio -> Servers: SQL Data Warehouse -> New Query
+            - Create a Database Master Key
+                - CREATE MASTER KEY ENCRYPTION BY PASSWORD = '980AbctotheCloud427leet';
+            - Clone Databricks Archive
+                - Azure Databricks -> Launch Workspace -> Users -> Import -> URL: https://github.com/MicrosoftDocs/mslearn-understanding-the-sql-dw-connector-with-azure-databricks/blob/master/DBC/02-Azure-SQL-DW.dbc?raw=true
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-azure-databricks-notebooks-fundamentals/blob/master/DBC/01-notebook-fundamentals.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 02
