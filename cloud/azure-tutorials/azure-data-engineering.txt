@@ -156,7 +156,31 @@ Perform Data Engineering with Azure Databricks
             - Create a Database Master Key
                 - CREATE MASTER KEY ENCRYPTION BY PASSWORD = '980AbctotheCloud427leet';
             - Clone Databricks Archive
-                - Azure Databricks -> Launch Workspace -> Users -> Import -> URL: https://github.com/MicrosoftDocs/mslearn-understanding-the-sql-dw-connector-with-azure-databricks/blob/master/DBC/02-Azure-SQL-DW.dbc?raw=true
+                - Azure Databricks -> Launch Workspace -> Users -> Import URL
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-azure-databricks-notebooks-fundamentals/blob/master/DBC/01-notebook-fundamentals.dbc?raw=true
             - Complete Notebooks
                 - 01 - 02
+    
+    3. Module 3: Data Ingestion with Azure Data Factory
+        a. Overview of Azure Data Factory and Azure Databricks
+            - Azure Data Factory - a data ingestion and transformation service that allows you to load raw data from over 70 different on-premisses or cloud sources
+            - Integrate Data Factory and Databricks
+                - Create an Azure Storage Account
+                - Create a Data Factory Instance
+                - Create a Data Workflow Pipeline
+                - Add a Databricks Notebook to Pipeline
+                - Analyze the Data
+        b. Create an Azure Storage Account and an Azure Data Factory Instance
+            - Create an Azure Storage Account
+                - Create a Resource -> Storage Account -> Configure -> Disable "Secure Transfer Required" -> Allow Access from All Networks
+                    - Storage Account -> Access Keys -> Copy Storage Account Name and Key Value
+                - Create the dwtemp container
+                    - Storage Account -> Blobs -> Container -> Configure
+            - Create an Azure Data Factory Instance
+                - Create A Resource -> Data Factory -> Configure
+        c. Exercise - Ingest Data By Using Azure Databricks
+            - Clone Databricks Archive
+                - Azure Databricks -> Launch Workspace -> Users -> Import URL
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-data-ingestion-with-azure-data-factory/blob/master/DBC/03-Data-Ingestion-Via-ADF.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 03
