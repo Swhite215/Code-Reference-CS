@@ -185,7 +185,10 @@ Perform Data Engineering with Azure Databricks
             - Complete Notebooks
                 - 01 - 03
     
-    4. Module 4: Perform Basic Data Transformation in Azure Databricks
+    4. Module 4: Read and Write Data by Using Azure Databricks
+        a. Notes - Azure Data Engineering Module 4
+    
+    5. Module 5: Perform Basic Data Transformation in Azure Databricks
         a. ETL Overview
             - Extract, Transform, and Load - Takes data form one or more sources, transforms it, and then loads it into a target database
             - Must Understand
@@ -215,3 +218,19 @@ Perform Data Engineering with Azure Databricks
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-perform-basic-data-transformation-in-azure-databricks/blob/master/DBC/05.1-Basic-ETL.dbc?raw=true
             - Complete Notebooks
                 - 01 - 07, Parsing Nested Data
+    
+    6. Module 6: Perform Advanced Data Transformation in Azure Databricks
+        a. Introduction
+            - Common Transformations
+                - Normailzing Values, Inputting Null or Missing Data, Deduplicating Data, Performing Database Rollups, Exploding Arrays, Pivoting DataFrames
+        b. Advanced Data Transformation
+            - UDF - Advanced User-Defined Functions - custom, generalizable ccode that you can apply to your ETL workloads when built-in functions in Spark aren't enough
+            - Joins and Lookup Table
+            - Writing to Multiple Databases
+            - Table Management - managed table is a table that manages the actual data and the meta data, unmanaged tables manage the metadata from a table while the actual data is managed separately
+        c. Exercise - Perform Advanced Data Transformation by Using Azure Databricks
+            - Clone Databricks Archive
+                - Azure Databricks -> Launch Workspace -> Users -> Import URL
+                - Import URL: hhttps://github.com/MicrosoftDocs/mslearn-perform-advanced-data-transformation-in-azure-databricks/blob/master/DBC/05.2-Advanced-ETL.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 07, Custom Transformations
