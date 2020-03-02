@@ -184,3 +184,34 @@ Perform Data Engineering with Azure Databricks
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-data-ingestion-with-azure-data-factory/blob/master/DBC/03-Data-Ingestion-Via-ADF.dbc?raw=true
             - Complete Notebooks
                 - 01 - 03
+    
+    4. Module 4: Perform Basic Data Transformation in Azure Databricks
+        a. ETL Overview
+            - Extract, Transform, and Load - Takes data form one or more sources, transforms it, and then loads it into a target database
+            - Must Understand
+                - Optimizing data formats and connections
+                - Ideal schema
+                - Handling corrupt records
+                - Automating workload 
+            - Spark Approach
+                - Offers a compute engine and connectors to virtually any data source
+                    - On Databricks, Sparks combines ETL, stream processing, machine learning, and collaborative methods
+                    - Spark is scalable to petabytes of data and clusters of thousands of nodes
+                    - Spark decouples data storage from compute and query engine
+            - ETL PRocess
+                - Extraction w/ Java Database Connectivity
+                    - Sources - DBs, Message Brokers like Kafka and Kinesis, Distributed Databases like Cassandra and Redshift, Data Warehouses like Hive and Azure Cosmos DB, and Files like CSv, Parquet, and Avro
+                - Data Validation to determine:
+                    - Expected number of records
+                    - Presence of expected fields
+                    - No missing values
+                - Transformation - applying structure and a schema to the data so it can transform into desired format
+                - Corrupt Record Handling such as:
+                    - Missing and incomplete information, schema mismatches, different formats or data types, and use errors
+                - Loading Data back to Databricsk File System as a Parquet File
+        b. Exercise - Perform Basic Data Transformation Using Azure Databricks
+            - Clone Databricks Archive
+                - Azure Databricks -> Launch Workspace -> Users -> Import URL
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-perform-basic-data-transformation-in-azure-databricks/blob/master/DBC/05.1-Basic-ETL.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 07, Parsing Nested Data
