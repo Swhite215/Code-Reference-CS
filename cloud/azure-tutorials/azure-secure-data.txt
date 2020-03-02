@@ -96,7 +96,10 @@ Secure Your Cloud Data
                 - Sequential Updates - updates are rolled out to paired regions sequentially
                 - Data Residency - region resides within same geography as pair for tax and law enforcement purposes
     
-    4. Module 4: Configure and Manage Secrets in Azure Key Vault
+    4. Module 4: Secure Your Azure Storage Account
+        a. Notes - Azure Store Data Module 4
+    
+    5. Module 5: Configure and Manage Secrets in Azure Key Vault
         a. Guidelines for Using Azure Key Vault (Server Side)
             - Key Vault - centralized cloud service for storing application secrets such as encryption keys, certificates, and server-side tokens
             - Vaults - a secure container
@@ -147,3 +150,42 @@ Secure Your Cloud Data
             - Retrieve Certificates
                 - Key Vault -> Certificates -> Certificate -> Enable/Disable
                 - App Service -> Settings: TLS/SSL -> Private Key Certificate -> Import Key Vault Certificate -> Vault and Secret -> Setup Custom Domain
+    
+    6. Module 6:  Secure Your Azure Resources with Role Based Access Control
+        a. What is RBAC?
+            - Identity Concerns - people who leave lose access to resources, balance between autonomy and central governance
+            - Azure Subscriptions - Associated with a single Azure AD Directory
+                - Azure AD Connect - allows employees to manage their Azure subscriptions by using existing work identities
+            - RBAC - Role Base Access Control is  an authorization system, built on Azure Resource Manager, that provides fine grained access management of resources in Azure
+            - Assign RBAC roles to users, groups, and application
+                - Azure AD Admins -> Global Admin/User Access Admin -> Root Management Group -> Management Group -> Subscription -> Resource Group -> Resource
+            - Examples of RBAC
+                - Allow one user to manage virtual machines in a subscription and another user to manage virtual networks
+                - Allow a DBA group to manage SQL databases
+                - Allow a user to manage all resources in a resource group
+                - Allow an application to access all resources in a resource group
+            - RBAC in Azure Portal
+                - Access Control or Identity and Access Management
+            - How does RBAC work? ALlow Model
+                - Create Role Assignment
+                    - Security Principal - user, group, or application that you want to grant access to
+                    - Role Definition - collection of permissions (Owner, Contributor, Reader, User Access Administrator)
+                    - Scope - where the access applies to (management group, subscription, resource group, resource)
+                    - Role Assignment - binding a role to a security principal at a particular scope
+                    - Actions minue NotActions to get effective permissions
+        b. Exervise - List Access Using RBAC and Azure Portal
+            - Order
+                - Resource Groups -> Resource Group -> Access Control IAM -> Role Assignments 
+                - Resource Groups -> Resource Group -> Access Control IAM -> Roles
+        c. Exercise - Grant Access Using RBAC and the Azure Portal
+            - Grant VM Access
+                - Resource Groups -> Resource Group -> Access Control IAM -> Role Assignments -> Add Role Assignment
+                - Role -> Access To -> Select USer
+            - Remove Access
+                - Resource Groups -> Resource Group -> Access Control IAM -> Role Assignments -> Role Assignment Select -> Remove
+        D. Exercise - View Activity Logs for RBAC Changes
+            - View Activity logs
+                - All Services -> Activity Log -> Filter Settings -> Operation + Role
+
+    7. Module 7: Secure Your Azure SQL Database
+        a. Notes - Azzure Relational Data Module 4
