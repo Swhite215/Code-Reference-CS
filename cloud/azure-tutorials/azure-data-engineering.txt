@@ -231,6 +231,29 @@ Perform Data Engineering with Azure Databricks
         c. Exercise - Perform Advanced Data Transformation by Using Azure Databricks
             - Clone Databricks Archive
                 - Azure Databricks -> Launch Workspace -> Users -> Import URL
-                - Import URL: hhttps://github.com/MicrosoftDocs/mslearn-perform-advanced-data-transformation-in-azure-databricks/blob/master/DBC/05.2-Advanced-ETL.dbc?raw=true
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-perform-advanced-data-transformation-in-azure-databricks/blob/master/DBC/05.2-Advanced-ETL.dbc?raw=true
             - Complete Notebooks
                 - 01 - 07, Custom Transformations
+    
+    7. Module 7: Create Data Pipelines by Using Databricks Delta
+        a. Overview of Databricks Delta
+            - Databricks Delta - a transactional storage layer designed specifically to work with Apache Spark and Databricsk File System
+            - Challenge with Data Lakes - storage repository that inexpensively stores a vast amoutn of raw data, current and historical, in native formats
+                - Schema Enforcement, Table Repairs, Frequent Refreshes of Meta Data, Bottlenecks of Small File Sizes, Difficulty Sorting Data
+            - Databricks Delta Functionality
+                - ACID Transactions
+                - DELETE, UPDATE, UPSERT
+                - Automatic File Management
+                - Statistics and Data Skipping
+            - Databricks Delta vs. Lambda Architecture
+                - Lambda Architecture - big-data processing architecture that combines both batch and real-time processing, append-only, immutable, time-stamped events
+                - Databricks Delta Architecture
+                    - Bronze/Raw Table - Text files, RDBMS data and streaming data
+                    - Raw is parsed into Query/Silver Tables
+                    - Query tables are aggregated into Summary/Gold Tables used for reporting, dashboards, and aggregations
+        b. Exercise - Create Data Pipelines By Using Databricks Delta
+            - Clone Databricks Archive
+                - Azure Databricks -> Launch Workspace -> Users -> Import URL
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-create-data-pipelines-using-databricks-delta/blob/master/DBC/06-Databricks-Delta.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 07, Data Lake Insights
