@@ -283,3 +283,15 @@ Perform Data Engineering with Azure Databricks
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-streaming-in-azure-databricks/blob/master/DBC/08-Streaming.dbc?raw=true
             - Complete Notebooks
                 - 01 - 04
+    
+    9. Module 9: Create Data Visualization by Using Azure Databricsk and Power BI
+        a. Overview of Databricks Visualization Options
+            - Built-In Functions - display, filter, select
+            - Power BI - connect databricks cluster to Power BI
+            - Matplotlib - display objects using Python notebook in Databricks
+        b. Exercise - Create Data Visualizations by Using Azure Databricks
+            - Clone Databricks Archive
+                - Azure Databricks -> Launch Workspace -> Users -> Import URL
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-create-data-visualizations-using-azure-databricks-and-power-bi/blob/master/DBC/07-Visualization.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 04
