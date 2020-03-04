@@ -121,4 +121,35 @@ Work with NoSQL Data in Azure Cosmos DB
                 - touch config.js && touch app.js
         d. Query Graph Data from an Application Using Gremlin API
         e. Exercise - Query Graph Data from an Application Using Gremlin API
-            - 
+    
+    5. Module 5: Store and Access NoSQL Data with Azure Cosmos DB and the Table API
+        a. Move an App to Azure Cosmos DB Table Storage
+            - Azure Storage Services - Queue, File, Blob, and Table
+            - Azure Storage Data Replication - Locally Redundant Storage, Zone Redundant Storage, Geo Redundant Storage, Read-Access Geo Redundant Storage
+            - Differences between Azure Storage and Azure Cosmos DB Table
+                - Azure Cosmos DB charges for capacity, even if it isn't used
+                - Query results from Azure Cosmos DB are not sorted in order of partition key and row key as they are from Storage tables
+                - Row keys in Azure Cosmos DB are limited to 255 bytes
+                - Batch operations are limited to 2 MBs
+                - Cross-Origin Resource SHaring is not currently supported by Azure Cosmos DB
+                - Table names are only case sensitive in Azure Cosmos DB
+            - Choose a Storage Location
+                - Latency - Guaranteed response time in Azure Cosmos DB Tables
+                - Throughput - No limit in Azure Cosmos DB Tables
+                - Distribution - Replication of data for read and write to more than 30 regions in Azure Cosmos DB Tables
+                - Indexes - Automatic with Azure Cosmos DB Table
+                - Data Consistency - Five levels with Azure Cosmos DB Table
+                - Pricing - Optmized for storage wtih Azure Storage Table and optimized for throughput with Azure Cosmos DB Table
+                - SLA - Two 9s for both and three 9s for Azure Cosmos DB Table
+            - How to Migrate
+                - Azure Cosmos DB Data Migration Tool - import data into Azure Cosmos DB, GUI and CLI
+                - AzCopy - copy to and from Azure Storage Accounts - Export, Import, CLI
+        b. Exercise - Move an App to Azure Cosmos DB Table Storage
+            - Create a Storage Account
+            - Clone the Lenses App
+                - git clone https://github.com/MicrosoftDocs/mslearn-store-access-data-cosmos-table-api lensesapp
+            - Configure Lenses App with Connection String
+            - Run Lenses to Populate Tables
+            - Create an Azure Cosmos DB w/ Table API
+            - Switch Lenses to Azure Cosmos DB
+            - Populate Azure Cosmos DB
