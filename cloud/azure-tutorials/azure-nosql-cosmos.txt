@@ -65,4 +65,35 @@ Work with NoSQL Data in Azure Cosmos DB
             - Reasons - Previous experience working with Cassandra
         g. Use Azure Table to Store IoT Data
             - Reasons - Moving an existing huge database with low throughput to CosmosDB
+    
+    3. Module 3: Insert and Query Data in Your Azure Cosmos DB Database
+        a. Exercise - Set Up Your Azure Cosmos DB and Container
+            - Create Azure Cosmos DB Account and Database with the Azure CLI
+                - export NAME=mysupersweetcosmosdb
+                - az cosmosdb create --name $NAME --kind GlobalDocumentDB --resource-group learn-b01b7956-0fd1-403d-987a-5b037b930e29
+                - az cosmosdb sql database create --account-name $NAME --name "Products" --resource-group learn-b01b7956-0fd1-403d-987a-5b037b930e29
+                - az cosmosdb sql container create --account-name $NAME --database-name "Products" --name "Clothing" --partition-key-path "/productId" --throughput 1000 --resource-group learn-b01b7956-0fd1-403d-987a-5b037b930e29
+        b. Exercise - Add Data Using Data Explorer
+            - Data Explorer - A tool included in the Azure portal that is used to manage data stored in an Azure Cosmos DB
+                - UI for navigating, viewing data, querying and modifying data, and creating and running stored procedures
+            - Order
+                - Azure Cosmos DB -> Data Explorer -> Open Full Screen -> Database -> Container -> Items -> New Item -> JSON
+        c. Explore SQL Query Types
+            - SELECT - SELECT * FROM Products p
+            - FROM CLAUSE - SELECT p.id FROM Products AS p or SELECT p.id FROM Products p
+            - Sub-Documents - SELECT * FROM Products.shipping
+            - WHERE CLAUSE - SELECT * FROM Products p WHERE p.id ="1"
+            - ORDER BY - SELECT p.price, p.description, p.productId FROM Products p ORDER BY p.price ASC
+            - JOIN - SELECT p.productId FROM Products p JOIN p.shipping
+        d. Exercise - Run Queries Using Data Explorer
+            - Azure Cosmos DB -> Data Explorer -> Open Full Screen -> Database -> Container -> New SQL Query -> Execute Query
+        e. Define Stored Procedures and User-Defined Functions
+            - Ensure Atomicity, Consistency, Isolation, and Durability ACID
+            - Stored Procedures Basics - stored procedures perform complex transactions on documents and properties, written in javascript and stored in a container on Azure Cosmos DB
+            - User-Defined Function Basics - extends the Azure Cosmos DB SQL query language grammar and implement custom business logic
+        f. Excercise - Run Complex Operations on Your Data
+            - Stored Procedure Order
+                - Azure Cosmos DB -> Data Explorer -> Open Full Screen -> Database -> Container -> New Stored Procedure -> Execute -> Input Parameters
+            - User Defined Function Order
+                - Azure Cosmos DB -> Data Explorer -> Open Full Screen -> Database -> Container -> New UDF -> Query (udf.function(arguments))
         
