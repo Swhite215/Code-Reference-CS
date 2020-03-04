@@ -257,3 +257,29 @@ Perform Data Engineering with Azure Databricks
                 - Import URL: https://github.com/MicrosoftDocs/mslearn-create-data-pipelines-using-databricks-delta/blob/master/DBC/06-Databricks-Delta.dbc?raw=true
             - Complete Notebooks
                 - 01 - 07, Data Lake Insights
+    
+    8. Module 8: Work with Streaming Data in Azure Databricks
+        a. Streaming Overview
+            - Event Hubs and Spark Structured Streaming - fast, scalable, and fault-tolerant stream processing API
+                - Azure Event Hubs - real time data ingestion service that processes millions of data in a matter of seconds
+            - Streaming Concepts
+                - Process - where you continuously incorporate new data into Data Lake storage and compute results
+                - Stream of data is treated as a table to which data is continuously appended
+                - Streaming System has:
+                    - Input Source - Kafka, Azure Event Hubs, Files, TCP-IP Sockets
+                    - Sinks - Kafka, Azure Event Hubs, Files, Console Sinks and Memory Sinks
+        b. Set Up Event Hubs
+            - Create Event Hubs Namespace
+                - Create A Resource -> Event Hubs -> Configure
+            - Create an Event Hub
+                - Event Hub Namespace -> +EventHub -> Configure
+            - Create Shared Access Policy
+                - Event Hubs Namespace -> Event Hubs -> Settings: Shared Access Policies -> Add -> Configure
+            - Capture Connection String
+                - Shared Access Policy -> Copy Connection String: Primary Key
+        c. Exercise - Perform Data Streaming by Using Azure Databricks
+            - Clone Databricks Archive
+                - Azure Databricks -> Launch Workspace -> Users -> Import URL
+                - Import URL: https://github.com/MicrosoftDocs/mslearn-streaming-in-azure-databricks/blob/master/DBC/08-Streaming.dbc?raw=true
+            - Complete Notebooks
+                - 01 - 04
