@@ -153,3 +153,66 @@ Work with NoSQL Data in Azure Cosmos DB
             - Create an Azure Cosmos DB w/ Table API
             - Switch Lenses to Azure Cosmos DB
             - Populate Azure Cosmos DB
+    
+    6. Module 6: Build a .NET Core App for Azure Cosmos DB in Visual Studio Code
+        a. Exercise - Create Cosmos DB Resourcs in Visual Studio Code
+            - Install VS Code and Azure Cosmos DB extension
+            - VS Code: Azure Extension -> New Cosmos DB Account -> Configure
+            - Account -> Create Database -> Configure
+        b. Exercise - Set Up Your App in Visual Studio Code
+            - Create Console App
+                - mkdir learning-module && cd learning-module
+                - dotnet new console & dotnet run
+            - Connect App to Azure Cosmos DB
+                - ./installNuGetPackages.sh
+                - /Users/pramitamitra/E.C.R.I.C.-Development/2020/learning-module/Program.CS
+        c. Exercise - Create, Read, Update, and Delete NoSQL Data Programatically
+            - Working with Documents Programatically
+                - DocumentClient
+                    - CreateDocumentAsync, ReadDocumentAsync, ReplaceDocumentAsync, UpsertDocumentAsync, DeleteDocumentAsync
+                - Create, Read, Replace, Update
+        d. Exerrcise - Query Using the Azure Cosmos DB .NET Core SDK
+        e. Exercise - Create and Run Stored Procedures from Your App
+            - Create A Stored Procedure
+                - Cosmos DB Account -> Database -> Container -> Stored Procedures -> Create Stored Procedures
+        
+    7. Module 7: Optimize Performance of Azure Cosmos DB Using Partitioning and Indexing Strategies
+
+    8. Module 8: Distribute Your Data Globally with Azure Cosmos DB
+        a. Exercise - Dsitrbute Data Globally
+            - Basics - enables you to replicate data from one region into multiple Azure regions
+            - Why Replicate - delivere low latency data access and adding regional resiliency for business continuity and disaster recovery
+            - Create Azure Cosmos DB Account
+            - Replicate Data
+                - Cosmos DB Account -> Replicate Data Globally -> Select Regions -> Save
+        b. Write to Multiple Regions
+            - Multi-Master Support - option where each region is a master region, equally pariticipating in a write-anywhere model, active-active pattern
+            - Benefits
+                - Single-Digit Write Latency
+                - Three 9s Read Write Availability
+                - Unlimited Write Scalability and Throughput
+                - Built-In Conflict Resolution
+            - Conflict Resolution
+                - Last-Writer-Wins
+                - Custom UDF
+                - Custom Async
+        c. Exercise - Change Global Read and Write Priorities
+            - Automate Failover - feature that comes into play when theres a disaster or other event
+            - Failover Basics
+                - Read Region Outage - disconnected from write region and marked offline
+                - Write Region Outage - region marked offline, alternate region is promoted as write region 
+            - Set Read Region Priorities
+                - Azure Cosmos DB -> Replicate Data Globally -> Automatic Failover -> Enable Automatic Failover -> Read Regions -> Order Priorities
+        d. Choose a Consistency Level
+            - Consistency Basics
+                - Levels - strong, bounded-staleness, session, consistent prefix, eventual
+                - Goal - guarantee to return the most recent version of an item
+                - 73% use session consistency and 20% prefer bounded-staleness
+            - Consistency Levels in Detail
+                - Azure Cosmos DB -> Default Consistency -> Click Level
+            - Strong Consistency - linearizability, reads guaranteed to return the most recent version of an item
+            - Bounded Staleness - reads may lag behind writes by at most K versions
+            - Session - scoped to a client session
+            - ConsistenT Prefix Consistency - in absence of further writes, replicas within the group eventually converge
+            - Eventual Consistency - in absence of any further writes, the replicas within the group eventually converge
+        
