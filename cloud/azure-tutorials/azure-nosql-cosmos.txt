@@ -96,4 +96,29 @@ Work with NoSQL Data in Azure Cosmos DB
                 - Azure Cosmos DB -> Data Explorer -> Open Full Screen -> Database -> Container -> New Stored Procedure -> Execute -> Input Parameters
             - User Defined Function Order
                 - Azure Cosmos DB -> Data Explorer -> Open Full Screen -> Database -> Container -> New UDF -> Query (udf.function(arguments))
-        
+    
+    4. Module 4: Store and Access Graph Data in Azure Cosmos DB with the Graph API
+        a. Determing If a Graph Database Fits the Needs of Your Application
+            - Graph Database
+                - Graph - structure that is composed of vertices (objects) and edges (relationships)
+                - Properties - express information about the vertices and edges
+                - Nodes or Vertices e.g. Customer, Employee, Product, Order, Category, Invoice
+                - Relationships or Edges e.g. Likes, Places, Belongs to, Submits
+            - Strengths and Weaknesses
+                - Performance - performance is constant
+                - Flexibility - easy to add an existing structure with affecting functionality
+                - Weaknesses - not as efficient at processing high volumes of transactions nor handling queries that traverse an entire database
+        b. Build an Application that Stores Graph Data using the Gremlin API
+            - Order - Create Datrabase, Run Queries
+            - Gremlin API supporst modeling graph data and provides APIs to traverse the graph data
+            - Gremlin Graph Traversal Language - high-performance language used to traverse and query data from graph databases
+        c. Exercise - Build an Application that Stores Graph Data using the Gremlin API
+            - Create an Azure Cosmos DB Account
+            - Add a Graph
+                - Cosmos DB -> Copy Gremline Endpoint -> Data Explorer -> New Graph -> Add Graph -> Configure -> Keys -> Copy Primary Key
+            - Create a Node.js App
+                - mkdir gremlin app && cd gremlinapp && npm i gremlin
+                - touch config.js && touch app.js
+        d. Query Graph Data from an Application Using Gremlin API
+        e. Exercise - Query Graph Data from an Application Using Gremlin API
+            - 
