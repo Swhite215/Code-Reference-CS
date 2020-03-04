@@ -5,9 +5,25 @@ az cosmosdb create --name $NAME --kind GlobalDocumentDB --resource-group learn-b
 
 # Create an Azure Cosmos DB Database - Azure CLI
 az cosmosdb sql database create --account-name $NAME --name "Products" --resource-group learn-b01b7956-0fd1-403d-987a-5b037b930e29
+az cosmosdb database create --resource-group learn-641cf90e-a812-409c-805b-e1d6c9e2d2fb --name $NAME --db-name mslearn
 
 # Create an Azure Cosmos DB Container in a Database - Azure CLI
 az cosmosdb sql container create --account-name $NAME --database-name "Products" --name "Clothing" --partition-key-path "/productId" --throughput 1000 --resource-group learn-b01b7956-0fd1-403d-987a-5b037b930e29
+
+# Create an Azure Cosmos DB Collection in a Database - Azure CLI
+az cosmosdb collection create --resource-group learn-641cf90e-a812-409c-805b-e1d6c9e2d2fb --name $NAME --db-name mslearn --collection Small --partition-key-path /id --throughput 400
+
+# Update an Azure Cosmos DB Collection Index - Azure CLI
+az cosmosdb collection update -g learn-641cf90e-a812-409c-805b-e1d6c9e2d2fb -n $COSMOS_NAME -d mslearn -c Orders --indexing-policy @IndexConfig/index-none.json
+
+# Get Azure Cosmos DB Account Endpoint
+az cosmosdb list --resource-group learn-641cf90e-a812-409c-805b-e1d6c9e2d2fb --output tsv --query [0].documentEndpoint
+
+# Get Azure Cosmos DB Account Key
+az cosmosdb list-keys --resource-group learn-641cf90e-a812-409c-805b-e1d6c9e2d2fb  --name $COSMOS_NAME --output tsv --query primaryMasterKey
+
+# Get Azure Cosmos DB Name
+az cosmosdb list --output tsv --query [0].name
 
 # ----------- Graph API ---------------#
 
