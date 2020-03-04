@@ -177,6 +177,73 @@ Work with NoSQL Data in Azure Cosmos DB
                 - Cosmos DB Account -> Database -> Container -> Stored Procedures -> Create Stored Procedures
         
     7. Module 7: Optimize Performance of Azure Cosmos DB Using Partitioning and Indexing Strategies
+        a. Measure the Rate of Data Processing in Request Units
+        b. Exercise - Create and Populate Your Azure Cosmos DB Collections
+            - Create Database Account
+            - Azure Cosmos DB Concepts
+                - Resources 
+                    - Account is container for many databases
+                    - Database is a container for many collections
+                    - Collection is a container for many documents
+                - Partitioning
+                    - Distribution and grouping of your data across the underlying resources
+                    - Documents are grouped in a partition based on the value of the partition key
+                    - Cannot be changed after a collection is provisioned
+                - Indexing
+                    - Catalog of document properties and their values
+                    - Can change indexing at runtime
+            - Set Environment Variables for Endpoint and Keys
+            - Create Collections
+            - Populate Collections
+                - git clone https://github.com/MicrosoftDocs/mslearn-monitor-azure-cosmos-db
+                - cd mslearn-monitor-azure-cosmos-db/ExerciseCosmosDB
+                - export COSMOS_NAME=$(az cosmosdb list --output tsv --query [0].name)
+                - Populate the Collections
+                    - dotnet run -- -c Small -o InsertDocument -n 4000 -p 10
+                    - dotnet run -- -c HotPartition -o InsertDocument -n 20000 -p 10
+                    - dotnet run -- -c Orders -o InsertDocument -n 20000 -p 10
+        c. Exercise - Monitor and Measure Your Azure Cosmos DB Database
+            - Review Metrics
+                - Azure Cosmos DB -> Monitoring: Metrics
+            - Measure the Throughput That Individual Queries Require by Using Data Explorer
+                - Cosmos DB -> Data Explorer -> Database -> Collection -> Item -> Copy ID
+                - Run Query -> Query Stats: Request Charge
+            - Measure the Throughput Required for Direct Write and Reads for a Single Document
+        d. Identify a Partition Strategy for Your Azure Cosmos DB
+            - Avoid Hot Partitions - overusing one partition
+            - Partition Design Considerations
+                - Estimate the scale of your data needs
+                    - range of document size, required throughput in reads/second and writes/second, volumes of documents being queried
+                - Understand the workload
+                    - read-heavy, write-heavy or both, top five queries, transactions needed? 
+                - Propose some partition key options
+                    - Does the key choices have a large number of possible values?
+                    - Do the values have a consisten spread across the data?
+                    - Are some values accessed more than others?
+                    - Can the query be within a single partition?
+                    - Can the transaction be within a single partition
+        e. Exercise - Measure the Impact of Partition Key Choice
+            - Measure the Impact of Partitions on Throughput
+                - Review unevenly distributed parititions for throughput
+                - Review evenly distributed partitions for throughput
+            - Measure the Impact of Partitions on Storage
+                - Review Unevenly Distributed Partitions for Storage
+                - Review Evenly Distributed Partitions for Storage
+        f. Identify Indexing Straegies for Your Azure Cosmos DB Data
+            - Indexing Modes - extra information that sits alongside a collection to make querying more efficient
+                - Consistent - index is updated synchronously every time a new document is written to the collection
+                - Lazy - index is updated at a lower priority, reads and writes take a higher priority
+                - None - no index, queries are expensive on collections that aren't indexed
+            - Changing the Indexing Strategy
+                - Add Document Properties to the Index in includedPaths
+        g. Exercise - Measure the Impact of Index Policy Change
+            - Measure RUs for No Index
+            - Measure the RUs for Partial Index
+            - Measure RUs for Lazy Indexing
+            - Compare RUs Across Indexing Strategies
+                - Query - Indexed = Lower RU
+                - Insert - No Index = Lower RU
+                - As indexing complexity goes up, write consumption goes up and read consumption goes down
 
     8. Module 8: Distribute Your Data Globally with Azure Cosmos DB
         a. Exercise - Dsitrbute Data Globally
