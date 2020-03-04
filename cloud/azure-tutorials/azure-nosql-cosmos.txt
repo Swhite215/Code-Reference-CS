@@ -31,3 +31,38 @@ Work with NoSQL Data in Azure Cosmos DB
         d. Exercise - Create a Database and Container in Azure Cosmos DB
             - Create Database and Container
                 - Cosmos DB -> Data Explorer -> New Container -> Configure
+    
+    2. Module 2: Choose the Appropriate API for Azure Cosmos DB Storage
+        a. Idenitfy the Technology Options
+            - Consistency Levels - strong, bounded staleness, session, consistent prefix, and eventual
+            - Core SQL API
+                - default api, provides you with a view of your data that resembles a traditional NoSQL document store
+                - Query JSON documents with a SQL-like language - SELECT, FROM, WHERE, BETWEEN, COUNT, SUM, MIN, MAX, ORDER BY
+                - Uses JavaScript's type system, expression evaluation and function invocation
+            - MongoDB API
+                - MongoDB Wire Protocol using existing client SDKs, drivers, and tools as if you are running an actual MongoDB database
+            - Cassanda API
+                - Query data using the Cassandra Query Language - CREATE KEYSPACE, CREATE TABLE, ALTER TABLE, USE, INSERT, SELECT, UPDATE, BATCH, DELETE
+                - Data will appear to be a partitioned row store
+            - Azure Table API
+                - Support for applications written for Azure Table Storage that need premium capabilities like global distribution, high availability, scalable throughput
+                - Querying is accomplished using OData and LINQ queries, and original REST API for GET operations
+            - Gremlin Graph API
+                - Graph based view of data
+                - Datat is either a vertex (which is an individua item in the database) or an edge (which is a relationship betwen items in the database)
+        b. Analyze the Decision Criteria
+            - New Project - Core SQL
+            - Existing MongoDB, Cassandra, Azure Table or Gremlin Data - Corresponding API
+            - Analysis of Relationships Between Data - Gremlin
+            - Everything Else - Core SQL
+        c. Use Core SQL to Store a Product Catalog
+            - Reasons - Semi-structured data, needed filtering functionality, schema has to be flexible
+        d. Use Gremlin Graph API as a Recommendation Engine
+            - Reasons - Data store needs to be able to assign weight values to the relationships between products (e.g. number of time relationship occurs)
+        e. Use MongoDB to Import Historical Order Data
+            - Reasons - Semi-structured data that needs the flexibility to store many different data formats
+        f. Use Cassandra for Web Analytics
+            - Reasons - Previous experience working with Cassandra
+        g. Use Azure Table to Store IoT Data
+            - Reasons - Moving an existing huge database with low throughput to CosmosDB
+        
