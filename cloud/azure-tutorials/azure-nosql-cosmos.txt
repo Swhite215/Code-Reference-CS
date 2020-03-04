@@ -1,0 +1,33 @@
+Microsoft Certified: Azure Developer Associate
+
+Work with NoSQL Data in Azure Cosmos DB
+
+    1. Module 1: Create an Azure Cosmos DB Database Built to Scale
+        a. Exercise - Create an Azure Cosmos DB Account in the Azure Portal
+            - Azure Cosmos DB - Azure resource that acts as an organizational entity for your databases
+                - 1 Azure Cosmos DB - several supported data models
+                - APIS - SQL (Document Database), Gremlin (Graph), MongoDB (Document), Azure Table, and Cassandra - each requires a separate account
+                - Graph/Tables or Migration - create additional accounts with relevant data models
+            - Create A Resource -> Databases -> Azure Cosmos DB -> Configure
+        b. Request Unit
+            - Request Unit - measurement of throughput, measured per second, request unit / second, must reserve the number of RU/S in advance to handle estimated load
+                - Basics - 1 RU is equal to the approximate cost of performing a single GET requests on a 1KB document
+                - # of RUs depends on document size, properties of document, operation being performed, and items such as consistency and indexing policy
+                - Request Unit Charge - multiple amount of consumed RUs of each operation by the estimate number of times each operation will be executed per second
+                - Provision in increments of 100 RUs per second
+                - Important Factors - item size, item indexing, item property count, indexed properties, data consistency, query patterns, script usage
+                - Exceeding Throughput Limit - requests become rate limited after hitting provisioned throughput
+            - Provisioning Throughput - Provision throughput for your containers to perform writes, reads, updates, and deletes
+            - Scale - estimate throughput needs by estimates number of operations youll have to support at different times
+        c. Choose a Partition Key in Azure Cosmos DB
+            - Partition Strategy - scale out, horizontal scaling, enables you to add more partitions to teh database as you neede them
+            - Partition Key - value set when creating a container which organizes your data into logical divisions
+                - Hot Partition - single partition that receives many more requests than others, which can create a throughput bottleneck
+                - Storage space for the data associated with each partition key cannot exceed 10 GB
+            - Best Practices
+                - Dont be afraid of partition key that has a large number of values
+                - Review top three to five queries you plan on using, value most frequently included in the WHERE clause is a good candidate for the partition key
+                - For write-heavy workflows, youll need to understand the transaction needs of your workload, because partition key is the scope of multi-document transactions
+        d. Exercise - Create a Database and Container in Azure Cosmos DB
+            - Create Database and Container
+                - Cosmos DB -> Data Explorer -> New Container -> Configure
