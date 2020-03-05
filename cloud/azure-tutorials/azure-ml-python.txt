@@ -27,3 +27,11 @@ Introduction to Machine Learning with Python and Azure Notebooks
                 - df.head() - first five rows of DataFrame
         c. Exercise - Build Machine Learning Model
         d. Exercise - Visualize Output of Model
+
+    3. Module 3: Analyze the Sentiment of Reviews with Keras
+        a. Introduction
+            - Keras - open-source Python library that dramatically simplifies the building of neural networks
+        b. Exercise - Create an Azure Notebook
+            - My Projects -> +New Project -> Configure -> +Notebook -> Configure -> Open Notebook
+        c. Exercise - Build and Train a Neural Network
+        d. Exercise - Use the Neural Network to Analyze Text for Sentiment
