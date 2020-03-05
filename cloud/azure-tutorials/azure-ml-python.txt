@@ -14,3 +14,16 @@ Introduction to Machine Learning with Python and Azure Notebooks
         e. Exercise - Analyze Data with Seaborn
         f. Exercise - Share a Notebook
             - Notebook -> File: Close and Halt -> Project Settings -> Check Public Project -> Share
+    
+    2. Module 2: Predict Flight Delays by Creating a ML Model in Python
+        a.  Exercise - Create an Azure Notebook and Import Data
+            - My Projects -> +New Project -> Configure -> +Notebook -> Configure -> Open Notebook
+        b. Exercise - Clean and Prepare Data
+            - DataFrame Information
+                - df.shape - (rows, columns)
+                - df.isnull().values.any() - True or False
+                - df.isnull().sum() - number of cells in each column
+                - df = df[[<COLUMN>, <COLUMN>]]
+                - df.head() - first five rows of DataFrame
+        c. Exercise - Build Machine Learning Model
+        d. Exercise - Visualize Output of Model
