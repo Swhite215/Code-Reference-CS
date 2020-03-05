@@ -1,0 +1,16 @@
+Microsoft Certified: Azure Developer Associate
+
+Introduction to Machine Learning with Python and Azure Notebooks
+
+    1. Module 1: Analyze Climate Data with Azure Notebooks
+        a. Exercise - Create an Azure Notebook
+            - https://notebooks.azure.com/
+            - My Projects -> +New Project -> Configure -> +Notebook -> Configure -> Open Notebook
+        b. Exercise - Upload Data and Create Scatterplot
+            - Cells - markdown, code (interactive), raw NBConvert (inline data)
+            - Kernel executes code in cells
+        c. Exercise - Perform Linear Regression with Numpy
+        d. Exercise - Perform Linear Regression with Scikit Learn
+        e. Exercise - Analyze Data with Seaborn
+        f. Exercise - Share a Notebook
+            - Notebook -> File: Close and Halt -> Project Settings -> Check Public Project -> Share
