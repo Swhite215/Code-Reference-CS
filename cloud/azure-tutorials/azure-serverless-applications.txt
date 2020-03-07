@@ -145,9 +145,9 @@ Serverless Applications in Microsoft Azure
             - Install Azure Functions and Web Jobs Tools
             - Function App
                 - New Project -> Visual C# -> Cloud -> Azure Functions
-                - Azure Functions v2 -> Http Trigger -> Storage Account -> Acess Rights = Anonymous
+                - Azure Functions v2 -> Http Trigger -> Storage Account -> Access Rights = Anonymous
             - Azure Function
-                - Add -> New Azure Function -> Name -> Htop Trigger -> Access Rights = Anonymous
+                - Add -> New Azure Function -> Name -> Http Trigger -> Access Rights = Anonymous
                 - Add Code
             - Test Locally
                 - Start Debugging
@@ -175,10 +175,10 @@ Serverless Applications in Microsoft Azure
         d. Trigger Azure Function with Github Event
             - Function App -> Function -> Index.JS to Parse Payload
         e. Secure Webhook Payloads with a Secret
-            - Webhook Secret - ensures POST reuests sent to the payload URL are from Github
+            - Webhook Secret - ensures POST requests sent to the payload URL are from Github
             - Function -> Require crypto -> Manage -> Click to Show Default Key -> Place Key in Webhook
             - Function -> index.js -> Code to Hash Using Secret and Compare to Sent Secret (X-Hub-Signature)
-            - Run Code is Hash is Good or Send Error if Hash is Bad
+            - Run Code if Hash is Good or Send Error if Hash is Bad
     
     9. Module 9: Web Application Automatic Updates with Azure Functions and SignalR Service
         a. Limitations of Web Polling vs. Server Side Events
