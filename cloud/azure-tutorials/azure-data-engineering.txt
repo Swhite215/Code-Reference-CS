@@ -14,8 +14,8 @@ Perform Data Engineering with Azure Databricks
             - Azure Data Studio
                 - https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-2017
             - Create Connections in Azure Data Studio
-                - SQL Data Warehouse -> Overview: Server Name Link -> Azure Data Studio -> Add a new Connection -> Configure -> Authenticatio Type = SQL Login -> Databas: SQL Data Warehouse -> Connect
-                - Servers -> New Connection -> SQL Data Warehouse Connection -> Database: Master -> Connect
+                - SQL Data Warehouse -> Overview: Server Name Link -> Azure Data Studio -> Add a new Connection -> Configure -> Authentication Type = SQL Login -> Database: SQL Data Warehouse -> Connect
+                - Azure Data Studio -> Servers -> New Connection -> SQL Data Warehouse Connection -> Database: Master -> Connect
             - PowerShell Core and Azure PowerShell Module
                 - https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-6
                 - Install-Module -Name Az -AllowClobber or Install-Module -Name Az -AllowClobber -Scope CurrentUser
@@ -44,7 +44,7 @@ Perform Data Engineering with Azure Databricks
                 - Order
                     - SQL Data Warehouse -> Scale -> Save
             - Pause and Resume SQL Data Warehouse
-                - SQL Data Warehouse -> Pause/REsume
+                - SQL Data Warehouse -> Pause/Resume
             - Restore a Data Warehouse
                 - SQL Data Warehouse -> Restore -> Automatic Restore Points -> Database Name -> Latest Restore Point -> Destination Server and Performance Level
             - Restore a Deleted Database
@@ -99,9 +99,9 @@ Perform Data Engineering with Azure Databricks
                             DISTRIBUTION = REPLICATE
                         );
             - Query SQL Data Warehouse
-                - Creat Tables -> Insert Rows -> Run Queries
+                - Create Tables -> Insert Rows -> Run Queries
         e. Load Data using Data Factory
-            - Azure Data Factory - cloud based data integration service that allows you to create data driven workflows in the cloud for orcheestrating and automating data movement and transformation
+            - Azure Data Factory - cloud based data integration service that allows you to create data driven workflows in the cloud for orchestrating and automating data movement and transformation
             - Access Data Warehouse
                 - SQL Data Warehouse -> Common Tasks: Load Data -> Azure Data Factory
             - Create A Data Factory
@@ -163,7 +163,7 @@ Perform Data Engineering with Azure Databricks
     
     3. Module 3: Data Ingestion with Azure Data Factory
         a. Overview of Azure Data Factory and Azure Databricks
-            - Azure Data Factory - a data ingestion and transformation service that allows you to load raw data from over 70 different on-premisses or cloud sources
+            - Azure Data Factory - a data ingestion and transformation service that allows you to load raw data from over 70 different on-premise or cloud sources
             - Integrate Data Factory and Databricks
                 - Create an Azure Storage Account
                 - Create a Data Factory Instance
@@ -190,7 +190,7 @@ Perform Data Engineering with Azure Databricks
     
     5. Module 5: Perform Basic Data Transformation in Azure Databricks
         a. ETL Overview
-            - Extract, Transform, and Load - Takes data form one or more sources, transforms it, and then loads it into a target database
+            - Extract, Transform, and Load - Takes data from one or more sources, transforms it, and then loads it into a target database
             - Must Understand
                 - Optimizing data formats and connections
                 - Ideal schema
@@ -201,17 +201,17 @@ Perform Data Engineering with Azure Databricks
                     - On Databricks, Sparks combines ETL, stream processing, machine learning, and collaborative methods
                     - Spark is scalable to petabytes of data and clusters of thousands of nodes
                     - Spark decouples data storage from compute and query engine
-            - ETL PRocess
+            - ETL Process
                 - Extraction w/ Java Database Connectivity
                     - Sources - DBs, Message Brokers like Kafka and Kinesis, Distributed Databases like Cassandra and Redshift, Data Warehouses like Hive and Azure Cosmos DB, and Files like CSv, Parquet, and Avro
-                - Data Validation to determine:
+                - Data Validation to Determine:
                     - Expected number of records
                     - Presence of expected fields
                     - No missing values
                 - Transformation - applying structure and a schema to the data so it can transform into desired format
                 - Corrupt Record Handling such as:
                     - Missing and incomplete information, schema mismatches, different formats or data types, and use errors
-                - Loading Data back to Databricsk File System as a Parquet File
+                - Loading Data back to Databricks File System as a Parquet File
         b. Exercise - Perform Basic Data Transformation Using Azure Databricks
             - Clone Databricks Archive
                 - Azure Databricks -> Launch Workspace -> Users -> Import URL
@@ -237,8 +237,8 @@ Perform Data Engineering with Azure Databricks
     
     7. Module 7: Create Data Pipelines by Using Databricks Delta
         a. Overview of Databricks Delta
-            - Databricks Delta - a transactional storage layer designed specifically to work with Apache Spark and Databricsk File System
-            - Challenge with Data Lakes - storage repository that inexpensively stores a vast amoutn of raw data, current and historical, in native formats
+            - Databricks Delta - a transactional storage layer designed specifically to work with Apache Spark and Databricks File System
+            - Challenge with Data Lakes - storage repository that inexpensively stores a vast amount of raw data, current and historical, in native formats
                 - Schema Enforcement, Table Repairs, Frequent Refreshes of Meta Data, Bottlenecks of Small File Sizes, Difficulty Sorting Data
             - Databricks Delta Functionality
                 - ACID Transactions
