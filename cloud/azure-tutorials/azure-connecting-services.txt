@@ -98,7 +98,7 @@ Connect Your Services Together
             - Microsoft.Azure.ServiceBus NuGet Package
             - Connection Strings and Keys
                 - Location of Service Bus - Endpoint - Fully Qualified Domain
-                - Access Key - Service Bus restricst access to queues, topics, and relays by requiring an access key
+                - Access Key - Service Bus restricts access to queues, topics, and relays by requiring an access key
                 - Location + Access Key - provided in the form of a connection string
             - Calling Methods Asynchronously
                 - Async/Await Pattern
@@ -251,7 +251,7 @@ Connect Your Services Together
     
     4. Module 4: Enable Reliable Messaging for Big Data Applications using Azure Event Hubs
         a. Create an Event Hub using Azure CLI
-            - Azure Event Hub - cloud-based, event processing service thats capable of receiving and processing millions of events per second
+            - Azure Event Hub - cloud-based, event processing service that is capable of receiving and processing millions of events per second
             - Publisher - sends data to Event Hubs
             - Consumer or Subscriber - read data from Event Hubs
             - Publisher -> Event Hub -> Consumer/Subscriber
