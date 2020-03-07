@@ -9,7 +9,7 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
             - Deploy an Azure Databricks Workspace
                 - Create a Resource -> Databricks: Azure Databricks -> Configure
         c. Apache Spark Notebooks
-            - ASN - collection of cell that are run to execute code, render formatted text or display graphic visualizations
+            - ASN - collection of cells that are run to execute code, render formatted text or display graphic visualizations
             - Cluster - networked computers that work together to process your data in notebooks
             - Create a Cluster
                 - Databricks -> Launch Workspace -> Clusters -> Create Cluster -> Configure
@@ -21,7 +21,7 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
             - Notebooks
                 - Read and process huge files and data sets
                 - Query, explore, and visualize data sets
-                - Join disparte data sets found in data lakes
+                - Join disparate data sets found in data lakes
                 - Train and evaluate machine learning models
                 - Process live streams of data
                 - Peform analysis on large graph data sets and social networks
@@ -56,7 +56,7 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
                 - What are the relationships between different variables?
                 - How will different assumptions work against the available dataset?
         b. Exploratory Data Analysis in Azure Databricks
-            - Basic EDA - data cleaninsing, handling of missing values, and correlation analysis
+            - Basic EDA - data cleansing, handling of missing values, and correlation analysis
                 - Import -> Load into Spark DataFrames
             - Advanced EDA
                 - Parsimonious Models - shows you the predictive capability of your data by using a minimum number of variables
@@ -81,7 +81,7 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
                 - Minimize const functions - how far your model is from correctly predicting the relationship between values
                 - Evaluate and validate your model
             - Training Techniques
-                - Basic Regression - predicst the value of a dependent variable based on its relationship with one or more independent variables
+                - Basic Regression - predicts the value of a dependent variable based on its relationship with one or more independent variables
                 - Classification - 
                     - Logistic regression - linear regression but dependent variable is either 0 or 1
                     - Support-vector machines - supervised ML models with algorithms used for classification problems
@@ -108,7 +108,7 @@ Extract Knowledge and Insights from Your Data with Azure Databricks
                 - Health Predictions
                 - Security
             - Azure Databricks Deep Learning Solutions
-                - Machine Learning Pipelines - open soruce high level deep learning api
+                - Machine Learning Pipelines - open source high-level deep learning api
                 - TensorFlow - high-level numerical computation
                 - Distributed Deep Learning - Horovod framework enables complex model training
                 - Integrated Libraries - MXNet, Keras, and PyTorch
