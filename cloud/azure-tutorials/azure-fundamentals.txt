@@ -46,6 +46,7 @@ Fundamentals of Microsoft Azure
             - Software as a Service SaaS - web based alternate software that is frequently subscription based
                 - Office 365, and Skype
             - Container As a Service CaaS
+            - Funcation As a Service FaaS
     
     2. Module 2: Core Cloud Services - Introduction to Azure
         a. What is Azure?
@@ -71,7 +72,7 @@ Fundamentals of Microsoft Azure
             - Security - Integrated, Hardened, Monitoring
         c. Deploy a Website Hosted in App Service
             - Create a Resource Group
-                -  Search Azure Marketplace -> Service -> Configure -> App Service Plan -> Create
+                -  Search Azure Marketplace -> App Service -> Configure -> App Service Plan -> Create
         d. Configure an App Service
             - Scale Up Your App Service
                 - Settings -> Scale Up or Scale Out -> Dev/Test, Production, Isolated
@@ -175,7 +176,7 @@ Fundamentals of Microsoft Azure
             - Explore Azure Virtual Machines
                 - Infrastructure-as-a-Service
                 - Good For - total control of the operating system, ability to run custom software, custom hosting configurations
-                - Use Cases - testing and development, applications in the cloud, extending datacenter, disaster recovery
+                - Use Cases - testing and development, applications in the cloud, extending a datacenter, disaster recovery
                 - Scaling - Availability Sets, Virual Machine Scale Sets, Azure Batch
                     - Availability Sets - logical grouping of two or more VMs that help keep your application available
                     - Virtual Machine Scale Sets - Manage, configure, and update a large number of VMs in minutes
@@ -302,7 +303,7 @@ Fundamentals of Microsoft Azure
                 - Protocol Attacks - attacks render a target inaccessible by exploiting a weakness in layer 3 and layer 4 of protocol stack
                 - Resource (Application) Layer Attacks - target web application packets to disrupt the transmission of data between hosts
             - Controlling Traffic Inside Virtual Network
-                -  Network Security Groups- allow you to filter network traffic to and from Azure resources in an Azure virtual network
+                -  Network Security Groups - allow you to filter network traffic to and from Azure resources in an Azure virtual network
                 -  Network Integration - Virtual Private Networks, Azure ExpressRoute
         g. Protect Your Shared Documents
             - Azure Informatiom Protection - cloud-based solution that helps organizations classify and optionally protect documents and emails by applying labels
@@ -361,7 +362,7 @@ Fundamentals of Microsoft Azure
             - Steps - Create an Azure Blueprint, Assign the Blueprint, Track the Blueprint assignments
         f. Compliance Manager
             - Microsoft Privacy Statement - explains what personal data MS processes, how, and for what purpose
-            - Microsoft Trust Center - website resource containing information and details about how MS implemetns and supports security,
+            - Microsoft Trust Center - website resource containing information and details about how MS implements and supports security,
             privacy, compliance, and transparency
             - Service Trust Portal - hosts Compliance Manager service and publications of audits and other compliance related information
                 - Standards - ISO, SOC, NIST, FedRAMP, GDPR
