@@ -16,7 +16,7 @@ Secure Your Cloud Data
                 - Just-In-Time Access Control
             - Activating ASC
                 - All Services -> Security Center -> Overview -> Coverage
-                - Tiers - Freee vs. Standard
+                - Tiers - Free vs. Standard
             - Deactivate ASC
                 - All Services -> Security Center -> Security Policy -> Edit -> Pricing Tier -> Free
         b. Inputs and Outputs
@@ -69,7 +69,7 @@ Secure Your Cloud Data
             - Create Database
                 - Create a Resource -> Database -> SQL Database -> Configure
             - SQL Information Protection
-                - SQL IP - Discoevring, Labeling, Monitoring, Visibility
+                - SQL IP - Discovering, Labeling, Monitoring, Visibility
             - Classify your SQL DB
                 - Database -> Security: Advanced Threat Protection -> Data Discovery and Classification -> (i) -> All Columns -> Accept
                 - Overview -> Classification -> Add Classification
@@ -83,12 +83,12 @@ Secure Your Cloud Data
         d. Understand Data Sovereignty
             - Data is subject to the laws of the country or region where it is stored
             - Geography - area of the world that contains at least one Azure Region
-            - Azure Region - are containing one or more data centers
-            - Paired Region - region paired within another region in the same geogrpahy
+            - Azure Region - contain one or more data centers
+            - Paired Region - region paired within another region in the same geography
                 - Azure Compute - must provision additional compute resources in advance
                 - Azure Storage - Geo-redundant storage is configured by default
                 - Azure SQL Databse - configure asynchronous replication of transactions to a paired region
-                - Azure Resource Manager - inherently provides logical isolcation of components across regions
+                - Azure Resource Manager - inherently provides logical isolation of components across regions
             - Benefits of Paired Regions
                 - Physical Isolation - reduces the likelihood of both regions being affected simultaneuosly as a result of natural disasters, civil unrest, power outages, or physical network outages
                 - Platform Provided Replication - geo-redundant storage provides automatic replication
@@ -113,7 +113,7 @@ Secure Your Cloud Data
                 - Hardware Protected Keys - Hardware Software Module - cryptographic operations are performed within the HSM
                 - Software Protected Keys - RSA and ECC algorithms - cryptographic operations are performed in the software
             - Secrets - data blobs protected by a HSM generate key created with the Key Vault
-                - Used for sensistive settings like storage account keys, .PFX files, SQL connection strings, data encryption keys, passsowrds, API keys, etc.
+                - Used for sensitive settings like storage account keys, .PFX files, SQL connection strings, data encryption keys, passsowrds, API keys, etc.
             - Key Vault Uses
                 - Secrets, Key, and Certificate Management
             - Best Practices
@@ -121,7 +121,7 @@ Secure Your Cloud Data
                 - Store Certificates in Key Vault
                 - Enable Soft Delete and Purge Protection Features
         b. Manage Access to Secrets, Certificates, and Keys
-            - Authentication - Azure actrive Directory
+            - Authentication - Azure Active Directory
             - Authorization - RBAC
                 - Key Vault Contributor - access to management but not key vault data
                 - Contributor - full administration rights
@@ -156,7 +156,7 @@ Secure Your Cloud Data
             - Identity Concerns - people who leave lose access to resources, balance between autonomy and central governance
             - Azure Subscriptions - Associated with a single Azure AD Directory
                 - Azure AD Connect - allows employees to manage their Azure subscriptions by using existing work identities
-            - RBAC - Role Base Access Control is  an authorization system, built on Azure Resource Manager, that provides fine grained access management of resources in Azure
+            - RBAC - Role Base Access Control is an authorization system, built on Azure Resource Manager, that provides fine grained access management of resources in Azure
             - Assign RBAC roles to users, groups, and application
                 - Azure AD Admins -> Global Admin/User Access Admin -> Root Management Group -> Management Group -> Subscription -> Resource Group -> Resource
             - Examples of RBAC
@@ -166,14 +166,14 @@ Secure Your Cloud Data
                 - Allow an application to access all resources in a resource group
             - RBAC in Azure Portal
                 - Access Control or Identity and Access Management
-            - How does RBAC work? ALlow Model
+            - How does RBAC work? Allow Model
                 - Create Role Assignment
                     - Security Principal - user, group, or application that you want to grant access to
                     - Role Definition - collection of permissions (Owner, Contributor, Reader, User Access Administrator)
                     - Scope - where the access applies to (management group, subscription, resource group, resource)
                     - Role Assignment - binding a role to a security principal at a particular scope
-                    - Actions minue NotActions to get effective permissions
-        b. Exervise - List Access Using RBAC and Azure Portal
+                    - Actions minus NotActions to get effective permissions
+        b. Exercise - List Access Using RBAC and Azure Portal
             - Order
                 - Resource Groups -> Resource Group -> Access Control IAM -> Role Assignments 
                 - Resource Groups -> Resource Group -> Access Control IAM -> Roles
