@@ -166,10 +166,10 @@ Working with Relational Data
             - Restricting Access in Practice
                 - Use DB Level Firewall Rules in General
                 - Use Server Level for Admins
-            - Create DB Level
+            - Create DB Level Firewall
                 - EXECUTE sp_set_database_firewall_rule N'My Firewall Rule', '40.112.128.214', '40.112.128.214'
                 - EXECUTE sp_set_database_firewall_rule N'Allow appServer database level rule', '13.83.86.128', '13.83.86.128';
-            - Create Server Level
+            - Create Server Level Firewall
                 - SQL Server -> Firewalls and Virtual Networks -> Rule Name + Start IP + End IP
                 - SQL Server -> Firewalls and Virtual Networks -> + Add Existing Virtual Network -> Configure
         c. Control Who Can Access Database
