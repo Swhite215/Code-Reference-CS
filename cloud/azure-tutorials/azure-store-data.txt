@@ -82,7 +82,7 @@ Store Data in Azure
                 - Files - https://[name].file.core.windows.net/
             - Connection String - DefaultEndpointsProtocol=https;AccountName={your-storage};AccountKey={your-access-key};EndpointSuffix=core.windows.net
         e. Exercise - Add Azure Storage Configuration to Your App
-            - Create .env configuratio file
+            - Create .env configuration file
                 - touch .env
                 - AZURE_STORAGE_CONNECTION_STRING=<value>
             - Get Connection String
@@ -105,8 +105,8 @@ Store Data in Azure
     
     4. Module 4: Secure Your Storage Account
         a. Explore Azure Storage Security Features
-            - Encryption at Rest - Storage Service Encruption 256-Bit Advanced Encryption Standard Cipher and Azure Disk Encryption
-            - Encrytion in Transit - HTTPS
+            - Encryption at Rest - Storage Service Encryption 256-Bit Advanced Encryption Standard Cipher and Azure Disk Encryption
+            - Encryption in Transit - HTTPS
             - CORS Support
             - Azure Active Directory and Role Based Access Control
             - Auditing Access - Storage Analytics
