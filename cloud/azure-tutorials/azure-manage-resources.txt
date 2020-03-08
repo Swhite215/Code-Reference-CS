@@ -20,6 +20,8 @@ Manage Resources
             - Infrastructure-as-a-Service IaaS - provides instant computing infrastructure that you can provision and manage over the internet
             - Platform-as-a-Serice PaaS - provides ready-made development and deployment environments taht you can use to deliver your own cloud service
             - Software-as-a-Service SaaS - delivers applications over the internet as a web based service
+            - Container-as-a-Service
+            - Function-as-a-Service
             - Spectrum
                 - You Manage - On-Premises, IaaS, PaaS, Provider Managers - SaaS
         c. Infrastructure-as-a-Service
