@@ -18,16 +18,16 @@ Work with NoSQL Data in Azure Cosmos DB
                 - Important Factors - item size, item indexing, item property count, indexed properties, data consistency, query patterns, script usage
                 - Exceeding Throughput Limit - requests become rate limited after hitting provisioned throughput
             - Provisioning Throughput - Provision throughput for your containers to perform writes, reads, updates, and deletes
-            - Scale - estimate throughput needs by estimates number of operations youll have to support at different times
+            - Scale - estimate throughput needs by estimated number of operations youll have to support at different times
         c. Choose a Partition Key in Azure Cosmos DB
-            - Partition Strategy - scale out, horizontal scaling, enables you to add more partitions to teh database as you neede them
+            - Partition Strategy - scale out, horizontal scaling, enables you to add more partitions to the database as you need them
             - Partition Key - value set when creating a container which organizes your data into logical divisions
                 - Hot Partition - single partition that receives many more requests than others, which can create a throughput bottleneck
                 - Storage space for the data associated with each partition key cannot exceed 10 GB
             - Best Practices
                 - Dont be afraid of partition key that has a large number of values
                 - Review top three to five queries you plan on using, value most frequently included in the WHERE clause is a good candidate for the partition key
-                - For write-heavy workflows, youll need to understand the transaction needs of your workload, because partition key is the scope of multi-document transactions
+                - For write-heavy workflows, you'll need to understand the transaction needs of your workload, because partition key is the scope of multi-document transactions
         d. Exercise - Create a Database and Container in Azure Cosmos DB
             - Create Database and Container
                 - Cosmos DB -> Data Explorer -> New Container -> Configure
@@ -110,7 +110,7 @@ Work with NoSQL Data in Azure Cosmos DB
                 - Weaknesses - not as efficient at processing high volumes of transactions nor handling queries that traverse an entire database
         b. Build an Application that Stores Graph Data using the Gremlin API
             - Order - Create Datrabase, Run Queries
-            - Gremlin API supporst modeling graph data and provides APIs to traverse the graph data
+            - Gremlin API supports modeling graph data and provides APIs to traverse the graph data
             - Gremlin Graph Traversal Language - high-performance language used to traverse and query data from graph databases
         c. Exercise - Build an Application that Stores Graph Data using the Gremlin API
             - Create an Azure Cosmos DB Account
@@ -131,7 +131,7 @@ Work with NoSQL Data in Azure Cosmos DB
                 - Query results from Azure Cosmos DB are not sorted in order of partition key and row key as they are from Storage tables
                 - Row keys in Azure Cosmos DB are limited to 255 bytes
                 - Batch operations are limited to 2 MBs
-                - Cross-Origin Resource SHaring is not currently supported by Azure Cosmos DB
+                - Cross-Origin Resource Sharing is not currently supported by Azure Cosmos DB
                 - Table names are only case sensitive in Azure Cosmos DB
             - Choose a Storage Location
                 - Latency - Guaranteed response time in Azure Cosmos DB Tables
@@ -140,7 +140,7 @@ Work with NoSQL Data in Azure Cosmos DB
                 - Indexes - Automatic with Azure Cosmos DB Table
                 - Data Consistency - Five levels with Azure Cosmos DB Table
                 - Pricing - Optmized for storage wtih Azure Storage Table and optimized for throughput with Azure Cosmos DB Table
-                - SLA - Two 9s for both and three 9s for Azure Cosmos DB Table
+                - SLA - Three 9s for both and Five 9s for Azure Cosmos DB Table
             - How to Migrate
                 - Azure Cosmos DB Data Migration Tool - import data into Azure Cosmos DB, GUI and CLI
                 - AzCopy - copy to and from Azure Storage Accounts - Export, Import, CLI
@@ -171,7 +171,7 @@ Work with NoSQL Data in Azure Cosmos DB
                 - DocumentClient
                     - CreateDocumentAsync, ReadDocumentAsync, ReplaceDocumentAsync, UpsertDocumentAsync, DeleteDocumentAsync
                 - Create, Read, Replace, Update
-        d. Exerrcise - Query Using the Azure Cosmos DB .NET Core SDK
+        d. Exercise - Query Using the Azure Cosmos DB .NET Core SDK
         e. Exercise - Create and Run Stored Procedures from Your App
             - Create A Stored Procedure
                 - Cosmos DB Account -> Database -> Container -> Stored Procedures -> Create Stored Procedures
@@ -280,6 +280,6 @@ Work with NoSQL Data in Azure Cosmos DB
             - Strong Consistency - linearizability, reads guaranteed to return the most recent version of an item
             - Bounded Staleness - reads may lag behind writes by at most K versions
             - Session - scoped to a client session
-            - ConsistenT Prefix Consistency - in absence of further writes, replicas within the group eventually converge
+            - Consistent Prefix Consistency - in absence of further writes, replicas within the group eventually converge
             - Eventual Consistency - in absence of any further writes, the replicas within the group eventually converge
         
