@@ -9,3 +9,6 @@ az storage account keys list --account-name <account-name>
 
 # List Messages for Storage Account Queue - Azure CLI
 az storage message peek --queue-name <queue-name> --connection-string DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=<account-name>;AccountKey=<account-key>
+
+# Create a Blob Container - Azure CLI
+az storage container create -h
