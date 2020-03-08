@@ -65,7 +65,7 @@ Deploy a Website to Azure with Azure App Service
                     - Shared Compute: Free and Shared
                     - Dedicated Compute: Basic, Standard, Premium and Premium V2
                     - Isolated
-        d. Exervise - Publish an ASP.NET app from Visual Studio
+        d. Exercise - Publish an ASP.NET app from Visual Studio
         e. Explore Your Visual Studio App Project
             - Dependencies - internals needed to run app
             - Properties - configuration data for where web app is hosted
@@ -96,7 +96,7 @@ Deploy a Website to Azure with Azure App Service
             - Create a Web App
             - Configure Git Deployment
                 - Web App -> Deployment: Deployment Center -> Local Git -> App Service Build Service -> Continue -> Finish
-                - Add New Credentials: Web App -? Deployment: Deployment Center -> FTP/Credentials -> User Credentials -> Add New -> Save Credentials
+                - Add New Credentials: Web App -> Deployment: Deployment Center -> FTP/Credentials -> User Credentials -> Add New -> Save Credentials
             - Configure the Git Client
                 - Azure Cloud Shell -> git config user.name and user.email
                 - mkdir demoapp -> cd demoapp
