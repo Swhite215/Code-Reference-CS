@@ -13,6 +13,8 @@ Fundamentals of Microsoft Azure
                 - A: A cloud service that peforms quickly when demand increases and scales down when demand decreases
             - Q: Define "economy of scale"
                 - A: The ability to do things more efficiently or at a lower cost per unit when operating at a larger scale
+            - Q: Which cloud concept decribes the ability of a cloud service to be accessed quickly from any locaiton via the internet?
+                - A: Low Latency
         c. Compliance Terms and Requirements
         d. Economies of Scale
         e. Capital Expenditure CapEx vs. Operational Expenditure OpEx
@@ -36,6 +38,12 @@ Fundamentals of Microsoft Azure
                 - A: Azure HDInsight and Azure Data Lake Analytics
             - Q: Which of the following is true regarding HDInsight?
                 - A: It is an open source framework for the distributed processing and analysis of big datasets in clusters
+            - Q: Azure App Service and Azure SQL Database are what type of services?
+                - A: PaaS
+            - Q: What Azure solution is best for an application that sends email notifications automatically based on a rule and to minimze costs is only charged when it is executed?
+                - A: Logic App
+            - Q: Which azure service can provide big data analysis for machine learning?
+                - A: Azure Databricks
 
     
     2. Module 2: Core Cloud Services - Introduction to Azure
@@ -55,11 +63,17 @@ Fundamentals of Microsoft Azure
         c. Understand Availability Zones in Azure
             - Q: Which of the following statements about Azure availability zones are true?
                 - A: Availability zones are used to replicate data and applications to multiple datacenters within an Azure Region. Zone-redundant services replicate your applications and data across Availability Zones
-                - A: An aAvailability zone in an Azure region combines a fault domain and an update domain
+                - A: An Availability zone in an Azure region combines a fault domain and an update domain
+            - Q: You are deploying a pair of Azure virtual machines, what should you use to ensure the the applicaitons will remain available in the event of a complete data center failure?
+                - A: Availability Zone
         d. Understand Region Pairs in Azure
         e. Understand Service-Level Agreements for Azure
             - Q: What is the SLA guarantee for a single instance virtual machine using premium SDD or Ultra Disk for all OS system disks and data disks?
                 - A: 99.9%
+            - Q: What is the SLA for Azure AD Premium?
+                - A: 99.9%
+            - Q: What is the SLA for two virtual machines in at least two availability zones?
+                - A: 99.99%
         f. Compose SLAs Across Services
         g. Improve Your App Reliability in Azure
     
@@ -77,7 +91,11 @@ Fundamentals of Microsoft Azure
                 - A: Create a new support request
             - Q: Which of the following Azure support plans offer Severity "A" and "B" cases to be opened?
                 - A: Standard, Premier, and Professional Direct
-                0 A: A < 1 hour, B < 2 hours, C < 4 hours
+                - A: A < 1 hour, B < 2 hours, C < 4 hours
+            - Q: Where can you open a new Azure support request?
+                - A: Azure Portal
+            - Q: Which of the following Azure support plans offer 24x7 access to Microsoft engineers via telephone and email?
+                - A: Premier, Professional Direct, and Standard
 
     5. Module 5: Core Cloud Services - Manage Service with the Azure Portal
         a. Azure Management Options
@@ -97,12 +115,21 @@ Fundamentals of Microsoft Azure
                 - A: Managing physical server security and replacing failed server hardware
             - Q: Which of the following Azure offerings provide a platform for serverless computing?
                 - A: Azure App Service and Azure Functions
+            - Q: Which of the following statements regarding virtual machines is true?
+                - A: Deleted virtual machines will still incur charges for storage
+            
     
     7. Module 7: Core Cloud Services - Azure Data Storage Options
         a. Benefits of Using Azure to Store Data
         b. How Azure Data Storage Can Meet Your Business Storage Needs
             - Q: You need to create an Azure storage solution that will store messages created by an Azure web role. The messages will then be processed by an Azure worker role. What type of storage solution should you create?
                 - A: A queue service in a storage account
+            - Q: What type of cloud services is Azure SQL DBs, as opposed to deploying SQL database servers?
+                - A: PaaS
+            - Q: Which of the following database solutions has the ability to add data concurrently from multiple regions simulataneously?
+                - A: Cosmos DB
+            - Q: You need to create a network drive in Azure Storage that is accessible from several computers, what storage solutiomn should you create?
+                - A: A file service in a storage account
         c. Comparison Between Azure Data Storage and On-Premise Storage
     
     8. Module 8: Core Cloud Services - Azure Networking Options
@@ -127,6 +154,8 @@ Fundamentals of Microsoft Azure
                 - A: Network Security Group
         g. Protect Your Shared Documents
         h. Azure Advanced Threat Protection
+            - Q: Which service helps ensure suspicious attacks and threats to resources in an Azure account are prevented using in-built sensors?
+                - A: Azure Advanced Threat Protection
         i. Understand Security Considerations for Application Lifecycle Management Solutions
     
     10. Module 10: Apply and Monitor Infrastructure Standards with Azure Policy
@@ -162,10 +191,14 @@ Fundamentals of Microsoft Azure
 
     11. Module 11: Azure Resource Manager
         a. Principles of Resource Groups
+            - Q: Azure virtual machiens can be moved between which of the following Azure resources?
+                - A: Subscriptions, regions, resource groups, and availability zones
         b. Use Tagging to Organize Resources
         c. Use Policies to Enforce Standards
             - Q: How can I ensure other Azure adminstrators can't create virtual networks in my resource group?
                 - A: Azure Policy
+            - Q: What should you use to automate the creation of Azure resources that are uniform in nature?
+                - A: Azure Resource Manager Templates
         d. Secure Resources with Role-Based Access Control
         e. Use Resource Locks to Protect Resources
             - Q: How can I ensure other Azure administrators can't delete my resources?
