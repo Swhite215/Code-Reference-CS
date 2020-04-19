@@ -1,0 +1,189 @@
+Fundamentals of Microsoft Azure
+
+    1. Module 1: Cloud Concepts - Principles of Cloud Computing
+        a. What is cloud computing?
+            - Q: Select the concept that is defined as ensuring servers are available if a single data center goes online
+                - A: Fault tolerance
+            - Q: Which Azure solution allows you to geographically cache and distribute high-bandwidth content, such as streaming videos, to users in different parts of the world?
+                - A: Content Delivery Network CDN
+            - Q: Which of the following is true of PaaS cloud services?
+                - A: The platform can be scaled automatically to support system load
+        b. Benefits of Cloud Computing
+            - Q: Define the concept of dynamic elasticity
+                - A: A cloud service that peforms quickly when demand increases and scales down when demand decreases
+            - Q: Define "economy of scale"
+                - A: The ability to do things more efficiently or at a lower cost per unit when operating at a larger scale
+        c. Compliance Terms and Requirements
+        d. Economies of Scale
+        e. Capital Expenditure CapEx vs. Operational Expenditure OpEx
+            - Q: Which of the following are considered CapEx?
+                - A: Storage Area Network and Hyper-V Host Server
+        f. Cloud Deployment Models
+            - Q: Which of the following are characteristics of private clouds?
+                - A: High scalability and improved security
+            - Q: Which of the following are characteristics of public clouds?
+                - A: High scalability and lower costs
+            - Q: Microsoft Office 365 is an example of which cloud deployment model?
+                - A: SaaS
+            - Q: Which of the following statements about SaaS cloud services is correct?
+                - A: The cloud service provider is responsible for all application updates
+        g. Cloud Services
+            - Q: Which Azure tool can help you build artificial intelligence applications?
+                - A: Azure Cognitive Services
+            - Q: Which Azure offering refers to a set of development, testing, and automation tools?
+                - A: Azure DevOps
+            - Q: Which of the following Azure services is an on-demand analytics job service that can run massively parallel data transformation and processing programs across large amounts of data?
+                - A: Azure HDInsight and Azure Data Lake Analytics
+            - Q: Which of the following is true regarding HDInsight?
+                - A: It is an open source framework for the distributed processing and analysis of big datasets in clusters
+
+    
+    2. Module 2: Core Cloud Services - Introduction to Azure
+        a. What is Azure?
+        b. Tour of Azure Services
+            - Q: What are the stages of the Azure lifecycle?
+                - Public Preview, Private Preview, and General Availability
+        c. Deploy a Website Hosted in App Service
+            - Q: Which Azure service can host your web apps without you having the manage underlying technology?
+                - A: Azure App Service
+        d. Configure an App Service
+        e. Access an App Service using Azure Cloud Shell
+    
+    3. Module 3: Core Cloud Services - Azure Architecture and Service Guarantees
+        a. Understand Data Centers and Regions in Azure
+        b. Understand Geographies in Azure
+        c. Understand Availability Zones in Azure
+            - Q: Which of the following statements about Azure availability zones are true?
+                - A: Availability zones are used to replicate data and applications to multiple datacenters within an Azure Region. Zone-redundant services replicate your applications and data across Availability Zones
+                - A: An aAvailability zone in an Azure region combines a fault domain and an update domain
+        d. Understand Region Pairs in Azure
+        e. Understand Service-Level Agreements for Azure
+            - Q: What is the SLA guarantee for a single instance virtual machine using premium SDD or Ultra Disk for all OS system disks and data disks?
+                - A: 99.9%
+        f. Compose SLAs Across Services
+        g. Improve Your App Reliability in Azure
+    
+    4. Module 4: Sign Up for Azure
+        a. Free Account
+            - Q: Which of the following statements regarding an Azure Free account are true?
+                - A: A subset of services free for 12 months, several services always free, $200 credit for 30 days
+        b. Purchasing Options
+            - Q: How can you ensure each department can use a different payment option for the Azure services it consumes?
+                - A: What should you create for each department?
+        c. Create an Azure Account
+        d. Understand Azure Billing
+        e. Azure Support Options
+            - Q: How do you increase your Azure subscription limits?
+                - A: Create a new support request
+            - Q: Which of the following Azure support plans offer Severity "A" and "B" cases to be opened?
+                - A: Standard, Premier, and Professional Direct
+                0 A: A < 1 hour, B < 2 hours, C < 4 hours
+
+    5. Module 5: Core Cloud Services - Manage Service with the Azure Portal
+        a. Azure Management Options
+            - Q: Which of the following components are required to establish communication between on-premises resources and resources in Azure?
+                - A: Virtual Network and Virtual Network Gateway
+            - Q: Which of the following tools can be used on a workstation running Ubuntu Linux with a GNOME desktop?
+                - A: PowerShell, CLI, Cloud Shell
+            - Q: Which of the following tools can be used to manage Azure resources on a Google Chromebook?
+                - A: Portal and Cloud Shell
+        b. Navigate the Portal
+    
+    6. Module 6: Core Cloud Services - Azure Compute Options
+        a. Essential Azure Compute Concepts
+            - Q: Azure Function App is what type of cloud service?
+                - A: Serverless
+            - Q: When migrating to Azure virtual machines, what administrative responsibilities will be reduced?
+                - A: Managing physical server security and replacing failed server hardware
+            - Q: Which of the following Azure offerings provide a platform for serverless computing?
+                - A: Azure App Service and Azure Functions
+    
+    7. Module 7: Core Cloud Services - Azure Data Storage Options
+        a. Benefits of Using Azure to Store Data
+        b. How Azure Data Storage Can Meet Your Business Storage Needs
+            - Q: You need to create an Azure storage solution that will store messages created by an Azure web role. The messages will then be processed by an Azure worker role. What type of storage solution should you create?
+                - A: A queue service in a storage account
+        c. Comparison Between Azure Data Storage and On-Premise Storage
+    
+    8. Module 8: Core Cloud Services - Azure Networking Options
+        a. Deploy Your Site to Azure
+            - Q: Which of the following components can be used to load balance traffic to web applications, such as Azure App Service web apps using layer 7 of the OSI model?
+                - A: Application Gateway
+        b. Scale with Azure Load Balancer
+        c. Reduce Latency with Azure Traffic Manager
+
+    9. Module 9: Security, Responsibility, and Trust in Azure
+        a. Cloud Security is a Shared Responsibility
+            - Q: Which type of customers are eligible to use Azure Government to develop a cloud solution?
+                - A: U.S. Entities, Contractors, and Alabama-Coushatta Tribe
+        b. Tips from Azure Security Center
+        c. Identity and Access
+        d. Encryption
+        e. Overview of Azure Certificates
+            - Q: Which Azure service should you use to store certificates?
+                - A: Azure Key Vault
+        f. Protect Your Network
+            - Q: Which of the following can be used to limit network connections to Azure virtual machines or subnets?
+                - A: Network Security Group
+        g. Protect Your Shared Documents
+        h. Azure Advanced Threat Protection
+        i. Understand Security Considerations for Application Lifecycle Management Solutions
+    
+    10. Module 10: Apply and Monitor Infrastructure Standards with Azure Policy
+        a. When Governance is Needed
+            - Q: Which of the following is the organization that defines international standards across all industries?
+                - A: International Organization for Standardization ISO
+            - Q: Which of the following is the organization that defiens the standards used by the United States Government?
+                - A: National Institute for Standards and Technology NIST
+        b. Define IT Compliance with Azure Policy
+            - Q: You assign an Azure policy specifying virtual networks are not an allowed resource type in a resource group. What happens to virtual networks already in the resource group?
+                - A: Vnet functions normally, no new subnets can be added
+        c. Organize Policy with Initiatives
+        d. Enterprise Governance Management
+            - Q: What kind of information does Azure Information Protection protect?
+                - A: Email messages, PDF documents, and office documents
+            - Q: What is the best way to ensure all of your current users have access to servers after they migrate?
+                - A: Synchronize your domain accounts with Azure Active Directory
+            - Q: Which Azure solution would you implement to embed a watermark into Office documents that contain social security numbers?
+                - A: Azure Information Protection
+        e. Define Standard Resources with Azure Blueprints
+        f. Compliance Manager
+            - Q: What should you use to evaluate whether your company's Azure environment meets regulatory requirements?
+                - A: Azure Security Center and Compliance Manager
+            - Q: How can I meet a compliancy requirements that states one server must be in a separate physical location from all other servers?
+                - A: One region for one server and another for the rest
+        g. Monitor Your Service Health
+            - Q: Which Azure service can help you collect, analyze, and act on telemetry from your cloud and on-premises environments?
+                - A: Azure Monitor
+            - Q: Which Azure tool allows you to view which user turned off a specific virtual machine during the last 14 days?
+                - A: Azure Activity Log
+            - Q: Which Azure service should you use to correlate metrics and logs from multiple resources into a centralized repository?
+                - A: Azure Monitor
+
+    11. Module 11: Azure Resource Manager
+        a. Principles of Resource Groups
+        b. Use Tagging to Organize Resources
+        c. Use Policies to Enforce Standards
+            - Q: How can I ensure other Azure adminstrators can't create virtual networks in my resource group?
+                - A: Azure Policy
+        d. Secure Resources with Role-Based Access Control
+        e. Use Resource Locks to Protect Resources
+            - Q: How can I ensure other Azure administrators can't delete my resources?
+                - A: Locks
+    
+    12. Module 12: Predict Costs and Optimize Spending for Azure
+        a. Purchase Azure Products and Services
+            - Q: How can I combine two Pay-As-You-Go subscriptions into a single subscription?
+                - A: Contact Microsoft Azure Support
+        b. Factors Affecting Costs
+        c. Estimate Costs with the Azure Pricing Calculator
+            - Q: Which of the following is the formula used to calcualte uptime?
+                - A: (Maximum Available Minutes - Downtime) / Maximum Available Minutes X 100
+        d. Predict and Optimize with Cost Managemnt and Azure Advisor
+            - Q: Which of the following recommendations is provided by Azure Advisor?
+                - A: Resource costs, performance, and security
+            - Q: What tool provides cost information and would help to identify underutilized and idle Azure resourcs in order to help reduce overall spending?
+                - A: Azure Advisor
+        e. Estimate the Total Cost of Ownership with the Azure TCO Calculator
+        f. Save on Infrastructure
+        g. Save on Licensing Costs
