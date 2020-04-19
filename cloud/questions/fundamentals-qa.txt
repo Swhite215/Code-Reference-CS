@@ -44,13 +44,20 @@ Fundamentals of Microsoft Azure
                 - A: Logic App
             - Q: Which azure service can provide big data analysis for machine learning?
                 - A: Azure Databricks
+            - Q: Which of the following statements are true for IaaS cloud services?
+                - A: Services can be scaled automatically to support system load and the client is responsible for all guest OS and application updates
+            
 
     
     2. Module 2: Core Cloud Services - Introduction to Azure
         a. What is Azure?
         b. Tour of Azure Services
             - Q: What are the stages of the Azure lifecycle?
-                - Public Preview, Private Preview, and General Availability
+                - A: Public Preview, Private Preview, and General Availability
+            - Q: Which of the following are available in the Azure marketplace?
+                - A: VM images, SaaS applications, solution templates
+            - Q: Which of the following websites provide information on Azure product updates, roadmaps, and announcements?
+                - A: https://azure.microsoft.com/en-us/updates/
         c. Deploy a Website Hosted in App Service
             - Q: Which Azure service can host your web apps without you having the manage underlying technology?
                 - A: Azure App Service
@@ -86,7 +93,7 @@ Fundamentals of Microsoft Azure
                 - A: What should you create for each department?
         c. Create an Azure Account
         d. Understand Azure Billing
-        e. Azure Support Options
+        e. Azure Support Optionsw
             - Q: How do you increase your Azure subscription limits?
                 - A: Create a new support request
             - Q: Which of the following Azure support plans offer Severity "A" and "B" cases to be opened?
@@ -96,6 +103,8 @@ Fundamentals of Microsoft Azure
                 - A: Azure Portal
             - Q: Which of the following Azure support plans offer 24x7 access to Microsoft engineers via telephone and email?
                 - A: Premier, Professional Direct, and Standard
+            - Q: Which Azure support plans can open support cases?
+                - A: Professional Direct, Premier, Standard, Developer
 
     5. Module 5: Core Cloud Services - Manage Service with the Azure Portal
         a. Azure Management Options
@@ -106,6 +115,8 @@ Fundamentals of Microsoft Azure
             - Q: Which of the following tools can be used to manage Azure resources on a Google Chromebook?
                 - A: Portal and Cloud Shell
         b. Navigate the Portal
+            - Q: Which of the following is the correct URL to access the Azure portal?
+                - A: https://portal.azure.com
     
     6. Module 6: Core Cloud Services - Azure Compute Options
         a. Essential Azure Compute Concepts
@@ -130,6 +141,8 @@ Fundamentals of Microsoft Azure
                 - A: Cosmos DB
             - Q: You need to create a network drive in Azure Storage that is accessible from several computers, what storage solutiomn should you create?
                 - A: A file service in a storage account
+            - Q: Which of the following servies is a cloud-based service that leverages massively parallel processing MPP to quickly run complex queries across petabytes of data in a relational database?
+                - A: Azure SQL Data Warehouse (Azure Synapse)
         c. Comparison Between Azure Data Storage and On-Premise Storage
     
     8. Module 8: Core Cloud Services - Azure Networking Options
@@ -164,9 +177,13 @@ Fundamentals of Microsoft Azure
                 - A: International Organization for Standardization ISO
             - Q: Which of the following is the organization that defiens the standards used by the United States Government?
                 - A: National Institute for Standards and Technology NIST
+            - Q: Which of the following regulates data privacy in the European Union EU?
+                - A: GDPR
         b. Define IT Compliance with Azure Policy
             - Q: You assign an Azure policy specifying virtual networks are not an allowed resource type in a resource group. What happens to virtual networks already in the resource group?
                 - A: Vnet functions normally, no new subnets can be added
+            - Q: What can you use to esnure that whenever users authenticate to Azure, they have to make use of multi-factor authentication?
+                - A: Policy in Azure Active Directory, Conditional Access
         c. Organize Policy with Initiatives
         d. Enterprise Governance Management
             - Q: What kind of information does Azure Information Protection protect?
@@ -219,4 +236,6 @@ Fundamentals of Microsoft Azure
                 - A: Azure Advisor
         e. Estimate the Total Cost of Ownership with the Azure TCO Calculator
         f. Save on Infrastructure
+            - Q: Which resources can be removed to lower cost?
+                - A: Rules configured load balancer, static IP address
         g. Save on Licensing Costs
