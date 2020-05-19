@@ -48,7 +48,7 @@ Chapter 1 - Computer Networks and the Internet
         - Packet Switching
             - Messages broken down into chunks of data
             - Packets pass through routers/link-layer switches and communication links
-            - Store-And-Forward Transmission - Packet switch must receive entire packet before transmissions
+            - Store-And-Forward Transmission - Packet switch must receive entire packet before transmitting
             - Queing Delays - Caused by packets collecting in output buffer
             - Packet Loss - Packets are lost when output buffer is full
             - Forwarding Tables - Maps destination addresses to that router's outbound link
@@ -65,7 +65,7 @@ Chapter 1 - Computer Networks and the Internet
             - Network Structure 4 - Points of Presence PoP, Multi-Homing, Peering, and Internet Exchange Points IXPs
             - Network Structure 5 - Content-Provider Networks  - Like Google
     d. Delay, Loss, and Throughput in Packet-Switched Networks
-        - Nodal Processing Delay - Time required to examine packets headers and determin e where to direct the packet
+        - Nodal Processing Delay - Time required to examine packets headers and determine where to direct the packet
         - Queuing Delay - Time till entire packet is in output buffer
         - Transmission Delay - Time required to push all of the packet's bits into the link
         - Propogation Delay - Time required to propagate from beginning of link to router
@@ -149,8 +149,8 @@ Chapter 2 - Application Layer
             - Transport Layer Protocol - TCP
         - Non-Persistent and Persistent Connections
             - HTTP with Non-Persistent Connections
-                - TCP Handshake -> HTTP Client TCP Connection to Server -> HTTP Client HTTP Request Message -> 
-                HTTP Server HTTP Response Message -> HTTP Client Received Message -> TCP Connections Close
+                - TCP Handshake -> HTTP Client TCP Connection to Server -> HTTP Client Sends HTTP Request Message -> 
+                HTTP Server Sends HTTP Response Message -> HTTP Client Receives Message -> TCP Connections Close
             - HTTP with Persistent Connections
                 - TCP connections do not close 
         - HTTP Request Message Format
@@ -161,7 +161,7 @@ Chapter 2 - Application Layer
             - HTTP Client Request -> HTTP Server Set-Cookie Response -> HTTP Client Request w/ Cookie -> HTTP Server Response -> Repeat HTTP Request w/ Cookie and HTTP Server Response
         - Web Caching
             - Cache or Proxy Server - network entity that satisfies HTTP request on behalf of an origin web server
-            - HTTP Client Request -> Proxy Server -> Proxy Server Cache Check + Request -> HTTP Server Response -> Proxy Server Receival -> HTTP Client Receival
+            - HTTP Client Request -> Proxy Server -> Proxy Server Cache Check + Request -> HTTP Server Response -> Proxy Server Receives -> HTTP Client Receives
             - Content Delivery Networks - Utilize cache systems with servers
         - Conditional Get
             - HTTP mechanism that allows a cache to verify that its objects are up to date
@@ -203,6 +203,7 @@ Chapter 2 - Application Layer
     e. Peer-to-Peer Applications
         - Scalability of P2P
         - BitTorrent
+        - Blockchain
     f. Video Streaming and Content Distribution Networks
         - Internet Video
         - HTTP Streaming and DASH
@@ -298,17 +299,17 @@ Chapter 3 - Transport Layer
             - When a packet is dropped, the transmission capacity that was used at each of the upstream links to forward that packet ends up being wasted
         - Approaches to Congestion Control
             - End-To-End
-            - Netrwork-Assisted Congestion Control
+            - Network-Assisted Congestion Control
     g. TCP Congestion Control
         - Senders rate is congestion window / RTT bytes/sec
         - Adjust congestion window to adjust the rate at which data is sent into the connection
-        - How do TCP senders detemine their sending rates such that they dont congest the network but at the same time make use of all the available bandwidth?
+        - How do TCP senders determine their sending rates such that they dont congest the network but at the same time make use of all the available bandwidth?
             - A lost segment implies congestion, and hence, the TCP sender's rate should be decreased
             - An ACK indicates that the network is delivering the sender's segments to the receiver, and hence, the sender's rate can be increased
             - Bandwidth probing cycle of checking
         - TCP Congestion-Control Algorithm
             - Slow-Start - congestion window increases by 1 MSS every time a transmitted segment is first ACK
-            - Congestion-Avoidance - when cwnd equals slow start threshold, cwnd is havled and increases only by one
+            - Congestion-Avoidance - when cwnd equals slow start threshold, cwnd is halved and increases only by one
             - Fast-Recovery - value of cwnd is increased by 1 MSS for every duplicate ACK received for the missing segment that caused TCP to enter Fast-Recovery
             - Retrospective
                 - Additive-Increase, Multiplicative Decrease AIMD
@@ -327,7 +328,7 @@ Chapter 4 - Network Layer: Data Plane
         - Control Plane: The Traditional Approach
             - Routing algorithm runs in each and every router and both forwarding and routing are contained within the router
         - Control Plane: The SDN Approach
-            - Software Defined Networking - network is software defining because the controller that computes forwarding tables and interacts with routers is implemented in software
+            - Software Defined Networking - network is software defined because the controller that computes forwarding tables and interacts with routers is implemented in software
         - Network Service Model
             - Guaranteed Delivery, Guaranteed Delivery with Bounded Delay, In-Order Packet Delivery, Guaranteed Minimal Bandwidth, Security
             - Internet's Network Layer - Best-Effort Service
@@ -340,7 +341,7 @@ Chapter 4 - Network Layer: Data Plane
         - Forwarding
             - Destination Based Forwarding and Generalized Forwarding
         - Input Processing and Destination-Based Forwarding
-            - Line termination -> Data link processing protocol and decapsulation -> Lookup, forwarding and queuing -> Switching fabric
+            - Line termination -> Data link processing protocol and decapsulation -> Lookup -> Switching Fabric Forwarding -> Output Queuing -> Transmission onto Link
         - Switching
             - Memory - copy from input port to processor memory to output port
             - Bus - transfer a packet from input to output directly over a shared bus
@@ -348,7 +349,7 @@ Chapter 4 - Network Layer: Data Plane
         - Output Processing
             - Queuing buffer -> Data link processing protocol and encapsulation -> Line termination
         - Where does Queuing Occur?
-            - Input Queuing - switch fabric is not fast enough to tranafer all arriving packets without delay
+            - Input Queuing - switching fabric is not fast enough to transfer all arriving packets without delay
                 - Head-of-the-Line Blocking - a queued packet in an input queue must wait for transfer through fabric, even though it's output port is free, because it is blocked by another packet
             - Output Queuing - output port transmits packets slower than switching fabric provides them
                 - Drop-Tail - output port drops packet or removes already-queued packets
@@ -432,7 +433,7 @@ Chapter 5 - The Network Layer: Control Plane
             - Gateway Router - router on the edge of an AS that directly connects to one or more router in other ASs
             - Internal Router - only connects to hosts and routers within its own AS
         - External BGP Connection - spans two ASs
-        - Internal BGP Connection - a BGP sessions betwen routers in the same AS
+        - Internal BGP Connection - a BGP sessions between routers in the same AS
         - Determining the Best Routes
             - BGP Attributes - prefix with Attributes
             - AS-PATH - list of ASs through which the advertisement has passed
@@ -445,7 +446,7 @@ Chapter 5 - The Network Layer: Control Plane
             - If more than one route still remains, router uses BGP identifiers
         - IP-Anycast
             - Used in DNS
-            - CDN company assigns the asme IP address to each of its servers
+            - CDN company assigns the same IP address to each of its servers
             - Use BGP to advertise this IP address from each of the servers
             - BGP router treats each route advertisements as providing different routes to the same location
     e. The SDN Control Plane
@@ -584,7 +585,7 @@ Chapter 6 - The Link Layer and LANS
                 - Switch Table - contains entries for hosts and routers on the LAN
             - Self-Learning
                 - Switch Table is initially empty
-                - For each frame, swtich stores MAC address, interface from which the frame arrived, and current time
+                - For each frame, switch stores MAC address, interface from which the frame arrived, and current time
                 - Switch deletes an address in the table if no frames are received after the aging time
             - Properties of Link-Layer Switching
                 - Elimination of Collisions, Heterogenous Links, Management
@@ -636,13 +637,13 @@ Chapter 7 - Wireless and Mobile Networks
                 - Each access point has a Service Set Identifier SSID and a channel number within 2.4 GHz to 2.4835 GHz
                 - WiFi Jungle - any physical location where a wireless station receives a sufficiently strong signal from two or more access points
                 - Associate - wireless device needs to join exactly one subnet associated with one access point
-                - Beacon Frames - access points send these which include the AP SSID and MAC address to wireless stations, which choose a AP from the frames to associate with
+                - Beacon Frames - access points send these which include the AP SSID and MAC address to wireless stations, which choose an AP from the frames to associate with
                 - Passive Scanning - scanning channels and listening for beacon frames
-                - Active Scanning - wireless device broadcasts a probe frame that will be received by all AP within the wireless device's range
+                - Active Scanning - wireless device broadcasts a probe frame that will be received by all APs within the wireless device's range
         - 802.11 Multiple Access Control Protocol
             - Classes - Channel Parititioning, Random and Taking Turns
             - Carrier Sense Multiple Access CSMA
-            - Link-Layer Acknowledgement - station rceives a frame that passes CRC, waits Short Inter-frame Spacing SIFS, then sends back acknowledgement
+            - Link-Layer Acknowledgement - station receives a frame that passes CRC, waits Short Inter-frame Spacing SIFS, then sends back acknowledgement
         - Dealing with Hidden Terminals
             - IEEE 802.11 protocol allows a station to use Request to Send RTS control frame and a short Clear to Send CTS control frame to reserve the channel
         - 802.11 Frame
@@ -673,12 +674,12 @@ Chapter 7 - Wireless and Mobile Networks
             - 2G Voice Connections to the Telephone Network
                 - Base Transceiver Stations - transmits signal to and receives signals from mobile stations in its cell
                 - Frequency Division Multiplexing and Time Division Multiplexing - Channel into F sub-bands where time is partitioned into T slots
-                - Base Station Controller - typically service several tens of base transceiver stations and allocate BTS radio channels to mobile subscribers and perform handoffs
+                - Base Station Controller - typically services several tens of base transceiver stations and allocate BTS radio channels to mobile subscribers and performs handoffs
                 - Base Station Subsystem - base station controller and its controlled base transceiver stations
                 - Mobile Switching Center - plays central role in authorization and accounting, call establishments, teardown, and handoff
         - 3G Extending the Internet to Cellular Subscribers
             - GOAL - connect radio access networks to the public internet
-            - Serving GPRS Support nodes - delivers datgrams to/from mobile nodes in the radio access network to which the SGSN is attached
+            - Serving GPRS Support nodes - delivers datagrams to/from mobile nodes in the radio access network to which the SGSN is attached
             - Gateway GPRS Support Nodes - connects multiple SGSNs into the larger internet, looks like a gateway router
             - Generalized Packet Radio Service GPRS
             - 3G Radio Access: The Wireless Edge
@@ -781,7 +782,7 @@ Chapter 8 - Security in Computer Networks
             - Private Key - known only to Bob
             - Things signed with Public Key can only be decrypted with Private Key using modular arithmetic
             - RSA - Rivest, Shamir, Adelman
-                - Choose two large prime numbers, so large that brute force attacks will take an unreasonable long time
+                - Choose two large prime numbers, so large that brute force attacks will take an unreasonably long time
             - Session Keys - key used to encode data, encrypted using RSA and then sent where it is decrypted and known for when Alice encrypts the data transfer
     c. Message Integrity and Digital Signatures
         - Validate - message is from sender and has not been tampered with
@@ -847,10 +848,10 @@ Chapter 8 - Security in Computer Networks
         - SSL Record
             - Type, Version, Length, Data, and MAC
         - A More Complete Picture
-            - Client sends a list of cryptogrpaic algorithms it supports along with a client nonce to Server
+            - Client sends a list of cryptographic algorithms it supports along with a client nonce to Server
             - Server chooses a symmetric algorithm, a public key algorithm, and a MAC algorithm, sending back its choices along with a certificate and server nonce
             - Client verifies the certificate, extracts Server's public key, generates a Pre-Master Secret, encrypts the PMS with Server's public key and sends encrypted PMS to the Server
-            - Client and Server independently computer the Master Secret from the PMS and nonces using the chosen symmetric key algorithm
+            - Client and Server independently compute the Master Secret from the PMS and nonces using the chosen symmetric key algorithm
             - The Master Secret is used to generate two Encryption and two MAC keys
             - Client sends a MAC of all the handshake messages (protect from tampering)
             - Server sends a MAC of all the handshake messages (protect from tampering)
@@ -859,7 +860,7 @@ Chapter 8 - Security in Computer Networks
         - Goal - provides security at the network layer, secures IP datagrams between any two network-layer entities
         - Blanket Coverage - all data sent from one entity to another, including all types of messages, would be hidden from any third party that might be sniffing
         - IPSec and Virtual Networks
-            - VPN - encrypting data when communication over a path traverses the public Internet
+            - VPN - encrypting data when communication over a path that traverses the public Internet
         - Authentication Header AH - provides source authentication and data integrity
         - Encapsulation Security Payload ESP Protocols - provides source authentication, data integrity, and confidentiality
         - Security Associations
@@ -905,7 +906,7 @@ Chapter 8 - Security in Computer Networks
                 - Only authorized traffic, as defined by the local security policy, will be allowed to pass
                 - The firewall itself is immune to penetration
             - Traditional Packet Filters
-                - Packet filter examines each data fram in isolation, determing whether the datagram should be allowed to pass
+                - Packet filter examines each data frame in isolation, determing whether the datagram should be allowed to pass
                 - Filter considerations - source or destination IP, protocol type (UDP, TCP, ICMP, OSPF), source or destination UDP or TCP port, TCP flags, ICMP type
             - Stateful Packet Filters
                 - Track TCP connections and use this knowledge to make filtering decisions
@@ -963,7 +964,7 @@ Chapter 9 - Multimedia Networking
             - Adaptive Playout Delay - estimate the network delay and adjust the playout delay accordingly at the beginning of each spurt
         - Recovering from Packet Loss
             - Forward Error Correction - add redundant information to the original packet stream
-                - Redundanct encoded chunk after every n chunks, or lower resolution audio stream in parallel
+                - Redundant encoded chunk after every n chunks, or lower resolution audio stream in parallel
             - Interleaving - results in mulitple small gaps rather than singular large ones
             - Error Concealment - attempt to produce a replacement for a lost packet that is similar to the original
         - Case Study: Skype
@@ -972,7 +973,7 @@ Chapter 9 - Multimedia Networking
             - Media Chunk -> RTP Packet -> UDP Segment -> IP Datagram
             - RTP Header - payload type, sequence number, timestamp, synchronization source identifier SSRC, miscellaneous
             - RTP Packet - audio chunk plus RTP header
-            - Allows each source to be assigned its own independent RTP stream of packets, one-to-many, many-to-many and one-to-one
+            - Allows each source to be assigned its own independent RTP stream of packets, one-to-many, many-to-many, and one-to-one
         - Session Initiation Protocol SIP
             - Provides mechanisms for establishing calls between a caller and callee over an IP network
             - Provides mechanisms for the caller to determine the current IP address of the callee
@@ -1039,7 +1040,7 @@ Appendix A - A Day in the Life of a Web Page Request (Does not include security,
         - Gatway router receives frame and extracts ARP query message, checks IP address, and prepares ARP reply with its own MAC address
         - ARP reply message is placed in ethernet frame and sent back to Bob's laptop
         - Bob's laptop extracts the ARP reply message from the Ethernet frame and saves MAC address of the default gateway router
-        - Bob addresses the Ethernet frame containing the DNS query message with MAC address of default gateway router
+        - Bob addresses the Ethernet frame containing the DNS query message with the MAC address of default gateway router
         - Bob sends Ethernet frame to switch, which delivers the frame to the default gateway router
     c. Still Getting Started: Intra-Domain Routing to the DNS Server (Getting IP Address of Domain)
         - Default gateway router receives frame and extracts IP datagram containing DNS query
