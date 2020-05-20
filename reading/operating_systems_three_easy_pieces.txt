@@ -11,7 +11,7 @@ Summarization of Content
         - Process Control Block - State of Process
     b. Process API
         - Methods: Create, Destroy, Wait, Miscellaneous, Status
-        - States: Ready, Blocked, Runnnig
+        - States: Ready, Blocked, Runnning
         - Commands on Linux: ps, top, htop
         - System Calls: fork(), exec(), wait(), kill()
     c. Limited Direct Execution
@@ -40,12 +40,11 @@ Summarization of Content
         - Running processes view of memory in the system
         - Goals: Transparency, Efficiency, Protection
     b. Memory API
-        - Methods:
         - System Calls: malloc(), free(), calloc(), realloc()
         - Common Errors: Forgetting to Allocate, Forgetting to Free, Not Allocating Enough
         - More Errors: Forgetting to Initialize, Freeing Memory Before You Are Done, Freeing Memory Repeatedly
     c. Address Translation
-        - Hardware transform each memory access, changing the virtual address provided by the instruction to a physical address where the information is located
+        - Hardware transforms each memory access, changing the virtual address provided by the instruction to a physical address where the information is located
         - Program has the illusion of it's own memory
         - Base and Bounds, Dynamic Relocation, Add Base to Address, use Memory Management Unit
     d. Segmentation
@@ -236,7 +235,7 @@ Summarization of Content
         - Abstractions in Virtualization of Storage
         - File = Linear array of bytes
             - Inode and Name
-        - Director = List of Name and Inodes
+        - Directory = List of Name and Inodes
         - Directory Tree ex. Root Directory
         - Interface
             - open(), read(), write(), close(), lseek(), fsync(), rename()
