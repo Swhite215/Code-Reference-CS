@@ -1,0 +1,31 @@
+Objectives:
+    1. Create an Azure Batch Account
+        - batch-service.ps1
+    2. Run a Batch Job/Task using Azure CLI
+        - batch-service.ps1
+
+Important Information:
+    1.Azure Batch Services
+        - IaaS offering that runs large scale parallel and HPC jobs. 
+        - It manages the virtual machines, inatalls software, and schedules jobs.
+        - Use-Cases:  Financial risk modeling. VFX and 3D Image Rendering, Media Transcoding
+    2. Components of Solition
+        - Azure Batch Account - responsible for authentication requests, scheduling tasks, and moving data in and out from storage account
+            - Job - container for one or more tasks, configure VMs, move data in and out, and execute code
+            - Pool - a set of configured VMs that will be used to support execution of one or more jobs
+        - Storage Account - where input data resides
+    3. Order of Operations
+        - Upload input files into Azure Storage
+        - Create pool, jobs, and tasks
+        - Azure Batch pulls data from storage account and begins executing batches
+        - Monitor execution of tasks
+        - When tasks completed, data is loaded back into storage account
+    4. Exam Essentials
+        - az batch pool create
+        - az batch job create
+        - az batch task create
+    5. Resources
+        - https://azure.microsoft.com/en-us/services/batch/
+        - https://docs.microsoft.com/en-us/azure/batch/
+        - https://docs.microsoft.com/en-us/azure/batch/batch-cli-get-started
+        - https://en.wikipedia.org/wiki/Embarrassingly_parallel
