@@ -1,0 +1,34 @@
+Objectives:
+    1. Creating a Docker Container to Package a .NET Core Application
+        - create-app.ps1
+        - dockerfile
+        - build-and-deploy.ps1
+    2. Launch a Azure Kubernetes Cluster to Run a Container Stored in a Repository
+        - azure-vote.yaml
+            - Deployment = Which Containers to Run Within the Cluster
+            - Service = How to Manage
+        - create-asks.ps1
+
+Important Information:
+    1. Containerized Solution
+    2. Components of Solution
+        - Dotnet Web Application
+        - DockerFile -> DockerImage -> Docker Container
+        - Azure Kubernetes Service
+        - Azure Kubernetes Cluster
+        - Front and Backend Azure Vote Containers
+    3. Order of Operations
+        - Create .NET Core Application
+        - Create Container of Application
+            - Prepare DockerFile
+            - Build Docker Image
+            - Run Docker Image
+            - Verify
+        - Configure AKS Cluster
+        - Deploy Cluster to Azure
+    4. Exam Essentials
+        - Docker - FROM -> WORKDIR -> COPY -> ENTRYPOINT
+        - az aks create -g $rg -n $cluster --node-count 1 --generate-ssh-keys --enable-addons monitoring
+    5. Resources
+        - https://docs.docker.com/engine/examples/dotnetcore/
+        - https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
