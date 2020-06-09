@@ -5,11 +5,11 @@ Objectives:
         - batch-service.ps1
 
 Important Information:
-    1.Azure Batch Services
+    1. Azure Batch Services
         - IaaS offering that runs large scale parallel and HPC jobs. 
         - It manages the virtual machines, inatalls software, and schedules jobs.
         - Use-Cases:  Financial risk modeling. VFX and 3D Image Rendering, Media Transcoding
-    2. Components of Solition
+    2. Components of Solution
         - Azure Batch Account - responsible for authentication requests, scheduling tasks, and moving data in and out from storage account
             - Job - container for one or more tasks, configure VMs, move data in and out, and execute code
             - Pool - a set of configured VMs that will be used to support execution of one or more jobs
