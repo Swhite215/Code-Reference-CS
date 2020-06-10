@@ -11,6 +11,7 @@ Objectives:
 
 Important Information:
     1. Containerized Solution
+        - Solution that uses Docker/Azure Kubernetes Service as Hosting
     2. Components of Solution
         - Dotnet Web Application
         - DockerFile -> DockerImage -> Docker Container
