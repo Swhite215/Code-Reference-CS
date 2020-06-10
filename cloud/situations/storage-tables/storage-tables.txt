@@ -1,0 +1,33 @@
+Objectives:
+    1. Create A Storage Account
+    2. Get Storage Account Access Keys
+    3. Create Table
+        - Program.cs -> Table.cs
+    4. Add Entity to Table
+    5. Add Multiple Entities to Table Using Batch
+    6. Get an Entity by Partition and Row Keys
+    7. Get Entites By Query Filter
+    8. Delete Entities
+
+Important Information:
+    1. Storage Table
+        - A NoSQL Key-Value pair storage solution for rapid development of semi-structured datasets
+        - Entity-based data model/access with entities keyed by a partition and row key
+    2. Components of Solution
+        - Storage Account
+        - Storage Table
+    3. Order of Operations
+        - Define Table Entry
+        - Get Storage Account
+        - Get Cloud Table Client
+        - Get Table Reference
+        - Insert Single Entity
+        - Insert Batch
+        - Get Object by PK/RK
+        - Query Entity
+        - Delete Entity
+    4. Exam Essentials
+        - Performing A Query on Table - Table.cs Line 92:94
+        - Will Given Query Return Entities?
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/cosmos-db/tutorial-develop-table-dotnet
