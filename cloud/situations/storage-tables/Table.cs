@@ -11,7 +11,7 @@ namespace linuxacademy.az203.storage.tables
     public class Tables
     {
         // Add Storage Account Connection String
-        private static string _connectionString = "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=laaz203tables;AccountKey=vsl0Zp7e9Do0Lhgg1etbiVcor0RabhfciBZKUblXJlvUw57Q6dW8pmV/z5vDmpPsMJ0iVPByYDXz8ljho8fGBw==";
+        private static string _connectionString = "<CONNECTION-STRING>";
 
         public static async Task runDemoAsync(){
             // Create Storage Account Object
