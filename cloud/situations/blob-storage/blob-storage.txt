@@ -1,0 +1,25 @@
+Objectives:
+    1. Create a Container
+    2. Interact with Container
+    3. Acquire and Release Container Lease
+    
+Important Information:
+    1. Blob Storage
+        - Massively scalabe storage system for unstructured data/objects.
+        - Foundational service of Azure
+        - Leases - helps control concurrent access to blobs
+    2. Components of Solution
+        - Storage Account
+        - Blob Container
+    3. Order of Operations
+        - Create Storage Account
+        - Create Container
+        - Set Container Access Permissions
+        - Interact with Blobs
+        - Acquire and Release Lease
+    4. Exam Essentials
+        - Concurrency Control - Acquire and Release Lease - Pessimistic Concurrency Control
+        - Optimistic Concurrency Control
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet?tabs=linux
+        - https://azure.microsoft.com/en-us/blog/managing-concurrency-in-microsoft-azure-storage-2/
