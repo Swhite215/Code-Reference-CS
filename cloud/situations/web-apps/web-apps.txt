@@ -1,0 +1,21 @@
+Objectives:
+    1. Create Web Applications using Azure CLI
+
+Important Information:
+    1. Azure App Service Web App
+        - Hosting for web applications, REST APIs, and mobile back ends, Functions, and Logic App
+    2. Components of Solution
+    3. Order of Operations
+        - Create App Service in Portal
+        - Create App Service using Azure CLI
+        - Deploy Code from Github to App Service
+        - Deploy a Container from Docker Hub to App Service
+    4. Exam Essentials
+        - az group create
+        - az app service plan create
+        - az webapp create
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/app-service/
+        - https://docs.microsoft.com/en-us/azure/app-service/scripts/cli-deploy-github
+        - https://azure.microsoft.com/en-us/services/app-service/containers/
+        - https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-docker
