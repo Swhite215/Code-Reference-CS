@@ -1,0 +1,30 @@
+Objectives:
+    1. Offline Data Sync for a Mobile Client
+
+Important Information:
+    1. Mobile Apps
+    2. Components of Solution
+        - Mobile Backend
+        - Mobile Client Application
+    3. Order of Operations
+        - Create Mobile App Service
+        - Deployment/Quickstart
+            - Platform (Options)
+            - Database
+            - Create a Table API
+        - Create Client Application
+        - Enable Offline Sync
+            - Connect to Client
+            - Create SQL Lite Store to Store Items Offline
+            - Get SyncTable or Get Online Table
+            - On Trigger - Check if Sync
+            - SyncAsync
+                - Call PushAsync to Identify New Items on Client That Need to be Stored
+                - Backend Stores those Items
+                - PullAsync on Table - Reconcile anything on Local Table with Backend.
+    4. Exam Essentials
+        - Pattern for Implementing Offline Data Sync
+    5. Resources
+        - https://docs.microsoft.com/en-us/previous-versions/azure/app-service-mobile/app-service-mobile-value-prop
+        - https://docs.microsoft.com/en-us/previous-versions/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started
+        - https://docs.microsoft.com/en-us/previous-versions/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-offline-data
