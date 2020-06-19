@@ -1,0 +1,35 @@
+Objectives:
+    1. Identify If a Function is Triggered by Storage Queue Messages
+    2. How the Queue Trigger Handles Receiving/Scaling Message Processing
+    3. How the Queue Trigger Handles Exceptions
+
+Important Information:
+    1. Azure Functions
+        - Serveless compute option in Azure
+    2. Components of Solution
+        - Storage Account
+        - Queue Storage in Storage Account
+        - Table Storage in Storage Account
+        - Azure Queue Function
+    3. Order of Operations
+        - Create Storage Account
+        - Create Queue in Storage Account
+        - Configure Function Settings
+        - Create Azure Function Tied to Storage and Table
+        - Run Azure Function
+        - Put a Message in Queue - Observe Function Execution
+    4. Exam Essentials
+        - [QueueTrigger] attribute processes Storage Queue messages
+        - [Table] attribute will output to a Storage Table
+        - Exception Handling
+            - If exception thrown, Azure Function will capture the exception and will retry the function 4 more times.
+            - If all attempts fail, runtime will put the message in a poison queue.
+            - You must write a handler to handle poison queue messages.
+        - Concurrency/Scalability
+            - Azure Function runtime will receive up to 16 messages and run functions for each in parallel
+            - When # gets down to 8, runtime gets another batch of 16 and processes those
+            - Any VM processing messages in the function app will only process a maximum of 24 parallel messages
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=macos%2Ccsharp%2Cbash
+        - https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-table?tabs=csharp
+        - https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue
