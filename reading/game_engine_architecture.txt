@@ -3,7 +3,7 @@ Authors: Jason Gregory
 
 Summarization of Content
 
-1. Introduction
+Chapter 1 - Introduction
     a. Structure of a Typical Game Team
         - Engineers - design and implement the software that makes the game and tools work
         - Artists - produce the artistic content
@@ -75,18 +75,19 @@ Summarization of Content
         - World Editor
         - Resource Database
         - Web Based User Interfaces
-2. Tools of the Trade
-3. Fundamentals of Software Enginring for Games
-4. Parallelism and Concurrent Programming
-5. 3D Math for Games
-6. Engine Support Systems
-7. Resources and the File System
-8. The Game Loop and Real-Time Simulation
-9. Human Interface Devices
-10. Tools for Debugging and Development
-11. The Rendering Engine
-12. Animation Systems
-13. Collision and Rigid Body Dynamics
-14. Audio
-15. Introduction to Gameplay Systems
-16. Runtime Gameplay Foundation Systems
+
+Chapter 2 - Tools of the Trade
+Chapter 3 - Fundamentals of Software Enginring for Games
+Chapter 4 - Parallelism and Concurrent Programming
+Chapter 5 - 3D Math for Games
+Chapter 6 - Engine Support Systems
+Chapter 7 - Resources and the File System
+Chapter 8 - The Game Loop and Real-Time Simulation
+Chapter 9 - Human Interface Devices
+Chapter 10 - Tools for Debugging and Development
+Chapter 11 - The Rendering Engine
+Chapter 12 - Animation Systems
+Chapter 13 - Collision and Rigid Body Dynamics
+Chapter 14 - Audio
+Chapter 15 - Introduction to Gameplay Systems
+Chapter 16 -  Runtime Gameplay Foundation Systems
