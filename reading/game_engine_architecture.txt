@@ -1,0 +1,92 @@
+Title: Game Engine Architecture
+Authors: Jason Gregory
+
+Summarization of Content
+
+1. Introduction
+    a. Structure of a Typical Game Team
+        - Engineers - design and implement the software that makes the game and tools work
+        - Artists - produce the artistic content
+            - Concept, 3D Modelers, Texture, Lighting, Animations, Motion Capture Actors, Sound Designers, Voice Actors
+        - Game Designers - design interactive portion of the player's experience i.e. gameplay
+        - Producers - manage schedules, serve in design capacity, liasion between development and business teams
+        - Marketing, IT, Leadership, Administrative, and Janitorial
+    b. What is A Game?
+        - Soft Real-Time Interactive Agent-Based Computer Simulations
+    c. What is A Game Engine?
+        - Software system made up of various components that enable the development of games
+    d. Game Genres
+        - FPS, MMO, RPG, Racing, Fighting, Platformers, Strategy, Player Authored Content, Virtual, Augmented, and Mixed Reality, Sports, Puzzles
+    e. Examples of Game Engines
+        - Quake Family for FPS
+        - Unreal Engine
+        - Half-Life Source Engine
+        - Dice's Frostbite
+        - Rockstar Advanced Game Engine
+        - CRYENGINE
+        - Microsoft's XNA Game Studio
+        - Unity
+        - Open Source: Panda3D, Yake, Torque, Crystal Space
+    f. Runtime Engine Architecture
+        - Target Hardware - Microsoft Windows, Linux, PS4, Xbox One X
+        - Device Drivers - manage hardware resources and shield the operating system and upper engine layers from hardware device details
+        - Operating System - orchestrates the executions of programs on a computer
+        - Third Party SDKs and Middleware
+            - Data Structures and Algorithms: Boost, Folly, Loki
+            - C++ Standard Library and STL
+            - Graphics - Glide, OpenGL, DirectX, Edge, Vulkan
+            - Collision and Physics - Havok, PhysX, Open Dynamics Engine
+            - Character Animation - Granny, Havok Animation, OrbisAnim
+            - Biomechanical Character Models - Endorphin and Euphoria
+        - Platform Independence Layer - shields the engine from knowledge of the underling platform
+        - Core Systems - Assertions, Memory Management, Unit Testing, Math Library, Debugging, Movie Player, Engine Config, Curves and Surface Library
+        - Resource Manager - interface for accessing any and all types of game assets and other engine input data
+        - Rendering Engine
+            - Low Level Renderer - render geometric primtives as quickly as possible
+            - Graphics Device Interface - initalize graphic devices and set up render surfaces
+            - Others - Materials and Shaders, Statis and Dynamic Lighting, Cameras, Text and Fonts, Primitive Submission, Viewports and Virtual Screen, Textures and Surface Mgmt.
+            - Scene Graph/Culling Optimizations - limit the number of primitives subimtted for rendering
+                - Options: Frustrum Cull, Spatial Subdivision/Scene Graph
+            - Visual Effects - particles, decals, light and environment mapping, dynaimc shadows, full screen post effects (high dynamic range, full screen anti-aliasing, bloom)
+            - Front-End - heads up display, menus, console, and other development tools, graphical user interface, full motion video, in-game cinematics
+        - Profiling and Debugging Tools - profiling the performance of your game (timing, statistics, memory usage, debugging logs)
+        - Collision and Physics - dynamics simulation
+        - Animation
+            - Sprite, Rigid Body Hierarchy, Skeletal Animation, Vertex Animation, Morph Targets
+        - Human Interface Devices - devices through with which users interact with or control the game
+            - Keyboard, joybad, mouse, controllers
+        - Audio
+        - Online Multiplayer/Networking
+        - Aritificial Intelligence
+        - Gameplay Foundation Systems
+            - Game Objects and Object Models
+            - Event System
+            - Scripting System
+            - Game Specific Subsystems
+    g. Tools and the Asset Pipeline
+        - Digital Content Creation Tools
+            - Maya, Autodesk, Blender, Adobe Photoshop
+        - Asset Conditioning Pipeline - converting from DCC format to optimized format for game
+            - 3D Model/Mesh Data - complex shapes composed of triangles and vertices
+            - Brush Geometry - collection of convex hulls defined by multiple planes
+            - Skeletal Animation Data - mesh, skeletal hierarchy, and animatiomn clips
+            - Audio Data
+            - Particle Systems Data
+        - World Editor
+        - Resource Database
+        - Web Based User Interfaces
+2. Tools of the Trade
+3. Fundamentals of Software Enginring for Games
+4. Parallelism and Concurrent Programming
+5. 3D Math for Games
+6. Engine Support Systems
+7. Resources and the File System
+8. The Game Loop and Real-Time Simulation
+9. Human Interface Devices
+10. Tools for Debugging and Development
+11. The Rendering Engine
+12. Animation Systems
+13. Collision and Rigid Body Dynamics
+14. Audio
+15. Introduction to Gameplay Systems
+16. Runtime Gameplay Foundation Systems
