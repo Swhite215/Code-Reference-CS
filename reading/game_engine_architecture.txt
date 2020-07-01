@@ -77,6 +77,46 @@ Chapter 1 - Introduction
         - Web Based User Interfaces
 
 Chapter 2 - Tools of the Trade
+    a. Version Control - permits multiple users to work on a group of files collectively
+        - Benefits
+            - Central repository to share code
+            - Keeps history of changes to all files
+            - Mechanism to tag and retrieve versions of files
+            - Enables branching for feature development and testing
+        - Common Version Control Systems
+            - Source Code Control System and Revision Control System, Concurrent Version System, Subversion, Git, Perforce, NxN Alienbrain, ClearCase
+        - Important Features
+            - Updating And Committing, Check-Out, Branching, and Merging
+    b. Compilers, Linkers, and IDEs
+        - Source Files/Translation Units - source code
+        - Header File - share information such as type declarations and function prototypes between translation units
+        - Libraries, Executables, and Dynamic Link Libraries
+            - Libraries - groups of object files
+            - Executable - linked libraries and object files
+            - Dynamic Link Library - acts like a hybrid between a regular static library and an exceutable
+        - Projects and Solutions
+            - Project - collection of source files which, when compiled, produce a lirbary, an executable, or a DLL
+            - Solution File - manages collections of projects
+        - Build Configuration
+            - Build Options - preprocessor, compiler and linker settings
+        - Local and Global Optimizers
+            - Algebraic simplification, code inlining, constant folding, constant propogation, loop unrolling, dead code elimination, and instruction reordering
+        - Typical Build Configurations - Debug, Development, and Ship
+        - Techniques - Setting breakpoints, stepping through, using watch windows
+        - Important Skills
+            - Reading and stepping through disassembly in the debugger
+            - Use registers to deduce variables' values and addresses
+            - Inspect variables and objects content by address
+            - Leverage static and global variables
+            - Modify the code
+    c. Profiling Tools - measures execution time of code
+        - Types - statistical profilers and instrumenting profiles
+    d. Memory Leak and Corruption Detection
+        - Memory Leak - memory is allocated but never freed
+        - Memory Corruption - program inadvertently writes data to the wrong memory location, overwriting important data while failing to update where data should have been
+    e. Other Tools - Diff Tool, Three-Way Merge, Hex Editors
+
+
 Chapter 3 - Fundamentals of Software Enginring for Games
 Chapter 4 - Parallelism and Concurrent Programming
 Chapter 5 - 3D Math for Games
