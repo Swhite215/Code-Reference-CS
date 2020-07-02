@@ -1,0 +1,41 @@
+Objectives:
+    1. Create a multi-activity workflow
+    2. Handle exceptions thrown during app execution
+
+Important Information:
+    1. Logic App
+        - Event-driven serverless system to implement long running business workflows
+    2. Components of Solution
+        - Storage Account w/ Queue and Blob Container
+        - Logic App
+        - Error Handling
+            - Retry Policies
+                - Default - sends up to four retries at exponentially increasing intervals, which scale by 7.5 seconds but are capped between 5 and 45 seconds
+                - Exponential Interval - waits a random interval selected from an exponentially growing range before sending the next request
+                - Fixed Interval - waits the specificed interval before sending the next request
+                - None - does not resend the request
+    3. Order of Operations
+        - Create Storage Account
+        - Create Logic App + Configure
+        - Logic App Designer - + Blank Logic App
+        - Logic App Design Service - Start (Schedule)
+        - + Step to Add Action - Variables (Initialize)
+        - + Step to Add Action - Azure Blob Storage (List All Blobs)
+        - + Step to Add Action - Control (For Each)
+            - + Add Action - Control (Conditional)
+                - if true - + Add Action Azure Queues (Put a Message on a Queue)
+                    - Ellipses - Retry Policy - (Default, Exponential, Fixed, None)
+    4. Exam Essentials
+        - Construct a multi-activity workflow
+        - Retry policies
+        - Understand Logic App JSON
+        - Contrast Logic Apps, Function Apps, WebJobs, and Flow
+            - Logic Apps - declarative event driven system that integrates with other services
+            - Functions are light-weight and code first
+            - Queue Messages - Functions
+            - DevOps - WebJobs can run alongside Web Apps in same devops environment
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-overview
+        - https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-serverless-overview
+        - https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-exception-handling
+        - https://docs.microsoft.com/en-us/azure/azure-functions/functions-compare-logic-apps-ms-flow-webjobs
