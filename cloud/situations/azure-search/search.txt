@@ -1,0 +1,31 @@
+Objectives:
+    1. Create Search and Index Client
+    2. Specifying Authentication Credentials
+    3. Indexing Documents
+    4. Search in Portal
+    5. Correct Issues with Search
+
+Important Information:
+    1. Search
+        - Search-as-a-Service
+        - Scalabe, performant means of storing documents and performing complex queries
+    2. Components of Solution
+    3. Order of Operations
+        - Create Search Service
+        - Create Search Service Client
+        - Create Index w/ Class w/ Attributes [IsSearchable, IsFilterable, IsFacetable, IsSortable, IsRetrievable]
+        - Upload Documents
+        - Search the Documents
+    4. Exam Essentials
+        - Indexes are managed using SearchServiceClient
+        - Searching an index is performed using SearchIndexClient
+        - Use SearchCredentials to authenticate with SearchServiceClient (AdminKey) or SearchIndexClient (QueryKey)
+        - Create index with SearchServiceClient().Indexes.Create(<defintion>)
+        - Prepare Batch with IndexBatch.Upload(<documents collection>)
+        - Upload Batch with IndexBatch.Upload with SearchIndexClient().Documents.Index()
+        - Search with SearchIndexClient().Documents.Search()
+        - If results are missing, make sure properties are 'Searchable'. If not, drop the index and recreate with the field set as searchable
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/search/search-howto-dotnet-sdk
+        - https://docs.microsoft.com/en-us/azure/search/search-lucene-query-architecture
+        - https://docs.microsoft.com/en-us/azure/search/search-howto-reindex
