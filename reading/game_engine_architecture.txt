@@ -117,6 +117,167 @@ Chapter 2 - Tools of the Trade
     e. Other Tools - Diff Tool, Three-Way Merge, Hex Editors
 
 Chapter 3 - Fundamentals of Software Engineering for Games
+    a. C++ Review and Best Practices
+        - Object Oriented Programming
+            - Classes and Objects
+                - Class - collection of attributes (data) and behaviors (code)
+                - Object - instance of a class
+            - Inheritance - new classes defined as extensions to preexisting classes
+            - Multiple Inheritance - class can have more than one parent class
+            - Polymorphism - allows a collection of objects of different types to be manipulated through a single common interface
+            - Composition and Aggregation
+                - Composition - practice of using a group of interfacing objects to accomplish a high-level task (has-a)
+                - Aggregation - (uses-a)
+            - Design Patterns
+                - Creational, Structural, and Behavioral
+            - Janitors and RAII
+                - Janitor - construct a local instance ofthe class to acquire the resource, and let it fall out of scope to release it automatically
+                - RAII - resource acquisition is initialization pattern
+        - C++ Language Standardization
+            - C++98, C++03, C++11, C++14, C++17
+            - Coding Standards
+                - Interface are king
+                - Good namds encourage understanding and avoid confusion
+                - Don't clutter the global namespace
+                - Follow C++ Best Practices
+                - Make errors stick out
+    b. Catching and Handling Errors
+        - Types of Errors:  User and Programmer
+        - Handling Errors
+            - Handling Player Errors - cue, provide information, gentle redirection
+            - Handling Developer Errors
+                - Make the error obvious
+            - Handling Programmer Errors
+                - Assertion system - erro-checking code and arragned for failed error checks to halt the program
+            - Implementation fo Error Detection and Handling
+                - Error Return Codes
+                - Exception Handling
+                - Assertions - line of code that checks an expression
+                 Compile-Time Assertions
+    c. Data, Code, and Memory Layout
+        - Numeric Representation
+        - Numeric Bases 
+            - Base Ten - 7803 = 7*1000 + 8*100 + 0*10 + 3*1
+            - Hexadecimal - 0-9 and A-F (10-15)
+            - Signed and Unsigned Integers
+                - 32-bit unsigned 0x00000000 to 0xFFFFFFFF
+                - 32-bit signed - positive = 0x00000000 to 0x7FFFFFFF and negative = 0x80000000 to 0xFFFFFFFF
+            - Fixed Point Notation
+            - Floating Point Notation
+            - Precision and Magnitude - precision increases as magnitude decreases e.g. 10.0000000000 vs 100000000.12
+            - Subnormal Values - Gap between 0 vs. 1.175x10^-38
+        - Primitive Data Types
+            - char ,int, short, long, float, double, bool
+            - Custom - F32, U8, U16, I16, U32, U64, I64 and Signed Set
+        - Endianess
+            - Little-endian - stores least significant byte of a multibyte value at a lower memory address than the most significant byte
+            - Big-endian - stores the most significant byte of a multibyte value at a lower memory address thatn the least significant byte
+        - Kilobytes vs. Kibibyte
+            - Kilobyte - 1000, Kibibyte - 1024
+            - Mebibyte - Kibibyte Squared
+            - Gibibyte - Kibibyte Cubed
+            - Tebibyte - Kibibyte Quadrupled
+            - Pebibyte - Kibibyte Quintupled
+            - Exbibyte - Kibibyte Sextupled
+            - Zebibyte - Kibibyte Septupled
+            - Yobibyte - Kibibyte Octupled
+        - Declaration, Definitions, and Linkage
+            - Declaration vs. Defintion
+                - Declaration - decsription og data object or function
+                - Definition - describes a unique region of memory in the program
+            - Linkage
+                - External Linkage - definition is visible to and can be referenced by translation units other than the one in which it appears
+                - Internal Linkage - definition can only be seen inside the translationu unit in which it appears
+        - Mmeory Layout of a C/C++ Program
+            - Executable Image (Executable and Linking Format) e.g. elf or .exe
+                - Divided into contiguous blocks called segments or sections
+                    - Text, Data, BSS (Block Started by Symbol),  Read-only Data Segment
+            - Program Stack
+                - Contiguos areas of memory are psuhed and popped off the program stack
+                - Stack Frame - return address, CPU registers, local variables
+            - Dynamic Allocation Heap - block of memory for each running process from which memory can be allocated and freed
+            - Member Variables
+                - Class-Static Members - restrict visibility of variable or function to only visibble within this .cpp file
+            - Object Layout in Memory
+                - Box for Class, Horizontal Lines Separating Data Members
+                - Alignment and Packing
+                    - Every data type has a natural alignment, which must be respected in order to permit the CPU to read and write more effectively
+                    - Packing - aligning properly to ensure best memory usage and reduce holes
+   d. Computer Hardware Fundamentals
+        - Anatomy of a Computer
+            - CPU - Central Processing Unit
+                -  ALU, FLU, VPU, MC, Registers, Control Unit
+            - ALU - Arithmetic Logical Unit, performs unary and binary arithmetic operations
+            - FPU - Floating Point Unit, performs floating-point calculation
+            - VPU - Vector Processing Unit, integer and floating-point arithmetic
+            - MMU - Memory Management Unit
+            - Registers - high-speed memory cells, typically located on chipa and in-close proximity to the components that access them
+                - Instruction Pointer - contains address of the currently executing instruction in a amchine language program
+                - Stack Pointer - address of the top of the program's call stack
+                - Base Pointer - based address of the current function's stack frame on the call stack
+                - Status Register/Condition Code Register/Flags Register - contains bits that reflect the result of the most-recent ALU operation
+            - Register Formats
+                - 32-bits, 64-bits, 80-bits
+            - Control Unit - manages the flow of data within a cpu
+            - Clock - periodic square wave signal, rising and falling edge of this signal is known as a clock cycle
+            - Processing Power - MIPS (Milliosn of Instructions Per Second) or FLOPS (Floating Operations Per Second)
+            - Memory - Read-Only Memory (ROM, PROM, EEPROM) and Random Access Memory (RAM, DRAM, SRAM)
+            - Buses - data is transferred between the CPU and memory over connections called buses
+            - Bus Widths - bits size that controls the range of possible addresses that can be accessed by the CPU
+            - Words - frequently a multibyte value, e.g. 16bits or two bytes, two word is 32 bits, four word is 64 bits
+            - Machine and Assembly Langauge
+                - Instruction Set Architecture - set of instructions supported by a given CPU
+                    - Categories - move, arithmetic operations, bitwise operations, shift/rotate operators, comparison, jump and branch, push and pop, functional call and return, interrupts, other
+                - Machine Language - instructions encoded numerically
+                    - Opcode - which operation to perform e.g. add, subtract, move, jump, etc
+                    - Operands - inputs and/or outputs of instruction
+                    - Options - addressing mode and other flags
+                - Assembly Language - text based verison of machine language
+                - Addressing Modes
+                    - Register Addressing - values can be transferred from one register to another
+                    - Immediate Addressing - operands are target register and the immediate value to be loaded
+                    - Direct Addressing - allows data to be moved to or from memory
+                    - Register Indirect Addressing - targeted memory address is taken from a register, rather than being encoded as a literal value in the operands
+                    - Relative Addressing  - target memory address is specified as an operand, and the value stored in a specific register is used as an offset from that target memory address
+    e. Memory Architectures
+        - Memory Mapping
+            - Memory Mapped I/O  - CPU can perform I/O operations on a peripheral device by reading or writing addresses as if they were just ordinary RAM
+            - Video RAM - range of memory addresses assigned for use by a video controller is known as video RAM
+        - Virtual Memory
+            - Virtual Memory System - memory addresses used by a program don't map direcvtly to the memory modules installed in the computer
+            - Virtual Memory Pages - entire addressable memory is organized into equally-sized contiguous chunks known as pages
+            - Virtual to Physical Address Translation - page index is looked up by CPUs MMU in  page table that maps virtual page indices to physical ones
+            - Handling Page Faults -  access to pages that have been swapped out involves reading page from swap into RAM page and then translating virtual addresses to physical addresses 
+            - Translation Lookaside Buffer TLB - caching mechanism for commonly used page table entries
+        - Memory Architectures for Latency Reduction
+            - Memory Access Latency - length of time between the moment the CPU requests data from the memory system and the moment the data is actually received by the CPU
+            - Memory Gap - difference between CPU performance and the performance of memory
+                - Techniques for reducing latency
+                    - Place smaller, faster memory banks closer to the CPU core
+                    - Hiding latency by arranging CPU to do other work while waiting for memory operation to complete
+                    - Minimizing access to memory by arranging a program's data as efficiently as possible
+            - Memory Cahce Hierachies - primary mechanicm for mitigating impacts of high memory access latencies (L1, L2, L3 Caches)
+            - Cache Lines - contiguous blocks of data in caches to take advantage of spatial and temporal locality
+            - Set Associativity and Replacement Policy
+                - Direct-Mapped - map of one cache line to one main RAM address
+                - Associative - two or more distinct cache lines mapped to one main RAM address (ways)
+                - Replacement Policy - when a cache miss occurs, which way should be removed e.g. NMRU, LRU, FIFO, LFU
+            - Multi-Level Caches - level 1 to level n caches to avoid cache misses
+            - Instruction Cache - used to preload excutable machine code before it runs
+            - Data Cache - used to speed up read and write operations performed by the machine code
+            - Write Policy - how cache controller handles writes
+                - Write-Through - all writes to the cache are mirroed to main RAM immediately
+                - Write-Back - data is first written into the cache and the cache line is only flushed out to main RAM under certain circumstances
+            - Cache Coherency - data in the caches belonging to multiple cores match one another and the contenst of main RAM
+                - MESI - Modified, Exclusive, Shared, Invalid
+                - MOESI - Modified, Owned, Exclusive, Shared, Invalid
+                - MESIF - Modified, Exclusive, Shared, Invalid, Forward
+            - Avoiding Cache Misses - organize data in contiguous blocks that are small as possible and access them sequentially
+            - Nonuniform Memory Access NUMA and Uniform Memory Access UMA
+                - UMA - computer contains a single large bank of main RAM which is visible to all CPU cores in the system
+                - NUMA - each core is provided with a relatively small bank of high-speed dedicated RAM called a local store
+
+
 Chapter 4 - Parallelism and Concurrent Programming
 Chapter 5 - 3D Math for Games
 Chapter 6 - Engine Support Systems
