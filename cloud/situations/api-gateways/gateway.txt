@@ -1,7 +1,5 @@
 Objectives:
     1. Policies: inbound, outbound, backend, and on-error
-    2. 
-
 
 Important Information:
     1. API Gateway/API Management
@@ -15,6 +13,8 @@ Important Information:
             - Backend: applied before calling a backend service, and after a response from that service
                 - Uses: transform data, select method, retry
     2. Components of Solution
+        - API Management Service
+        - API
     3. Order of Operations
         - Create API Management Service
         - Create API (OpenAPI)
