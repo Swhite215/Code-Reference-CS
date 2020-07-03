@@ -116,8 +116,7 @@ Chapter 2 - Tools of the Trade
         - Memory Corruption - program inadvertently writes data to the wrong memory location, overwriting important data while failing to update where data should have been
     e. Other Tools - Diff Tool, Three-Way Merge, Hex Editors
 
-
-Chapter 3 - Fundamentals of Software Enginring for Games
+Chapter 3 - Fundamentals of Software Engineering for Games
 Chapter 4 - Parallelism and Concurrent Programming
 Chapter 5 - 3D Math for Games
 Chapter 6 - Engine Support Systems
@@ -130,4 +129,4 @@ Chapter 12 - Animation Systems
 Chapter 13 - Collision and Rigid Body Dynamics
 Chapter 14 - Audio
 Chapter 15 - Introduction to Gameplay Systems
-Chapter 16 -  Runtime Gameplay Foundation Systems
+Chapter 16 - Runtime Gameplay Foundation Systems
