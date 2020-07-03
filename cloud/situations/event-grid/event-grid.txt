@@ -1,0 +1,42 @@
+Objectives:
+    1. Topics and Subscriptions within the Publisher Subscriber Model
+    2. Configuring Routing for Events
+    3. Understanding JSON Config Structure
+
+Important Information:
+    1. Event Grid
+        - Fully managed, massively scalable, event routing service that provides for event consumption using a public-subscribe model
+        - Designed for listening to events and delivering events to component that can handle it
+        - Examples: Ops Automation, Serverless Architecture, Application Integration
+        - Terms:
+            - Event Source - Topics - Event Grid - Event Subscriptions - Event Handlers
+    2. Components of Solution
+        - Blob Storage
+        - Event Grid
+        - ngrok
+        - Server
+    3. Order of Operations
+        - Create Storage Account w/ Blob Container
+        - Create Event Grid Event Subscription (BlobCreated)
+        - Trigger Event
+    4. Exam Essentials
+        - Creating Publish-Subscribe Event Models
+        - Configuring Routing
+        - Event Grid JSON
+        - Common Consumption = Webhook, ASP.NET MVC Controller - WebHook Event Grid event handler
+        - Events are sent to topics, and delivered to all subscribers of that topic
+        - Subscription can have rules to select which messages sent to the topic are delievered to a subscription
+        - Creating topics for two event types and webhook receiver, and different scenarios for configuring a topic and subscriptions for the events
+            - One topic and a single subscription
+            - Separate topics and events for each event type. Each listener can be coded to handle just the one type of event
+            - Make events have subject prefixes and then subscription have a subject begins with filter
+            - Understand JSON for configuring a blob-created, event subscription/filter that sends to webhook
+    5. Resources
+        - https://azure.microsoft.com/en-us/services/event-grid/
+        - https://docs.microsoft.com/en-us/azure/event-grid/overview
+        - https://docs.microsoft.com/en-us/azure/event-grid/compare-messaging-services
+        - https://github.com/Azure-Samples/azure-event-grid-viewer
+        - https://docs.microsoft.com/en-us/azure/event-grid/cli-samples
+        - https://ngrok.com/download
+        - https://www.reactivemanifesto.org/
+        - https://12factor.net/
