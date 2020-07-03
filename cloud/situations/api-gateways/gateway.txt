@@ -1,0 +1,30 @@
+Objectives:
+    1. Policies: inbound, outbound, backend, and on-error
+    2. 
+
+
+Important Information:
+    1. API Gateway/API Management
+        - Take in requests and forward to back in service
+        - Allows: Authentication, Rate Limiting, Data Transformation
+        - Policy Types
+            - Inbound: applied on requests when coming in to the API
+                - Uses: authentication, rate limiting, and caching
+            - Outbound: applied on outbound information from the API
+                - Uses: filter and transform data, caching
+            - Backend: applied before calling a backend service, and after a response from that service
+                - Uses: transform data, select method, retry
+    2. Components of Solution
+    3. Order of Operations
+        - Create API Management Service
+        - Create API (OpenAPI)
+        - Test API Backend Call
+        - Add Policies - + Add Policy
+    4. Exam Essentials
+        - Policy to use to secure API access with OpenID (validate-jwt)
+        - Policy Types: Inbound, Outbound, Backend
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/api-management/api-management-key-concepts
+        - https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-policies
+        - https://docs.microsoft.com/en-us/azure/api-management/api-management-policies
+        - https://docs.microsoft.com/en-us/azure/api-management/policy-samples
