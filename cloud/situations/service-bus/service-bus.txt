@@ -1,0 +1,35 @@
+Objectives:
+    1. Create a Service Bus Queue with PowerShell
+    2. Message Correlation
+
+Important Information:
+    1. Service Bus
+        - Fully managed enterprise message broker, used to decouple applicaitons and services
+        - Supports topics/subcriptiosn for multi-cast delviery
+        - Benefits: session management, routing, dead-lettering, scheduling, deferral, transactions
+    2. Components of Solution
+        - Service Bus Namespace
+        - Service Bus Queue
+    3. Order of Operations
+        - Connect to Queue with Queue Client
+        - Register Message Handler
+        - Register Exception Handler
+        - Send Messages
+        - Close Queue
+    4. Exam Essentials
+        - Service Bus Routing
+            - Properties
+                - To, ReplyTo, ReplyToSessionId, MessageId, CorrelationId, SessionId
+            - Patterns
+                - Simple Request/Reply, Multicast Request/Reply, Multiplexing, Multiplexed Request/Reply
+            - Request/Reply Pattern with Session IDs
+        - Create Service Bus Queue Using Powerershell (New-AzureRmServiceBusQueue)
+        - Understand Request/Replay Pattern with Service Bus
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview
+        - https://docs.microsoft.com/en-us/azure/event-grid/compare-messaging-services?toc=%2Fen-us%2Fazure%2Fservice-bus-messaging%2FTOC.json&bc=%2Fen-us%2Fazure%2Fbread%2Ftoc.json
+        - https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-powershell
+        - https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-cli
+        - https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-cli
+        - https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messages-payloads?#message-routing-and-correlation
+        
