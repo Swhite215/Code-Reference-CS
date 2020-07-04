@@ -1,0 +1,44 @@
+Objectives:
+    1. Service Principal and Manage Service Identity
+    2. Shared Access Signatures
+    3. Key Vault with Manage Service Identity and Service Principle
+    4. SQL Dynamic Data Masking
+    5. Azure Active Directory
+
+Important Information:
+    1. Topics
+        - Service Principal - Identities in Azure Active Directory (Application Level Registrations)
+            - Roles - what user is allowed to perform in Azure (action is can, notAction is can not)
+        - Manage Service Identity - Identities for Services (VM, WebApp) in Azure
+        - Shared Access Signatures - string that contains information and provides acccess to resources in your storage account
+        - Key Vault - storage for secrets
+        - SQL Dynamic Data Masking - limits sensitive data by masking it from non-privileged users (non-logged in users)
+            - Mask Types - Text. Default, Credit Card, Email, Random Number, Custom Text
+        - Always Encrypted - prevents access to data by non-owners of the data at anytime
+        - Azure Active Directory (Secure AKS) - Limit access to user defined in AAD
+    2. Components of Solution
+    3. Order of Operations
+    4. Exam Essentials
+        - Service Principals and Manage Service Identity
+        - Securing Storage with MSI
+        - Generating SAS
+        - Key Vault - Secret Store
+        - Dynamic Data Masking - masks data from public users, not logged in
+        - Dynamic Data Masking - Schema, Table, Column
+        - Dynamic Data Masking - Suffix and Prefix indicate charcters not matched, replacement string is string minus suffix/prefix
+        - Always Encrypted - Prevents administrators from seeing sensitive data
+        - Always Encrypted - Store column certificates in Key Vault, encrypt column with cert, set column encryption settings to true in database connection, add identity to webapp and grant app access to certificate in Key Vault
+        - Securing AKS - Secure with AAD. Create Service Principal and grant it access using ClusterRoleBinding
+    5. Resources
+        - https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest
+        - https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-connect-msi
+        - https://docs.microsoft.com/en-us/azure/role-based-access-control/overview
+        - https://docs.microsoft.com/en-us/azure/role-based-access-control/overview
+        - https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview
+        - https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview
+        - https://docs.microsoft.com/en-us/samples/azure-samples/app-service-msi-keyvault-dotnet/keyvault-msi-appservice-sample/
+        - https://docs.microsoft.com/en-us/azure/storage/common/storage-auth-aad-msi
+        - https://docs.microsoft.com/en-us/azure/azure-sql/database/dynamic-data-masking-overview
+        - https://docs.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-2017
+        - https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/new-azurermsqldatabasedatamaskingrule?view=azurermps-6.13.0
+        - https://docs.microsoft.com/en-us/azure/aks/azure-ad-integration-cli
