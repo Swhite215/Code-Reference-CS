@@ -1,0 +1,31 @@
+Objectives:
+    1. Configure Applicaion Level Logging
+    2. Use Application Insights
+    3. Usage Analytics
+
+Important Information:
+    1. Topics
+        - Application Level Logging
+        - Application Insights - extensible application performance management service that can be used to monitor live web applications
+            - Sampling - reduce telemetry traffic and storage, but at the same time, preserve statistic correctness of the data
+                - Types - Adaptive, Fixed-Rate, Ingestion
+        - Usage Analytics
+            - Funnels - progress of user through a series of steps
+            - Impact - how do page load times and other properties influence conversion rates
+            - Retention - how many users return and how often do they perform particular tasks
+            - User Flows - how does a user navigate between pages and features
+    2. Components of Solution
+    3. Order of Operations
+    4. Exam Essentials
+        - Ingestion sampling is best to ensure your sampling data does not exceed your budget
+        - Know the code pattern for setting web app blob logging environment variables
+        - Be able to answer questions for usage analytics
+    5. Resources
+        - https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
+        - https://docs.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core
+        - https://docs.microsoft.com/en-us/azure/azure-monitor/app/sampling
+        - https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-overview
+        - https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-flows#are-there-places-where-users-repeat-the-same-action-over-and-over
+        - https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-funnels#create-your-funnel
+        - https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-retention
+        - https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-impact#is-page-load-time-impacting-how-many-people-convert-on-my-page
