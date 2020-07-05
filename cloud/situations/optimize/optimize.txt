@@ -1,0 +1,21 @@
+Objectives:
+    1. Auto-Scaling
+    2. Redis Caching for Session State Management
+
+Important Information:
+    1. Topics
+        - Auto-Scaling - configurable feature to monitor performance and add or remove resources to match performance requirements
+            - Vertical - scale up or down by changing the capacity of a resource (can cause unavailability)
+            - Horizontal - scale up or down by adding or removing resources (might require partition or load balancers)
+        - Redis Cache - ASP.NET Session Cache
+    2. Components of Solution
+        - Auto-Scaling - Azure Monitor (VMs, Storage Queues, Service Bus Queues, Application Insights)
+    3. Order of Operations
+    4. Exam Essentials
+        - Session State Caching can help optmize ASP.NET
+        - Auto-Scaling Configuration (Message Count (+DeadLetters) vs. Active Message Count)
+    5. Resources
+        - https://azure.microsoft.com/en-us/features/autoscale/
+        - https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling
+        - https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-aspnet-session-state-provider
+        - https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-aspnet-output-cache-provider
