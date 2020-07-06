@@ -277,8 +277,112 @@ Chapter 3 - Fundamentals of Software Engineering for Games
                 - UMA - computer contains a single large bank of main RAM which is visible to all CPU cores in the system
                 - NUMA - each core is provided with a relatively small bank of high-speed dedicated RAM called a local store
 
-
 Chapter 4 - Parallelism and Concurrent Programming
+    a. Defining Concurrency and Parallelism
+        - Concurrency - utilziing multiple flows of control to solve a problem
+        - Parallelism - any situation in which two or more distinct hardware components are operating simulataneously
+            - Implicit vs. Explicit Parallelism
+                - Implicit (Instruction Level Parallelism) - use of parallel hardware components within a CPU for the purpose of improving the performance of a single instruction stream
+                    - Examples: pipelining, superscalar architecture, very long instruction word
+                - Explicit Parallelism - use of duplicated hardware components within a CPU, computer, or computer system, for the purpose of running more than one instruction stream simultaneously
+                    - Examples: Hyperthreaded CPUs, mutlicore CPUs, multiprocessor computers, computer clusters, grid computing, cloud computing
+        - Task vs Data Parallelism
+            - Task Parallelism - multiple heterogenous operations are performed in parallel (animation calculations)
+            - Data Parallelism - single operation is performed on multiple data items in parallel
+        - Flynn's Taxonomy
+            - Single Instruction Single Data - single instruction stream operating on a single data stream
+            - Multiple Instruction Multiple Data - multiple instruction streams on multiple independent data streams
+            - Single Instruction Multiple Data - a single instruction stream operating on multiple data streams
+            - Multiple Instruction Single Data - multiple instructions streams all operating on a single data strea
+            - Single vs. Multiple Data
+                - Single data refers to a single pair of inputs
+                - SISD - single ALU performs the multiple first, followed by the divide
+                - MIMD - two ALUs perform operations in parallel, operating on two independent data streams
+                - SIMD - wide ALU performs the multiple first, followed by the divide, but each instruction operates on a pair of four element input vectors
+                - MISD - two ALUs process the same instruction stream, multiple first followed by divide, and ideally produce identical results
+        - GPU Paralleism: SIMT
+            - Single Instruction Multiple Thread - single instruction operating on multiple data streams simultaneously with multi-threading
+        - Orthogonality of Concurrency and Parallelism
+    b. Implciit Parallelism
+        - Pipelining
+            - Stages - Fetch, Decode, Execute, Memory Access, Register Write-Back
+            - Goal - begin a new instruction on each clock cycle, keeping the CPU busy
+        - Latency vs. Throughput
+            - Latency - amount of time required to completely process a single instruction (sum of the latencies of all stages of pipeline)
+            - Throughput - measure of how many instructions a pipeline can process per unit of time
+        - Pipeline Depths - balance throughput with overall latency
+        - Stalls - a CPU is unable to issue a new instruction on a particular clock cycle
+        - Data Dependencies - later stages of the pipeline are dependent on results of earlier stages
+             - Data Dependencies, Control Dependencies, Structural Depedencies
+        - Instruction Reordering - reodering instructions, without changing the behavior of the program, to make the most of the pipeline
+        - Out-Of-Order Execution - CPUs support out of order execution to dynamically detect data dependencies between instructions and automatically resolve them
+        - Branch Dependencies - example where jump cannot occur until results of cmp 
+        - Speculative Execution/Branch Prediction - running code along branch in the hopes the CPU chose correctly
+            - Branch Penalty - choosing the wrong branch
+        - Predication - Execute both branches and then use a mask to produce the final answer
+        - Superscalar CPUs - duplicate components on chip so that two instructions can be launched each clock cycle
+            - Design can lead to resource dependencies, two or more consecutive instructions all requrie the same CPU functional unit
+        - Superscalar and RISC - using reduced instruction set to free up transistors
+        - Very Long Instruction Word VLIW - allowing programmers to dispatch instructions to multiple compute elements which requires a longer instruction word
+    c. Explicit Parallelism
+        - Hyperthreading - selecting instructions from two separate instruction streams
+            - HT core consists of two register files and two instruction decode units but with a single back end for executing instructions
+        - Multicode CPUs - multiple cores oon a PC
+        - Symetric vs. Asymmetric Multiprocessing
+            - Symmetric Multiprocessing - available CPU cores in the machine are homogenous in deisgn and ISA and are treated equally by the operating system
+            - Asymmetric Multiprocessing - CPU cores are not homogenous and the operating system does not treat them equally
+        - Distributed Computing - making use of multiple stand along computers working in concert
+            - Examples - computer clusters, grid computing, and cloud computing
+    d. Operating System Fundamentals
+        - Kernel - layer of operating system that operates at the lowest level and nearest to hardware
+            - Kernel Mode vs. User Mode
+                - Kernel mode is privileged, allowing the greatest access and power
+                - User mode is limited, accessing low level services require a kernel call
+                - Protection Rings - inner circle is most trusted, with reduced trust as you become further away
+                - Kernel Mode Privileges - access to all of the instructions defined in the ISA, including privileged instruction
+            - Interrupts - signal sent to CPU in order to notify it of an important low level event e.g. keypress
+            - Kernel Calls - request to kernel to perform a privileged operation, normally through a kernel API
+            - Preemptive Multitaksing - programs share the CPU by time-slicing, however the scheduling of programs is controlled by the operating system
+        - Processes - operating systems way of managing a running instance of a program
+            - Anatomy of a Process
+                - Process ID (PID) - unique identifies the process within the operating system
+                - Permissions - which user owns each process and which group the user belongs to
+                - Parent Process ID
+                - Virtual Memory Space - containing the processe's view of physical memory
+                - Environemt Variables
+                - File Handles
+                - Working Directory
+                - Synchronization and Communication Resource - sempahores, queues, pipes
+                - Threads - encapsualtes a running instance of a single stream of machine language instructions
+            - Virtual Memory Map of Process
+                - Virtual Table/Memory Map:
+                    - Text, Data, BSS - executable files read in so program code and global data is visible within process
+                    - Call Stack
+                    - Shared libraries - program dependencies
+                    - Heap - for dynamic memory allocation
+                    - Kernel Pages - separate virtual page table that is shared between all processes
+            - Threads - encapsulates a running instance of a single strean of machine language instructions
+                - Thread ID - unique identifier within the process
+                - Call Stack - contiguous block of memory containing the stack frames of all currently executing functions
+                - Special and General Registers
+                - Thread Local Storage
+                - Thread Libraries - collection of system calls for creating and manipulating threads
+                    - Create, Terminate, Request to Exit, Sleep, Yield, Join
+                - Thread Creation and Termination
+                    - Process executed by the OS automatically contains a single thread, and additional threads can be created using system calls
+                    - Threads can end:
+                        - Naturally, system call, killed by another thread, and killed by process ending
+                - Joining Threads - wait for other threads to finish
+                - Polling, Blocking, and Yielding
+                    - Polling - single thread sitting in a tight loop, waiting for a condition to become true
+                    - Blocking - put thread to sleep and rely on the kernel to wake it up based on some condition
+                        - Examples - opening a file, explcit sleeping, joining with another thread, waiting for a mutex lock
+                    - Yielding - thread polls the condition in a loop, but on each iteration it relinquishes the remaining of its time slice by yielding
+                - Context Switching - switching between thread states
+                    - Thread States - running, runnable, blocked
+                - Thread Local Storage - private memory block for data that is private to this process, shared with other threads
+
+
 Chapter 5 - 3D Math for Games
 Chapter 6 - Engine Support Systems
 Chapter 7 - Resources and the File System
