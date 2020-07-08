@@ -1,0 +1,118 @@
+Certified Developer Associate
+
+    1. Develop Azure Infrastructure as a Service Compute Solutions
+        - Q: You are developing a solution using Azure Functions and Kubernetes. You must secure your application by using an AAD account that has full access to all namespaces of the Azure Kubernetes Service (AKS) cluster.
+        What are two ways you can achieve this?
+            - A: Create a Service Principal with a ClusterRole binding.
+            - A: Enable Managed Service Identity MSI in the Azure Function
+        - Q: You need to update the properties of an Azure Batch pool using CLI. Which command should you run?
+            - A: az batch pool set
+        - Q: Which Azure CLI command should you run to enable the Azure Monitor add-on for an Azure Kubernetes Service managed cluster?
+            - A: az aks enable-addons
+        - Q: Which Azure CLI command should you run to create a new Azure Kubernetes Service Managed Cluster?
+            - A: az aks create
+        
+
+
+    2. Develop Azure Platform as a Service Compute Solutions
+        - Q: Which hosting plans for Azure Functions will allow for the Azure function app to invoke functions in parallel, when needed to scale?
+            - A: Consumption Plan
+            - A: App Service Plan
+        - Q: Which Dockerfile instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD instructions that follow in the Dockerfile?
+            - A: WORKDIR
+        - Q: You are developing a solution using Azure Functions and would like to create your function with the Azure CLI and configure it to deploy code from a GitHub repository. Using the az functionapp create command, which parameter should you use to bind your GitHub repository?
+            - A: --deployment-source-url
+        - Q: You are developing a Docker application for an Azure App Service Web App. Which three Azure PowerShell commands should you use to create the resources you need?
+            - A: New-AzureRmAppServicePlan
+            - A: New-AzureRmResourceGroup
+            - A: New-AzureRmWebApp
+        - Q: You haved a web application and you need to proc3ss sensitive data in the most secure way possible, following the Gatekeeper pattern. You want whatever software that processes the sensitive data to be the ONLY software which has access to the data. Which of the following is a valid way to accomplish this?
+            - A: Process the sensitive data in a separate web job instead of in the web app.
+        - Q: Which of the following Azure App Service plans support custom domain names?
+            - A: Shared
+            - A: Standard
+            - A: Basic
+        - Q: You are developing a solution using Azure Functions. Which are valid bindings you can use?
+            - A: Event Grid
+            - A: Blob Storage
+            - A: Cosmos DB
+            - A: Webhook
+        - Q: Which Dockerfile instruction initializes a new build stage and sets the Base image for subsequent instructions, and as such, is the first instruction in the Dockerfile?
+            - A: FROM
+        - Q: You maintain an Azure WebApp that runs in a container. The container is using a Dockerfile that is copied to numerous places and consumes a large amount of storage. You neeed to optimize the Dockerfile for image size. What should you do?
+            - A: Minimize layers by grouping actions in as few RUN instructions as possible.
+        - Q: You are developing a solution using Azure Functions. You have another app located on-premises that will call the new Azure Function. Which feature of Azure Functions will you need to enable so that only the on-premises app can call the function?
+            - A: CORS
+
+    3. Developing for Azure Storage
+        - Q: You are developing a solution using Azure Blob Storage and want to implement pessimistic concurrency using blob leases. Which of the following synchronization strategies will a blob lease allow you to configure?
+            - A: Shared Write / Shared Read
+            - A: Exclusive Write / Exclusive Read
+            - A: Exclusive Write / Shared Read
+            - A: Shared Write / Exclusive Read
+        - Q: You are developing a solution using Cosmos DB NoSQL database. When you return data, it must be guaranteed that reads never see out-of-order writes. Which consistency level should you implement?
+            - A: Consistent Prefix
+        - Q: You are developing a solution using Azure Blob Storage and want to implement optimistic concurrency. Which solution should you choose?
+            - A: Use blob properties
+        - Q: You are developing a solution using Cosmos DB NoSQL database. The data you return must be the current version, a configurable number of versions, or time behind the current version. Which consistency level should you implement?
+            - A: Bounded Staleness
+        - Q: You are developing a solution using Cosmos DB NoSQL database. The data you return must always be the most recent version of the data. Which consistency level should you implement?
+            - A: Strong
+        - Q: You are developing a solution using Azure Table Storage and want to query data using the REST API. Which of the following endpoints is in a valid format for the Table service REST API?
+            - A: https://myaccount.table.core.windows.net/mytable(PartitionKey='<partition-key>',RowKey='<row-key>')?$select=<comma-separated-property-names>
+        
+    4. Implement Azure Security
+        - Q: You are developing a solution using Azure SQL Server. You would like to use dynamic data masking on a column that stores social security numbers as a string in the format "123-45-6789". You want to mask everything except the last four digits, resulting in "XXX-XX-6789". Which data masking function and replacement string should you choose to accomplish this?
+            - A: Text, "XXXX-XX-"
+        - Q: You are developing a solution using Azure Key Vault. You have a web application and would like to ensure only the application can access the secrets in the Key Vault and not the application users. What are two ways to accomplish this?
+            - A: Register your web app with AZ, register your app with Key Vauilt, associate a certificate with your Azure AD web app, and have your web app use the certificate to authenticte to Key Vault.
+            - A: Create a Managed Service Identity for your web app, register the MSI in Key Vault, and hvae your web app use the MSI to authenticate to Key Vault.
+        - Q: You are developing a solution using Azure SQL Server. You woould like to silently filter the rows available to read operation (SELECT, UPDATE, and DELETE). What you use to accomplish this?
+            - A: Filter Predicates
+        - Q: To which leves of Azure Blob Storage resources can you apply a shared access signature (SAS)?
+            - A: Service Level
+            - A: Container Level
+            - A: Object Level
+    
+    5. Monitor, Troubleshoot, and Optimize Azure Solutions
+        - Q: You are developing a solution using a web app and Application insights. You would like to configure Application Insight sampling in your web app in a way that will reduce the amount of traffic procesed and retained and charged for by Application Insights. Which type of Application Insights sampling supports this?
+            - A: Ingestion Sampling
+        - Q: You are developing a solution using a Java web app and Application Insights. Which types of Application Insights sampling can you use?
+            - A: Fixed-Rate Sampling
+            - A: Ingestion Sampling
+        - Q: You are developing a solution using a web app and Application Insights. You would like to configure an Application Insights Usage Analytics feature in your web app to see where your users are located, and what browsers and operating systems they use. Which Application Insights Usage Analytics feature supports this?
+            - A: Users, Sessions, Events.
+        - Q: You are developing a solution using a web app and Application Insights. You would like to configure Application Insights sampling in your web app in a way that will reduce the telemtry traffic sent from your app. Which types of Application Insights sampling support this?
+            - A: Adaptive Sampling
+            - A: Fixed-Rate Sampling
+        - Q: You are developing a solution using a web app and Application Insights. You would like to configure Application Insights sampling in your web app, either in the ApplicationInsights.configfile or view the .NET SDK. Which types of Application Insights sampling support this?
+            - A: Fixed-Rate Sampling
+            - A: Adaptive Sampling
+        - Q: You are developing a solution using Azure web apps, and are configuring auto-scaling. How many rules will you need to be able to icnrease servers when CPU load ius high and to decrease servers when CPU load is low?
+            - A: 2
+    
+    6. Connect to and Consume Azure Services and Third-Party Services
+        - Q: You are developing a solution using Azure Service Bus. You need to create a resource group, Service Bus namespace, and Service Bus queue. Which three Azure CLI commands shoul dyou iuse to create the resources you need?
+            - A: az group create
+            - A: az servicebus namespace create
+            - A: az servicebus queue create
+        - Q: You are developing a solution using Azure Search. As your users type a partial query term, you would like Azure Search to suggest documents and return document IDs which contain the query term. Which Azure Search feature should you use?
+            - A: Suggestions API
+        - Q: You are developing a solution using Azure API Management and would like to configure your Azure API Management instance to protect an API by using OAuth 2.0 protocol with Azure Active Directory. Which type of policy should you use?    
+            - A: validate-jwt
+        - Q: You are developing a C# solution using Azure Search and the Azure Search SDK. Which property on the SearchServiceClient class can you use to index data from multiple sources?
+            - A: SearchServiceClient.DataSources
+        - Q: You are developing a solution using Azure API Management and would like to configure the xml-to-json policy to convert the reponse body from XML to JSON. Which policy section should you use?
+            - A: Outbound
+        - Q: You are developing a solution using Azure Event Grid and are creating an Event Grid subscription. You want to use the Microsoft.Storage.BlobCreated eevent and a filter to match events from blobs created in a set of containers sharing a prefix?
+            - A: subjectBeginsWith
+        - Q: You are developing a solution using Azure Service Bus. Which broker property in a message should you use to specify a context for the message for the purposes of correlation, for example, reflecting the MessageId of a message that is being replied to?
+            - A: CorrelationId
+        - Q: You are developing a solution using Azure Search and are creating an index. Which attribute of the index should you set to ensure search results include hit count by category?
+            - A: Facetable
+        - Q: You are developing a solution using Azure API Management and would like to configure the forward-request policy to forward the incoming request to the backend service specified in the request context. Which policy should you use?
+            - A: Backend
+        - Q: You are developing a solution using Azure Event Grid and are creating an Event Grid subscription. Which of the following are valid values for the destination endpointType property?
+            - A: Webhook
+            - A: Event Hub
+            - A: Queue
