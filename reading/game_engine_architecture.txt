@@ -381,7 +381,86 @@ Chapter 4 - Parallelism and Concurrent Programming
                 - Context Switching - switching between thread states
                     - Thread States - running, runnable, blocked
                 - Thread Local Storage - private memory block for data that is private to this process, shared with other threads
-
+            - Fibers - cooperative multitaksing mechanism, fibers run within the context of a thread and are scheduled cooperatively by each other
+                - Fiber Creation and Destruction
+                    - ConvertThreadToFiber(), new fiber is created within the context of the calling thread
+                    - DeleteFiber(), destroys fiber
+                - Fiber States - Active or Inactive
+                    - Active - assigned to a thread and executes on its behalf
+                    - Inactive - waiting to be activated, not consuming the resources of any thread
+                    -Fibers can deactivate themselves and make another fiber active by calling SwitchToFiber()
+                - Fiber Migration
+                    - Fibers can migrate from thread to thread, but only by passing through its inactive state
+                - Debugging with Fibers - confirm debugger has capability to profile thread 
+            - User Level Threads and Coroutines
+                - User Level Threads
+                    - Allow a programmer to code in terms of multiple independent flows of control, each with its own execution context, but without the high cost of making kernel calls
+                    - Implemented entirely in user space with a API
+                - Coroutines
+                    - generalization of the concept of a subroutine, can exit by yielding to another corouting
+                - Kernel Threads vs User Threads
+                    - Linux - a special thread created for internal use by the kernel itself, which runs only while the CPU is in privileged mode
+                    - any thread that is known to and scheduled by the kernel
+    e. Introduction to Concurrent Programming - a workload is broken down into two or more flows of control that can run semi-independently
+        - Examples - piped chain commands in Linux or Windows, single process comprised of multiple threads, thread group comprised of multiple threads, video game sharing a common game state between clients
+        - Why Write Concurrent Software? - model of multiple semi-independent flows of control matches the problem better than a single flow-of-control design
+        - Concurrent Programming Models
+            - Message Passing - threads pass messagesa between one another in order to share data and synchornize activities
+            - Shared Memory - two or more threads are granted access to the same block of physical memory, and can therefore operate directly on any data objects residing in that memory area
+        - Race Conditions - any situations in which the behavior of a program is dependent on timing
+            - Critical Races - race condition that has the potential to cause incorrect program behaviour
+                - Examples
+                    - intermittent or seemingly random bugs or crashes, incorrect results, data structures that get into corrupted states, bugs that magically disappear when you switch to debug build, bugs that are around and go away and return
+            - Data Races - critical race condition in which two or more flows of control interfere with one another while reading and/or writing a block of shared data
+        - Critical Operations and Atomicity
+            - Critical Operation - any operation that can possible read or mutate one particulare shared object
+            - Atomicity - critical operation is uninterruptable
+            - Invocation and Response
+                - Instantaneous Events
+                    - Event A happens before Event B
+                    - Event A happens after Event B
+                    - Event A and B are simultaneous
+                - Invocation - moment at which the operation begins
+                - Response - moment at which the operation is considered complete
+                - Program Order - Preamble Section, Critical Section, Postamble Section
+            - Atomicity - an operation whose invocation and response are not interrupted by another critical operation on that same object.
+            - Making an Operation Atomic
+                - Mutex - object provided by the operating system that acts like a padlock, in that it can be locked and unlocked by a thread
+                - Atomicity as Serialization - only one trhread will be performing an operation on a shared data object at a time, orderly sequential sequence of atomic operations
+                - Data Centric Consistency Models - contract betwen a data store, such as a shared data object in a concurrent system, and a colleciton of threads that share that data store
+    f. Thread Synchonization Primitives
+        - Tools that provide
+            - ability to share resources between threads by making critical operations atomic
+            - ability to synchronize the operation of two or more threads
+                - enabling a thread to go to sleep while it waits for a resource to become available or for one or more threads to complete a task
+                - enabling a running thread to notify one or more sleeping threads by waking them up
+        - Mutexes - operating system object that allows critical operations to be made atomic
+            - States - unlocked or locked, released or acquired, signaled or nonsignaled
+            - Mutex API - create() or init(), destroy(), lock() or acquire(), try_lock() or try_acquire(), unlock() or release()
+                - POSIX - pthread_mutex_t_g, pthread_mutex_lock(), pthread_mutex_unlock()
+                - C++ Standard Library - std::mutex, g_mutex.lock(), g_mutex.unlock()
+                - Window - HANDLE, WaitForSingleObject(), ReleaseMutext()
+        - Critical Sections - Windows Low Cost Mutext
+            - IntializeCriticalSection(), DeleteCriticalSection(), EnterCriticalSection(), TryEnterCriticalSection(), LeaveCriticalSection()
+        - Condition Variables
+            - Producer generates data, consumer consumes data
+            - API - create(), init(), destroy(), wait(), notify()
+        - Sempahores - atomic counter whose value is never allowed to drop below zero
+            - API - init(), destroy(), take() or wait(), give(), post, or signal()\
+            - Mutex vs. Binary Semaphore - mutex can only be unlocked by the thread that locked it, sempahore on the other hand can be incremented by one thread and later decremented by another thread
+    g. Problems with Lock-Based Concurrency
+        - Deadlock - situation in which no thread in the system can make progress, resulting in a hang
+            - Conditions
+                - Mutual Exclusion - a single thread can be granted exclusive access to a single resource via a mutex lock
+                - Hold and Wait - a thread must be holding one lock when it goes to sleep waiting on another lock
+                - No Lock Preemption - No one, not even the kernel, is allowed to forcibly break a lock held by a sleeping thread
+                - Circular Wait - there must exist a cycle in the thread dependency graph
+        - Livelock - threads spend all of their time trying to resolve the deadlock, rather than performing any work
+        - Starvation - any situation in which onre or more threads fail to receive any execution time on the CPU
+        - Priority Inversion - low priority thread acts as though it is the highest priority thread in the sytem
+        - Dining Philosophers - five philosphers sit around a circular table with plate in front and a single chopstick in between
+                - Solutions - Global Order, Central Arbitor, Chandra-Misra
+    h. Some Rules of Thumb for Concurrency
 
 Chapter 5 - 3D Math for Games
 Chapter 6 - Engine Support Systems
