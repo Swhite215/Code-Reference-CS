@@ -11,6 +11,9 @@ Certified Developer Associate
             - A: az aks enable-addons
         - Q: Which Azure CLI command should you run to create a new Azure Kubernetes Service Managed Cluster?
             - A: az aks create
+        - Q: You need to create compute nodes in Azure Batch using the CLI. Which command should you run?
+            - A: az batch pool create
+        - Q: 
         
 
 
@@ -26,7 +29,7 @@ Certified Developer Associate
             - A: New-AzureRmAppServicePlan
             - A: New-AzureRmResourceGroup
             - A: New-AzureRmWebApp
-        - Q: You haved a web application and you need to proc3ss sensitive data in the most secure way possible, following the Gatekeeper pattern. You want whatever software that processes the sensitive data to be the ONLY software which has access to the data. Which of the following is a valid way to accomplish this?
+        - Q: You haved a web application and you need to process sensitive data in the most secure way possible, following the Gatekeeper pattern. You want whatever software that processes the sensitive data to be the ONLY software which has access to the data. Which of the following is a valid way to accomplish this?
             - A: Process the sensitive data in a separate web job instead of in the web app.
         - Q: Which of the following Azure App Service plans support custom domain names?
             - A: Shared
@@ -43,6 +46,25 @@ Certified Developer Associate
             - A: Minimize layers by grouping actions in as few RUN instructions as possible.
         - Q: You are developing a solution using Azure Functions. You have another app located on-premises that will call the new Azure Function. Which feature of Azure Functions will you need to enable so that only the on-premises app can call the function?
             - A: CORS
+        - Q: You are developing a solution using Azure Mobile Apps and are using C# and the Mobile Apps SDK. Which 2 code segments will you need to use to sync the data from the app to an offline data table?
+            - A: IMobileServiceSyncTable.PushAsync()
+            - A: IMobileServiceSyncTable.PullAsync()
+        - Q: You are developing a Docker application for a Linux Azure App Service Web App. Which three Azure CLI commands should you use to create the resources you need?
+            - A: az group create
+            - A: az appservice plan create
+            - A: az webapp create
+        - Q: Which of the following Azure App Service plans support custom domain names?
+            - A: Shared
+            - A: Standard
+            - A: Basic
+        - Q: You are developing a solution using Azure Mobile Apps and are using C# and the Mobile Apps SDK. Which code segment will you need to use to sync tha data from the app to an offline data table?
+            - A: MobileServiceClient.GetSyncTable()
+        - Q: Which Dockerfile instruction copies new files or directories from and adds them to the filesystem of the container at the path?
+            - A: COPY
+        - Q: Which Dockerfile instruction lets you set an executable to run, or set a script to run as well as an ENTRYPOINT instruction?
+            - A: CMD
+        - Q: Which Azure Function hosting plan type allows for the highest CPU andd RAM resources?
+            - App Service Plan
 
     3. Developing for Azure Storage
         - Q: You are developing a solution using Azure Blob Storage and want to implement pessimistic concurrency using blob leases. Which of the following synchronization strategies will a blob lease allow you to configure?
@@ -54,12 +76,18 @@ Certified Developer Associate
             - A: Consistent Prefix
         - Q: You are developing a solution using Azure Blob Storage and want to implement optimistic concurrency. Which solution should you choose?
             - A: Use blob properties
+        - Q: You are developing a solution using Azure Blob Storage and want to implement pessimistic concurrency, Which solution should you choose?
+            - A: Use blob leases
         - Q: You are developing a solution using Cosmos DB NoSQL database. The data you return must be the current version, a configurable number of versions, or time behind the current version. Which consistency level should you implement?
             - A: Bounded Staleness
         - Q: You are developing a solution using Cosmos DB NoSQL database. The data you return must always be the most recent version of the data. Which consistency level should you implement?
             - A: Strong
         - Q: You are developing a solution using Azure Table Storage and want to query data using the REST API. Which of the following endpoints is in a valid format for the Table service REST API?
             - A: https://myaccount.table.core.windows.net/mytable(PartitionKey='<partition-key>',RowKey='<row-key>')?$select=<comma-separated-property-names>
+        - Q: You are developing a solution using Cosmos DB and want to store data in schema-less tables and perform queries with the Table SDK. Which Cosmos DB API should you use?
+            - A:  Table
+        - Q: You are developing a solution that uses Azure Blob Storage. You have multiple blob storage containers. You need to copy specific blobs across containers in the most efficient manner possible. What should you do?
+            - A: Run the following Azure PowerShell command: AzCopy /Source:$sourceServer /Dest:$DestServer /SourceKey:sourceKey /DestKey:$destKey /S
         
     4. Implement Azure Security
         - Q: You are developing a solution using Azure SQL Server. You would like to use dynamic data masking on a column that stores social security numbers as a string in the format "123-45-6789". You want to mask everything except the last four digits, resulting in "XXX-XX-6789". Which data masking function and replacement string should you choose to accomplish this?
@@ -73,7 +101,15 @@ Certified Developer Associate
             - A: Service Level
             - A: Container Level
             - A: Object Level
-    
+        - Q: You are developing a solution using Azure SQL Server and would like to use dynamic data masking. Which three parts of the database will you need to implement a masking rule?
+            - A: Table Name
+            - A: Schema Name
+            - A: Column Name
+        - Q: You are developing an Azure web app and have configured a Managed Service Identity for the web app. You need to use C# code and the Microsoft.Azure.Services.AppAuthentication NuGet package to get an access token for the MSI. Which class/method should you use?
+            - A: AzureServiceTokenProvider.GetAccessTokenAsync()
+        - Q: You are developing a solution using Azure SQL Server. You would liek to explicitly block write operations (AFTER INSERT, AFTER UPDATE, BEFORE UPDATE, BEFORE DELETE) mthat violate the predicate. What should you use to accomplish this?
+            - A: Block Predicates
+
     5. Monitor, Troubleshoot, and Optimize Azure Solutions
         - Q: You are developing a solution using a web app and Application insights. You would like to configure Application Insight sampling in your web app in a way that will reduce the amount of traffic procesed and retained and charged for by Application Insights. Which type of Application Insights sampling supports this?
             - A: Ingestion Sampling
@@ -90,6 +126,20 @@ Certified Developer Associate
             - A: Adaptive Sampling
         - Q: You are developing a solution using Azure web apps, and are configuring auto-scaling. How many rules will you need to be able to icnrease servers when CPU load ius high and to decrease servers when CPU load is low?
             - A: 2
+        - Q: You are developing a solution using Azure web apps and are designing an auto-scale rule. Which of the following are valid metrics to use for the rule?
+            - A: DiskQueueLength
+            - A: Percentage CPU
+            - A: BytesOut and BytesReceived
+            - A: MemoryPercentage
+            - A: HttpQueueLength
+        - Q: You are developing a solution using  aweb app and Application Insights. You would like to configure an Appliction Insights Usage Analytics feature in your web app to see if there are places where users repeat the same action over and over. Which Application Insights Usage Analytics feature supports this?
+            - A: User Flows
+        - Q: You are configuring an Azure Logic App are designing a retry policy. Which of the following is a valid ISO 8601 interval for the policy representing 20 seconds?
+            - PT20S
+        - Q: You are developing a solution using web app and Application Insights. You would like to configure an Application Usage Analytics feature in your web app to compare the number of users who return to your web app after purchasing a product with the number who return after no purchasing. Which Application Insights Usage Analysis feature supports this?
+            - A: Retention
+        - Q: You are developing a solution using web app and Application Insights. You would like to configure an Application Insights Usage Analysis feature in your web app to see what pages your users are most interested in. Which Application Insights Usage Analysis feature supports this?
+            - A: Users, Sessions, Events
     
     6. Connect to and Consume Azure Services and Third-Party Services
         - Q: You are developing a solution using Azure Service Bus. You need to create a resource group, Service Bus namespace, and Service Bus queue. Which three Azure CLI commands shoul dyou iuse to create the resources you need?
@@ -116,3 +166,20 @@ Certified Developer Associate
             - A: Webhook
             - A: Event Hub
             - A: Queue
+        - Q: You are developing a solution using Azure Search and are creating an index. Which attribute of the index shoul dyou set to mark the filed as full-text searchable?
+            - A: Searchable
+        - Q: You are developing a solution using Azure Event Grid and are creating an Event Grid subscription. Which of the following are valid types to use for the filter property?
+            - A: includedEventTypes
+            - A: subjectEndsWith
+            - A: isSubjectCaseSensitive
+            - A: subjectBeginsWith
+        - Q: You are developiong a solution using Azure Search. As your users type a partial query term, you would like Azure Search to return potential terms from the index which match the partial term in the query. Which Azure Search feature should you use?
+            - A: Autocomplete API
+        - Q: Which of the following are valid methods in the Azure Search IndexBatch class?
+            - A: Merge
+            - A: Upload
+            - A: MergeOrUpload
+        - Q: You are developing a solution using Azure Service Bus. Which broker property in a message is a 64 bit integer assigned to a message as its true identifier?
+            - A: SequenceNumber
+        - Q: You are developing a solution using Azure Search and C#, using the Azure Search SDK. You have the following C# code. Which additional code do you need to ensure the data is indexed?
+            - A: indexClient.Documents.Index(batch)
