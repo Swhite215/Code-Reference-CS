@@ -461,6 +461,69 @@ Chapter 4 - Parallelism and Concurrent Programming
         - Dining Philosophers - five philosphers sit around a circular table with plate in front and a single chopstick in between
                 - Solutions - Global Order, Central Arbitor, Chandra-Misra
     h. Some Rules of Thumb for Concurrency
+        - Global Ordering Rules - ordering must be imposed globally across all threads
+        - Transaction-Based Algorithms - transaction is an individual bundle of resources and/or operations, transactions are submitted to a central arbiter of some kind
+        - Minimizing Contention - reduce times threads have to wait for a lock
+        - Thread Safety - API functions can be safely called by any thread in a multithreaded process
+    i. Lock-Free Concurrency
+        - Practice of preventing threads from going asleep while waiting on a resource to become available
+        - Non-Blocking Techniques
+            - Blocking - a thread can be put to sleep while waiting for shared resources to become available
+            - Obstruction Freedom - guarantee that a single thread will always complete its work on a bounded number of steps, when all of the other threads in the system are suddenly suspended
+            - Lock Freedom - in any infinitely long run of the program, an infinite number of operations will be completed
+            - Wait Freedom - Lock Freedom and guarantees starvation freedom
+        - Causes of Data Race Bugs
+            - via the interruption of one critical operation by another
+            - by instruction reordering optimizations performed by the compiler and CPU
+            - as a result of hardware specific memory ordering semantics
+        - Implementing Atomicity
+            - Atomicity by disabling interrupts
+            - Atomic instructions at the machine language level, atomic reads and writes and atomic read-modify-write instructions
+            - Test and Set - simplest read-modify-write instruction, sets a boolean variable to 1 and returns its previous value
+            - Exchange - swaps contenst of two registers, or a register and a location in memory
+            - Compare and Swap - checks exisitng value in memory location, and atomically swaps it with a new value if and only if the existing value matches an expected value
+            - ABA Problem - read sees As values, another thread preempts us, or runs on another core, and writes two values into the location we are trying to atomically update.
+            - Load Linked/Store Conditional - load linked reads the value of a memory location atomically and stores the address in a special CPU register known as the link register
+                - Advantages of LL/SC over CAS
+                    - SC fails whenever any write is performed on the bus, so an LL/SC is not prone to the ABA problem
+                    - LL/SC is more pipeline friendly than a CAS instruction
+            - Strong and Weak Compare-Exchange
+                - Strong compare exchange hides spurios SC failures from the programmer
+                - Weak compare exchange does not
+            - Relative Strength of Atomic RMW Instructions
+                - TAS is weaker then CAS and LL/SC in achieving consensus between multiple threads in a concurrent system
+            - How Instruction Reordering Causes Concurrency Bugs
+                - CPU can reorder the producer's write so that it occurs before the write of data that informs the consumer
+            - Compiler Barriers - a pseudoinstruction that stops the compiler from reordering read and write instructions across critical operation boundaries
+            - Memory Ordering Semantics - rules that provide various guarantees about how reads and writes propogate between cores, and they provide programmers with the tools necessary to enforce a particular ordering, when teh default semantics are insufficient
+            - Multicore Cache Coherency Protocols - a communication mechanism that permits cores to share data between their local L1 cahces
+                - MESI - Modified, Exclusive, Shared, and Invalid
+                - MOESI - Modified, Owned, Exclusive, Shared and Invalid
+                - How MESI Can Go Wrong - optimizations, some operations are deferred to save time
+            - Memory Fences - special machine language instructions to prevent first instructions from passing second, serves as compiler barriers and prevent CPUs out of order logic from reordering instructions across the fence
+                - First Instruction Passes Second
+                    - a read can pass another read
+                    - a read can pass a write
+                    - a write can pass another write
+                    - a write can pass a read
+                - Acquire and Release Semantics
+                    - Release - guarantees that a write to shared memory can never be passe dby any other read or write that precedes it in program order
+                    - Acquire - guarantees that a read from shared memory can never be passed by any other read or write that precedes it in program order
+                    - Full Fence - bidirectional semantic ensures that all memory operations appear to occur in program order across the boundary created by a fence instruction in the code
+                - When to Use Acqure and Release Semantics
+                    - Write-Release in producer scenarios, in which a thread performs two consecutive writes and we need to ensure that all other threads will see the two writes in the correct order
+                    - Read-Acquire used in a consumer scenarios, in which a thread performs two consecutive reads in which the second is conditional on the first
+            - Atomic Variables - C++11 class template std::atomic<T> allows virtually any data type to be converted into an atomic variable
+                - C++ Memory Order
+                    - Read - an atomic operation peformed with relaxed memory order semantics guarantees only atomicity. No barrier or fence is used
+                    - Consume - a read performed with consume semantics guarantees that no other read or write within the same thread can be reordered before the read
+                    - Release - a write performed with release semantics guarantees that no other read or write in this thread can be reordered after it, and the write is guaranteed to be visible by other threads reading the same address
+                    - Acquire - a read performed with acquire semantics guarantees consume semantics and guarantees that writes to the same address by other threads will be visible to this thread
+                    - Acquire/Release - supplies a full memory fence
+            - Concurency in Interpreted Programming Languages
+                - Provide powerful synchronization facilities that are not constrained by the hardware
+        - Spin Locks
+            
 
 Chapter 5 - 3D Math for Games
 Chapter 6 - Engine Support Systems
