@@ -64,7 +64,20 @@ Certified Developer Associate
         - Q: Which Dockerfile instruction lets you set an executable to run, or set a script to run as well as an ENTRYPOINT instruction?
             - A: CMD
         - Q: Which Azure Function hosting plan type allows for the highest CPU andd RAM resources?
-            - App Service Plan
+            - A: App Service Plan
+        - Q: How many threads are run in the Azure FUnction app runtime?
+            - A: 1 - (Single Threaded )
+        - Q: Which Azure Function trigger types are, by default, retried up to five times?
+            - A: Azure Blob Storage
+            - A: Azure Queue Storage
+            - A: Azure Service Bus Queue (Queue/Topic)
+        - Q: You maintain an Azure Web App that runs in a container. The container is using a Dockerfile. You need to optimize the Dockerfile for build speed. What options can you use?
+            - A: Use multiple RUN instructions for cached operation
+            - A: Configure teh CLI with a .dockerignore file
+            - A: Order all the instructions
+        - Q: Which of the following Azure App Service plans support deployment slots?
+            - A: Premium
+            - A: Shared
 
     3. Developing for Azure Storage
         - Q: You are developing a solution using Azure Blob Storage and want to implement pessimistic concurrency using blob leases. Which of the following synchronization strategies will a blob lease allow you to configure?
@@ -73,7 +86,7 @@ Certified Developer Associate
             - A: Exclusive Write / Shared Read
             - A: Shared Write / Exclusive Read
         - Q: You are developing a solution using Cosmos DB NoSQL database. When you return data, it must be guaranteed that reads never see out-of-order writes. Which consistency level should you implement?
-            - A: Consistent Prefix
+            - A: Consistent Prefix ( READS NEVER SEE OUT OF ORDER WRITES )
         - Q: You are developing a solution using Azure Blob Storage and want to implement optimistic concurrency. Which solution should you choose?
             - A: Use blob properties
         - Q: You are developing a solution using Azure Blob Storage and want to implement pessimistic concurrency, Which solution should you choose?
@@ -81,14 +94,17 @@ Certified Developer Associate
         - Q: You are developing a solution using Cosmos DB NoSQL database. The data you return must be the current version, a configurable number of versions, or time behind the current version. Which consistency level should you implement?
             - A: Bounded Staleness
         - Q: You are developing a solution using Cosmos DB NoSQL database. The data you return must always be the most recent version of the data. Which consistency level should you implement?
-            - A: Strong
+            - A: Strong (MOST RECENT DATA )
         - Q: You are developing a solution using Azure Table Storage and want to query data using the REST API. Which of the following endpoints is in a valid format for the Table service REST API?
             - A: https://myaccount.table.core.windows.net/mytable(PartitionKey='<partition-key>',RowKey='<row-key>')?$select=<comma-separated-property-names>
         - Q: You are developing a solution using Cosmos DB and want to store data in schema-less tables and perform queries with the Table SDK. Which Cosmos DB API should you use?
             - A:  Table
         - Q: You are developing a solution that uses Azure Blob Storage. You have multiple blob storage containers. You need to copy specific blobs across containers in the most efficient manner possible. What should you do?
             - A: Run the following Azure PowerShell command: AzCopy /Source:$sourceServer /Dest:$DestServer /SourceKey:sourceKey /DestKey:$destKey /S
-        
+        - Q: You are developing a solution using Azure CosmosDB and the Table API. Which two code segments help you create a query off of Partition Key and model property of boolean?
+            - A: TableQuery.GenerateFilterCondition() for PartitionKey
+            - A: TableQuery.GenerateFilterConditionForBool() for boolean
+            
     4. Implement Azure Security
         - Q: You are developing a solution using Azure SQL Server. You would like to use dynamic data masking on a column that stores social security numbers as a string in the format "123-45-6789". You want to mask everything except the last four digits, resulting in "XXX-XX-6789". Which data masking function and replacement string should you choose to accomplish this?
             - A: Text, "XXXX-XX-"
@@ -109,6 +125,10 @@ Certified Developer Associate
             - A: AzureServiceTokenProvider.GetAccessTokenAsync()
         - Q: You are developing a solution using Azure SQL Server. You would liek to explicitly block write operations (AFTER INSERT, AFTER UPDATE, BEFORE UPDATE, BEFORE DELETE) mthat violate the predicate. What should you use to accomplish this?
             - A: Block Predicates
+        - Q: You are developing an Azure web app and using Azure App Service Authentication with Azure Active Directory. You need to access the users' claims within the web app. Where will you find these?
+            - A: HTTP Request Header
+        - Q: You are developing a solution using Azure SQL Server. You would like to encrypt specific columns and woul dlike to store your encryption key in Azure Key Vault. How would you accomplish this?
+            - A: Always Encrypted
 
     5. Monitor, Troubleshoot, and Optimize Azure Solutions
         - Q: You are developing a solution using a web app and Application insights. You would like to configure Application Insight sampling in your web app in a way that will reduce the amount of traffic procesed and retained and charged for by Application Insights. Which type of Application Insights sampling supports this?
@@ -140,6 +160,10 @@ Certified Developer Associate
             - A: Retention
         - Q: You are developing a solution using web app and Application Insights. You would like to configure an Application Insights Usage Analysis feature in your web app to see what pages your users are most interested in. Which Application Insights Usage Analysis feature supports this?
             - A: Users, Sessions, Events
+        - Q: You are developing a solution using Azure web apps, and are designing an auto-scaling rule. What property of the rule should you set to specify the amount of time to look back in metrics when determining if rules should be run (to avoid reacting to transient spikes)?
+            - A: TimeGrain
+        - Q: You are configuring an Azure Logic App and are designing a retry policy in JSON. What is the name of the property to set to specify the number of retry attemps, which must be between 1 and 90?
+            - A: Count
     
     6. Connect to and Consume Azure Services and Third-Party Services
         - Q: You are developing a solution using Azure Service Bus. You need to create a resource group, Service Bus namespace, and Service Bus queue. Which three Azure CLI commands shoul dyou iuse to create the resources you need?
@@ -183,3 +207,5 @@ Certified Developer Associate
             - A: SequenceNumber
         - Q: You are developing a solution using Azure Search and C#, using the Azure Search SDK. You have the following C# code. Which additional code do you need to ensure the data is indexed?
             - A: indexClient.Documents.Index(batch)
+        - Q: You are developing a solution using Azure Service Bus. Which broker property in a message should you use to see the number of deliveries that have been attempted for this message?
+            - A: DeliveryCount
