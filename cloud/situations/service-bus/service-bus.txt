@@ -4,7 +4,7 @@ Objectives:
 
 Important Information:
     1. Service Bus
-        - Fully managed enterprise message broker, used to decouple applicaitons and services
+        - Fully managed enterprise message broker, used to decouple applications and services
         - Supports topics/subcriptiosn for multi-cast delviery
         - Benefits: session management, routing, dead-lettering, scheduling, deferral, transactions
     2. Components of Solution

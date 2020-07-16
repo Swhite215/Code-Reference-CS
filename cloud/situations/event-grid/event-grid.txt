@@ -5,7 +5,7 @@ Objectives:
 
 Important Information:
     1. Event Grid
-        - Fully managed, massively scalable, event routing service that provides for event consumption using a public-subscribe model
+        - Fully managed, massively scalable, event routing service that provides for event consumption using a publish-subscribe model
         - Designed for listening to events and delivering events to component that can handle it
         - Examples: Ops Automation, Serverless Architecture, Application Integration
         - Terms:

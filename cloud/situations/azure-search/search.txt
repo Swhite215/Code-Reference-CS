@@ -8,7 +8,7 @@ Objectives:
 Important Information:
     1. Search
         - Search-as-a-Service
-        - Scalabe, performant means of storing documents and performing complex queries
+        - Scalable, performant means of storing documents and performing complex queries
     2. Components of Solution
     3. Order of Operations
         - Create Search Service
