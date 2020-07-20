@@ -535,9 +535,89 @@ Chapter 4 - Parallelism and Concurrent Programming
     k. GPGPU Programming - General Purpose GPU Programming
         - GPU - specialized coprocessor designed specifically to accelerate those computations taht involve a high degree of data parallelism
             - Combines SIMD (Vectorized ALUs) with MIMD parallelism, by employing a form of preemptive multi-threading.
-            - G argument tells the GPU driver into how many threads groups to divide the work
+            - G argument tells the GPU driver into how many threads groups to divide the wor
+            - Cartesian Coordinates - (Px, Py) or (Px, Py, Pz)k
 
 Chapter 5 - 3D Math for Games
+    a. Solving 3D Problems in 2D
+    b. Points and Vectors
+        - Coordinates
+            - Cylindrical Coordinates - (Ph, Pr, Ptheta) or Height, Radius and Yaw
+            - Spherical Coordinates - (Pr, Pphi, P Ptheta) or Radial, Pitch, and Yawss
+        - Left-Handed vs. Right-Handed - difference between the direction one of the three axes are pointing
+        - Vectors - quantity with both a magnitude and direction in n-dimensional space (x, y, z)
+        - Vector Operations
+            - Multiplication by a Scalar - sa = (sx, sy, sz)
+            - Additiona and Subtraction - a + b = (ax + bx, ay + by, az + bz) or a - b = (ax - bx, ay - by, az - bz)
+            - Magnitude - scalar representing the length of the vectors as it would be measured in 2D or 3D space |a| = sqrt(ax^2, ay^2, az^2)
+            - Unit Vector - vector with a magnitude of length 1
+            - Normal Vectors - normal to a surface if it is perpendicular to that surface
+            - Dot and Cross Produc 
+                - Dot Product - dot product of two vectors yields a scalar - a * b = axbx + ayby + azbz = d
+                - Cross Product - cross product of two vectors yields another vector that is perpendicular to the two vectors being multiplied
+        - Linear Interpolation of Points and Vectors
+            - simple mathematical operation that finds an intermediate point between two known points
+    c. Matrices - rectangular array of m x n scalars.
+        - Matrix Multiplication
+        - Representing Points and Matrices - v1 = [1, 2, 3] or vertical 
+        - Identity Matrix - a matrix that when multipied by any other matrix, yields the very same matrix
+        - Matrix Inversion - inverse of Matrix A is another Matrix A^-1 that undoes the effects of Matrix A
+        - Transposition - transpose of a Matrix M is M^T, obtained by reflecting the entities of the original matrix across its diaganol, the rows of the original matrix become the columns of the transposed matrix and vice versa
+        - 4 x 3 matrices - 4 x 4 affine matrix always contains the vector [0, 0, 0, 1], as such game programmers omit the fourth column to save memory
+        - Coordinate Spaces -  a set of coordiante axes
+            - Model Space - origin is placed at a central location within the object
+                - Front - axis that points to the directyion that the object naturally travels or faces
+                - Up - axis that points towards the top of the object
+                - Left or Right - axis that points toward the left or right side of the object
+            - World Space - fixed coordinate space, in wich the positions, orientations, and scales of all objects in the game world are expressed
+            - View Space - coordinate frame fixed to the camera
+            - Change of Basis - conversion of object's position, orientation, and scale from one coordinate system into another
+            - Coordiante Space Hierarchies - every coordinate space is a child of some other coordinte space, and the other space acts as the parent
+        - Storing Matrices in Memory - two dimensioanl arrays
+            - Store contiguously in memory, i.e. each row contains a single vector
+            - Store the vectors strided in memory, i.e. each column contains one vector
+    d. Quaternions - rotational representation of an object, four dimensional complex number with a single real axis and three imaginary axes represnted by the imaginary numbers i, j, and k
+        - Unit Quaternions as 3D Rotations - three dimensional vector plus a fourth scalar coordinate
+        - Quaternion Operations
+            - Mulitplication - the product of p and q represents that composite rotation, i.e. rotation q followed by rotation p
+            - Conjugate and Inverse
+                - Inverse is defined as q^-1 and when multiplied by the original yields the scalar 1
+                - Conjugate - negate the vector part but leave the scalar part
+            - Rotating Vectors with Quaternions
+                - Convert vector to quaternion, multiple that by the quaternion and the post multiple by the quaternion inverse q^1
+            - Quaternion Concatenation - can be achieved by multiplying the quaternions together
+            - Quaternion- Matrix Equivalence - can convert any 3D rotation freel between a 3x3 matrix representation and a quaternion representation
+            - Rotational Linear Interpolation - mathematical operation that finds an intermediate roation between two rotations
+            - Spherical Linear Interpolation - uses sines and cosines to interpolate along a great circle of the 4D hypersphere
+    e. Comparison of Rotational Representations
+        - Euler Angles - yaw, pitch, and roll
+            - + = simplicity, small size
+            - - = gimbal lock, differing order in which rotations are performed PYR, YPR, RYP, and so on, depends on mapping x, y, and z to front, left/right, and up
+        - 3x3 Matrices
+            - - = not particularly intuitive
+        - Axis + Angle
+            - + = intuitive, compact
+            - - = rotations can not be easily interpolated
+        - Quaternions
+            - + = permits rotations to be concatenated and applied directly to points and vectors via q multiplication, and permits rotations to be easily interpolated via simple LERP or SLERP operations
+        - SRT Transformations - Scale Factor, Rotation Quaternion and Translation Vector
+            - + = size and ability to be easily interpolated
+        - Dual Quaternions
+        - Degrees of Freedom - number of mutually independent ways in which an object's physical state (position and orientaiton) can change
+            - Six DOF - three in translation (x, y, x). and three in rotation ( about the x, about the y, about the z)
+            - Euler - 3 DOF
+            - Axis+Angle - 3 DOF
+            - Quaternion - 3 DOF
+            - 3x3 Matrix - 3 DOF
+    f. Other Useful Math Objects
+        - Lines, Rays, and Line Segments, Spheres, Planes, Axis Aligned Bounding Boxes, Oriented Bounding Boxes, Frusta, Convex Polyhedral Regions
+    g. Random Number Generation
+        - Linear Congruential Genreations
+        - Mersenne Twister
+        - Mother of All, Xorshfit, and KISS99
+        - PCG
+
+
 Chapter 6 - Engine Support Systems
 Chapter 7 - Resources and the File System
 Chapter 8 - The Game Loop and Real-Time Simulation
