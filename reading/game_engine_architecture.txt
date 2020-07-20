@@ -523,7 +523,19 @@ Chapter 4 - Parallelism and Concurrent Programming
             - Concurency in Interpreted Programming Languages
                 - Provide powerful synchronization facilities that are not constrained by the hardware
         - Spin Locks
-            
+            - Use TAS instruction to atomically set the flag to true, retrying the value in a while loop until the TAS succeeds. Unlock by atomically writing a value of false into the flag
+            - When Acquiring - use read-acquire memory ordering semantics to read the lock's current contents as part of the TAS operation
+            - When Releasing - use write-release semantics to ensure that all writes performed after the call to Unlock() aren't observed by other threads as if they had happened before the lock was released
+            - Scoped Locks - wrapper to ensure that a lock is automatically released when a particular scope is exited
+            - Reentrant Locks - avoid reentrancy by having the lock cache the id of the thread that has locked it
+            - Readers-Writer Locks - allows any number of readers to acquire it concurrently, when a writer thread attempts to acquire the lock, it should wait until all readers are finished, and then it should acquire the lock in a special "exclusive" mode that prevents readers and writers from gaining access until mutation has completed\
+            - Lock-Not-Needed Assertions - assert a lock isn't required
+        - Lock-Free Transactions - avoid taking locks that will either put the thread to sleep ort cause it to get caught in a busy-wait loop inside a spin lock, perform majority of work locally, execute as single atomic instruction
+    j. SIMD/Vector Processing -  perform a mathematical operation on multiple data items in parallel, using a single machine instruction
+    k. GPGPU Programming - General Purpose GPU Programming
+        - GPU - specialized coprocessor designed specifically to accelerate those computations taht involve a high degree of data parallelism
+            - Combines SIMD (Vectorized ALUs) with MIMD parallelism, by employing a form of preemptive multi-threading.
+            - G argument tells the GPU driver into how many threads groups to divide the work
 
 Chapter 5 - 3D Math for Games
 Chapter 6 - Engine Support Systems
