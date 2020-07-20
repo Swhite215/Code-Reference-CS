@@ -46,7 +46,7 @@ Fundamentals of Microsoft Azure
             - Software as a Service SaaS - web based alternate software that is frequently subscription based
                 - Office 365, and Skype
             - Container As a Service CaaS
-            - Funcation As a Service FaaS
+            - Function As a Service FaaS
     
     2. Module 2: Core Cloud Services - Introduction to Azure
         a. What is Azure?
@@ -272,6 +272,7 @@ Fundamentals of Microsoft Azure
                 - Providing Identities to Services
                     - Service Principals - identity is a thing to be authenticated and a principal is an identity acting with certain roles or claims
                     - Managed Identity - account on organization's Active Directory
+                    - Managed Service Identity - authentication for services
                 - Role Based Access Control
                     - Sets of permissions that users can be granted, identities normally mapped to roles
                 - Privileged Identity Management
@@ -428,7 +429,7 @@ Fundamentals of Microsoft Azure
         c. Factors Affecting Costs
             - Resource Type, Services, Location, Azure Billing Zones
         d. Estimate Costs with the Azure Pricing Calculator
-            - Configuration Options - Region, Tier, Billing Options, Support Options, Progams and Offers, Azure Dev/Test Pricing
+            - Configuration Options - Region, Tier, Billing Options, Support Options, Programs and Offers, Azure Dev/Test Pricing
         e. Predict and Optimize with Cost Managemnt and Azure Advisor
             - Azure Advisor - recommendation on high availability, security, performance, and cost
             - Cost Recommendations
