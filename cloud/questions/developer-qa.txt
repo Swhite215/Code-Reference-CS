@@ -78,6 +78,10 @@ Certified Developer Associate
         - Q: Which of the following Azure App Service plans support deployment slots?
             - A: Premium
             - A: Shared
+        - Q: You are developing a stateful ASP.NET core web application. Which are valid ways to save sensitive data in your web application?
+            - A: HttpContext.Items
+        - Q: You are developiong an Azure Batch job and have created a pool of compute nodes. You are using C# code and the Batch SDK. You need to choose the right class and its methods to submit a batch job to the Batch service. Which method should you use?
+            - A: CloudJob.CommitAsync(IEnumerable, CancellationToken)
 
     3. Developing for Azure Storage
         - Q: You are developing a solution using Azure Blob Storage and want to implement pessimistic concurrency using blob leases. Which of the following synchronization strategies will a blob lease allow you to configure?
@@ -104,6 +108,9 @@ Certified Developer Associate
         - Q: You are developing a solution using Azure CosmosDB and the Table API. Which two code segments help you create a query off of Partition Key and model property of boolean?
             - A: TableQuery.GenerateFilterCondition() for PartitionKey
             - A: TableQuery.GenerateFilterConditionForBool() for boolean
+        - Q: You are developing a solution using Azure CosmosDB and the Table API. Which Query Comparisons should you use for PartitionKey is "Smith" and RowKey is letter before "E"?
+            - A: QueryComparisons.Equal
+            - A: QueryComparisons.LessThan
             
     4. Implement Azure Security
         - Q: You are developing a solution using Azure SQL Server. You would like to use dynamic data masking on a column that stores social security numbers as a string in the format "123-45-6789". You want to mask everything except the last four digits, resulting in "XXX-XX-6789". Which data masking function and replacement string should you choose to accomplish this?
@@ -129,9 +136,11 @@ Certified Developer Associate
             - A: HTTP Request Header
         - Q: You are developing a solution using Azure SQL Server. You would like to encrypt specific columns and woul dlike to store your encryption key in Azure Key Vault. How would you accomplish this?
             - A: Always Encrypted
+        - Q: You are developing a solution using Azure Active Directory. You need to use the Azure CLI to create a role, and then assing a user to that role. Which command sequence should you use to accomplish this?
+            - A: az role definition create, az role assignment create
 
     5. Monitor, Troubleshoot, and Optimize Azure Solutions
-        - Q: You are developing a solution using a web app and Application insights. You would like to configure Application Insight sampling in your web app in a way that will reduce the amount of traffic procesed and retained and charged for by Application Insights. Which type of Application Insights sampling supports this?
+        - Q: You are developing a solution using a web app and Application insights. You would like to configure Application Insight sampling in your web app in a way that will reduce the amount of traffic processed and retained and charged for by Application Insights. Which type of Application Insights sampling supports this?
             - A: Ingestion Sampling
         - Q: You are developing a solution using a Java web app and Application Insights. Which types of Application Insights sampling can you use?
             - A: Fixed-Rate Sampling
@@ -190,7 +199,7 @@ Certified Developer Associate
             - A: Webhook
             - A: Event Hub
             - A: Queue
-        - Q: You are developing a solution using Azure Search and are creating an index. Which attribute of the index shoul dyou set to mark the filed as full-text searchable?
+        - Q: You are developing a solution using Azure Search and are creating an index. Which attribute of the index should you set to mark the filed as full-text searchable?
             - A: Searchable
         - Q: You are developing a solution using Azure Event Grid and are creating an Event Grid subscription. Which of the following are valid types to use for the filter property?
             - A: includedEventTypes
@@ -209,3 +218,7 @@ Certified Developer Associate
             - A: indexClient.Documents.Index(batch)
         - Q: You are developing a solution using Azure Service Bus. Which broker property in a message should you use to see the number of deliveries that have been attempted for this message?
             - A: DeliveryCount
+        - Q: Which of the following are valid methods in the Azure Search IndexBatch class?
+            - A: Merge
+            - A: Upload
+            - A: MergeOrUpload
