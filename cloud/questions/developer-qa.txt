@@ -13,9 +13,6 @@ Certified Developer Associate
             - A: az aks create
         - Q: You need to create compute nodes in Azure Batch using the CLI. Which command should you run?
             - A: az batch pool create
-        - Q: 
-        
-
 
     2. Develop Azure Platform as a Service Compute Solutions
         - Q: Which hosting plans for Azure Functions will allow for the Azure function app to invoke functions in parallel, when needed to scale?
@@ -26,8 +23,8 @@ Certified Developer Associate
         - Q: You are developing a solution using Azure Functions and would like to create your function with the Azure CLI and configure it to deploy code from a GitHub repository. Using the az functionapp create command, which parameter should you use to bind your GitHub repository?
             - A: --deployment-source-url
         - Q: You are developing a Docker application for an Azure App Service Web App. Which three Azure PowerShell commands should you use to create the resources you need?
-            - A: New-AzureRmAppServicePlan
             - A: New-AzureRmResourceGroup
+            - A: New-AzureRmAppServicePlan
             - A: New-AzureRmWebApp
         - Q: You haved a web application and you need to process sensitive data in the most secure way possible, following the Gatekeeper pattern. You want whatever software that processes the sensitive data to be the ONLY software which has access to the data. Which of the following is a valid way to accomplish this?
             - A: Process the sensitive data in a separate web job instead of in the web app.
@@ -53,11 +50,7 @@ Certified Developer Associate
             - A: az group create
             - A: az appservice plan create
             - A: az webapp create
-        - Q: Which of the following Azure App Service plans support custom domain names?
-            - A: Shared
-            - A: Standard
-            - A: Basic
-        - Q: You are developing a solution using Azure Mobile Apps and are using C# and the Mobile Apps SDK. Which code segment will you need to use to sync tha data from the app to an offline data table?
+        - Q: You are developing a solution using Azure Mobile Apps and are using C# and the Mobile Apps SDK. Which code segment will you need to use to sync the data from the app to an offline data table?
             - A: MobileServiceClient.GetSyncTable()
         - Q: Which Dockerfile instruction copies new files or directories from and adds them to the filesystem of the container at the path?
             - A: COPY
@@ -65,7 +58,7 @@ Certified Developer Associate
             - A: CMD
         - Q: Which Azure Function hosting plan type allows for the highest CPU andd RAM resources?
             - A: App Service Plan
-        - Q: How many threads are run in the Azure FUnction app runtime?
+        - Q: How many threads are run in the Azure Function app runtime?
             - A: 1 - (Single Threaded )
         - Q: Which Azure Function trigger types are, by default, retried up to five times?
             - A: Azure Blob Storage
@@ -73,14 +66,14 @@ Certified Developer Associate
             - A: Azure Service Bus Queue (Queue/Topic)
         - Q: You maintain an Azure Web App that runs in a container. The container is using a Dockerfile. You need to optimize the Dockerfile for build speed. What options can you use?
             - A: Use multiple RUN instructions for cached operation
-            - A: Configure teh CLI with a .dockerignore file
+            - A: Configure the CLI with a .dockerignore file
             - A: Order all the instructions
         - Q: Which of the following Azure App Service plans support deployment slots?
             - A: Premium
             - A: Shared
         - Q: You are developing a stateful ASP.NET core web application. Which are valid ways to save sensitive data in your web application?
             - A: HttpContext.Items
-        - Q: You are developiong an Azure Batch job and have created a pool of compute nodes. You are using C# code and the Batch SDK. You need to choose the right class and its methods to submit a batch job to the Batch service. Which method should you use?
+        - Q: You are developing an Azure Batch job and have created a pool of compute nodes. You are using C# code and the Batch SDK. You need to choose the right class and its methods to submit a batch job to the Batch service. Which method should you use?
             - A: CloudJob.CommitAsync(IEnumerable, CancellationToken)
 
     3. Developing for Azure Storage
@@ -116,9 +109,9 @@ Certified Developer Associate
         - Q: You are developing a solution using Azure SQL Server. You would like to use dynamic data masking on a column that stores social security numbers as a string in the format "123-45-6789". You want to mask everything except the last four digits, resulting in "XXX-XX-6789". Which data masking function and replacement string should you choose to accomplish this?
             - A: Text, "XXXX-XX-"
         - Q: You are developing a solution using Azure Key Vault. You have a web application and would like to ensure only the application can access the secrets in the Key Vault and not the application users. What are two ways to accomplish this?
-            - A: Register your web app with AZ, register your app with Key Vauilt, associate a certificate with your Azure AD web app, and have your web app use the certificate to authenticte to Key Vault.
-            - A: Create a Managed Service Identity for your web app, register the MSI in Key Vault, and hvae your web app use the MSI to authenticate to Key Vault.
-        - Q: You are developing a solution using Azure SQL Server. You woould like to silently filter the rows available to read operation (SELECT, UPDATE, and DELETE). What you use to accomplish this?
+            - A: Register your web app with AD, register your app with Key Vauilt, associate a certificate with your Azure AD web app, and have your web app use the certificate to authenticate to Key Vault.
+            - A: Create a Managed Service Identity for your web app, register the MSI in Key Vault, and have your web app use the MSI to authenticate to Key Vault.
+        - Q: You are developing a solution using Azure SQL Server. You would like to silently filter the rows available to read operation (SELECT, UPDATE, and DELETE). What you use to accomplish this?
             - A: Filter Predicates
         - Q: To which leves of Azure Blob Storage resources can you apply a shared access signature (SAS)?
             - A: Service Level
@@ -130,11 +123,11 @@ Certified Developer Associate
             - A: Column Name
         - Q: You are developing an Azure web app and have configured a Managed Service Identity for the web app. You need to use C# code and the Microsoft.Azure.Services.AppAuthentication NuGet package to get an access token for the MSI. Which class/method should you use?
             - A: AzureServiceTokenProvider.GetAccessTokenAsync()
-        - Q: You are developing a solution using Azure SQL Server. You would liek to explicitly block write operations (AFTER INSERT, AFTER UPDATE, BEFORE UPDATE, BEFORE DELETE) mthat violate the predicate. What should you use to accomplish this?
+        - Q: You are developing a solution using Azure SQL Server. You would like to explicitly block write operations (AFTER INSERT, AFTER UPDATE, BEFORE UPDATE, BEFORE DELETE) that violate the predicate. What should you use to accomplish this?
             - A: Block Predicates
         - Q: You are developing an Azure web app and using Azure App Service Authentication with Azure Active Directory. You need to access the users' claims within the web app. Where will you find these?
             - A: HTTP Request Header
-        - Q: You are developing a solution using Azure SQL Server. You would like to encrypt specific columns and woul dlike to store your encryption key in Azure Key Vault. How would you accomplish this?
+        - Q: You are developing a solution using Azure SQL Server. You would like to encrypt specific columns and would like to store your encryption key in Azure Key Vault. How would you accomplish this?
             - A: Always Encrypted
         - Q: You are developing a solution using Azure Active Directory. You need to use the Azure CLI to create a role, and then assing a user to that role. Which command sequence should you use to accomplish this?
             - A: az role definition create, az role assignment create
@@ -153,7 +146,7 @@ Certified Developer Associate
         - Q: You are developing a solution using a web app and Application Insights. You would like to configure Application Insights sampling in your web app, either in the ApplicationInsights.configfile or view the .NET SDK. Which types of Application Insights sampling support this?
             - A: Fixed-Rate Sampling
             - A: Adaptive Sampling
-        - Q: You are developing a solution using Azure web apps, and are configuring auto-scaling. How many rules will you need to be able to icnrease servers when CPU load ius high and to decrease servers when CPU load is low?
+        - Q: You are developing a solution using Azure web apps, and are configuring auto-scaling. How many rules will you need to be able to icnrease servers when CPU load is high and to decrease servers when CPU load is low?
             - A: 2
         - Q: You are developing a solution using Azure web apps and are designing an auto-scale rule. Which of the following are valid metrics to use for the rule?
             - A: DiskQueueLength
@@ -171,11 +164,11 @@ Certified Developer Associate
             - A: Users, Sessions, Events
         - Q: You are developing a solution using Azure web apps, and are designing an auto-scaling rule. What property of the rule should you set to specify the amount of time to look back in metrics when determining if rules should be run (to avoid reacting to transient spikes)?
             - A: TimeGrain
-        - Q: You are configuring an Azure Logic App and are designing a retry policy in JSON. What is the name of the property to set to specify the number of retry attemps, which must be between 1 and 90?
+        - Q: You are configuring an Azure Logic App and are designing a retry policy in JSON. What is the name of the property to set to specify the number of retry attempts, which must be between 1 and 90?
             - A: Count
     
     6. Connect to and Consume Azure Services and Third-Party Services
-        - Q: You are developing a solution using Azure Service Bus. You need to create a resource group, Service Bus namespace, and Service Bus queue. Which three Azure CLI commands shoul dyou iuse to create the resources you need?
+        - Q: You are developing a solution using Azure Service Bus. You need to create a resource group, Service Bus namespace, and Service Bus queue. Which three Azure CLI commands should you you to create the resources you need?
             - A: az group create
             - A: az servicebus namespace create
             - A: az servicebus queue create
@@ -187,7 +180,7 @@ Certified Developer Associate
             - A: SearchServiceClient.DataSources
         - Q: You are developing a solution using Azure API Management and would like to configure the xml-to-json policy to convert the reponse body from XML to JSON. Which policy section should you use?
             - A: Outbound
-        - Q: You are developing a solution using Azure Event Grid and are creating an Event Grid subscription. You want to use the Microsoft.Storage.BlobCreated eevent and a filter to match events from blobs created in a set of containers sharing a prefix?
+        - Q: You are developing a solution using Azure Event Grid and are creating an Event Grid subscription. You want to use the Microsoft.Storage.BlobCreated event and a filter to match events from blobs created in a set of containers sharing a prefix?
             - A: subjectBeginsWith
         - Q: You are developing a solution using Azure Service Bus. Which broker property in a message should you use to specify a context for the message for the purposes of correlation, for example, reflecting the MessageId of a message that is being replied to?
             - A: CorrelationId
@@ -218,7 +211,3 @@ Certified Developer Associate
             - A: indexClient.Documents.Index(batch)
         - Q: You are developing a solution using Azure Service Bus. Which broker property in a message should you use to see the number of deliveries that have been attempted for this message?
             - A: DeliveryCount
-        - Q: Which of the following are valid methods in the Azure Search IndexBatch class?
-            - A: Merge
-            - A: Upload
-            - A: MergeOrUpload
