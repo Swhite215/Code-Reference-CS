@@ -131,6 +131,8 @@ Certified Developer Associate
             - A: Always Encrypted
         - Q: You are developing a solution using Azure Active Directory. You need to use the Azure CLI to create a role, and then assing a user to that role. Which command sequence should you use to accomplish this?
             - A: az role definition create, az role assignment create
+        - q: You are developing a solution using Azure SQL Server and would like to use dynamic data masking. Which type of users can you exclude from masking in the data masking policy?
+            - A: Specific SQL users or Azure AD Identities
 
     5. Monitor, Troubleshoot, and Optimize Azure Solutions
         - Q: You are developing a solution using a web app and Application insights. You would like to configure Application Insight sampling in your web app in a way that will reduce the amount of traffic processed and retained and charged for by Application Insights. Which type of Application Insights sampling supports this?
@@ -166,6 +168,8 @@ Certified Developer Associate
             - A: TimeGrain
         - Q: You are configuring an Azure Logic App and are designing a retry policy in JSON. What is the name of the property to set to specify the number of retry attempts, which must be between 1 and 90?
             - A: Count
+        - Q: You are developing a solution using a web app and Application Insights. You would like to configure an Application Insights Usage Analysis feature in your webb app to see which customers visited a specific product page then created a customer support ticvker. Which Application Insights Usage Analysis feature supports this?
+            - A: Funnels
     
     6. Connect to and Consume Azure Services and Third-Party Services
         - Q: You are developing a solution using Azure Service Bus. You need to create a resource group, Service Bus namespace, and Service Bus queue. Which three Azure CLI commands should you you to create the resources you need?
@@ -211,3 +215,5 @@ Certified Developer Associate
             - A: indexClient.Documents.Index(batch)
         - Q: You are developing a solution using Azure Service Bus. Which broker property in a message should you use to see the number of deliveries that have been attempted for this message?
             - A: DeliveryCount
+        - Q: You are developing a solution using Azure Search and are creating an index. Which attribute of the index should you set to mark whether the field can be returned in a search result?
+            - A: Retrievable
