@@ -1,0 +1,213 @@
+Certified Developer Associate Practice Tests
+
+    1. Connect to and Consume Third Party Services
+        - Q: A software company is developing a software solution. The software solution is for a food delivery-based company. The software needs to adhere to the following workflow
+                - A driver selects the restaurants for which they will deliver orders.
+                - Orders are sent to all available drivers in an area.
+                - Only orders for the selected restaurants will appear for the driver.
+                - The first driver to accept an order removes it from the list of available orders.
+            - A: Create a single Service Bus Namespace
+            - A: Create a single Service Bus Topic
+            - A: Create a Service Bus Subscription for each restaurant for which a driver can receive messages.
+        - Q: A company has an application that provides product data to external consultants. Azure API Management is used to publish APIs to the consultants. The API needs to meet the following requirements:
+                - Support alternative input parameters.
+                - Remove formatting text from responses.
+                - Provide additional context to back-end services.
+                - Which type of policy would you use for "rewrite the request URL to match to the format expected by the web service"?
+            - A: Inbound
+        - Q: A company has an application that provides product data to external consultants. Azure API Management is used to publish APIs to the consultants. The API needs to meet the following requirements:
+                - Support alternative input parameters.
+                - Remove formatting text from responses.
+                - Provide additional context to back-end services.
+                - Which type of wpolicy would you use for "remove formatting text from responses"?
+            - A: Outbound
+        - Q: A company has an application that provides product data to external consultants. Azure API Management is used to publish APIs to the consultants. The API needs to meet the following requirements:
+                - Support alternative input parameters.
+                - Remove formatting text from responses.
+                - Provide additional context to back-end services.
+                - Which type of policy would you use for "forward the user ID that is associated with the subscription key for the original request to the back-end service"?
+            - A: Inbound
+        - Q: A comapany is developing a solution that allows smart devices to send information to a central location. The solution must receive and store messages until they can be processed. You create an Azure Service Bus instance by providing a name, pricing tier, subscription, resource group, and location. You need to complete the configuration. Which Azure CLI or PowerShelll command should you run?
+            - A: New-AzureRmServiceBusQueue -ResourceGroupName "montana-rg" -NamespaceName montana -Name montanaqueue -EnablePartioning $False
+        - Q: A developer has setup a web application in Azure and also setup Azure CDN to route request to the Web App. One of the requirements is to ensure that if users make requests based on passing an ID paramter, then those requests shoudl always be served from a Point of Presence. Which of the following mode should bne set for the query string setting for the CDN service?
+            - A: Cache every unique URL
+        - Q:  A team has to integrate various mnodules of an applicaiton with the Azure Event Grid Service. They have to filter events which are sent to the various applicaiton endpoints. The requirements for the type of messages that need to be received by the different endpoints are given below:
+                - Endpoint A: Receive failure messages for any resources deployed to the Azure subscription.
+                - Endpoint B: Receives messages whenever objects are added to a specific container in Azure Blob storage.
+                - Endpoint C: Receive messages whenever data fields in the messages has the value of "Organization".
+                - Which of the following would you use as a filter option for messages that need to be sent to Endpoint A?
+            - A: EventTypes
+        - Q:  A team has to integrate various mnodules of an applicaiton with the Azure Event Grid Service. They have to filter events which are sent to the various applicaiton endpoints. The requirements for the type of messages that need to be received by the different endpoints are given below:
+                - Endpoint A: Receive failure messages for any resources deployed to the Azure subscription.
+                - Endpoint B: Receives messages whenever objects are added to a specific container in Azure Blob storage.
+                - Endpoint C: Receive messages whenever data fields in the messages has the value of "Organization".
+                - Which of the following would you use as a filter option for messages that need to be sent to Endpoint B?
+            - A: Subject begins with or ends with i.e. events with container URL PATH
+        - Q:  A team has to integrate various mnodules of an applicaiton with the Azure Event Grid Service. They have to filter events which are sent to the various applicaiton endpoints. The requirements for the type of messages that need to be received by the different endpoints are given below:
+                - Endpoint A: Receive failure messages for any resources deployed to the Azure subscription.
+                - Endpoint B: Receives messages whenever objects are added to a specific container in Azure Blob storage.
+                - Endpoint C: Receive messages whenever data fields in the messages has the value of "Organization".
+                - Which of the following would you use as a filter option for messages that need to be sent to Endpoint C?
+            - A: Advanced fields and operators
+        - Q: A development team have deployed an API management instnace. An application sits behind the API management instance. The application accepts all data in JSON format. An external consultant currently connects to the API management instance. The data sent by the external consultant is in XML format. You have to ensure the data gets converted to JSON by the API management instance. 
+                - You decide to implement an API Management policy. Would this fulfill the requirement?
+            - A: Yes
+        - Q: A development team have deployed an API management instnace. An application sits behind the API management instance. The application accepts all data in JSON format. An external consultant currently connects to the API management instance. The data sent by the external consultant is in XML format. You have to ensure the data gets converted to JSON by the API management instance. 
+                - You decide to create an Azure Event hub namespace. Would this fulfill the requirement?
+            - A: No
+        - Q: A development team have deployed an API management instnace. An application sits behind the API management instance. The application accepts all data in JSON format. An external consultant currently connects to the API management instance. The data sent by the external consultant is in XML format. You have to ensure the data gets converted to JSON by the API management instance. 
+                - You decide to implement RBAC. Would this fulfill the requirement?
+            - A: No
+        - Q: A development team needs to develop an application module that needs to interact with an Azure service bus queue. Below is the snippet of code that needs to be completed. The code is used to send a message to the queue.
+                - What complete this line: montanaqueuClient = new _______ (ServiceBusConnectionString, QueueName)
+            - A: QueueClient
+        - Q: A development team needs to develop an application module that needs to interact with an Azure service bus queue. Below is the snippet of code that needs to be completed. The code is used to send a message to the queue.
+                - What complete the below:
+                    - static async Task SendMessageAsync(string messageBody) {
+                        var messsage = new Message("Message")
+                        - await queueClient._______(message)
+                    }
+            - A: SendAsync
+    
+    2. Monitor, Troubleshoot, and Optimize Azure Solutions
+        - Q: A development team has published a Web App to the Azure Web App service. They are also using Application Insights for the Web App for monitoring purposes. They ahve to esnure that the cost for Application Insights does not exceed a pre-set budget. Which of the following would you implement to adhere to this requirement?
+            - A: Set a daily cap for the Application Insights instance.
+        - Q: A development team is developing an application. The application will be working with customer data. The application will also be making use of Azure Redis Cache. You need to invalidate the cache when customer data is changed.
+                - How do you establish the cache connection?
+            - A: IDatabase cache = Connection.GetDatabase();
+        - Q: A development team is developing an application. The application will be working with customer data. The application will also be making use of Azure Redis Cache. You need to invalidate the cache when customer data is changed.
+                - How do you invalidate the cache?
+            - A: cache.KeyDelete(p_customer)
+        - Q: A developer has been assigned a task to create code which would interact with an Azure Redis instance. Object of the following class need to be uploaded in the Azure Redis Cache database.
+                - What completes the first part of this line: cache._____("ID1", JsonConvert._____(obj))?
+            - A: StringSet
+        - Q: A developer has been assigned a task to create code which would interact with an Azure Redis instance. Object of the following class need to be uploaded in the Azure Redis Cache database.
+                - What completes the second part of this line: cache._____("ID1", JsonConvert._____(obj))?
+            - A: SerializeObject
+        - Q: A developer has been assigned a task to create code which would interact with an Azure Redis instance. Object of the following class need to be uploaded in the Azure Redis Cache database.
+                - What completes the first part of this line: MontanaCustomer objcache = JsonConvert._____<MontanaCustomer>(cache._______("ID1")
+            - A: DeserializeObject
+        - Q: A developer has been assigned a task to create code which would interact with an Azure Redis instance. Object of the following class need to be uploaded in the Azure Redis Cache database.
+                - What completes the second part of this line: MontanaCustomer objcache = JsonConvert._____<MontanaCustomer>(cache._______("ID1")
+            - A: StringGet
+        - Q: You've setup an Azure storage account and an Azure Content Delivery Network profile. You set an endpoint to a container in the storage account. You have to set the cache control specially for a Blob in the storage accounnt.
+                - What completes this line of code: ________ montanablobclient = montanastorageAccount.CreateCloudBlobClient();
+            - A: CloudBlobClient
+        - Q: A developer needs to enable Application Insights for a Azure Web App. Which of the following feature on the Web App needs to be enabled prior to enabling Application Insights?
+            - A: Always-On Setting
+
+    3. Develop Azure Compute Solutions
+        - Q: As a developer you need to create a Dockerfile for an application. The application will be based on ASP.NET core. The applicaiton has the following requirements:
+                - Ensure the applicaitojn montanaApp.dll runs at the startup of the docker container
+                - Run a powershell script called montanscript.ps1 in the Docker container.
+                - The montanaApp.dll and the montanascript.ps1 are in the same location as the Dockerfile. 
+                - Which of the following commands would you place in the DockerFile?
+            - A: FROM microsoft/dotnet:2.2-aspnetcore-runtime
+            - A: ENTRYPOINT["dotnet", "montanaApp.dl"]
+            - A: RUN powershell "montanascript.ps1"
+        - Q: A developer needs to run a set of AZURE CLI commands to create a virtual machine. You need to complete the below set of commands.
+                - What completes this line: az ______ --name montanagroup --location eastus
+            - A: group create
+        - Q: A developer needs to run a set of AZURE CLI commands to create a virtual machine. You need to complete the below set of commands.
+                - What completes this line: az ______ --resource-group montanagroup --name montanavm ______ win2016datacenter --admin-username-montanar --admin-password Montanar123
+            - A: vm create
+        - Q: A developer needs to run a set of AZURE CLI commands to create a virtual machine. You need to complete the below set of commands.
+                - What completes this line: az vm create --resource-group montanagroup --name montanavm ______ win2016datacenter --admin-username-montanar --admin-password Montanar123
+            - A: --image
+        - Q: A development team needs to create an Azure Function that would perform the following tasks:
+                - Read messages from a queue defined as montanaqueue
+                - Write the subsequent data read from the messages to Azure Table storage
+                - What direction does a queueTrigger use?
+            - A: in
+        - Q:  A development team needs to create an Azure Function that would perform the following tasks:
+                - Read messages from a queue defined as montanaqueue
+                - Write the subsequent data read from the messages to Azure Table storage
+                - What type of binding does a Azure Table storage use?
+            - A: table
+        - Q:  A development team needs to create an Azure Function that would perform the following tasks:
+                - Read messages from a queue defined as montanaqueue
+                - Write the subsequent data read from the messages to Azure Table storage
+                - What direction does a table binding use?
+            - A: out
+        - Q: A Azure Web App needs to be running at all times. You have to ensure the most effective plan is assigned to the Azure Web App. Will making the Azure Web App part of the "Shared" App Service Plan fulfill this requirement?
+            - A: no
+        - Q: A Azure Web App needs to be running at all times. You have to ensure the most effective plan is assigned to the Azure Web App. Will making the Azure Web App part of the "Basic" App Service Plan fulfill this requirement?
+            - A: yes
+        - Q: A Azure Web App needs to be running at all times. You have to ensure the most effective plan is assigned to the Azure Web App. Will making the Azure Web App part of the "Standard" App Service Plan fulfill this requirement?
+            - A: no
+        - Q: A company has a web application deployed to Azure. The web application is currently being hosted as part of the Azure Web App service. There is a requirement to stream the logs from the web app and filter out on any errors.
+                - What should go in slot 1: az webapp SLOT1 SLOT2 --name "montanaapp" --resource-group "montana-rg" SLOT3 Error
+            - A: log
+        - Q: A company has a web application deployed to Azure. The web application is currently being hosted as part of the Azure Web App service. There is a requirement to stream the logs from the web app and filter out on any errors.
+                - What should go in slot 2: az webapp SLOT1 SLOT2 --name "montanaapp" --resource-group "montana-rg" SLOT3 Error
+            - A: tail
+        - Q: A company has a web application deployed to Azure. The web application is currently being hosted as part of the Azure Web App service. There is a requirement to stream the logs from the web app and filter out on any errors.
+                - What should go in slot 3: az webapp SLOT1 SLOT2 --name "montanaapp" --resource-group "montana-rg" SLOT3 Error
+            - A: --filter
+    
+    4. Develop for Azure Storage
+        - Q: A team needs to create an Azure CosmosDB account and ensure that regional failover's are in place for the account. Which of the following is a valid CLI command for creation of the CosmosDB account?
+            -  A: az cosmosdb update --name "montanacosmosdb" --resource-group "montana-rg" --locations "South Central US"=0 "North Central Us"=1 "East US"=2
+        - Q: A team is developing code that is going to be interacting with Azure Table storage. Below is the code snippet for the entity class.
+                - What should go in slot 1: TableQuery<SLOT1> query = new TableQuery<SLOT2>()
+            - A: montanaEntity - i.e. wthe entities being searched
+        - Q: A company is currently looking at using Azure storage accounts as a data storage platform. They want to be able to store documents that would need to be retained for around a year. They want to minimize the cost of storage. These documents are not accessed that frequently. Which of the following tier would you use for storing the files?
+            - A: Archive
+        - Q: A company is currently looking at using Azure storage accounts as a data storage platform. They want to be able to store documents that would need to be retained for around a year. They want to minimize the cost of storage. These documents are not accessed that frequently. If you need to retrieve an object in Azure Blob Archive Storage, which of the following would need to be done first?
+            - A: Change the tier of the object
+        - Q: A company is developing a system which is going to be using Azure Cosmos DB at the underling data store. Below are the requirements of the data store:
+                - Ensure at least 99.99% availability and provide network failures
+                - Accepts writes via the application even in the case of network outages of any unforeseen failures.
+                - Process data in the same sequence as the writes being made
+                - Allow out of order data with a maximum of 5 second tolerance window
+                - You have to provision a CosmosDB account - SQL API. You already have a resource group in the South Central US region.
+                - What type of consistencyLevel should be set?
+            - A: BoundedStaleness
+        - Q: A company is developing a system which is going to be using Azure Cosmos DB at the underling data store. Below are the requirements of the data store:
+                - Ensure at least 99.99% availability and provide network failures
+                - Accepts writes via the application even in the case of network outages of any unforeseen failures.
+                - Process data in the same sequence as the writes being made
+                - Allow out of order data with a maximum of 5 second tolerance window
+                - You have to provision a CosmosDB account - SQL API. You already have a resource group in the South Central US region.
+                - What should be added deal with network failues?
+            - A: --enable-automatic-failover true
+        - Q: A company is developing a system which is going to be using Azure Cosmos DB at the underling data store. Below are the requirements of the data store:
+                - Ensure at least 99.99% availability and provide network failures
+                - Accepts writes via the application even in the case of network outages of any unforeseen failures.
+                - Process data in the same sequence as the writes being made
+                - Allow out of order data with a maximum of 5 second tolerance window
+                - You have to provision a CosmosDB account - SQL API. You already have a resource group in the South Central US region.
+                - What should be added for failover locations?
+            - A: --locations 'southcentralus=0 eastus=1'
+        - Q: You have to implement the azcopy tool to copy objects from a local folder named D:\montana to a container named "demo" within the below storage account:
+                - What should go in slot 1: azcopy cp "SLOT1" "SLOT2/?sv=2018-03-28DSKLJF:LKSDJ:LFKSL:K" SLOT3
+            - A: D:/montana
+        - Q: You have to implement the azcopy tool to copy objects from a local folder named D:\montana to a container named "demo" within the below storage account:
+                - What should go in slot 2: azcopy cp "SLOT1" "SLOT2/?sv=2018-03-28DSKLJF:LKSDJ:LFKSL:K" SLOT3
+            - A: https://montanastore2020.blob.core.windows.net/demo
+        - Q: You have to implement the azcopy tool to copy objects from a local folder named D:\montana to a container named "demo" within the below storage account:
+                - What should go in slot 3: azcopy cp "SLOT1" "SLOT2/?sv=2018-03-28DSKLJF:LKSDJ:LFKSL:K" SLOT3
+            - A: --recursive=true
+        - Q: You need to formulate a query that would be used to get all items where the order price is $9.99.
+                - What should go in slot 1: select * from c IN SLOT1 where SLOT2='9.99'
+            - A: customer.orders
+        - Q: You need to formulate a query that would be used to get all items where the order price is $9.99.
+                - What should go in slot 2: select * from c IN SLOT1 where SLOT2='9.99'
+            - A: c.price
+        - Q: You have to update the below code snippet that would be used to upload images to the Blob container.
+                - What should go in slot 1: SLOT1 montanacloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imgName); await SLOT2.UploadFromFileAsync(imgFile);
+            - A: CloudBlockBlob
+        - Q: You have to update the below code snippet that would be used to upload images to the Blob container.
+                - What should go in slot 2: SLOT1 montanacloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imgName); await SLOT2.UploadFromFileAsync(imgFile);
+            - A: CloudBlockBlob
+        - Q: A lease needs to be applied on common blob's in the Azure storage account. How would you complete the below REST API call for implementing a blob lease? https://montanastore2020.blob.core.windows.net/demo/montanacommon.json
+            - A: comp=lease
+        - Q: What consistency levels should be set for the below applications?
+                - montanaappA - this is not a critical application hence here no ordering of reads is required.
+                - montanaappB - here the application uses must never see out-of-order writes.
+                - montanaappC - here the users must always see the latest committed write.
+                - montanaappD - here the data can be stale by at most 2 versions
+            - A: montanaappA - Eventual
+            - A: montanaappB - Consistent
+            - A: montanaappC - Strong
+            - A: montanaappD - BoundedStaleness
