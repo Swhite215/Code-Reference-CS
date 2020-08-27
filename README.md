@@ -30,3 +30,4 @@ To provide reference materials for a variety of topics encountered within Comput
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Golang](https://github.com/Swhite215/Code-Reference-Go)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Design Patterns in Node](https://github.com/Swhite215/Code-Reference-MERN/tree/master/designPatterns)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [TypeScript](https://github.com/Swhite215/Code-Reference-MERN/tree/master/typescript)
+      ###### &nbsp;&nbsp;&nbsp;&nbsp; [C](https://github.com/Swhite215/Code-Reference-C/tree/master/c)
