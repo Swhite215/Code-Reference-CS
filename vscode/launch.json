@@ -21,6 +21,19 @@
                 "<node_internals>/**"
             ],
             "program": "${file}"
+        },
+        {
+            "name": "clang - Build an debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "clang build active file"
         }
     ]
 }
