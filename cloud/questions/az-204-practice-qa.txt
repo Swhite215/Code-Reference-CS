@@ -19,7 +19,7 @@ Certified Developer Associate Practice Tests
                 - Support alternative input parameters.
                 - Remove formatting text from responses.
                 - Provide additional context to back-end services.
-                - Which type of wpolicy would you use for "remove formatting text from responses"?
+                - Which type of policy would you use for "remove formatting text from responses"?
             - A: Outbound
         - Q: A company has an application that provides product data to external consultants. Azure API Management is used to publish APIs to the consultants. The API needs to meet the following requirements:
                 - Support alternative input parameters.
