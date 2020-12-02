@@ -1,0 +1,108 @@
+Title: Database Systems: Design Implementation and Management
+Authors: Coronel, Morris, and Rob
+
+Summarization of Content
+
+1. Database Systems
+    a. Data vs. Information
+        - Data - raw facts
+        - Information - interpretation of data
+        - Knowledge - body of information and facts about a specific subject
+        - Data Management - discipline that focuses on the proper generation, storage, and retrieval of data
+    b. Introducing the Database
+        - Database - a shared, integrated computer structure that stores collections of data and metadata
+            - Data - raw facts
+            - Meta-Data - information about the data
+        - Database Management System (DBMS) - collection of programs that manages database structure and controls access to the stored data
+        - Role and Advantages of the DBMS
+            - Role - intermediary between the user and the database
+            - Advantages
+                - Improved Data Sharing
+                - Improved Data Security
+                - Better Data Integration
+                - Minimized Data Inconsistency
+                - Improved Data Access
+                - Improved Decision Making
+                - Increased End-User Productivity
+        - Types of Databases
+            - Single or Multi-User Databases
+            - Workgroup Database < 50 users
+            - Enterprise Database > 50 users
+            - Centralized Database vs. Decentralized Databases
+            - Discipline Specific Database
+            - Operational Database - supports businesses day to day
+            - Online Transaction Processsing Transactional or Production Database
+            - Analytical Databases - focuses primarily on storing historical data and business metrics used exclusively for tactical and strategic decision making
+            - Data Warehouse - specialized database that stores data in a format optimized for decisions support
+            - Online Analytical Processing OLAP - set of tools that work together to provide advanced data analysis environment
+            - Business Intelligence - comprehensive approach to capture and process business data
+            - XML Database
+            - Social Media
+            - NoSQL - describes database systems that are not based on traditional relationship database model
+            - Big Data
+            - In-Memory
+            - Very Large Databases VLD
+            - Cloud Databases
+        - Types of Data
+            - Unstructured - raw state
+            - Structured Data - result of formatting unstructured data to facilitate storage, use, and generation of information
+            - Semi-structured Data - data already processed to some extent
+            - Extensible Markup Language - language used to represent and manipulate data elements
+    c. Why Database Design is Important
+        - Database Design - activities that focus on the design of the database structure that will be used to store and manage data
+    d. Evolution of File System Data Processing
+        - Manual File Systems
+        - Computerized File Systems
+            - Data Processing Specialist
+        - File System Redux: Modern End-User Productivity Tools
+    e. Problems with File System Data Processing
+        - Lengthy Development Time
+        - Difficulty of Getting Quick Answers
+        - Complex System Administration
+        - Lack of Security and Limited Data Sharing
+        - Extensive Programmming
+        - Structural and Data Dependence
+            - Structural Dependence - access to a file is dependent on its structure
+            - Data Dependence - access is altered by change of data characteristics
+            - Logical Data Format - how the human views the data
+            - Physical Data Format - how the computer must work with the data
+        - Data Redundancy
+            - Islands of Information - scattered data locations
+            - Redundancy - same data is stored unnecessarily at different places
+            - Issues
+                - Poor Data Security
+                - Data Inconsistency
+                - Anomalies
+        - Lack of Design and Data-Modeling
+    f. Database Systems
+        - System - organization of components that define and regulate the collection, storage, management and use of data within a database environment
+        - Components
+            - Hardware - physical system devices
+            - Software
+                - Operating System, Application Programs and Utility Software
+            - People
+                - System Administrators
+                - Designers
+                - End Users
+            - Procedures - instructions and rules that govern the design and sue of the database systems
+            - Data
+        - DBMS Functions
+            - Data Dictionary Managment - stores definitions of data elements and their relationships
+            - Data Storage Management - creates and manages the complex structures required for data storage
+            - Performance Tuning - activities that make the database perform more efficiently
+            - Data Transformation and Presentation - transforms entered data to conform to required data structures
+            - Security Management - creates a security system that enfroces user security and data privacy
+            - Multiuser Access Control
+            - Backup and Recovery Management
+            - Data Integrity Managment - promotes and enforce integrity rules
+            - Database Access Langauges and Application Programming Interface
+                - Structured Query Language - specify what must be done with having to specify how
+            - Database Communication Interfaces
+            - Why a spreadsheet is not a database: pg. 25
+        - DBMS Disadvantages
+            - Increased Costs
+            - Management Complexity
+            - Maintaining Currency
+            - Vendor Dependence
+            - Frequent Upgrade/Replacement Cycles
+            - 
