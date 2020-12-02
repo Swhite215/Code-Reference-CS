@@ -105,4 +105,3 @@ Summarization of Content
             - Maintaining Currency
             - Vendor Dependence
             - Frequent Upgrade/Replacement Cycles
-            - 
