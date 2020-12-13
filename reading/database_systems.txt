@@ -188,4 +188,84 @@ Summarization of Content
             - Logical Independence - changing the internal model does not affect the conceptual model
         - Physical Model - operates at the lowest level of abstraction, decsribing the way data are saved on storage media such as disks or tapes 
             - Requirements - definition of both the physical storage devices and the physical access methods required to reach the data within those storage devices
-    
+
+3. The Relational Database Model
+    a. A Logical View of Data
+        - Tables and Their Characteristics
+            - A table is perceived as a two-dimensional structure composed of rows and columns
+            - Each table row (tuple) represents a single entity occurence within the entity set
+            - Each table column represents an attribute, and each column has a distinct name
+            - Each intersection of a row and column represents a single data value
+            - All values in a column must conform to the same data format
+            - Each column has a specific range of values known as the attribute domain
+            - The order of the rows and columns is immaterial to the DBMS
+            - Each table must have an attribute or combination of attributes that uniquely identifies each row
+    b. Key 
+        - Definition - consists of one or more attributes that determine other attributes
+        - Dependencies
+            - Determination - is the state in which knowing the value of one attribute makes it possible to determine the value of another
+            - Functional Dependence - the value of one or more attributes determines the value of one or more other attributes
+            - Determinant - the attribute whose value determines another is called the determinant
+            - Dependent - the attribute whose value i sdetermined by the other attributes
+            - Full Functional Dependence - refer to functional dependencies in which the entire collection of attributes in the determinant is necessary for the relationship
+        - Types of Keys
+            - Composite Key - key that is composed of more than one attribute
+            - Key Attribute - attribute that is part of a key
+            - Superkey - key that can uniquely identify any rows in the table
+            - Candidate Key - superkey without any unncessary attributes
+            - Entity Integrity - condition in which each row in the table has its own unique identity
+            - Null - absence of any data value, and should never be allowed to be any part of the primary key
+            - Foreign Key - primary key of one table that has been placed into another table to create common attribute
+            - Referential Integrity - condition in which every reference to an entity instance by another entity instance is valid
+            - Secondary Key - defined as a key that is used strictly for data retrieval purposes
+    c. Integrity Rules
+        - Entity Integrity
+        - Referential Integrity
+        - Flags - indicates the absence of some value
+    d. Relational Set Operators
+        - Relational Algebra - defines the theoretical way of manipulating table contents using the eight relational operators
+            - SELECT - yields values for all rows found in a table that satisfy a given condition
+            - PROJECT - yields all values for selected attributes
+            - JOIN - allows information to be combined from two or more tables
+                - Natural Join - links tables by selecting only the rows with common values in their common attributes
+                - Order - Product -> Select -> Project
+                - Equijoin - links tables on the basis of an equality condition that compares specified columsn of each table
+                - Thetajoin - Not equijoin...
+                - Inner Join - only returns matched records from the tables that are being joined
+                - Outer Join - matched pairs would be retained, and any unmatchedvalues in the other table would be left null
+                - Left Outer Join - yields all of the rows of one table, including those that do not have a matching value in the other table
+                - Right Outer Join - yields all of the rows in the other table, including those that do not have a matching value in one table
+            - INTERSECT - yield only the rows that appear in both tables
+            - UNION - combines all rows from two tables, excluding duplicates
+            - DIFFERENCE- yields all rows in one table that are not found in the other table
+            - PRODUCT - yield all possible pairs of rows from two tables
+            - DIVIDE - uses one two column table as the dividend and one single column table as the divisor
+        - Closure - the use of relational algebra operators on existing relations produce new relation
+    e. The Data Dictionary and System Catalog
+        - Data Dictionary - provides a detailed description of all tables in the database created by the user and designer
+        - System Catalog - detailed system data dictionary that describes all objects within the database, including data about table names, table creator, and creation date, number of columns, data type of each column, index filenames, index creators, users, and access privileges
+        - Homonyms - indicates the use of the samed name to label different attributes, these should be avoided
+        - Synonym - use of a different name to describe the same attribute, these should be avoided
+    f. Relationships within the Relational Database
+        - 1:M - supported
+        - 1:1 - supported
+        - M:N - not supported directly in the relational environment
+            - Composite/Bridge/Associative Entity - link many to many tables
+    g. Data Redundancy Revisited
+    h. Indexes - orderely arrangedment used to logically access rows in a table
+        - Index Key - index's reference point
+        - Unique Index - index key can only have one pointer value associated with it
+    i. Codd's Relational Database Rules
+        - Information - all information in a relational database must be logically represented as column values in rows within tables
+        - Guaranteed Access - Every value in a table is guaranteed to be accessible through a combination of table name, primary key value, and column name
+        - Systematic Treatment of Nulls - Nulls must be represented and treated in a systematic way, independent of data types
+        - Dynamic Online Catalog Based On the Relational Model - The metadata must be stored and managed in a ordinary way, that is, within tables within the database
+        - Comprehensive Data Sublanguage - must support one well-defined, declarative langauge
+        - View Updating - Any view that is theoretically updatable must be updatable through the system
+        - High Level Insert, Update, and Delete - the database must support set level inserts, updates, and deletes
+        - Physical Data Independence - Application programs and ad hoc facilities are logically unaffected when physical access methods or storage structures are changed
+        - Logical Data Independence - Application programs and ad hoc facilities are logically unaffected when changes are made to the table structures that preserve the original table values e..g. changing order of columns
+        - Integrity Independence - All relational integrity constraints must be definable in the relational language and stored in the system catalog
+        - Distribution Independence - The end users and application programs are unaware of and unaffected by the data location
+        - Nonsubversion - users must not be allowed to bypass the integrity rules of the database
+        - Rule Zero - All preceedeing rules are based on the notion that to be considered relational, a database must use its relational facilities exclusively for management
