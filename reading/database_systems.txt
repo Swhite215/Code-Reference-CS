@@ -269,3 +269,56 @@ Summarization of Content
         - Distribution Independence - The end users and application programs are unaware of and unaffected by the data location
         - Nonsubversion - users must not be allowed to bypass the integrity rules of the database
         - Rule Zero - All preceedeing rules are based on the notion that to be considered relational, a database must use its relational facilities exclusively for management
+
+4. Entity Relationship Modeling
+    a. Entity Relationship Model
+        - ERD - represents conceptual database as viewed by the end user
+        - Notations - Chen, Crow's Foot and UML
+        - Entities - entity set i.e. an entire table
+        - Attributes - characteristics of entities
+            - Required - attribute that must have a value
+            - Optional - attribute that doesn't require a value
+        - Domains - set of possible values for a given attribute
+        - Identifiers - one or more attributes that uniquely identify each entity instance
+        - Composite Identifier - primary composed composed of more than one attribute
+        - Composite and Simple Attributes
+            - Composite - attribute that can be further subdivided to yield additional attributes
+            - Simple - attribute that cannot be subdivided
+        - Single Valued Attributes - attribute that can only have a single value
+        - Multivalued Attributes - attributes that can have many values
+        - Derived Attribute - attribute whose value is calculated from other attributes
+        - Relationships - association between entities
+        - Connectivituy and Cardinality
+            - Connectivity - relationship classification
+            - Cardinality - minimum and maximum numnber of entity occurences associated with one occurence of the related entity
+        - Existing Dependence - entity can exists in the database only when it is associated with another related entity occurence
+        - Existence Independent - entity can exist apart from all of its related entities - strong or regular entity
+        - Weak Relationships/Non-Identifying - exists if the primary key of the related entity does not contain a primary key component of the parent entity
+        - Stong Relationships/Identifying - exists when the primary key of th related entity contains a primary key component of the parent entity
+        - Relationship Participation
+            - Optional - one entity occurrence does not require a corresponding entity occurrence in a particular relationship - course does not have to have classes
+            - Mandatory - one entity occurrence requres a corresponding entity occurence in a particular relationship - class must be taught be professor
+        - Relationship Degree - indicates the number of entities or participants associated with a relationship
+            - Unary - association is maintained within a single entity
+                - employee requires another employee to be manager
+            - Binary - two entities are associated - most common
+                - professor teaches one or more classes
+            - Ternary - three entities are associated
+                - doctor writes prescriptions
+                - patient receives prescriptions
+                - drug appears in prescriptions
+        - Recursive Relationships - a relationship can exists between occurrences of the same entity set
+        - Associative Entities -  composite or bridge entity faciliates turning M:N relationship into two 1:M relationships
+    b. Developing an Entity Relationship Diagram
+        - Iterative Process Involving
+            - Create a detailed narrative of the organization's description of operations
+            - Identify the business rules based on the description of operations
+            - Identify the main entities and relationships from the business rules
+            - Develop the initial ERD
+            - Identify the attributes and primary keys that adequately decsribe the entities
+            - Revise and review the ERD
+            - Example - Tiny College pg. 129
+    c. Database Design Challenges: Conflicting Goals
+        - Design Standards - standards guide you in developing logical structures that minimize data redundancies
+        - Processing Speed - means minimal access time, which may be achieved by minimizing the number and complexity of logically desirable relationships
+        - Information Requirements - dictate data transformations, and may expand the number of entities and attributes within the design
