@@ -1,0 +1,314 @@
+Docker Fundamentals
+    1. Why Docker, Why Now?
+        a. What is Docker?
+            - Release 2013
+            - System for creating, deploying, and running applications within containers
+        b. Why Docker?
+            - Containers are the next once in a decade shift in infrastructure
+            - Fastest growing cloud enabling technology
+            - Docker is all about speed
+            - Reduces complexity
+        c. What will docker do for me?
+            - Develop, build, test, deploy, update, and recover faster
+            - Addresses Matrix From Hell...
+    2. Types of Docker
+        a. Docker CE, Community Edition
+        b. Docker EE, Enterprise Edition
+        c. Stable, released quarterly
+        d. Edge, Beta released monthly
+    3. Creating and Using Containers Like a Boss
+        a. Image vs. Container
+            - Image - binaries and source code that make up the application we want to run
+            - Container - running instance of an image
+            - Registry - collection of images
+        b. Container vs. VM
+            - Container - Just processes, limited to what resourecs they can access, exit when process stops
+            - Virutal Machine - Software computer that runs an os and applications
+        c. What is going on in containers?
+            - docker container top - process list in one container
+            - docker container inspect - details of one containers config
+            - docker container stats - performance statistics
+        d. Shell Inside Containers
+            - docker container run -it - start new container interactively
+            - docker container exec -it - run additional command in existing container
+        e. Docker Networks
+            - Each container is connected to a private virutal network "bridge"
+            - Each virtual network routes through NAT firewall on host IP
+            - All containers on a virtual network can talk to each other without -p
+            - Things you can do:
+                - Make new virtual networks
+                - Container attached to more than one virtual network
+                - Skip virtul networks and use host IP
+            - Bridge, default network
+            - Host, skips virtual networking and attaches container to host interface
+            - None, interface attached to nothing
+            - Security, frontend and backend sit on same docker network, inter-communication never leaves the host
+        f. Docker Networks CLI Management
+            - docker network ls
+            - docker network inspect
+            - docker network create --drive
+            - docker network connect
+            - docker network disconnect
+        g. Docker Networks: DNS
+            - IP address is not a reliable system
+            - DNS Naming, container name is equivalent to host name
+            - Within a network, containers are dynamically resolved with DNS names
+        h. DNS Round Robin
+            - Create a network
+            - Create two containers attached to created network, add net alias search
+            - Test...?
+    4. Docker Images
+        a. What is an Image?
+            - Is
+                - Applications binaries and dependencies
+                - Meta data about the image data and how to run the image
+                - Official: "An image is an ordered collection of root filesystem changes and the corresponding exection paramters for use within a container runtime."
+                - Can be extremely small
+                - Can be large with own ubuntu, apache, php, etc.
+            - Is not
+                - Not a complete OS, no kernel, kernel modules
+        b. Docker Hub Registry
+            - Official 
+                - Images are high quality images
+                - High quality documentation
+                - Versions
+                    - Referred to by multiple tags
+                    - docker pull image:version/tag
+            - Alpine
+                - A distribution of Linux that is very small
+            - Quality
+                - Downloads and Stars
+        c. Image Layers
+            - First layer is scratch
+            - Additional changes become new layers
+            - Each layer is uniquely identified and only store once on a host
+            - Union File System
+            - Container = new Read Write Layer on top of an image
+            - Copy-On-Write, take file out of image and store copy of file in the image container
+        d. Image Tagging
+            - Repository (Username or Org/ Repository), Tag based on image id
+            -  Publishing
+                - docker login
+                - docker image tag imageName newImageName
+                - docker image push imageName
+    5. Building Images
+        a. Docker File
+            - Composition, each stanza is a layer in the image
+                - FROM: required, a minimal distribution to save time and pain
+                - ENV: environment variables, main way we set keys and values for container building and running containers
+                - RUN: executing shell commands, file edits, zipping, container commands
+                    - Chain commands to ensure all commands are a single layer
+                - RUN: set up logging correctly to stdout and stderr
+                - EXPOSE: by default no tcp or udp ports are open in a container, we expose ports here
+                - WORKDIR: change working directory and continue running commands
+                - CMD: required parameter, final command that will be run everytime a container is launched or restarted
+                - VOLUME: create volume location and assign it to directory
+        b. Building
+            - docker image build -t customName ., within directory with dockerfile
+            - Keep that which changes least at top of dockerfile, and most at the bottom
+    6. Volumes: Container Lifetime & Persistent Data
+        a. Nature
+            - Immutable and ephemeral
+            - Immutable infrastructure, never change just re-deploy
+            - What about databases or unique data? (Separation of Concerns)
+                - This is persistent data that we need to deal with
+        b. Volumes
+            - Make special location outside of container's union file system to store unique data
+            - Persists until manually deleted
+            - Options
+                - Option #1: Volume command in dockerfile
+                - Option #2: CLI named volume -v name:/path
+                - Option #3: CLI docker volume create, usually not used...
+        c. Bind Mounts
+            - Sharing or mounting a host directory inside the container
+            - Mapping of the host files, or directories into a container file or directory
+            - Basically just two locations pointing to the same file(s)
+            - Can't use in a dockerfile, must be in docker run
+    7. Docker Compose
+        a. docker-compose.yml
+            - File filled with multiple containers
+            - Structure
+                - version: '3.1'
+                - services: # containers, same as docker run
+                    servicename: # a friendly name, this is also DNS name inside network
+                        image: # Optional if you use build:
+                        command: # Optional, replace the default CMD specified by the image
+                        environment: # Optional, same as -e in docker run
+                        volumes: # Optional, same as -v in docker run
+                - volumes: # Optional, same as docker volume create
+                - networks: # Optional, same as docker network create
+        b. docker-compose cli
+            - docker-compose up, setup volumes/networks and start all containers
+            - docker-compose down, stop all containers and remove cont/vol/net
+        c. Using Compose to Build
+            - Compose can also build your custom images
+    8. Docker Swarm
+        a. What is it?
+            - Built-In Orchestration: Swarm Mode 2016
+            - Clustering solution built inside Docker
+            - Not enabled by default
+            - Answers
+                - How do we automate container lifecycle?
+                - How can we easily scale out/in/up/down?
+                - How can we ensure our containers are recreated if they fail?
+                - How can we replace containers without downtime? (blue/green deploy)
+                - How can we control/track where containers get started?
+                - How can we cerate cross-node virtual networks?
+                - How can we ensure only trusted servers run our containers?
+                - How can we store secrets, keys, passwords, and get them to the right container?
+        b. How do you use it?
+            - Run containers with extra information
+                - 1 Service, Multiple Replicas/Tasks - Containers
+            - Commands are below
+        c. Overlay Multi-Host Networking
+            - Creating a swarm wide bridge network where containers can access each other
+            - docker network create --drive overlay networkName
+            - docker service create --name serviceName --network networkName image (x2)
+        d. Scaling Out with Routing Mesh
+            - Ingress network that distributes packets for a service to proper task/container
+            - Virtual IP load balances across nodes IPs
+        e. Stacks: Prduction Grade Compose
+            - Stacks accept compose files as their declarative definition for services, networks, and volumes
+            - Multiple Services -> Repliaces/Tasks/Containers -> Volumes -> Networks
+            - Require v3.x
+        f. Swarm Secrets
+            - Easiest "secure" solution for storing secrets in Swarm
+            - What is a secret?
+                - usernames and passwords
+                - TLS certificates and keys
+                - SSH Keys
+                - Any data you want hidden
+            - How does it work?
+                - Swarm Raft DB is encrypted on disk on Manager nodes
+                - Secrets are stored in Swarm and then assigned to Services(s)
+                - In-memory file system
+                - Create a service and then give the secret to the service, secrets show up as files in the container
+            - Secrets with Stacks
+                - v3.1 and up is required
+                - in docker-compose, add secrets under services and secrets file path
+        g. Full- App Life Cycle
+            - docker-compose up for development
+            - docker-compose up for cli environment
+            - docker stack deploy for production environment
+        h. Service Updates
+            - Provides rolling replacement of tasks/containers in a service
+            - Limits downtime
+            - Will replace containers for most changes
+            - Many cli options to control the update
+            - Create options will usually change, adding -d or -rm to them
+            - Incldues rollback and healthcheck options
+            - Allso has scale and rollback subcommand for quicker access
+            - A stack deploy to the same stack is an update
+            - Examples
+                - docker service update --image myapp:1.2.1 serviceName
+                    - update the image used to a newer verison
+                - docker service update --env-add NODE_ENV=production --publish-rm 8080
+                    - Adding an environment variable and remove a port
+                - docker service scale web=8 api=6
+                    - Change number of replicas of two services
+                - docker stack deploy -c file.yml stackName
+        i. Health Checks
+            - Available everywhere
+            - options
+                --interval=, --timeout=, --start-period=, --retries=
+            - DOckerfile
+                - HEALTHCHECK curl -f http://localhost/ || false
+            - States: starting, healthy, or unhealty
+            - docker container ls will show the health if health check is running
+            - docker container inspect will show last 5 health checks
+    9. Docker Registry
+        a. Docker Hub
+            - Default registry
+            - Repositories public and private
+        b. Docker Store
+            - Downloading Docker Editions
+            - App Store for Images
+        c. Docker Cloud
+            - Web based orchestration system for docker swarm
+            - Build area for automated image building, testing, and deployment
+            - CI/CD platform
+        e. Docker Registry
+            - Private image repository for your network
+            - Part of tee docker/distribution Github repo
+            - Web API and storage system
+            - Secure by default, requires HTTPS except localhost 127.0.0.0/8
+            - Private Registry
+                - docker container run -d -p 5000:5000 --name registry registry
+                - docker tag image 127.0.0.1:5000/name
+                - docker push 127.0.0.1:5000/name
+                - docker container kill registry
+                - docker container rm registry
+    X. Docker Commands
+        a. docker version, returns version of client and server
+        b. docker info, returns configuration details
+        c. docker, returns list of commands
+        d. NEW: docker command subcommand options or OLD: docker command options
+        e. docker container run --publish 80:80 --name name -d nginx:version
+            - downloaded nginx image from docker hub and started it in a new container
+            - Gives image a virtual ip address on a private network
+            - Opens up port 80 on host and forwards to port 80 in container --publish
+            - Starts containe using the CMD in the image dockerfile
+        f. docker container run --publish 80:80 --detach nginx
+            - detach tells docker to run the container in the background
+        g. docker container ls, lists containers that are running
+            - docker container ls -a, lists all containers
+        h. docker container stop containerId, stops the container
+        i. docker container run --publish 80:80 --detach --name name nginx
+        j. docker container logs containerName or containerId
+        k. docker container top containerName or containerId
+        l. docker container --help
+        m. docker container rm multipleContainerIds, must stop container before removing
+        n. docker top containerId containerName, list all running processes running in container
+        o. ps aux, show me all running processes
+        p. docker container start containerName or containerId, starts a stopped container
+        q. docker container run --publish 3306:3306 -e MYSQL_RANDOM_ROOT_PASSWORD=yes --name sqlDataBase -d mysql
+        r. docker container inspect containerName or containerId, details of one containers config
+        s. docker container stats containerName or containerId, performance statistics
+        t. docker container run -it --name name image bash, starts container with interactive bash terminal, exit
+        u. docker container start -ai containerName or containerId bash, run an interative terminal from started container
+        v. docker container exec -it containerName or containerId bash, run an interative bash terminal on a running container
+        w. docker container inspect --format '{{ .NetworkSettings.IPAddress }}' name
+        x. docker network ls, lists all networks created
+        y. docker network inspect networkName, lists details like containers attached to network
+        z. docker network create name, creates a network with default driver of bridge
+        aa. docker container run -d --name name --network networkName image
+        bb. docker network connect networkName or networkId and containerName or containerId
+        cc. docker network disconnect networkName or networkId and containerName or containerId
+        dd. docker pull imageName, pulls docker image to your computer
+        ee. docker history imageName, shows image layers
+        ff. docer image inspect imageName or imageId, returns meta data about the image
+        gg. docker image tag imageName newImageName
+        hh. docker image push imageName
+        ii. docker login, logs into docker hub
+        jj. docker logout, logs out from docker hub
+        kk. docker image build -t customName ., builds docker image from file inside this directory
+        ll. docker volume prune, removed unused volumes
+        mm. docker container run -d --name name -v name:/path image, this creates a named volume with a path to the persisted data
+        nn. docker volume create, creates a volume ahead of time
+        oo. docker container run -d --name name -v /host/path/to/bind:/path/in/container, this creates container folder pointing to the host folder with access to contained files
+        pp. docker-compose up, setup volumes/networks and start all containers
+        qq. docker-compose down, stop all containers and remove cont/vol/net
+        rr. docker image inspect image
+        ss. docker swarm
+            - docker swarm init
+                - creates root certificate
+                - certificate issued for manager node
+                - join tokens are created
+            - docker swarm join, joins a node to swarm                                                                                                                                                                                         - raft consensus database is created
+        tt. docker node ls, lists nodes in the swarm
+        uu. docker service
+            - docker service create image, creates services
+            - docker service ls, lists services
+            - docker service ps serviceName, shows tasks/containers in service
+            - docker service update serviceName --replicas number
+            - docker service update --secret-rm, removes secrets and redeploys container
+        vv. docker stack
+            - docker stack deploy -c composeFile stackName
+        ww. docker secret
+            - docker secret create name file, create a secret
+            - docker secret ls, lists secrets
+        xx. docker health
+    X. Resources
+        a. landscape.cncf.io
+        b. hub.docker.com
+        c. docs.docker.com
