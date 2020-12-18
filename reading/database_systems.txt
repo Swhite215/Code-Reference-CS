@@ -322,3 +322,76 @@ Summarization of Content
         - Design Standards - standards guide you in developing logical structures that minimize data redundancies
         - Processing Speed - means minimal access time, which may be achieved by minimizing the number and complexity of logically desirable relationships
         - Information Requirements - dictate data transformations, and may expand the number of entities and attributes within the design
+
+5. Advanced Data Modeling
+    a. Extended Entity Relationship Model
+        - EERM - result of adding more semantic constructs to the original entity relationship
+        - Entity Supertypes and Subtypes
+            - Benefits
+                - Avoids unnecessary nulls in attributes when some employees have characteristics that are not shared by other employees
+                - Enables a particular employee type to participate in relationships that are unique to that type
+            - Supertype - generic entity type that is related to one or more entity subtypes
+                - Contains common characteristics
+            - Criteria
+                - There must be different, identifiable kinds or types of the entity in the user's environment
+                - The different kind or types of instances should each have one or more attributes that are unique to that kind of type of instance
+        - Specialization Hierarchy - depicts the arrangement of higher-level entity supertypes and lower-level entity subtypes
+            - Supertype - Employee
+            - Possible Subtypes - Pilot, Mechanic, and Accountant
+            - Specialization Hierachy Provides the Means To:
+                - Support attribute inheritance
+                - Define a special supertype attribute known as the subtype discriminator
+                - Define disjoint/overlapping constraints and complete/partial constraints
+        - Inheritance - enables an entity subtype to inherit the attributes and relationships of the supertype
+            - Employee HAS Dependent
+            - Employee Subtype Pilot - So Pilot HAS Dependent
+        - Subtype Discriminator - attribute in the supertype entity that determines to which subtype the supertype occurrence is related
+            - Employee Entity has EMP_TYPE
+        - Disjoint and Overlapping Constraints
+            - Disjoint/Non-Overlapping - subtypes that contain a unique subset of the supertype entity set
+            - Overlapping - subtypes that contain nonunique subsets of the supertype entity, that is each entity instance of the supertype may appear in more than one subtype
+                - STUDENT and EMPLOYEE are overlapping subtypes of the supertype PERSON
+                - PROFESSOR and ADMINSTRATOR are overlapping subtypes of the supertype EMPLOYEE
+        - Completeness Constraint - specifies whether each entity supertype occurence must also be a member of at least one subtype
+            - Partial Completeness - means that not ever supertype occurrence is a member of a subtype
+            - Total Completeness - means that every supertype occurrence must be a member of at least one subtype
+        - Specializations and Generalization
+            - Specialization - top-down process of identifying lower-level, more specific entity subtypes from a higher-level entity supertype
+            - Generalization - bottom-up process of identifyuing a higher-level, more generic supertype from lower-level entity subtypes
+    b. Entity Clustering
+        - Entity Cluster - virtual entity type used to represent multiple entities and relationships in the Entity Relationship Diagram
+            - Formed by combining multiple interrelated entities into a single , abstract entity object
+    c. Entity Integrity: Selecting Primary Keys
+        - Natural Keys and Primary Keys
+            - Natural Key/Natural Identifier - real-world, generally accepted identifier used to distinguish real world objects
+        - Primary Key Guidelines
+            - Main Function - uniquely identify an entity instance or row within a table
+            - Secondary Function - primary keys and foreign keys are used to implement relationships among entities
+        - When to Use Composite Primary Keys
+            - #1 - As identifiers of composite entities, in which each primary key combination is allowed only once in the M:N relationship
+            - #2 - As identifiers of weak entities, in which the weak entity has a strong identifying relationship with the parent entity
+        - Desirable Primary Key Characteristics
+            - Unique - PK must uniquely identify each entity instance
+            - Nonintelligent - PK should not have embedded semantic meaning other than to uniquely identify each entity instance
+            - No Change Over Time
+            - Preferrable Single Attribute
+            - Preferably Numeric
+            - Security-Compliant
+        - When to Use Surrogate Primary Keys - primary key created by the database desinger to simplify the identification of entity instances
+            - #1 - Primary key doesn't exist in the real world or the existing natural key might not be a suitable primary key
+    d. Design Cases: Learning Flexible Database Design
+        - Case 1 - Implementing 1:1 Relationships
+            - Basic Rule - put the primary key of the "one" side (the parent entity) on the "many" side (the dependent entity), as a foreign key
+            - 1:1 Options
+                - #1 - Place a foreign key in both entities
+                - #2 - Place a foreign key in one of the entities
+        - Case 2 - Maintaining History of Time-Variant Data
+            - Time-Variant Day - refer to data whose values change over time and for which you must keep a history of the data changes
+            - Multivalue Attribute Situation
+                - Create a new entity in a 1:M relationship with the original entity - EMP_SALARY, multiple entires per employee in EMP_SAL_HISTORY
+        - Case 3 - Fan Traps
+            - Design Trap - occurs when a relationship is improperly or incompletely identified and is therefore represented in a way that is not consistent with the real world
+            - Fan Trap - occurs when you have one entity in two 1:M relationships to toehr entities, thus producing an association among the other entities that is not expressed in the model
+                - Issue - DIVISION is 1:M with TEAMS and 1:M with PLAYERS
+                - Solution - DIVISION is 1:M with TEAMS and TEAMS is 1:M with PLAYERS
+        - Case 4 - Redundant Relationships
