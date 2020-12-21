@@ -27,7 +27,7 @@ To provide reference materials for a variety of topics encountered within Comput
   9. Networking - TCP/IP, DNS, DHCP, ARP, IMCP
       ##### &nbsp;&nbsp;&nbsp;&nbsp; [Computer Networking](https://github.com/Swhite215/Code-Reference-CS/blob/master/reading/computer_networking_a_top_down_approach.txt)
   10. Programming Languages - JavaScript/TypeScript, Go, C, C++
-      ###### &nbsp;&nbsp;&nbsp;&nbsp; [Golang](https://github.com/Swhite215/Code-Reference-Go)
-      ###### &nbsp;&nbsp;&nbsp;&nbsp; [Design Patterns in Node](https://github.com/Swhite215/Code-Reference-MERN/tree/master/designPatterns)
-      ###### &nbsp;&nbsp;&nbsp;&nbsp; [TypeScript](https://github.com/Swhite215/Code-Reference-MERN/tree/master/typescript)
+      ###### &nbsp;&nbsp;&nbsp;&nbsp; [JavaScript + Node.js](https://github.com/Swhite215/Code-Reference-JS)
+      ###### &nbsp;&nbsp;&nbsp;&nbsp; [TypeScript](https://github.com/Swhite215/Code-Reference-JS/tree/main/typescript)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [C](https://github.com/Swhite215/Code-Reference-C/tree/master/c)
+      ###### &nbsp;&nbsp;&nbsp;&nbsp; [Golang](https://github.com/Swhite215/Code-Reference-Go)
