@@ -395,3 +395,105 @@ Summarization of Content
                 - Issue - DIVISION is 1:M with TEAMS and 1:M with PLAYERS
                 - Solution - DIVISION is 1:M with TEAMS and TEAMS is 1:M with PLAYERS
         - Case 4 - Redundant Relationships
+
+6. Normalizations of Database Tables
+    a. Database Tables and Normalization
+        - Normalization - is a process for evaluating and correcting table structures to minimize data redundancies, thereby reducing the likelihood of data anomalies
+        - Normal Forms - 1NF < 2NF < 3NF < 4NF
+        - Denomalization - produces a lower normal form
+    b. The Need for Normalization
+        - Situation #1 - after the initial ERD is complete, the designer can use normalization to analyze the relationships among the attributes within each entity and determine if the structure can be improved through normalization
+        - Situation #2 - modify existing data structures that can be in the form of flat files, spreadsheets, or older database structures
+    c. The Normalization Process
+        - Goal: ensure each table conforms to the concept of well-formed relations - in other words, tables that have the following characteristics
+            - Each table represents a single subject
+            - No data item will be unnecessarily stored in more than one table (minimum controlled redundancy)
+            - All nonprime attributes in a table are dependent on the primary key - the entire primary key and nothing but the primary key
+            - Each table is void of insertion, update, or deletion anomalies, which ensures the integrity and consistency of the data
+        - Normal Forms
+            - First Normal Form 1NF - Table format, no repeating groups, and PK identified
+            - Second Normal Form 2NF - 1NF and no partial dependencies
+            - Third Normal Form 3NF - 2NF and no transitive dependencies
+            - Boyce-Codd Normal Form BCNF - Every determinant is a candidate key
+            - Fourth Normal Form 4NF - 3NF and no independent mutlivalued dependencies
+                - Candidate Key - minimal irreducible superkey
+                - Primary Key - candidate key selected to be the primary means used to identify the rows in the table
+            - Goal - data modeler wants to ensure that all tables are at least in third normal form 3NF
+        - Determination and Functional Dependnence
+            - Functional Dependence - The attribute B is fully functionally dependent on the attribute A if each value of A determines one and only one value of B
+            - Functional Dependence - Attribute A determines Attributw B if all of the rows in the table that agree in value for Attribute A also agree in value for Attribute B
+            - Fully Functional Dependence - If Attribute B is functioanlly depedendent on a composite key A but not on any subset of that composite key, the Attribute B is fully functionally dependent on A
+            - Partial Dependencuy - exists when there is a functional dependence on which the determinant is only part of the primary key e.g. (A, B) -> (C,D), B -> C and (A,B) is the primary key, then B -> C is a partial dependency
+            - Transitive Dependency - exists when there are functional dependencies such that X -> Y, Y -> Z, and X is the primary key. Transitive becauser X determines the value of Z via Y.\
+            - Repeating Group - derives its name from the fact that a group of multiple entries of the same type can exist for a single key attribute occurrence
+        - Guide
+            - Conversion to First Normal Form
+                - Step 1: Eliminate the Repeating Groups
+                - Step 2: Identify the Primary Key - May Be Composite
+                - Step 3: Identify All Dependencies - Dependency Diagram
+            - Conversion to Second Normal Form
+                - Step 1: Make New Tables to Eliminate Partial Dependencies
+                - Step 2: Reassign Corresponding Dependent Attributes
+            - Conversion to Third Normal Form
+                - Step 1: Make New Tables To Eliminate Transitive Dependencies
+                - Step 2: Reassign Corresponding Dependent Attributes
+    d. Improving the Design
+        - Evaluate PK Assignment
+        - Evaluate Naming Conventions
+        - Refine Attribute Atomicity
+        - Identify New Attributes
+        - Identify New Relationships
+        - Refine Primary Keys as Required for Data Granularity
+        - Maintain Historical Accuracy
+        - Evaluate Using Derived Attributes
+    e. Higher Level Normal Forms
+        - The Boyce-Codd Normal Form - every determinant in the table is a candidate key
+        - Fourth Normal Form - 3NF and has no multivalued dependencies
+    f. Normalization and Database Design
+        - Good Design Principles and Procedures Alongside Normalization Procedures
+            - Develop an ERD through iterative process
+                - Identify relevant entities, attributes, and their relationships
+            - Use Normaliztion to focus on the characteristices of specific entities
+    g. Denormalization
+    h. Data Modeling Checklist
+        - Business Rules
+            - Properly document and verify all business rules with the end users
+            - Ensure that all business rules are written precisely, clearly, and simpl.
+            - Identify the source of all business rules, and ensure that each business role is justified, dated, and signed off by an approving authority
+        - Data Modeling
+            - Naming Conventions
+                - Entity Names
+                    - Should be nouns that are familiar to business and should be short and meaningful
+                    - Should document abbreviations, synonyms, and aliases for each entity
+                    - Should be unique within the model
+                    - For composite entities, may include a combinmation of abbreviated names of the entities linked through the composite entity
+                - Attribute Names
+                    - Should be unique within the entity
+                    - Should use the entity abbreviation as a prefix
+                    - Should be descriptive of the characteristic
+                    - Should use suffixes such as _ID, _NUM, _CODE for the PK attribute
+                    - Should not be a reserved word
+                    - Should not contain spaces or special characters
+                - Relationship Names
+                    - sShould be active or passive verbs that clearly indicate the nature of the relationship
+            - Entities
+                - Each entity should represent a single subject
+                - Each entity should represent a set of distinguishable entity instnace
+                - All entities should be in 3NF or higher, any below 3NF should be justified
+                - The granularity of the entity instance should be clearly defined
+                - The PK should be clearly defined and support the selected data granularity
+            - Attributes
+                - Should be simple and single valued
+                - Should document default values, constraints, synonyms and aliases
+                - Derived attributes shoudl be clearly identified and include sources
+                - Should not be redundant unless this is required for transaction accuracy, performance, or maintaining a history
+                - Nonkey attributes must be fully dependent on the PK attribute
+            - Relationships
+                - Should clearly identify relationship participants
+                - Should clearly define participation, connectivity, and document cardinality
+            - ER Model
+                - Should be validated against expected processes: inserts, updates, and deletes
+                - Should evaluate where, when, and how to maintain a history
+                - Should not contain redundant relationships except as required
+                - Should minimze data redundancy to ensure single place updates
+                - Should conform to the minimal data rule. All that is needed is there, and all that is there is needed
