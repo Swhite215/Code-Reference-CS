@@ -71,7 +71,7 @@ Fundamentals of Linux
             - /export, shared file systems
             - /lib, System libraries
             - /media, Used to mount removable media like CD-ROMs
-            - /mnt, Used to moutn external files systems
+            - /mnt, Used to mount external files systems
             - /proc, Provides info about running processes
             - /sbin, System administration binaries
             - /selinux, Used to display information about SELinux
@@ -98,6 +98,8 @@ Fundamentals of Linux
                 - ~ represents home directory
         b. How do you access the shell?
             - Open the terminal...
+            - ssh into VM running linux
+            - Use cloud provided terminal for hosted VM
         c. What is the super user account?
             - A powerful account
             - Access restricted to system administrators
@@ -205,14 +207,14 @@ Fundamentals of Linux
             - v, verbose
             - z, use compression
             - f, file
-        f. Compressings
+        f. Compression
             - gzip file
             - gunzip file 
         g. Disk Usage
             - du file
     10. Wildcarding
         a. What
-            - Chararcter or string used for pattern matching
+            - Character or string used for pattern matching
             - Globbing expands the wildcard pattern into a list of files and or directories
         b. *
             - matches zero or more characters
