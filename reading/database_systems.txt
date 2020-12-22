@@ -497,3 +497,112 @@ Summarization of Content
                 - Should not contain redundant relationships except as required
                 - Should minimze data redundancy to ensure single place updates
                 - Should conform to the minimal data rule. All that is needed is there, and all that is there is needed
+
+7. Introduction to Structured Query Language
+    a. Introduction to SQL
+        - SQL Data Definition Commands
+            - CREATE SCHEMA AUTHORIZATION - Create a database schema
+            - CREATE TABLE - Creates a new table in the user's database schema
+            - NOT NULL - Ensures that a column will not have null values
+            - UNIQUE - Ensures that a column will not have duplicate values
+            - PRIMARY KEY - Defines a primary key for a table
+            - FOREIGN KEY - Defines a foreign key for a table
+            - DEFAULT - Defines a default value for a column (when no value is given)
+            - CHECK - Validates data in an attribute
+            - CREATE INDEX - Creates an index for a table
+            - CREATE VIEW - Creates a dynamic subset of rows and columns from one or more tables
+            - ALTER TABLE - Modifies a table's definitions (adds, modifies, or deletes attributes or constraints)
+            - CREATE TABLE AS - Creates a new table based on a query in the user's database schema
+            - DROP TABLE - Permanently deletes a table (and its data)
+            - DROP INDEX - Permanently deletes an index
+            - DROP VIEWQ - Permanently deletes a view
+        - SQL Categories
+            - Data Definition Language - SQL includes commands to create database objects such as tables, indexes, and views
+            - Datat Manipulation Language - SQL includes commands to insert, update, delete, and retrieve data within the database tables
+        - SQL Data Manipulation Commands
+            - INSERT - Insert rows into a table
+            - SELECT - Selects Attributes from rows in one or more tables or views
+                - WHERE - Restricts the selection of rows based on a conditional expression
+                - GROUP BY - Groups the selected rows based on one or more attributes
+                - HAVING - Restricts the selection of grouped rows based on a condition
+                - ORDER BY - Orders the selected rows based on one or more attributes
+            - UPDATE - Modifies an attribute's values in one or more table's rows
+            - DELETE - Deletes one or more rows from a table
+            - COMMIT - Permanently saves data changes
+            - ROLLBACK - Restores data to their original values
+            - Comparison Operators - =,<,>,<=,>=,<>
+            - Logical Operators - AND, OR, NOT
+            - Special Operators
+                - BETWEEN - Checks whether an attribute value is within a range
+                - IS NULL - Checks whether an attribute value is null
+                - LIKE - Checks whether an attribute value matches a given string pattern
+                - IN - Checks whether an attribute value matches any value within a value list
+                - EXISTS - Checks whether a subquery returns any rows
+                - DISTINCT - Limits values to unique values
+            - Aggregate Functions - used with SELECT to retun mathematical summaries on columns
+                - COUNT - Returns the number of rows with non-null values for a given column
+                - MIN - Returns the minimum attribute value found in a given column
+                - MAX - Returns thae maximum attribute value found in a given column
+                - SUM - Returns the sum of all values for a given column
+                - AVG - Returns the average of all values for a given column
+    b. Data Definition Commands
+        - Create the Database
+        - Create The Database Schema - CREATE SCHEMA
+        - Data Types
+            - PK - Primary Key
+            - FK - Foreign Key
+            - CHAR - Fixed length character data (1 to 255 characters)
+            - VARCHAR - Variable length character data (1 to 2000 characters)
+            - NUMBER - Numeric data
+                - NUMBER(9,2) - numbers that have two decimal places an dup to nine digits long
+            - INT - Integet values
+            - SMALLINT
+            - DATE
+            - DECIMAL
+        - Create Table Structures - CREATE TABLE
+        - Create SQL Constraints
+            - NOT NULL, UNIQUE, DEFAULT, CHECK, CONSTRAINT
+        - Create SQL Indexes
+            - CREATE INDEX - improves the efficiency of searches and avoids duplicate column values
+    c. Data Manipulation Commands
+        - Adding Table Rows - INSERT
+            - Inserting Rows with Null Attributes
+            - Inserting Rows with Optional Attributes
+                - INSERT INTO TABLE (OPTIONAL_VALUES) VALUES (VALUES)
+        - Saving Table Changes - COMMIT - any changes made to the table contents are not saved on disk until you close the database
+        - Listing Table Rows - SELECT
+        - Updating Table Rows - UPDATE
+        - Restoring Table Contents - ROLLBACK
+        - Deleting Table Rows - DELETE
+        - Inserting Tbale Rows with a SELECT Subquery
+            - INSERT INTO tablename SELECT columnlist FROM tablename;
+    d. SELECT Queries
+        - Selecting Rows with Conditional Restrictions
+            - SELECT columnlist FROM tablelist WHERE conditionlist
+        - Using Comparison Operators on Dates
+            - SELECT columnlist FROM tablelist WEHERE DATE >= '20-Jan-2012
+        - Arithmetic Operators: The Rule of Precedence
+            - Perform operations within parentheses
+            - Perform power operations
+            - Perform multiplication and divisions
+            - Perform additions and substractions
+        - Logical Operators: AND, OR, and NOT
+        - Special Opertions: BETWEEN, IS NULL, LIKE, IN, EXISTS
+    e. Additional Data Definition COmmands
+        - Changing a Column's Data Type - ALTER TABLE tablename MODIFY (columnlist DATE_TYPE)
+        - Changing a Column's Data Characteristics - ALTER TABLE tablename MODIFY (columnlist DECIMAL(10,2))
+        - Adding a Column - ALTER TABLE tablename ADD (columnlist DATA_TYPE)
+        - Dropping a Column - ALTER TABLE tablename DROP columnlist
+        - Advanced Data Updates - UPDATE tablename SET columnlist = VALUE WHERE columnlist = VALUE
+        - Copying Parts of Tables - INSERT INTO target_tablename SELECT source_columnlist FROM source_tablename
+        - Adding Primary and Foreign Key Designations - ALTER TABLE tablename ADD PRIMARY_KEY(column)
+        - Deleting a Table from the Database - DROP TABLE
+    f. Additional SELECT Query Keywords
+        - Ordering a listing - ORDER BY
+        - Listing Unique Values - UNIQUE
+        - Aggregate Functions - COUNT, MAX and MIN, SUM, AVG
+        - Grouping Data - GROUP BY
+    g. Joining Database Tables
+        - SEELCT columnlist FROM tablenname WHERE PRIMARY_KEY = FOREIGN_KEY
+        - Joining Tables with an Alias
+        - Recursive Joins
