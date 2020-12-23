@@ -606,3 +606,107 @@ Summarization of Content
         - SEELCT columnlist FROM tablenname WHERE PRIMARY_KEY = FOREIGN_KEY
         - Joining Tables with an Alias
         - Recursive Joins
+
+8. Advanced SQL
+    a. SQL Join Operators
+        - Conditions
+            - Natural Join - two rows have common values in common columns
+            - Equality or Inequality - two rows meet a given join condition
+            - Outer Join - have common values in common columns or have no matching values
+        - Joins
+            - Inner Join - traditional join in which only rows that meet a given criterion are selected
+            - Outer Join - returns not only the matching rows but the rows with unmatched attribute values for one table or both tables to be joined
+            - Cross Join - performs a relational product off two tables
+            - Natural Join - returns all rows with matchings values in the matching columns and eliminates duplicate columns
+            - Join Using Clause - returns only the rows with matchings values in the column indicated in the USING clause
+            - Join ON Clause - return only the rows that meet the indicated join condition
+    b. Subqueries and Correlated Queries
+        - Characteristics
+            - A subquery is a query, SELECT statement, inside a query
+            - A subquery is normally expressed inside parentheses
+            - The first query in the SQL statement is known as the outer query
+            - The query inside the SQL statement is known as the inner query
+            - The inner query is executed first
+            - The output of an inner query is used as the input for the outer query
+            - The entire SQL statement is sometimes referred to as a nested query
+        - Types
+            - WHERE Subqueries - uses an inner SELECT subquery on the right side of a WHERE comparison (single value)
+            - IN Subqueries - uses an inner SELECT subquery on the right side of a WHERE comparison (multiple values)
+            - HAVING Subqueries - uses an inner SELECT subquery on the right side of a HAVING comparison
+            - Multirow Subquery Operators: ANY and ALL
+            - FROM Subqueries - SELECT subquery within FROM statements
+            - Correlated Subqueries - subquery that executes once for each row in the outer query
+    c. SQL Functions
+        - Date and Time Functions - take one parameter of a datter or character data type and return a value
+            - YEAR - returns a four digit year
+            - MONTH - returns a two digit month
+            - DAY - returns the number of the day
+            - DATE - returns today's date
+            - DATEADD - adds a number of selected time periods to a date
+            - DATEDIFF - subtracts two dates
+            - TO_CHAR - returns a character string or a formatted sting from a date value
+            - TO_DATE - returns a date value using a character string and a date format mask
+            - SYSDATE - returns today's date
+            - ADD_MONTHS - adds a number of months or years to a date
+            - LAST_DAY - returns the date of the last day of the month given in a date
+        - Numeric Functions
+            - ABS - returns absolute value of a number
+            - ROUND - rounds a value to a specified precision
+            - CEIL/CEILING/FLOOR - returns the smallest integer greater than or equal to a number or returns the largbest integer equal to or less than a number
+        - String Functions
+            - Concatenation - concatenates data from two different character columns and returns a single column
+            - UPPER and LOWER - returns a string in all capital or all lowercase letters
+            - SUBSTRING - returns a substring or part of a given string parameter
+            - LENGTH - returns the number of characters in a single value
+        - Conversion Functions
+            - TO_CHAR - returns a character string from a numeric value
+            - TO_CHAR - returns a character string or a formatted character string from a date value
+            - TO_NUMBER - returns a formatted number from a character string
+            - DECODE - compares an attribute or expression with a series of values and returns an assocaited value or a default value
+    d. Relational Set Operators
+        - UNION - combines rows from two or more queries without including duplicate rows - query UNION query
+        - UNION ALL - combines rows from two or more queries including duplicates - query UNION ALL query
+        - INTERSECT - combine rows from two queries, returning only the rows that appear in both sets
+        - MINUS - combines rows from two queries and returns only the rows that appear in the first set but not in the second - query MINUS query
+        - Syntax Alternatives - IN or NOT IN to obtain results similar to INTERSECT or MINUS
+    e. Virtual Tables: Creating a View
+        - View - virtual table based on a SELECT query
+        - Base Tables - tables on which the view is based
+        - CREATE VIEW viewname AS SELECT query
+        - Updatable Views
+            - Batch Update Routine - pools multiple transactions into a single batch to update a master table field in a single operation
+            - Updatable View - can be used to update attributes in any base table used in the view
+    f. Oracle Sequences
+    g. Procedural SQL
+        - Persistent Stored Module - block of conde containing standard SQL statements and procedural extensions that is stored and executed at the DBMS server
+        - Procedural Language SQL - langauge that makes it possible to use and store procedural code and SQL statements within the database and to merge SQL and traditional programming constructs, such as variables, conditional processing, basic loops, and error trapping
+        - Anonymous PL/SQL Block
+        - PL/SQL Basic Data Types
+            - CHAR, VARCHAR, NUMBER, DATE, %TYPE
+        - Triggers - procedural SQL code that is automatically invoked by the RDBMs upon the occurrence of a given data manipulation event
+            - Invoked before or after a data row is inserted, updated, or deleted
+            - Associated with a database table
+            - Each database table may have one or more triggers
+            - Executed as part of the transaction that triggered it
+            - Uses
+                - Enforce constraints that cannot be enforced at the DBMS design and implementation levels
+                - Add functionality by automating critical actions and providing appropriate warnings and suggestions for remedial action
+                - Can be used to update table values, insert records in tables, and call other stored proceedures
+                - Auditing
+                - Automatic generation of derived column values
+                - Enforcement of business or security constraints
+                - Creation fo replica tables for backup purposes
+            - Definition
+                - Trigger Timing - BEFORE or AFTER
+                - Trigger Event - Statement that causes the trigger to execute - INSERT, UPDATE, or DELETE
+                - Trigger Level
+                    - Statement-Level Trigger
+                    - Row-Level Trigger
+                - Trigger Action
+        - Stored Procedures - named collection of procedural and SQL statments
+        - PL/SQL Processing with Cursors
+            - Cursor - special construct used in procedural SQL to hold the data rows returned by a SQL query
+                - Implicit Cursor - automatically created in procedural SQL when the SQL statement returns only one value
+                - Explicit Cursor - created to hold the output of a SQL statement that may return two or more rows (but neven zero or only one)
+        - PL/SQL Stored Functions - basically a named group of procedural and SQL statements that returns a value
+    h. Embedded SQL - term used to refer to SQL statements contained within an application programming language
