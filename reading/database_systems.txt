@@ -710,3 +710,180 @@ Summarization of Content
                 - Explicit Cursor - created to hold the output of a SQL statement that may return two or more rows (but neven zero or only one)
         - PL/SQL Stored Functions - basically a named group of procedural and SQL statements that returns a value
     h. Embedded SQL - term used to refer to SQL statements contained within an application programming language
+
+9. Database Design
+    a. The Information System - provides for data collection, storage, and retrieval, comkposed of people, hardware, software, database(s), application programs and procedures
+        - Systems Analysis - process that establishes the need for an information system and its extent
+        - Systems Development - process of creating an information system
+        - Application - Data and thre code by which the data is transfromed into information
+        - Database Development - describes the process of database design and implementation
+    b. The Systems Development Life Cycle SDLC - traces the history of an information system
+        - Planning Phase - yields a general overview of the company and its objectives
+            - Should the existing system be continued?
+            - Should the existing system be modified?
+            - Should the existing system be replaced?
+            - Feasibility Study Focus
+                - Technical aspects of hardware and software requirements
+                - System Cost
+                - Operational Cost
+        - Analysis Phase - audit of user requirements
+            - What are the requirements of the current system's end users?
+            - Do those requirements fit into the overall information requirements?
+        - Detailed System Design Phase - designer completes the design of the system's processes
+            - Includes - screens, menus, reports, and other devices that help make the system a more efficient information generator
+        - Implementation Phase - hardware, DBMS software, and application programs are installed, and the database design is implemented
+        - Maintenance Phase
+            - Corrective Maintenance - responding to system errors
+            - Adapative Maintenance - responding to changes in the business environment
+            - Perfective Maintenance - enhancing the system
+        - Computer Aided Systems Engineering - help produce better systems within a reasonable amount of time and at a reasonable cost
+    c. The Database Life Cycle
+        - Database Initial Study Phase
+            - Analyse Company Situation
+                - Company Objectives, Operations, and Structure
+                - What is the organization's general operating environment, and what is its mission within that environment?
+                - What is the organization's structure?
+            - Define Problems and Constraints
+                - How does the existing system function?
+                - What input does the system require?
+                - What documents does the system generate?
+                - By whom and how is the system output used?
+            - Define Databse System Specification 
+                - Objectives, Scope, and Boundaries
+                    - What is the proposed system's initial objective?
+                    - Will the system interface with other existing or future systems in the company?
+                    - Will the system share the data with other systems or users?
+                    - Scope - defines the extewnt of the design according to operational requirements
+                    - Boundaries - external limits to the system
+        - Database Design Phase
+            - Goal - making sure the final product meets user and system requirements
+            - Views - Business and Designer
+            - Process
+                - Conceptual Design
+                    - Data analysis and requirements
+                    - Entity Relationship modeling and normalization
+                    - Data model verification
+                - DBMS Selection
+                - Logical Design
+                    - Map conceptual model to logical model components
+                    - Validate logical model using normalization
+                    - Validate logical model integrity constraints
+                    - Validate logical model against user requirements
+                - Physical Design
+                    - Define data storage organization
+                    - Define integrity and security measures
+                    - Determine performance measures
+            - Produce - instructions dealing with creation of tables, attributes, domains, views, indexes, security constraints, and storage and performance guidelines
+        - Implementation and Loading Phase
+            - Install the DBMS
+                - Virtualization - technical that creates lofical representations of computing resources that are independent of the underlying physical computing resources
+            - Create the Database
+            - Load or Convert the Data
+        - Testing and Evaluation Phase
+            - Test the Database
+                - Physical Security
+                - Password Security
+                - Access Rights
+                - Audit Trails
+                - Data Encryption
+                - Diskless Workstations
+            - Fine Tune the Database
+            - Evaluate the Database and Its Application Programs
+                - Backups
+                    - Full - all database objects are backed up in their entirety
+                    - Differential - only the objects that have been updated or modified sinces the last full backup are backed up
+                    - Transaction Log - backs up only the transaction log operations that are nto reflected in a previous backup copy of the database
+                - Database Failures
+                    - Software, Hardware, Programming Exceptions, Transactions, and External Factors
+        - Operation Phase
+        - Maintenance and Evolution
+            - Preventive Maintenance - back up
+            - Corrective Maintenance - recovery
+            - Adadptive Maintenance - enhancing performance, adding entities, etc.
+            - Access Permissions
+            - Database Statistics
+            - Security Audits
+            - Usage Summaries
+    d. Conceptual Design - first stage in the database design procss
+        - Goal - design a database that is independent of database software and physical details
+        - Output - conceptual data model that describes the main data entities, attributes, relationships, and constraints of a given problem domain
+        - Minimal Data Rule - All that is needed is there, and all that is there is needed
+        - Steps
+            - Data Analysis and Requirements
+                - What kind of information is needed?
+                - Who will use the information? How is the information used? What are the various end user data views?
+                - Where is the information to be found? How is the information extracted once it is found?
+                - What data elements are needed to produce the information? What are the data attributes? What relationships exist amongst the data? What is the data volume? How frequently are the data used?  What data transformations are used?
+                - Develop and gather end user data views
+                - Directly observe the cuyrrent system
+                - Interface with the systems design group
+                - Description of Operations - a formal document that provides precise, up to date, and throroughly reviewed description fo the activities that define an organization's operating environment
+                - Buisness Rule Benefits
+                    - Help to standardize company's view of data
+                    - Constitute a communications tool between users and designers
+                    - Allow the designer to understand the nature, role, and scope of the data
+                    - Allow the designer to understand business processes
+                    - Allow the designer to develop appropriate relationship participation rules and foreign key constraints
+            - Entity Relationship Modeling and Normalization
+                - Identify, analyze, and refine the business rules
+                - Identify the main entities using results from Step 1
+                - Define the relationships among entities using results of Step 1 and Step 2
+                - Define attributes, primary keys, and foreign keys for each of the entities
+                - Normalize the entities
+                - Complete the initial ER diagram
+                - Validate the ER model against the end users' information and processing requirements
+                - Modify the ER model
+            - Data Model Verification
+                - Tests against End-user data views, all required transactions, access rights and security, and business imposed data requirements and constraints
+                - Module - information system component that handles a specific business function
+                - Module Benefits
+                    - modules can be delegated to design groups within teams, speeding up development work
+                    - modules simplify the design work
+                    - module can be prototyped quickly
+                    - modules allow for incremental deployment of the system
+                - ER Model Verification Process
+                    - Identify the ER model's central entity
+                    - Identify each module and its components
+                    - Identify each module's transaction requirements
+                    - Verify all processes against system requirements
+                    - Make all necessary changes
+                    - Repeat Steps 2-5 for all modules
+                - Objectives
+                    - Ensure Module's Cohesivity i.e. the entities must be strongly related, and the module must be complete and self-sufficient
+                    - Address Moduel Coupling i.e. the exten to which modules are independent of one another, goal is low coupling, indicating that they are independent of other modules
+            - Distributed Database Design
+    e. DBMS Software Selection
+        - Important Factors
+            - Cost
+            - DBMS Features and Tools
+            - Underlying Model - hierarchiacal, network, relational, object/relational, or object-oriented
+            - Portability
+            - DBMS Hardware Requirements
+    f. Logical Design - second stage in the database design process
+        - Steps
+            - Map the conceptual model to logical model components
+                - Map strong entities
+                - Map supertype/subtype relationships
+                - Map weak entities
+                - Map binary relationships
+                - Map higher-degree relationships
+            - Validate the logical model using normalization
+            - Validate the logical model integrity constraints
+            - Validate the logical model against user requirements
+    g. Physical Design - process of determining the data storage organization and data access characteristics of the database to ensure its integrity, security and performance
+        - Steps
+            - Define data storage organization
+                - Determine the locaiton and physical storeage organization for each table
+                - Identify indexes and th type of indexes to be used for each table
+                - Identify the views and the type of views to be used on each table
+            - Define integrity and security measures
+                - Define user and security groups and roles
+                - Assign security controls
+            - Define performance measurements
+    h. Database Design Strategies
+        - Top-Down Design - starts by identifying the data sets and then defines the data elements for each of those sets
+        - Bottom-Up Design - identifies the data elements and then groups them together in data sets
+    i. Centralized vs. Decentralized design
+        - Centralized - productive hwen the data component has a relatively small number of objects and procedures
+        - Decentralized - might be used when the system's data component has a consideral number of entities and complex relations on which very complex operations are performed
+        
