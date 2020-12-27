@@ -886,4 +886,110 @@ Summarization of Content
     i. Centralized vs. Decentralized design
         - Centralized - productive hwen the data component has a relatively small number of objects and procedures
         - Decentralized - might be used when the system's data component has a consideral number of entities and complex relations on which very complex operations are performed
-        
+
+10. Transaction Managment and Concurrency Control
+    a. What is a Transaction?
+        - Transaction - any action that reads from or writes to a database
+            - A simple SELECT statement to generate a list of table contents
+            - A series of related UPDATE statements to change the values of attributes in various tables
+            - A series of INSERT statements to add rows to one or more tables
+            - A combination of SELECT, UPDATE, and INSERT statements
+        - Consistent Database State - one in which all data integrity constraints are satisfied
+        - Database Request - is the equivalent of a singel SQL statement in an application program or transaction
+        - Transaction Properties
+            - Atomicity - requires that all operations of a transaction be completed
+            - Consistency - indicates the permanence of the database's conistent state, a transaction takes a database from one consistent state to another
+            - Isolation - means that the data used during the execution of a transaction cannot be used by a second transaction until the first one is completed
+            - Durability - ensures that once transaction changes are done and commited, they cannot be undone or lost, even in the event of a system failure
+            - Serializability - ensures that the schedule for the concurrent execution of the transactions yields consistent results
+        - Transaction Management with SQL
+            - ANSI Standards
+                - COMMIT - all changes are permanently recorded within the database
+                - ROLLBACK - all changes are aborted and the databse is rolled back to its previous consistent state
+                - End of program is reached, equivalent to COMMIT
+                - Program is aborted and database is rolled back to its previous consistent state, equivalent to ROLLBACK
+        - Transaction Log - keeps track of all transactions that update the database
+            - Stores
+                - A record for the beginning of the transaction
+                - For each transaction component (SQL statement)
+                    - The type of operation being performed (INSERT, UPDATE, DELETE)
+                    - The names of the objects affected by the transaction (table name)
+                    - The "before" and "after" values for the fields being updated
+                    - Pointers to the previous and next transaction log entries for the same transaction
+                - The ending COMMIT of the transaction
+    b. Concurrency Control - coordinating the simultaneous execution of transactions in a multiuser database system
+        - Objective - ensure the serializability of transactions in a multiuser database environment
+        - Main Problems
+            - Lost Updates
+                - Occurs when two concurrent transactions, T1 and T2, are updating the same data element and one of the updates is lost (overwritten by the other transaction)
+            - Uncommitted Data
+                - Occurs when two transactions, T1 and T2, are executed concurrently and the first transaction is rolled back after the second transaction has already accessed the uncommitted data, thus violating the isolation property of transactions
+            - Inconsistent Retrievals
+                - Occurs when a transaction accesses data before and after one or more other transactions finish working with such data\
+        - The Scheduler - special DBMS process that established the order in which the operations are executed within concurrent transactions
+            - Actions based on concurrency control algorithsm such as locking or timestamping methods
+            - Serializable schedule - in which the intervleaved exeuction of transations yields the same results as if the transaction were executed in serial order
+    c. Concurreny Control with Locking Methods
+        - Lock - guarantees exclusive use of a data item to a current transaction
+            - Pessimistic Locking - use of locks based on the assumption that conflict between transactions is likely
+            - Lock Manager - responsible for assigning and policiing the locks used by the transaactions
+        - Lock Granularity - indicates the level of lock use.
+            - Database Level - the entire database is locked, thus preventing the use of any tables in the databse by transaction T2 while T1 is being executed - good for batch, unsuitable for multisuer DBMS
+            - Table Level - the entire table is locked, preventing access to any row by transaction T2 while T1 is using the table
+            - Page Level - DBMS locks an entire diskpage
+                - Diskpage or Page - equivalent of a disck block which is a directly addressable section of a disk
+            - Row Level - DBMS allows concurrent transactions to access different rows of the same table evne when the rows are located on the same page
+            - Field Level - allows concurrent transactions to access the same row as long as they require the use of different field (attributes) within that row
+        - Lock Types
+            - Binary Lock - two states, locked or unlocked
+                - locked - no other transaction can use that object
+                - unlocked - any transaction can lock that object for its use
+            - Shared/Exclusive Locks
+                - Exclusive - exists when access is reserved specifically for the transaction that locked the object
+                - Shared - exists when concurrent transactions are grantd read access on the basis of a common lock
+            - Two-Phase Locking to Ensure Serializability
+                - Phase One - Growing Phase - a transaction acquires all required locks without unblocking any data
+                - Phase Two - Shrinking Phase - a transaction releases all locks and cannot obtain a new lock
+                - Rules
+                    - Two transactions cannot have conflicting locks
+                    - No unlock operation can preceded a lock operation in the same transaction
+                    - No data are affected until all locks are obtained
+            - Deadlocks - occurs when two transactions wait indefinitely for each other to unlock data
+    d. Conccurency Control with Timestamping Methods
+        - Timestamping - assigns a global, unqiue timestamp to each transaction which produces an explicit order in which transactions are submitted to the DBMS system
+            - Uniqueness - ensures that no equal timestamp values can exists
+            - Monotonicity - ensures that timestamp values always increase
+        - Wait/Die and Wound/Wait Schemes - which transaction is rolled back and which continues executing
+            - Wait/Die - older waits for the younger
+                - If the transaction requesting the lock is the older of the two transactions, it will wait until the other transaction is completed and the locks are released
+                - If the trasnsaction requesting the lock is the younger of the two transactions, it will die (roll back) and is rescheduled using the same timestamp
+            - Wound/Wait - older transaction rolls back the younger transaction and reschedules it
+    e. Concurrency Control with Optimistic Methods
+        - Optimistic - based on the assumption that the majority of database operations do not conflict
+            - Read Phase - the transaction reads the database, executes the needed computations, and makes the updates to a private copy of the database values. All update operations are recorded in a temporary update file, which is not accessed by the remaining transactions
+            - Validation Phase - the transaction is validated to ensure that the changes made will not affect the integrity and consistency of the database. If positive, the transaction goes to the write phase, else, transaction is restared and changes are discarded
+            - Write Phase - the changes are permanently applied to the database
+    f. Database Recovery Management
+        - Database Recovery - restores a database from a given state to a previously consistent state
+            - Atomic Transaction Property - all portions of the transaction must be treated as a single, logical unit of work in which all operations are applied and completed to produce a consistent database
+        - Critical Events
+            - Hardware/Software Failure
+            - Human Incidents
+            - Natural Disasters
+        - Transaction Recovery
+            - Write-Ahead Log Protocol - ensures that transaction logs are always written before any database data are actually update, ensures in the case of ailure that the database can later be recovered to a consistent state using the data in the transaction log
+            - Redundant Transaction Logs - ensure that a physical disk failure will not impair the DBMS's ability to recover data
+            - Buffers - temporary storage areas in primary memory used to speed up disk operations
+            - Checkpoints - operations in which the DBMS writes all of its updated buffers to disk
+        - Deferred-Write Technique - the transaction oeprations do not immediately update the physical database
+            - Recovery Process
+                - Identify the last checkpoint in the transaction log
+                - For a transaction that started and was commited before the last checkpoint, nothing needs to be done
+                - For a transaction that performed a commit operation after the last checkpoint, the DBMS uses the transaction log records to redo the transaction and update the database
+                - For any transaction that has a ROLLBACK operation after the last checkpoint, nothing needs to be done
+        - Write-Through Technique - the database is immediately updated by the transaction operations during the transaction's execution
+            - Recovery Phase
+                - Identify the last checkpoint in the transaction log
+                - For a transaction that started and was commited before the last checkpoint, nothing needs to be done
+                - For a transaction that was committted after the last checkpoint, the DBMS redoes the transaction, applying changes from oldest to newest
+                - For a transaction that had a ROLLBACK,  the DBMS uses the transaction log recrords to ROLLBACK and undo the operations, using the "before" values in the transaction log, applying changes from newest to oldest
