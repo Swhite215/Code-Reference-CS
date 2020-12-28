@@ -993,3 +993,96 @@ Summarization of Content
                 - For a transaction that started and was commited before the last checkpoint, nothing needs to be done
                 - For a transaction that was committted after the last checkpoint, the DBMS redoes the transaction, applying changes from oldest to newest
                 - For a transaction that had a ROLLBACK,  the DBMS uses the transaction log recrords to ROLLBACK and undo the operations, using the "before" values in the transaction log, applying changes from newest to oldest
+
+11. Database Performance Tuning and Query Optimizations
+    a. Database Performance Tuning Concepts
+        - Interaction Sequence
+            - Client application generates a query
+            - Query is sent to the DBMS server
+            - DBMS server executes the query
+            - DBMS sends resulting data to client
+        - Database Performance Tuning - referes to a set of actitivities and procedures desgined to reduce the response time of the database system
+        - Mantra - No amount of fine-tuning will make a poorly designed datatbase perform as well as a well-designed database
+        - Performance Tuning: Client and Server
+            - SQL Performance Tuning - generate a SQL query that returns the correct answer in the least amount of time, using the minimum amount of resources at the server end
+            - DBMS Performance Tuning - configured to respond to clients' requests in the fastest way possible
+        - DBMS Architecture
+            - Data File - where data is stored
+            - Table Space/File GRoup - logical grouping of several data files that store data with similar characeristics
+            - Data Cache/Buffer Cache - shared, reserved memory area that stores the most recently accessed data blocks in RAM
+            - SQL Cache/Procedure Cache - shared, reserved memory area that stores the most recently executed SQL statements or PL/SQL procedures including triggers and functions
+            - I/O Request - low level data access operation that reads or writes data to and from computer devices
+            - Listener - listens for clients' requests and handles the processing of the SQL request to other DBMS processes
+            - User - DBMS creates a user process to manage each client session
+            - Scheduler - process organizes the concurrent execution of SQL requests
+            - Lock Manager - manages all locks placed on database objects, including disk pages
+            - Optimizer - analyzes SQL queries and finds the most efficient way to access the data
+        - Database Query Optimization Modes
+            - Selection of the optimum execution order
+            - Selection of sites to be accessed to minimze communication costs
+            - Operation Modes
+                - Automatic Query Optimization - DBMS
+                - Manual Query Optimization - user
+            - Algorithms
+                - Static Query Optimization - takes place at compilation time
+                - Dynamic Query Optimization - takes place at execution time
+            - Date Type
+                - Statiscally Based Query Optimization Algorithm - uses statistical information about the database
+                    - Dynamic Statistical Generation Mode - DBMS automatically evaluates and updates the statistics after each access
+                    - Manual Statistcal Generation Mode - statistics must be updated periodically through a user selected utilitysuch as RUNSTAT
+                - Rule Based Query Optimization - based on a set of user defined rules to determiune the best query access strategy
+        - Database Statistics - number of measurements about database objects, such as number of processors used, processor speed, and temporary space available
+    b. Quiery Processing
+        - DBMS Query Process Phase
+            - Parsing - DBMS parses the SQL query and chooses the most efficient access/execution plan
+                - Query Optimizer - analyzes SQL query and finds the most efficient way to access the data
+                - Parsing Steps
+                    - Validated for syntax compliance
+                    - Validated against the data dictionary to ensure that table  names and column names are correct
+                    - Validated against the data dictionary to esnure that the user has the proper access rights
+                    - Analyzed and decomposed into more atomic components
+                    - Optimized through transformationm into a full equivalent but more efficient SQL query
+                    - Prepared for execution by determing the most efficient execution or access plan
+            - Execution - DBMS executes the SQL query using the chosen execution plan
+            - Fetching - DBMS fetches the data and sends the result set back to the client
+            - Query Processing Bottlenecks - delay introduced in the processing of an I/O operation that causes the overall system to slow down
+                - Common Bottlenecks - CPU, RAM, Hard Disk, Network, Application Code
+    c. Indexes and Query Optimization
+        - Types
+            - Data Sparsity - refers to the number of different values a column could have
+            - Hash Index - based on an ordered list of hash values
+            - B-Tree Index - ordered data structure organized as an upside-down tree
+            - Bitmap Index - uses a bit array to represent the existence of a value or condition
+                - Example One - lots of unique values that repeat a relatively small number of times, use B-tree
+                - Example Two - small number of unique values that repeat a relatively large number of times, use bitmap
+    d. Optimizer Choices
+        - Modes
+            - Rule-Based Optimizer - uses preset rules and points to determine the best approach to execute a query
+            - Cost-Based Optimizer - uses sophisticated algorithms based on statistics about the objects being accessed to determine the best appraoch to execute a query
+    e. SQL Performance Tuning
+        - Index Selctivity
+            - When an indexed column appears by itself in the search criteria of a WHERE or HAVING clause
+            - When an indexed column appears by itself in a GROUP BY or ORDER BY clause
+            - When a MAX or MIN function is applied to an indexed column
+            - When the data sparsity on the indexed column is high
+    f. Query Formulations
+        - Identify what columns and computations are required
+        - Identify the source tables
+        - Determine how to join the tables
+        - Determine what selection criteria are needed
+        - Determine the order in which to display the output
+    g. DBMS Performance Tuning
+        - Configurable Parameters
+            - Data Cache
+            - SQL Cache
+            - Sort Cache
+            - Optimizer Mode
+        - Recoomendations
+            - Use RAID Redundant Array of Independent Disks
+            - Minimize disk contentions
+            - Put high usage tables in their own table space
+            - Assign separate data files in separate storage volumes for the indexes, system, and high usage tables
+            - Take advantage of the various table storage organizations available
+            - Partition tables based on usage
+            - Use denormalized tables where appropriate
+            - Store computed and aggregate attributes in tables
