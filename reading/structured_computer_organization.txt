@@ -9,7 +9,7 @@ Chapter 1 - Introduction
         - Interpretation - At exeuction time, replace L1 code with L0 equivalent
     b. Contemporary Multilevel Machines
         - Problem Oriented Language Level - C, C++, Go, Java, Perl, Python, PHP
-        - Assembly Language Level- Method to write programs for Levels 1, 2, and 3 translated by assembler
+        - Assembly Language Level   - Method to write programs for Levels 1, 2, and 3 translated by assembler
         - Operating System Machine Level - Instructions interpreted by OS and some by the microprogram or hardwired control
         - Instruction Set Architecture - Instructions carried out interpretively by the microprogram or hardware execution circuits
         - Microarchitecture Levels - Registers, ALUs, Data Paths, Microprogram
@@ -194,7 +194,7 @@ Chapter 5 - The Instruction Set Architecture
             - Integers - 8, 16, 32, and 64 Bits, Signed and Unsigned
             - Floating Point
         - Nonnumeric Data Types
-            - Characters, Booleas
+            - Characters, Booleans
     c. Instruction Formats
         - Design Criteria for Instruction Formats
             - Short vs. Long
@@ -368,7 +368,7 @@ Chapter 8 - Parallel Computer Architectures
             - MIMD - Multi-Processor (Uniform Memory Access, Cache Only Memory Access, Non Uniform Memory Access)
             - MIMD - Multi-Computers (Massive Parallel Processors, Cluster Of Workstations)
         - Memory Semantics
-            - Consistency Models - Strict, Sequenctial, Processor, Weak, Release
+            - Consistency Models - Strict, Sequential, Processor, Weak, Release
         - Uniform Memory Access Symmetric Multiprocessor Architecture
             - Snooping, Cache Coherence
             - Cache Coherence Protocols - Write-Through or Modified, Exclusive, Shared, Invalid MESI
@@ -377,7 +377,7 @@ Chapter 8 - Parallel Computer Architectures
     d. Message-Passing Multicomputers
         - Interconnection Networks
             - Topology - Star, Tree, Ring, Torus, Grid, Complete, Cube, Hyercube
-            - Dimensionality - number of choices there are to get from one source to the destination
+            - Dimensionality - number of choices there are available to get from one source to the destination
         - Massively Parallel Processors
             - High-Performance proprietary interconnection network, enormous i/o capacity, fault tolerance
             - Examples - BlueGene, Red Storm
