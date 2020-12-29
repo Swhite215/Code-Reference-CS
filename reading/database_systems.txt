@@ -1341,3 +1341,96 @@ Summarization of Content
         - The CUBE Extension - used withh GROUP BY clause to generate aggregates by the listed columns
         - Materialized Views - dynamic table that not only contains the SQL query command to generate the rows, it stores the actual rows
 
+14. Database Connectivity and Web Technologies
+    a. Database Connectivity - the mechanisms thhroughh which application programs connect and communicate with data repositories
+        - Database Middleware - provides an interface between the application program and the database
+        - Native SQL Connectivity - the connection interface that is provided by the database vendor and that is unique to that vendor e.g. Oracle SQL*Net or MSSQL Server
+            - ODBC, DAO, and RDO
+                - ODBC - Open Database Connectivity - MS implementation of the SQL Access Group Call Level Interface
+                - Data Access Objects DAO - object oriented API used to access MS Access, MS FoxPro and dBase
+                - Remote Data Objects RDO - higher-level object-oriented appliction used to access remote database servers
+                - Dynamic Link Libraries - shared code that is linked to theh Windows operating environment
+                - ODBC Architechture
+                    - ODBC API
+                    - Driver Manager - in charge of managing all database connections
+                    - ODBC Driver that communicates directly with DBMS
+            - OLE-DB - Object Linking and Embedding for Database - adds object oriented functionality for access to relational and nonrelational data
+                - Consumers are objects that request and use data
+                - Producers are objects that manage the connection with a data source and provide data to the consunmers
+                    - Data Providers - provide data to other processes
+                    - Service Providers - provide additional functionality to consumers
+                - ActiveX Data Objects - high-level application orientd interface to interact withh OLD-DB, DAO, and RDO
+            - ADO.NET - data access component of Microsoft's .NET application development framework
+            - Java Database Connectivity JDBC - application programming interface that allows a Java program to interact with a wide range of data sources including relational databases, tabular data sources, spreadsheets, and text files
+    b. Database Internet Connectivity
+        - Enables
+            - Rapid response to competitive pressures by bringing new services and products to market quickly
+            - Increase customer satisffaction through the creation of Web-based support services
+            - Allow anywhere, anytime data access using mobile smart devices via the internet
+            - Yield fast and effective information dissemination through universal access from across the street or across the globe
+        - Web to Database Middleware: Server-Side Extensions
+        - Web Server Interfaces
+            - Common Gateway Interface - uses script files that perform specific functions baxed on the client's parameters that are passed to the web server
+            - Application Programming Interface
+        - Web Browser
+        - Client Side Extensions
+            - Plug-ins - external application that is automatically invoked by the browser when needed
+            - JavaScript, ActiveX, VBSCript
+        - Web Application Servers - middleware application that expands the functionality of Web servers by linking thhemn to a wide range of services, such as databases, directory systems, and search engines
+        - Web Database Development - deals with the process of interfacing databases with the Web browser
+    c. Extensible Markup Language - metalanguage used to represent and manipulate data elements
+        - Document Type Definition and XML Schemas
+            - Document Type Definition - file that describes XML elements, composition of the database's logical model and defines the syntax rules or valid elements for each type of XML document
+            - XML Schema - advanced data definition language that is used to describe the structure of XML data documents
+                - Elements, data types, relationship types, ranges, and default values
+        - XML Presentation 
+            - Extensible Style Language Transformations XSLT - describes the general mechanism that is used to extract and process data from one XML document and enables its transformation within another document
+            - XSL Stylesheets - define the presentation rules applied to XML elements
+        - XML Applications
+            - Business-to-Business Exchanges
+            - Legacy System Integrations
+            - Web Page Development
+            - Database Support
+            - Database Metadictionaries
+            - XML Databases
+            - XML Services
+    d. Cloud Computing Services
+        - Cloud Computing - a computing model for enabling ubiquitous, convenient, on-demand, network access to a shared pool of configurable computer resources e.g. networks, servers, storage, applications, and services
+        - Cloud Services - services provided by cloud computing
+        - Cloud Implementation Types
+            - Public - managed exclusively by third party
+            - Private - built by an organization for the sole purpose of servicing its own needs
+            - Hybrid - mix of public and private
+        - Characteristics of Cloud Services
+            - Ubiquitous access via internet technologies
+            - Shared infrastructure
+            - Lower costs and variable pricing
+            - Flexible and scalable services
+            - Dynamic provisioning
+            - Service orientation
+            - Managed operations
+        - Types of Cloud Services
+            - Software as a Service - Google Docs
+            - Platform as a Service - Azure App Service
+            - Infrastructure as a Service - VM
+        - Cloud Advantages
+            - Low initial cost of entry
+            - Scalability and elasticity
+            - Support for mobile computing
+            - Ubiquitous access
+            - High reliability and performance
+            - Fast provisioning
+            - Managed infrastructure
+        - Cloud Disadvantages
+            - Issues of security, privacy and compliance
+            - Hidden costs of implementation and operation
+            - Data migration is difficult and lengthy
+            - Complex licensing scheme
+            - Loss of ownership and control
+            - Organization culture
+            - Difficult integration with internal IT system
+        - SQL Data Services - cloud computing based data management service that provides relational data storage, access, and management to companies of all sizes without the typically high costs of in-house
+            - Hosted Data Management
+            - Standard Protocols
+            - Common Programming Interface
+            
