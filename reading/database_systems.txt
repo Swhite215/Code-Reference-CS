@@ -1214,3 +1214,130 @@ Summarization of Content
         - Operating System Independence - system must run on any operating system
         - Network Independence - system must run on any network platform
         - Database Independence - system must support any vendor's database product
+
+13. Business Intelligence and Data Warehouses
+    a. The Need for Data Analysis
+    b. Business Intelligence - term that describes a comprehensive, cohesive, and integrated set of tools and processes used to capture, collect, integrate, store and analyze data withh the purpose of generating and presenting information to support business decision making
+        - Framework To:
+            - Collect and store operational data
+            - Aggregrate operational data into decision support data
+            - Analyze deciison support data to generate information
+            - Present information to the end user to support business decisions
+            - Make business decision, which in turn generate more data that works through the flow
+            - Monitor results to evaluate outcomes of the business decisions
+            - Predictr future behhaviors and outcomes withh a high degree of accuracy
+        - Business Intelligence Architecture
+            - ETL Tools - data extraction, transformation, and loading tools to collect, filter, integrate, and aggregrate internal and external data
+            - Data Store - supported by data warehouse that stores data optimized for data analysis and query speed
+            - Query and Reporting - performs data selection and retrieval
+            - Data Visualization - presents data to teh end user in a variety of meaningful and innovative ways
+            - Data Monitoring and Alerting - allow real-time monitoring of business activities
+            - Data Analytics - performs data analysis and data-mining tasks using the data in the data store
+            - Examples
+                - Dashboards - Salesforce
+                - Portals - Actuate
+                - Data Analysis and Reporting - MicroStrategy
+                - Data-Mining - SAP
+                - Data Warehouse - Azure CosmosDB
+                - OLAP Tools
+                - Data Visualization - Tableau
+        - Master Data Management - collection of concepts, techniques, and processes for thhe proper identification, definition, and management of data elements within an organization
+        - Governance - method or process of government
+        - Key Performance Indicators - quantifiable numeric or scale based measurements thhat assess the compnay's effectiveness or success in reach its strategic and operational goals
+        - Reporting Styles
+            - Advanced Reporting - insightful information
+            - Monitoring and Alerting - monitor decision outcome
+            - Advanced Data Analysis - help the end user discover relationships, patterns, and trends hhidden within the organization's data
+        - Business Intelligence Benefits
+            - Integrating Architecture
+            - Common User Interface for Data Reporting and Analysis
+            - Common Data Repository Fosters Single Version of Company Data
+            - Improved Organizational Performance
+        - Decision Support System - arrangment of computerized tools used to asssit managerial decision making
+        - Business Technology Trends
+            - Data Storage Improvements
+            - Business Intelligence Applicances
+            - Business Intelligence As A Service
+            - Big Data Analytics
+            - Personal Analytics
+    c. Decision Support Data
+        - Operational Data vs. Decision Support Data
+            - Operational Data - optimized to support transactions thhat represent daily operations
+            - Decision Support Data - gives tactical and strategic business meaning to the operational data
+                - Time Span - cover a longer time frame
+                - Granularity - presented from highly summarized to nearly atomic
+            - Dimensionality - includs many dimensions and are interested in how the data relate over those dimensions
+        - Decision Support Database Requirements
+            - Database Schema
+            - Data Extraction and Filtering
+            - Database Size
+    d. The Data Warehouse
+        - Integrated - centralized, consolidated database thhat integrates data dervied from the entire organization and from multiple sources with diverse formats
+            - All business entities, data elements, data characteristics, and business metrics are described in the same way throughout the enterprise
+        - Subject-Oriented - arranged and optimized to provide answers to questions from diverse functional areas within a company
+            - Organized and sumarized by topic, such as sales, marketing, finance, distribution, and transportation
+        - Time-Variant - represent the flow of data through time
+        - Non-Volatile - once data enter the warehouse, they are never removed
+        - Data Mart - small, single subject data warehouse subset that provides decision support to a small group of people
+        - Twelve Rules
+            - The data warehouse and operational environments are separated
+            - The data warehouse data are integrated
+            - The data warehouse contains historical data over a long time
+            - The date warehouse data are snapshot data captured at a given point in time
+            - The data warehouse data are subject oriented
+            - The data warehouse are mainly read-only with periodic batchh updates from operational data
+            - The data warehouse development lifecycle is data driven instead of process driven
+            - The data warehouse contains data with several levels of detail, current, old, lightly summarized and highly summarized
+            - The data warehouse is characterized by read-only transactions to very large data sets
+            - The data warehouse has a system that traces data sources, transformations, and storage
+            - The data warehouse meta data identify and define all data elements
+            - The data warehouse contains a chargeback mechanism for resource usage that enforces optimal use of the data by end users
+    e. Star Schemas - modeling technique used to map multidimensional support data into a relational database
+        - Facts - numeric measurements that represent a specific business aspect or activity
+        - Dimensions - qualifying characteristics that provide additional perspectives to a given fact
+        - Attributes - used to search, filter, or classify facts
+        - Attribute Hierarchy - provides a top-down data organization that is used for two purposes: aggregation, and drill-down/roll-up data analysis
+            - Example: Region -> State -> City -> Store
+        - Performance Improving Techniques for the Star Schema
+            - Normalizing Dimensional Tables
+            - Maintaining Multiple Fact Tables to Represent Different Aggregation Levels
+            - Denormalizing Fact Tables
+            - Partitioning and Replicating Tables
+    f. Data Analytics - subset of BI functionality that encompasses a wide range of mathematical, statistical, and modeling techniques with the purpose of extracting knowledge from data
+        - Explanatory Analytics - focus on discovering and explaining data characteristics and relationships based on existing data
+        - Predictive Analytics - focus on predicting future data outcomes with a high degree of accuracy
+        - Data Mining - refers to analyzing massive amounts of data to uncover hidden trends, patterns, and relationships to form computer models to simulate and explain the findings and then to use such models to support business decision making
+            - Data Preparation Phase - main data sets to be used are identified and cleansed of any data impurities
+            - Data Analysis And Classification Phase - studies the data to identify common data characteristics or patterns
+                - Data Groupings, classifications, clusters, or sequences
+                - Data dependencies, links, or relationships
+                - Data patterns, trends, and deviations
+            - Knowledge Acquisition Phase - uses thhe result of data analysiss and classification phase
+                - Neural Networks, Decision Trees, Rules Induction, Genetic Algorithms, Regression Trees, Memory-Based Reasoning, and Nearest Neighbor
+            - Prognosis Phase - modeling, forecasting and prediction
+        - Predictive Analytics - use of advanced mathematical, statistical, and modeling tools to predict future business outcomes with high degrees of accuracy
+    g. Online Analytic Processing
+        - Multi-Dimensional Data Analysis Techniques - data are processed and viewed as part of a multidimensional structure
+        - Advanced Database Support/Features
+            - Access to many different kinds of DBMSs, flat files, and internal and external data sources
+            - Access to aggregrated data warehouse data as well as tothe detail data found in operational databases
+            - Advanced data navigation features such as drill-down and roll-up
+            - Rapid and consisteny query response times
+            - The ability to map end-user requests to the appropriate data source and then to the proper data access language
+            - Support for very large databases
+        - Easy-to-Use End Usert Interface
+        - OLAP Architecture
+            - Graphical User Interface
+            - Analytical Processing Logic
+            - Data Processing Logic
+        - Relational OLAP - provides OLAP functionality by using relational databases and familiar relational query tools to store and analyze multi-dimensional data
+            - Multidimensionl data scheme support within the RDBMS
+            - Data access language and query performance optimized for multidimensional data
+            - Support for very large databases
+        - Multidimensional OLAP - extends OLAP functionality to multi-dimensional database management systems
+            - Data Cube - three-dimensional visualization where the location of eachh data value is a function of x-, y-, and z- axes in a three dimensional space
+    h. SQL Extensions for OLAP
+        - The ROLLUP Extentsion - use with GROUP BY clause to generate aggregates by different dimensions
+        - The CUBE Extension - used withh GROUP BY clause to generate aggregates by the listed columns
+        - Materialized Views - dynamic table that not only contains the SQL query command to generate the rows, it stores the actual rows
+
