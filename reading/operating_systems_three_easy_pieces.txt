@@ -46,7 +46,7 @@ Summarization of Content
     c. Address Translation
         - Hardware transforms each memory access, changing the virtual address provided by the instruction to a physical address where the information is located
         - Program has the illusion of it's own memory
-        - Base and Bounds, Dynamic Relocation, Add Base to Address, use Memory Management Unit
+        - Base and Bounds, Dynamic Relocation, Add Base to Address, Use Memory Management Unit
     d. Segmentation
         - Continuous portion of the address space of a particular length
         - Sharing is enabled through protection bits
@@ -120,7 +120,7 @@ Summarization of Content
     f. Sempahores
         - Synchronization Primitive
         - Object with an integer value that we can manipulate with two routines
-        - Routings: sem_init(), sem_wait(), sem_post()
+        - Routines: sem_init(), sem_wait(), sem_post()
         - Binary Sempahores (Locks) - initial value is 1
         - Conditional Variables - initial value is 0
         - Reader-Writer Lock, rwlock_acquire_writelock(), rwlock_release_writelock()
@@ -221,7 +221,7 @@ Summarization of Content
             - Steady-State Throughput
         - RAID Level 0: Striping
             - No Redundancy
-            - Strip = Blocks in a Row
+            - Stripe = Blocks in a Row
         - RAID Level 1: Mirroring
             - Creates a Copy
             - RAID 01-10 Possible
