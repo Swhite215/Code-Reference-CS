@@ -5,11 +5,7 @@ Summarization of Content
 
 1. Chapter 1 - Fundamentals of Quantitative Design and Analysis
     a. Classes of Computers
-        - Personal/Mobile Devices PMD
-        - Desktop
-        - Server
-        - Warehouse
-        - IoT/Embedded
+        - Personal/Mobile Devices PMD, Desktop, Server, Warehouse, IoT/Embedded
     b. Parallelism
         - Data-Level Parallelism
             - Instruction Level Parallelism
@@ -144,17 +140,17 @@ Summarization of Content
         - Approaches
             - Hardware to Exploit ILP Dynamically
             - Software to Exploit ILP Statically at Compile Time
-        - Dependences (Data, Name, Control)
-            - Data Dependences: Instruction is dependent on result of an instruction dependent on another
-            - Name Dependences: Two instructions use the same register or memory location
-            - Control Dependences: Instruction should be executed in correct order
+        - Dependencies (Data, Name, Control)
+            - Data Dependencies: Instruction is dependent on result of an instruction dependent on another
+            - Name Dependencies: Two instructions use the same register or memory location
+            - Control Dependencies: Instruction should be executed in correct order
         - Data Hazards
             - WAW Write After Write
             - RAW Read After Write
             - WAR Write After Read
     b. Basic Compiler Techniques for Exposing ILP
         - Pipeline Scheduling and Loop Unrolling
-            - Possible if all of a loops iteration are independent
+            - Possible if all of a loops iterations are independent
     c. Reducing Branch Costs with Advanced Branch Prediction
         - Correlating Branch Predictors - Look at recent behavior of other branches
         - Tournament Predictors - Use of Global (most recent branch history) and Local Predictor (address of branch)
@@ -211,7 +207,7 @@ Summarization of Content
         - Hardware Approaches
             - Fine-grained - switch between threads on each cycle
             - Coarse-grained - only switches threads on costly stalls
-            - Simulaneous Multithreading - Allows multiple instructions from independent threads to be executed without regard to the depedences which are handled by the dynamic scheduling capability
+            - Simulaneous Multithreading - Allows multiple instructions from independent threads to be executed without regard to the depedencies which are handled by the dynamic scheduling capability
     l. Fallacies and Pitfalls
         - F: It is easy to predict the performance and energy efficiency of two different versions of the same instruction set architecture, if we hold the technology constant
         - F: Processors with lower CPIs will always be faster
@@ -251,7 +247,7 @@ Summarization of Content
             - Dependencies
                 - Length of operand vectors
                 - Structural hazards among operations
-                - Data dependences
+                - Data dependencies
             - Vocabulary
                 - Convoy - set of vector instructions that could potentially execute together
                 - Chime - unit of time taken to execute one convoy
@@ -296,7 +292,7 @@ Summarization of Content
             - PTX - Parallel Thread Execution
             - PTX Format - opcode.type destination, a source, b source, c source
         - Conditional Branching in GPUs
-            - PX Assembler Level - branch, call, return, exit, and per-thread-lane predicate registers
+            - PTX Assembler Level - branch, call, return, exit, and per-thread-lane predicate registers
             - GPU Hardware Instruction Level - branch, jump, jump indexed, call, call indexed, return, exit, and special instructions
         - NVIDIA GPU Memory Structures
             - Private Memory per SIMD Lane
@@ -392,7 +388,7 @@ Summarization of Content
             - Directory transitions between Uncached, Shared, and Exclusive
             - Directory Requests - Read Miss, Write Miss and Data Write-Back
     e. Synchronization: The Basics
-        - User-level software routings that rely on hardware-supplied synchronization instructions
+        - User-level software routines that rely on hardware-supplied synchronization instructions
         - Goal: Enable atomicity
         - Basic Hardware Primitives
             - Atomic Exchange - interchanges a value in a register for a value in memory
@@ -473,7 +469,7 @@ Chapter 6 - Warehouse-Scale Computers to Exploit Requet-Level and Data-Level Par
             - Data Potentially Safer in the Cloud
         - Amazon Web Services Example
             - Amazon Simple Storage Service
-            - Amazon Elastic ComputerCloud
+            - Amazon Elastic Computer Cloud
             - Smart Choices
                 - Virtual Machines, Low Cost, Open Source Software, No Initial Guarantee of Service, No Contract Required
     f. Google Example
@@ -500,7 +496,7 @@ Chapter 6 - Warehouse-Scale Computers to Exploit Requet-Level and Data-Level Par
         - P: Coping effectively with microsecond delays as opposed to nanosecond or millisecond delays
         - F: Turning off hardware during periods of low activity improves cost-performance of a WSC
 
-Chapter 7 - Doman Specific Architectures
+Chapter 7 - Domain Specific Architectures
     a. Guidelines for DSA
         - Use Dedicated Memories to Minimize the Distance Over Which Data is Moved
         - Invest the Resources Saved from Dropping Advanced Microarchtiectural Optimizations into more Arithmetic Units or Bigger Memories
@@ -514,7 +510,7 @@ Chapter 7 - Doman Specific Architectures
         - Activation - output of nonlinear function
         - Operational Intensity - Operations per Weight
         - Traning vs. Inference
-            - Training or Learning - the development phase where the goal is to learn the wieghts associated with each edge in the neural network graph
+            - Training or Learning - the development phase where the goal is to learn the weights associated with each edge in the neural network graph
             - Production - inference, predicting, scoring, implementation, evaluation, running, or testing
             - Supervised Learning - given a set of training data to learn from where the data is preprocessed to have correct labels
         - Popular DNNs
@@ -524,7 +520,7 @@ Chapter 7 - Doman Specific Architectures
             - Recurrent Neural Networks RNN
                 - Speech Recognition and Language Translation
                 - Long Short-Term Memory LSTM
-        - Batches - reuse the weights ocne they have been fetched from memory across a set of inputs
+        - Batches - reuse the weights once they have been fetched from memory across a set of inputs
         - Quantization - conversion between fixed point and floating point for the inference phase
     c. Google's Tensor Processing Unit
         - Custom Application Specific Integrated Circuit ASIC
@@ -557,7 +553,7 @@ Chapter 7 - Doman Specific Architectures
         - Image Processing Units IPUs - analyze and modify an input image in contrast to generating an output image
         - Two-Dimensional Array of Processing Elements - makes it easy to perform stencil computations
         - Image Signal Processor ISP - hardware accelerator for enhancing input images
-        - Pxiel Visual Core Software
+        - Pixel Visual Core Software
             - Directed Acyclic Graph DAG of Kernels
         - Architecture Philosophy
             - Two-Dimensional > One-Dimensional
@@ -570,7 +566,7 @@ Chapter 7 - Doman Specific Architectures
             - Compile Halide -> vISA -> pISA
         - Two-Dimensional Line Buffer - minimizes DRAM access
     g. Cross-Cutting Issues
-        - Heteogenity and System on a Chip SOC
+        - Heterogenity and System on a Chip SOC
             - Intellectual Property Block to be integrated into the SOC
         - Open Instruction Set
             - RISC-V a viable free and open instruction set
