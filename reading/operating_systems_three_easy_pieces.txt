@@ -4,14 +4,33 @@ Authors: Remzi and Andrea Arpaci-Dusseau
 Summarization of Content
 
 1. Topic #1 - Virtualization of CPU
-    a. The Process
-        - A running program
-        - How can the OS provide the illusion of nearly endless CPUs? 
-            - Virtualization, Time Sharing (Context Switch), Space Sharing (Partitions)
+    a. The Process - a running program
+        - Crux: How can the OS provide the illusion of nearly endless CPUs? 
+            - Virtualization: take a physical resource and transform it into a more general, pwoerful and easy to use virtual form
+            - Time Sharing (Context Switch) - running one process, stopping, running another, and so forth
+            - Space Sharing (Partitions) - resources is divided among those who wish to use it
         - Process Control Block - State of Process
+        - Machine State - what a program can read or update when it si running
+        - Address Space - memoery that the process can adderss
     b. Process API
-        - Methods: Create, Destroy, Wait, Miscellaneous, Status
-        - States: Ready, Blocked, Runnning
+        - Methods: 
+            - Create - eachh time a command is run in the shell, the OS is invoked to create a new process
+            - Destroy - interace to destroy processes forcefully
+            - Wait - wait for a process to stop running
+            - Miscellaneous - suspenion and resume
+            - Status - how long it has run for and what state it is in
+        - Process Creation
+            - OS must load program code into memory
+                - Eagerly - i.e. all at once
+                - Lazily - i.e. loading pieces of code or data only as they are needed
+            - Allocate memory for program's runtime stack
+            - Allocate memory for the program's heap
+            - Initialization e.g. I/O file descriptors
+            - Start the program at the entry point i.e. main()
+        - Process States
+            - Running - executing instructions
+            - Ready - ready to run but for some reason OS has not chosen it to run, to move to run, must be scheduled
+            - Blocked - process has performed some kind of operation that makes it not ready to run until some other event takes place
         - Commands on Linux: ps, top, htop
         - System Calls: fork(), exec(), wait(), kill()
     c. Limited Direct Execution
