@@ -1434,3 +1434,147 @@ Summarization of Content
             - Standard Protocols
             - Common Programming Interface
             
+15. Database Administration and Security
+    a. Data as a Corporate Asset
+        - Dirty Data - data that suffers from inaccuracies and inconsistencies, becomes an even greater threat
+            - Lack of enforcement of integrity constraints, such has not null, uniqueness, and referential integrity
+            - Data-entry errors and typographical errors
+            - Use of synonyms and homonyms across systems
+            - Nonstandard use of abbreviations in character data
+            - Different decompositions of composite attributes into simple attributes across systems
+        - Data Quality - comprehhensive approach to ensuring the accuracy, validity, and timeliness of data
+        - Data Profiling Software - gathers statistics, analyzes existing data sources and metadata to determine data patterns
+        - Master Data Management Software - coordinating common data acorss multiple systems
+    b. The Need for a Database and Its Role in the Organization
+        - DBMS Facilitate
+            - Interpretation and presentation of data
+            - Distribution of data
+            - Data preservation and monitoring
+            - Control over data duplication
+        - Management Levels
+            - Top - needs information for strategic decision making
+            - Middle - needs information for tactical decision making
+            - Operational - needs information for every day decision making
+        - Enterprise Database - company's data representation that provide support for all present and expected future operations
+    c. Introduction of a Database: Special Considerations
+        - Technological - DBMS software and hardware - installing, configuring, and monitoring the DBMS to make sure it efficiently handles data storage, access and security
+        - Managerial - Administrative Functions
+        - Cultural - Corporate resistance to change - effect on people, functions, and interactions
+    d. The Evolution of Database Administration
+        - Information Systems Department
+            - A service function to provide end users with datamanagement suppor 
+            - A production function to provide end users with solutions for their information needs through intergated application or management information systems
+        - Database Administrator - responsible for the control of the centralized and shared databases
+            - Database planning, including the definition of standards, procedures, and enforcement
+            - Database requirements gathering and conceptual design
+            - Database logical and transaction design
+            - Database physical design and implementation
+            - Database testing and debugging
+            - Database operations and maintenance, including installation, conversion, and migration
+        - Data Administrator/Information Resource Manager
+    e. Database Environment's Human Component
+        - Data Adminstrator Activities and Characteristics
+            - Performs strategic planning
+            - Sets long-term goals
+            - Sets policies and standards
+            - Job is broad in scope
+            - Focuses on the long term
+            - Has a managerial orientation
+            - Is DBMS independent
+        - Database Administrator
+            - Controls and supervises
+            - Executes plans to reach goals
+            - Enforces policies and procedures
+            - Enforces programming standards
+            - Job is narrow in scope
+            - Focuses on the short term
+            - Has a technical orientation
+            - Is DBMS specific
+        - DBA Managerial Role
+            - End User Support
+            - Policies, Standards, and Procedures
+            - Data Security, Privacy and Integrity
+            - Data Backup and Recovery
+                - Tasks
+                    - Periodic data and application backup
+                    - Proper backup and identification
+                    - Convenient and safe backup storage
+                    - Physical protection of both hardware and software
+                    - Personal access control to the software of a database installation
+                    - Insurance coverage for the data in the database
+                - Disaster Management - all of the DBA activites designed to secure data availability following a physical disaster or database integrity failure
+                - Full Backup - produces a complete copy of the database
+                - Incremental Backup - produces a backup of all data since the last backup date
+                - Concurrent Backup - takes place while the user is working on a database
+            - Data Distribution and Use
+        - DBA Technical Role
+            - Evaluating, selecting, and installing the DBMS and related utilities
+                - DBMS Model
+                - DBMS Storage Capacity
+                - Application Development Support
+                - Security and Integrity
+                - Backup and Recovery
+                - Concurrency Control
+                - Performance
+                - Database Administration Tools
+                - Interoperability and Data Distribution
+                - Portability and Standards
+                - Hardware
+                - Data Dictionary
+                - Vendor Training and Support
+                - Available Third Party Tools
+                - Costs
+            - Designing and implementing databases and applications
+            - Testing and evaluating databases and applications
+            - Operating theh DBMS, utilities, and applications
+            - Training and supporting users
+            - Maintaining the DBMS, utilities, and applications
+        - DBA's Role in the Cloud
+            - DBMS Installation and Updates
+            - Server/Network Engagement
+            - Backup and Recovery Operations
+    f. Security
+        - Key Ideas
+            - Security - refers to activities and measures that ensure the confidentiality, integrity, and availability of an information system and its main asset, data
+            - Confidentiality - deals with ensuring that data are protected against unauthorized access and use
+            - Integrity - keeping data consistent and free of errors or anomalies
+            - Availability - accessibility of data whenever required by authorized users and for authorized uses
+        - Security Policies - collection of standards, policies, and procedures created to guarantee the security of a system and ensure auditing and compliance
+        - Security Vulnerabilities - weakness in a system componnet that could be exploited to allow unauthorized access or cause service disruptions
+            - Security Threat - imminent security violation
+            - Security Breach - occurs when a security threat is exploited to endanger the integrity, confidentiality, or availability of the sytem
+                - Preserverd - data recovery is not necessary
+                - Corrupted - data recovery is necessarys
+        - Database Security - refers to DBMS features and other related measures that comply with the organization's security requirements
+            - Safeguards
+                - Change default system passwords
+                - Change default installation paths
+                - Apply the latest patches
+                - Secure installation folders with proper access rights
+                - Make sure that only required services are running
+                - Set up auditing logs
+                - Set up session logging
+                - Require session encryption
+            - Authorization Management
+                - Define each user to the database
+                - Assign passwords to each user
+                - Define user groups
+                - Assign access privileges
+                - View Definition
+                - DBMS Access Control
+                - DBMS Usage Monitoring
+    g. Database Administration Tools
+        - Data Dictionary - stores the definitions of data characteristics and relationships
+            - Active Data Dictionary - automatically updated with every database access
+            - Passive Data Dictionary - not automatically updated
+        - CASE Tools - computer aided systems engineering
+    h. Developing a Data Adminstration Strategy
+        - Information Engineering - allows for the translation of the company's strategic goals into the data and applications that will help the company achieve those goals
+        - Information Systems Architecture - servers as the basis for planning, development, and control of future information systems
+        - Success Factors
+            - Management Commitment
+            - Thorough Analysis
+            - End-user Involvement
+            - Standards
+            - Training
+            - Pilot
