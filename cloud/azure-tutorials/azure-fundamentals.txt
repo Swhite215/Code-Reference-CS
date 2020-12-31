@@ -23,10 +23,8 @@ Fundamentals of Microsoft Azure
         d. Economies of Scale
             - Ability to do things more efficiently or at a lower-cost per unit when operating at a larger scale
         e. Capital Expenditure CapEx vs. Operational Expenditure OpEx
-            - Capital Expenditure - spending of money on physical infrastructure up front, and then deducting that 
-            expense from your tax bill over time. Upfront cost with a value that reduces over time.
-            - Operating Expenditure - spending money on services or products now and being billed for them now. You
-            can deduct this expense from your tax bill in the same year.
+            - Capital Expenditure - spending of money on physical infrastructure up front, and then deducting that expense from your tax bill over time. Upfront cost with a value that reduces over time.
+            - Operating Expenditure - spending money on services or products now and being billed for them now. You can deduct this expense from your tax bill in the same year.
             - CapEx Costs - Server, Storage, Network, Backup and Archive, Continuity, Disaster Recovery, Infrastructure, Personnel
             - OpEx Costs - Software and Features, Scaling based on Demand, User/Org Billing
         f. Cloud Deployment Models
@@ -55,7 +53,7 @@ Fundamentals of Microsoft Azure
             - Compute Services - VMs, Containers, and Serverless Computing
                 - VMs, VM Scale Sets, Kubernetes, Service Fabric, Batch, Container, Functions
             - Cloud Storage - Disks, File Shares, Databases
-                - Blog, File, Queue, and Table
+                - Blob, File, Queue, and Table
                 - Databases
                     - Cosmos, SQL, MySQL, PostgreSQL, SQL Server, SQL Data Warehouse, Migration, Redis, MariaDB
             - Networking - VPN to On-Premise
@@ -95,8 +93,7 @@ Fundamentals of Microsoft Azure
                 - US DOD Central, US Gov. Virginia, US Gov. Iowa, China East, China North
         b. Understand Geographies in Azure
             - Geography - discrete market typically containing two or more regions that preserve data residency and compliance boundaries
-            - Data Residency - physical or geographic location of an organization's data or information. Defines the legal or regulatory
-            requirements imposed on data based on the country or region in which it resides
+            - Data Residency - physical or geographic location of an organization's data or information. Defines the legal or regulatory requirements imposed on data based on the country or region in which it resides
         c. Understand Availability Zones in Azure
             - What is an availability zone?
                 - Physically separate datacenters within an Azure region
@@ -137,25 +134,20 @@ Fundamentals of Microsoft Azure
                 - Billing Profile - independent monthly invoice and payment method
         e. Azure Support Options
             - Free - documentation, community support, demos, quickstart center, service health, advisor
-            - Support Plans - Developer, Standard, Professional Direct
+            - Support Plans - Developer, Standard, Professional Direct, Premier
             - Community Support - Azure Knowledge Center, Microsoft Developer Network, Stack Overflow, Server Fault, Azure Feedback, Twitter
 
     5. Module 5: Core Cloud Services - Manage Service with the Azure Portal
         a. Azure Management Options
-            - Azure Portal
-                - Public website accessible with a browser
-            - Azure Powershell
-                - Module installable for Windows PowerShell or PowerShell Core (Windows, Linux, MacOS)
-            - Azure CLI
-                - Cross-platform command-line program
-            - Azure Cloud Shell
-                - Interactive, authenticated, browser-accessible shell
-            - Azure Mobile App
-                - Access, manage, and monitor all your Azure accounts and resources from your iOS or Android phone or table
+            - Azure Portal - Public website accessible with a browser
+            - Azure Powershell - Module installable for Windows PowerShell or PowerShell Core (Windows, Linux, MacOS)
+            - Azure CLI - Cross-platform command-line program
+            - Azure Cloud Shell - Interactive, authenticated, browser-accessible shell
+            - Azure Mobile App - Access, manage, and monitor all your Azure accounts and resources from your iOS or Android phone or table
         b. Navigate the Portal
             - Azure Portal Layout
-                - Resource Panel  - lists the main resource types
-                - Pane - slide-out panel containing the UI for a single level in a navigation sequence
+                - Resource Panel - lists the main resource types
+                - Panel - slide-out panel containing the UI for a single level in a navigation sequence
             - Azure Marketplace - find, try, purchase, and provision applications and services from hundreds of leading service providers
             - Configuring Settings in the Azure Portal
                 - Notifications, Cloud Shell, Settings, Feedback Pane, Help Pane
@@ -211,7 +203,7 @@ Fundamentals of Microsoft Azure
             - Azure Cosmos DB - gloablly distributed database service, schema less
             - Azure Blob Storage - unstructured, scalable, large
             - Azure Data Lake Storage - repository to store structured and unstructured data
-            - Azure Files - fully managed file shared in the cloud
+            - Azure Files - fully managed file share in the cloud
             - Azure Queue - store large number of messages that can be accessed anywhere
             - Disk Storage - disks for virtual machines, applications and other services
             - Storage Tiers
@@ -241,7 +233,7 @@ Fundamentals of Microsoft Azure
             - Bandwidth - amount of data that can fit on the connection
             - Scale to Different Azure Regions
             - Traffic Manager - uses DNS server that is closest to the user to direct user traffic to a globally distributed endpoint
-            - Load Balancer - traffic within the same region, Traffic Manager - DNS level directs client to preferred endpoint
+            - Load Balancer - traffic within the same region 
     
     9. Module 9: Security, Responsibility, and Trust in Azure
         a. Cloud Security is a Shared Responsibility
@@ -357,14 +349,12 @@ Fundamentals of Microsoft Azure
         d. Enterprise Governance Management
             - Azure Management Groups - containers for managing access, policies, and compliance across multiple Azure subscriptions
         e. Define Standard Resources with Azure Blueprints
-            - Enables cloud architects and central information technology groups to define a repeatable set of Azure resources that adheres
-            to an organization's standards, patterns, and requirements
+            - Enables cloud architects and central information technology groups to define a repeatable set of Azure resources that adheres to an organization's standards, patterns, and requirements
             - Blueprint for: Role Assignments, Policy Assignments, Azure Resource Manager Templates, Resource Groups
             - Steps - Create an Azure Blueprint, Assign the Blueprint, Track the Blueprint assignments
         f. Compliance Manager
             - Microsoft Privacy Statement - explains what personal data MS processes, how, and for what purpose
-            - Microsoft Trust Center - website resource containing information and details about how MS implements and supports security,
-            privacy, compliance, and transparency
+            - Microsoft Trust Center - website resource containing information and details about how MS implements and supports security, privacy, compliance, and transparency
             - Service Trust Portal - hosts Compliance Manager service and publications of audits and other compliance related information
                 - Standards - ISO, SOC, NIST, FedRAMP, GDPR
             - Compliance Manager - workflow-based risk assessment dashboard that enables tracking, assigning, and verifying organizations regulatory compliance
