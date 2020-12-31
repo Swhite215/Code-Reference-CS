@@ -46,8 +46,6 @@ Fundamentals of Microsoft Azure
                 - A: Azure Databricks
             - Q: Which of the following statements are true for IaaS cloud services?
                 - A: Services can be scaled automatically to support system load and the client is responsible for all guest OS and application updates
-            
-
     
     2. Module 2: Core Cloud Services - Introduction to Azure
         a. What is Azure?
@@ -75,7 +73,7 @@ Fundamentals of Microsoft Azure
                 - A: Availability Zone
         d. Understand Region Pairs in Azure
         e. Understand Service-Level Agreements for Azure
-            - Q: What is the SLA guarantee for a single instance virtual machine using premium SDD or Ultra Disk for all OS system disks and data disks?
+            - Q: What is the SLA guarantee for a single instance virtual machine using premium SSD or Ultra Disk for all OS system disks and data disks?
                 - A: 99.9%
             - Q: What is the SLA for Azure AD Premium?
                 - A: 99.9%
@@ -93,7 +91,7 @@ Fundamentals of Microsoft Azure
                 - A: What should you create for each department?
         c. Create an Azure Account
         d. Understand Azure Billing
-        e. Azure Support Optionsw
+        e. Azure Support Options
             - Q: How do you increase your Azure subscription limits?
                 - A: Create a new support request
             - Q: Which of the following Azure support plans offer Severity "A" and "B" cases to be opened?
@@ -141,7 +139,7 @@ Fundamentals of Microsoft Azure
                 - A: Cosmos DB
             - Q: You need to create a network drive in Azure Storage that is accessible from several computers, what storage solutiomn should you create?
                 - A: A file service in a storage account
-            - Q: Which of the following servies is a cloud-based service that leverages massively parallel processing MPP to quickly run complex queries across petabytes of data in a relational database?
+            - Q: Which of the following services is a cloud-based service that leverages massively parallel processing MPP to quickly run complex queries across petabytes of data in a relational database?
                 - A: Azure SQL Data Warehouse (Azure Synapse)
         c. Comparison Between Azure Data Storage and On-Premise Storage
     
@@ -182,7 +180,7 @@ Fundamentals of Microsoft Azure
         b. Define IT Compliance with Azure Policy
             - Q: You assign an Azure policy specifying virtual networks are not an allowed resource type in a resource group. What happens to virtual networks already in the resource group?
                 - A: Vnet functions normally, no new subnets can be added
-            - Q: What can you use to esnure that whenever users authenticate to Azure, they have to make use of multi-factor authentication?
+            - Q: What can you use to ensure that whenever users authenticate to Azure, they have to make use of multi-factor authentication?
                 - A: Policy in Azure Active Directory, Conditional Access
         c. Organize Policy with Initiatives
         d. Enterprise Governance Management
