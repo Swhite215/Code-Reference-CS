@@ -14,8 +14,7 @@ Connect Your Services Together
             - Azure Queue Storage - stores a large number of messages that can be securely accessed from anywhere using a REST API
             - Azure Service Bus - message broker system intended for enterprise applications
             - Azure Service Bus Topics - queues with multiple subscribers
-            - Benefits of Queues - increased reliability, message delivery guarantees (At-Least-Once, At-Most-Once, First-In-First-Out),
-            transaction support (all messages are processed or none)
+            - Benefits of Queues - increased reliability, message delivery guarantees (At-Least-Once, At-Most-Once, First-In-First-Out), transaction support (all messages are processed or none)
             - Choose Service Bus Topics IF:
                 - You need multiple receivers to handle each message
             - Choose Service Bus Queues IF:
@@ -33,8 +32,7 @@ Connect Your Services Together
                 - You want to track progress for processing a message inside of the queue
         c. Choose Azure Event Grid
             - Azure Event Grid - fully managed event routing service running on Azure Service Fabric
-                - distributes events from different sources, such as Azure Blob Storage or Azure Media Services, to different handlers
-                such as Azure Functions or Webhooks
+                - distributes events from different sources, such as Azure Blob Storage or Azure Media Services, to different handlers such as Azure Functions or Webhooks
             - Concepts
                 - Events - What happened, data messages
                 - Event Sources - Where the event took place
@@ -45,8 +43,7 @@ Connect Your Services Together
                 - Simplicity, Advanced Filtering, Fan-Out, Reliability, and Pay-Per-Event
                 - One Event at A Time
         d. Choose Azure Event Hubs
-            - Azure Event Hubs - intermediary for the publish-subscribe communication pattern, optimized for extremely high-throughput,
-            a large number of publishers, security, and resiliency
+            - Azure Event Hubs - intermediary for the publish-subscribe communication pattern, optimized for extremely high-throughput, a large number of publishers, security, and resiliency
             - Additional Services
                 - Partitions - buffers into which the communications are saved
                 - Real-Time and Batch Processing
@@ -178,7 +175,7 @@ Connect Your Services Together
             - Why use Queues? - increases resiliency by temporarily storing waiting messages - 500TB - 2000 messages/second
             - Message - byte array of up to 64KB
             - Storage Account -> Queue
-                - General Purposae Storage Account v1 or v2
+                - General Purpose Storage Account v1 or v2
                 - Access Tier in StorageV2 applies to Blob Storage
                 - Location that is close
                 - Locally Redundant Storage LRS Geo-Redundant Storage GRS replication
