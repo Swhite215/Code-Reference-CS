@@ -25,10 +25,10 @@ Chapter 1 - Introduction
             - One IC runs the application and communicates using a proprietary prtocool with a second IC running both the host and the controller
     d. Key Limitations
         - Data Throughput - < .125 Mbit/s or < 125 kbit/s
-        - Operating Range - 2 to 5 and possible 30 with line-of-sight
+        - Operating Range - 2 to 5M and possible 30 with line-of-sight
     e. Network Topology
         - Broadcasting - sending data out to any scanning device or receiver in listening range, connectionless
-            - Broadcaster - sends nonconnectable advertising packets periodically to anyone willin gto receive them
+            - Broadcaster - sends nonconnectable advertising packets periodically to anyone willing to receive them
             - Observer - scans frequencies to receive advertising packets currently being broadcasted
         - Connections - permanent, periodical data exchange of packets between two devices
             - Central (Master) - scans frequencies for connectable advertising packets, and initiates connections. Manages timing and initiates data exchanges
@@ -38,8 +38,7 @@ Chapter 1 - Introduction
         - Protocol - building blocks to conform to Bluetooth specification, layers that implement packet formats, routing, multiplexing, encoding, and decoding
         - Profiles - "Vertical Slices" of functionality covering either basic modes of operation or specific use cases, define how protocols should be used to achieve goal
             - Generic Profiles
-                - Generic Access Profile GAP - Covers the usage model of lower-level radion protocols to define roles, procedures, and modes that allow device to broadcast data, discover devices,
-                establish connections, manage connections, and negotiate security levels. Topmost control layer of BLE and mandatory for all BLE devices
+                - Generic Access Profile GAP - Covers the usage model of lower-level radion protocols to define roles, procedures, and modes that allow device to broadcast data, discover devices, establish connections, manage connections, and negotiate security levels. Topmost control layer of BLE and mandatory for all BLE devices
                 - Generic Attribute Profile GATT - dealing with data exchange in BLE, defines a basic data model and procedure to allow devices to discover, read, write, and push data elements
             - Use-Case-Specific Profiles
                 - SIG-Defined GATT Based Profiles
@@ -50,7 +49,7 @@ Chapter 2 - Protocol Basics
     a. BLE Protocol Stack
         - Application  - responsible for logic, user interface and data handling
         - Host
-            - Generic Access Profile, Generic Attribute Profile, Logical Link Control and Adaptation Protocol , Attribute Protocol, Security Manager and Host Controller Interface
+            - Generic Access Profile, Generic Attribute Profile, Logical Link Control and Adaptation Protocol, Attribute Protocol, Security Manager and Host Controller Interface
         - Controller
             - Host Controller Interface, Link Layer, Physical Layer
     b. Physical Layer - contains the analog communications circuitry, capable of modulating and demodulating signals and transforming them into digital symbols
@@ -72,10 +71,10 @@ Chapter 2 - Protocol Basics
             - Random Device Address - dynamically generated at runtime
         - Advetising and Scanning
             - Packet Purpose - broadcast data for applications and to discover slaves and connect to them
-            -  31 Bytes of advertising data payload along with basic header information
+            - 31 Bytes of advertising data payload along with basic header information
             - Scanning Procedures
                 - Passive Scanning - scanner listens for packets and advertiser is never aware packets are actually received
-                - Active Scanning - scanner issues a Scan Request packet after receiving and advertising packet. Advertisier responds with Scan Response packet. 
+                - Active Scanning - scanner issues a Scan Request packet after receiving an advertising packet. Advertisier responds with Scan Response packet. 
             - Packet Classifications
                 - Connectable, Non-Connectable - can connections occur
                 - Scannable, Non-Scannable - can scan requests be issued
@@ -90,12 +89,12 @@ Chapter 2 - Protocol Basics
             - Changing the Connection Parameters - allows master and slave to request new connection parameters and to set them
             - Encryption - performs actual data encryption and decryption
     d. Host Controller Interface HCI
-        - Set of commands and events for the host and t he controller to interact with each other, along with a data packet formate and a set of rules for flow control and other procedures
+        - Set of commands and events for the host and the controller to interact with each other, along with a data packet format and a set of rules for flow control and other procedures
     e. Logical Link Control and Adaption Protocol L2CAP
         - Protocol Multiplexer 
             - Takes multiple protocols from the upper layers and encapsulates them into the standard BLE packet format (and vice versa)
         - Fragmentation and Recombination
-            - Takes large packets from upper layers and breaks them into chunks that if into the 27-byte maximum payload size
+            - Takes large packets from upper layers and breaks them into chunks that fit into the 27-byte maximum payload size
             - Receives multiple packets that have been fragmented and recombines them into a single large packet that will be sent upstream to the appropriate upper layer entity
         - Routes Attribute and Security Manager Protocols
         - Can Create User Defined Channels for High-Throughput without ATT
@@ -123,7 +122,7 @@ Chapter 2 - Protocol Basics
                 - Execute Write Request/Response - execute all pending queued write operations, server then reports success of failure to the client
             - Server Initiated
                 - Handle Value Indication/Confirmation - server update of an attribute's value and identified by it's handle
-                - Handle Value Notification - server update of an attribute's value and indeitified by its handle
+                - Handle Value Notification - server update of an attribute's value and identified by its handle
     g. Security Manager
         - Protocol and security algorithms designed to provide the BLE protocol stack with the ability to generate and exchange security keys, which allows peers to communicate
         securely over an encrypted link, to trust the identity of the remote devices, and to hide the pubilc address if required to avoid malicious peers
@@ -131,12 +130,12 @@ Chapter 2 - Protocol Basics
             - Initiator - always corresponds to the Link Layer master and therefore the GAP central
             - Responder - always corresponds to the Link Layer slave and therefore the GAP peripheral
         - Procedures
-            - Pairing - temporary common security encryption key is generate to be able to switch to a secure, encrypted link. Not reusable
+            - Pairing - temporary common security encryption key is generated to be able to switch to a secure, encrypted link. Not reusable
             - Bonding - pairing followed by generation and exchange of permanent security keys
             - Encryption Re-establishment - defines how to use permanent keys in subsequent connections to re-establish a secure, encrypted connection
         - Pairing Algorithms
             - Just Works - Short Term Key is generated on both sides, based on packets exchanged in plain text, vulnerable to Man-in-the-Middle MITM Attacks
-            - Passkey Display - One peer displays a six-deigit passkey and other side is asked to enter the key, protects against MITM
+            - Passkey Display - One peer displays a six-digit passkey and other side is asked to enter the key, protects against MITM
             - Out of Band - additional data is transferred by means other than BLE radio, protects against MITM
         - Security Mechanisms - Encryption of packets, Privacy for advertisers Bluetooth address, Signing of packets to verify identity
         - Security Keys
@@ -155,8 +154,7 @@ Chapter 3 - GAP (Advertising and Connections)
     b. Roles
         - Broadcaster - transmit-only, distributing advertising packets with data at regular intervals
         - Observer - receive-only, listens for data embedded in advertising packets from broadcasting peers
-        - Central - Link Layer Master, capable of establishing multiple connections to peers, intiator of connections
-        and allows devices into the network, listens for advertising packets and establishes a connection
+        - Central - Link Layer Master, capable of establishing multiple connections to peers, intiator of connections and allows devices into the network, listens for advertising packets and establishes a connection
         - Peripheral - Link Layer Slave, uses advertising packets to allow centrals to find it and establish a connection
         - Notes - each device can operate in one or more roles at a time
     c. Modes and Procedures
@@ -164,45 +162,32 @@ Chapter 3 - GAP (Advertising and Connections)
             - Goal - Devices can send data unidirectionally from broadcaster to observer
             - Mode Broadcast to Peer Procedure Observation
         - Discovery Modes
-            - Discoverability - how the peripheral advertises its presence to other devices and what those device can
-            or should do with that information
+            - Discoverability - how the peripheral advertises its presence to other devices and what those devices can or should do with that information
             - Non-Discoverable - other devices cannot learn about the presence of a peripheral
             - Limited Discoverable - discoverable for a limited period of time and with a lowered priority
             - General Discoverable - device is discoverable for as long as it is required or deemed necessary
         - Discovery Procedures
-            - Limited Discovery Procedure - central starts active scanning with no white list, if LD flag is set, per device
-            is reported to the application for further action
-            - General Discovery Procedure - central starts active scanning with no white lists, if LD or GD is set, peer devices
-            is repoted to the application for further action
+            - Limited Discovery Procedure - central starts active scanning with no white list, if LD flag is set, per device is reported to the application for further action
+            - General Discovery Procedure - central starts active scanning with no white lists, if LD or GD is set, peer devices is repoted to the application for further action
         - Connection Establishment Mode
             - Non-Connectable - No advertising packets of ADV_NONCONN_IND or ADV_SCAN_IND APs
-            - Directed Connectable - ADV_DIRECT_IND APs at a high frequency and for a short time, with no user data payload
-            and with a target central Bluetooth Address
-            - Undirected Connectable - ADV_IND APs, standard connectable mode through which a peripheral makes itself
-            connectable for a longer period of time
+            - Directed Connectable - ADV_DIRECT_IND APs at a high frequency and for a short time, with no user data payload  and with a target central Bluetooth Address
+            - Undirected Connectable - ADV_IND APs, standard connectable mode through which a peripheral makes itself connectable for a longer period of time
         - Connection Establishment Procedures
-            - Auto Connection  - host populates a white list with an array on known peripherals and then instructs the controller
-            to connect to the first one detected
-            - General Connection - central scans without a white list or APs, for each peripheral detected, application decides
-            whether to connect, using a prompt for the user or parsing advertising data, once chosen, direct connection is used
-            - Selective Connection - central scans with a white list or APs, for each peripheral detected, application decides
-            whether to connect, using a prompt for the user or parsing advertising data, once chosen, direct connection is used
-            - Direct Connection - host uses Link Layer to initiate a connection to on single device, identified by its
-            Bluetooth Address, without previous knowledge of its presence
+            - Auto Connection  - host populates a white list with an array on known peripherals and then instructs the controller to connect to the first one detected
+            - General Connection - central scans without a white list or APs, for each peripheral detected, application decides whether to connect, using a prompt for the user or parsing advertising data, once chosen, direct connection is used
+            - Selective Connection - central scans with a white list or APs, for each peripheral detected, application decides whether to connect, using a prompt for the user or parsing advertising data, once chosen, direct connection is used
+            - Direct Connection - host uses Link Layer to initiate a connection to a single device, identified by its Bluetooth Address, without previous knowledge of its presence
         - Additional Procedures
-            - Name Discovery - allows a peripheral or central to retrieve the device name over an established connection using
-            a GATT transaction
-            - Connection Parameter Update - changing connections parameters that are set by the central, either through
-            a peripheral request or straight from the central
+            - Name Discovery - allows a peripheral or central to retrieve the device name over an established connection using a GATT transaction
+            - Connection Parameter Update - changing connections parameters that are set by the central, either through a peripheral request or straight from the central
             - Terminate Connection - peripheral and central can terminate at any time, while providing a reason code
     d. Security
         - Pillars
-            - Security Manager and Protocols - implements the actual cryptographic algorithms and protocol exchanges that allow two devices
-            to securely exchange data and privately detect each other
-            - GAP Security Aspects - set of modes and procedures related to security that allow the implementation to trust
-            the connection to carry sensitive data and to confidently accept the identity of a peer device
+            - Security Manager and Protocols - implements the actual cryptographic algorithms and protocol exchanges that allow two devices to securely exchange data and privately detect each other
+            - GAP Security Aspects - set of modes and procedures related to security that allow the implementation to trust the connection to carry sensitive data and to confidently accept the identity of a peer device
         - Address Types
-            - Static - random number generated either at every device oot or can stay the same for the lifetime of the device
+            - Static - random number generated either at every device or can stay the same for the lifetime of the device
             - Non-Resolvable Private - random number that represents a temporary address used for a certain time
             - Resolvable Private - generated from an Identity Resolving Key IRK and a random number, and can change often
         - Authentication
@@ -222,7 +207,7 @@ Chapter 3 - GAP (Advertising and Connections)
             - Bonding Procedure - central can initiate bonding procedure at any time
             - Authentication Procedure - enforces the transition to a security mode on a connection currently in a lower security mode
             - Authorization Procedure - giving user opportunity to reject or accept a particular transaction
-            - Encryption Procedure -use Link Layer's encryption capabilities to start the encryption of all traffic over connection
+            - Encryption Procedure - use Link Layer's encryption capabilities to start the encryption of all traffic over connection
     e. Additional Gap Definitions
         - Advertising Data Format/Types
             - Flag - 1 Byte - Sets Limited or General Discovery Mode
@@ -266,7 +251,7 @@ Chapter 4 - GATT (Services and Characteristics)
     d. Characteristics - container for user data
         - Declaration - provides metdata about the actual user data
         - Value - full attribute that contains the user data in its value field
-        - Definition - characteristic declaration, balue and any descriptors
+        - Definition - characteristic declaration, value and any descriptors
         - Properties - operations and procedures that can be used with this characteristics
             - Broadcast, Read, Write without Response, Write, Notify, Indicate, Signed Write Command, Queued Write, Writable Auxillaries
     e. Characteristic Descriptors - provides client with additional information about the characteristic and its value
@@ -338,7 +323,7 @@ Chapter 5 - Hardware Platforms, and Debugging and Application Tools
         - Advantages
             - Full BLE feature stack
             - Reliable and well built hardware
-            - Development kit closely resembles a readl product
+            - Development kit closely resembles a real product
         - Weakness  
             - Dated 8051 Core driving SoC
     c. Other Hardware Platforms and Modules
