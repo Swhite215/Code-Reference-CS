@@ -51,7 +51,7 @@ Chapter 2 - Fundamental Concepts
         - Directory - special file whose contents take the form of a table of filenames coupled with references to files
         - Symbolic Links - contains name of another file
         - Filenames - 255 char portable filename character set
-        - Pathhnames - string of / separated directories ending in a file or directory
+        - Pathnames - string of / separated directories ending in a file or directory
     e. File I/O Model
         - System Calls - open(), read(), write(), close()
         - Descriptors - 0 is standard input, 1 is standard output, and 2 is standard error
@@ -106,7 +106,7 @@ Chapter 2 - Fundamental Concepts
         - Background Process
     m. Pseudoterminals
         - Pair of connected virtual devices, known as master and slave with an IPC channel allowing two way data transfer
-        - Slave provides an interface that behaves like a terminal, allowing another porogram to drive the terminal-oriented program connected to slave device
+        - Slave provides an interface that behaves like a terminal, allowing another program to drive the terminal-oriented program connected to slave device
         - Examples Telnet and SSH
     n. Date and Time
         - Real Time - calendar time since Midnight on 01/01/1970
@@ -134,7 +134,7 @@ Chapter 3: System Programming Concepts
             - Wrapper function copies system call number into CPU register %eax
             - Wrapper function executes a trap machine instruction, which causes the processor to switch from user mode to kernel mode and execute code pointed to by location 0x80
             - Kernel invokes system_call() routine
-                - Saves regiter values onto the kernel stack
+                - Saves register values onto the kernel stack
                 - Checks validity of the system call number
                 - Invokes appropriate system call service routine using system call number to index a table of all system calls sys_call_table
                 - Service routine performs the required task and then returns a result status to system_call() routine
