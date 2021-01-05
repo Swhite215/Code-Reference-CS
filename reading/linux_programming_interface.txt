@@ -179,3 +179,100 @@ Chapter 3: System Programming Concepts
     e. Portability Issues
         - Feature Test Macros - have header files expose the definitions (constants, function prototypes, and so on) that follow a particular standard
         - System Data Types - pg. 65
+
+Chapter 4: File I/O: The Universal I/O Model
+    a. Overview
+        - File Descriptor - a usually small, nonnegative number
+        - Standard File Descriptors
+            - 1 - stdin - STDIN_FILENO
+            - 2 - stdout - STDOUT_FILENO
+            - 3 - stderr - STDERR_FILENO
+        - Key System Calls
+            - fd = open(pathname, flags, mode) - opens the file identified by pathname, returning a file descriptor used to refer to the file in subsequent calls e.g. read, lseek, and write
+            - numread = read(fd, buffer, count) - reads at most count bytes from the open file referred to by fd and stores them in buffer
+            - numwritten = write(fd, buffer, count) - writes at most count bytes from the buffer to the open file referred to by fd
+            - status = close(fd) - releases fd and its associated kernel resources
+        - Key Code Example - pg. 71 and Linux Workspace tlpi-dist/fileio/copy.c
+    b. Universality of I/O
+        - open(), read(), write(), and close() are used to perform I/O on all types of files, including devices such as terminal
+            - ./copy test test.old - copy a regular file
+            - ./copy a.txt /dev/tty - copy a regular file to this terminal
+            - ./copy /dev/tty b.txt - copy input from this terminal to a regular file
+            - ./copy /dev/pts/16 /dev/tty - copy input from another terminal
+    c. Opening a File: open()
+        - fn - int open(const char *pathname, int flags, .... /* mode_t mode */);
+            - pathname - file to be opened
+            - flag - bit mask that specifies the access mode for the file i.e. permissions to be placed, depend on mode, process umask and optional access control list
+        - Examples
+           - fd = open("startup", O_RDONLY); - open existing file for reading
+           - fd = open("myfile", O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR); - open new or existing file for reading and writing, truncating to zero bytes, file permissions read-write for owner, nothing for all others
+           - fd = open("w.log", O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR); - open new or existing file for writing, writes should always append to end of file
+        - File Descriptor returned - if open() succeeds, it should return the lowest number unused file descriptor for the process
+        - open() flags argument
+            - File Access Mode Flags - only one of these values should be specified in flags
+                - O_RDONLY - open for reading only
+                - O_WRONLY - open for writing only
+                - O_RDWR - open for reading and writing
+            - File Creation Flags - control aspects of behavior of the open() call
+                - O_CLOEXEC - set the close on-exec flag
+                - O_CREAT - create file if it doesn't already exist
+                - O_DIRECTORY - fail if pathname is not a directory
+                - O_EXCL - with O_CREAT; create file exclusively
+                - O_LARGEFILE - used on 32-bit systems to open large files
+                - O_NOCTTY - dont let pathname become the controlling terminal
+                - O_NOFOLLOW - dont dereference symbolic links
+                - O_TRUNC - truncate existing file to zero length
+            - File Status Flags
+                - O_APPEND - writes are always appended to end of file
+                - O_ASYNC - generate a signal when I/O is possible
+                - O_DIRECT - file I/O bypasses buffer cache
+                - O_DSYNC - provide synchronized I/O data integrity
+                - O_NOATIME - don't update file last access time on read
+                - O_NONBLOCK - open nonblocking mode
+                - O_SYNC - make file write synchronous
+        - Errors from open() - if an error occurs open() returns -1 and errno identifies the cause of the error
+            - EACCES - file permissions don't allow the calling process to open the file in the mode specified byu the flags or because of directory permissions, the file could not be accessed or the file did not exists and could not be created
+            - EISDIR - the specified file is a directory, and the caller attempted to opedn it for writing, which is not allowed
+            - EMFILE - the process resource limit on the number of open file descriptors has been reached
+            - ENFILE - the system wide limit on the number of open files has been reached
+            - ENOENT - the specified file doesn't exists, and O_CREAT was not specified
+            - EROFS - the specified file is on a read-only file system and the caller tried to open for writing
+            - ETXTBSY - the specified file is an executable file that is currently executing
+    d. The creat() System Call
+        - fn - int creat(const char *pathname, mode_t mode);
+        - Goal - creates and opens a new file with the given pathname, or if the file already exists, opens the file and truncates it to zero length
+    e. Reading from a File: read()
+        - fn - ssize_t read(int fd, void *buffer, size_t count);
+            - count - specifies the maximum number of bytes to read
+            - buffer - supplies the address of the memory buffer into which the input data is to be placed, buffer must be at least count bytes long
+                - system calls dont allocate memory for buffers that are used to return information to the caller, instead we must pass a pointer to a previously allocated memory buffer of the correct size
+            - successful call to read returns the number of bytes actually read, or 0 if end of file is encountered
+        - Examples
+            - numRead = read(STDIN_FILENO, buffer, MAX_READ);
+    f. Writing to a File: write()
+        - fn - ssize_t write(int fd, void *buffer, size_t count);
+            - count - specifies the maximum number of bytes to write
+            - buffer - supplies the address of the memory buffer from which the input data is to be written, buffer must be at least count bytes long
+            - successful call to write returns the number of bytes actually written
+    g. Closing a File: close()
+        - fn - int close(int fd);
+        - closes an open file decsriptor, freeing it for subsequent reuse by the process. When a process terminates, all of its open file descriptrs are automatically closed
+        - Example
+            - if (close(fd) == -1); errExit("close");
+    h. Changing the File Offset: lseek()\
+        - File Offset - location in the file at which the next redad or write will commence
+        - fn - off_t lseek(int fd, off_t offset, int whence);
+            - offset - specifies a value in bytes
+            - whence - indicates the base point from which offset is to be interpreted
+                - SEEK_SET - the file offset is set offset bytes from the beginning of the file
+                - SEEK_CUR - the file offset is adjusted by offset bytes relative to the current file descriptor
+                - SEEK_END - the file offset is set to the size of the file plus offset. In other words, offset is interpreted with respect to the next byte after the last byte of the file
+        - File Holes - a program seeks past the end of a file and then performs I/O, it is possible to write bytes at an arbitrary point past the end of the file, files holes do not take up disk space
+            - Advantage - a sparsely populated file consumes less disk space than woul dotherwise be required if the null bytes actually neeeded to be allocated in disk blocks
+        - Key Code Example - pg. 84 or tlpi-dist/fileio/seek_io.c
+    i. Operations Outside the Universal I/O Model: ioctl()
+        - fn - int ioctl(int fd, int request, .... /* argp */);
+            - fd - open file descriptor
+            - request - control operation to be performed
+            - argp - could be anything, typically a pointer to either an integer or a structure
+    
