@@ -275,4 +275,52 @@ Chapter 4: File I/O: The Universal I/O Model
             - fd - open file descriptor
             - request - control operation to be performed
             - argp - could be anything, typically a pointer to either an integer or a structure
+
+Chapter 5: File I/O: Further Details
+    a. Atomicity and Race Conditions
+        - Atomicity - kernel guarantees that all of the steps in the operation are completed without being interrupted by another process or thread
+        - Race Conditions - a situyation where the result produced by the two processes operating on a shared resource depends in an unexpected way on the relative order in which the processes gain access to the CPU(s)
+        - Creating a File Exclusively - use open() with O_CREAT and O_EXCL to guarantee the check for a file and creation are carried out as a single atomic operation
+        - Appending Data to A File - use open() with O_APPEND to esnure that the seek to the next byte past the end of the file and the write operation is carried out as a single atomic operation
+    b. File Control Operations
+        - fn - int fcntl(int ffd, int cmd, ...); - performs a range of control operations on an open file descriptor
+    c. Open File Status Flags
+        - F_GETFL - retrieves settings like access mode and status flags
+    d. Relationship Between File Descriptors and Open Files
+        - Per-Process File Descriptor Table - Each Entry
+            - a set of flags controlling the operation of the file decsriptor
+            - a reference to the open file description
+        - System Wide Table of All Open File Descriptions - Each Entry
+            - the current file offset (as updated by read() and write(), or by explicitly using lseek())
+            - status flags specified when opening the file (i.e. the fl;ags argument to open())
+            - the file access mode (read-only, write-only, or read-write)
+            - settings relating to signal-driven I/O
+            - a reference to the i-node object for this file
+        - I-Node Table - Each Entry
+            - file type e.g. regular file, socket, or FIFO, and permissions
+            - a pointer to a list of locks held on this file
+            - various properties of the file, including its size and timestamps relating to different types of file operations
+    e. Duplicating File Descriptors
+        - fn - int dup(int oldfd) - returns a new descriptor that refers to the same open file description
+        - fn - int dup2(int oldfd, int newfd) - makes a duplicate of the file descriptor given in oldfd using the descriptor number supplied in newfd
+        - fn - int dup3(int oldfd, int newfd, int flags) - same as dup2, but adds an additional argument, flags, that is a bit mask that modifies the behvaior of the system call
+    f. File I/O at a Specified Offset: pread() and pwrite()
+        - fn - ssize_t pread(int fd, void *buf, size_t count, off_t offset) - read at the location specified by offset
+        - fn - ssize_t pwrite(int fd, const void *buf, size_t count, off_t offset) - writes at the lcoation specified by offset
+    g. Scatter-Gather I/O: readv() and writev()
+        - fn - ssize_t readv(int fd, const struct iovec *iov, int iovcnt) - reads a contiguous sequence of bytes from the file referred to by the file descriptor fd and places those bytes into the buffers specified by iov
+        - fn - ssize_t writev(int fd, const struct iovec *iov, int iovcntl) - gathers data from all buffers specified by iov and writes them as a sequence of contiguous bytes to the file referred to by the file descriptor fd
+    h. Truncating a File: truncate() and ftruncate()
+        - fn - int truncate(const char *pathname, off_t length) - sets the size of a file to the value specified by length
+            - if file is longer than length, excess data is lost
+            - if file is shrorter than length, extended by padding with a sequence of null bytes or a hole
+    i. Nonblocking I/O
+        - if file can't be opened immediately, then open() returns an error instead of blocking
+        - after a successful open(), subsequent I/O are also nonblocking
+    j. I/O on Large Files
+        - _FILE_OFFSET_BITS macro
+            - converts all of the relevant 32-bit functions and data types into their 64-bit counterparts e.g. open() with open64()
+    k. The /dev/fd Directory - contains filenames of the form /dev/fd/n, where n corresponds to one of the open file descriptors for the process
+    l. Creating Temporary Files
+        - fn - int mkstemp(char *template) - generates a unique filename based on a template supplied by the caller and opens the file, returning a file decsriptor that can be used with I/O system calls
     
