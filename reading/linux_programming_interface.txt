@@ -323,4 +323,45 @@ Chapter 5: File I/O: Further Details
     k. The /dev/fd Directory - contains filenames of the form /dev/fd/n, where n corresponds to one of the open file descriptors for the process
     l. Creating Temporary Files
         - fn - int mkstemp(char *template) - generates a unique filename based on a template supplied by the caller and opens the file, returning a file decsriptor that can be used with I/O system calls
-    
+
+Chapter 6: Processes
+    a. Processes and Programs
+        - process - an instance of an executing program
+        - program - file containing a range of information that describes how to construct a process at run time
+            - binary format identification - metainformation describing the format of the executable file
+            - machine language instructions - these encode the algorithm of the program
+            - program entry point address - this identifies the location of the instruction at what execution of the program should commence
+            - data - values used to initialize variables and also literal constants used by the program
+            - symbol and relocation tables - these describe the locations and names of functions and variables within the prorgam. Used for debugging, run-time symbol resolution and more
+            - shared library and dynamic linking information - includes fields listing the shared libraries that the program needs to use at run time and the pathname of the dynamic linker that should be used to load these libraries
+            - other information - other information to describe how to construct a process
+    b. Process ID and Parent Process ID
+        - process ID - a positive integer that uniquely identifies the process on the system
+            - fn - pid_t getpid(void) - returns the process ID of the calling process
+        - parent process ID - a positive integer tha that uniquely identifies the parent process of the process
+            - fn - pid_t getppid(void)
+    c. Memory Layout of a Process
+        - Segment
+            - text segment - contains the machine-language instructions of the program run by the process
+            - initialized data segment - contains global and static variables that are explicitly initialized
+            - uninitialized data segment - contains global and static variables that are not explicity initialized
+            - stack - a dynamically growing and shrinking segment containing stack frames. One stack frame is allocated for each currently called function and stores the functions local variables, arguments, and return value
+            - heap - an area from which memory can be dynamically allocated at run time. Top end is called program break
+    d. Virtual Memory Management
+        - Virtual Memory Management - make efficient use of both the CPU and physical memory by exploiting a property that is typical of programs, locality of reference
+            - Spatial Locality - tendency of a program to reference memory addresses that are near those that were recently accessed because of sequential processing of instructions, and sometimes, sequential processing of data structures
+            - Temporal Locality - tendency of a program to access the same memory addresses in the near future that is accessed in the recent past e.g. because of loops
+            - Pages - fixed size units of memory used by programs
+            - Unused pages are maintained in the swap area
+            - Resident set - the pages present in physical memory page frames
+        - Processes Valid Virtual Address Range
+            - as the stack grows downward beyond limits previously reached
+            - when memory is allocated and deallocated on the heap, by raising the progam break using brk(), sbrk(), or the malloc family of functions
+            - when System V shared memory regions are attached using shmat() and detached using shmdt()
+            - when memory mappings are created using mmap() and unmapped using munmap()
+        - Advantages of Virtual Address Space
+            - processes are isolated from one another and from the kernel, so that one process can't read or modify the memory of another process or the kernel
+            - where appropriate, two or more processes can share memory
+            - the implementation of memory protection schemes is facilitated, that is, page table entries can be marked to indicate that the contents of the corresponding page are readable, writable, executable, or some other combination of these protections
+            - programmers, and tools such as the compiler and linker, don't need to be concerned with the physical layout of the program in RAM
+            - program loads and runs faster because only a portion needs to reside in memory
