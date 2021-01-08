@@ -365,3 +365,32 @@ Chapter 6: Processes
             - the implementation of memory protection schemes is facilitated, that is, page table entries can be marked to indicate that the contents of the corresponding page are readable, writable, executable, or some other combination of these protections
             - programmers, and tools such as the compiler and linker, don't need to be concerned with the physical layout of the program in RAM
             - program loads and runs faster because only a portion needs to reside in memory
+    e. The Stack and Stack Frames
+        - Stack - grows and shrinks linearly as functions are called and return
+            - Stack Pointer - tracks the current top of the stack, each time a function is called, an additional frame is allocatd on the stack, and the frame is removed when the function returns
+        - Stack Frame
+            - Function Arguments and Local Variables (automatic), they are automatically created when a function is called and they automatically disappear when the function returns
+            - Call Linkage Information - each function uses certain CPU registers, such as the program counter, which points to the next machine-language instruction to be executed
+    f. Command Line Arguments
+        - argc- number of arguments
+        - argv - array of pointers to command line arguments as string, each with a null terminated character
+        - Important Example: tlpi-dist/proc/necho.c and
+        - Review - getopt() in Appendix B
+    g. Environment List
+        - Environment List/Environment - associated array of strings in the format key=value
+        - Accessing the Enviroment From a Program
+            - Global Variable - exztern char **environ
+            - Important Example: tlpi-dist/proc/display_env.c
+            - fn - char *getenv(const char *name) - returns a pointer to the corresponding value string
+        - Modifying the Environment
+            - fn - int putenv(char *string) - adds a new variable to the calling process's environment or modifies the values of an existing variable, string format is key=value
+            - fn - int setenv(const char *name, const char *value, int overwrite) - creates a new environment variable by allocating a memeory buffer for a string of the form name=value, and copying the strings pointed to by name and value into that buffer
+            - fn - int unsetenv(const char *name) - removes the variable defined by name from the environment
+            - fn - int clearenv(void) - erase the entire environment
+    h. Performing a Nonlocal Goto: setjmp() and longjmp()
+        - Jumping
+            - fn - int setjmp(jmp_buf env) - establishes a target for a later juimp performed by longjmp(), this target is exactly the point where the setjmp() call occurred
+            - fn - void longjmp(jmp_buf env, int val) - jumps to location set by setjmp()
+            - Important Example: tlp-dist/proc/longjmp.c
+        - Abusing longjmp() - don't longjmp into a function that has already returned, SUv3 says that if longjmp is called from within a nested signal handler then the program behavior is undefined
+        - AVoid setjmp() and longjmp() where possible
