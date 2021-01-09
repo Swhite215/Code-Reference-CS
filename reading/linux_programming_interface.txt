@@ -393,4 +393,39 @@ Chapter 6: Processes
             - fn - void longjmp(jmp_buf env, int val) - jumps to location set by setjmp()
             - Important Example: tlp-dist/proc/longjmp.c
         - Abusing longjmp() - don't longjmp into a function that has already returned, SUv3 says that if longjmp is called from within a nested signal handler then the program behavior is undefined
-        - AVoid setjmp() and longjmp() where possible
+        - Avoid setjmp() and longjmp() where possible
+
+Chapter 7: Memory Allocation
+    a. Allocating Memory on the Heap
+        - A process can allocate memory by increasing the size of the heap, a variable size segment of contiguous virtual memory that begins just after the uninitialized data segment of a process and grows and shrinks as memeory is llocated and freed. Limit of heap is called program break
+        - Adjusting the Program Break: brk() and sbrk()
+            - Resizing the heap is as simple as telling the kernel to adjust its idea of where the process's program break is
+            - fn - int brk(void *end_data_segment) - sets the program breeak to the location specified by end_data_segment, end_data_segment is effectively roudned up to the next page boundary
+            - fn - void *sbrk(intptr_t increment) - adjusts the program break by adding increment to it
+        - Allocating Memory on the Heap: malloc() and free()
+            - Advantages over brk() and sbrk()
+                - standardized as part of the C language
+                - easier to use in threaded programs
+                - provide a simple interface that allows memory to be allocated in small units
+                - allow us to arbitrarily deallocate blocks of memory, which are maintained on a free list and recycled in future calls to allocate memory
+            - fn - void *malloc(size_t size) - allocates size bytes from the heap and returns a pointer to the start of the newly allocated block of memory that is not initialized
+            - fn - void free(void *ptr) - deallocates the block of memory pointed to by its ptr argument, which should be an address previously returned by malloc()
+                - free doesn't lower the program break, instead adds the block of memory to a list of free blocks that are recycled by future calls to malloc()
+        - Implementations of malloc() and free()
+            - malloc() - first scans the list of memory blocks previsouly released by free() in order to find one whose size is larger or equal to its requirement
+                - if no block on the free list is large enough, then malloc() calls sbrk() to allocate more memory, memory is more that bytes required
+        - Tools and Libraries for malloc debugging
+            - mtrace() and muntrace() allow a program to turn tracing of memory allocation calls on and off
+            - mcheck() and mprobe() allow a program to perform consistency checks on blocks of allocated memory
+            - MALLOC_CHECK_ environment variable serves a similar purpose to mcheck() and mprobe()
+        - Controlling and Monitoring the malloc package
+            - mallopt() modifies the various parameters that control the algorithm used by malloc()
+            - mallinfo() returns a structure containing various statistics about the memory allcoated by malloc()
+        - Other Methods of Allocating Memory on the Heap
+            - fn - void *calloc(size_t numitems, size_t size) - allocates memory for an array of identical items
+            - fn - void *realloc(void *ptr, size_t size) - used to resize a block of memory previously allocated by one of the functions in the malloc package
+        - Allocating Aligned Memory: memalign() and posix_memalign()
+            - fn - void *memalign(size_t boundary, size_t size) - allocates size bytes starting at an address aligned to a multiple of boundary, which must be a power of two
+            - fn - int posix_memalign(void **memptr, size_t alignment, size_t size) - 
+    b. Allocating Memory on the Stack
+        - fn - *alloca(size_t size) - allocates memory dynamically, however, instead of obtaining memory from the heap, alloca() obtains memory from the stack by incressing the size of the stack frame
