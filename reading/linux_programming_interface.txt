@@ -429,3 +429,81 @@ Chapter 7: Memory Allocation
             - fn - int posix_memalign(void **memptr, size_t alignment, size_t size) - 
     b. Allocating Memory on the Stack
         - fn - *alloca(size_t size) - allocates memory dynamically, however, instead of obtaining memory from the heap, alloca() obtains memory from the stack by incressing the size of the stack frame
+
+Chapter 8: Users and Groups
+    a. The Password File: /etc/passwd
+        - /etc/passwd - system password file, contains one line for each user account on the system, it is composd of seven fields separated by a colon
+        -  mtk:x:1000:100:Michael Kerrisk:/home/mtk:/bin/bash
+            - mtk - login name, unique name that the user must enter in order to log in
+            - x - encrypted password, field contains a 13 character encrypted password, if shadow passwords have been enabled, it just contains the letter x
+            - 1000 - user id, numeric ID for the user
+            - 100 - group id, numeric id for the first of the groups the user is a member of
+            - Michael Kerrisk - comment, holds text about the user
+            - /home/mtk - home directory, initial directory into which the user is placed after logging in
+            - /bin/bash - login shell, program to which control is transferred once the user is logged in
+    b. The Shadow Password File: /etc/shadow
+        - Historically, UNIX systems maintained all user information, including the encrypted password, in /etc/passwd, which presented a security problem
+        - /etc/shadow - was devised as a method of preventing attacks on passwords, encrypted file
+    c. The Group File: /etc/group
+        - the set of groups to which a user belongs is defined by the combination of the group ID field in the user's password entry and the groups under which the user is listed in the group file
+        - group file contains one line for each group in the system and each line consists of four colon-separated fields
+            - users:x:100
+            - jambit:x:106:claus, felli, frank, harti, markus,martin,mtk,paul
+                - jambit - group name, name of the grop
+                - x - encyrpted passworde
+                - 106 - group id, numeric id for the group
+                - claus, felli, frank, harti, markus, martin, mtk, paul - user list, comma separatedlist of names of the users who are members of this group
+    d. Retrieving User and Group Information
+        - Retrieving Record from the Password File
+            - fn - struct passwd *getpwnam(const char *name) - given a login name in name, returns a pointer to a structure of the following type, containing the corresponding information from the password record:
+            - fn - struct passwd *getpwuid(uid_t uid); - returns exactly the same information as getpwnam, but does the lookup using the numeric user id
+                - struct passwd {
+                    char *pw_name; // login name
+                    char *pw_passwd; //encrypted password
+                    uid_t pw_uid; // user id
+                    gid_t pw_gid; // group id
+                    char *pw_gecos; //comment
+                    char *pw_dir; // initial working directory
+                    char *pw_shell; // login shell
+                }
+        - Retrieving Records from the Group File
+            - fn - struct group *getgrnam(const char *name) - looks up group information by group name, returns a pointer to a structure of the following type
+            - fn - struct group *getgrgid(gid_t gid) - returns exactly the same information as getgrnam, but does the look up by numeric group id
+                - struct group {
+                    char *gr_name; // group name
+                    char *gr_passwd; // encrypted password
+                    gid_t gr_gid; // group id
+                    chasr **gr_mem; // array of pointers to names of members listed in the /etc/group
+                }
+        - Scanning All Records in the Password and Group Files
+            - fn - struct passwd *getpwent(void); - returns all records from the password file one by one, returning null when there are no more records
+            - fn - void setpwent(void); - restart from the beginning of the password file
+            - fn - void endpwent(void); - closes the password file
+            - fn - struct passwd *getgrent(void); - returns all records from the group file one by one, returning null when there are no more records
+            - fn - void setgrent(void); - restart from the beginning of the group file
+            - fn - void endgrent(void); - closes the group file
+        - Retrieiving Records from the Shadow Password File
+            - fn - struct spwd *getspname(const char *name); - given a login name, returns a pointer to a structure of the following type
+                - struct spwd {
+                    char *sp_name; // login name
+                    char *sp_pwdp; // encrypted password
+
+                    long sp_lstchg; // time of last password change
+                    long sp_min; // min number of days between password changes
+                    long sp_max; // max number of days before change of password is required
+                    long sp_warn; // number of days beforehand that a user is warned of upcoming password expiration
+                    long sp_intact; // number of days after expiration that account is considered inactive and locked
+                    long sp_expire; // date when account expires
+                    unsigned long sp_flag; // reserved for future use
+                }
+            - fn - struct spwd *getspent(void); - returns all records from the shadow password file
+            - fn - void setspent(void); - restart from the beginning of the shadow password file
+            - fn - void endspent(void); - closes the shadow password file
+    e. Password Encryption and User Authentication
+        - Form #1 - application require authentication and manages its own database of usernames and passwords for this purpose
+        - Form #2 - allowing users to enter their information as defined in /etc/passwd and /etc/shadow
+        - For security reasons, UNIX systems encrypt passwords using a one-way encryption algorithm, which means that there is no method of recreating the original password from its encrypted form
+        - The only way of validating the password is to encrypt it using the same method and see if the encrypted result matches the value stores in /etc/shadow
+        - fn - char *crypt(const char *ley, const char *salt) - takes a key (i.e. a password) of up to 8 characters, and applies a variation of the Data Encryption Standard algorithm to it.
+            - The salt argument is used to vary the algorithm, the 2-char salt argument can cause the encryption algorithm to vary in any of 64*64=4096 ways, causing cracker to need to check the password against 4096 encrypted versions of the dictionary
+        
