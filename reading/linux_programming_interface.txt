@@ -506,4 +506,59 @@ Chapter 8: Users and Groups
         - The only way of validating the password is to encrypt it using the same method and see if the encrypted result matches the value stores in /etc/shadow
         - fn - char *crypt(const char *ley, const char *salt) - takes a key (i.e. a password) of up to 8 characters, and applies a variation of the Data Encryption Standard algorithm to it.
             - The salt argument is used to vary the algorithm, the 2-char salt argument can cause the encryption algorithm to vary in any of 64*64=4096 ways, causing cracker to need to check the password against 4096 encrypted versions of the dictionary
-        
+
+Chapter 9: Process Credentials
+    a. Real User ID and Real Group ID
+        - Real User and Group IDs - identify the user and group to which the process belongs
+            - As part of the login process, a login shell gets its real user and group IDs from the third and fourth fields of the user's password record in /etc/passwd
+    b. Effective User ID and Effective Group ID
+         - Effective User and Group IDs - in conjunction with the supplementary group IDs, are used to determine the permissions granted to a process when it tries to perform various operations
+    c. Set-User-ID and Set-Group-ID Programs
+        - set-user-ID program allows a process to gain privileges it would not normally have by setting the process's effective user ID to the same value as the user ID of the executable
+    d. Saved Set-User-ID and Saved Set-Group-ID
+        - Saved Set User and Group IDs - are designed for use with set-user-ID and set-group-ID programs. When a program executes:
+            - if the set-user-id or set-group-id permission bit is enabled on the executable, then the effective user (group) ID of the process is made the same as the owner of the executable
+            - If the set-user-id or set-group-id permission bit is not enabled, then no change is made
+            - values for saved set-user-ID and saved set-group-ID are copied from the corresponding effective IDs
+    e. File-System User ID and File-System Group ID
+        - On Linux, it is the file-system user and group IDs, rather than the effective user and group IDs, that are used in conjunction with supplementary group IDs to determine permissions when performing file-system operations such as opening files, changing file ownership, and modifying file permissions
+    f. Supplementary Group IDs - set of additional groups to which a process belongs, a process inherits these IDs from its parent
+    g. Retrieving and Modifying Process Credentials
+        - Retrieving and Modifying, Real, Effective, and Saved Set IDs
+            - Retrieving Real and Effetive IDs
+                - fn - uid_t getuid(void) - returns the real user ID of the calling process
+                - fn - uid_t getgid(void) - returns the real group ID of the calling process
+                - fn - uid_t geteuid(void) - returns the effective user ID of the calling process
+                - fn - uid_t getegid(void) - returns the effective group ID of the calling process
+            - Modifying Effective IDs
+                - fn - int setuid(uid_t uid) - changes the effective user ID, and possible the real user ID and saved set-user-ID
+                    - if an unprivileged process calls setuid(), only the effective user ID of the process is changed, and can only be changed to the same value as either the real user ID or saved set-user-ID
+                    - if a privileged process calls setuid(), real, effective, and saved set-user IDs are all set to the value specified in the uid argument
+                - fn - int setgid(gid_t gid) - changes the effective group ID, and possible the real group ID and saved set-group-ID
+                    - rule 1 applies like above
+                    - privileged programs can user setgid() to freely change the group ID to any desired values
+                - fn - int seteuid(uid_t euid) - changes effective user ID
+                    - if an unprivilegde process calss seteuid(), only the effetive user ID of the process is changed, and can only be changed to the corresponding real or saved set ID
+                    - if a privleged process calss seteuid(), can change effective ID to any value
+                - fn - int setegid(gid_t egid) - changes effective group ID
+            - Modifying Real and Effective IDs
+                - fn - int setreuid(uid_t ruid, uid_t euid) - allow process to change real and effetive user ID
+                    - unprivileged process can set the real user ID only to the current value of the real or effective user ID, and the effective user ID can only be set to the current avlue of the real user ID, effective user ID, or saved set-user-ID
+                    - privileged process can make any changes to the IDS
+                    - for both, the saved set-user-ID is also set to the same value as the effective user ID
+                - fn - int setregid(gid_t rgid, gid_t egid) - allow process to change real and effective group ID
+            - Retrieving Real, Effective, and Saved Set IDs
+                - fn - int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid) - returns the current value of the calling processes real, effective, and saved set user IDs
+                - fn - int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid) - returns the current value of the calling processes real, effective, and saved set group IDs
+            - Modifying Real, Effective, and Saved Set IDs
+                - fn - int setresuid(uid_t ruid, uid_t euid, uid_t suid) - allows process to change real, effective, and saved set user IDs
+                - fn - int setresgid(gid_t rgid, gid_t egid, gid_t sgid) - allows process to change real, effective, and saved set group IDs
+            - Retrieving and Modifying File-System IDs
+                - fn - int setfsuid(uid_t fsuid) - changes the file-system user ID of a process to the value specified by fsuid
+                    - unprivileged process can set the file-system user ID to the current value, the real user ID, effective user ID, file-system user ID, or saved set-user-ID
+                    - privileged process can set the file-system user ID to any value
+                - fn - int setfsgid(gid_t fsgid) - changes the file-system group ID of a process to the value specified by fsuid
+        - Retrieving and Modifying Supplementary Group IDs
+            - fn - int getgroups(int gidgetsize, gid_t grouplist[]) - returns the set of groups of which the calling process is currently a member, in the array pointed to by grouplist
+            - fn - int setgroups(size_t gidsetsize, const gid_t *grouplist) - replaces the calling process's supplementary group IDs with the set given in the array grouplist
+            - fn - int initgroups(const char *user, gid_t group - ) - initializes the process's supplmentary group IDs by scanning /etc/group and building a list of all groups of which the named user is a member
