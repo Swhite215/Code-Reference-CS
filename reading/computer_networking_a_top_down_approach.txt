@@ -23,8 +23,7 @@ Chapter 1 - Computer Networks and the Internet
     b. The Network Edge
             - Hosts - Clients or Servers
             - Access Networks
-                - Network that physically connects an end system to the first router on a
-                path to any other distant end system
+                - Network that physically connects an end system to the first router on a path to any other distant end system
             - Home Access - Digital Subscriber Line DSL
                 - Obtained from telephone company
                 - Telephone line to Digital Subscriber Line Access Multiplexer DSLAM
@@ -63,7 +62,7 @@ Chapter 1 - Computer Networks and the Internet
             - Network Structure 2 - 100,000s of access ISPs and multiple global ISPs
             - Network Structure 3 - Access ISPs to Regional ISPs to Tier-1 ISPs
             - Network Structure 4 - Points of Presence PoP, Multi-Homing, Peering, and Internet Exchange Points IXPs
-            - Network Structure 5 - Content-Provider Networks  - Like Google
+            - Network Structure 5 - Content-Provider Networks - Like Google
     d. Delay, Loss, and Throughput in Packet-Switched Networks
         - Nodal Processing Delay - Time required to examine packets headers and determine where to direct the packet
         - Queuing Delay - Time till entire packet is in output buffer
@@ -115,7 +114,7 @@ Chapter 2 - Application Layer
             - Loss-Tolerant Applications - transport layer protocol does not provide reliable data transfer
             - Throughput - rate at which the sending process can deliver bits to the receiving process
                 - Bandwidth-Sensitive Applications - applications that have throughput requirements
-                - Elastic Applications - can make use of as much or as little throuhgput as happens to be available
+                - Elastic Applications - can make use of as much or as little throughput as happens to be available
             - Timing Guarantees
             - Security - Encryption and Decryption of Data
         - Transport Services Provided by the Internet
