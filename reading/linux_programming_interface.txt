@@ -562,3 +562,81 @@ Chapter 9: Process Credentials
             - fn - int getgroups(int gidgetsize, gid_t grouplist[]) - returns the set of groups of which the calling process is currently a member, in the array pointed to by grouplist
             - fn - int setgroups(size_t gidsetsize, const gid_t *grouplist) - replaces the calling process's supplementary group IDs with the set given in the array grouplist
             - fn - int initgroups(const char *user, gid_t group - ) - initializes the process's supplmentary group IDs by scanning /etc/group and building a list of all groups of which the named user is a member
+
+Chapter 10: Time
+    a. Types of Time
+        - Real Time - time as measured either from some standard point (calendar time) or form some fixed point in the life of a process
+        - Process Time - amount of CPU time used by a process
+    b. Calendar Time
+        - fn - int gettimeofday(struct timeval *tv, struct timezone *tz) - returns the calendar time in the buffer pointed to by tv
+            - tv argument is a pointer to a structure of the following form
+                - struct timeval {
+                    time_t tv_sec; /* Seconds since 00:00:00, 1 Jan 1970 UTC,
+                    suseconds_t tv_usec; /* Additional microseconds */
+                }
+        - fn - time_t time(time_t *timep) - returns the number of seconds since Epoch i.e. the same value that gettimeofday() returns
+    c. Time Conversion Functions
+        - Converting time_t to Printable Form
+            - fn - char *ctime(const time_t *timep) - returns a 26 byte string containing the date and time in a standard format e.g. Wed Jun 8 14:@2:34 2011
+        - Converting Between tim_t and Broken-Down Time
+            - fn - struct tm *gmtime(const time_t *timep) - converts a calendar time into a broken down time corresponding to UTC
+            - fn - struct *localtime(const time_t *timep) - covnerts a calendar time into a broken down time that takes into account timezone and DST settings
+                - struct tm {
+                    int tm_sec; /* Seconds (0-60) */,
+                    int tm_min; /* Minutes (0-59) */,
+                    int tm_hour; /* Hours (0-23) */,
+                    int tm_mday /* Day of the Month (1-31) */,
+                    int tm_mon; /* Month (0-11) */,
+                    int tm_year; /* Year Since 1900 */,
+                    int tm_wday; /* Day of the Week (Sunday = 0) */,
+                    int tm_yday; /* Day in the Year (0-365m; Jan 1 = 0) */,
+                    int tm_isdst; /* Daylight Savings Time Flag */,
+                }
+        - Converting Between Broken Down Time and Printable Form
+            - Converting from Broken-Down Time to Printable Form
+                - fn - char *asctime(const struct tm *timeptr) - returns a pointer to a statically allocated string containing the time in the same form as ctime()
+                - fn - size_t strftime(char *outstr, size_t maxsize, const char *format, const struct tm *timeptr) - gioven a broken down time pointed to by timeptr, strftime plcaes a corresponding null terminated, date-plus-time string in the buffer allocated by outstr
+                - fn - char *currTime(const char *format) - returns a string containing the current time as formatted by strftime() when given the argument format
+            - Converting From Printable Form to Broken-Down Time
+                - fn - char *strptime(const char *str, const char *format, struct tm *timeptr) - converts a date-plus-time string to a broken down time
+    d. Timezones
+        - Timezone Definitions - timezone information are stored in /usr/share/zoneinfo, where each file contains information about the timezone regime in a particular country or region
+        - Local Time for the system is defined by the timezone file /etc/localtime which is often linked to one of the files in /usr/share/zoneinfo
+        - Specifying Timezone for a Program
+            - Set the TZ environment variable to a string consisting of a colon followed by one of the timezone names defined in /user/share/zoneinfo
+            - Setting TZ influences ctime(), localtime(), mktime() and strftime()
+            - fn - tzset(), initializes three global variables
+                - char *tzname[2]; - /* Name of timezone and alternate (DST) timezone */
+                - int daylight; - /* Nonzero if there is an alternate (DST) timezone */
+                - long timezone; - /* Seconds difference between UTC and local standard time */
+    e. Locales
+        - Locale - subset of a user's environment that depends on language and cultural conventions
+        - Internationalization - programs designed to run in more than one locale should deal with locales in order to display and input information in the user's preferred langauge and format
+        - Locale Definitions - information is maintained in a directory hierarchy under /usr/share/locale or /usr/lib/locale
+            - language[_territory[.codeset]][@modifier]
+            - Contenst of Locale Specific Subdirectories
+                - LC_CTYPE - A file contianing character classiciations and rules for case conversion
+                - LC_COLLATE - A file containing the collation rules for a character set
+                - LC_MONETARY - A file containing formatting rules for monetary values
+                - LC_NUMERIC - A file containing formatting rules for numbers other than monetary values
+                - LC_TIME - A file containing formatting rules for dates and times]
+                - LC_MESSAGES - A directory containing files specifying formats and values used for affirmative and negative (yes/no) responses
+        - Specifying the Local for a Progam
+            - fn - char *setlocale(int category, const char *locale) - used to both set and query a program's current locale
+    f. Updating the System CLock
+        - fn - int settimeofday(const struct timeval *t, const struct timezone *tz) - sets the system's calendar time to the number of seconds and microseconds specified in the timeval structure pointed to by tv
+        - fn - int adjtime(struct timeval *delta, struct timeval *olddelta) - causes the system to gradually adjust to the desired valuer
+    g. The Software Clock
+        - Jiffies - size of jiffy is defined by the constant HZ within the kernel source code
+            - Clock rate cna be set to 100, 250, or 1000 hertz, giving jiffy values of 10, 4, and 1 milliseconds respectively
+    h. Process Time
+        - User CPU Time - amout of time spent executing in user mode, sometimes referred to as virtual time
+        - System CPU Time - amoutn of time spent executing in kernel mode
+        - fn - clock_t time(struct tms *buf) - retrieves process time information, returning it in the structure pointed to by buf
+            - struct tms {
+                clock_t tms_utime; /* User CPU time used by caller */
+                clock_t tms_stime; /* System CPU time used by caller */
+                clock_t tms_cutime; /* User CPU time of all (waited for) children */
+                clock_t tms_cstime; /* System CPU time of all (waited for) children */
+            }
+        - fn - clock_t clock(void) - retrieves process time, a single value that measures the total (i.e. user+system) CPU time used by the calling process
