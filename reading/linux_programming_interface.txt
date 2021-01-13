@@ -640,3 +640,67 @@ Chapter 10: Time
                 clock_t tms_cstime; /* System CPU time of all (waited for) children */
             }
         - fn - clock_t clock(void) - retrieves process time, a single value that measures the total (i.e. user+system) CPU time used by the calling process
+
+Chapter 11: System Limits and Options
+    a. Quick Facts
+        - Examples:
+            - How many files can a process hold open at one time?
+            - Does the system support realtime signals?
+            - What is the largest value that can be stored in a variable of type int?
+            - How big an argument list can a program have?
+            - What is the maximum length of a pathname?
+        - Variances
+            - Across UNIX implementations
+            - At run time on a particular implementation
+    b. System Limits
+        - Minimum Value - defines an upper limit on some resource or feature, a system must support at minimum, a max value of something for a feature
+        - Maximum Value - defines a lower limit on some resource or feature, a system may support at maximum, a minimum value of something for a feature
+        - Format - constant in <limits.h> with a name prefixed by a string _POSIX_XXX_MAX or _POSIX_XXX_MIN
+        - Runtime Invariant Values - limit whose value, if defiend in <limits.h>, is fixed for the implementation, however the value may be indeterminate
+        - Pathname Variable Values - limits that relate to pathnames (files, directories, terminals, and so on)
+        - Runtime Increasable Values - limit that has a fixed minimum value for a particular implementation, and all the systems running the implementation will provide at least this minimum value, however a system may increase this limimt at run time
+        - Summary of Select SUSv3 Limits
+            - ARG_MAX - _SC_ARG_MAX - maximum bytes for arguments (argv) plus environment (environ) that can be supplied to exec()
+            - _SC_CLK_TCK - unit of measurement for time
+            - LOGIN_NAME_MAX - _SC_LOGIN_NAME_MAX - maximum size of a login name (including terminmating null byte)
+            - OPEN_MAX - _SC_OPEN_MAX - maximum number of file decsriptors that a process can have open at one time, and one greater than maximum usable descriptor number
+            - NGROUPS_MAX - _SC_NGROUPS_MAX - maximum number of supplementary groups of which a process can be a member
+            - _SC_PAGESIZE - size of a virtual memory page
+            - RTSIG_MAX - _SC_RTSIG_MAX - maximum number of distinct realtime signals
+            - SIGQUEUE_MAX - _SC_SIGQUEUE_MAX - maximum number of queued realtime signals
+            - STREAM_MAX - _SC_STREAM_MAX - maximum number of stdio streams that can be open at one time
+            - NAME_MAX - _PC_NAME_MAX - maximum number of bytes in a filename excluding terminating null byte
+            - PATH_MAX - _PC_PATH_MAX - maximum number of bytes in a pathname, including terminating null byte
+            - PIPE_BUF - _PC_PIPE_BUF - maximum number of bytes that can be written atomically to a pipe or FIFO
+        - Determining Limits and Options From the Shell: getconf
+            - getconf variable-name [pathname] - obtain the limits implemented by a particular UNIX implementation
+    c. Retrieving System Limits and Options at Run Time
+        - fn - long sysconf(int name) - allows an application to obtain the values of system limits at run time, name argument is one of the _SC_* constants defined in <unistd.h>
+    d. Retrieivng File-Related Limits and Options at Run Time
+        - fn - long pathconf(const char *pathname, int name) - allow an application to obtain the values of file-related limits at run time
+        - fn - long fpathconf(int fd, int name) - allow an application to obtain the values of file-related limits at run time
+    e. Indeterminate Limits - we may find that some system limit is not defined by an implementation limit constant, and that sysconf() or pathconf() informs us that the limit is indeterminate
+        - Strategies
+            - we could elect to use the minimum limit value specified by SUSv3, constants with the names of the form _POSIX_XXX_MAX
+            - ignore checking the limits and instead perform the relevant system or library function call
+            - write our own program or function to either deduce or estimate the limit
+            - employ a tool such as GNU Autoconf, an extensible tool that can determine the existence and settings of various systems features and limits
+    f. System Options
+        - Example - support for features such as realtime signals, POSIX shared memory, job control, and POSIX threads
+        - Option Constant Values
+            - -1 means that the option is not supported
+            - 0 means that the option may be supported
+            - >0 means that the option is supported
+        - SUSv3 Options
+            - _POSIX_ASYNCHRONOUS_IO or _SC_ASYNCHRONOUS_IO - Asynchonous I/O
+            - _POSIX_CHOWN_RESTRICED or _PC_CHOWN _RESTRICTED - Only privileged processes can use chown() and fchown() to change the user ID and group ID of a file to arbitrary values
+            - _POSIX_JOB_CONTROL or _SC_JOB_CONTROL - Job Control
+            - _POSIX_MESSAGE_PASSING or _SC_MESSAGE_PASSING - POSIX Message Queues
+            - _POSIX_PRIORITY_SCHEDULING  or _SC_PRIORITY_SCHEDULING - Process Scheduling
+            - _POSIX_REALTIME_SIGNALS or _SC_REALTIME_SIGNALS - Realtime Signals Extension
+            - _POSIX_SAVED_IDS - Processes have saved set-user-IDs and saved set-group-IDs
+            - _POSIX_SEMAPHORES or _SC_SEMAPHORES - POSIX Semaphores
+            - _POSIX_SHARED_MEMORY_OBJECTS or _SC_SHARED_MEMORY_OBJECTS - POSIX Shared Memory Objects
+            - _POSIX_THREADS or _SC_THREADS - POSIX Threads
+            - _XOPEN_UNIX or _SC_OPEN_UNIX - The XSI extension is supported
+    
