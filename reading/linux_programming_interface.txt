@@ -704,3 +704,83 @@ Chapter 11: System Limits and Options
             - _POSIX_THREADS or _SC_THREADS - POSIX Threads
             - _XOPEN_UNIX or _SC_OPEN_UNIX - The XSI extension is supported
     
+Chapter 11: Ssytem and Process Information
+    a. The /proc File System
+        - /proc virtual fiel system - resides under /proc, is dynamically written as processes are created, and contains various files that expose kernel information and change it in some cases
+        - Obtaining Information About a Process: /proc/PID
+            - For each process on the system, the kernel provides a corresponding directory named /proc/PID, where PID is the ID of the process - /proc/1 is data pertaining to init process
+            - Example of Information Provided
+                - Name: init - name of command run by the process
+                - State: S - state of the process
+                - Tgid: 1 - thread group ID
+                - Pid: 1 - actually, thread ID
+                - PPid: 0 - parent process ID
+                - TracerPid: 0 - PID of tracing process
+                - Uid: 0 0 0 0 - real, effective, saved-set, and FS UID
+                - Gid: 0 0 0 0 - real, effective, saved-set, and FS GIDs
+                - FDSize: 256 - # of file descriptor slots currently allocated
+                - Groups: - supplmentary group IDs
+                - VMPeak: 852kB - peak virtual memory size
+                - VmSize: 724kB - current virutal memory size
+                - VmLck: 0kB - locked memory
+                - VmHWM: 288kB - peak resident set size
+                - VmRSS: 288kb - current resident set size
+                - VmData: 148kB - data segment size
+                - VmStk: 88kB - stack size
+                - VmExe: 484kB - text size
+                - VmLib: 0kB - shared library code size
+                - VmPTE: 12kB - size of page table
+                - Threads: 1 - # of threads in this thread's thread group
+                - SigQ: 0/3067 - current/max queued signales
+                - SigPnd: 0000000000000 - signals pending for thread
+                - ShdPnd: 0000000000000 - signals pending for process
+                - SigBlk: 0000000000000 - blocked signals
+                - SigIgn: 0000000000000 - ignored signals
+                - SigCgt: 0000000000000 - caught signals
+                - CapInh: 0000000000000 - inehritable capabilities
+                - CapPrm: 0000000000000 - permitted capabilities
+                - CapEff: 0000000000000 - effective capabilities
+                - CapBns: 0000000000000 - capability bonding set
+                - Cpus_allowed: 1 - CPUs allowed, mask
+                - Cpus_allowed_list: 0 - Same as above, list format
+                - Mems_allowed: 1 -  Memory nodes allowed, mask
+                - Mems_allowed_list: 0 - Same as above, list format
+                - voluntary_ctxt_switches: 6998 - voluntary context switches
+                - nonvoluntary_ctxt_switchs: 107 - involuntary context switches
+                - Stack usage:  8 kB
+        - Selected fiels in each /proc/PIUD directory
+            - cmdline - command line arguments delimted by \0
+            - cwd - symbolic link to current working directory
+            - environ - enviroment list NAME=value pairs, delimited by \0
+            - exe - symbolic link to file being executed
+            - fd - directory containing symbolic links to files opened by this process
+            - maps - memory mappings
+            - mem - process virtual memory
+            - mounts - mount points for this process
+            - root - symboli clink to root directory
+            - status - various information e.g. process IDs, credentials, memory usage, signals
+            - task - contains one sub directory for each thread in process
+        - The /proc/PID/fd directory - /proc/1968/fd/1 - is a symboli clink to the standard output of process 1968
+        - Threads: the /proc/PID/task directory - /proc/PID/task/TID - subdirectory for each thread in PID process
+        - System Information Under /proc
+            - /proc - various system information
+            - /proc/net - status information about networking and sockets
+            - /proc/sys/fs - settings related to file systems
+            - /proc/sys/kernel - various general kernel settings
+            - /proc/sys/net - networking and socket settings
+            - /proc/sys/vm - memory management settings
+            - /proc/sysvipc - information about system V IPC objects
+        - Accessing /proc Files - often accessed using shel scripts
+        - Accessing fiels in /proc/PID - be careful accessing, plan for possibility process has terminated
+    b. System Identification: uname()
+        - fn - int uname(struct utsname *utsbuf) - returns a range of identifying information about the host system on which an application is running, in the structure pointed to by utsbuf
+            - struct utsname {
+                char sysname[_UTSNAME_LENGTH]; - /* Implementation Name */
+                char nodename[_UTSNAME_LENGTH]; - /* Node name on the network */
+                char release[_UTSNAME_LENGTH]; - /* Implementation release level */
+                char version[_UTSNAME_LENGTH]; - /* Release version level */
+                char machine[_UTSNAME_LENGTH]; - /* Hardware on which system is running */
+                char domainname[_UTSNAME_LENGTH]; - /* NIS domain of the host */
+            }
+        - fn - sethostname() - sets nodename above
+        - fn - setdomainname() - sets domainname above
