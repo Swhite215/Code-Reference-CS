@@ -1,0 +1,157 @@
+Discrete Math and Its Applications - Rosen, Kenneth
+
+Chapter 1: The Foundations: Logic and Proofs
+    a. Propositional Logic - a proposition is a declarative sentence that is either true or false
+        - Sentential Variables - variables that represent propositions just as letters are used to denote numerical variables - p, q, r, s, ....
+        - Atomic Propositions - propositions that cannot be expressed in terms of simpler proposiitons are called atomic propositions
+        - Examples
+            - Correct Examples
+                - The moon is made of green cheese.
+                - Trenton is the capital of New Jersey.
+                - Toronto is the capital of Canada.
+                - 1 + 0 = 1
+                - 0 + 0 = 2
+            - Incorrect Examples
+                - Sit Down!
+                - What time is it?
+                - x + 1 = 2
+                - x + y = z
+        -  Propositional Logic
+            - Variables - p, q, r, s, ....
+            - Proposition that is always true is denoted by T
+            - Proposition that is always false is denoted by F
+            - Compound Propositions (Operands)
+                - Negation (-) - NOT
+                - Conjunction ^ - AND
+                - Disjunction V - OR
+                - Implication -> - IMPLY
+                - Biconditional <-> - IF AND ONLY IF
+        - Compound Propositions - Connectives - REVIEW
+            - DEFINITION: The negation of a proposition p is denoted by -p and has this truth table
+                - p     (-p)
+                - T       F
+                - F       T
+            - Example - if p denotes "the earth is round", then -p denotes "the earth is not round"
+        - Conjunction - Connectives - REVIEW
+            - DEFINITION: The conjunction of propositions p and q is denoted by p ^ q an dhas this truth table:
+                - p     q       p^q
+                - T     T        T
+                - T     F        F
+                - F     T        F
+                - F     F        F
+            - Example - if p denotes "I am at home", and q denotes "it is raining", then p^q denotes "I am at home and it is raining"
+        - Disjunction - Connectives - REVIEW
+            - DEFINITION: The disjunction of proposition p and q is denoted p V q and has this truth table
+                - p     q       pVq
+                - T     T        T
+                - T     F        T
+                - F     T        T
+                - F     F        F
+            - Example - if p denotes "I am at home" and q denotes "it is raining" then pVq denotes "I am at home or it is raining" 
+        - Connective Or Disjunction - REVIEW
+            - DEFINITIONS: The connective or disjunctrion of proposition p an dq is denoted by P XOR q and has this truth table
+                - p     q       p XOR q
+                - T     T       F
+                - T     F       T
+                - F     T       T
+                - F     F       F
+        - Implication (IMPORTANT: If q is FALSE, check p, if p is TRUE, the statement is FALSE, else it is true) - REVIEW
+            - DEFINITION: the conditional statement p -> q is the proposition "if p, then q." The conditional statement p -> q is false when p is true and q is false, and true otherwise. In the conditional statement p -> q, p is called the hypothesis (or antecedent or premise) and q is called the conclusion (or consequence)
+                - p     q       p -> q
+                - T     T       T
+                - T     F       F
+                - F     T       T
+                - F     F       T
+            - Example
+                - if p, then q
+                - if p, q
+                - p is sufficient for q
+                - q if p
+                - q when p
+                - a necessary condition for p is q
+                - q unless -p
+                - p implies q
+                - p only if q
+                - a sufficient condition for p is q
+                - q whenever p
+                - q is necessary for p
+                - q follows from p
+                - q provided that p
+        - Converse, Contrapositive, and Inverse - REVIEW
+            - Converse - q -> p is the CONVERSE of p -> q
+            - Contrapositive - -q -> -p is the CONTRAPOSITIVE of p -> q
+            - Inverse - -p -> -q is the INVERSE of p -> q
+            - Example
+                - "The home team wins whenever it is raining"
+                    - INVERSE - "The home team loses whenver it is not raining"
+                    - CONVERSE - "If it is raining, the home team wins"
+                    - CONTRAPOSITIVE - "If it is not raining, then the home team does not win"
+            - IMPORTANT - only the contrapositive of a conditional statement is equivalent
+        - Biconditionals
+            - DEFINITION: let p and q be propositions. The biconditionals statement p <-> q is the proposition "p if and only if q." The biconditional statement p <-> q is true when p and q have the same truth values, and is false otherwise. Biconditional statements are also called bi-implications
+                - p     q       p <-> q
+                - T     T       T
+                - T     F       F
+                - F     T       F
+                - F     F       T
+            - Example
+                - p is necessary and sufficient for q
+                - if p then q, and conversely
+                - p iff q = p exactly when q
+            - Example
+                - p is You can take the flight
+                - q is You buy a ticket
+                - You can take the flight if and only if you buy a ticket
+            - Example Common Language
+                - If you finish dinner, then you can have dessert
+                - If you give the presentation, then you can go to dinner
+        - Truth Tables of Compound Propositions
+            - Example
+                - (p V -q) -> (p ^ q)
+                - Table
+                    - p     q     (-q)      pV-q       p^q       (pV-q) -> (p^q)  
+                    - T     T       F         T         T                T
+                    - T     F       T         T         F                F
+                    - F     T       F         F         F                T
+                    - F     F       T         T         F                F
+        - Precedence of Logical Operators
+            - RULE 1: (-p^q) is the conjunction of -p and q, namely (-p)^q
+            - RULE 2: conjunction operator takes precedence over the disjunction operator
+                - (pVq^r) means pV(q^r)
+                - (p^qVr) means (p^q)Vr
+            - RULE 3: conditional and biconditional operators -> and <-> have lower precedence than the conjunction and disjunction operators ^ and V
+                - p -> qVr means p -> (qVr)
+                - pVq -> r means (pVq) -> r
+        - Logical and Bit Operations
+            - Bit - symobl with two possible values 0 or 1
+            - Bit Operations - correspond to logical connectives
+            - Bit String - sequence of zero or more bits. the length of this string is the number of bits in the string
+            - Table for Bit Values
+                - Truth Value       Bit
+                -       T            1
+                -       F            0
+            - Table for Bit Operators OR, AND, and XOR
+                - x     y     xVy     x^y       x XOR Y
+                - 0     0      0       0           0
+                - 0     1      1       0           1
+                - 1     0      1       0           1
+                - 1     1      1       1           0
+            - Bit String Operations (Think Downwards) - We define the bitwise OR, bitwise AND, and bitwise XOR of two strings of the same length to be the strings that have as their bits the OR, AND, and XOR of the corresponding bits in the two strings respectively
+                - 01 1011 0110 - First String
+                - 11 0001 1101 - Second String
+                ------------------------------
+                - 11 1011 1111 - Bitwise OR
+                - 01 0001 0100 - Bitwise AND
+                - 10 1010 1011 - Bitwise XOR
+    b. Propositional Equivalences
+        - 
+        - Chapter Review - Extra Examples on Rosen Site
+            - 01.01
+            - 01.02 - SKIPPED (RETURN TO TRANSLATION)
+            - 01.03
+            - 01.04
+            - 0.105
+            - 01.06
+            - 01.07
+            - 01.08
+        
