@@ -123,7 +123,7 @@ Chapter 1: The Foundations: Logic and Proofs
                 - p -> qVr means p -> (qVr)
                 - pVq -> r means (pVq) -> r
         - Logical and Bit Operations
-            - Bit - symobl with two possible values 0 or 1
+            - Bit - symbol with two possible values 0 or 1
             - Bit Operations - correspond to logical connectives
             - Bit String - sequence of zero or more bits. the length of this string is the number of bits in the string
             - Table for Bit Values
