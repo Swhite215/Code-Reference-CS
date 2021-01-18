@@ -704,7 +704,7 @@ Chapter 11: System Limits and Options
             - _POSIX_THREADS or _SC_THREADS - POSIX Threads
             - _XOPEN_UNIX or _SC_OPEN_UNIX - The XSI extension is supported
     
-Chapter 11: Ssytem and Process Information
+Chapter 12: Ssytem and Process Information
     a. The /proc File System
         - /proc virtual fiel system - resides under /proc, is dynamically written as processes are created, and contains various files that expose kernel information and change it in some cases
         - Obtaining Information About a Process: /proc/PID
@@ -784,3 +784,57 @@ Chapter 11: Ssytem and Process Information
             }
         - fn - sethostname() - sets nodename above
         - fn - setdomainname() - sets domainname above
+
+Chapter 13: File I/O Buffering
+    a. Kernel Buffering of File I/O: The Buffer Cache
+        - read() and write() don't directly initiate disk access, instead they simply copy data from a user-space buffer and a buffer in the kernel called the buffer cache
+        - Effect of Buffer Size on I/O System Call Performance
+            - > Buffer Size, up to 1024 bytes, the faster the I/O is performed
+            - Elapsed, Total CPU, User CPU, and System CPU is measured
+    b. Buffering in the stdio Library
+        - Topic: buffering of data into large blocks to reduce system calls is exactly what is done by the C library I/O functions e.g. fprintf(), fscanf(), fgets(), fputs(), fputc(), fgetc()
+        - Setting the Buffering Mode of A Stdio Stream
+            - fn - int setvbuf(FILE *stream, char *buf, int mode, size_t size) - controls the form of buffering employed by the stdio library
+            - buf argument
+                - buf is NULL - stdio library automatically allocates a buffer for use with stream
+                - buf is non-NULL - points to a block of memory of size bytes that is used as the buffer for stream
+            - mode argument
+                - _IONBF - don't buffer I/O, each stdio library call results in an immediate write() or read() system call
+                - _IOLBF - employ line-buffered I/O
+                - _IOFBF - employ fully buffered I/O
+            - fn - void setbuf(FILE *stream, char *buf) - controls form of buffering employed
+            - fn - void setbuffer(FILE *stream, char *buf, size_t size) - controls form of buffering employed
+        - Flushing a stdio buffer
+            - fn - int fflush(FILE *stream) - force the data in a stdio output stream to be written i.e. flushed to a kernel buffer via write()
+    c. Controlling Kernel Buffering of a File I/O
+        - Synchronized I/O Data Integrity and Synchronized I/O File Integrity
+            - Synchronized I/O Completion - means an I/O operation that has either been successfully transferrred to the disk or diagnosed as unsuccessful
+                - Syncrhonized I/O Data Integrity Completion - ensuring that a file data update transfers sufficient information to allow a later retrieval of that data to proceeed
+                - Synchronized I/O File Integrity Completion - during a file update, all updated file metadata is transferred to disk, even if it si not necessary for the operation of a subsequent read of the file data
+        - System Calls for Controlling Kernel Buffering of FIle I/O
+            - fn - int fsync(int fd) - causes the buffered data and all metadata associatd with the open file descriptor fd to be flushed to disk
+            - fn - int fdatasync(int fd) - only forces the file to the synchronized I/O data integrity completion state
+            - fn - void sync(void) - causes all kernel buffers containing updated file information to be flushed to disk
+        - Making All Writes Synchronous
+            - Specifying the O_SYNC flag when calling open() makes all subsequent output synchronous
+    e. Summary of I/O Buffering
+        - User Data -> stdio Library Calls printf(), fputc(), etc -> stdio buffer -> I/O system calls write(), etc -> Kernel Buffer Cache -> Kernel Initiated Write -> Disk
+    f. Advising the Kernel About I/O Patterns
+        - fn - int posix_fadvise(int fd, off_t offset, off_t len, int advice) - allows a process to inform the kernel about its likely pattern for accessing file data
+            - advice argument
+                - POSIX_FADV_NORMAL - process has no special advice to give about access patterns
+                - POSIX_FADV_SEQUENTIAL - process expects to read data sequentially from lower offsets to higher offsets
+                - POSIX_FADV_RANDOM - process expects to access the data in random order
+                - POSIX_FADV_WILLNEED - process expects to access the specified file region in the near future
+                - POSIX_FADV_DONTNEED - process expects not to access the specified file region in the near future
+                - POSIX_FADV_NORESUE - process expects to access data in the specified file region once, and then not to reuse it
+    g. Bypassing the Buffer Cache: Direct I/O
+        - Direct I/O - an application bypasses the buffer cache wehen performing disk I/O, thus transferring data directly from user space to a file or disk device
+            - specify the O_DIRECT flag when opening a file or device with open()
+        - Alignment Restrictions for Direct I/O
+            - The data buffer being transferred must be aligned on a memory boundarythat is a multiple of the block size
+            - The file or device offset at which data transfer commences must be a multiple of the block size
+            - The length of the data to be transferred must be a multiple of the block size
+    h. Mixing Library Functions and System Calls for File I/O
+        - fn - int fileno(FILE *stream) - returns the corresponding file descriptor
+        - fn - FILE *fdopen(int fd, const char *mode) - given a file descriptor, it creates a corresponding stream that uses this descriptor for its I/O
