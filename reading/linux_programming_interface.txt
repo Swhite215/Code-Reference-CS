@@ -838,3 +838,121 @@ Chapter 13: File I/O Buffering
     h. Mixing Library Functions and System Calls for File I/O
         - fn - int fileno(FILE *stream) - returns the corresponding file descriptor
         - fn - FILE *fdopen(int fd, const char *mode) - given a file descriptor, it creates a corresponding stream that uses this descriptor for its I/O
+
+Chapter 14: File Systems
+    a. Device Special Files
+        - Device Special File - corresponds to a device on the system
+        - Each device type has a corresponding device driver, which handles I/O requests for the device
+        - API provided by device drivers is fixed and includes operations corresponding to the system calls open(), close(), reade(), write(), mmap(), and ioctl()
+        - Device Types
+            - Character Devices - handle data on a character by character basis. Terminals and keyboards are examples of charactber devices
+            - Block Devices - handle data a block at a time
+        - Device IDs
+            - Major ID Number - identifies the general class of device, and is used by the kernel to look up the appropriate driver for this type of device
+            - Minor ID Number - uniquely identifies a particular device within a general class
+    b. Disks and Partitions
+        - Disk Drives - hard disk drive is a mechanical device consisting of one or more platters that rotate at high speed
+        - Dis Partitions - each disk is divided into one or more (nonoverlapping) partitions. Each partition is treated by the kernel as a separate device residing under the /dev directory
+        - Disk Partition Contains
+            - file system holding regular files and directories
+            - a data area accessed as raw mode device
+            - a swap area used by the kernel for memeory management
+    c. File Systems - organized collection of regular files and directories
+        - Examples - ext2, Minix, System V, and BSD, FAT, FAT32, NTFS, ISO 9660 CD-ROM, HFS, NFS, SMB, NCP, Coda, ext3, ext4, Reiserfs, JFS, XFS, and Btrfs
+        - File Sytem Structure
+            - Logical Block - basic unit for allocating space in a file system, some multiple of contiguous physical blocks on the disk device e.g. 1024, 2048,, or 4096
+            - Boot Block - contains information used to boot the operating system
+            - Superblock - single block, contains parameter information about the file system, including:
+                - the size of the i-node table
+                - the size of logical blcoks in this file system
+                - the size of the file system in logical blocks
+            - I-node Table - each file or directory has a unique entry in the i-node table, this entry records varioous informations about the file
+            - Data Blocks - the great majority of space in a file system is used for the blocks of data that form the files and directories residing in the file system
+    e. I-nodes
+        - Data Contained
+            - File type e.g. regular file, directory, symbolic link, characer device
+            - Owner
+            - Group
+            - Access Permissions - U,G,O
+            - Three Timestamps
+                - time of last access to the file
+                - time of last modification of the file
+                - time of last status change
+            - Number of hard links to the file
+            - Size of the file in bytes
+            - NUmber of blocks actually allocated to the file, measured in 512 bytes
+            - Pointers to the data blocks of the file
+        - I-nodes and Data Block Pointers\
+            - Important - ext2 doesn't store the data blocks of a file contiguosly or even in sequential order, the kernel maintains a set of pointers in the i-node
+            - First 12 - point to first 12 blocks of the file
+            - 13th - pointer to a block of pointers that gives the location of the 13th and subsequent data blocks of the file (pointers depends on size, 4 bytes so 256 pointers for a 1024 byte block)
+            - 14th - double indirect pointer - points to blocks of pointers that in turn point to blocks of pointers that in turn point to data blocks of the file
+    f. The Virtual File System - kernel featrure that creates an abstraction layer for file-system operations
+        - Ideas
+            - The VFS defines a generic interface for file-system operations. All programs that work with files specify their operations in terms of this generic interface
+            - Each file system provides an implementation for the VFS interface
+            - Interface Operations for: open(), read(), write(), lseek(), close(), truncate(), stat(), mount(), umount(), mmap(), mkdir(), link(), unlink(), symlink(), and rename()
+    g. Journaling File Ssystem 
+        - Goal - eliminate the need for length file-system consistency checks after a system crash
+        - Journaling - logs all metadata updates to a special on-disk journal file before they are actually carried out. Updates are logged in groups of related metadata updates
+            - In the event of system crash, on system reboot, the log can be used to rapildy redo any incomplete updates and bring the file system bnack to a consistent state
+        - Journaling File Systems - Reiserfs, ext3, JFS, XFS, ext4, Btrfs
+    h. Single Directory Hierarchy and Mount Points
+        - File systems are mounted under the root directory and appear as subtrees within the overall hierarchy
+    i. Mounting and Unmounting File Systems
+        - Files On Mounted or Mountable
+            - /proc/mounts - lis the currently mounted file systems
+            - /etc/mtab - contains information that is similar but slightly more detailed, including the file system-specific options given to mount()
+            - /etc/fstab - maintained manually by the system administrator, contains descriptions of all of the available file systems on a system
+            - File Format
+                - /dev/sda9 /boot ext3 rw 0 0
+                    - /dev/sda9 - name of the mounted device
+                    - /boot - mount point for the device
+                    - ext3 - file system type
+                    - rw - moutn flags
+                    - 0 - used to control the operastion of file system backups by dump()
+                    - 0 - used to control the order in which fsck() checks file systems at system boot time
+        - Mounting a File System: mount()
+            - fn - int mount(const char *source, const char *target, const char *fstype, unsigned long mountflags, cosnt void *data) - mounts the file system contained on the device specified by source under the directory specified by target
+            - mount flags
+                - MS_BIND - create a bind mount
+                - MS_DIRSYNC - make directory updates synchronous
+                - MS_MANDLOCK - permit mandatory locking of files
+                - MS_MOVE - atomically move mount point to new location
+                - MS_NOATIME - don't update last access time for files
+                - MS_NODEV - don't allow access to devices
+                - MS_NODIRATIME - don't update last access time for directories
+                - MS_NOEXEC - don't allow programs to be executed
+                - MS_NOSUID - disable set-user-ID and set-group-ID programs
+                - MS_RDONLY - read only mount file
+                - MS_REC - recursive mount
+                - MS_RELATIME - update last access time only if older than last modification time or last status change time
+                - MS_REMOUNT - remount with new mountflags and data
+                - MS_STRICTATIME - always update last access time
+                - MS_SYNCHRONOUS - make all file and directory updates synchronous
+        - Unmounting a File System: umount() and umount2()
+             - fn - int mount(const char *target) - unmounts a mounted file system
+             - fn - int umount2(const char *target, int flags) - allows finer control over unmount operations via the flags argument
+    j. Advanced Mount Features
+        - Mounting a File System at Multiple Mount Points
+        - Stacking Multiple Mounts on the Same Mount Point
+        - Mount Flags that Are Per Mount Options
+        - Bind Mounts
+        - Recursive Bind Mounts
+    k. A Virtual Memory File System: tmpfs
+        - mount -t tmpfs source target - creates a tmpfs virtual file system
+    l. Obtaining Information About a File System: statvfs()
+        - fn - int stavfs(const char *pathname, struct statvfs *statvsbuf) - obtain informatiom about a mounted file system
+            - struct statvfs {
+                unsigned long f_bsize; /* File System Block Size in Bytes */
+                unsigned long f_frsize; /* Fundamental File System System Block Size in Bytes */
+                unsigned long f_blocks; /* Total Number of Blocks in File */
+                unsigned long f_bfree; /* Total Number of Free Blocks */
+                unsigned long f_bavail; /* Number of Free Blocks Available to Unprivileged Process */
+                unsigned long f_files; /* Total Number of I-Nodes */
+                unsigned long f_ffree; /* Total Number of Free I-Nodes */
+                unsigned long f_favail; /* Number of I-Nodes Available to Unprivileged Process */
+                unsigned long f_fsid; /* File System ID */
+                unsigned long f_flag; /* Mount Flags */
+                unsigned long f_namemax; /* Maximum Name of Filenames on this File System */
+            }
