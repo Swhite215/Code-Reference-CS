@@ -996,3 +996,64 @@ Chapter 15: File Attributes
                 - It is possible to independently set either of the timestamps to the current time
             - fn - int utimensat(int dirfd, const char *pathname, const struct timespec times[2], int flags) - updates the timestamps of the file specified by pathname to the values specified in the array times
             - fn - int futimens(int fd, const struct timespec times[2]) - updates the timestamps of the file referred to by the open file descriptor fd
+    c. File Ownership
+        - Ownership of New Files
+            - Rule - when a new file is created, its user ID is taken from the effective user ID of the process, on lnux this is the file-system user ID
+            - When Mounting
+                - If you use -o grpid, -o bsdgroups - the group ownership of any new file created is taken from parent directory group ID
+                - If you use -o nogrpid, -o sysvgroups
+                    - If set-group-ID bit is not enabled - the group ownership of any new files created is taken from the parent directory group ID
+                    - If set-group-ID bit is enabled - the group ownership of any new files created is taken from the process effective group ID
+            - Changing File Ownership: chown(), fchown(), and lchown() - change the owner user ID and group ID of a file
+                - fn - int chown(const char *pathname, uid_t owner, gid_t group) - file named in pathname
+                - fn - int lchown(const char *pathname, uid_t owner, gid_t group) - file or link
+                - fn - int fchown(int fd, uid_t owner, gid_t group) - fd
+    d. File Permissions
+        - Permissions on Regular Files
+            - Categories - Owner, Group, Other - rwxrwxrwx
+            - Permissions
+                - Read - the contents of a file may be read
+                - Write - the contents of the file may be changed
+                - Execute - the file may be executed
+        - Permissions on Directories
+            - Categories - Owner, Group, Other - rwxrwxrwx
+            - Permissions
+                - Read - the contents of the directory may be listed
+                - Write - files may be created in and removed from the directory
+                - Execute - files within the directory may be accessed i.e. search permission
+        - Permission Checking Algorithm
+            - Rule 1 - if the process is privilege, all access is granted
+            - Rule 2 - if the effective user ID of the process is the same as the user ID of the file, then access is granted according to the owner permissions on the file
+            - Rule 3 - if the effective group ID of the process or any of the process supplementary group IDs matches the group ID of the file, then access is granted according to the group permissions on the file
+            - Rule 4 - otherwise access is granted according to the other permissiosn on the file
+        - Permission Checking for Privilege Processes - on Linux, for a file that is not a director, Linux grants execute permission to a privileged process only if that permission is granted to at least one of the permission categories for the file
+        - Checking File Accessibility
+            - fn - int access(const char *pathname, int mode) - checks the accessibility of the file based on a process's real user and group IDs and supplementary group IDs
+                - mode constants for access
+                    - F_OK - Does the file exists?
+                    - R_OK - Can the file be read?
+                    - W_OK - Can the file be written?
+                    - X_OX - Can the file be executed?
+        - Sticky Bits - For directories, stickly bit acts as the restricted deletion flag, if set, means an unprivileged process can unlink and rename files in the directory only if it has write permission on the directory and owns either the file or the directorys
+        - The Process File Mode Creation Mask: umask()
+            - umask - process attribute that specifies which permission bits should always be turned off when new files or directories are created by the process
+            - If umask is 022 = ----w--w- - means write permission are automatically turned off for group and other
+                - If mode argument to open is 0666, then user would have read and write, while group and other would only have read
+                - If mode argument to open is 0777, then user would have read, write, and execute, while group and other would only have read and execute
+            - fn - mode_t umask(mode_t mask)
+        - Changing File Permissiosn: chmod() and fchmod()
+            - fn - int chmod(const char *pathname, mode_t mode) - changes the permssions of the file named in pathname
+            - fn - int fchmod(int fd, mode_t mode) - changes the permissions of the file referred to by the open file descriptor fd
+    e. I-node Flags (Extended Attribute)
+        - FS_APPEND_FL - a - append only
+        - FS_COMRP_FL - c - enable file compression
+        - FS_DIRSYNC_FL - D - synchronous directory updates
+        - FS_IMMUTABLE_FL - i - immutable
+        - FS_JOURNAL_DATA_FL - j - enable data journaling
+        - FS_NOATIME_FL - A - don't update file last access time
+        - FS_NODUMP_FL - d - no dump
+        - DS_NOATIL_FL - t - no tail packing
+        - FS_SEFCRM_FL - s - secure deletion
+        - FS_SYNC_FL - S - synchronous file and directory updates
+        - FS_TOPDIR_FL - T - treaat as top-level directory for Orlov
+        - FS_UNRM_FL - u - file can be deleteda
