@@ -1057,3 +1057,37 @@ Chapter 15: File Attributes
         - FS_SYNC_FL - S - synchronous file and directory updates
         - FS_TOPDIR_FL - T - treaat as top-level directory for Orlov
         - FS_UNRM_FL - u - file can be deleteda
+
+Chapter 16: Extended Attributes
+    a. Overview
+        - Extended Attributes - allow arbitrary metadata, in the form of name-value pairs
+        - EA Namespaces - User, Trusted, System, And Security
+            - User - can be manipulated by users
+            - Trusted - can only be manipulated by privileged users
+            - System - used by the kernel to associate system objects with a file e.g. access control list
+            - Security - used to store file security labels for operating system securiyt modules and to associate capabilities with executable files 
+        - Creating and Viewing EAS from the Shell
+            - setfattr - sets or removes an EA
+            - getfattr - gets a specific EA or all EAs assocaited with a file
+    b. Extendede Attributes Implementation Details
+        - Restrictions on User EAs - can only be placed on regular files and directories
+        - Implementation Limits
+            - the length of an EA name is limited to 255 characters
+            - the EA value is limited to 64kb
+    c. System Calls for Manipulating Extended Attributes
+        - Creating and Modifying EAs
+            - fn - int setxattr(const char *pathname, const char *name, const void *value, size_t size, int flags) - set the value of one of the file's EAs 
+            - fn - int lsetxattr(const char *pathname, const char *name, const void *value, size_t size, int flags) - set the value of one of the file's EAs 
+            - fn - int fsetxattr(int fd, const char *name, const void *value, size_t size, int flags) - set the value of one of the file's EAs 
+        - Retrieving the Value of An EA
+            - fn - ssize_t getxattr(const char *pathname, const char *name, void *value, size_t size) - retrieves the value of an EA
+            - fn - ssize_t lgetxattr(const char *pathname, const char *name, void *value, size_t size) - retrieves the value of an EA
+            - fn - ssize_t fgetxattr(int fd, const char *name, void *value, size_t size) - retrieves the value of an EA
+        - Removing an EA
+            - fn - int removexattr(const char *pathname, const char *name) - removes an EA from a file
+            - fn - int lremovexattr(const char *pathname, const char *name) - removes an EA from a file
+            - fn - int fremovexattr(int fd, const char *name) - removes an EA from a file
+        - Retrieivng the Names of All EAs Associated with a File
+            - fn - ssize_t listxattr(const char *pathname, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
+            - fn - ssize_t llistxattr(const char *pathname, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
+            - fn - ssize_t flistxattr(int fd, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
