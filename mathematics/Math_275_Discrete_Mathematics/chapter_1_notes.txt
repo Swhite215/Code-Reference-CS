@@ -3,7 +3,7 @@ Discrete Math and Its Applications - Rosen, Kenneth
 Chapter 1: The Foundations: Logic and Proofs
     a. Propositional Logic - a proposition is a declarative sentence that is either true or false
         - Sentential Variables - variables that represent propositions just as letters are used to denote numerical variables - p, q, r, s, ....
-        - Atomic Propositions - propositions that cannot be expressed in terms of simpler proposiitons are called atomic propositions
+        - Atomic Propositions - propositions that cannot be expressed in terms of simpler propositons are called atomic propositions
         - Examples
             - Correct Examples
                 - The moon is made of green cheese.
@@ -33,7 +33,7 @@ Chapter 1: The Foundations: Logic and Proofs
                 - F       T
             - Example - if p denotes "the earth is round", then -p denotes "the earth is not round"
         - Conjunction - Connectives - REVIEW
-            - DEFINITION: The conjunction of propositions p and q is denoted by p ^ q an dhas this truth table:
+            - DEFINITION: The conjunction of propositions p and q is denoted by p ^ q and has this truth table:
                 - p     q       p^q
                 - T     T        T
                 - T     F        F
@@ -49,7 +49,7 @@ Chapter 1: The Foundations: Logic and Proofs
                 - F     F        F
             - Example - if p denotes "I am at home" and q denotes "it is raining" then pVq denotes "I am at home or it is raining" 
         - Connective Or Disjunction - REVIEW
-            - DEFINITIONS: The connective or disjunctrion of proposition p an dq is denoted by P XOR q and has this truth table
+            - DEFINITIONS: The connective or disjunctrion of proposition p and q is denoted by P XOR q and has this truth table
                 - p     q       p XOR q
                 - T     T       F
                 - T     F       T
