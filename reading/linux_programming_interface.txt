@@ -1091,3 +1091,50 @@ Chapter 16: Extended Attributes
             - fn - ssize_t listxattr(const char *pathname, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
             - fn - ssize_t llistxattr(const char *pathname, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
             - fn - ssize_t flistxattr(int fd, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
+
+Chapter 17: Access Control Lists
+    a. Overview
+        - ACL Entries
+            - Tag Type - indicates whether this entry applies to a user, to a group, or to some other category user
+                - ACL_USER_OBJ - permissions granted by file owner
+                - ACL_USER - permissiosn granted to user identified by the tag qualifier
+                - ACL_GROUP_OBJ - specifies permission granted to the file groups
+                - ACL_GROUP - permissions granted to group identified by the tag qualifier
+                - ACL_MASK - specifies permissions that may be granted
+                - ACL_OTHER - specifies the permissions that are granted to users that don't match any other ACL entry
+            - Tag Qualifier - identifies a specific user or group i.e. a user ID or group ID
+            - Permission Set - specifies the permissions (read, write, and execute) that are granted by entry
+        - Minimal and Extended ACLS
+            - Minimal - semantically equivalent to the traditional file permission set
+            - EWxtended - one that additionally contains ACL_USER, ACL_GROUP, and ACL_MASK
+    b. ACL Permission Checking Algorithm
+        - Rule 1: if process is privileged then all access is granted
+        - Rule 2: if the effective user ID of the process matches the owner of the file, then the process is granted the permissions specified in the ACL_USER_OBJ
+        - Rule 3: if the effetive user ID of the process matches the tag qualifier in one of the ACL_USER entries, then the process is granted the permissions specified in the ACL_USER, masked against the value of the ACL_MASK
+        - Rule 4: if one of the process group IDs i.e. efgfective group ID or supplementary, matches the file group in ACL_GROUP_OBJ or tag qualifies in any of the ACL_GROUP, then access is determined by either ACL_GROUP_OBJ or ACL_GROUP
+    c. Long and Short Text Forms for ACLS
+        - Long - ACLs contain one ACL entry per line
+        - Short - ACLs consist os seuqnce of ACL entries separated by commas
+    d. ACL_MASK Entry and ACL Group Class
+        - ACL_MASK - acts as an upper limit on the permissions granted by ACL entries in teh so called group class
+        - Group Class - set of all ACL_USER, ACL_GROUP, and ACL_GROUP_OBJ entries in the ACL
+    e. The getfacl and setfacl Commands
+        - getfacl - view the ACL on a file
+        - stfacl - set ACL on a file
+    f. Default ACLs and File Creation
+        - Default ACL - determines ACLs and permissions that are placed on files and subdirectories that are created in the directory
+    g. ACL Implementation Limits
+        - ext2, ext3, ext4 - 500
+        - XFS - 25
+        - Reiserfs - 8191
+    h. The ACL API
+        - Fetching a File's ACL into Memory - acl_get_file()
+        - Retrieving Entries from An In-Memory ACL - acl_get_entry()
+        - Retrieving and Modifying Attributes in an ACL Entry
+            - Tag Types - acl_get_tag_type() and acl_set_tag_type()
+            - Tag Qualifiers - acl_get_qualifier() and acl_set_qualifier()
+            - Permission Set - acl_get_permset() and acl_set_permset()
+        - Creating and Deleting ACL Entries - acl_create_entry()
+        - Updating a Files ACL - acl_set_file()
+        - Converting an ACL Between In-Memory and Text Form - acl_from_text() or acl_to_text()
+        - Other Functions in the ACL API - acl_calc_mask()
