@@ -1138,3 +1138,57 @@ Chapter 17: Access Control Lists
         - Updating a Files ACL - acl_set_file()
         - Converting an ACL Between In-Memory and Text Form - acl_from_text() or acl_to_text()
         - Other Functions in the ACL API - acl_calc_mask()
+
+Chapter 18: Directories and Links
+    a. Directories and Hard Links
+        - Directory - stored in the file system in a similar way to a regular file
+            - Directory is marked with a different file type in its i-node-entry
+            - Directory is a file with a special organization i.e. a table consisting of filenames and i-node numbers
+    b. Symbolic Soft Links
+        - Symbolic or Soft Link - a special file type whose data is the name of another file
+        - Interpretation fo Symbolic Links by System Calls
+            - Derefence or Follow - work on the file to which the link refers
+            - Don't Dereference - operatei directly on the link file itself
+        - File Permissiosn and Ownership for Symbolic Links - ignored form most operations
+    c. Creating and Removing Hard Links
+        - fn - int link(const char *oldpath, const char *newpath) - creates a hard lin
+        - fn - int unlink(const char *pathname) - removes a hard link  
+        - Note - An open file is deleted only when all file decsriptors are closed
+    d. Changing the Name of a File
+        - fn - int rename(const char *oldpath, const char *newpath) - used to rename and to move it to another directory
+    e. Working with Symbolic Links: symlink() and readlink()
+        - fn - int symlink(const char *filepath, const char *linkpath) - creates a new symbolic link
+        - fn - ssize_t readlink(const char *pathname, char *buffer, size_t bufsize) - retrieves the contents of the link itself
+    f. Creating and Removing Directories: mkdir() and rmdir()
+        - fn - int mkdir(const char *pathname, mode_t mode) - creates a new directory
+        - fn - int rmdir(const char  *pathname) - removes a directory
+    g. Removing a File or Directory: remove()
+        - fn - int remove(const char *pathname) - removes a file or an empty directory
+    h. Reading Directories: opendir() and readdir()
+        - fn - DIR *opendir(const char *dirpath) - opens a directory and returns a handle that can be used to refer to the directory in later calls
+        - fn - DIR *fdopendir(int fd) - opens a directory and returns a handle that can be used to refer to the directory in later calls
+        - fn - struct dirent *readdir(DIR *dirp) - reads successive entries from a directory stream
+            - struct dirent {
+                ino_t d_ino; /* File i-node number */
+                char d_name[]; /* NUll termninated name of file */
+            }
+        - fn - void rewinddir(DIR *dirp) - moves the directory stream back to the beginning
+        - fn - int closedir(DIR *dirp) - closes the open directory stream
+        - fn - int dirfd(DIR *dirp) - returns the file descriptor associated with the directory stream
+        - fn - int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) - reentrant read of successive entries from a directory stream
+    i. File Tree Walking
+        - fn - int nftw(const char *dirpath, int(*func) (const char *pathname, const struct state *statbuf, int typeflag, struct FTW *ftwbuf), int noopenfd, int flags) - walks through the directory tree specified by dirpath and calls the programmer defined function func once for each file in the directory tree
+    j. The Current Working Directory of a Process
+        - Retrieving the Current Working Directory
+            - fn - int char *getcwd(char *cwdbuf, size_t size) - returns a process's current working directory
+        - Changing the Current Working Directory
+            - fn - int chdir(const char *pathname) - changes the process's current working directory to the relative or absolute pathname specified in pathname
+            - fn - int fchdir(int fd) - changes the process's current working directory to the directory specified via a file descriptor previously obtained
+    k. Operating Relative to a Directory File Descriptor
+    l. Changing the Root Directory of a Process
+        - fn - int chroot(const char *pathname) - changes a process's root directory
+    m. Resolving a Pathname: realpath()
+        - fn - char *realpath(const char *pathname, char *resolved_path) - dereferences all symbolic links in pathname and resolves all references to /. and /.. to produce a null-terminated string containing the corresponding absolute pathname
+    n. Parsing Pathname Strings: dirname() and basename()
+        - fn - char *dirname(char *pathname) - return directory name
+        - fn - char *basename(char *pathanme) - returns file name or end of directory path
