@@ -1192,3 +1192,53 @@ Chapter 18: Directories and Links
     n. Parsing Pathname Strings: dirname() and basename()
         - fn - char *dirname(char *pathname) - return directory name
         - fn - char *basename(char *pathanme) - returns file name or end of directory path
+
+Chapter 19: Monitoring File Events
+    a. Overview
+        - inotify API Key Steps
+            - Create an inotify instance
+            - Add items to watch
+            - Read event notifications
+            - Closes the inotify instance
+    b. The inotify API
+        - fn - int inotify_init(void) - creates a new inotify instance
+        - fn - int inotify_add_watch(int fd, const char *pathname, uint32_t mask) - either adds a new watch item to or modifies an existing watch item in the watch list for the inotify instance referred to by the file
+    c. inotify Events
+        - IN_ACCESS - file was accessed
+        - IN_ATTRIB - file metadata changed
+        - IN_CLOSE_WRITE - file opened for writing was closed
+        - IN_CLOSE_NOWRITE - file opened read-only was closed
+        - IN_CREATE - file/directory created inside watched directory
+        - IN_DELETE - file/directory deleted from within watched directory
+        - IN_DELETE_SELF - watched file/directory was itself deleted
+        - IN_MODIFY - file was modified
+        - IN_MOVE_SELF - watched file/directory was itself moved
+        - IN_MOVED_FROM - file moved out of watched directory
+        - IN_MOVED_TO - file moved into watched directory
+        - IN_OPEN - file was opened
+        - IN_ALL_EVENTS - shorthand for all of the above input events
+        - IN_MOVE - shorthand for IN_MOVED_FROM | IN_MOVED_TO
+        - IN_CLOSE - shorthand for IN_CLOSE_WRITE | IN_CLOSE_NOWRITE
+        - IN_DONT_FOLLOW - don't dereference symbolic link
+        - IN_MASK_ADD - add events to current watch mask for pathname
+        - IN_ONESHOT - monitor pathname for just one event
+        - IN_ONLYDIR - fail if pathname is not a directory
+        - IN_IGNORED - watch was removed by application or by kernel
+        - IN_ISDIR - filename returned in name is a directory
+        - IN_Q_OVREFLOW - overflow on event queue
+        - IN_UNMOUNT - file system containing object was unmounted
+    d. Reading inotify Events
+        - read() to read events from the inotify file descriptor
+            - struct inotify_event {
+                int wd; /* Watch descriptor on which event occurred */
+                uint32_t mask; /* Bits describing event that occurred */
+                uint32_t cookie; /* Cookie for related events */
+                uint32_t len; /* Size of 'name' field */
+                char name[]; /* OIptional null-terminated filename */
+            }
+    e. Queue Limits and /proce Files
+        - /proc/sys/fs/inotify
+            - max_queued_events - value is used to set an upper limit on the number of events that can be queued on the new inotify instance
+            - max_user_instances - limit on the number of inotify instances that can be created per real user ID
+            - max_user_watches - limit on the number of watch items that can be created per real user ID
+    f. An Older System for Monitoring File Events: dnotify
