@@ -228,6 +228,7 @@ Chapter 1: The Foundations: Logic and Proofs
                 - p <-> q is logically equivalent to -p <-> -q
                 - p <-> q is logically equivalent to (p^q)V(-p^-q)
                 - -(p <-> q) is logically equivalent to p <-> -q
+        - Satisfiability - satisfiable if there is an assignment of truth values to its variables that makes it true (tautology ALL T or contradiction at least one T)
         - Trick
             - Calculating Rows - 2^(Number of Variables)
                 - p and q - four rows
@@ -336,6 +337,8 @@ Chapter 1: The Foundations: Logic and Proofs
                     - Negation of ƎxK(x) is there is no student who has taken java
                     - ∀x-K(x) is the equivalent of the negation of ƎxK(x) or -ƎxK(x) is equivalent to ∀x-K(x) 
             - Predicate Calculus - area of logic that deals with predicates and quantifier
+    d. Nested Quantifiers
+        - 
     - Chapter Review - Extra Examples on Rosen Site
         - 01.01
         - 01.02 - SKIPPED (RETURN TO TRANSLATION)
