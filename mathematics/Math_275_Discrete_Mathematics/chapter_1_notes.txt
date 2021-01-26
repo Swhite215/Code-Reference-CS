@@ -233,13 +233,116 @@ Chapter 1: The Foundations: Logic and Proofs
                 - p and q - four rows
                 - p, q, and r - eight rows
                 - p, q, r, and v - 16 rows
-        - Chapter Review - Extra Examples on Rosen Site
-            - 01.01
-            - 01.02 - SKIPPED (RETURN TO TRANSLATION)
-            - 01.03
-            - 01.04
-            - 0.105
-            - 01.06
-            - 01.07
-            - 01.08
+    c. Predicates and Quantifiers
+        -  Predicates
+            - Variables - x, y, z
+            - Predicates - P(x), M(x)
+            - Quantifiers - to be covered in a few slides
+            - Examples
+                - x is greater than 3 P(x)
+                    - x - variable
+                    - P() - is greater than 3 is the predicate
+                    - P(x) - is also said to be the value of the propositional function P at x
+                    - P(x) is a proposition and has a truth value
+                - P(x) = x > 3
+                    - P(4) truth value is true
+                    - P(2) truth value is false
+                - A(x) = Computer x is under attack by an intruder
+                    - A(CS1) truth value is false
+                    - A(CS2) truth value is true
+                    - A(MATH1) truth value is true
+                - Q(x, y) = x = y + 3
+                     - Q(1,2) truth value is false
+                     - Q(3,0) truth value is true
+                - R(x,y,z) = x + y = z
+                    - R(2, -1, 5) truth value is false
+                    - R(3, 4, 7) truth value is true
+                    - R(x, 3, z) no truth value, not a proposition
+            - Domain - denoted by U
+        - Compound Expressions
+            - P(x) = x > 0
+                - P(3) V P(-1) truth value is true 
+                - P(3) ^ P(-1) truth value is false
+                - P(3) -> P(-1) truth value is false
+                - P(3) -> -P(-1) truth value is true
+        - Preconditions and Postconditions
+            - Preconditions - statements that describe valid input
+            - Postconditions - statements that should describe when the program has run
+        - Quantifiers
+            - Quantification - expresses thge extent to which a predicate is true over a range of elements
+                - Words - all, some, many, none, and few
+            - Universal Quantifier - predicate is true for every element under consideration
+                - Example
+                    - P(x) for all values of x in the Domain
+                    - ∀xP(x) denotes the universal quantification of P(x)
+                    - ∀ is called the universal quantifier
+                    - ∀xP(x) is read as for all xP(x) or for ever xP(x)
+                    - Counterexample, an element for which P(x) is false
+                - Example
+                    - ∀xP(x)
+                        - If P(x) denotes x>0 and the domain U is integers, then ∀xP(x) is false
+                        - If P(x) denotes x>0 and the domain U is positive integers, then ∀xP(x) is true
+                        - If P(x) denotes x is even and hte domain U is integers, then ∀xP(x) is false
+            - Existential Quantifier - there is one or more element under consideration for which the predicate is true
+                - Example
+                    - Theere exists an element x in the domain such that P(x)
+                    - ƎxP(x) - there is an x such that P(x)
+                    - ƎxP(x) - thjere is at least one x such that P(x)
+                - Example
+                    - ƎxP(x)
+                        - If P(x) denotes x>0 and U is the integers, then ƎxP(x) is true
+                        - If P(x) denotes x>0 and U is the negative integers, then ƎxP(x) is false
+            - The Uniqueness Quantifier - there exists a unique x such that P(x) is true
+            - Thinking About Quantifiers
+                - Domain = Finite - then loop and evaluate each element in the array
+                    - ∀xP(x) - every evaluation needs to be true
+                    - ƎxP(x) - at least one evaluation needs to be true
+            - Precedence of Quantifiers
+                - ƎxP(x) and ∀xP(x) have higher precedence than all logical operators
+                - ∀xP(x) V Q(x) is the disjunction of ∀xP(x) and Q(x)
+            - Translating from English into Logical Expressions
+                - Example
+                    - Every student in this class has taken a course in Java
+                    - Option 1:
+                        - U is all students
+                        - x is student in this class
+                        - J(x) dentoes a student in this class has taken a course in Java
+                    - Option 2:
+                        - U is all people
+                        - S(x) denoting x is a student in this class
+                        - ∀x(S(x) -> J(x)) - if student in this class, then that student has taken a course in Java
+                - Example
+                    - Some student in this class has visited Mexico
+                        - Option 1
+                            - U is all students in this class
+                            - x is student in this class
+                            - M(x) is student has visited Mexico
+                            - ƎxM(x)
+                        - Option 2
+                            - U is all students
+                            - x is student in this class
+                            - S(x) is if student in the class
+                            - M(x) is student has visited Mexico
+                            - Ǝx(S(x) ^ M(x))
+            - Equivalence in Predicate Logic
+                - Statements involving predicates and quantifiers are logically equivalent if and only if they ahve the same truth value no matter which predicats are substituted into these statements and which domain of discourse is used for the variable in these propositional functions
+            - Negating Quantified Expressions
+                - Negation of Universal - there is a value for which the universal is false
+                    - ∀xJ(x) = Every student in your class has taken a course in Java
+                    - Negation of ∀xJ(x) is there is at least one student who has not taken Java
+                    - Ǝx-J(x) is equivalent to the negation of ∀xJ(x) or -∀xJ(x) is logically equivalent to Ǝx-J(x)
+                - Negation of Existential - for all domain, it is always false
+                    - ƎxK(x) = there is a student in this class who has taken a course in Java
+                    - Negation of ƎxK(x) is there is no student who has taken java
+                    - ∀x-K(x) is the equivalent of the negation of ƎxK(x) or -ƎxK(x) is equivalent to ∀x-K(x) 
+            - Predicate Calculus - area of logic that deals with predicates and quantifier
+    - Chapter Review - Extra Examples on Rosen Site
+        - 01.01
+        - 01.02 - SKIPPED (RETURN TO TRANSLATION)
+        - 01.03
+        - 01.04
+        - 0.105
+        - 01.06
+        - 01.07
+        - 01.08
         
