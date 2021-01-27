@@ -1242,3 +1242,54 @@ Chapter 19: Monitoring File Events
             - max_user_instances - limit on the number of inotify instances that can be created per real user ID
             - max_user_watches - limit on the number of watch items that can be created per real user ID
     f. An Older System for Monitoring File Events: dnotify
+
+Chapter 20: Signals - Fundamental Concepts
+    a. Concepts and Overview
+        - Signal - a notification to a process that an event has occurred e.g. software interrupt
+        - Signal Identifier - unique (small) integer, starting sequentially from 1
+        - Categories
+            - Traditional/Standard - used by the kernel to notify processes of events
+            - Realtime - described later
+        - Signal Steps
+            - Generated -> Pending -> Delivered
+        - Process Handling
+            - signal is ignored, that is it is discarded by the kernel and has no effect on the process
+            - process is terminated, sometimes referred to as abnormal process termination
+            - core dump file is generated and the process is terminated
+            - process is stopped
+            - execution is resumed
+    b. Signal Types and Default Actions
+        - SIGABRT - 6 - abort process
+        - SIGALRM - 14 - real timer timer expired
+        - SIGBUS - 7 - memory access error
+        - SIGCHLD - 17 - child terminated or stopped
+        - SIGCONT - 18 - continue if stopped
+        - SIGEMT - undef - hardware fault
+        - SIGHUP - 1 - hangup
+        - SIGFPE - 8 - arithmetic exception
+        - SIGILL - 4 - illegal instruction
+        - SIGINT - 2 - terminal interrupt
+        - SIGNIO - 29 - I/O possible
+        - SIGKILL - 9 - sure kill
+        - SIGPIPE - 13 - broken pipe
+        - SIGPROF - 27 - profiling timer expired
+        - SIGPWR - 30 - power about to fail
+        - SIGQUIT - 3 - terminal quit
+        - SIGSEGV - 11 - invalid memory reference
+        - SIGSTKFLT - 16 - stack fault on coprocessor
+        - SIGSTOP - 19 - sure stop
+        - SIGSYS - 31 - invalid system call
+        - SIGTERM - 15 - terminate process
+        - SIGTRAP - 5 - trace/breakpoint trap
+        - SIGTSTP - 20 - terminal stop
+        - SIGTTIN - 21 - terminal read from background
+        - SIGTTOU - 22 - terminal write from background
+        - SIGURG - 23 - urgent data on socket
+        - SIGUSR1 - 10 - user defined signal 1
+        - SIGUSR2 - 12 - user defined signal 2
+        - SIGVTALRM - 26 - virtual timer expired
+        - SIGWINCH - 28 - terminal window size change
+        - SIGXCPU - 24 - cpu time limit exceeded
+        - SIGXFS - 25 - file size limit exceeded
+    c. Changing Signal Dispositions: signal()
+        - fn - void (*signal(int sig, void (*handler)(int)))(int)
