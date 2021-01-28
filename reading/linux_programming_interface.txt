@@ -1292,4 +1292,21 @@ Chapter 20: Signals - Fundamental Concepts
         - SIGXCPU - 24 - cpu time limit exceeded
         - SIGXFS - 25 - file size limit exceeded
     c. Changing Signal Dispositions: signal()
-        - fn - void (*signal(int sig, void (*handler)(int)))(int)
+        - fn - void (*signal(int sig, void (*handler)(int)))(int) - changes the signal handler of a signal for a process
+    d. Introduction to Signal Handlers
+        - Signal Handler - a function that is called when a specified signal is delivered to a process
+        - Flow
+            - Start of Program
+            - Delivery of Signal
+            - Kernel Calls Signal Handler
+            - Signal Handler Code Executed
+            - Program Resumes at Interruption Point
+    e. Sending Signals: kill()
+        - fn - int kill(pid_t, int sig) - how a process sends a signal to another process
+            - pid options
+                - pid > 0, signal is sent to the process with the process ID specified by pid
+                - pid = 0, signal is sent to every process in the same process group as the calling process, including the process itself
+                - pid < -1, signal is sent to all of the processes in the process group whose ID equals the absolute value of pid
+                - pid = -1, signal is sent to every process for which the calling process has permission to send a signal, except init and the calling process
+                    - if a privileged process makes this request, then all processes on the system will be signaled, except for init and calling process
+    f. Checking for the Existence of a Processss
