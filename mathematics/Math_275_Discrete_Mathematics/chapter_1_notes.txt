@@ -338,7 +338,89 @@ Chapter 1: The Foundations: Logic and Proofs
                     - ∀x-K(x) is the equivalent of the negation of ƎxK(x) or -ƎxK(x) is equivalent to ∀x-K(x) 
             - Predicate Calculus - area of logic that deals with predicates and quantifier
     d. Nested Quantifiers
-        - 
+        - Introduction
+            - Nested Quantifier - where one quantifier is within the scope of another
+        - Understanding Statements Involving Nested Quantifiers
+            - Example 1: ∀x∀y(x+y = y+x)
+                - Statement - x+y=y+x for all real numbers x and y.
+            - Example 2: ∀xƎy(x+y = 0)
+                - Statement - for every real number x, there is a real number y such that x + y = 0
+            - Example 3: ∀x∀y((x > 0) ^ (y < 0) -> (xy < 0))
+                - Statement - for every real number x, and every real number y, if x > 0 and y < 0, then x times y < 0
+            - Thinking of Quantification as Loops
+                - ∀x∀yP(x,y) - we loop through the values of x, and for each x we loop through the values of y, if we find that for all values of x that P(x,y) is true for all values of y, then ∀x∀yP(x,y) is true
+                    - If we ever hit a value of x, for which we hit a value y for which P(x,y) is false, we have shown that ∀x∀yP(x,y) is false
+                - ∀xƎyP(x,y) - we loop through the values of x, and for every value of x, there should be a value of y for which P(x,y) is true
+                    - If for even one x, there is not a value for y in which P(x,y) is true, then the statement is false
+                - Ǝx∀yP(x,y) - we loop through every value of x, and if there is a value of x, for which every value y P(x,y) is true, we have proved this
+                    - If we loop through every value of x, and there is no value of x for which every value of y (Px,y) is true, then we have proved Ǝx∀yP(x,y) false
+                - ƎxEyP(x,y) - for at least one value of x, there should be at least one value of y in which P(x,y) is true
+                    - If there is no x where there is at least one value of y in which P(x,y) is true, then the statement is false
+        - Order of Quantifiers
+            - Note - order matters only if the quantififers are not all universal or all existential
+            - Example
+                - P(x,y) is x+y=y+x, ∀x∀y(x+y = y+x) and ∀y∀x(x+y = y+x) are the same
+            - Example
+                - Q(x,y) is x + y = 0
+                    - Ǝy∀xQ(x,y) - there is at least one y that for every value of x, the statement is true - FALSE
+                    - ∀xƎyQ(x,y) - for all values of x, there is at least one value of y where Q(x,y) is true - TRUE
+        - Translating Mathematical Statements into Statements Involving Nested Quantifiers
+            - Statement - the sum of two positive integers is always positive
+                - ∀xVyQ( x + y > 0) - only deals with sum, must deal with "positive integers", this could be true if domain is positive integers
+                - ∀xVyQ( (x > 0) ^ (y > 0) -> (x + y > 0)) - domain consists of all integers
+            - Statement - Every real number except zero has a multiplicative inverse
+                - ∀x((x != 0)) -> Ǝy(xy = 1)
+        - Translating from Nested Quantifiers to English
+            - Statement - ∀x(C(x) v Ǝy(C(y) ^ F(x,y)))
+                - C(x) is x has a computer
+                - F(x,y) is x and y are friends
+                - Every student in the school has a computer, or that person has a friend and that friend has a computer
+            - Statement - Ǝx∀x∀z((F(x,y) ^ F(x,z) ^ (y != z)) -> -F(y,z))
+                - There is a student in the school where if the student is friends with 1 student and another student, and those two students are not the same, then those two students are not friend with each other
+        - Translating English Sentences into Logical Expressions
+            - Statement - if a person is female and is a parent, then this person is someone's mother
+                - ∀x(F(x) ^ P(x) -> ƎyM(x, y)) - domain is all people
+            - Statement - everyone has exactly one best friend
+                - ∀xƎy(F(x,y) ^ ∀z(y != z) -> -F(x,z))
+            - Statement - there is a woman who has taken a flight on every airline in the world
+                - P(w, f) - w has taken f
+                - Q(f, a) - f is a flight on a
+                - Ǝw∀aƎf(P(q, f) ^ Q(f, a))
+    e. Introduction to Proofs
+        - Direct Proof - p -> q
+        - Informal Proofs - where more than one rule of inference may be used in each step, where steps may be skipped, where the axios being assumed and the rules of inference used are not explicitly state
+        - Some Terminology
+            - Theorem - statement that can be shown to be true
+            - Propositions - Less important theorem
+            - Proof - a valid argument that establishes the truth of the theorem
+            - Axioms/Postulates - which are statements we assume to be true
+            - Lemma - theorem that is helpful in the proof of other results
+            - Corollary - a theorem that can be established directly from a therom that has been proved
+            - Conjecture - statement that is being proposed to be a true statement, usuually on the basis of some partial evidence, a heuristic argument, or the intuition of an expert
+        - Understanding How Theorems Are Stated
+            - For all positive real numbers x and y, if x > y, then x^2 > y^2
+        - Methods of Proving Theorems
+            - Direct, Contraposition, and Contradiction
+        - Direct Proof of conditional statement p -> q is constructed when the first step is the assumption that p is true, subsequent steps are constructed using rules of inference
+            - FIRST STEP - assume that p is true
+            - Example 1 - if n is an odd integer, than n^2 is odd
+                - #1 - assume that n is odd
+                - #2 - n = 2k + 1
+                - #3 - n^2 = (2k + 1)^2 = 4k^2 + 4k +1 = 2(2k^2 + 2k) + 1 - definition of odd integer, we can conclude that n^2 is an odd integer i.e. it is one more than twice an integer
+            - Example 2 -  if m and n are both perfect squares, then nm is also a perfect square
+                - #1 - assume that m and n are perfet squares
+                - #2 - m = s^2 and n = t^2
+                - #3 - mn = s^2t^2
+                - #4 - mn = sstt
+                - #5 - mn - stst
+                - #6 - mn = (st)^2 - perfect square because st is an integer
+        - Proof by Contraposition - is valid BECAUSE p -> q is logically equivalent to -q -> -p
+            - FIRST STEP -  assume that the conclusion of the conditional statement is false
+            - Example 3 - Prove that if n is an integer and 3n+2 is odd, then n is odd
+                - #1 - assume n is even i.e. not odd
+                - #2 - n = 2k
+                - #3 - 3(2k)+2 = 6k+2 = 2(3k+1)
+                - #4 - 3n+2 is even, and therefore not odd
     - Chapter Review - Extra Examples on Rosen Site
         - 01.01
         - 01.02 - SKIPPED (RETURN TO TRANSLATION)
