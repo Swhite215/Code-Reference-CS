@@ -1310,3 +1310,33 @@ Chapter 20: Signals - Fundamental Concepts
                 - pid = -1, signal is sent to every process for which the calling process has permission to send a signal, except init and the calling process
                     - if a privileged process makes this request, then all processes on the system will be signaled, except for init and calling process
     f. Checking for the Existence of a Processss
+        - fn - int kill(pid_t, int sig) - if sig is specified as 0, then no signal is sent, instead kill() performs error checking to see if the process can be signaled, in turn cehck to see if specific process with ID exists
+        - Other Techniques
+            - wait() - checks particular process exists only if the monitored process is a child of the caller
+            - semaphores and exclusive file locks - if a process holds a sempahore or file lock, then if we can acquire the semaphore or lock we know the process has terminated
+            - IPC channels such as pipes and FIFOs - set up process so that it holds a file descriptor open for writing on the channel, then monitoring process holds open a read descriptor for the channel, and it knows monitored process has terminated when it sees end of file
+            - /proc/PID interface - if /proc/ID exists, then process exists
+    g. Other Ways of Sending Signals
+        - fn - int raise(int sig) - process sends a signal to itself, equivalent to kill(getpid(), sig) or pthread_kill(pthread_self(), sig)
+        - fn - int killpg(pid_t pgrp, int sig) - sends a signal to all of the members of a process group
+    h. Displaying Signal Descriptions
+        - fn - char *strsignal(int sig) - returns a pointer to a printable decsription of the signal
+        - fn - void psignal(int sig, const char *nsg) - displays the string given in its argument msg, followed by a colon, and then the signal description corresponding to sig, local sensitive
+    i. Signal Sets - represent group of different signals
+        - fn - int sigemptyset(sigset_t *set) - initializes a signal set to contain no members
+        - fn - int sigfillset(sigset_t *set) - initializes a set to contain all signals
+        - fn - sigaddset(const sigset_t *set, int sig) - add signal to set 
+        - fn - sigdelset(cosnt sigset_t *set, int sig) - remove signal from set
+        - fn - int sigismember(const sigset_t *set, int sig) - returns 1 if sig is a member of set and 0 otherwise
+        - fn - sigandset(sigset_t *dest, sigset_t *left, sigset_t *right) - places the intersection of the sets left and right in the set dest
+        - fn - sigorset(sigset_t *dest, sigset_t *left, sigset_t *right) - places the union of the sets left and rigth in the set dest
+        - fn - int sigisemptyset(const sigset_t *set) - returns true if set contains no signals
+    j. The Signal Mask (Blocking Signal Delivery)]
+        - Signal Mask - a set of signals whose delivery to the process is currently blocked. If a signal that is blocked is sent to a process, delivery of that signal is delayed until it is unblocked by being removed from the process signal mask
+        - fn - int sigprocmask(int how, const sigset_t *set, sigset_t *oldset) - change the process signal mask, to retrieve the existing mask, or both
+            - how arguments
+                - SIG_BLOCK - signals specified in the signal set pointed to by set are added to the signal mask. Signal mask is set to the union of its current value and set
+                - SIG_UNBLOCK - signals specified in the signal set pointed to by set are removed from the signal mask
+                - SIG_SETMASK - signal set pointed to by set is assigned to the signal mask
+    k. Pending Signals
+        - fn - int sigpending(sigset_t *set) - determines which signals are pending for a process
