@@ -1340,3 +1340,26 @@ Chapter 20: Signals - Fundamental Concepts
                 - SIG_SETMASK - signal set pointed to by set is assigned to the signal mask
     k. Pending Signals
         - fn - int sigpending(sigset_t *set) - determines which signals are pending for a process
+    l. Signals Are Not Queued
+        - The Point: Standard set of pending signals is only a mask, it indicates whether or not a signal has occurred, but now how many times it has occurred. Real time signals are queued
+    m. Changing Signal Dispositions: sigaction()
+        - fn - int sigaction(int sig, const struct sigaction *act, struct signaction *oldact) - sets disposition and allows you to retrieve the disposition of a signal without changing, and to set various attributes controlling precisely what happens when a signal handler is invoked
+            - sig - identifies the signal whose disposition we want to retrieves or change
+            - act - pointer to a structure specifying a new disposition for the signal
+            - oldact - used to return information about the signal's previous disposition
+            - struct sigaction {
+                void (*sa_handler)(int); - /* Address of Handler */
+                sigset_t sa_mask; /* Signals blocked during hanlder invocation */
+                int sa_flags; /* Flags controlling handler invocation */
+                void (*sa_restorer)(void) - /* Not for application user */
+            }
+            - sa_flags
+                - SA_NOCLDSTOP - if sig is SIGCHLD, don't generate this signal when a child process is stopped or resumed as a consequence of receiving a signal
+                - SA_NOCLDWAIT - if sig is SIGCHLD, don't transform children into zombies when they terminate
+                - SA_NODEFER  - when the signa is caught, do not automatically add it to the process signal mask while the handler is executing
+                - SA_ONSTACK - invoke the handler for this signal using an alternate stack installed by sigaltstack()
+                - SA_RESETHAND - when signal is caught, reset it's disposition to default
+                - SA_RESTART - automatically restart system calls interrupted by this signal handler
+                - SA_SIGINFO - invoke the signal handler with additional arguments providing further information about the signal
+    n. Waiting for a Signal: pause()
+        - fn - int pause(void) - suspends execution of the process until the call is interrupted by a signal handler
