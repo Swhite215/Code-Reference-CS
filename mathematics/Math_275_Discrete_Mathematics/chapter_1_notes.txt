@@ -421,7 +421,31 @@ Chapter 1: The Foundations: Logic and Proofs
                 - #2 - n = 2k
                 - #3 - 3(2k)+2 = 6k+2 = 2(3k+1)
                 - #4 - 3n+2 is even, and therefore not odd
-    - Chapter Review - Extra Examples on Rosen Site
+        - Vacuous and Trivial Proofs
+            - Vacuous - situation with p -> q, if we can show p to be false, then p -> q must be true
+            - Trivial - situation with p -> q, if we can show q to be true, then p -> q must be true
+        - A Little Proof Strategy - form ∀x(P(x) -> Q(x))
+            - #1 - evaluate whether direct proof looks promising
+                - Begin by expanding definition of hypotheses
+                - Start to reason using these hypotheses, together with axios and available theorems
+                - If nothing, try contraposition
+            - Definition - real number r is rational if there exists p and q with q != 0 such that r = p/q. A real number that is not rational is called irrational
+        - Proofs by Contradiction
+            - Goal - prove that -p -> r ^ -r is true, r ^-r is always false i.e. contradiction, so the statement must be true when -p is false i.e. p is true
+        - Proofs of Equivalence
+            - Prove p <-> q, we show that p -> q and q -> p are both true, based on p <-> q <-> (p -> q) ^ (q -> p)
+        - Cyclical
+            - Prove p1 -> p2, p2 -> p3, p3 -> 4
+        - Counter Examples
+            - Show statement of the form ∀xP(x) is false, we need only find a counterexample
+            - Example - show that "Every positive integer is the sum of the two squares of two integers" is false
+        - Mistakes in Proofs - arithmetic and algebra
+    f. Proof Methods and Strategy
+        - Exhaustive Proof and Proof by Cases
+            - Exhaustive (p1 V p2 V ... pN) -> q
+        - Proof by Cases - cover all possible cases that arise in a theorem
+            - Example - Prove that if n is an integer, then n^2 > or equal to n
+    APPENDIX. Chapter Review - Extra Examples on Rosen Site
         - 01.01
         - 01.02 - SKIPPED (RETURN TO TRANSLATION)
         - 01.03
