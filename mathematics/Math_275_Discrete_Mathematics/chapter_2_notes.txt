@@ -1,0 +1,112 @@
+Discrete Math and Its Applications - Rosen, Kenneth
+
+Chapter 2: Basic Structures: Sets, Functions, Sequences, Sums, and Matrices
+    a. Sets
+        - Introduction
+            - Defintion of Set - unordered collection of distinct objects called elemnts or members, a set is said to contain its elements
+            - Example - a ∈ A to dentoe that a is an element of the set A.  
+            - Example - The set V of all vowels in the english alphabet can be written as V = {a, e, i, o, u}
+            - Example - The set O of odd positive integers less than 10 can be expressed as O = {1,3,5,7,9}
+        - Important Sets
+            - N = {0,1,2,3,...} - the set of all natural numbers
+            - Z = {...., -2, -1, 0, 1, 2} - the set of all integers
+            - Z+ = {1,2,3,...} - the set of all positive Integers
+            - Q = {p/q | p ∈ Z, q ∈ Z, and q != 0} - the set of all rational numbers
+            - R - the set of all real numbers
+            - R+ - the set of all positive real numbers
+            - C - the set of all complex numbers
+            - Interval - set of all real numbers between numbers a and b
+                - [a,b] = {x | a ≤ x ≤ b} - closed interval
+                - [a, b) = {x | a ≤ x < b}
+                - (a, b] = {x | x < x ≤ b}
+                - (a , b) = {x | a < x < b} - open interval
+            - {N, Z, Q, R} - set containing four elements, each of which is a set
+            - Boolean Set - {0,1} with operators such as AND, OR, and NOT
+            - Empty Set - set that has no elemnts i.e. {} or ∅
+            - Singleton Set - set with one element {∅}
+        - Defintion - Two sets are equal if and only if they have the same elements i.e. if A and B are sets, ∀x(x ∈ A <-> x ∈ B ) i.e. A = B
+            - Example {1,3, 5} = {3,5,1} or {1,3,5} = {1,5,5,5,5,3}
+        - Venn Diagrams - graphical representation of sets
+            - Universal Set U - contains all the objects under consideration
+        - Subsets
+            - Definition - set A is a subset of B, and B is a superset of A, if and only if every element of A is also an element of B i.e. A ⊆ B or B ⊇ A
+                - ∀x(x ∈ A -> x ∈ B)
+            - Proper Subet  - A ⊆ B but A != B, then we say A is a proper subset of B, denoted by A ⊂ B, something belongs to B that does not belong to A
+        - Theorem - For every set S
+            - ∅ ⊆ S
+            - S ⊆ S
+        - The Size of a Sets
+            - Definition - If there are exactly n distinct elements in S where n is a nonnegative integer, we say that S if a finite set and that n is the cardinality of S. The cardinality of S is denoted by |S|
+            - Example - Let A be the set of odd positive integers less than 10. Than |A| is 5
+            - Example - Let S be the set of letters in the English alphabet. Then |S| is 26
+            - Example - Because the null set has no elements, it follows that |∅| = 0
+            - Definition - A set is said to be infinite if it is not finite e.g. the set of positive integers is infinite
+            - Cardinality Equality
+                - |I| = infinity and |Q| = infinity, same cardinality
+                - Watch out for |R|
+        - Definitions
+            - Set - unordered collection of distinct objects called elemnets or members, a set is said to contain its elements
+            - Set Equality - two sets are equal if and only if they have the same elements i.e. if A and B are sets, ∀x(x ∈ A <-> x ∈ B ) i.e. A = B
+            - Subset and Superset - set A is a subset of B, and B is a superset of A, if and only if every element of A is also an element of B i.e. A ⊆ B or B ⊇ A
+            - Cardinality of a Set - If there are exactly n distinct elements in S where n is a nonnegative integer, we say that S if a finite set and that n is the cardinality of S. The cardinality of S is denoted by |S|
+        - Power Sets
+            - Definition - Given a set S, the power set of S is the set of all subsets of the set S. The power set of S is denoted by P(S)
+            - Example - What is the power set of the set {0,1,2}
+                - P({0,1,3}) = {∅, {0}, {1}, {2}, {0,1}, {0,2}, {1,2}, {0,1,2}}
+                - IMPORTANT - the empty set and the set itself are members of this set of subsets
+            - Example - What is the power set of the empty set?
+                - P(∅) = {∅}
+            - Example - What is the power set of the set {∅}?
+                - P({∅}) = {∅, {∅}}
+        - Cartesian Products
+            - Ordered n-tuple (a1, a2, ..., an) is the ordered collection that has a1 as its first element, a2 as its second element, ..., and an as its nth element
+            - Definition - Let A and B be sets. The Cartesian Product of A and B, denoted by A x B, is the set of all ordered pairs (a, b), where a ∈ A and b ∈ B
+                - AxB = {(a,b) | a ∈ A ^ b ∈ B}
+            - Example - What is the cartesian product of A = {1,2} and B = {a,b,c}
+                - A x B = {(1,a), (1,b), (1,c), (2,a), (2,b), (2,c)}
+            - Example - What is the cartesian product of B = {a,b,c} and A = {1,2}
+                - B x A = {(a,1), (a,2). (b,1), (b,2), (c,1), (c,2)}
+            - Example - What is the cartesian product of A = {0,1}, B = {1,2}, and C = {0,1,2}
+                - AxBxC = 
+        - Using Set Notation with Quantifiers
+        - Truth Sets and Quantifiers
+    b. Set Operations
+        - Introduction
+            - Union Definition - Let A and B be sets. The union of the sets A and B denoted by A ∪ B, is the set that contains those elements that are either in A or in B, or in both
+                - A ∪ B = {x | x ∈ A V x ∈ B}
+            - Union Example - The union of the sets {1,3,5} and {1,2,3} is the set {1,2,3,5} i.e. {1,3,5} ∪ {1,2,3} = {1,2,3,5}
+            - Intersection Definition - Let A and B be sets. The intersection of the sets A and B denoted by A ∩ B is the set containing those elements in both A and B
+                - A ∩ B = {x | x ∈ A ^ x ∈ B }
+            - Disjoint Definition - Two sets are called disjoin if their intersection is the empty set
+                - Example - Let A = {1,2,3, 4} and B = {10, 11, 12}. A ∩ B = ∅, A and B are disjoint
+            - Difference Definition - Let A And B be sets. The difference of A and B, denoted by A - B, is the set containing those elements that are in A but not in B. The difference of A and B is also called the complement of B with respect to A
+                - Example A - B = {x | x ∈ A ^ x ∉ B}, let A = {1,2} and B = {2, 3, 5}, A - B is {1}
+            - Complement Definition - Let U be the universal set. The complement of the set A, denoted by A, is the complement of A with respect to U. Therefore the complement of the set A is U - A i.e. what exists in U that does not exist in A
+            - Cardinality of the Union of Two Sets
+                - |A ∪ B| = |A| + |B| - |A ∩ B|
+                - Example - Let A be the math majors and B the CS majors. To count the number of students who are either math or CS majors, you add math and cs majors and subtract those that are both math and CS
+                - Example |A ∪ B ∪ C| = |A| + |B| + |C| - |A ∪ B| - |A ∪ C| - |B ∪ C| + |A ∩ B ∩ C| 
+        - Set Identities
+            - Charcters - ∪ - ∩ - ∈ - ∅
+            - Identity Laws
+                - A ∩ U = A
+                - A ∪ ∅ = A
+            - Domination Laws
+                - A ∪ U = U
+                - A ∩ ∅ = ∅
+            - Idempotent Laws
+                - A ∪ A = A
+                - A ∩ A = A
+            - De Morgan's Laws
+                - (A U B)' = A' ∩ B'
+                - (A ∩ B)' = A' U B'
+            - Absorption Laws
+                - A ∪ (A ∩ B) = A
+                - A ∩ (A u B) = A
+            - Complement Laws
+                - A ∪ A Complement = U
+                - A ∩ A Complement = ∅
+        - Proving Set Theories
+            - Subset Method - Show that each side of the identity is a subset of the other side
+                - Example - Prove (A ∩ B)' = A' U B'
+            - Example A = B i.e. A ⊆ B and B ⊆ A => A = B
