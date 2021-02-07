@@ -97,6 +97,17 @@ Chapter 2: Basic Structures: Sets, Functions, Sequences, Sums, and Matrices
             - Idempotent Laws
                 - A ∪ A = A
                 - A ∩ A = A
+            - Complementation Law
+                - (A Complement) Complement = A
+            - Commutative Laws
+                - A U B = B U A
+                - A N B = B N A
+            - Associative Laws
+                - A U (B U C) = (A U B) U C
+                - A N (B N C) = (A N B) N C
+            - Distributive Laws
+                - A U (B N C) = (A U B) N (A U C)
+                - A N (B U C) = (A N B) U (A N C)
             - De Morgan's Laws
                 - (A U B)' = A' ∩ B'
                 - (A ∩ B)' = A' U B'
