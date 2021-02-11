@@ -14,8 +14,8 @@ To provide reference materials for a variety of topics encountered within Comput
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [JavaScript + Node.js](https://github.com/Swhite215/Code-Reference-JS)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [TypeScript](https://github.com/Swhite215/Code-Reference-JS/tree/main/typescript)
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Golang](https://github.com/Swhite215/Code-Reference-Go)
-      ###### &nbsp;&nbsp;&nbsp;&nbsp; [C](https://github.com/Swhite215/Code-Reference-C/tree/master/c)
-      ###### &nbsp;&nbsp;&nbsp;&nbsp; [C++](https://github.com/Swhite215/Code-Reference-C/tree/master/c/cis170-70)
+      ###### &nbsp;&nbsp;&nbsp;&nbsp; [C](https://github.com/Swhite215/Code-Reference-C/tree/master/c/cis170-70)
+      ###### &nbsp;&nbsp;&nbsp;&nbsp; [C++](https://github.com/Swhite215/Code-Reference-C/tree/master/c%2B%2B/cis230-01)
    3. Testing - Mocha, Chai, Sinon
       ###### &nbsp;&nbsp;&nbsp;&nbsp; [Mocha, Chai, Sinon](https://github.com/Swhite215/Code-Reference-JS/tree/main/testing)
    4. Databases - CouchDB, MongoDB, and MSSQL Server
