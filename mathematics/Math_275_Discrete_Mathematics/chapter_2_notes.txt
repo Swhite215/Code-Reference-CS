@@ -198,4 +198,17 @@ Chapter 2: Basic Structures: Sets, Functions, Sequences, Sums, and Matrices
             - 3^n = 3, 9, 27, 81, ...
             - N! = 1, 2, 6, 24, 120, 720, 5040, 40320, ...
         - Summations
-            - 
+    e. Matrices
+        - Introduction
+            - Definition - A matrix is a rectangular array of numbers. A matrix with m rows and n columns is called a M X N matrix. The plural of matrix is matrices. A matrix with the same number of rows as columns is called a square
+            - Definition - Two matrices are equal if they have the same number of rows and the same number of columns and the corresponding entries in every position are equal
+        - Matrix Arithmetic
+            - Addition - Pair Wise
+            - Subtraction - Pair Wise
+            - Multiplication - Row x Column then SUM
+        - Transpose and Powers of Matrices
+        - Zero One Matrices
+            - Join - Bit Operation Pairwise AND
+            - Meet - Bit Operation Pairwise OR
+            - Boolean Product - m x n matric where cij = (ai1 ^ bi1) V (ai2 ^ bi2)
+            - Boolean Powers - Boolean product of r Factors of A, A must be Square*                                              
