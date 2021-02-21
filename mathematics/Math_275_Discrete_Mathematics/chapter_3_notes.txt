@@ -37,3 +37,18 @@ Chapter 3: Algorithms
                 - We say that f(x) is O(g(x)) if there are constants C and k such that |f(x)| <= C|g(x| whenver x > k.
             - Same Order - two functions f(x) and g(x) that satisfy both of these Big-O relationships
             - Why - Big-O is used extensivley to estimate the number of operations an algorithm uses as its input grows. With the help of this notation, we can determine whether it is practical to use a particular algorithm to solve a problem as the size of the input grows
+    c. Complexity of Algorithms
+        - Introduction
+            - How can the efficiency of an algorithm be analyzed?
+            - One measure of efficiency is the tiem used by a computer to solve a problem using the algorithm, when input values are of a specified size
+        - Time Complexity
+            - Definition - number of operations used by the algorithm when the input has a particular size
+        - Worst Case Complexity - largest number of operations needed to solve the given problem using this algorithm on inpout of specified size
+            - Linear Search is O(n)
+            - Binary Search is O()
+        - Complexity of Problems
+            - Tractable Problem - there exists a polynomial time algorithm to solve this problem
+            - Intractable Problem - there does not exists a polynomial time algorithm to solve this problem
+            - Unsolvable Problem - no algorithm exists to solve this problem
+            - Class NP - solution can be checked in polynomial time, but not polynomial time algorithm has been found for finding a solution to problems in this class
+            - NP Complete Class - if you find a polynomial time algoirthm for one member of the class, it can be used to solve all the problems in the class
