@@ -330,7 +330,7 @@ Chapter 6: Processes
         - program - file containing a range of information that describes how to construct a process at run time
             - binary format identification - metainformation describing the format of the executable file
             - machine language instructions - these encode the algorithm of the program
-            - program entry point address - this identifies the location of the instruction at what execution of the program should commence
+            - program entry point address - this identifies the location of the instruction at which execution of the program should commence
             - data - values used to initialize variables and also literal constants used by the program
             - symbol and relocation tables - these describe the locations and names of functions and variables within the prorgam. Used for debugging, run-time symbol resolution and more
             - shared library and dynamic linking information - includes fields listing the shared libraries that the program needs to use at run time and the pathname of the dynamic linker that should be used to load these libraries
@@ -338,7 +338,7 @@ Chapter 6: Processes
     b. Process ID and Parent Process ID
         - process ID - a positive integer that uniquely identifies the process on the system
             - fn - pid_t getpid(void) - returns the process ID of the calling process
-        - parent process ID - a positive integer tha that uniquely identifies the parent process of the process
+        - parent process ID - a positive integer that uniquely identifies the parent process of the process
             - fn - pid_t getppid(void)
     c. Memory Layout of a Process
         - Segment
@@ -372,14 +372,14 @@ Chapter 6: Processes
             - Function Arguments and Local Variables (automatic), they are automatically created when a function is called and they automatically disappear when the function returns
             - Call Linkage Information - each function uses certain CPU registers, such as the program counter, which points to the next machine-language instruction to be executed
     f. Command Line Arguments
-        - argc- number of arguments
+        - argc - number of arguments
         - argv - array of pointers to command line arguments as string, each with a null terminated character
         - Important Example: tlpi-dist/proc/necho.c and
         - Review - getopt() in Appendix B
     g. Environment List
         - Environment List/Environment - associated array of strings in the format key=value
         - Accessing the Enviroment From a Program
-            - Global Variable - exztern char **environ
+            - Global Variable - extern char **environ
             - Important Example: tlpi-dist/proc/display_env.c
             - fn - char *getenv(const char *name) - returns a pointer to the corresponding value string
         - Modifying the Environment
@@ -392,7 +392,7 @@ Chapter 6: Processes
             - fn - int setjmp(jmp_buf env) - establishes a target for a later juimp performed by longjmp(), this target is exactly the point where the setjmp() call occurred
             - fn - void longjmp(jmp_buf env, int val) - jumps to location set by setjmp()
             - Important Example: tlp-dist/proc/longjmp.c
-        - Abusing longjmp() - don't longjmp into a function that has already returned, SUv3 says that if longjmp is called from within a nested signal handler then the program behavior is undefined
+        - Abusing longjmp() - don't longjmp into a function that has already returned, SUSv3 says that if longjmp is called from within a nested signal handler then the program behavior is undefined
         - Avoid setjmp() and longjmp() where possible
 
 Chapter 7: Memory Allocation
@@ -413,7 +413,7 @@ Chapter 7: Memory Allocation
                 - free doesn't lower the program break, instead adds the block of memory to a list of free blocks that are recycled by future calls to malloc()
         - Implementations of malloc() and free()
             - malloc() - first scans the list of memory blocks previsouly released by free() in order to find one whose size is larger or equal to its requirement
-                - if no block on the free list is large enough, then malloc() calls sbrk() to allocate more memory, memory is more that bytes required
+                - if no block on the free list is large enough, then malloc() calls sbrk() to allocate more memory, memory is more than bytes required
         - Tools and Libraries for malloc debugging
             - mtrace() and muntrace() allow a program to turn tracing of memory allocation calls on and off
             - mcheck() and mprobe() allow a program to perform consistency checks on blocks of allocated memory
@@ -426,13 +426,13 @@ Chapter 7: Memory Allocation
             - fn - void *realloc(void *ptr, size_t size) - used to resize a block of memory previously allocated by one of the functions in the malloc package
         - Allocating Aligned Memory: memalign() and posix_memalign()
             - fn - void *memalign(size_t boundary, size_t size) - allocates size bytes starting at an address aligned to a multiple of boundary, which must be a power of two
-            - fn - int posix_memalign(void **memptr, size_t alignment, size_t size) - 
+            - fn - int posix_memalign(void **memptr, size_t alignment, size_t size)
     b. Allocating Memory on the Stack
-        - fn - *alloca(size_t size) - allocates memory dynamically, however, instead of obtaining memory from the heap, alloca() obtains memory from the stack by incressing the size of the stack frame
+        - fn - *alloca(size_t size) - allocates memory dynamically, however, instead of obtaining memory from the heap, alloca() obtains memory from the stack by increasing the size of the stack frame
 
 Chapter 8: Users and Groups
     a. The Password File: /etc/passwd
-        - /etc/passwd - system password file, contains one line for each user account on the system, it is composd of seven fields separated by a colon
+        - /etc/passwd - system password file, contains one line for each user account on the system, it is composed of seven fields separated by a colon
         -  mtk:x:1000:100:Michael Kerrisk:/home/mtk:/bin/bash
             - mtk - login name, unique name that the user must enter in order to log in
             - x - encrypted password, field contains a 13 character encrypted password, if shadow passwords have been enabled, it just contains the letter x
@@ -447,10 +447,9 @@ Chapter 8: Users and Groups
     c. The Group File: /etc/group
         - the set of groups to which a user belongs is defined by the combination of the group ID field in the user's password entry and the groups under which the user is listed in the group file
         - group file contains one line for each group in the system and each line consists of four colon-separated fields
-            - users:x:100
             - jambit:x:106:claus, felli, frank, harti, markus,martin,mtk,paul
                 - jambit - group name, name of the grop
-                - x - encyrpted passworde
+                - x - encyrpted password
                 - 106 - group id, numeric id for the group
                 - claus, felli, frank, harti, markus, martin, mtk, paul - user list, comma separatedlist of names of the users who are members of this group
     d. Retrieving User and Group Information
@@ -487,7 +486,6 @@ Chapter 8: Users and Groups
                 - struct spwd {
                     char *sp_name; // login name
                     char *sp_pwdp; // encrypted password
-
                     long sp_lstchg; // time of last password change
                     long sp_min; // min number of days between password changes
                     long sp_max; // max number of days before change of password is required
@@ -518,38 +516,38 @@ Chapter 9: Process Credentials
     d. Saved Set-User-ID and Saved Set-Group-ID
         - Saved Set User and Group IDs - are designed for use with set-user-ID and set-group-ID programs. When a program executes:
             - if the set-user-id or set-group-id permission bit is enabled on the executable, then the effective user (group) ID of the process is made the same as the owner of the executable
-            - If the set-user-id or set-group-id permission bit is not enabled, then no change is made
+            - if the set-user-id or set-group-id permission bit is not enabled, then no change is made
             - values for saved set-user-ID and saved set-group-ID are copied from the corresponding effective IDs
     e. File-System User ID and File-System Group ID
         - On Linux, it is the file-system user and group IDs, rather than the effective user and group IDs, that are used in conjunction with supplementary group IDs to determine permissions when performing file-system operations such as opening files, changing file ownership, and modifying file permissions
     f. Supplementary Group IDs - set of additional groups to which a process belongs, a process inherits these IDs from its parent
     g. Retrieving and Modifying Process Credentials
         - Retrieving and Modifying, Real, Effective, and Saved Set IDs
-            - Retrieving Real and Effetive IDs
+            - Retrieving Real and Effective IDs
                 - fn - uid_t getuid(void) - returns the real user ID of the calling process
                 - fn - uid_t getgid(void) - returns the real group ID of the calling process
                 - fn - uid_t geteuid(void) - returns the effective user ID of the calling process
                 - fn - uid_t getegid(void) - returns the effective group ID of the calling process
             - Modifying Effective IDs
-                - fn - int setuid(uid_t uid) - changes the effective user ID, and possible the real user ID and saved set-user-ID
+                - fn - int setuid(uid_t uid) - changes the effective user ID, and possibly the real user ID and saved set-user-ID
                     - if an unprivileged process calls setuid(), only the effective user ID of the process is changed, and can only be changed to the same value as either the real user ID or saved set-user-ID
                     - if a privileged process calls setuid(), real, effective, and saved set-user IDs are all set to the value specified in the uid argument
-                - fn - int setgid(gid_t gid) - changes the effective group ID, and possible the real group ID and saved set-group-ID
+                - fn - int setgid(gid_t gid) - changes the effective group ID, and possibly the real group ID and saved set-group-ID
                     - rule 1 applies like above
-                    - privileged programs can user setgid() to freely change the group ID to any desired values
+                    - privileged programs can use setgid() to freely change the group ID to any desired values
                 - fn - int seteuid(uid_t euid) - changes effective user ID
-                    - if an unprivilegde process calss seteuid(), only the effetive user ID of the process is changed, and can only be changed to the corresponding real or saved set ID
+                    - if an unprivileged process calls seteuid(), only the effetive user ID of the process is changed, and can only be changed to the corresponding real or saved set ID
                     - if a privleged process calss seteuid(), can change effective ID to any value
                 - fn - int setegid(gid_t egid) - changes effective group ID
             - Modifying Real and Effective IDs
                 - fn - int setreuid(uid_t ruid, uid_t euid) - allow process to change real and effetive user ID
-                    - unprivileged process can set the real user ID only to the current value of the real or effective user ID, and the effective user ID can only be set to the current avlue of the real user ID, effective user ID, or saved set-user-ID
-                    - privileged process can make any changes to the IDS
+                    - unprivileged process can set the real user ID only to the current value of the real or effective user ID, and the effective user ID can only be set to the current value of the real user ID, effective user ID, or saved set-user-ID
+                    - privileged process can make any changes to the IDs
                     - for both, the saved set-user-ID is also set to the same value as the effective user ID
                 - fn - int setregid(gid_t rgid, gid_t egid) - allow process to change real and effective group ID
             - Retrieving Real, Effective, and Saved Set IDs
-                - fn - int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid) - returns the current value of the calling processes real, effective, and saved set user IDs
-                - fn - int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid) - returns the current value of the calling processes real, effective, and saved set group IDs
+                - fn - int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid) - returns the current value of the calling process' real, effective, and saved set user IDs
+                - fn - int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid) - returns the current value of the calling process' real, effective, and saved set group IDs
             - Modifying Real, Effective, and Saved Set IDs
                 - fn - int setresuid(uid_t ruid, uid_t euid, uid_t suid) - allows process to change real, effective, and saved set user IDs
                 - fn - int setresgid(gid_t rgid, gid_t egid, gid_t sgid) - allows process to change real, effective, and saved set group IDs
@@ -565,7 +563,7 @@ Chapter 9: Process Credentials
 
 Chapter 10: Time
     a. Types of Time
-        - Real Time - time as measured either from some standard point (calendar time) or form some fixed point in the life of a process
+        - Real Time - time as measured either from some standard point (calendar time) or from some fixed point in the life of a process
         - Process Time - amount of CPU time used by a process
     b. Calendar Time
         - fn - int gettimeofday(struct timeval *tv, struct timezone *tz) - returns the calendar time in the buffer pointed to by tv
@@ -580,7 +578,7 @@ Chapter 10: Time
             - fn - char *ctime(const time_t *timep) - returns a 26 byte string containing the date and time in a standard format e.g. Wed Jun 8 14:@2:34 2011
         - Converting Between tim_t and Broken-Down Time
             - fn - struct tm *gmtime(const time_t *timep) - converts a calendar time into a broken down time corresponding to UTC
-            - fn - struct *localtime(const time_t *timep) - covnerts a calendar time into a broken down time that takes into account timezone and DST settings
+            - fn - struct *localtime(const time_t *timep) - converts a calendar time into a broken down time that takes into account timezone and DST settings
                 - struct tm {
                     int tm_sec; /* Seconds (0-60) */,
                     int tm_min; /* Minutes (0-59) */,
@@ -595,7 +593,7 @@ Chapter 10: Time
         - Converting Between Broken Down Time and Printable Form
             - Converting from Broken-Down Time to Printable Form
                 - fn - char *asctime(const struct tm *timeptr) - returns a pointer to a statically allocated string containing the time in the same form as ctime()
-                - fn - size_t strftime(char *outstr, size_t maxsize, const char *format, const struct tm *timeptr) - gioven a broken down time pointed to by timeptr, strftime plcaes a corresponding null terminated, date-plus-time string in the buffer allocated by outstr
+                - fn - size_t strftime(char *outstr, size_t maxsize, const char *format, const struct tm *timeptr) - given a broken down time pointed to by timeptr, strftime places a corresponding null terminated, date-plus-time string in the buffer allocated by outstr
                 - fn - char *currTime(const char *format) - returns a string containing the current time as formatted by strftime() when given the argument format
             - Converting From Printable Form to Broken-Down Time
                 - fn - char *strptime(const char *str, const char *format, struct tm *timeptr) - converts a date-plus-time string to a broken down time
@@ -619,19 +617,19 @@ Chapter 10: Time
                 - LC_COLLATE - A file containing the collation rules for a character set
                 - LC_MONETARY - A file containing formatting rules for monetary values
                 - LC_NUMERIC - A file containing formatting rules for numbers other than monetary values
-                - LC_TIME - A file containing formatting rules for dates and times]
+                - LC_TIME - A file containing formatting rules for dates and times
                 - LC_MESSAGES - A directory containing files specifying formats and values used for affirmative and negative (yes/no) responses
-        - Specifying the Local for a Progam
+        - Specifying the Local for a Program
             - fn - char *setlocale(int category, const char *locale) - used to both set and query a program's current locale
     f. Updating the System CLock
         - fn - int settimeofday(const struct timeval *t, const struct timezone *tz) - sets the system's calendar time to the number of seconds and microseconds specified in the timeval structure pointed to by tv
-        - fn - int adjtime(struct timeval *delta, struct timeval *olddelta) - causes the system to gradually adjust to the desired valuer
+        - fn - int adjtime(struct timeval *delta, struct timeval *olddelta) - causes the system to gradually adjust to the desired value
     g. The Software Clock
         - Jiffies - size of jiffy is defined by the constant HZ within the kernel source code
-            - Clock rate cna be set to 100, 250, or 1000 hertz, giving jiffy values of 10, 4, and 1 milliseconds respectively
+            - Clock rate can be set to 100, 250, or 1000 hertz, giving jiffy values of 10, 4, and 1 milliseconds respectively
     h. Process Time
-        - User CPU Time - amout of time spent executing in user mode, sometimes referred to as virtual time
-        - System CPU Time - amoutn of time spent executing in kernel mode
+        - User CPU Time - amount of time spent executing in user mode, sometimes referred to as virtual time
+        - System CPU Time - amount of time spent executing in kernel mode
         - fn - clock_t time(struct tms *buf) - retrieves process time information, returning it in the structure pointed to by buf
             - struct tms {
                 clock_t tms_utime; /* User CPU time used by caller */
