@@ -656,7 +656,7 @@ Chapter 11: System Limits and Options
         - Format - constant in <limits.h> with a name prefixed by a string _POSIX_XXX_MAX or _POSIX_XXX_MIN
         - Runtime Invariant Values - limit whose value, if defiend in <limits.h>, is fixed for the implementation, however the value may be indeterminate
         - Pathname Variable Values - limits that relate to pathnames (files, directories, terminals, and so on)
-        - Runtime Increasable Values - limit that has a fixed minimum value for a particular implementation, and all the systems running the implementation will provide at least this minimum value, however a system may increase this limimt at run time
+        - Runtime Increasable Values - limit that has a fixed minimum value for a particular implementation, and all the systems running the implementation will provide at least this minimum value, however a system may increase this limit at run time
         - Summary of Select SUSv3 Limits
             - ARG_MAX - _SC_ARG_MAX - maximum bytes for arguments (argv) plus environment (environ) that can be supplied to exec()
             - _SC_CLK_TCK - unit of measurement for time
@@ -702,16 +702,16 @@ Chapter 11: System Limits and Options
             - _POSIX_THREADS or _SC_THREADS - POSIX Threads
             - _XOPEN_UNIX or _SC_OPEN_UNIX - The XSI extension is supported
     
-Chapter 12: Ssytem and Process Information
+Chapter 12: System and Process Information
     a. The /proc File System
-        - /proc virtual fiel system - resides under /proc, is dynamically written as processes are created, and contains various files that expose kernel information and change it in some cases
+        - /proc virtual file system - resides under /proc, is dynamically written as processes are created, and contains various files that expose kernel information and change it in some cases
         - Obtaining Information About a Process: /proc/PID
             - For each process on the system, the kernel provides a corresponding directory named /proc/PID, where PID is the ID of the process - /proc/1 is data pertaining to init process
             - Example of Information Provided
                 - Name: init - name of command run by the process
                 - State: S - state of the process
                 - Tgid: 1 - thread group ID
-                - Pid: 1 - actually, thread ID
+                - Pid: 1 - actual thread ID
                 - PPid: 0 - parent process ID
                 - TracerPid: 0 - PID of tracing process
                 - Uid: 0 0 0 0 - real, effective, saved-set, and FS UID
@@ -746,7 +746,7 @@ Chapter 12: Ssytem and Process Information
                 - voluntary_ctxt_switches: 6998 - voluntary context switches
                 - nonvoluntary_ctxt_switchs: 107 - involuntary context switches
                 - Stack usage:  8 kB
-        - Selected fiels in each /proc/PIUD directory
+        - Selected files in each /proc/PID directory
             - cmdline - command line arguments delimted by \0
             - cwd - symbolic link to current working directory
             - environ - enviroment list NAME=value pairs, delimited by \0
@@ -755,10 +755,10 @@ Chapter 12: Ssytem and Process Information
             - maps - memory mappings
             - mem - process virtual memory
             - mounts - mount points for this process
-            - root - symboli clink to root directory
+            - root - symbolic link to root directory
             - status - various information e.g. process IDs, credentials, memory usage, signals
             - task - contains one sub directory for each thread in process
-        - The /proc/PID/fd directory - /proc/1968/fd/1 - is a symboli clink to the standard output of process 1968
+        - The /proc/PID/fd directory - /proc/1968/fd/1 - is a symbolic link to the standard output of process 1968
         - Threads: the /proc/PID/task directory - /proc/PID/task/TID - subdirectory for each thread in PID process
         - System Information Under /proc
             - /proc - various system information
@@ -768,7 +768,7 @@ Chapter 12: Ssytem and Process Information
             - /proc/sys/net - networking and socket settings
             - /proc/sys/vm - memory management settings
             - /proc/sysvipc - information about system V IPC objects
-        - Accessing /proc Files - often accessed using shel scripts
+        - Accessing /proc Files - often accessed using shell scripts
         - Accessing fiels in /proc/PID - be careful accessing, plan for possibility process has terminated
     b. System Identification: uname()
         - fn - int uname(struct utsname *utsbuf) - returns a range of identifying information about the host system on which an application is running, in the structure pointed to by utsbuf
@@ -808,7 +808,7 @@ Chapter 13: File I/O Buffering
         - Synchronized I/O Data Integrity and Synchronized I/O File Integrity
             - Synchronized I/O Completion - means an I/O operation that has either been successfully transferrred to the disk or diagnosed as unsuccessful
                 - Syncrhonized I/O Data Integrity Completion - ensuring that a file data update transfers sufficient information to allow a later retrieval of that data to proceeed
-                - Synchronized I/O File Integrity Completion - during a file update, all updated file metadata is transferred to disk, even if it si not necessary for the operation of a subsequent read of the file data
+                - Synchronized I/O File Integrity Completion - during a file update, all updated file metadata is transferred to disk, even if it is not necessary for the operation of a subsequent read of the file data
         - System Calls for Controlling Kernel Buffering of FIle I/O
             - fn - int fsync(int fd) - causes the buffered data and all metadata associatd with the open file descriptor fd to be flushed to disk
             - fn - int fdatasync(int fd) - only forces the file to the synchronized I/O data integrity completion state
@@ -827,10 +827,10 @@ Chapter 13: File I/O Buffering
                 - POSIX_FADV_DONTNEED - process expects not to access the specified file region in the near future
                 - POSIX_FADV_NORESUE - process expects to access data in the specified file region once, and then not to reuse it
     g. Bypassing the Buffer Cache: Direct I/O
-        - Direct I/O - an application bypasses the buffer cache wehen performing disk I/O, thus transferring data directly from user space to a file or disk device
+        - Direct I/O - an application bypasses the buffer cache when performing disk I/O, thus transferring data directly from user space to a file or disk device
             - specify the O_DIRECT flag when opening a file or device with open()
         - Alignment Restrictions for Direct I/O
-            - The data buffer being transferred must be aligned on a memory boundarythat is a multiple of the block size
+            - The data buffer being transferred must be aligned on a memory boundary that is a multiple of the block size
             - The file or device offset at which data transfer commences must be a multiple of the block size
             - The length of the data to be transferred must be a multiple of the block size
     h. Mixing Library Functions and System Calls for File I/O
@@ -841,9 +841,9 @@ Chapter 14: File Systems
     a. Device Special Files
         - Device Special File - corresponds to a device on the system
         - Each device type has a corresponding device driver, which handles I/O requests for the device
-        - API provided by device drivers is fixed and includes operations corresponding to the system calls open(), close(), reade(), write(), mmap(), and ioctl()
+        - API provided by device drivers is fixed and includes operations corresponding to the system calls open(), close(), read(), write(), mmap(), and ioctl()
         - Device Types
-            - Character Devices - handle data on a character by character basis. Terminals and keyboards are examples of charactber devices
+            - Character Devices - handle data on a character by character basis. Terminals and keyboards are examples of character devices
             - Block Devices - handle data a block at a time
         - Device IDs
             - Major ID Number - identifies the general class of device, and is used by the kernel to look up the appropriate driver for this type of device
@@ -862,7 +862,7 @@ Chapter 14: File Systems
             - Boot Block - contains information used to boot the operating system
             - Superblock - single block, contains parameter information about the file system, including:
                 - the size of the i-node table
-                - the size of logical blcoks in this file system
+                - the size of logical blocks in this file system
                 - the size of the file system in logical blocks
             - I-node Table - each file or directory has a unique entry in the i-node table, this entry records varioous informations about the file
             - Data Blocks - the great majority of space in a file system is used for the blocks of data that form the files and directories residing in the file system
@@ -878,9 +878,9 @@ Chapter 14: File Systems
                 - time of last status change
             - Number of hard links to the file
             - Size of the file in bytes
-            - NUmber of blocks actually allocated to the file, measured in 512 bytes
+            - Number of blocks actually allocated to the file, measured in 512 bytes
             - Pointers to the data blocks of the file
-        - I-nodes and Data Block Pointers\
+        - I-nodes and Data Block Pointers
             - Important - ext2 doesn't store the data blocks of a file contiguosly or even in sequential order, the kernel maintains a set of pointers in the i-node
             - First 12 - point to first 12 blocks of the file
             - 13th - pointer to a block of pointers that gives the location of the 13th and subsequent data blocks of the file (pointers depends on size, 4 bytes so 256 pointers for a 1024 byte block)
@@ -893,7 +893,7 @@ Chapter 14: File Systems
     g. Journaling File Ssystem 
         - Goal - eliminate the need for length file-system consistency checks after a system crash
         - Journaling - logs all metadata updates to a special on-disk journal file before they are actually carried out. Updates are logged in groups of related metadata updates
-            - In the event of system crash, on system reboot, the log can be used to rapildy redo any incomplete updates and bring the file system bnack to a consistent state
+            - In the event of system crash, on system reboot, the log can be used to rapildy redo any incomplete updates and bring the file system back to a consistent state
         - Journaling File Systems - Reiserfs, ext3, JFS, XFS, ext4, Btrfs
     h. Single Directory Hierarchy and Mount Points
         - File systems are mounted under the root directory and appear as subtrees within the overall hierarchy
@@ -907,8 +907,8 @@ Chapter 14: File Systems
                     - /dev/sda9 - name of the mounted device
                     - /boot - mount point for the device
                     - ext3 - file system type
-                    - rw - moutn flags
-                    - 0 - used to control the operastion of file system backups by dump()
+                    - rw - mount flags
+                    - 0 - used to control the operation of file system backups by dump()
                     - 0 - used to control the order in which fsck() checks file systems at system boot time
         - Mounting a File System: mount()
             - fn - int mount(const char *source, const char *target, const char *fstype, unsigned long mountflags, cosnt void *data) - mounts the file system contained on the device specified by source under the directory specified by target
@@ -962,14 +962,14 @@ Chapter 15: File Attributes
         - fn - int fstat(int fd, struct stat *statbuf) - returns info about a file descriptor
             - struct stat {
                 dev_t st_dev; /* IDs of device on which file resides */
-                ino_t st_ino; /* I-nmode number of file */
+                ino_t st_ino; /* I-node number of file */
                 mode_t st_mode; /* File type and permissions */
                 nlink_t st_nlink; /* Number of hard links to the file */
                 uid_t st_uid; /* User ID of the file owner */
                 dev_t st_rdev; /* Group ID of the file owner */
                 off_t st_size; /* Total file size in bytes */
                 blksize_t st_blksize; /* Optimal block size for I/O bytes */
-                blkcnt_t st_blocks; /* IDs of deveice on which file resides */
+                blkcnt_t st_blocks; /* IDs of device on which file resides */
                 time_t st_atime; /* Time of last file access */
                 time_t st_mtime /* Time of last file modification */
                 time_t st_ctime; /* Time of last status change */
@@ -987,7 +987,7 @@ Chapter 15: File Attributes
             - fn - int utimes(const char *pathanme, const struct timeval tv[2]) - can change last file access and modification timestamps with microsecond accuracy
             - fn - int futimes(int fd, const struct timeval tv[2]) - can change last file access and modification timestamps of file indicated by file descriptor
             - fn - int lutimes(const char *pathname, cosnt struct timeval tv[2]) - can change last file access and modification timestamps of file or symbolic link
-        - Changign File Timestamps with utimensat() and futimens()
+        - Changing File Timestamps with utimensat() and futimens()
             - Advantages
                 - Can set timestamps with nanosecond precision
                 - It is possible to set the timestamps independently
@@ -996,7 +996,7 @@ Chapter 15: File Attributes
             - fn - int futimens(int fd, const struct timespec times[2]) - updates the timestamps of the file referred to by the open file descriptor fd
     c. File Ownership
         - Ownership of New Files
-            - Rule - when a new file is created, its user ID is taken from the effective user ID of the process, on lnux this is the file-system user ID
+            - Rule - when a new file is created, its user ID is taken from the effective user ID of the process, on linux this is the file-system user ID
             - When Mounting
                 - If you use -o grpid, -o bsdgroups - the group ownership of any new file created is taken from parent directory group ID
                 - If you use -o nogrpid, -o sysvgroups
@@ -1024,7 +1024,7 @@ Chapter 15: File Attributes
             - Rule 2 - if the effective user ID of the process is the same as the user ID of the file, then access is granted according to the owner permissions on the file
             - Rule 3 - if the effective group ID of the process or any of the process supplementary group IDs matches the group ID of the file, then access is granted according to the group permissions on the file
             - Rule 4 - otherwise access is granted according to the other permissiosn on the file
-        - Permission Checking for Privilege Processes - on Linux, for a file that is not a director, Linux grants execute permission to a privileged process only if that permission is granted to at least one of the permission categories for the file
+        - Permission Checking for Privilege Processes - on Linux, for a file that is not a directory, Linux grants execute permission to a privileged process only if that permission is granted to at least one of the permission categories for the file
         - Checking File Accessibility
             - fn - int access(const char *pathname, int mode) - checks the accessibility of the file based on a process's real user and group IDs and supplementary group IDs
                 - mode constants for access
@@ -1032,7 +1032,7 @@ Chapter 15: File Attributes
                     - R_OK - Can the file be read?
                     - W_OK - Can the file be written?
                     - X_OX - Can the file be executed?
-        - Sticky Bits - For directories, stickly bit acts as the restricted deletion flag, if set, means an unprivileged process can unlink and rename files in the directory only if it has write permission on the directory and owns either the file or the directorys
+        - Sticky Bits - For directories, stickly bit acts as the restricted deletion flag, if set, means an unprivileged process can unlink and rename files in the directory only if it has write permission on the directory and owns either the file or the directory's
         - The Process File Mode Creation Mask: umask()
             - umask - process attribute that specifies which permission bits should always be turned off when new files or directories are created by the process
             - If umask is 022 = ----w--w- - means write permission are automatically turned off for group and other
@@ -1053,8 +1053,8 @@ Chapter 15: File Attributes
         - DS_NOATIL_FL - t - no tail packing
         - FS_SEFCRM_FL - s - secure deletion
         - FS_SYNC_FL - S - synchronous file and directory updates
-        - FS_TOPDIR_FL - T - treaat as top-level directory for Orlov
-        - FS_UNRM_FL - u - file can be deleteda
+        - FS_TOPDIR_FL - T - treat as top-level directory for Orlov
+        - FS_UNRM_FL - u - file can be deleted
 
 Chapter 16: Extended Attributes
     a. Overview
