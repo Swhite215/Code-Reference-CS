@@ -1063,11 +1063,11 @@ Chapter 16: Extended Attributes
             - User - can be manipulated by users
             - Trusted - can only be manipulated by privileged users
             - System - used by the kernel to associate system objects with a file e.g. access control list
-            - Security - used to store file security labels for operating system securiyt modules and to associate capabilities with executable files 
+            - Security - used to store file security labels for operating system security modules and to associate capabilities with executable files 
         - Creating and Viewing EAS from the Shell
             - setfattr - sets or removes an EA
             - getfattr - gets a specific EA or all EAs assocaited with a file
-    b. Extendede Attributes Implementation Details
+    b. Extended Attributes Implementation Details
         - Restrictions on User EAs - can only be placed on regular files and directories
         - Implementation Limits
             - the length of an EA name is limited to 255 characters
@@ -1086,17 +1086,17 @@ Chapter 16: Extended Attributes
             - fn - int lremovexattr(const char *pathname, const char *name) - removes an EA from a file
             - fn - int fremovexattr(int fd, const char *name) - removes an EA from a file
         - Retrieivng the Names of All EAs Associated with a File
-            - fn - ssize_t listxattr(const char *pathname, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
-            - fn - ssize_t llistxattr(const char *pathname, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
-            - fn - ssize_t flistxattr(int fd, char *list, size_t size) - returns a list containng all the names of all of the EAs associated with a file
+            - fn - ssize_t listxattr(const char *pathname, char *list, size_t size) - returns a list containing all the names of all of the EAs associated with a file
+            - fn - ssize_t llistxattr(const char *pathname, char *list, size_t size) - returns a list containing all the names of all of the EAs associated with a file
+            - fn - ssize_t flistxattr(int fd, char *list, size_t size) - returns a list containing all the names of all of the EAs associated with a file
 
 Chapter 17: Access Control Lists
     a. Overview
         - ACL Entries
             - Tag Type - indicates whether this entry applies to a user, to a group, or to some other category user
                 - ACL_USER_OBJ - permissions granted by file owner
-                - ACL_USER - permissiosn granted to user identified by the tag qualifier
-                - ACL_GROUP_OBJ - specifies permission granted to the file groups
+                - ACL_USER - permissions granted to user identified by the tag qualifier
+                - ACL_GROUP_OBJ - specifies permissions granted to the file groups
                 - ACL_GROUP - permissions granted to group identified by the tag qualifier
                 - ACL_MASK - specifies permissions that may be granted
                 - ACL_OTHER - specifies the permissions that are granted to users that don't match any other ACL entry
@@ -1104,21 +1104,21 @@ Chapter 17: Access Control Lists
             - Permission Set - specifies the permissions (read, write, and execute) that are granted by entry
         - Minimal and Extended ACLS
             - Minimal - semantically equivalent to the traditional file permission set
-            - EWxtended - one that additionally contains ACL_USER, ACL_GROUP, and ACL_MASK
+            - Extended - one that additionally contains ACL_USER, ACL_GROUP, and ACL_MASK
     b. ACL Permission Checking Algorithm
         - Rule 1: if process is privileged then all access is granted
         - Rule 2: if the effective user ID of the process matches the owner of the file, then the process is granted the permissions specified in the ACL_USER_OBJ
-        - Rule 3: if the effetive user ID of the process matches the tag qualifier in one of the ACL_USER entries, then the process is granted the permissions specified in the ACL_USER, masked against the value of the ACL_MASK
-        - Rule 4: if one of the process group IDs i.e. efgfective group ID or supplementary, matches the file group in ACL_GROUP_OBJ or tag qualifies in any of the ACL_GROUP, then access is determined by either ACL_GROUP_OBJ or ACL_GROUP
+        - Rule 3: if the effective user ID of the process matches the tag qualifier in one of the ACL_USER entries, then the process is granted the permissions specified in the ACL_USER, masked against the value of the ACL_MASK
+        - Rule 4: if one of the process group IDs i.e. effective group ID or supplementary, matches the file group in ACL_GROUP_OBJ or tag qualifies in any of the ACL_GROUP, then access is determined by either ACL_GROUP_OBJ or ACL_GROUP
     c. Long and Short Text Forms for ACLS
         - Long - ACLs contain one ACL entry per line
-        - Short - ACLs consist os seuqnce of ACL entries separated by commas
+        - Short - ACLs consist of sequence of ACL entries separated by commas
     d. ACL_MASK Entry and ACL Group Class
-        - ACL_MASK - acts as an upper limit on the permissions granted by ACL entries in teh so called group class
+        - ACL_MASK - acts as an upper limit on the permissions granted by ACL entries in the so called group class
         - Group Class - set of all ACL_USER, ACL_GROUP, and ACL_GROUP_OBJ entries in the ACL
     e. The getfacl and setfacl Commands
         - getfacl - view the ACL on a file
-        - stfacl - set ACL on a file
+        - setfacl - set ACL on a file
     f. Default ACLs and File Creation
         - Default ACL - determines ACLs and permissions that are placed on files and subdirectories that are created in the directory
     g. ACL Implementation Limits
@@ -1144,12 +1144,12 @@ Chapter 18: Directories and Links
             - Directory is a file with a special organization i.e. a table consisting of filenames and i-node numbers
     b. Symbolic Soft Links
         - Symbolic or Soft Link - a special file type whose data is the name of another file
-        - Interpretation fo Symbolic Links by System Calls
+        - Interpretation of Symbolic Links by System Calls
             - Derefence or Follow - work on the file to which the link refers
-            - Don't Dereference - operatei directly on the link file itself
-        - File Permissiosn and Ownership for Symbolic Links - ignored form most operations
+            - Don't Dereference - operate directly on the link file itself
+        - File Permissiosn and Ownership for Symbolic Links - ignored for most operations
     c. Creating and Removing Hard Links
-        - fn - int link(const char *oldpath, const char *newpath) - creates a hard lin
+        - fn - int link(const char *oldpath, const char *newpath) - creates a hard link
         - fn - int unlink(const char *pathname) - removes a hard link  
         - Note - An open file is deleted only when all file decsriptors are closed
     d. Changing the Name of a File
@@ -1200,7 +1200,7 @@ Chapter 19: Monitoring File Events
             - Closes the inotify instance
     b. The inotify API
         - fn - int inotify_init(void) - creates a new inotify instance
-        - fn - int inotify_add_watch(int fd, const char *pathname, uint32_t mask) - either adds a new watch item to or modifies an existing watch item in the watch list for the inotify instance referred to by the file
+        - fn - int inotify_add_watch(int fd, const char *pathname, uint32_t mask) - either adds a new watch item to or modifies an existing watch item in the watch list for the inotify instance referred to by the file descriptor
     c. inotify Events
         - IN_ACCESS - file was accessed
         - IN_ATTRIB - file metadata changed
@@ -1223,7 +1223,7 @@ Chapter 19: Monitoring File Events
         - IN_ONLYDIR - fail if pathname is not a directory
         - IN_IGNORED - watch was removed by application or by kernel
         - IN_ISDIR - filename returned in name is a directory
-        - IN_Q_OVREFLOW - overflow on event queue
+        - IN_Q_OVERFLOW - overflow on event queue
         - IN_UNMOUNT - file system containing object was unmounted
     d. Reading inotify Events
         - read() to read events from the inotify file descriptor
@@ -1232,9 +1232,9 @@ Chapter 19: Monitoring File Events
                 uint32_t mask; /* Bits describing event that occurred */
                 uint32_t cookie; /* Cookie for related events */
                 uint32_t len; /* Size of 'name' field */
-                char name[]; /* OIptional null-terminated filename */
+                char name[]; /* Optional null-terminated filename */
             }
-    e. Queue Limits and /proce Files
+    e. Queue Limits and /proc Files
         - /proc/sys/fs/inotify
             - max_queued_events - value is used to set an upper limit on the number of events that can be queued on the new inotify instance
             - max_user_instances - limit on the number of inotify instances that can be created per real user ID
@@ -1258,7 +1258,7 @@ Chapter 20: Signals - Fundamental Concepts
             - execution is resumed
     b. Signal Types and Default Actions
         - SIGABRT - 6 - abort process
-        - SIGALRM - 14 - real timer timer expired
+        - SIGALRM - 14 - real timer expired
         - SIGBUS - 7 - memory access error
         - SIGCHLD - 17 - child terminated or stopped
         - SIGCONT - 18 - continue if stopped
@@ -1341,8 +1341,8 @@ Chapter 20: Signals - Fundamental Concepts
     l. Signals Are Not Queued
         - The Point: Standard set of pending signals is only a mask, it indicates whether or not a signal has occurred, but now how many times it has occurred. Real time signals are queued
     m. Changing Signal Dispositions: sigaction()
-        - fn - int sigaction(int sig, const struct sigaction *act, struct signaction *oldact) - sets disposition and allows you to retrieve the disposition of a signal without changing, and to set various attributes controlling precisely what happens when a signal handler is invoked
-            - sig - identifies the signal whose disposition we want to retrieves or change
+        - fn - int sigaction(int sig, const struct sigaction *act, struct signaction *oldact) - sets disposition and allows you to retrieve the disposition of a signal without changing it, and to set various attributes controlling precisely what happens when a signal handler is invoked
+            - sig - identifies the signal whose disposition we want to retrieve or change
             - act - pointer to a structure specifying a new disposition for the signal
             - oldact - used to return information about the signal's previous disposition
             - struct sigaction {
