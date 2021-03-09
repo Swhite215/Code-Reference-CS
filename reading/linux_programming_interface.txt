@@ -1361,3 +1361,50 @@ Chapter 20: Signals - Fundamental Concepts
                 - SA_SIGINFO - invoke the signal handler with additional arguments providing further information about the signal
     n. Waiting for a Signal: pause()
         - fn - int pause(void) - suspends execution of the process until the call is interrupted by a signal handler
+
+Chapter 21: Signals - Signal Handlers
+    a. Designing Signal Handlers
+        - Two Common Designs
+            - Signal handler sets a global flag and exits. The main program periodically checks this flag and it it is set, takes appropriate action
+            - Signal handler performs some type of cleanup and then either terminates the process or uses a nonlocal goto to unwind the stack and return control to a predetermined location in the main program
+        - Signals Are Not Queued
+        - Rentrant and Async Signal Safe Functions
+            - Rentrant - it can safely be simultaneously executed by multiple threads of execution in the same process, safe means functions achieves its expected result, regardless of the state of execution
+            - Nonentrant - if function updates global or static data structures
+        - Async-Signal-Safe Functions - one that the implementation guarantees to be safe when called from a signal handler i.e. nonrentrant or not interruptible by a signal handler
+        - Async-Signal-Safe Table List on pg. 426
+        - Global Variables and the sig_atomic_t Data Type
+            - If looking to share global variables between main program and a signal handler, use atomic read and write integer data type called sig_atomic_t
+    b. Other Methods of Terminating a Signal Handler
+        - exit() - terminate the process
+        - kill() or raise() to send a signal that kills the process
+        - Perform a nonlocal goto from the signal handler, use sigsetjmp and siglongjmp to manage changes to process signal mask
+        - abort() - terminate the process with a core dump
+    c. Handling a Signal on An Alternate Stack: sigalstack()
+        - Why - ensure that when a process grows beyond its stack and generates a SIGSEGV signal for the process, the SIGSEGV can be handled by a signal handler
+        - fn - int sigalstack(const stack_t *sigstack, stack_t *old_sigstack) - establishes an alternate signal stack and returns information about any alternate signal stack that is already established
+    d. The SA_SIGINFO FLag - allows handler to obtain additional information about a signal when it is delivered
+        - typedef struct {
+            int si_signo; /* Signal Number */
+            int si_code; /* Signal Code */
+            int si_trapno; /* Trap number for hardware generated signal */
+
+            union sigval si_value; /* Accompanying data from sigqueu() */
+            pid_t si_pid; /* Process ID of the sending process */
+            uid_t si_uid; /* Real user ID of the sender */
+            int si_errno; /* Errro Number */
+            void si_addr; /* Address that generated signal */
+
+            int si_overrun; /* Overrun Count */
+            int si_timerid; /* Timer ID */
+
+            long si_band; /* Band event */
+            int si_fd; /* File descriptor */
+            int si_status; /* Exit status or signal */
+
+            clock_t si_utime si_fd; /* User CPU Time */
+            clock_t si_stime ; /* System CPU Time */
+        }
+    e. Interruption and Restarting of System Calls
+        - Manually Handle Restart of System Call
+        - Use SA_RESTART to permit automatic restarting of system calls
