@@ -1408,3 +1408,72 @@ Chapter 21: Signals - Signal Handlers
     e. Interruption and Restarting of System Calls
         - Manually Handle Restart of System Call
         - Use SA_RESTART to permit automatic restarting of system calls
+
+Chapter 22: Signals - Advanced Features
+    a. Core Dump Files
+        - Core Dump - a file containing a memory image of the process at the time it was terminated
+        - Circumstances in Which Core Dump Files Are Not Produced
+            - Process doesn't have permission to write the core dump file
+            - A regular file with the same name already exists, and it is writable, but there is more than one hard link to the file
+            - The directory in which the core dumpe file is to be created doesn't exist
+            - The process resource limit on the size of a core dump file is set to 0
+            - The process resource limit on the size of a file that may be produced is set to 0
+            - The binary executable file that the process is executing doesn't have read permissions enabled
+            - The file system on which the current working directory resides is mounted read only, full, or has no i-nodes
+        - Naming the Core Dump File: /proc/sys/kernel/core_pattern
+            - Use a format string in the /proc/sys/kernel/core_pattern file
+            - Specificers and Replacements
+                - %c - core file size soft resource limit
+                - %e - executable filename
+                - %g - real group ID of dumped process
+                - %h - name of host system
+                - %p - process ID of dumped process
+                - %s - number of signal that terminated process
+                - %t - time of dump, in seconds since Epoch 
+                - %u - real user ID of dumped process
+                - %% - a single % character
+    b. Special Cases for Delivery, Disposition, and Handling
+        - SIGKILL and SIGSTOP - always terminates and stops a process respectively
+        - SIGCONT and stp signals - if stopped SIGCONT always causes resume, pending signals are discarded
+    c. Interruptible and Uninterruptible Process States
+        - TASK_INTERRUPTIBLE - operations can be interrupted by signals
+        - TASK_UNINTERRUPTIBLE - signals are not delivered until process exists this state
+        - TASK_KILLABLE - wakes process if signal is fatal
+    d. Hardware Generated Signals - SIGBUS, SIGFPU, SIGILL, SIGSEGV
+        - Returning from the Signal Handler - infinite loop
+        - Ignoring the Signal - shouldn't ignore due to unexpected behavior
+        - Blocking the Signal - shouldn't block due to unexpected behavior
+    e. Synchronous and Asynchronous Signal Generation
+        - Asynchronous - process can't predictr when the signal will be delivered holds true
+        - Synchronous - signal is delivered immediately
+    f. Timing and Order of Signal Delivery
+        - When is a signal delivered?
+            - When the process is reschedulded after it earlier timed out
+            - At completion of a system call
+        - Order of Delivery of Multiple Unblocked Signals
+            - All signals are immeditaly delivered to the process in ascending order i.e. lower signals first
+    g. Implemenation and Portability: signal()
+    h. Realtime Signals
+        - Advantages
+            - Increased range of signals that can be used for application-defined purposes
+            - Signals are queued
+            - Can include an integer or pointer value as data
+            - Order of delivery of different signals is guaranteed, if multiple signals of the same type they are delivered in the same order they were sent
+        - Limits on the Number of Queued Realtime Signals - _POSIX_SIGQUEUE_MAX or _SC_SIGQUEUE_MAX
+        - Using Realtime Signals
+            - fn - int sigqueue(pid_t pid, int sig, const union sigval value) - sends the realtime signal specified by sig to the process specified
+            - sigaction - establishes a signal handler for realtime signals
+        - Handling Realtime Signals
+    i. Waiting for a Signal Using a Mask: sigsuspend()
+        -  fn - int sigsuspend(const sigset_t *mask) - atomically unblocks a signal and suspends the process 
+    j. Synchronously Waiting for a Signal
+        - fn - int sigwaitinfo(const sigset_t *set, siginfo_t *info) - suspends execution of the process until one of the signals in the signal set pointed to by set becomes pending
+    k. Fetching Signals via A File Descriptor
+        -  fn - int signalfd(int fd, sigset_t *mask, int flags) - creates a special file descriptor from which signals directed to the caller can be read
+    l. Interprocess Communication with Signals
+        - Disadvantages
+            - Reentrancy Requirements
+            - Race Conditions
+            - Handling of Global Variables
+            - Standard Signals Not Queued
+            - Signals Carry Limited Information
