@@ -1477,3 +1477,55 @@ Chapter 22: Signals - Advanced Features
             - Handling of Global Variables
             - Standard Signals Not Queued
             - Signals Carry Limited Information
+
+Chapter 23: Timers and Sleeping
+    a. Interval Timers
+        - fn - int setitimer(int which, const struct itimerval *new_value, struct itimerval *old_value)
+            - establishes a timer interval, which is a timer that expires at a future point in time and optionally at regular intervals after that
+            - Types of Timers
+                - ITIMER_REAL - creater a timer that counts down in real time, sends SIGALRM signal when timer expires
+                - ITIMER_VIRTUAL - create a timer that counts down in process virtual time, sends SIGVTALRM signal when timer expires
+                - ITIMER_PROF - create a profiling timer, counts time in process i.e. sum of user-mode and kernel mode CPU time, sends SIGPROF signal when timer expires
+        - fn - int getitimer(int which, struct itimerval *curr_value) - returns the current state of the timer specified by which
+        - Simpler Timer Interface: alarm()
+            - fn - unsigned int alarm(unsigned int seconds) - establishes a real time timer that expires once, with no repeating interval
+        - Interactions between setitimer() and alarm() - both share the same per-process real-time timer, setting a timer with one function changes any timer previously set by either of the functions
+    b. Scheduling and Accuracy of Timers
+        - High Resolution Timers - as accurate as the underlying hardware allows
+    c. Setting Timeouts on Blocking Operations
+        - Use - place an upper limit on the time for which a blocking system call can remain blocked e.g. cancel a read() from a terminal if user has not entered input within a certain time
+    d. Suspending Execution for a Fixed Interval (Sleeping)
+        - Low Resoution Sleeping: sleep()
+            - fn - unsigned int sleep(unsigned int seconds) - suspends execution of the calling thread for the number of seconds specified in the seconds argument or until a signal is caught
+        - High Resolution Sleeping: nanosleep()
+            - fn - int nanosleep(const struct timespec *request, struct timespec *remain) - same as sleep with finer resolution when specifying the sleep interval
+    e. POSIX Clocks
+        - Retrieving the Value of a Clock: clock_gettime()
+            - fn - int clock_gettime(clockid_t clockid, struct timespec *tp) - returns the time according to the clock specified in clockid
+            - fn - int clock_getres(clockid_t clockid, struct timespec *res) -  returns the resolution of the clock specified in clockid
+            - Clock Types
+                - CLOCK_REALTIME - settable system-wide real-time clock
+                - CLOCK_MONOTONIC - nonsettable monotonic clock
+                - CLOCK_PROCESS_CPUTIME_ID - per process CPU time clock
+                - CLOCK_THREAD_CPUTIME_ID - per thread CPU time clock
+        - Setting the Value of a Clock: clock_settime()
+            - fn - int clock_settime(clockid_t clockid, const struct timespec *tp) - sets the clock specified by clockid to the time supplied in the buffer pointed to by tp
+        - Obtaining the Clock ID of a Specific Process or Thread
+            - fn - int clock_getcpuclockid(pid_t pid, clockid_t *clockid) - returns the identifier of the CPU time clock of the process whose ID is pid, use this to call gettime to find out the CPU time consumed
+        - Improved High Resolution Sleeping: clock_nanosleep()
+            - fn - int clock_nanosleep(clockid_t clockid, int flags, cons struct timespec *request, struct timespec *remain) - suspends the calling process until either a specified interval of time has passed or a signal arrives
+    f. POSIX Interval Timers
+        - Timer Steps
+            - timer_create() - creates a new timer and defines the method by which it will notify the process when it expires
+            - timer_settime() - arms (starts) or disarms (stops) a timer
+            - timer_delete() - deletes a timer that is no longer required
+        - Creating a Timer: timer_create()
+        - Arming and Disarming a Timer: timer_settime()
+        - Retrieving the Current Value of a Timer: timer_gettime()
+        - Deleting a Timer: timer_delete()
+        - Timer Overrun
+            - fn - int timer_getoverrun(timer_t timerid) - returns the overrun count for the timer specified by timerid
+    g. Timers that Notify via File Decsriptors: The timerfd API
+        - fn - int timerfd_create(int clockid, int flags) - creates a new timer object and returns a file decsriptor referring to that object
+        - fn - int timerfd_settime(int fd, int flags, const struct itimerspec *new_value, struct itimerspec *old_value) - starts or stops the timer referred to be fd
+        - fn - int timerfd_gettime(int fd, struct itimerspec *curr_value) - returns the interval and remaining time for the timer identified by the file descriptor fd
