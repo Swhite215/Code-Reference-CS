@@ -1565,3 +1565,27 @@ Chapter 24: Process Creation
         - Child Process - Created
         - Child Process - Send Signal to Parent Process and Exit
         - Parent Process - Continue Exeuction
+
+Chapter 25: Process Termination
+    a. Terminating a Process: _exit() and exit()
+        - Abnormal Termination - caused by the delivery of a signal whose default action is to terminate the process
+        - Normal Termination - exit(), _exit(), or return from main
+        - fn - void exit(int status) - termiantes a process normally
+        - fn - void exit(int status)
+            - Exit hanlders are called, in reverse order of their registration
+            - The stdio stream buffers are flushed
+            - The _exit() system call is invoked, using the value supplied in status
+    b. Details of Process Termination
+        - Open file descriptors, directory streams, and conversion descriptors are closed
+        - File locks held by process are released
+        - System V shared memory segments are detached
+        - If controlling process, SIGHUP signal is sent to each process in the controlling terminal's foreground process group, and terminal is disassociated from the session
+        - Any POSIX named semaphores that are open in the calling process are closed
+        - Any POSIX message queues that are open in the calling process are closed
+        - If any process orphans, all processes in the group are sent a SIGHUP followed by a SIGCONT signal
+        - Any memory locks are removed
+        - Any memory mappings are unmapped
+    c. Exit Handlers - programmer supplied function that is registered at some point during the life of the process and is then automatically called during normal process termination via exit()
+        - Registering Exit Handlers
+            - fn - int atexit(void (*func)(void)) - adds func to list of functions that are called when the process terminates
+            - fn - int on_exit(void (*func)(int, void *), void *arg) - adds func to list of functions that are calledn when the process terminates, function can have arguments
