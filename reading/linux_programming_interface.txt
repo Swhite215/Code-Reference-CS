@@ -1589,3 +1589,48 @@ Chapter 25: Process Termination
         - Registering Exit Handlers
             - fn - int atexit(void (*func)(void)) - adds func to list of functions that are called when the process terminates
             - fn - int on_exit(void (*func)(int, void *), void *arg) - adds func to list of functions that are calledn when the process terminates, function can have arguments
+
+Chapter 26: Monitoring Child Processes
+    a. Waiting on a Child Process
+        - The wait() System Call
+            - fn - pid_t wait(int *status) - wait for one of the children of the calling process to terminate and returns its termination status
+            - If no child has terminated, wait blocks, if child has already terminated, immediately returns
+            - If status is not null, information about how the child terminated is returned
+            - Kernel adds the process CPU times and resource usage statistics to running total for all the children of this parent process
+            - wait() returns the process ID of the child that has terminated
+        - The waitpid() System Call
+            - allows waiting for a specific child
+            - is non blocking
+            - able to be notified when a child has been stopped, resumed, or terminated
+            - fn - pid_t waitpid(pid_t pid, int *status, int options)
+                - pid > 0, wait for child whose process ID is pid
+                - pid = 0, wait for any child in same process group
+                - pid < -1, wait for any child whose process group is absolute value of pid
+                - id = -1, wait for any child
+            - option
+                - WUNTRACED - return information when a child is stopped
+                - WCONTINUED - return information about children that have resumed
+                - WNOHANG - if no changed state, return immediately instead of blocking
+        - THe Wait Status Value
+            - child terminated by calling _exit() or exit()
+            - child was terminated
+            - child was stopped
+            - child was resumed
+        - Process Termination from a Signal Handler
+            - Child signal handler raises signal itself for custom handling
+        - The waitid() System Call
+            - fn - int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options)
+            - options
+                - WEXITED - wait for children that have terminated
+                - WSTOPPED - wait for children that have been stopped
+                - WCONTINUED - wait for children that have been resumed
+                - WNOHANG - return immediately if no child has status information
+                - WNOWAIT - child remains in waitable state, status is returned
+        - The wait3() and wait4() System Calls - return resource usage information about the terminated child
+    b. Orphans and Zombies
+        - Orphan - parent process terminates before child, adopted by init and waited to remove
+        - Zombie - terminates before Parent has called wait(), must be reaped at some point i.e. reaping loop on pg. 556
+    c. The SIGCHLD SIgnal
+        - Establishing a Handler for SIGCHLD - signal sent to process whenever child terminates, must reap repeatedly until all zombie children are handled
+        - Delivery of SIGCHLD for Stopped Children - possible
+        - Ignoring Dead Child Processes - set disposition of SIGCHLD to SIG_IGN causes any child process that subsequently terminhates to be immediately removed from the system instead of being converted into a zombie
