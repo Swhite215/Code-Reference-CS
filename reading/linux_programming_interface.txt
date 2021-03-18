@@ -1634,3 +1634,40 @@ Chapter 26: Monitoring Child Processes
         - Establishing a Handler for SIGCHLD - signal sent to process whenever child terminates, must reap repeatedly until all zombie children are handled
         - Delivery of SIGCHLD for Stopped Children - possible
         - Ignoring Dead Child Processes - set disposition of SIGCHLD to SIG_IGN causes any child process that subsequently terminhates to be immediately removed from the system instead of being converted into a zombie
+
+Chapter 27: Program Execution
+    a. Executing  a New Program: execve()
+        - Action - loads a new program into a process's memory, old program is discareded and the stack, data, and heap are replaced
+        - Use - inside child produced by fork()
+        - fn - int execve(const char *pathname, char *const argv[], char *const envp)
+            - pathname - path to new program
+            - argv - arguments list
+            - envp - environment list
+        - Errors
+            - EACCES - pathname doesnt refer to a regular file, execute permission is disabled, or directory is not searchable
+            - ENOENT - file doesn't exist
+            - ENOEXEC - file is marked as executable but not in a recognizable format
+            - ETXTBSY - file is opened for writing
+            - E2BIG - space required for argv and envp execeeds maximum
+    b. The exec() Library Functions
+        - fn - int execle() - pathname
+        - fn - int execlp() - filename
+        - fn - int execvp() - filename
+        - fn - int execv() - pathname
+        - fn - int execl() - pathname
+        - The PATH Environment Variables - string consisting of colon-separated directory names called path prefixes, searched when looking for a file
+        - Passing the Caller's Environment to the New Program
+            - execlp(), execvp(), execl(), and execv() inherit environment from calling process
+        - Executing a File Referred to by a Descriptor: fexecve()
+            - fn - int fexecve()
+    c. Interpreter Scripts
+        - Interpreter - a program that reads commands in text form and executes them
+        - Unix - allows interpreter scripts to be run in the same way as a binary program file
+    d. File Descriptors and exec()
+        - Default - all file descriptors opened by a program that calls exec() remain open across the exec() and are available for use by the new program
+        - The close-on-exec flag FD-CLOEDXEC - ensure certain file descriptors are closed befor exec()
+    e. Signals and exec()
+        - Kernel resets the dispositions of all handled signals to SIG_DFL
+    f. Executing a Shell Command: system()
+        - fn - int system(const char *command) - allows the calling program to execute an arbitrary shell command
+    
