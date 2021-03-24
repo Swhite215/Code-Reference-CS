@@ -1670,4 +1670,89 @@ Chapter 27: Program Execution
         - Kernel resets the dispositions of all handled signals to SIG_DFL
     f. Executing a Shell Command: system()
         - fn - int system(const char *command) - allows the calling program to execute an arbitrary shell command
-    
+
+Chapter 28: Process Creation and Program Execution in More Detail
+    a. Process Accounting
+        - Action - kernel writes an accounting record to the system wide process accounting file as each process terminates
+        - Enabling and Disabling Process Accounting
+            - fn - int acct(const char *acctfile) - enables process accounting for a file
+        - Processs Accounting Records
+            - struct acct {
+                char ac_flag; /* Accounting Flags */
+                u_int16_t ac_uid; /* User ID of the Process */
+                u_int16_t ac_gid; /* Group ID of the Process */
+                u_int16_t acl_create_entry; /* Controlling Terminal of Process */
+                u_int32_t ac_btime; /* Start Time */
+                comp_t ac_utime; /* User CPU Time */
+                comp_t ac_stime; /* System CPU Time */
+                comp_t ac_etime; /* Elapsed Real Time */
+                comp_t ac_mem; /* Average Memory Usage */
+                comp_t ac_io; /* Bytes Transferred */
+                comp_t ac_rw; /* Bloks Read Written */
+                comp_t ac_minflt; /* Minor Page Faults */
+                comp_t ac_majflt; /* Major Page Faults */
+                comp_t ac_swaps; /* Number of Swaps */
+                u_int32_t exitcode; /* Process Termination Status */
+            }
+            - ac_flag
+                - AFORK - process was created by fork()
+                - ASU - process made use of superuser privileges
+                - AXSIG - process was terminated by a signal
+                - ACORE - process produced a core dump
+    b. The clone() System Call
+        - fn - int clone() - creates a new process with finer control
+    c. Speed of Process Creation
+        - Speed Ranking (Fastest to Slowest)
+            - clone() -> vfork() -> fork() -> vfork() + exec() -> fork() + exec()\
+
+Chapter 29: Threads - Introduction
+    a. Overview
+        - Threads - mechanisms that permits an application to perform multiple tasks concurrently, multiple threads can exist in a single process, share same global memory including initialized data, uninitialized data, and heap segments
+        - Shared Attibutes
+            - process ID and parent process ID
+            - process group ID and session ID
+            - controlling terminal
+            - process credentials
+            - open file descriptor
+            - recrod locks created using fork()
+            - signal dispositions
+            - umask, cwd, root directory
+            - interval timers
+            - System V Semaphore
+            - resource limits
+            - CPU time consumed
+            - resourecs consumed
+            - nice value
+        - Distinct Attributes
+            - thread ID
+            - signal mask
+            - thread specific data
+            - alternate signal stack
+            - errno variable
+            - floating point environment
+            - real time scheduling policy and priority
+            - CPU affinity
+            - capabilities
+            - stack
+    b. Background Details of the Pthreads API
+        - Data Types
+            - pthread_t - thread identifier
+            - pthread_mutex_t - mutex
+            - pthread_mutexattr_t - mutex attributes
+            - pthread_cond_t - conditiona variable
+            - pthread_condattr_t - conditional variable attributes
+            - pthread_key_t - key for thread specific data
+            - pthread_once_t - one time initialization
+            - pthread_attr_t - thread attributes object
+    c. Thread Creation
+        - fn - int pthread_create() - new thread commences execution by calling the function identified by start with the argument arg
+    d. Thread Termination
+        - fn - void pthread_exit(void *retval) - terminates the calling thread and specifies a return value that can be obtained by caling pthread_join()
+    e. Thread IDs
+        - fn - pthread_t pthread_self(void) - returns unique process ID
+        - fn - int pthread_equal() - allows us to check whether two thread IDs are the same
+    f. Joining with a Terminated Thread
+        - fn - int pthread_join(pthread_t thread, void **retval) - waits for the thread identified by thread to terminate
+    g. Detaching a Thread
+        - fn - int pthread_detach(pthread_t thread) - clean up and remove a thread when it terminates without allowing waiting
+
