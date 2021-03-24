@@ -1756,3 +1756,46 @@ Chapter 29: Threads - Introduction
     g. Detaching a Thread
         - fn - int pthread_detach(pthread_t thread) - clean up and remove a thread when it terminates without allowing waiting
 
+Chapter 30: Threads - Thread Synchronization
+    a. Protecting Accesses to Shared Variables: Mutexes
+        - Issue - multiple threads attempting to modify the same variable at the same time, or thread attempting to read the value of a variable while another thread is modifying it
+        - Pattern
+            - lock the mutex for a shared resource
+            - access the shared resource
+            - unlock the mutex
+        - Statically Allocated Mutexes
+            - Allocated as a static variable
+            - Created dynamically at run time
+        - Intiailization - pthread_mutex_t mtx = PTHREAD_MUTEX_INTIALIZER
+        - Locking and Unlocking a Mutex
+            - fn - int pthread_mutex_lock(pthread_mutex_t *mutex) - locks a mutex
+            - fn - int pthread_mutex_unlock(pthread_mutex_t *mutex) - unlocks a mutex, can only be done by the thread that locked the mutex
+            - note - it is indeterminate which thread acquires an unlocked mutex
+        - Extras
+            - fn - pthread_mutex_trylock() - attempts to lock mutex, fails if currently locked
+            - fn - pthread_mutex_timedlock() - attempts to lock mutex, can sleep while waiting to acquire mutex
+        - Performance of Mutexes
+            - Mutex are implemented using atomic machine language operations and require system calls only in case of lock contention
+        - Mutex Deadlocks
+            - Issue - multiple threads accessing two or more shared resources, each governed by a mutex
+            - Solution - define mutex hierarchy i.e. threads should lock the mutexes in the same order
+        - Dynamically Initializing a Mutex
+            - fn - int pthread_mutex_init() - dynamically initializes a mutex
+            - fn - int pthread_mutex_destroy() - destroys dynamically intiailized mutex
+        - Mutex Attributes
+            - Mutex Types
+                - PTHREAD_MUTEX_NORMAL - self deadlock detection is not provided for this type of mutex
+                - PTHREAD_MUTEX_ERRORCHECK - error checking is performed on all operations
+                - PTHREAD_MUTEX_RECURSIVE - maintains the concept of a lock count
+    b. Signaling Changes of State: Condition Variables
+        - Condition Variable - allows one thread to inform other threads about changes in the state of a shared variable or other shared resources and allows other threads to wait for such notification
+        - Statically Allocated Condition Variables
+            - Initialization - pthread_cond_t cond = PTHREAD_COND_INITIALIZER
+        - Signaling and Waiting on Condition Variables
+            - fn - int pthread_cond_signal(pthread_cond_t *cond) - signal the condition variable specified by cond, guarantees that at least one of the blocked threads is woken up
+            - fn - int pthread_cond_broadcast(pthread_cond_t *cond) - signal the conditional variable specified by cond, all blocked threads are woken up
+            - fn - int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex) - blocks a thread until the condition variable cond is signaled
+            - fn - int pthread_cond_timedwait() - blocks a thread, for a limited time, until the condition variable cond is signaled
+        - Dynamically Allocated Condition Variables
+            - fn - int pthread_cond_init() - dynamically initializes a condition variable
+            - fn - int pthread_cond_destroy(pthread_cond_t *cond) - destroys a dynamically initialized condition variable
