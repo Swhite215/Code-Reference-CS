@@ -1,0 +1,7 @@
+Discrete Math and Its Applications - Rosen, Kenneth
+
+Chapter 5: Induction and Recursion 
+    a. Introduction
+        - Principle of Mathematical Induction
+            - Basis Step - show that P(1) is true
+            - Inductive Step - show that for all positive integers k, if P(k) is true, then P(k +1) is true
