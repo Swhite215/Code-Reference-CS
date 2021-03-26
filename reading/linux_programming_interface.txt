@@ -1799,3 +1799,25 @@ Chapter 30: Threads - Thread Synchronization
         - Dynamically Allocated Condition Variables
             - fn - int pthread_cond_init() - dynamically initializes a condition variable
             - fn - int pthread_cond_destroy(pthread_cond_t *cond) - destroys a dynamically initialized condition variable
+
+Chapter 31: Threads - Thread Safety and Per-Thread Storage
+    a. Thread Safety and Reentrancy Revisited
+        - Thread-Safe - it can safely be invoked by multiple threads at the same time
+        - Achieving Thread Safety - associate a mutex with a shared variable in critical sections
+        - Non-Thread-Safe Function - table 31-1 on pg. 657
+        - Reentrant and Nonreentrant
+            - Reentrant - achieves thread safety without the use of mutexes by avoiding the use of global or static variables
+    b. One-Time Initialization
+        - fn - int pthread_once() - calls a caller defined function once to do initialization work
+    c. Thread Specific Data
+        - Technique - make an existing function thread safe without changing its interface by maintaining a separate copy of a variable for each thread that calls the function
+        - Overview of Thread Specific Data API
+            - function creates a key, which differentiates items used by function from eachother
+            - function allocates a thread specific data block for each thread
+            - function saves pointer associated with key
+        - Details of the Thread Specific Data API
+            - fn - int pthread_key_create() - creates a new thread specific data key that is returned to the caller
+            - fn - int pthread_setspecific() - save a copy of value in data structure that associates it with the calling thread and with key
+            - fn - void pthread_getspecific() - returns previoulsy saved value associated with the given key for this thread
+    d. Thread Local Storage
+        - Action - provides persistent per-thread storage
