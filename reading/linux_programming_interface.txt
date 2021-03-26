@@ -1821,3 +1821,22 @@ Chapter 31: Threads - Thread Safety and Per-Thread Storage
             - fn - void pthread_getspecific() - returns previoulsy saved value associated with the given key for this thread
     d. Thread Local Storage
         - Action - provides persistent per-thread storage
+
+Chapter 32: Threads - Thread Cancellation
+    a. Canceling a Thread
+        - fn - int pthread_cancel() - sends a cancellation request to the specified thread
+    b. Cancellation State and Type
+        - fn - int pthread_setcancelstate() - set flag that controls cancel state
+            - PTHREAD_CANCEL_DISABLE - the thread is not cancelable
+            - PTHREAD_CANCEL_ENABLE - the thread is cancelable - default
+        - fn - int pthrhead_setcanceltype() - set flag that controls cancel type
+            - PTHREAD_CANCEL_ASYNCHRONOUS - the thread can be cancelled at any time
+            - PTHRHEAD_CANCEL_DEFERRED - the cancellation remains pending until a cancellation point is reached - default
+    c. Cancellation Points - location where cancellation is acted upon
+        - Table 32-1 - cancellation points
+    d. Testing for Thread Cancellation
+        - fn - void pthread_testcancel() - acts as a cancellation point for threads that don't have one e.g. compute loop
+    e. Cleanup Handlers
+        - fn - void pthread_cleanup_push() - add clean up handler to thread's stack of cleanup handlers
+        - fn - pthread_cleanup_pop() - removes clean up handler from thread's stack of cleanup handlers
+        - Note - each use of push must be paired with pop in the same lexical block
