@@ -1839,4 +1839,42 @@ Chapter 32: Threads - Thread Cancellation
     e. Cleanup Handlers
         - fn - void pthread_cleanup_push() - add clean up handler to thread's stack of cleanup handlers
         - fn - pthread_cleanup_pop() - removes clean up handler from thread's stack of cleanup handlers
-        - Note - each use of push must be paired with pop in the same lexical block
+        - Note - each use of push must be paired with pop in th e same lexical block
+
+Chapter 33: Threads - Further Details
+    a. Thread Stacks
+        - Each thread has its own stack whose size is fixed when the thread is created
+        - fn - pthread_attr_stacksetsize() - changes the size of the stack
+        - fn - pthread_attr_setstack() - changes size of stack and location
+    b. Threads and Signals
+        - Insight - avoid combining signals and threads whenever possible
+        - How the UNIX Signal Model Maps to Threads
+            - Signal actions are process wide
+            - Signal dispositions are process wide
+            - Signal may directed to either the process as a whole or specific thread
+            - Kernel arbitrarily selects a thread to deal with signals delieverd to a multithreaded process
+            - Signal mask is per thread
+            - Kernel maintains a record of the siognals that are pending for the process as well as for each thread
+        - Manipulating the Thread Signal Mask
+            - fn - int pthread_sigmask() - changes thread's signal mask
+        - Sending a Signal to a Thread
+            - fn - int pthread_kill() - sends the signal sig to a thread in the same process
+            - fn - int pthread_sigqueue() - combines kill and quue functionality, sends a signal with accompanying data to a thread in the same process as the caller
+        - Dealing with Asynchronous Signals Sanely
+            - Preferred Approach
+                - All threads block all of the asynchronous signals that the process might receive
+                - Create a single dedicated thread that accepts incoming signals
+            - fn - int sigwait() - waits for the delivery of one of the signals in the signal set pointed to by set
+    c. Threads and Process Control
+        - Threads and exec() - when any thread calls one of the exec() functions, the calling program is completely replaced
+        - Threads and fork() - when a multithreaded process calls fork(), only the calling thread is replicated in the child process
+        - Threads and exit() - if any thread calls exit() or equivalent, the main thread does a return, all threads vanish after cleanup
+    d. Thread Implementation Models
+        - Many to One M:1 - all of the details of thread creation, scheduling, and synchronization are handled entirely with the process by a user space threading library
+        - One to One - each thread maps onto a separate Kernel Scheduling Entity, the kernel handles each thread scheduling
+        - Many to Many - each process can have multiple associated KSEs, and several threads may map to each KSE
+    e. Linux Implementations of POSIX Threads
+        - LinusThreads
+        - Native Posix Threads Library
+        - Discovering the Threading Implementation
+            - getconf GNU_LIBPTHREAD_VERSION
