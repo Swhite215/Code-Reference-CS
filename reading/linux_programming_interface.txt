@@ -1878,3 +1878,47 @@ Chapter 33: Threads - Further Details
         - Native Posix Threads Library
         - Discovering the Threading Implementation
             - getconf GNU_LIBPTHREAD_VERSION
+
+Chapter 34: Process Groups, Sessions, and Job Control
+    a. Overview
+        - Process Group - set of one or more processesing sharing the same process group identifier
+            - Process Group Leader - process that first becomes the first member of the group and whose process ID becomes the process group ID of the group
+            - Lifetime - period of time beginning when the leader joins the group and ending when the last member process leaves the group
+        - Session - collection of process groups, membership is determiend by the session identifier SID
+            - Session leader - process that creates a new session and whose process ID becomes the session ID
+            - All processes in a session share a single controlling terminal
+        - Foreground Process - can read input from the controlling terminal, signals sent are sent to the foreground process group
+        - Background Process - can not read input from the controlling terminal
+        - Opening Terminal -> session leader becomes controlling process for the terminal
+    b. Process Groups
+        - fn - pid_t getpgrp() - returns process group ID
+        - fn - int setpgid() - changes the process group of a process
+    c. Sessions
+        - fn - pid_t getsid() - returns the session ID of a process
+        - fn - pid_t setsid() - creates a new session, calling process becomes the leader of new session
+    d. Controlling Terminals and Controlling Processes
+        - All of the processes in a session may have a single controlling terminal. Upon creation, a session has no controlling terminal, the controlling terminal is established when the session leader first opens a terminal
+        - Removing a Process's Association with the Controlling Terminal - ioctl() used to remove a process association with its controlling terminal
+        - Establishign a Controlling Terminal on BSD - session leader must use ioctl() to explicitly establish a terminal as the controlling terminal
+        - Obtaining a Pathname for Controlling Terminal
+            - fn - char *ctermid() - returns a pathname referring to the controlling terminal
+    e. Foreground and Background Process Groups
+        - Controlling terminal maintains notion of a foreground proces group, only one process group can be in the foreground, all aother process groups in the session are background process groups
+        - fn - pid_t tcgetpgrp() - retrieve process group of a terminal
+        - fn - int tcsetprgp() - changes the process group of a terminal
+    f. The SIGHUP Signal
+        - When controlling process loses its terminal connection, the kernel sends it a SIGHUP signal
+        - Handling of SIGHUP by the Shell
+            - Most shells are programmed to establish a handler for SIGHUp, which terminates the shell after sending a SIGHUP signal to each of the process groups (foreground and background) createsd by the shell
+    g. Job Control
+        - Feature that permits a shell user to simultaenously execute multiple commands, one in the foreground and others in the background, Jobs can be stopped and resumed and moved between foreground and background
+        - Using Job Control Within the Shell
+            - & command is run as background job
+            - ctrl-c foregound process is terminated
+            - ctrl-z foreground process is stopped
+            - fg stopped foreground procress is continued
+        - Implementing Job Control
+        - Handling Job Control Signals
+            - Most applications do not ned to take special action for dealing with job control signals
+            - Vi and less must perform screen handling, switching from edit mode back to terminal
+        - Orphaned Process Groups - orphaned if tehe parent of every member is either itself a member of the group or is not a member of the groups session
