@@ -1922,3 +1922,66 @@ Chapter 34: Process Groups, Sessions, and Job Control
             - Most applications do not ned to take special action for dealing with job control signals
             - Vi and less must perform screen handling, switching from edit mode back to terminal
         - Orphaned Process Groups - orphaned if tehe parent of every member is either itself a member of the group or is not a member of the groups session
+
+Chapter 35: Process Priorities and Scheduling
+    a. Process Priorities (Nice Values)
+        - Scheduling Model - Round Robin Time Sharing
+            - Time Slice - use of CPU for a brief period of time
+            - Requirements
+                - Fairness - each process getst a share of the CPU
+                - Responsiveness - a process doesnt wait for long periods before it receives use of the CPU
+        - Nice Value - -20 (high priority) to +19 (low priority)
+            - Effects of the Nice Value - nice value acts as weighing factor that causes thee kernel scheduler to favor processese with higher priorities
+        - Retrieving and Modifying Priorities
+            - fn - int getpriority() - retrieves own nice value
+            - fn - int setpriority() - sets own nice value
+            - who
+                - PRIO_PROCESS - operate on the process whose ID process equals who
+                - PRIO_PGRP - operate on all members of the process group whose process group ID equal who
+                - PRIO_USER - operate on all processes whose real user ID equals who
+    b. Overview of Realtime Process Scheduling
+        - RealTime Requirements
+            - application must provide a guaranteed maximum response time, in many cases this time must be quite small
+            - a high priority process should be able to maintain exclusive access to the CPU unitl it completes or voluntarily relinquishes the CPU
+            - application should be able to control the precise order in which its component process are scheduled
+        - The SCHED_RR Policy
+            - Pattern - processes of equal priority are executed in a round robin time sharing fashion
+            - A process maintains control of the CPU until either:
+                - it reaches the end of its time slice
+                - it voluntarily relinquishes the CPU, by performing a blocking call or by calling sched_yield()
+                - it terminates
+                - it is prempted by a higher priority process
+            - A proces can be premeted by:
+                - a higher priority process that was blocked became unblocked
+                - the priority of another process was raised to a higher level than the currently blocked process
+                - the priority of the currently running process was decreased to a lower value than that of some other runnable process
+        - The SCHED_FIFO Policy
+            - Pattern -  first highest priority gets CPU until either:
+                - it voluntarily relinquishes the CPU
+                - it terminates
+                - it is preempted by a high priority process
+        - The SCHED_BATCH and SCHED_IDLE Policies
+            - SCHED_BATCH - midly disfavors nice value in favor of batch style execution
+            - SCHED_IDLE - schedules process with extremely low priority, lower than 19 nice value
+    c. Realtime Process Scheduling API
+        - Realtime Priority Ranges
+            - fn - int sched_get_priority_min() - returns minimum priority for policy
+            - fn - int sched_get_priority_max() - returns maximum priority for policy
+        - Modifying and Retriving Policies and Priorities
+            - fn - int sched_setscheduler() - changes both the scheduling policy and priority of a process
+        - Policies - SCHED_FIFO, SCHED_RR, SCHED_OTHER, SCHED_BATCH, SCHED_IDLE
+        - Retrieving Scheduling Policies and Priorities
+            - fn - int sched_getscheduler() - returns scheduling policy 
+            - fn - int sched_getparam() - returns priority of a process
+        - Relinquishing the CPU
+            - fn - int sched_yield() - yields to be placed at the back of the queue
+        - The SCHED_RR Time Slice
+            - fn - int sched_rr_get_interval() - returns the length of the time slice allocated for SCHED_RR policy
+    d. CPU Affinity
+        - Idea - influencing a process to be scheduled on the same CPU if possible
+        - fn - int sched_setaffinity() - sets the CPU affinity of the process specified by pid
+        - fn - void CPU_ZERO() - intializes set to be empty
+        - fn - void CPU_SET() - adds CPU to the set
+        - fn - void CPU_CLR() - removes the CPU from set
+        - fn - int CPU_ISSET() - returns true if the CPU is in the set
+        - fn - int sched_getaffinity() - retrieves the CPU affinity mask of the process
