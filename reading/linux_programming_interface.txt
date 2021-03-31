@@ -1985,3 +1985,47 @@ Chapter 35: Process Priorities and Scheduling
         - fn - void CPU_CLR() - removes the CPU from set
         - fn - int CPU_ISSET() - returns true if the CPU is in the set
         - fn - int sched_getaffinity() - retrieves the CPU affinity mask of the process
+
+Chapter 36: Process Resources
+    a. Process Resource Usage
+        - fn - int getrusage(int who, struct rusage *res_usage) - retrieves statistic about various system resources used by the calling process
+            - who
+                - RUSAGE_SELF - info about the calling process
+                - RUSAGE_CHILDREN - info about all children of the calling process
+                - RUSAGE_THREAD - info about calling thread
+            - rusage
+                - ru_utime - user CPU time used
+                - ru_stime - system CPU time used
+                - ru_maxrss - maximum size of resident set
+                - ru_ixrss - integral text memory size
+                - ru_idrss - integral data memory used
+                - ru_isrss - integral stack memory used
+                - ru_minflt - soft page faults
+                - ru_majflt - hard page fault
+                - ru_nswap - swaps out of physical memory
+                - ru_inblock - block input operations via file
+                - ru_oublock - block output operations via file
+                - ru_msgsnd - IPC messages sent
+                - ru_msgrcv - IPC messages received
+                - ru_nsignals - signals received
+                - ru_nvcsw - voluntary context switches
+                - ru_nivcsw - involuntary context switches
+    b. Process Resource Limits
+        - fn - getrlimit() - fetch resource limits
+        - fn - setrlimit() - set resource limits
+    c. Details of Specific Resource Limits
+        - RLIMT_AS - specifies the maximum size of the process's virtual memory address space in byte
+        - RLIMIT_CORE - specifies the maximum size for core dump files
+        - RLIMIT_CPU - specifies the maximum number of seconds of CPU time that can be used by the process
+        - RLIMIT_DATA - specifies the maximum size of the process's data segment
+        - RLIMIT_FSIZE - specifies the maximum size of files that process may create
+        - RLIMIT_MEMLOCK - specifies the maximum number of bytes of virtual memory that a process may lock into physical memory, to prevent the memory from being swapped out
+        - RLIMIT_MSGQUEUE - specifies the maximum number of bytes that can be allocated for POSIX message queues
+        - RLIMIT_NICE - specifies a ceiling on the nice value that may be set for this process
+        - RLIMIT_NOFILE - specifies a number one greater than the maximum file descriptor number that a process may allocate
+        - RLIMIT_NPROC - specifies the maximum number of processes that may be created for the real user ID of the calling process
+        - RLIMIT_RSS - specifies the maximum number of pages in the process's resident set i.e. the total number of virtual memory pages currently in physical memory
+        - RLIMIT_RTPIO - specifies a ceiling on the realtime priority that may be set for this process
+        - RLIMIT_RTTIME - specifies the maximum amount of CPU time in microseconds that a process running under a realtime scheduling policy may consume without sleeping
+        - RLIMIT_SIGPENDING - specifies the maximum number of signals that may be queued for the real user ID of the calling process
+        - RLIMIT_STACK -= specifies the maximum size of the process stack
