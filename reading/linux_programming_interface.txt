@@ -2102,3 +2102,47 @@ Chapter 37: Daemons
                 - fn - void closelog() - deallocates the file descriptor used for the /dev/log socket
             - Filtering Log Messages
                 - fn - int setlogmask() - sets a mask that filters the messages written by syslog
+
+Chapter 39: Writing Secure Privileged Programs
+    a. Overview
+        - Running with Privilege
+            - Program was started under a privileged user ID
+            - Program has its set-user-ID or set-group-ID permission bit set
+        - Problem - if a program contains bugs, or can be subverted by a malicious user, than the security of the system or an application can be compromised
+    b. Is a Set-User-ID or Set-Group-ID Program Required?
+        - Try to solve the problem without using these IDs, only use when necessary
+    c. Operate with Least Privilege
+        - Only allow privileges at key points i.e. when the program needs them, and disable them otherwise
+        - Best Practice - hold privileges only while they are required
+        - Best Practice - drop privileges permanently when they will never again be required
+    d. Be Careful When Executing a Progam
+        - Best Practice - drop privileges permanently before execing into another program
+        - Best Practice - avoid executing a shell (or another interpreter) with privileges
+        - Best Practice - close all unnecessary file descriptors before an exec()
+    e. Avoiding Exposing Sensitive Information
+    f. Confine the Process
+        - Best Practice - consider using capabilities
+        - Best Practice - consider using a chroot jail
+    g. Beware of Signals and Race Conditions
+    h. Pitfalls When Performing File Operations and File I/O
+        - Best Practice - the process umask should be set to a value that ensures the process necer creates publicly writable files
+        - Best Practice - judicious use of seteuid() or setreuid() to temporarily change process credentials may be required in order to ensure that a newly created file doesn't belong to the wrong user
+        - Best Practice - in set-user-ID-root program, file should be created initially so that it is not writable by other users
+        - Best Practice - checks on file attributes should be performed on open file descriptors
+        - Best Practice - if program must be creator of file, use the O_EXCL flag when calling open()
+        - Best Practice - a privileged program should avoid creating or relying on files in publicly writable directoriesi such as /tmp
+    i. Don't Trust Inputs or the Environment
+        - Best Practice - don't trust the environment list
+        - Best Practice - handle untrusted user inputs defensively
+        - Best Practice - avoid unreliable assumptions about the process's run-time environment
+    j. Beware of Buffer Overruns
+        - Attack - stack crashing, where a malicious user employs a buffer overrun to place carefully coded bytes into a stack frame in order to force the privileged program to execute arbitrary code
+        - Best Practice - use snprintf(), strncpy(), strncat() - that allow the caller to specify the maximum number of characters that should be copied
+    k. Beware of Denial-of-Service Attacks
+        - Attack - make a service unavailable either by sending the server malformed data that causes it to crash or by overloading it with bogus requests
+        - Best Practice - server should perform load throttling, dropping requests when the load exceeds predetermined limit
+        - Best Practice - server should employ timeouts for communication with a client
+        - Best Practice - in the event of an overload, the server should log suitable messages so that the system administrator is notified of the problem, logging should also be throttled
+        - Best Practice - server should be programmed so that it doesn't crash in the face of an unexpected load
+        - Best Practice - data structures should be designed to avoid algorithmic-complexity attacks
+    l. Check Return Statuses and Fail Safety
