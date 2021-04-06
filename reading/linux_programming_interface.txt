@@ -2146,3 +2146,79 @@ Chapter 39: Writing Secure Privileged Programs
         - Best Practice - server should be programmed so that it doesn't crash in the face of an unexpected load
         - Best Practice - data structures should be designed to avoid algorithmic-complexity attacks
     l. Check Return Statuses and Fail Safety
+
+Chapter 39: Capabilities
+    a. Rationale for Capabilities
+        - A more granular management of actions that require privilege, without providing the privilege to do everything
+    b. Linux Capabilities
+        - CAP_AUDIT_CONTROL - enable and disable kernel audit logging
+        - CAP_AUDIT_WRITE - write records to the kernel auditing log
+        - CAP_CHOWN - change file's user ID or change file's group ID
+        - CAP_DAC_OVERRIDE - bypass file read, write, and execute permissions checks
+        - CAP_DAC_READ_SEARCH - bypass file read permission checks and directory read and execute
+        - CAP_FOWNER - generally ignore permission checks on operations that normally require the process' file system user ID to match the file's user ID
+        - CAP_FSETID - modify a file without having the kernel turn off set-user-ID and set-group-ID
+        - CAP_IPC_LOCK - override memory locking restrictions
+        - CAP_IPC_OWNER - bypasas permission checks for operations on System V IPC objects
+        - CAP_KILL - bypass permission checks for sending signals
+        - CAP_LEASE - establish leases on arbitrary files
+        - CAP_LINUX_IMMUTABLE - set append and immutable i-node flags
+        - CAP_MAC_ADMIN - configure or make state changes for mandatory access controll
+        - CAP_MAC_OVERRIDE - override MAC
+        - CAP_MKNOD - use mknod() to create devices
+        - CAP_NET_ADMIN - perform various network related operations
+        - CAP_NET_BIND_SERVICE - bind to privileged socket ports
+        - CAP_NET_BROADCAST - perform socket broadcastrs and listen to multicasts
+        - CAP_NET_RAW - use raw and packet sockets
+        - CAP_SETGID - make arbitrary changes to process group IDs
+        - CAP_SETFCAP - set file capabilities
+        - CAP_SETPCAP - grant and remove capabilities in the process's permitted set to or from any other process
+        - CAP_SETUID - make arbitrary changes to process user IDs
+        - CAP_SYS_ADMIN - exceed file max limimt in system calls that open files
+        - CAP_SYS_BOOT - use reboot() to reboot the system
+        - CAP_SYS_CHROOT - use chroot() to set process root directory
+        - CAP_SYS_MODULE - load and unload kernel modules
+        - CAP_SYS_NICE - raise nice value
+        - CAP_SYS_PACCT - use acct() to enable or disable process accounting
+        - CAP_SYS_PTRACE - trace arbitrary processes using ptrace()
+        - CAP_SYS_RAWIO - perform operations on I/O ports using iopl() and ioperm()
+        - CAP_SYS_RESOURCE - use reserved space on file systems
+        - CAP_SYS_TIME - modify system clock
+        - CAP_SYS_TTY_CONFIG - perform virtual hangup of terminal or pseudoterminal using vhangup()
+    c. Proces and File Capabilities
+        - Process Capabilities
+            - Permitted - the capabilities a process may employ
+            - Effective - capabilities used by the kernel to perform privilege checking
+            - Inheritable - capabilities that may be carried over to the permitted set when a program is execed by this process
+        - File Capabilities
+            - Permitted - set of capabilities that may be added to the process's permitted set during exec()
+            - Effective - single bit, if enabled, permitted to new effective
+            - Inheritable - set is masked to determine set of capabilities that are to be enabled in the process's permitted set after an exec()
+        - Purpose of the Process Permitted and Effective Capability Sets - defines capabilitiers a procress may employ
+        - Purpose of the File Permitted and Effective Capability Sets - provides a mechanism by which an executable file can give capabilities to a process
+        - Purpose fo the Process and File Inheritable Sets - provides a mechanism by which a process can preserve some of its capabilties across an exec
+        - Assigning and Viewing File Capabilities from the Shell
+            - setcap() - set capabilities
+            - getcap() - get capabilities
+    d. The Modern Capabilities Implementation
+        - Requirements
+            - For each privileged operation, the kernel should check whether the process has the relevant capability, rather than checking for an effective or file system user ID of 0
+            - The kernel must provide system calls allowing a process's capabilities to be retrieved and modifies
+            - The kernel must support the notion of attaching capabilities to an executable file, so the process gains the associated capabilities when that file is execed
+    e. Transformation fo Process Capabilities During exec()
+        - Capability Bounding Set - security mechanism used to limit the capabilties that a process can gain during an exec()
+        - Preserving Root Semantics 
+    f. Effect on Process Capabilities of Changing User IDs
+    g. Changing Process Capabilities Programmatically - a process can raise or drop its capabilities set using either the capset() system call or preferably the libcap API
+        - The libcap API
+            - cap_get_proc() - to retrieve a copy of the process's current capability sets
+            - cap_set_flag() - update the user space structure to raise CAP_SET and drop CAP_CLEAR capabilities from the permitted, effective, and inheritable sets stored in the user-space structure
+    h. Creating Capabilities Only Environment
+        - Secure Bits Flags
+            - SECBIT_KEEP_CAPS - don't drop permitted capabiltiies when a process with one or more 0 user IDs sets all of its user IDs to nonzero values
+            - SECBIT_NO_SETUID_FIXUP - don't change capabilities when effective or filesystem user IDs are switched between 0 and nonzero values
+            - SECBIT_NOROOT - dont grant capabilities if a process with a real or effective user ID of 0 does an exec() or it execs a set-user-ID-root program
+    i. Discovering the Capabilities Required by a Program
+        - Use strace() to see which system call fails with the error EPERM, the error used to indicate the lack of a required capability
+        - Use a kernel probe to produce monitoring output when the kernel is asked to perform capability checks
+    j. Older Kernels and Systems Without File Capabilities
