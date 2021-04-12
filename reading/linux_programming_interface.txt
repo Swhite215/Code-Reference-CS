@@ -2222,3 +2222,53 @@ Chapter 39: Capabilities
         - Use strace() to see which system call fails with the error EPERM, the error used to indicate the lack of a required capability
         - Use a kernel probe to produce monitoring output when the kernel is asked to perform capability checks
     j. Older Kernels and Systems Without File Capabilities
+
+Chapter 40: Login Accounting
+    a. Overview of the utmp and wtmp Files
+        - utmp - maintains a record of users currently logged in to the system, as each user logs in, a record is written to the file
+        - wtmp - audit trail of all user logins and logouts, login record is appended, logout record is appended
+    b. The utmpx API
+    c. The utmpx Structure
+        - struct utmpx {
+            ut_type; /* Type of Record */
+            ut_pid /* PID of Login Process */
+            ut_line; /* Terminal Device Name */
+            ut_id; /* Suffix from Terminal Name */
+            ut_user; /* Username */
+            ut_host; /* Hostname for Remote Login or Kernel for Run-Level Messages */
+            ut_exit; /* Exist Status of Process Marked as Dead_Process */
+            ut_session; /* Session ID */
+            ut_tv; /* Entry Time */
+            ut_addr_v6; /* ID Address of Remote Host */
+            __unused; /* Reserved for Future Use */
+        }
+        - ut_type
+            - EMPTY - record does not contain valid accounting information
+            - RUN_LVL - indicates a change in the system's run level during system startup or shutdown
+            - BOOT_TIME - time of the system boot
+            - NEW_TIME - contains new time after a system clock change
+            - OLD_TIME - contains old time after a system clock change
+            - INIT_PROCESS - record for a process spawned by init
+            - LOGIN_PROCESS - record for a session leader process for a user login
+            - USER_PROCESS - record for a user process, usually a login session
+            - DEAD_PROCESS - a process that has exited
+        - Example Login Session
+            - an INIT_PROCESS record, written by init
+            - a LOGIN_PROCESS record, written by getty
+            - A USER_PROCESS record, written by login
+            - A DEAD_PROCESS record, written by init
+    d. Retrieving Information from the utmp and wtmp Files
+        - fn - void setutxent() - rewinds utmp file to the beginning
+        - fn - void endutxent - closes utmp file
+        - fn - struct utmpx *getutxent() - retrieves next sequential record from the utmp file
+        - fn - struct utmpx *getutxid() - searches utmp file for record 
+        - fn - struct utmpx *getutxline() - searches for a record
+        - fn - int utmpxname - records a copy of the pathname given to it
+    e. Retrieving the Login Name: getlogin()
+        - fn - char *getlogin() - finds the name of the terminal associated with the calling process's standard input, searches utmp for a record with ut_line, then returns ut_user from record
+    f. Updating the utmp and wtmp Files for a Login Session
+        - Login - record to utmp file, append to wtmp file
+        - Logout - erase utmp record, append to wtmp file
+        - fn - struct utmpx *pututxline() - writes the utmpx structure pointed to by ut into the /var/run/utmp file
+        - fn - void updwtmpx() - appends the utmpx record pointed to by ut to the file specified in wtmpx_file
+    g. The lastlog File - records the time each user last logged in to the system
