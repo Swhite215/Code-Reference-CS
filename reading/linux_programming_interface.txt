@@ -2272,3 +2272,79 @@ Chapter 40: Login Accounting
         - fn - struct utmpx *pututxline() - writes the utmpx structure pointed to by ut into the /var/run/utmp file
         - fn - void updwtmpx() - appends the utmpx record pointed to by ut to the file specified in wtmpx_file
     g. The lastlog File - records the time each user last logged in to the system
+
+Chapter 41: Fundamentals of Shared Libraries
+    a. Object Libraries
+        - Object Library - compiled source files, link to produce executable
+    b. Static Libraries
+        - Benefits
+            - We can place a set of commonly used object files into a single library file that can then be used to build multiple executables
+            - Link comands become simpler by just specifying the name of the static library
+        - Creating and Maintaining
+            - ar options archive object-file...
+        - Using a Static Library
+            - cc -g -o prog prog.o libdemo.a
+    c. Overview of Shared Libraries
+        - Issue to Solve - when a program is built against a static library, the resulting executable files include copies of all the object files that were linked into the program, redundancy
+        - Advantages
+            - Reduced disk space
+            - Reduces overall virtual memory
+            - Must relink executable using that module if change occurs
+            - Some programs can be loaded into memory and started more quickly
+            - Possible to make changes to the object modules without requiring programs to be relinked in order to see the changes
+    d. Creating and Using Shard Libraries - A First Pass
+        - Creating a Shared Library
+            - Use gcc to create three object modules
+            - Use -shared to create a shared library with the three object modules
+        - Posiiton-Independent Code
+            - cc -fPIC specifies the compiled should generate position-independent-code, allows code to be located at any virtual address at run time
+        - Using a Shared Library
+            - Embed the name of the shared library inside the executable during the link phase
+            - Mechanism for resolving the embedded library name and then loading into memory
+        - The LB_LIBRARY_PATH - add directory to this environment variable where shared library resides
+        - Static Linking and Dynamic Linking Contrasted
+            - Static Linking - compile time loading of libraries
+            - Dynamic Linking - run time loading of the shared libraries used by an executable
+        - The Shared Library Soname
+            - Soname - alias of shared library
+    e. Useful Tools for Working with Shared Libraries
+        - The ldd command - displays the shared libraries that a program (or a shared library) requires to run
+        - The objdump and readelf commands
+            - objdump - obtain binary machine code among other things
+            - readelf - displays similar information but in a different manner
+        - The nm command - lists the set of symbols defined within an object library or executable program
+    f. Shared Library Versions and Naming Conventions
+        - Major - incompatible API changes
+        - Minor - compatible API changes
+        - Patch - backwards compatabile fixes
+    g. Installing Shared Libraries
+        - /usr/lib - the directory in which most standard libraries are installed
+        - /lib - libraries required during system startup
+        - /usr/local/lib - nonstandard or experimental libraries
+        - Directories in /etc/ld.so.conf
+        - ldconfig
+            - Searches a standard set of directories and creates or updates a cache file to contain a list of the major library versions in all of these directories
+            - Examines the latest minor version of each major version of each library to find the embedded soname and then creates or udpates relative symbolic links for each soname in the same directory
+    h. Compatible Vs. Incompatible Libraries
+        - Compatible
+            - Semantics of each public function and variable in the library remains unchanged
+            - No function or variable in the library's public API is removed, can add new functions or variables
+            - Structures allocated within and returned by each function remain unchanged, excluding adding extra spaces early
+    i. Upgrading Shared Libraries
+        - Action - create a new library version, install it in the appropriate directory, and update the soname and linker name symbolic links as required using ldconfig
+    j. Specifying Library Search Directories in an Object File
+        - Acton - during static editing phase, insert into the excetuable a list of directories that should be searched at run time for shared libraries
+        - Using the -rpath Linker Option When Building a Shared Library
+            - Used for linking libraries together
+    k. Finding Shared Libraries at Run Time
+        - Rules
+            - If executable has any directories listed in DT_RPATH then these directories are searched
+            - If LD_LIBRARY_PATH is defined, then these directories are searched
+            - If executable has directoies in DT_RUNPATH, those are searched
+            - /etc/ld.so.cahce is checked
+            - /lib and /usr/lib are searched in that order
+    l. Run Time Symbol Resolution
+        - Idea - main() definitions override shared library definitions
+        - Idea - if a global symbol is defined in multiple libraries, then a reference to that symbol is bound to the first definition found by scanning libraries in the left to right order in which they were listed on the static link command link
+    m. Using a Static Library Instead of a Shared Library
+        - Static vs. Shared - useful if user can't or doesn't want to install a shared library on the system where the program is to be used
