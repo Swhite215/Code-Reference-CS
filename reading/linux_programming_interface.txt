@@ -2348,3 +2348,63 @@ Chapter 41: Fundamentals of Shared Libraries
         - Idea - if a global symbol is defined in multiple libraries, then a reference to that symbol is bound to the first definition found by scanning libraries in the left to right order in which they were listed on the static link command link
     m. Using a Static Library Instead of a Shared Library
         - Static vs. Shared - useful if user can't or doesn't want to install a shared library on the system where the program is to be used
+
+Chapter 42: Advanced Features of Shared Libraries
+    a. Dynamically Loaded Libraries
+        - When an executable starts, the dynamic linker loads all of the shared libraries in the programs dynamic dependency list
+        - dlopen API - enables a program to open a shared library at run time, search for a function by name in that library, and then call the function
+        - Opening a Shared Library: dlopen()
+            - fn - void dlopen() - loads the shared library into calling process's virtual address space and increments the count of open references to the library
+            - flags
+                - RTLD_LAZY - undefined function symbols should be resolved only as the code is executed
+                - RTLD_NOW - all undefined symboils should be immeditaely resolved before dlopen() completes
+                - RTLD_GLOBAL - symbols in this library and its dependency tree are made available for resolving references in other libraries
+                - RTLD_LOCAL - inverse of RTLD_GLOBAL
+                - RTLD_NODELTEE - don't unload the library during dlclose()
+                - RTLD_NOLOAD - don't load the library
+                - RTLD_DEEPBIND - when resolving symbole references, search for definitions in the library before searching for definitions in libraries that have already been loaded
+        - Diagnosing Errors: dlerror()
+            - fn - const char *dlerror(void) - obtain a pointer to a string thast indicates the cause of the error
+        - Obtaining the Address of a Symbol: dlsym()
+            - fn - void *dlsym() - searches for the named symbol (a function or variable) in the library
+        - Closing a Shared Library: dlclose()
+            - fn - int dlclose() - closes the lirbary and decrements the system's counter of open references to the library
+        - Obtaining Information About Loaded Symbols: dladdr()
+            - fn - int dladdr() - returns a stucture containing information about that address
+                - struct {
+                    *dli_fname; /* Pathname of shared library containing 'addr' */
+                    *dli_fbase; /* Base address at which shared library is loaded */
+                    *dli_sname; /* Name of symbol whose definition overlaps 'addr' */
+                    *dli_saddr; /* Actual value of the symbol returned in 'dli_sname' */
+                }
+        - Accessing Symbols in the Main Program - use --export-dynamic linker option
+    b. Controlling Symbol Visibility
+        - Reasons
+            - If unspecified interfaces are exported, then authors of applications that use the library may choose to employ these interfaces, creating a compatability problem
+            - During run time symbol resolution, any symbols that are exported might interpose definitions that are provided in other shared libraries
+            - Exporting unnecessary symbols increase the size of the dynamic symbol table that must be loaded
+        - Techniques
+            - In a C program, use the static keyword to make a symbol private to a source code module
+            - GNU C compiler gcc set visibility to hidden
+            - Version scripts
+            - Use RTLD_GLOBAL flag to specify that the symbols defined by the library should be made availble for binding by subsequently loaded libraries
+    c. Linker Version Scripts
+        - Controlling Symbol Visibility with Version Scripts
+            - Version Tag -> Global Symbols -> Local Symbols
+    d. Initialization and Finalization Functions
+        - Initiialziation - defined using gcc constructor attribute - executes when the library is loaded
+        - Finalization - defined using gcc constructor attribute - executes when the library is unloaded
+    e. Preloading Shared Libraries
+        - Define LD_PRELOAD - string consisting of space separated or colon separated names of shared libraries that should be loaded before any other shared libraries
+    f. Monitoring the Dynamic Linker
+        - Assign help to LD_DEBUG, dynamic linker displays help information about LD_DEBUG
+            - libs - display library search paths
+            - reloc - display relocation processing
+            - files - display progress for input file
+            - symbols - display symbol table processing
+            - bindings - display information about symbol binding
+            - version - display version dependencies
+            - all - all previous options
+            - statistics - display relocation statistics
+            - unused - determined unused DSOs
+            - help - display this help message and exit
