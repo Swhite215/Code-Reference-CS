@@ -2408,3 +2408,32 @@ Chapter 42: Advanced Features of Shared Libraries
             - statistics - display relocation statistics
             - unused - determined unused DSOs
             - help - display this help message and exit
+
+Chapter 43: Interprocess Communication Overview
+    a. A Taxonomy of IPC Facilities
+        - Communication - these facilities are concerned with exchanging data between processes
+        - Synchronization - these facilities are concerned with synchronizing the actions of processes or threads
+        - Signals - can be used for synchronization
+    b. Communication Facilities
+        - Data Transfer - one process writes data to IPC facility, and another process reads the data, user -> kernel and then kernel -> user
+            - Byte Stream - data exchanged via pipes, FIFOs, and stream sockets, each read can read an arbitrary number of bytes
+            - Message - data exchanged via System V message queues, POSIX message queues, and datagram sockets, each read operations reads a whole message as written by the writer process
+            - Pseudoterminals - used in specialized situations
+        - Shared Memory - exchanging memory by placing it in a region of memory shared between the processes
+            - System V, POSIX, and memory mappings
+    c. Synchronization Facilities
+        - Semaphores - kernel managed integer whose value is never permitted to fall below 0
+        - File Locks - designed to coordinate the actions of multiple processes operating on the same file
+        - Mutexes and Condition Variables - frequently used with threads
+    d. Comparing IPC Facilities
+        - Table 43-1 - Facility - Name - Handle Used
+        - Functionality
+            - Data Transfer Facilities - involve read and write operations, data can only be consumed by one reader, flow control and synchronization is managed by kernel
+            - Shared Memory - one process makes data visible to any number of other processes sharing the same memory region, synchronization must be handled by user
+        - Network Communication - only sockets permit processes to communicate over a network, used for communication between processes and for communication between processes on different hosts connected via a TCP/IP network
+        - Portability - System V IPC may be more portable than POSIX
+        - Accessibility - Process, Kernel, File System
+        - Persistence
+            - Process Persistence - IPC object remains in existence only as long as it is held open by at least one process
+            - Kernel Persistence - IPC object exists until either it is explicitly deleted or the system is shut down
+            - File System Persistence - IPC object lasts until it is explicitly deleted
