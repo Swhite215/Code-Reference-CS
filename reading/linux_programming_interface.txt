@@ -2437,3 +2437,43 @@ Chapter 43: Interprocess Communication Overview
             - Process Persistence - IPC object remains in existence only as long as it is held open by at least one process
             - Kernel Persistence - IPC object exists until either it is explicitly deleted or the system is shut down
             - File System Persistence - IPC object lasts until it is explicitly deleted
+
+Chapter 44: Pipes and FIFOs
+    a. Overview
+        - Pipe - a piece of plumbing that allows data to flow from one process to another
+            - Byte Stream - no concept of messages or message boundaries, the process reading can read blocks of data of any size
+            - Reading - attempts to read from a pipe that is currently empty block until at least one byte has been written to the pipe
+            - Unidirectional - data can only travel in one direction through a pipe
+            - Writes of PIPE_BUF bytes are guaranteed to be atomic
+            - Limited Capacity
+    b. Creating and Using Pipes
+        - fn - int pipe(int filedes[2]) - creates a new pipe, returns file descriptor for read end and write end of pipe
+        - Important - writer should close read end, and reader should close write end
+        - Pipes allow communication between related process
+        - Close unused pipe file descriptors to guarantee the reading process sees end of file after reading all data from pipe
+        - Close unused pipe file desctipros to guarantee the writing process receives a EPIPE error
+    c. Pipes as a Method of Process Synchronization
+        - Process
+            - Parent builds pipe
+            - Child are created and inherit file descriptor for write end of pipe and close decriptor once action is completed
+            - After all children have closed, the parent's read from the pipe will complete, returning end of file 
+    d. Using Pipes to Connect Filters
+        - Two filters i.e. programs that read from stdin and write to stdout are connected using a pipe
+    e. Talking to a Shell Command via a Pipe: popen()
+        - fn - FILE *popen() - creates a pipe, forks a child process that execs a shell, which in turn creates a child process to execute the string given in command
+        - fn - int pclose() - closes pipe and wait for the child shell to terminate
+    f. Pipes and stdio Buffering
+        - stdio library applies block buffering to the file stream, this means output is sent to the child proecss only when the stio buffer is filled or the pipe is closed
+    g. FIFOs
+        - FIFO has a name within the file system and is opened the same way as a regular file, this allows FIFO to be used for communication between unrelated processes
+        - fn - int mkfifo() - creates a new FIFO with the given pathname
+        - Once a FIFO has been created, any process can open it subject to the usual file permission checks
+        - You can use FIFOs and tee to create a dual pipeline
+    h. Client Server Application Using FIFOs
+        - Client Request to Server FIFO, Server FIFO sends to Server, Server Responds on Client Specific FIFO, Client Specific FIFO sends response to Client
+    i. Nonblocking I/O
+        - Use O_NONBLOCK to stop blocking when a preocess opens one end of a FIFO
+            - Allows a single process to open both ends of a FIFO, the proces first opens the FIFO for reading specifying O_NOBLOCK and then opens the FIFO for writing
+            - It prevents deadlocks between processes opening two FIFOs
+        - Nonblocking read() and write()
+    j. Semantics of read() and write() on Pipes and FIFOs
