@@ -2477,3 +2477,56 @@ Chapter 44: Pipes and FIFOs
             - It prevents deadlocks between processes opening two FIFOs
         - Nonblocking read() and write()
     j. Semantics of read() and write() on Pipes and FIFOs
+
+Chapter 45: Introduction to System V IPC
+    a. Mechanisms for Interprocess Communication
+        - Messsage Queues - used to pass messages between processes
+            - Message boundaries are preserved, so that readers and writers communicate in units of messages
+            - Each message includes an integer type field, so it is possible to select messages by type rather than in the order in which they were written
+        - Sempahores - permit multiple processes to synchronize their actions
+        - Shared Memory - enables multiple processes to share the same region of memory
+    b. API Overview
+        - Message Queues
+            - Header File - sys/msg.h
+            - Data Structure - msqid_ds
+            - Create/Open - msgget()
+            - Close - none
+            - Control - msgctl()
+            - Performing IPC - msgsnd() write, msgrcv() read
+        - Sempahores
+            - Header File - sys/sem.h
+            - Data Structure - semid_ds
+            - Create/Open - semget()
+            - Close - none
+            - Control - semctl()
+            - Performing IPC - semop() - test/adjust
+        - Shared Memory
+            - Header File - sys/shm.h
+            - Data Structure - shmid_ds
+            - Create/Open - shmget()
+            - Close - shmdt()
+            - Control - shmctl()
+        - Creating and Opening a System V IPC Object
+            - Use fn described above for get, analagous to the open() system call used for files
+        - IPC Object Deletion and Object Persistence
+            - Use fn describe above e.g. msgctl() with IPC_RMID to delete an object
+    c. IPC Keys
+        - Keys are integer values represented using the data type key_t
+        - Generating a Unique Identifier with IPC_PRIVATE
+            - Use IPC_PRIVATE with get function
+        - Generating a Unique Key with ftok()
+            - fn - key_t ftok() - returns a key value suitable for use in a subsequent call to one of the System V IPC get system calls
+    d. Associated Data Structure and Object Permissions
+        - Kernel maintains an associated data structure for each instance of a System V IPC object
+    e. IPC Identifiers and Client-Server Applications
+    f. Algorithm Employed by System V IPC get Calls
+        - For each mechanism, the kernal maintains an associated ipc_ids structure that records various global information about all instances of that IPC mechanism.
+        - Information includes a dynamically sized array of pointers, entries, to the associated data structure for each object instance.
+    g. The ipcs and ipcrm Commands
+        - ipcs - obtain information about IPC objects on the system
+        - ipcrm - deletes an IPC object
+    h. Obtaining a List of All IPC Objects
+        - /proc/sysvipc/msg - lists all message queues and their attributes
+        - /proc/sysvipc/sem - lists all sempahore sets and their attributes
+        - /proc/sysvipc/shm - lists all shared memory segments and their attributes
+    i. IPC Limits - ipcs -l list limits on each of the IPC mechanisms
