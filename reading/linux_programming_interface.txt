@@ -2530,3 +2530,70 @@ Chapter 45: Introduction to System V IPC
         - /proc/sysvipc/sem - lists all sempahore sets and their attributes
         - /proc/sysvipc/shm - lists all shared memory segments and their attributes
     i. IPC Limits - ipcs -l list limits on each of the IPC mechanisms
+
+Chapter 46: System V Message Queues
+    - Difference from Pipes and FIFO
+        - Handle used to refer to a message queue is not a file descriptor
+        - Communication via queues is message oriented, reader receives whole messages as written by the writer
+        - Each message has an integer type, so messages can be retrieved FIFO or by type
+    a. Creating or Opening a Message Queue
+        - fn - int msgget() - creates a new message queue or obtains the identifier of an existing queue
+    b. Exchanging Messages
+        - Sending Messages: msgsnd()
+            - fn - int msgsnd() - writes a message to the message queu
+                - IPC_NOWAIT flag - perform a non blocking send
+        - Receiving Messages: msgrcv()
+            - fn - ssize_t msgrcv() - reads and removes a message from the message queue and copies it contents into a buffer
+                - msgtyp
+                    - If equals 0, the first message from the queue is removed and returned to calling process
+                    - If > 0, first message in the queue whose mtype equals msgtyp is removed and returned to calling process
+                    - If < 0, treat the waiting message as a priority queue, giving priority to lowest mtype
+                - Flags
+                    - IPC_NOWAIT - perform a non blocking receive
+                    - MSG_EXCEPT - if msgtyp greater than 0, first message whose mstype is not equal to mstyp is removed from the queue
+                    - MSG_NORROR - removes messager regardless of size, if larger than maxmsgz bytes, truncates and returns
+    c. Message Queue Control Operations
+        - fn - int msgctl() - performs control operations on a message queue
+            - cmd
+                - IPC_RMID - remove message queue object and its associated msqid_ds
+                - IPC_STAT - place a copy of the msqid_ds data structure associated with message queue
+                - IPC_SET - update selected fields of the msqid_ds data structure
+
+    d. Message Queue Associated Data Structure
+        - struct msqid_ds {
+            msg_perm; /* Ownership and Permission */
+            msg_stime; /* Time of last msgsnd() */
+            msg_rtime; /* Time of last mssgrcv() */
+            msg_ctime; /* Time of last change */
+            msg_cbytes; /* Number of bytes in queue */
+            msg_qnum; /* Number of messages in queue */
+            msg_qbytes; /* Maximum bytes in queue */
+            msg_lspid; /* PID of last msgsnd() */
+            msg_lrpid; /* PID of last msgrcv() */
+        }
+    e. Message Queue Limits
+        - MSGMNI - system limit on number of message queues
+        - MSGMAX - system limit on max number of bytes that can be written in a single message
+        - MSGMNB - maximum number of bytes that can be held in queue at one time
+        - MSGTQL - system limit on number of messages that can be on all message queues on the system
+        - MSGPOOL - system limit on the size of buffer pool that is used to hold data in all message queues on system
+    f. Displaying ALl Message Queues on the System
+        - Pattern
+            - Use MSG_INFO operation to find out maximum index of the entries array for message queues
+            - Loop from 0 to maxind, employing a MSG_STAT operation for each value
+    g. Client-Server Programming with Message Queues
+        - Designs
+            - The use of a single message queue for exchanging messages in both directions between server and client
+            - The use of a separate message queue for the server and for each client, the server queue is used to receiving client requests, and responses are sent to client via the individual client queues
+    h. A File Server Application Using Message Queues
+        - Client creates Client Message Queue
+        - Client Makes Request to Server Message Queue
+        - Server Reads Request from Server Message Queue
+        - Server Creates Child to Handle Request
+        - Server Child Sends Response to Client Messsage Queue
+        - Client Reads Response from Client Message Queue
+    i. Disadvantages of System V Message Queues
+        - Message queues are referred to be identifiers rather than fds, means tools like select, poll, and epoll can't be used
+        - Use of keys adds additional complexity, also requires use of iprc and ipcrm instead of ls and rm
+        - Message queues are connectionless, and kernel doesn't maintain a count of number of processes referring to the queue as is done with pipes
+        - Limits on total number of message queues
