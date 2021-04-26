@@ -2597,3 +2597,72 @@ Chapter 46: System V Message Queues
         - Use of keys adds additional complexity, also requires use of iprc and ipcrm instead of ls and rm
         - Message queues are connectionless, and kernel doesn't maintain a count of number of processes referring to the queue as is done with pipes
         - Limits on total number of message queues
+
+Chapter 47: System V Semaphores
+    a. Actions to Perform on Semaphores
+        - Setting semaphore to an absolute value
+        - Adding a number to the current value of the semaphore
+        - Substracting a number from the current value of the semaphore
+        - Waiting for the semaphore value to be equal to 0
+    b. Overview
+        - General Steps for Using a Semaphore
+            - Create or open a semaphore using semget()
+            - Initialize the semaphores in the set using the semctl() SETVAL or SETALL operation
+            - Perform operations on semaphore values using semop()
+            - Remove the set using the semctl() IPC_RMID operation
+    c. Creating or Opening a Semaphore Set
+        - fn - int semget() - creates a new semaphore set or obtain the identifier of an existing set
+    d. Semaphore Control Operations
+        - fn - int semctl() - performs a variety of control operations on a semaphore set or an individual semaphore wtihin a set
+        - Generic Control Operations 
+            - IPC_RMID - immediately remove the sempahore set and its associated semid_ds data structure
+            - IPC_STAT - place a copy of the semid_ds data structure assocaited with the semaphore set in a buffer
+            - IPC_SET - update selected fields of the semid_ds data structure associated with the semaphore
+        - Retrieving and Initializing Semaphore Values
+            - GETVAL - returns value of a semaphore in the set
+            - SETVAL - sets value of a semaphore in the set
+            - GETALL - retrieve value of all of the semaphores in a set
+            - SETALL - intiailize all semaphores in a set
+        - Retreiving Per Semaphore Information
+            - GETPID - return process ID of last process to perform a semop() on this semaphore
+            - GETNCNT - return number of processes currently waiting for the value of this semaphore to increase
+            - GETZCNT - return number of processes currently waiting for the value of this semaphore to become 0
+    e. Semaphore Associated Data Structure
+        - struct semid_ds {
+            sem_perm; /* Ownership and Permissions */
+            sem_otime; /* Time of Last semop() */
+            sem_ctime; /* Time of Last Change */
+            sem_nsems; /* Number of Semaphores in Set */
+        }
+    f. Semaphore Initialization
+    g. Semaphore Operations
+        - fn - int semop() - performs one or more operations on the semaphores in a semaphore set
+        - fn - int semtimedop() - same as semop() execpt a timeout upper limit can be provided for how long call will block
+    h. Handling of Multiple Semaphore Operations
+        - if processes are blocked trying to decrease semaphore by same value, it is indeterminate which process will be permitted to perform the operation first
+        - if processes are blocked trying to decrease a semaphore value by different amounts, then requests are served in the order in which they become possible
+    i. Semaphore Undo Values
+        - Use SEM_UNDO flag when changing the value of a semaphore via semop()
+    j. Implementing a Binary Semaphores Protocols
+        - Values
+            - available i.e. free and reserved i.e. in use
+        - Actions
+            - Reserve - attempt to reserve this semaphore for exclusive use
+            - Release - free currently reserved semaphore
+            - Reserve Conditionally - make a nonblocking attempt to reserve this semaphore for exclusive use
+    k. Semaphore Limits
+        - SEMAEM - maximum value that can be recorded in a semadj total
+        - SEMMNI - system wide limit on the number of semaphore identifiers that can be created
+        - SEMMSL - maximum number of semaphores that can be allocated in a semaphore set
+        - SEMNS - system wide limit on the number of semaphores in all semaphore sets
+        - SEMOPM - maximum number of operations per semop() call
+        - SEMVMX - maximum value for a semaphore
+        - SEMMNU - system wide limit on the total number of semaphore undo structures
+        - SEMUME - maximum number of undo entries per semaphore undo structure
+    l. Disadvantages of System V Semaphores
+        - Semaphores are referred to by identifiers rather than file descriptors
+        - Use of keys rather than filenames results in additional programming complexity
+        - The use of separate system calls for create and initialization means some extra work is needed to avoid race conditions
+        - Kernel doesn't maintain a count of the number of processes referring to a semaphore set
+        - Programming interface provided by System V semaphores is overly complicated
+        - There are various limits on the operation of semaphoress
