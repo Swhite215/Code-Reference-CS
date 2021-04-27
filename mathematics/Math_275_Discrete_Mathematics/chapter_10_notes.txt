@@ -41,3 +41,40 @@ Chapter 10: Graphs
         - Isomorphism of Graphs - G1 = (V1, E1) and G2 = (V2, E2) are isomorphic if there exists a one to one and onto function f from V1 to V2 with the property that a and b are adjacent in G1 if and only if f(a) and f(b) are adjacent in G2
             - Trick, compare highest degrees of vertexes for a quick check
             - Check vertex with matching degrees and check adjacent vertices for different degrees
+    d. Connectivity
+        - Introduction
+        - Paths
+            - Path - sequence of edges that begins at a vertex of a graph and travels from vertex to vertex along edges of the graph
+                - Edges - e1, e2, e3, e4, e5
+                - Vertices - u, x0, x1, x2, xn, v
+            - Simple Path - if it does not contain the same edge more than once
+            - Applications
+                - Determining whether a message can be sent between two computers
+                - Efficiently planning routes for mail delivery
+        - Connectedness
+            - Graph is called connectred if there is a path between every pair of distinc vertices of the graph
+            - Connected Components - connected subgraph of G that is not a proper subgraph of another connected subgraph of G
+            - Cut Vertices - the removal of this vertex and all incident edges produces a graph with more connected components i.e. produces a subgraph that is not connected
+            - K-conneceted - k(G) >= k
+                - k(G) = 0, disconnected graphs
+                - k(G) = 1, graphs without cut vertices that can be disconnected by removing one vertex
+        - Edge Connectivity
+            - Measure connectivity of a connected graph G in terms of the minimum number of edges that we can remove to disconnect it
+        - Connectedness in Directed Graphs
+            - Strongly Connected - if there is a path from a to b and from b to a whenever a and b are vertices in the graph, must be a sequence of directed edges fropm any vertex in the graph to any other vertex
+            - Weakly Connected - if there is a path between every two vertices in the underlying undirected graph
+        - Strong Components of a Directed Graph - subgraphs of a directed graph G that are strongly connected bu tnot contained in larger strong connected subgraphs, that is, the maximal strongly connected subgraphs, are called the strongly connected components or strong components of G
+        - Theorems
+            - There is a simple path between every pair of distinct vertices of a connected undirected graph
+    e. Euler and Hamilton Paths
+        - Euler Circuit - can we travel along the edges of a graph starting at a vertex and returning to it by traversing each edge of the graph exactly once?
+        - Hamilton Path - can we travel along the edges of a graph starting at a vertex and returning to it while visiting each vertex of the graph exactly once?
+        - Euler Paths and Circuits
+            - Seven Bridges of Konigsberg - no solution, what is notable is how Euler PROVED it had no solution
+            - Euler Circuit - simple circuit in graph G containing every edge of G
+            - Euler Path - simple path containing every edge of G
+        - Necessary and Sufficient Conditiosn for Euler Circuits and Paths
+            - Show every vertex must have an even degree
+        - Theorem
+            - A connected multigraph with at least two vertices has an Euler circuit if and only if each of its vertices has even degree
+            - A connected multigraph has an Euler path but not an Euler circuit if and only if it has exactly two vertices of odd degree
