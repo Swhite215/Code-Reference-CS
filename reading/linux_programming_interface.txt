@@ -2666,3 +2666,49 @@ Chapter 47: System V Semaphores
         - Kernel doesn't maintain a count of the number of processes referring to a semaphore set
         - Programming interface provided by System V semaphores is overly complicated
         - There are various limits on the operation of semaphoress
+
+Chapter 48: System V Shared Memory
+    a. Overview
+        - Typical Process
+            - Call shmget() to create a new shared memory segment or obtain the identifier of an existing segment
+            - Use shmat() to attach the shared memory segment, that is make the segment part of the virtual memory of the calling process
+            - Shared memory can be treated like any other memory available to the program
+            - Call shmdt() to detach the shared memory segment
+            - Call shmctl() to delete the shared memory segment
+    b. Creating or Opening a Shared Memory Segment
+        - fn - int shmget() - creates a new shared memory segment or obtains the identifier of an existing segment
+    c. Using Shared Mmeory
+        - fn - void *shmat() - attaches the shared memory segment to calling process's virtual address space
+    d. Example: Transferring Data via Shared Memory
+        - Writer - reads blocks of data from stdin and writes them into a shared memory segment
+        - Reader - reads blocks of data from the shared memory segment to standard output
+    e. Location of Shared Memory in Virtual Memory
+        - If allowing kernel to choose where to attach (recommended) the shared memory will be placed at 0x4000000000, along with memory mappings and shared libraries
+    f. Storing Pointers in Shared Memory
+        - When storing references inside a shared memory segment that point to other addresses within the segment, we should use relative offsets rather than absolute pointers
+    g. Shared Memory Control Operations
+        - fn - int shmctl() - performs a range of control operations on the shared memory segment
+        - Generic Control Operations
+            - IPC_RMID - delete shared memory segment
+            - IPC_STAT - get data structure
+            - IPC_SET - set fields inside of data structure
+        - Locking and Unlocking Shared Memory
+            - SHM_LOCK - locks a shared memory segment into memory
+            - SHM_UNLOCK - unlocks the shared memory segment
+    h. Shared Memory Associated Data Structure
+        - struct shmid_ds {
+            shm_perm; /* Ownership and Permissions */
+            shm_segsz; /* Size of segment in bytes */
+            shm_atime; /* Time of Last shmat() */
+            shm_dtime; /* Time of Last shmdt() */
+            shm_ctime; /* Time of Last Change */
+            shm_cpid; /* PID of creator */
+            shm_lpid; /* PID of last shmat() */
+            shm_nattch; /* Number of currently attached processes */
+        }
+    i. Shared Memory Limits
+        - SHMMNI - system wide limit on number of shared memory identifiers
+        - SHMMIN - minimum size in bytes of a shared memory segment
+        - SHMMAX - maximum size in bytes of a shared memory segment
+        - SHMALL - system wide limit on total number of pages of shared memory
+        - SHMSEG - per process limit on number of attached shared memory segments
