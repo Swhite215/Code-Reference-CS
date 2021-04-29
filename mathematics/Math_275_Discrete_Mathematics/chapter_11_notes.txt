@@ -1,0 +1,26 @@
+Discrete Math and Its Applications - Rosen, Kenneth
+
+Chapter 11: Trees
+    a. Introduction
+        - Tree - a connected undirected graph with no simple circuits
+            - A tree cannot contain multiple edges or loops
+        - Forest - graphs containing no simple circuits that are not connected but grouped together
+        - Theorem - an undirected graph is a tree if and only if there is a unique simple path between any two of its vertices
+        - Rooted Tree - a tree in which one vertex has been designated as the root and every edge is directed away from the root
+        - Terminology
+            - Parent - unique vertex u such that there is a directed edge from u to v
+            - Child - when u is parent of v, v is called a child of u
+            - Siblings - vertices with the same parent
+            - Ancestors - vertices in the path from the root to this vertex, excluding the vertex itself
+            - Descendants - descendants of a vertex v are those vertices that have v as an ancestor
+            - Leaf - vertex with no children
+            - Internal - vertices that have children
+            - Height - maximum of the level of vertices
+        - M-ary Tree - rooted tree if every internal vertex has no more than m children
+        - Full M-ary Tree - every internal vertex has exactly m chlildren
+        - Ordered Rooted Trees - rooted tree where tehe children of each internal vertex are ordered
+        - Properties of Trees
+            - A tree with n vertices has n-1 edges
+            - A full m-ary tree with i internal vertices contains n = mi + 1 vertices
+            - There are at most m^h leaves in an m-ary tree of height h
+            - A full m-ary tree with i internal vertices has e = mi edges
