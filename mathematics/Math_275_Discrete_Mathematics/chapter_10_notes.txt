@@ -78,3 +78,6 @@ Chapter 10: Graphs
         - Theorem
             - A connected multigraph with at least two vertices has an Euler circuit if and only if each of its vertices has even degree
             - A connected multigraph has an Euler path but not an Euler circuit if and only if it has exactly two vertices of odd degree
+            -  If G is a simple graph with n vertices with n >= 3 such that the degree of every vertex in G is at least n/2, then G has a Hamilton Circuit
+            - A directed multigraph having no isolated vertices has an Euler circuit if and only if the graph is weakly connected and the in-degree and out-degree of each vertex are equal
+            - A directed multigraph having no isolated vertices has an Euler path but not an Euler circuit if and only if the graph is weakly connected and the in-degree and out-degree for each evrtex are equal for all but two vertices, one that has in-degree one larger than out degree and the other that has out-degree one larger than its in-degree
