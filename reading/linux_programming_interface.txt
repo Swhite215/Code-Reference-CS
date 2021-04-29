@@ -2712,3 +2712,59 @@ Chapter 48: System V Shared Memory
         - SHMMAX - maximum size in bytes of a shared memory segment
         - SHMALL - system wide limit on total number of pages of shared memory
         - SHMSEG - per process limit on number of attached shared memory segments
+
+Chapter 49: Memory Mappings
+    a. Overview
+        - Types
+            - File Mapping - maps a region of a file directly into the calling process's virtual memory, once a file is mapped, its contents can be accessed by operations on the bytes in the corresponding memory regions
+            - Anonymous Mapping - no corresponding file, pages of the map are intialized at 0
+        - Private or Shared
+            - Private Mapping - modifications to the contents of the mapping are not visible to other processes, and for a file mapping, are not carried through to the underlying file
+            - Shared Mapping - modifications to the contents of the mapping are visible to other processes that share the same mapping
+        - Mixes
+            - Private - File - contents of the mapping are init from a file in region, multiple proceses share same physical pages, copy on write is used
+                - Use - init a process's text and data segments from the corresponding parts of a binary exec or shared library file
+            - Private - Anonymous - new mapping distinct from other anonymous mappings 
+                - Use - allocate new memory for a process e.g. malloc
+            - Shared - File - all processes mapping the same region of a file share the same physical pages of memory, modifications are carried though\
+                - Use - permits memory-mapped I/O
+                - Allow unrelated processes to share a region in memory in order to perform fast IPC
+            - Shared - Anonymous - pages are not copy on write, changes made are visible to others
+                - Use - IPC between similar processes
+    b. Creating a Mapping: mmap()
+        - fn - void *map() - creates a new mapping in the calling process's virtual space
+    c. Unmapping a Mapped Region: munmap()
+        - fn - int munmap() - removes a mapping from the calling process's virtual address space
+    d. File Mappings
+        - Order
+            - Obtain a descriptor for the file, typically via a call to open()
+            - Pass that file descriptor as the fd argument in a call to mmap()
+        - Private File Mappings
+            - Allows multiple processes to share same read only text segment
+            - Map the initialized data segment of an executable or shared library
+        - Shared File Mappings
+            - Shared files and modifications
+    e. Synchronizing a Mapped Region: msync()
+        - fn - int msync() - gives an application explicit control over when a shared mapping is synchronized with the mapped file
+        - Why - ensure data integrity
+    f. Additional mmap() Flags
+        - MAP_ANONYMOUS - create an anonymous mapping
+        - MAP_FIXED - interpgret an addr argument exactly
+        - MAP_LOCKED - lock mapped pages into memory
+        - MAP_HUGELTB - create a mapping that uses huge pages
+        - MAP_NORESERVE - control reservation of swap space
+        - MAP_PRIVATE - modifications to mapped data are private
+        - MAP_POPULATE - populate the pages of a mapping
+        - MAP_SHARED - modifications to mapped data are visible
+        - MAP_UNINITAILIZED - don't clear an annonymous mapping
+    g. Annonymous Mappings
+        - Option #1 - specify MAP_ANONMYMOUS in mmap() flags
+        - Option #2 - open the /dev/zero device file and pass the resulting file descriptor to mmap()
+    h. Remapping a Mapped Region: mremap()
+        - fn - void *mremap() - can change a mapping location and size after it has been created
+    i. MAP_NORESERVE and Swap Space Overcommitting
+        - MAP_NOSERVERE - reserver swap space for the pages of a mapping only as they are actually required
+        - The OOM Killer - out of memory killer, selects process to kill when memory becomes exhausted
+    j. The MAP_FIXED Flag - forces the kernl to interpret the address in addr exactly, should be omitted for portability
+    k. Nonlinear Mappings: remap_file_pages()
+        - fn - int remap_file_pages() - rearrange correspondence between the pages of memory and the pages of a file
