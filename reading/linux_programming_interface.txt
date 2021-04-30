@@ -2768,3 +2768,30 @@ Chapter 49: Memory Mappings
     j. The MAP_FIXED Flag - forces the kernl to interpret the address in addr exactly, should be omitted for portability
     k. Nonlinear Mappings: remap_file_pages()
         - fn - int remap_file_pages() - rearrange correspondence between the pages of memory and the pages of a file
+
+Chapter 50: Virtual Memory Management
+    a. Changing Memory Protection
+        - fn - int mprotect() - changes the protection of the virtual memory pages in the range starting at addr and continuing for length bytes
+            - int prot = PROT_NONE, PROT_READ, PROT_WRITE, PROT_EXEC
+    b. Memory Locking: mlock() and mlockall()
+        - fn - int mlock() - lock region of memory
+        - fn - int munlock() - unlock region of memory
+        - Resolving Memory Locks
+            - on process termination
+            - if locked pages are unmapped via munmap()
+            - if locked pages are overlaid using the mmap() MAP_FIXED flag
+        - Locking and Unlocking All of a Process's Memory
+            - fn - int mlockall() - locks all of the currently mapped pages in a process's virtual address space
+                - MCL_CURRENT - lock all pages that are currently mapped intro the calling process's virtual address space, including program text, data segments, memory mapping, and the stack
+                - MCL_FUTURE - lock all pages subsequently mapped into the calling process's virtual address space
+            - fn - int munlockall() - unlocks all of hte pages of the calling process and undoes the effect of any previous mlockall()
+    c. Determining Memory Residence
+        - fn - int mincore() - reports which pages in a virtual address space range are currently resident in RAM
+    d. Advising Future Memory Usage Patterns: madvice()
+        - fn - int madvice() - used to improve the performance of an application by informing the kernel about the calling process's likely usage of the pages in the range starting at addr and continuing length bytes
+        - Advice
+            - MADV_NORMAL - default behavior, pages are transferred in clusters
+            - MADV_RANDOM - pages in this region will be accesserd randomly, so read ahead yields no benefit, fetch minimum amount of data on each read
+            - MADV_SEQUENTIAL - pages will be accessed once sequentially, thus kernel can aggressively read ahead and pages can be quickly freed
+            - MADV_WILLNEED - read pages in this region ahead, in preparation for future access
+            - MADV_DONTNEED - calling process no longer requires the pages in this region to be memory resident
