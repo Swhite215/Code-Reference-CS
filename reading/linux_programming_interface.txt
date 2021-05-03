@@ -2795,3 +2795,41 @@ Chapter 50: Virtual Memory Management
             - MADV_SEQUENTIAL - pages will be accessed once sequentially, thus kernel can aggressively read ahead and pages can be quickly freed
             - MADV_WILLNEED - read pages in this region ahead, in preparation for future access
             - MADV_DONTNEED - calling process no longer requires the pages in this region to be memory resident
+
+Chapter 51: Introduction Posix IPC
+    a. Overview
+        - Types - Message Queues, Semaphores, Shared Memory
+    b. API Overview
+        - Message Queues
+            - Header File - mqueue.h
+            - Create/Open - mq_open()
+            - Close - mq_close()
+            - Unlink - mq_unlink()
+            - Perform IPC - mq_send() and mq_receive()
+        - Semaphores
+            - Header File - semaphore.h
+            - Create/Open - sem_open()
+            - Close - sem_close()
+            - Unlink - sem_unlink()
+            - Perform IPC - sem_post(), sem_wait(), sem_getvalue()
+        - Message Queues
+            - Header File - sys/mman.h
+            - Create/Open - shm_open()
+            - Close - munmap()
+            - Unlink - shm_unlink()
+            - Perform IPC
+        - Creating an IPC Object
+            - Create a new object with given name, opens that objectm and returns a handle for it
+            - Opens an existing object and returns a handle for that object
+        - Closing an IPC Object
+            - Associated close call(), waits for last process to finish using before deallocating
+        - IPC Object Permissions - permissions mask that is the same for files
+        - IPC Object Deletion and Object Persistence - kernel persistence
+        - Listing and Removing POSIX IPC Objects - virtual filesystems under root
+    c. Comparison of System V IPC and POSIX IPC
+        - POSIX Benefits
+            - Interface is simpler
+            - Use of names, and open, close, unlink functions is more consistent with traditional UNIX file model
+            - Objects are reference counted, simplifying object deletion
+        - System V Benefits
+            - Portability i.e. support and standardization
