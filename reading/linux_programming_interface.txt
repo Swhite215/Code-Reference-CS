@@ -2833,3 +2833,56 @@ Chapter 51: Introduction Posix IPC
             - Objects are reference counted, simplifying object deletion
         - System V Benefits
             - Portability i.e. support and standardization
+
+Chapter 52: POSIX Message Queues
+    a. Opening, Closing, and Unlinking a Message Queue
+            - Opening
+                - fn - mqd_t mq_open() - creates a new message queue or open an existing queue
+                    - Flags
+                        - O_CREATE - create queue if it doesnt exist
+                        - O_EXCL - create clue exclusively
+                        - O_RDONLY - open for reading only
+                        - O_WRONLY - open for writing only
+                        - O_NONBLOCK - open in non blocking mode
+            - Closing
+                - fn - int mq_close() - closes a message queue
+            - Removing
+                - fn - int mq_unlink() - removes message queue, it is destroyed once all processes cease using it
+    b. Relationship between Descriptors and Message Queues
+        - A message queue descriptor is a per-process handle thast refers to an entry in the system wide table of open message queue decsriptions, and this entry in turn refers to a message queue object
+    c. Message Queue Attributes
+        - struct mq_attr {
+                mq_flags; /* Message queue description flags */
+                mq_maxmsg; /* Maximum number of messages on queue */
+                mq_msgsize; /* Maximum message size in bytes */
+                mq_curmsgs; /* Number of messages currently in queue */
+        }
+        - Retrieving Message Queue Attributes
+            - fn - int mq_getattrr() - returns an mq_attr structure containing information about a message queue
+        - Modifying Messsage Queue Attributes
+            - fn - int mq_setattr() - sets attribute in mq_attr structure
+    d. Exchanging Messages
+        - Sending Messages
+            - fn - int mq_send() - adds message to message queue
+        - Receiving Messages
+            - fn ssize_t mq_receive() - removes the oldests message with the highest priority from the message queue
+        - Sending and Receiving with a Timeout
+            - fn - int mq_timedsend()
+            - fn - ssize_t mq_timedreceived()
+    e. Message Notification
+        - fn - int mq_notify() - registers the calling process to receive a notififaction when a message arrives on the empty queue
+        - Receiving a Notifcation via a Signal
+            - Open message queue, allocate buffer for receiving messages
+            - Block notification signal SIGUSR1 and establish a handler for it
+            - Make initial call to mq_notify() to register process to receie message notification
+            - Execute an infinite loop
+                - Call sigsuspend(), which unblocks notification signal and waits until signal is caught
+            - Call mq_notify() to register thsi process to receive message notifications
+            - Execute a while loop that drains the queue by reading as many messages as possible
+    f. Linux Specific Features
+        - Displaying and deleting message queu objects via the command line
+        - Obtain information about a message queue
+        - Using message queues with alternative I/O models
+    g. Message Queue Limits
+        - MQ_PRIO_MAX - defines the maximum priority for a message
+        - MQ_OPEN_MAX - indicat maximum number of message queues that a process can hold open
