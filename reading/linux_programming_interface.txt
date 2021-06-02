@@ -2927,3 +2927,27 @@ Chapter 53: POSIX Semaphores
     f. Semaphore Limits
         - SEM_NSEMS_MAX - maximum number of POSIX semaphores that a process may have
         - SEM_VALUE_MAX - maximum value that a POSIX semaphore may reach
+
+Chapter 54: POSIX Shared Memory
+    a. Overview
+        - Shared Memory - allows us to share a mapped region between unrelated processes without needing to create a corresponding mapped file
+        - Procedure
+            - Use shm_open() to open an object with a specified name
+            - Pass file descriptor obtained in previous step in a call to mmap()
+    b. Creating Shared Memory Objects
+        - fn - int shm_open() - creates and opens a new shared memory object or opens an existing object
+            - Flags - O_CREAT, O_EXCL, O_RDONLY, O_RDWR, O_TRUNC
+    c. Using Shared Memory Objects
+    d. Removing Shared Memory Objects
+        - fn - int shm_unlink() - removes the shared memory object specified by name
+    e. Comparisons Between Shared Memory APIs
+        - Techniques - System V Shared Memory, Shared File Mappings, POSIX Shared Memory Objects
+        - Overall
+            - Fast IPC that requires a semaphore or other synchronization technique
+            - Shared memory region looks like any other region once mapped
+            - Shared memory region is placed within the process's virtual address space
+            - Must ensure all references to locations are calculated as offsets
+        - Differences
+            - Data sored in a shared memory region can persist across system restarts
+            - System V and POSIX use different mechanisms to identify and refer to a shared memory object, System V = Keys, POSIX = Names and FDs
+            - Size of System V shard memory is fixed at the time of creation
