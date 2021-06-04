@@ -15,3 +15,5 @@ Various Read Whitepapers and Dissertations:
 3. Algorithms
   a. Paxos: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf
   b. Raft: https://raft.github.io/raft.pdf
+
+4. Artificial Intelligence
