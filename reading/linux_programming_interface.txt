@@ -3007,4 +3007,54 @@ Chapter 55: File Locking
         - link() plus unlink()
         - open() plus unlink()
 
-
+Chapter 56: Sockets - Introduction
+    a. Overview
+        - Client-Server Scenario
+            - Each application creates a socket. A socket is the apparatus that allows communication, and both appliations require one
+            - The server binds its socket to a well know address so that clients can locate it
+        - Create - a socket is created using the socket() system call, which returns a file descriptor used to refer to the socket in subsequent system calls
+        - Communication Domains 
+            - Domain determines method of identifying a socket and the range of communication
+        - Domains
+            - UNIX - communication between applications on the same host
+            - IPv4 - communication between applications running on hosts connected via Internet Protocol IPv4
+            - IPv6 - communication between applications running on hosts connected via an Internet Protocol IPv6
+        - Socket Types
+            - Stream - reliable, connection orieted
+                - Reliable - guaranteed that either the transmitted data will arrive intact at the receiving application exactly as transmitted, or notification of failure
+                - Bidirectional - two ways
+                - Bytestream - no concept of message boundaries
+            - Datagram - unreliable, message boundaries
+        - Socket System Calls
+            - socket() - creates a new socket
+            - bind() - binds a socket to a an address
+            - listen() - allows a stream socket to accept incoming connections from other sockets
+            - accept() - accepts a connection from a peer applicaiton on a listening stream socket
+            - connect() - establishes a connection with another socket
+    b. Creating a Socket: socket()
+        - fn - int socket(int domain, int type, int protocol)
+    c. Binding a Socket to an Address: bind()
+        - fn - int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+    d. Generic Socket Address Structure: struct sockaddr
+        - struct sockaddr {
+            sa_family_t sa_family; - address family
+            char sa_data[4]; - socket address according to socket domain
+        }
+    e. Stream Sockets
+        - socket() -> server bind() -> server listen() -> client connect() -> server accept() -> transmit data
+        - Active and Passive Sockets
+            - Active - can be used in a connect() call to establish a connection to a passive socket
+            - Passive - marked to allow incoming connections by calling listen()
+        - Listening for Incoming Connections: listen()
+            - fn - int listen(int sockfd, int backlog) - marks stream as passive
+        - Accepting a Connection: accept()
+            - fn - int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen) - accepts connection on listening stream socket
+        - Connecting to a Peer Socket: connect()
+            - fn - int connect(int sock fd, const struct sockaddr *addr, socklent_t addrlen) - connects the active socket to the listening socket
+        - I/O on Stream Sockets
+            - read() anmd write(), or send() and recv(), kernel buffers data between socket requests
+        - Connection Termination: close()
+    f. Datagram Sockets
+        - Exchanging Datagrams: recfrom() and sendto()
+            - fn - ssize_t recvfrom(int sockfd, void *buffer, size_t length, int flags, struct sockadd *src_addr, socklen_t* addrlen) - receive datagram
+            - fn - ssize_t sendto(int sockfd, const void *buffer, size_t length, int flags, const struct sockaddr *dest_addr, socklen_t addrlen) - send datagram
