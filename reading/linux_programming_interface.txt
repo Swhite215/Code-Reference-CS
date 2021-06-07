@@ -2951,3 +2951,60 @@ Chapter 54: POSIX Shared Memory
             - Data sored in a shared memory region can persist across system restarts
             - System V and POSIX use different mechanisms to identify and refer to a shared memory object, System V = Keys, POSIX = Names and FDs
             - Size of System V shard memory is fixed at the time of creation
+
+Chapter 55: File Locking
+    a. Overview
+        - Goal - manage situations where multiple processes are simulataneously updating a file
+        - Types
+            - Advisory - process can ignore a lock places by fcntl() or flock() by simply performing I/O on a file
+            - Mandatory - every file I/O operation is checked to see whether it is compatible with any locks held by other processes
+    b. File Locking with flock()
+        - fn - int flock() - places a single lock on an entire file
+            - LOCK_SH - places a shared lock on the file referred to by fd
+            - LOCK_EX - place an exclusive lock on the file referred to by fd
+            - LOCK_UN - unlock the file
+            - LOCK_NB - make a nonblocking lock request
+        - Semantics of Lock Inheritance and Release
+            - Locks automatically released when corresponding file descriptor is closed, includes duplicates
+        - Limitations of flock()
+            - Only whole files can be locked, only advisroy locks, many NFS don't recognize locks granted by flock()
+    c. Record Locking with fcntl()]
+        - Use - lock byte range corresponding to the applications defined record boundaries within the file
+        - flock structure
+            - short l_type - lock type
+            - l_whence - seek Value
+            - l_start - offset where lock begins
+            - l_len - number of bytes to lock
+            - l_pid - process prventing our lock
+        - Library of Locking Functions
+            - lockRegion() - place lock on file
+            - lockRegionWait() - place lock on file, blocking request
+            - regionIsLocked() - tests whether a lock can be placed on a file
+        - Lock Limits and Performances
+            - System wide uppler limits on number opf record locks
+            - No fixed answer to how locks be acquired and released
+        - Semantics of Lock Inheritance and Release
+            - Record locks are not inherited across a fork() by a child process
+            - Record locks are preserved across an exec()
+            - All treads in a process share the same set of record locks
+            - Record locks are associated with both a process and a i-node
+    d. Mandatory Locking
+    e. The /proc/locks File
+        - View set of locks currently held in the system by examining the contents of the linux specific /proc/locks file
+        - Example 1: POSIX ADVISORY WRITE 458 03:07:133880 0 EOF
+            - Ordinal number of lock with the set of all locks held for the file
+            - Type of lock
+            - Mode of the lock
+            - Type of lock
+            - Process ID of the process
+            - Major, Minor Device Numbers and i-node
+            - Starting byte of the lock
+            - Ending byte of the lock
+    f. Running Just One Instance of a Program
+        - Daemons - create a file in a standard directory and place a write lock on it, daemon holds the file lock for the duration of its execution and deletes the file just before terminating
+    g. Older Locking Techniques
+        - open() plus unlink()
+        - link() plus unlink()
+        - open() plus unlink()
+
+
