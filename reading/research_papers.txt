@@ -17,3 +17,6 @@ Various Read Whitepapers and Dissertations:
   b. Raft: https://raft.github.io/raft.pdf
 
 4. Artificial Intelligence
+  - Emergent Tool Use form Multi-Agent Autocurricula: https://arxiv.org/pdf/1909.07528.pdf
+
+5. The Visual Computer Journal
