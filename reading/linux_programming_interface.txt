@@ -3058,3 +3058,44 @@ Chapter 56: Sockets - Introduction
         - Exchanging Datagrams: recfrom() and sendto()
             - fn - ssize_t recvfrom(int sockfd, void *buffer, size_t length, int flags, struct sockadd *src_addr, socklen_t* addrlen) - receive datagram
             - fn - ssize_t sendto(int sockfd, const void *buffer, size_t length, int flags, const struct sockaddr *dest_addr, socklen_t addrlen) - send datagram
+
+Chapter 57: Sockets - Unix Domain
+    a. Overview - communication between processes on the same host
+    b. Unix Domain Socket Addresses
+        - struct sockaddr_un {
+            sa_family_t sun_family; // AF_UNIX
+            char sun_path[108]; // Null terminated socket pathname
+        }
+        - To bind a UNIX domain socket, we initialize a sockaddr_un structure and then pass a pointer to this structure as the addr in argument to bind()
+    c. Stream Sockets in the Unix Domain
+        - Idea - client-server application that uses stream sockets in the UNIX domain
+        - Client connects to the server, and uses the connection to transfer data from its standard input to the server
+        - Server accepts client connections and transfers all data sent on the connection by the client to standard output
+        - Server is iterative, a server handles one client at a time before proceeding to the next client
+        - Server Steps
+            - Create a socket
+            - Remove any existing file with the same pathname as that to which we want to bind the socket
+            - Construct address structure for the server's socket, bind the socket to the address, and mark the sockt as a listening socket
+            - Execute an infinite loop to handle incoming client requests
+                - Accept a connection, obtaining a new socket fd for the connection
+                - Read all of the date from the connected socket and write to stdout
+                - Close the connected socket
+        - Client Steps
+            - Create a socket
+            - Construct address structure for the server's socket and connect to the socket at that address
+            - Execute a loop that copies its standard input to the socket connection, upon EOF, client terminates
+            - Socket closes
+    d. Datagram Sockets in the UNIX Domain
+        - Important - datagram sockets under the UNIX domain are reliable, all messages are delivered in order and unduplicated
+    e. UNIX Domain Socket Permissions
+        - Ownership and permissions of the socket file determine which processes are able to communicate with that socket
+            - To connect to a UNIX domain stream socket, write permission is required on the socket file
+            - To send a datagram to a UNIX domain datagram socket, write permission is required on the socket file
+    f. Creating a Connected Socket Pair: socketpair()
+        - fn - int socketpair(int domain, int type, int protocol, int sockfd[2]) - does two calls to socket(), a call to bind() and either listen(), connect(), and accept() (for stream) or connect() (for datagrams)
+    g. The Linux Abstract Socket Namespace
+        - Abstract Namespace - Linux-specific feature that allows us to bind a UNIX domain socket to a name without that name being created in the file system
+        - Advantages
+            - No need to worry about possible collisions with existing names in the file system
+            - Not necessary to unlink the socket pathname when we have finished using the socket, automatically removed when socket is closed
+            - Don't need to create a file-system pathname for the socket
