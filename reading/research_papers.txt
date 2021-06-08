@@ -18,5 +18,6 @@ Various Read Whitepapers and Dissertations:
 
 4. Artificial Intelligence
   - Emergent Tool Use form Multi-Agent Autocurricula: https://arxiv.org/pdf/1909.07528.pdf
+  - HoloGAN: Unsupervised Learning of 3D Representations From Natural Images: https://arxiv.org/pdf/1904.01326.pdf
 
 5. The Visual Computer Journal
