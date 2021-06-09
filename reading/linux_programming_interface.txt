@@ -3099,3 +3099,50 @@ Chapter 57: Sockets - Unix Domain
             - No need to worry about possible collisions with existing names in the file system
             - Not necessary to unlink the socket pathname when we have finished using the socket, automatically removed when socket is closed
             - Don't need to create a file-system pathname for the socket
+
+Chapter 58: Sockets - Fundamentals of TCP/IP Networks
+    a. Internets
+        - internet - connects different computer networks, hides the details of different physical networks
+        - Internet - TCP/IP internet that connects millions of computers globally
+    b. Networking Protocols and Layers
+        - Networking protocol - set of rules defining how information is to be transmitted across a network, organized as a series of layers
+        - TCP/IP Protocol Suite
+            - Application Layer
+            - Transport Layer - TCP or UDP
+            - Network Layer - Internet Protocol
+            - Data Link Layer
+    c. The Data-Link Layer
+        - Data-link layer - consists of the device driver and hardware interface network card to the underlying physical medium
+        - Transfer data - data link layer encapsulates datagrams from the network layer into units called frames
+        - MTU - Maximum Transmission Unit
+    d. The Network Layer: IP
+        - Tasks
+            - Breakiung data into fragments small enough for transmission via the data-link layer
+            - Routing data across the internet
+            - Providing services to the transport layer
+        - IP Transmits Datagrams - each datagram sent between two hosts travels independently across the network, possible taking a different route
+        - IP is connectionless and unreliable
+        - IP may fragment datagrams
+    e. IP Addresses
+        - IPv4 Address - 32 bits network address and 32 bit network mask
+            - Network Mask - 1 tells which part of the address contains the assigned network ID, while Os tells which part of the address is available to the organization to assign unique host IDs on its network
+        - IPv6 Address - 128 bits
+    f. Transport Layer
+        - Protocols
+            - User Datagram Protocol - datagram sockets
+            - Transmission Control Protocol - stream sockets
+        - Port Numbers - differentiation of applications on host
+            - Well-Known, Registered, and Privileged Ports - 22 ssh, 80 HTTO
+                - 0-1023 are privileged
+            - Ephemeral Ports - assigned port if no port selected
+        - User Datagram Protocol - connectionless, unreliable, select size of datagram that is less than IPv4 minimum reassembly buffer size
+        - Transmission Control Protocol - reliable, connection oriented, bidirectional, byte stream communication channel between two endpoints
+            - Connection Establishment - sender and receiver can exchange options to advertise parameters for the connection
+            - Packaging Data in Segments - each segment has a checksum that allows detection of end-to-end transmission errors
+            - Acknowledgment, Retransmissions, and Timeouts - pos ack when segment arrives, retransmission possible
+            - Sequencing - needed to ensure correct order of segments are sent
+            - Flow Control - prevents a fast sender from overwhelming a slow receiver, TCP includes a buffers, sliding window algorithm allows unacknowledged segments containing a total of up to N bytes to be in transit between the sender and receiver
+            - Congestion Control
+                - Slow Start - causes the sednding TCP to initially transmit segments at a slow rate, but allows it to exponentially increase the send rate
+                - Congestion Avoidance - congestion window limits the amount of unacknowledged data that it can transmit, window can grow exponentially
+    g. Request for Comments RFCs
