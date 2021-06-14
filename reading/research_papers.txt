@@ -20,4 +20,7 @@ Various Read Whitepapers and Dissertations:
   - Emergent Tool Use form Multi-Agent Autocurricula: https://arxiv.org/pdf/1909.07528.pdf
   - HoloGAN: Unsupervised Learning of 3D Representations From Natural Images: https://arxiv.org/pdf/1904.01326.pdf
 
+5. Robotics
+  - Multi-Objective Graph Heuristic Search for Terrestrial Robot Design: https://people.csail.mit.edu/jiex/papers/MOGHS/paper.pdf
+
 5. The Visual Computer Journal
