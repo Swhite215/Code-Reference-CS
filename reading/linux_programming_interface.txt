@@ -3146,3 +3146,69 @@ Chapter 58: Sockets - Fundamentals of TCP/IP Networks
                 - Slow Start - causes the sednding TCP to initially transmit segments at a slow rate, but allows it to exponentially increase the send rate
                 - Congestion Avoidance - congestion window limits the amount of unacknowledged data that it can transmit, window can grow exponentially
     g. Request for Comments RFCs
+
+Chapter 59: Sockets - Internet Domain
+    a. Internet Domain Sockets
+        - Internet Stream Sockets - TCP
+        - Internet Datagram Sockets - UDP
+    b. Network Byte Order
+        - Big Endian - Most significant byte i.e. lowest memory address first
+        - Little Endian - Least significant byte i.e. highest memory address first
+        - uint16_t htons() - converts int to network byte order
+        - unit32_t htonl() - converts int to network byte order
+        - unit15_t ntohs() - converts int to host byte order
+        - unit32_t ntohl() - converts int to host byte order
+    c. Data Representation
+        - fn - ssize_t rfeadLine() - reads bytes from the file referred to by the file descriptor argument fd until a newline is encountered
+    d. Internet Socket Addresses
+        - IPv4 - struct sockaddr_in
+        - IPv6 - struct sockaddr_in6
+    e. Overview of Host and Service Conversion Functions
+        - Converting IPv4 and IPv6 Addesses Between Binary and Human-Readable Forms
+            - inet_pton() - convert IP address presentation to binary
+            - inet_ntop() - convert IP address fron binary to presentation
+        - Converting Host and Service Names to and From Binary Form
+            - getaddrinfo() - given hostname and service name return a set of structures containing the corresponding binary IP Addresses and port number
+            - getnameinfo() - converts an IP address and port number into the corresponding hostname and service name
+    f. Client-Server Example Datagram Sockets
+    g. Domain Name System
+        - Objective - resolves human readable hostnames to IP addresses
+        - Hierarchical Structure
+            - Root
+                - Top Level Domain - Generic Domains
+                    - com
+                        - google
+                            - www
+                    - edu
+                    - net
+                    - org
+                        - kernel
+                            - ftp
+                            - www
+                - Top Level Domain - Country Domains
+                    - du
+                    - eu
+                    - us
+                    - nz
+                        - ac
+                            - canterbury
+                                - www
+        - Recursive and Iterative Solution Requests
+            - Recursive - requester asks the server to handle the entire task of resolution
+            - Iterative - requester continuously makes requests down DNS hiearchy till resolution
+    h. The /etc/services File
+        - List of well known port numbers, services, and protocol
+    i. Protocol Independent Host and Service Conversion
+        - fn - int getaddrinfo() - given a hostname and service name, returns list of socket address structures that each contains an IP address and port number
+        - fn - void freeaddrinfo() - perform deallocation of memory allocated by getaddrinfo()
+        - Diagnosing Errors - List
+        - fn - int getnameinfo() - given a socket address structure, returns string containing the corresponding host and service name
+    j. Client Server Example Stream Sockets
+    k. An Internet Domain Sockets Library
+        - fn - int inetConnect() - creates a socket of a specific type and connects it to an address specified by host and service
+        - fn - int inetListen() - creates a listening stream socket bound to an ip address on a TCP port
+        - fn - int inetBind() - creates a socket of a specific type, bound to ip address on port specified by service and type
+        - fn - char *inetAddressStr() - converts an internet socket address to printable form
+    l. UNIX vs. Domain
+        - Writing an application using Internet Domain Sockets is often the simplest approach, since it will work on both a single hsot and across a network
+        - May want to choose UNIX for speed, use of directory access, file descriptors, credentials, etc for UNIX domain sockets
