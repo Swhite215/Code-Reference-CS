@@ -23,4 +23,5 @@ Various Read Whitepapers and Dissertations:
 5. Robotics
   - Multi-Objective Graph Heuristic Search for Terrestrial Robot Design: https://people.csail.mit.edu/jiex/papers/MOGHS/paper.pdf
 
-5. The Visual Computer Journal
+6. Computer Networks
+  - An Analysis of Public REST Web Service APIs: https://www.researchgate.net/publication/325770704_An_Analysis_of_Public_REST_Web_Service_APIs
