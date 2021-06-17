@@ -3212,3 +3212,21 @@ Chapter 59: Sockets - Internet Domain
     l. UNIX vs. Domain
         - Writing an application using Internet Domain Sockets is often the simplest approach, since it will work on both a single hsot and across a network
         - May want to choose UNIX for speed, use of directory access, file descriptors, credentials, etc for UNIX domain sockets
+
+Chapter 60: Sockets - Server Design
+    a. Iterative and Concurrent Servers
+        - Iterative - server handles one client at a time, processing the client's request completely, before proceeding to the next client
+        - Concurrent - server is designed to handle multiple clients simulataneously
+    b. An Iterative UDP echo Server
+    c. A Concurrent TCP echo Server
+    d. Other Concurrent Server Designs
+        - Preforked and Prethreaded Servers - server creates a pre-fixerd number of child processes or threads immediately on start up
+        - Handling Multiple Clients from a Single Process - employ I/O models to simulataneously monitor multiple file descriptors for I/O events
+        - Using Server Farms - use of multiple servers
+    e. The inetd Internet Superserver Daemon
+        - Goal - eliminate the need to run large numbers of infrequently used servers
+        - Benefits
+            - Single process, inetd daemon, monitors a specific set of socket ports and starts other servers as required
+            - Programming of servers started by inetd is simplified
+        - The /etc/inetd.conf file
+            - Configuration file where each line describes one of the services to be handled by inetd
