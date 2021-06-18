@@ -3230,3 +3230,111 @@ Chapter 60: Sockets - Server Design
             - Programming of servers started by inetd is simplified
         - The /etc/inetd.conf file
             - Configuration file where each line describes one of the services to be handled by inetd
+
+Chapter 61: Sockets - Advanced Topics
+    a. Partial Reads and Writes on Stream Sockets
+        - Partial - read() and write() transfer fewer bytes than requested
+        - fn - ssize_t readn() - used to restart read system calls
+        - fn - ssize_t writen() - used to restart write system calls
+    b. The shutdown() System Call
+        - fn - int shutdown() - closes one or both channels of the socket sockfd, depending on the value of how
+    c. Socket-Specific I/O System Calls: recv() and send()
+        - fn - ssize_t recv() - returns bytes received
+        - fn - ssize_t send() - sends bytes
+    d. The sendfile() System Call
+        - fn - ssize_t sendfile() - file contents are transferred directly to the socket, without passing through user space, zero-copy transfer
+        - TCP_CORK socket option - output is buffered into a single TCP segment until either the upper limit on the size of a segment is reached, the option is disable, the socket is closed, or 200ms pass
+    e. Retrieving Socket Addresses
+        - fn - int getsockname() - return local address to which a socket is bound
+        - fn - int getpeername() - return address of the peer socket to which the local socket is connected
+    f. A Closer Look at TCP
+        - Format of a TCP Segment
+            - Source Port Number - port number of sending TCP
+            - Destination Port Number - port number of destination TCP
+            - Sequence Number
+            - Acknowledgment Number
+            - Header Length
+            - Reserved
+            - Control Bits
+                - CWR - congestion window reduced flag
+                - ECE - explicit congestion notification echo flag
+                - URG - urgent pointer field flag
+                - ACK - acknowledger number field flag
+                - PSH - push all received data to receiving process
+                - RST - reset connection
+                - SYN - synchornize sequence numbers
+                - FIN - indicates sender has finished sending data
+            - Window Size
+            - Checksum
+            - Urgent Pointer
+            - Option
+            - Data
+        - TCP Sequence Numbers and Acknowledgements
+        - TCP State Machine and State Transition Diagram
+            - LISTEN - TCP is waiting for connection
+            - SYN_SENT - TCP has sent a SYN for active open
+            - SYN_RECV - TCP, in LISTEN statek, has received a SYN and responded with SYN/ACK
+            - ESTABLISHED - Connection to peer TCP has been completed
+            - FIN_WAIT1 - application has closed the connection
+            - FIN_WAIT2 - TCP formerly in FIN_WAIT1 has received ACK from TCP
+            - CLOSING - TCP formerly awaiting ACK in FIN_WAIT1 has received a FIN
+            - TIME_WAIT - TCP has recieved a FIN, indicating the peer TCP has performed a passive close
+            - CLOSE_WAIT - TCP has received a FIN from the peer TCP
+            - LAST_ACK - application performed a passive close, and the TCP, formerly in CLOSE_WAIT, sent a FIN to peer TCP and is waiting for acknowledgement
+        - TCP Connection Establishment
+            - Server calls listen() to perform a passive open of a socket
+            - Server calls accept(), which blocks until a connection is established
+            - Client calls connect() to perform an active opens of a socket ijn order to establish a connection to the server's passive socket
+        - TCP Three-Way Handshake
+            - Client calls connect(), sends a SYN segment to server TCP
+            - Server sends SYN and piggybacked ACK
+            - Client sends an ACK
+        - TCP Connection Termination
+            - Client sends a FIN to server
+            - Server responds with an ACK
+            - Server sends a FIN to client
+            - Client responds with an ACK
+        - Calling shutdown() on a TCP Socket
+            - shutdown() - closes one channel of the connection
+    g. Monitoring Sockets: netstat
+        - netstat - displays the state of Internet and UNIX domain sockets on a system
+        - flags
+            - a - display information about all sockets includign listening
+            - e - display extended information
+            - c - redisplay socket information continuously
+            - l - display information about listening sockets
+            - n - display IP addresses, port numbers, usernames in numerical format
+            - p - show process ID and name of program to which socket belongs
+            - inet - display information about Internet domain sockets
+            - tcp - display information about Internet domain TCP stream sockets
+            - udp - diaply information about Internet domain UDP datagram sockets
+            - unix - display information about UNIX domain sockets
+    h. Using tcpdump to Monitor TCP Traffic
+        - tcpdump - debugging tool that allows superusers to monitor the internet traffic on a live network, generating real time textual output
+    i. Socket Options
+        - fn - int getsockopt() - retrieve socket options
+        - fn - int setsockopt() - sets socket options
+    j. The SO_REUSEADDR Socket Option
+        - Purpose - to avoid the EADDRINUSE error when a TCP server is restarted and tries to bind a socket to a port that curently has an associated TCP
+    k. Inheritance of Flags and Options Across accept()\
+        - Attributes Not Inherited
+            - status flags assocaited with an open file descriptor
+            - file descriptor flags
+            - owner process ID and generated signal file descriptors associated with signal driven I/O
+    l. TCP vs. UDP
+        - Why use UDP?
+            - A UDP server can receive and reply to datagrams from multiple clients, without needing to create and terminate a connection for each client
+            - UDP can be faster for simple request-response communications
+            - UDP sockets permit broadcasting and multicasting
+                - Broadcasting - allows a sender to transmit a datagram to the same destination port on all of the hsots connected to a network
+                - Multicasting - allows a datagram to be sent to a specified set of hosts
+            - Streaming video and audio can function acceptably without the reliability provided by TCP
+    m. Advanced Features
+        - Out-of-Band Data - feature of stream sockets that allows a sender to mark transmitted data as high priority
+        - The sendmsg() and recvmsg() System Calls - general purpose of the socket I/O Calls
+        - Passing File Descriptors - possible with sendmsg() and recvmsg()
+        - Receiving Sender Credentials - user ID, groupd ID, and process ID
+        - Sequenced-Packet Sockets - combine features of both stream and datagram sockets
+        - SCTP and DCCP Transport-Layer Protocols
+            - Stream Control Transmission Protocol - support telphony signaling in particular, multistream support, multiple logical datastreams to be employed over a single connection
+            - Datagram Congestion Control Protocol - congestion control to prevent a fast transmitter from overwhelming the network
