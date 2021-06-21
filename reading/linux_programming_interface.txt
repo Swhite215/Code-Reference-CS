@@ -3338,3 +3338,74 @@ Chapter 61: Sockets - Advanced Topics
         - SCTP and DCCP Transport-Layer Protocols
             - Stream Control Transmission Protocol - support telphony signaling in particular, multistream support, multiple logical datastreams to be employed over a single connection
             - Datagram Congestion Control Protocol - congestion control to prevent a fast transmitter from overwhelming the network
+
+Chapter 62: Terminals
+    a. Overview
+        - Conventional terminal and emulator have an associated terminal driver that handles input and output on the device
+        - Canonical Mode - terminal input is processed line by line and line editing is enabled
+        - Noncanonical Mode - terminal input is not gathered into lines e.g. vi, more, or less
+        - Path - Terminal Device -> Input Queue -> Process Performing I/O -> Output Queue -> Terminal Device
+    b. Retrieving and Modifying Terminal Attributes
+        - fn - int tcgetattr() - retrieve terminal attributes
+        - fn - int tcsetattr() - set terminal attributes
+        - termios {
+            c_iflag; // Input Flags
+            c_oflag; // Output Flags
+            c_cflag; // Control Flags
+            c_lflag; // Local Modes
+            c_line; // Line Discipline
+            c_cc; // Terminal Special Characters
+            c_ispeed; // Input Speed
+            c_ospeed; // Output Speed
+        }
+    c. The stty Command
+        - stty - command line analog of tcgetattr() and tcsetattr() functions, allowing us to view and change terminal attributes from the shell
+    d. Terminal Special Characters
+        - CR - carriage return
+        - DISCARD - discard output
+        - EOF - end of file
+        - EOL - end of line
+        - EOL2 - alternate end of line
+        - ERASE - erase character
+        - INTR - interrupt
+        - KILL - erase line
+        - LNEXT - literal next
+        - NL - newline
+        - QUIT - quit
+        - REPRINT - reprint
+        - START - start output
+        - STOP - stop output
+        - SUSP - suspend
+        - WERASE - erase word
+    e. Terminal Flags - pg. 1302 - 1303
+        - c_iflags
+        - c_oflags
+        - c_cflags
+        - c_lflgas
+    f. Terminal I/O Modes
+        - Canonical Mode
+        - Noncanonical Mode
+    g. Cooked, CBreak, and Raw Modes
+        - Cooked - essentially canonical model with all of the default special character processing enabled
+        - Raw - noncanonical mode with all input and processing, as well as echoing, switched off
+        - CBreak - intermediate between coked and raw, input was noncanonical, but signal generating characters were interpreted, and various input and output transformations coudl still occur
+    h. Terminal Line Speed (Bit Rate)
+        - fn - speed_t cfgetispeed() - gets input line speed
+        - fn - speed_t cfgetospeed() - gets output line speed
+        - fn - int cfsetispeed() - sets input line speed
+        - fn - int cfsetospeed() - sets output line speed
+    i. Terminal Line Control
+        - fn - int tcsendbreak() - generates a BREAK condition, by transmitting a continuous stream of 0 bits
+        - fn - int tcdrain() - blocks untill all output has been transmitted
+        - fn - int tcflush() - discards the data in the terminal input queue, output queue, or both queues
+        - fn - int tcflow() - controls the flow of data in either direction between the computer and the terminal 
+    j. Terminal Window Size
+        - struct winsize {
+            ws_row; // number of rows (characters)
+            ws_col; // number of columns (characters)
+            ws_xpixel; // horizontal size (pixels)
+            ws_ypixel; // vertical size (pixels)
+        }
+    k. Terminal Identification
+        - fn - int isatty() - enables us to determine whether a file descriptor is associated with a terminal
+        - fn - char *ttyname() - finds the name of the terminal
