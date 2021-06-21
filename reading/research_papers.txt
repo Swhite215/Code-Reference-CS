@@ -17,7 +17,7 @@ Various Read Whitepapers and Dissertations:
   b. Raft: https://raft.github.io/raft.pdf
 
 4. Artificial Intelligence
-  - Emergent Tool Use form Multi-Agent Autocurricula: https://arxiv.org/pdf/1909.07528.pdf
+  - Emergent Tool Use from Multi-Agent Autocurricula: https://arxiv.org/pdf/1909.07528.pdf
   - HoloGAN: Unsupervised Learning of 3D Representations From Natural Images: https://arxiv.org/pdf/1904.01326.pdf
 
 5. Robotics
