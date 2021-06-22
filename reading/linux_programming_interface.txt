@@ -3409,3 +3409,34 @@ Chapter 62: Terminals
     k. Terminal Identification
         - fn - int isatty() - enables us to determine whether a file descriptor is associated with a terminal
         - fn - char *ttyname() - finds the name of the terminal
+
+Chapter 63: Alternate I/O Models
+    a. Overview
+        - Important Needs
+            - Ability to check wehher I/O is possible on a file descriptor without blocking if it is not possible
+            - Ability to monitor multiple file descriptors to see if I/O is possible on any of them
+        - Options
+            - I/O Multiplexing - allows  aprocess to simulataneously monitor multiple file descriptrs to find out whether I/O is possible on any of them, select() and poll()
+            - Signal Driven I/O - technique whereby a process requests that the kernel send it a signal when input is available or data can be written on a specified file descriptor
+            - The epoll API - Linux specific feature to allow a process to monitor multiple file descriptors to see if I/O is possible on any of them
+        - Which Technique
+            - select() and poll() are long standing interfaces that have been present on UNIX systems for many years
+            - epoll() - allows efficient monitoring of large numbers of file descriptors
+            - Signal Drive I/O - good performance
+        - Level Triggered and Edge Triggered
+            - Level Triggered - a file descriptor is considered to be ready if it is possible to perform an I/O system call without blocking
+            - Edge Triggered - notification is provided if there is I/O activity on a fiel descriptor since it was last monitored
+    b. I/O Multiplexing
+        - The select() System Call
+            - fn - int select() - blocks until one or more of a set of file descriptors becomes ready
+            - File Descriptor Sets
+                - readfds, writefds, exceptfds
+            - Macros
+                - void FD_ZERO() - initializes a fdset to be empty
+                - void FD_SET() - adds fd to fdset
+                - void FD_CLR() - removes fd from fdset
+                - void FD_ISSET() - returns true if fd is member of fdset
+        - The poll() System Call
+            - fn - int poll() - blocks until one or more of a list of file descriptors becomes ready
+        - When is a File Descriptor Ready?
+            - Ready if an I/O function would not block, regardless of whether the function would actually transfer data
