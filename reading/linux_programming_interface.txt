@@ -3440,3 +3440,50 @@ Chapter 63: Alternate I/O Models
             - fn - int poll() - blocks until one or more of a list of file descriptors becomes ready
         - When is a File Descriptor Ready?
             - Ready if an I/O function would not block, regardless of whether the function would actually transfer data
+        - Regular Files, Terminals, Pipes, FIFOs, Sockets
+            - select() - readable and writable
+            - poll() - POLLIN and POLLOUT
+        - Comparison of select() and poll()
+            - select() and poll() both employ the same set of kernel internal poll routines, each routine returns information about the readiness of a single file descriptolr
+        - API Differences
+            - The use of fd_set data type places an upper limit on the range of file descriptors that can be monitored using select(), poll() has no intrinsic limit
+            - Must reinitialize fd_set arguments of select() if making repeated calls
+            - Timeout precision for select() is greateer than poll()
+            - If a fd is closed, poll() returns the exact one, where as select() just returns -1
+        - Portability - both select() and poll() are standardized, some variation in behavior of poll() across implementations
+        - Performance - similar if number of file descriptors is small, or large number of file descriptors that are densely packed
+        - Problems
+            - select() or poll(), kernel must check all of the specified file descriptors to see if they are ready
+            - select() or poll(), program must pass a data structure to the kernel describing all of the file descriptors to be monitored, and after checking returns a modified version
+            - After select() or poll(), program must inspect every element of the returned data structure
+    c. Signal Driven I/O
+        - Action - a process requests that the kernel send it a signal when I/O is possible on a file descriptor, the process can then perform any other activity until I/O is possible
+        - Pattern
+            - Establish a handler for the signal delivered by the signal driven I/O mechanism
+            - Set the owner of the file descriptor, the calling process
+            - Enable nonblocking I/O by setting the O_NONBLOCK open file status flag
+            - Enable signal driven I/O by turning on the O_ASYNC open file status flag
+            - Calling process can now perform other tasks
+            - Edge triggered notifications, when notified of I/O, it should perform as much I/O as possible
+        - Important Notes
+            - Establish the signal handler before enabling signal-driven I/O
+        - When is I/O Possible Signaled?
+            - Terminals and Pseudoterminals - whenever new input becoems available, even if previous input has not yet been read, no output possible
+            - Pipes and FIFOs
+                - Read
+                    - Data is written to the pipe
+                    - The write end of the pipe is closed
+                - Write
+                    - A read from the pipe increases the amount of free space in the pipe so that it is now possible to write PIPE_BUGF bytes without blocking
+                    - The read end of the pipe is closed
+            - Sockets - Datagram
+                - An input datagram arrives on the socket, even if there were already unread datagrams waiting to be read
+                - An asynchronous error occurs on the socket
+            - Sockets - Stream
+                - A new connection is received on a listening socket
+                - A TCP connect() request completes
+                - New input is received on the socket
+                - The peer closes its writing half of the connection using shutdown(), or closes its socket altogether with close()
+                - Output is possible on the socket
+                - An asynchronous error occurs on the socket
+        
