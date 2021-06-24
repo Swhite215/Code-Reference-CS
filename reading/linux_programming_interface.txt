@@ -3486,4 +3486,28 @@ Chapter 63: Alternate I/O Models
                 - The peer closes its writing half of the connection using shutdown(), or closes its socket altogether with close()
                 - Output is possible on the socket
                 - An asynchronous error occurs on the socket
-        
+    d. The epoll API
+        - Overview
+            - Use - monitors multiple file descriptors to see if they are ready for I/O, Linux specific*
+            - Advantages
+                - Performance of epoll() scales much better than select() and poll() when monitoring large numbers of file descriptors
+                - The epoll() API permits either level-triggered or edge-triggered notification, select() and poll() only offer level and signal driven I/O only offers edge triggered
+            - Advantages over Signal Driven I/O
+                - Avoid complexities of signal handling
+                - Greater flexibility in specifying what kind of monitoring we want to perform
+        - Creating an epoll instance: epoll_create()
+            - fn - int epoll_create() - creates a new epoll instance whose interest list is initially empty
+        - Modifying the epoll Interest List: epoll_ctl()
+            - fn - int epoll_ctl() - modifies the interest list of an epoll instance
+                - EPOLL_CTL_ADD - add file descriptor to interest list
+                - EPOLL_CTL_MOD - modify event setings for a file descriptor
+                - EPOLL_CTL_DEL - remove file descriptor from interest list
+        - Waiting for Events: epoll_wait()
+            - fn - int epoll_wait() - returns information about ready file descriptors from an epoll instance, a single call can return infromatiom about multiple ready file descriptors
+        - Performance of epoll Versus I/O Multiplexing
+            - epoll is significantly faster, especially at higher numbers
+        - Edge Triggered Notifications
+            - epoll() default is level triggered, to employ edge triggered, we specifc EPOLLET flag
+    e. Waiting on Signals and File Desctiprs
+        - The pselect() System Call
+            - fn - int pselect() - performs a similar task to select(), main difference is an additional argument sigmask to specify a set of signals to be unmasked while the call is blocked
