@@ -3511,3 +3511,35 @@ Chapter 63: Alternate I/O Models
     e. Waiting on Signals and File Desctiprs
         - The pselect() System Call
             - fn - int pselect() - performs a similar task to select(), main difference is an additional argument sigmask to specify a set of signals to be unmasked while the call is blocked
+
+Chapter 64: Pseudoterminals
+    a. Overview
+        - Problem - how can we enable a user on one host, to operate a terminal-oriented program on another host connected via a network?
+        - Pseudoterminal Master and Slave Devices
+            - Pseudoterminal pia provides an IPC channel somewhat like a bidirectional pipe, two processes can open the master and slave and then transfer data in either direction
+        - Pattern
+            - The driver program opens the psudoterminal master device
+            - The driver program calls fork() to create a child process that...
+                - Call setsid() to start a new session, of which child is leader
+                - Open psuedoterminal slave device that corresponds to the master device, pseudoterminal becomes the controlling terminal for the child process
+                - Use dup() to duplicate the file descriptor for the slave device on standard input, output, and error
+                - Call exec() to start the terminal oriented program that is to be connected to the pseudoterminal slave
+        - System V (UNIX 98) and BSD Pseudoterminals
+    b. Unix 98 Pseudoterminals
+        - Opening a Unused Master: posix_openpt()
+            - fn - int posix_openpt() - finds and opens an unused pseudoterminal master device
+        - Changing Slave Ownership and Permissions: grantpt()
+            - fn - int grantpt() - change ownership and permission of the slave device that corresponds to the pseudoterminal master
+        - Unlocking the Slave: unlockpt()
+            - fn - int unlockpt() - removes an internal lock on the slave corresponding to the pseudoterminal master
+        - Obtaining the Name of the Slave: ptsname()
+            - fn - chare *ptsname() - returns the name of the pseudoterminal slave corresponding to the pseudoterminal master
+    c. Opening a Master: ptyMasterOpen()
+        - fn - int ptyMasterOpen() - opens a pseudoterinal master and obtains the name of the corresponding pseudoterminal slave
+    d. Connecting Processes with a Pseudoterminal: ptyFork()
+        - fn - pid_t ptyFork() - creates a child process that is connected to the parent by a pseudoterminal pair
+    e. Pseudoterminal I/O
+        - Anything that is written on the master appears as input on the slave, and anything written on the slave appears as input on the master
+    f. Implementing script() - pg. 1390
+    g. Terminal Attributes and Window Size
+        - Master and slave device share terminal attributes (termios) and window size (winsize) structures
