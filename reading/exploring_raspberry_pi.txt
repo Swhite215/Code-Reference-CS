@@ -1,0 +1,51 @@
+Title: Exploring Raspberry Pi: Interfacing to the Real World with Embedded Linux
+Authors: Derek Molly
+
+Summarization of Content
+
+Chapter 1 - Raspberry Pi Hardware
+    a. Introduction to the Platform
+        - Pi - general purpose computing device
+        - Characteristics
+            - Low cost, powerful computing devices, range of models, standard interface for electrical devices, little power usage, expandable, community of inventors
+    b. RPi Documenation
+        - Raspberry Pi Foundation - www.raspberrypi.org
+        - Raspberry Pi Documentation - www.raspberrypi.org/documentation
+        - Broadcom BCM2835 ARM Peripherals Dataset - tiny.cc/erpi103
+        - BCM2836 Document - tiny.cc/erpi105
+    c. Rasperry Pi Hardware
+        - Hardware - BCM2835, BCM2836, BCM2837
+            - Processor
+            - Memory - 256MB to 1GB DRM
+            - Storage - micro-SD card
+            - Power - micro-usb connector
+            - Video Out - HDMI or mini-HDMI
+            - GPIOs - 26 - General Purpose
+            - USB Hub
+            - Reset
+            - Audio and Video
+            - Power LED
+            - Activity LED
+            - USB-to-Ethernet
+            - Network
+            - Camera
+            - Display
+        - Versions - RPI 3, RPI2, RPI B+, RPI A+, RPi Zero, RPi B, Compute
+    d. Raspberry Pi Accessories
+        - Important Accessories
+            - External 5V Power Suply 
+            - Micro-SD Card
+            - Ethernet Cable
+        - Recommended Accessories
+            - HDMI Cable
+            - USB to Serial UART
+        - Optional Accessories
+            - Micro-HDMI to VGA
+            - Wi-Fi Adapters
+            - USB Storage Devices
+            - USB Webcam
+            - USB Keyboard and Mouse
+            - Case
+            - HATs - Hardware Attached on Top
+
+ 
