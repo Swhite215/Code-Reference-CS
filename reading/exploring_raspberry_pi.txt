@@ -48,4 +48,51 @@ Chapter 1 - Raspberry Pi Hardware
             - Case
             - HATs - Hardware Attached on Top
 
- 
+Chapter 2 - Raspberry Pi Software
+    a. Linux on Raspberry Pi
+        - Distributions
+            - Raspbian Jessie - image based on Debian Jessie (Recommended)
+            - Raspbian Jessie Lite - a minimal image that is based on Debian Jessie
+            - Raspbian Wheezy - image based on Debian Wheezy
+        - Create a Linux SD Card Image for the RPi
+    b. Connecting to a Network
+        - Regular Wired Ethernet
+            - Find your RPi, DHCP, Access Router
+        - Wifi
+    c. Communicating with the RPi
+        - Serial Connection with the USB to TTL 3.3 V Cablee - Requires terminal program
+        - Connecting through Secure Shell (SSH)
+        - Transferring Files Using Putty/psftp over SSH (SFTP)
+    d. Controlling the Raspberry Pi
+        - Basic Linux Commands - CHECK
+            - Basic File System Commands
+        - Environment Variables
+        - Basic File Editing (Vi, Nano)
+        - Package Management - Advanced Packaging Tool - apt
+    e. Configuring the Raspberry Pi
+        - The Raspberry Pi Configuration Tool - raspi-config
+            - Start - raspi-config
+            - Immediate Actions
+                - Expand the root filesystem to fill the SD Card
+                - Enable the camera
+                - Overclock
+                - Overscan
+                - Hostname
+                - Memory Split
+                - SSH
+        - Updating the RPi Software
+        - Video Output
+    f. Interactingv with the Onboard LEDs
+        - ACT LED - Activity LED
+        - PWR LED - Power LED
+        - Using Sysfs - virtual file system that is available under recent Linux kernels
+            - cd /sys/class/leds/ - navigate to LEDs folder
+            - cd led0 - cd into LED folder
+            - cat trigger - current status of an LED
+            - sudo sh -c "echo none > trigger" - turn off LED
+            - sudo sh -c "echo 1 > brightness" - set brightness
+            - sudo sh -c "echo timer > trigger" - set LED to flash
+            - sudo sh -c "echo 100 > delay_on" - set LED to flash at 5Hz
+    g. Shutdown and Reboot
+        - Option 1 - sudo shutdown -h
+        - Option 2 - sudo reboot
