@@ -96,3 +96,58 @@ Chapter 2 - Raspberry Pi Software
     g. Shutdown and Reboot
         - Option 1 - sudo shutdown -h
         - Option 2 - sudo reboot
+
+Chapter 3 - Exploring Embedded Linux Systems
+    a. Introducing Embedded Linux
+        - Characteristics
+            - Specific and dedicated applications
+            - Limited processing power, memory, and storage
+            - Linked to a larger system
+            - Reliability is critical
+            - Real-time
+        - Advantages and Disadvantages of Embedded Linux
+            - Advantages
+                - Efficient and scalable operating system
+                - Huge number of open source programs
+                - Excellent support for peripherals
+                - Open source with no fee
+            - Disadvantages
+                - Not ideal for real-time applications due to the OS overhead
+        - Is Linux Open Source and Free
+            - General Public Licenses - freedom to use and modify its code in any way, free as in freedom
+        - Booting the Raspberry Pi
+            - UEFI - Unified Extensible Firmware Interface - legacy support for BIOS Basic Input/Ouput System
+            - Bootloaders
+                - Initialize the controlls memory, graphics, I/O
+                - Prepare and allocate system memory for the OS
+                - Locate the oS and provide the facility for loading it
+                - Load the OS and pass control to it
+            - Pattern
+                - Power is applied ot the CPU and invokes the reset vector
+                - Internal/First Stage Bootloader - Broadcom Boot ROM
+                - Second State Bootloader - bootcode.bin
+                - GPU Firmware - start.elf
+                - Linux Kernel - kernel.img
+                - First User Space Process - /sbin/init
+        - The systemd System and Service Manager
+            - Service Manager - stops and starts services
+            - systemctl* and commands pg. 66-67
+    b. Managing Linux Systems
+        - Super User - system administrator with the highest level of security access to all commands and files
+        - System Administration
+            - The Linux File System - inodes - that represent file system objects such as files and directories - inode table
+        - Users and Groups - Users, Group, Other
+        - File System Permission - RWX, 4-2-1 - chown and chgrp
+        - Linux Root Directory - top level directories pg 79
+        - Command for File Systems
+        - The Reliability of SD Card Systems
+        - Linux Commands - >, >>, <
+            - ()>, >>, <), |, diff, head, tail, echo, cat, md5sum
+        - Linux Processes
+            - How to COotrol Linux Proceesses - ps, kill
+            - Foreground and Background Processes
+    c. Using Git for Version Control
+        - Centralized Version Control System
+        - Distributed Version Control System
+    d. Using Desktop Virtualization
+        - Options - VMware Player, VirtualBox
