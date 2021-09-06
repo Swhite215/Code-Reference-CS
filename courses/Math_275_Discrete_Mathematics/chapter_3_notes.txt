@@ -14,13 +14,13 @@ Chapter 3: Algorithms
                 - Effectivness - It must be possible to perform each step of an algorithm exactly and in an infinite amount of time
                 - Generality - The procedure should be applicable for all problems of the desired form, not just for a particular set of input values
         - Searching Algorithms - locating an element in an ordered list
-            - General Problem - locate an element x ina list of distinct elements, or determine that it is not in the list
+            - General Problem - locate an element x in a list of distinct elements, or determine that it is not in the list
             - Linear Search - compare x to every value in list until x = a1 in which the element is found, or until you reach the end of the list, meaning no match occurs
             - Binary Search - compare x to the middle term of the list, split list and choose which half depending on if x is lower and higher than middle term, repeat check
         - Sorting - ordering the elements of a list
             - Bubble Sort - put a list into increasing order, by successively comparing adjacent elements, interchanging them if they are in the wrong order.
             - Insertion Sort - start with second element, compare to first, if smaller, put in front of first, if larger stay, then third, start with 1, then 2, if larger stary, then n, start with 1, go till n, at end, use linear search
-        - String Matching - finding where a patter occurs in a text string
+        - String Matching - finding where a pattern occurs in a text string
             - Naive String Matcher - run through all possible shifts, checking if starting at new index, next set of characters match each character in text
         - Greedy Algoritms
             - Optimization Problems - goal is to find a solution to a given problem that either minimzes or maximizes the value of some parameter
@@ -40,15 +40,15 @@ Chapter 3: Algorithms
     c. Complexity of Algorithms
         - Introduction
             - How can the efficiency of an algorithm be analyzed?
-            - One measure of efficiency is the tiem used by a computer to solve a problem using the algorithm, when input values are of a specified size
+            - One measure of efficiency is the time used by a computer to solve a problem using the algorithm, when input values are of a specified size
         - Time Complexity
             - Definition - number of operations used by the algorithm when the input has a particular size
-        - Worst Case Complexity - largest number of operations needed to solve the given problem using this algorithm on inpout of specified size
+        - Worst Case Complexity - largest number of operations needed to solve the given problem using this algorithm on input of a specified size
             - Linear Search is O(n)
-            - Binary Search is O()
+            - Binary Search is O(logn)
         - Complexity of Problems
             - Tractable Problem - there exists a polynomial time algorithm to solve this problem
-            - Intractable Problem - there does not exists a polynomial time algorithm to solve this problem
+            - Intractable Problem - there does not exist a polynomial time algorithm to solve this problem
             - Unsolvable Problem - no algorithm exists to solve this problem
-            - Class NP - solution can be checked in polynomial time, but not polynomial time algorithm has been found for finding a solution to problems in this class
+            - Class NP - solution can be checked in polynomial time, but no polynomial time algorithm has been found for finding a solution to problems in this class
             - NP Complete Class - if you find a polynomial time algoirthm for one member of the class, it can be used to solve all the problems in the class

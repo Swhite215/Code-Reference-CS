@@ -18,7 +18,7 @@ Chapter 11: Trees
             - Height - maximum of the level of vertices
         - M-ary Tree - rooted tree if every internal vertex has no more than m children
         - Full M-ary Tree - every internal vertex has exactly m chlildren
-        - Ordered Rooted Trees - rooted tree where tehe children of each internal vertex are ordered
+        - Ordered Rooted Trees - rooted tree where the children of each internal vertex are ordered
         - Properties of Trees
             - A tree with n vertices has n-1 edges
             - A full m-ary tree with i internal vertices contains n = mi + 1 vertices

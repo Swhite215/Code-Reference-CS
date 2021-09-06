@@ -286,7 +286,7 @@ Chapter 1: The Foundations: Logic and Proofs
                         - If P(x) denotes x is even and hte domain U is integers, then ∀xP(x) is false
             - Existential Quantifier - there is one or more element under consideration for which the predicate is true
                 - Example
-                    - Theere exists an element x in the domain such that P(x)
+                    - There exists an element x in the domain such that P(x)
                     - ƎxP(x) - there is an x such that P(x)
                     - ƎxP(x) - thjere is at least one x such that P(x)
                 - Example
