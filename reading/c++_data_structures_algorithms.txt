@@ -69,3 +69,40 @@ Chapter 3 - Arrays, Linked Lists, Recursion
         - Binary Recursion - when an algorithm makes two recursive calls e.g. fibonnaci
         - Computing Fibbonaci Numbers via Linear Recursion - MUST REVIEW
         - Multiple Recursion - when a function may make multiple recursive calls, with that number potentially being more than two
+
+Chapter 5 - Stacks, Queues, and Deques
+    a. Stacks - container of elements that are inserted and removed according to the last-in-first-out LIFO principle
+        - Stack Abstract Data Type
+            - Methods - push(), pop(), top(), size(), empty()
+        - STL - provides an implementation of a stack based on STL vector class
+        - A C++ Stack Interface - CIS 200 - Midterm 2
+        - A Simple Array Based Stack Implementation - CIS 200
+            - Analysis - each function runs in constant time
+        - Imnplementing a Stack with a Generic Lnked List - CIS 200
+        - Reversing a Vector Using a Stack
+            - Push all the elements of the vector in order into a stack
+            - Fill vector back up by popping elements off of the stack
+        - Stack Usages
+            - Matching Parentheses
+            - Matching HTML Tags
+            - Post-Fix Arithmetic
+            - General idea
+                - Push opening grouping symbols onto stack
+                - If closing group symbol is encountered, check the top of stack and make sure closing matches opening
+    b. Queues - container of elements that are inserted and removed according to the first-in-first-out FIFO principle
+        - Queue Abstract Data Type
+            - Methods - enqueue(), dequeue(), front(), size(), empty()
+        - STL Queue - provides an implementation of a queue based on STL vector class
+        - A C++ Queue Interface - CIS 200 - Midterm 2
+        - A Simple Array Based Implementation - CIS 200
+            - Using an Array in a Circular Way - in order to implement enqueue and dequeue in constant times
+            - Using the Module Operator to Implement a Circular Array
+        - Implementing a Queue with a Circularly Linked List
+            - Insert/Enqueue - insert a node new just after the cursor (back), and set new back
+            - Remove/Dequeue - remove a node just after the curor (back), and set new front
+        - Double Ended Queues (Deque) - queue that supports deletion at both the front and rear of the queue
+        - The STL Deque
+            - methods - size(), empty(), push_front(), push_back(), pop_front(), pop_back(), front(), back()
+        - Implementing a Deque with a Doubly Linked List
+        - Adapters and the Adapter Design Pattern
+            - Adapter - data structure, that translates one interface to another
