@@ -1,0 +1,853 @@
+Discrete Math and Its Applications - Rosen, Kenneth
+
+Chapter 1: The Foundations: Logic and Proofs
+    a. Propositional Logic - a proposition is a declarative sentence that is either true or false
+        - Sentential Variables - variables that represent propositions just as letters are used to denote numerical variables - p, q, r, s, ....
+        - Atomic Propositions - propositions that cannot be expressed in terms of simpler propositons are called atomic propositions
+        - Examples
+            - Correct Examples
+                - The moon is made of green cheese.
+                - Trenton is the capital of New Jersey.
+                - Toronto is the capital of Canada.
+                - 1 + 0 = 1
+                - 0 + 0 = 2
+            - Incorrect Examples
+                - Sit Down!
+                - What time is it?
+                - x + 1 = 2
+                - x + y = z
+        -  Propositional Logic
+            - Variables - p, q, r, s, ....
+            - Proposition that is always true is denoted by T
+            - Proposition that is always false is denoted by F
+            - Compound Propositions (Operands)
+                - Negation (-) - NOT
+                - Conjunction ^ - AND
+                - Disjunction V - OR
+                - Implication -> - IMPLY
+                - Biconditional <-> - IF AND ONLY IF
+        - Compound Propositions - Connectives - REVIEW
+            - DEFINITION: The negation of a proposition p is denoted by -p and has this truth table
+                - p     (-p)
+                - T       F
+                - F       T
+            - Example - if p denotes "the earth is round", then -p denotes "the earth is not round"
+        - Conjunction - Connectives - REVIEW
+            - DEFINITION: The conjunction of propositions p and q is denoted by p ^ q and has this truth table:
+                - p     q       p^q
+                - T     T        T
+                - T     F        F
+                - F     T        F
+                - F     F        F
+            - Example - if p denotes "I am at home", and q denotes "it is raining", then p^q denotes "I am at home and it is raining"
+        - Disjunction - Connectives - REVIEW
+            - DEFINITION: The disjunction of proposition p and q is denoted p V q and has this truth table
+                - p     q       pVq
+                - T     T        T
+                - T     F        T
+                - F     T        T
+                - F     F        F
+            - Example - if p denotes "I am at home" and q denotes "it is raining" then pVq denotes "I am at home or it is raining" 
+        - Connective Or Disjunction - REVIEW
+            - DEFINITIONS: The connective or disjunctrion of proposition p and q is denoted by P XOR q and has this truth table
+                - p     q       p XOR q
+                - T     T       F
+                - T     F       T
+                - F     T       T
+                - F     F       F
+        - Implication (IMPORTANT: If q is FALSE, check p, if p is TRUE, the statement is FALSE, else it is true) - REVIEW
+            - DEFINITION: the conditional statement p -> q is the proposition "if p, then q." The conditional statement p -> q is false when p is true and q is false, and true otherwise. In the conditional statement p -> q, p is called the hypothesis (or antecedent or premise) and q is called the conclusion (or consequence)
+                - p     q       p -> q
+                - T     T       T
+                - T     F       F
+                - F     T       T
+                - F     F       T
+            - Example
+                - if p, then q
+                - if p, q
+                - p is sufficient for q
+                - q if p
+                - q when p
+                - a necessary condition for p is q
+                - q unless -p
+                - p implies q
+                - p only if q
+                - a sufficient condition for q is p
+                - q whenever p
+                - q is necessary for p
+                - q follows from p
+                - q provided that p
+        - Converse, Contrapositive, and Inverse - REVIEW
+            - Converse - q -> p is the CONVERSE of p -> q
+            - Contrapositive - -q -> -p is the CONTRAPOSITIVE of p -> q
+            - Inverse - -p -> -q is the INVERSE of p -> q
+            - Example
+                - "The home team wins whenever it is raining"
+                    - INVERSE - "The home team loses whenver it is not raining"
+                    - CONVERSE - "If it is raining, the home team wins"
+                    - CONTRAPOSITIVE - "If it is not raining, then the home team does not win"
+            - IMPORTANT - only the contrapositive of a conditional statement is equivalent
+        - Biconditionals
+            - DEFINITION: let p and q be propositions. The biconditionals statement p <-> q is the proposition "p if and only if q." The biconditional statement p <-> q is true when p and q have the same truth values, and is false otherwise. Biconditional statements are also called bi-implications
+                - p     q       p <-> q
+                - T     T       T
+                - T     F       F
+                - F     T       F
+                - F     F       T
+            - Example
+                - p is necessary and sufficient for q
+                - if p then q, and conversely
+                - p iff q = p exactly when q
+            - Example
+                - p is You can take the flight
+                - q is You buy a ticket
+                - You can take the flight if and only if you buy a ticket
+            - Example Common Language
+                - If you finish dinner, then you can have dessert
+                - If you give the presentation, then you can go to dinner
+        - Truth Tables of Compound Propositions
+            - Example
+                - (p V -q) -> (p ^ q)
+                - Table
+                    - p     q     (-q)      pV-q       p^q       (pV-q) -> (p^q)  
+                    - T     T       F         T         T                T
+                    - T     F       T         T         F                F
+                    - F     T       F         F         F                T
+                    - F     F       T         T         F                F
+        - Precedence of Logical Operators
+            - RULE 1: (-p^q) is the conjunction of -p and q, namely (-p)^q
+            - RULE 2: conjunction operator takes precedence over the disjunction operator
+                - (pVq^r) means pV(q^r)
+                - (p^qVr) means (p^q)Vr
+            - RULE 3: conditional and biconditional operators -> and <-> have lower precedence than the conjunction and disjunction operators ^ and V
+                - p -> qVr means p -> (qVr)
+                - pVq -> r means (pVq) -> r
+        - Logical and Bit Operations
+            - Bit - symbol with two possible values 0 or 1
+            - Bit Operations - correspond to logical connectives
+            - Bit String - sequence of zero or more bits. the length of this string is the number of bits in the string
+            - Table for Bit Values
+                - Truth Value       Bit
+                -       T            1
+                -       F            0
+            - Table for Bit Operators OR, AND, and XOR
+                - x     y     xVy     x^y       x XOR Y
+                - 0     0      0       0           0
+                - 0     1      1       0           1
+                - 1     0      1       0           1
+                - 1     1      1       1           0
+            - Bit String Operations (Think Downwards) - We define the bitwise OR, bitwise AND, and bitwise XOR of two strings of the same length to be the strings that have as their bits the OR, AND, and XOR of the corresponding bits in the two strings respectively
+                - 01 1011 0110 - First String
+                - 11 0001 1101 - Second String
+                ------------------------------
+                - 11 1011 1111 - Bitwise OR
+                - 01 0001 0100 - Bitwise AND
+                - 10 1010 1011 - Bitwise XOR
+    b. Propositional Equivalences
+        - Introduction
+            - Compound Proposition - expression formed from propositional variabels using logical operators such as p^q
+            - Tautology - a compound proposition that is always true, no matter what thet truth values of the propositional variables that occur in it
+            - Contradiction - a compound proposition that is always false
+            - Contingency - a compound proposition that is neither a tautology nor a contradiction
+            - Examples of Tautology and Contradiction
+                - p     (-p)        (p V -p)    (p ^ -p)
+                - T       F            T            F
+                - F       T            T            F
+                - (p V -p) is a tautology
+                - (p ^ -p) is a contradicton
+        - Logical Equivalences
+            - Logically Equivalent - compound propositions that have the same truth values in all possible cases
+            - DEFINITION - the compound propositions p and q are logically equivalent if p <-> q is tautology, the notation/statement p THREE q denotes p and q are logically equivalent
+            - De Morgan's Law
+                - Important Logical Equivalence -(p^q) is logically equivalent to -pV-q
+                - Important Logical Equivalence -(pVq) is logically equivalent to -p^-q
+                - Important Logical Equivalence - (-pVq) is logically equivalent to p -> q
+            - Truth Table for -(pVq) and -p^-q
+                - p     q       (pVq)     -(pVq)      -p      -q      (-p^-q)
+                - T     T         T          F         F       F         F
+                - T     F         T          F         F       T         F
+                - F     T         T          F         T       F         F
+                - F     F         F          T         T       T         T
+            - Truth Table for Conditional Disjunction Equivalence -pVq and p -> q
+                - p     q       -p      (-pVq)      p -> q
+                - T     T        F         T           T
+                - T     F        F         F           F
+                - F     T        T         T           T
+                - F     F        T         T           T
+            - Truth Table for Logical Equivalence pV(q^r) and (pVq)^(pVr) - Distributive Law of Disjunction over Conjunction
+                - p     q       r       q^r     pV(q^r)     pVq     pVr     (pVq)^(pVr)
+                - T     T       T        T         T         T       T           T
+                - T     T       F        F         T         T       T           T
+                - T     F       T        F         T         T       T           T
+                - T     F       F        F         T         T       T           T
+                - F     T       T        T         T         T       T           T
+                - F     T       F        F         F         T       F           F
+                - F     F       T        F         F         F       T           F
+                - F     F       F        F         F         F       F           F
+            - Table of Logical Equivalences
+                - Identity Laws
+                    - p ^ T is logically equivalent to p
+                    - p V F is logically equivalent to p
+                - Domination Laws
+                    - p V T is logically equivalent to T
+                    - p ^ F is logically equivalent to F
+                - Idempotent Laws
+                    - p V p is logically equivalent to p
+                    - p ^ p is logically equivalent to p
+                - Double Negation Laws
+                    - -(-p) is logically equivalent to p
+                - Commutative Laws
+                    - p V q is logically equivalent to q V p
+                    - p ^ q is logically equivalent to q ^ p
+                - Associative Laws
+                    - (pVq)Vr is logically equivalent to pV(qVr)
+                    - (p^q)^r is logically equivalent to p^(q^r)
+                - Distributive Laws
+                    - pV(q^r) is logically equivalent to (pVq)^(pVr)
+                    - p^(qVr) is logically equivalent to (p^q)V(p^r)
+                - De Morgan's Laws
+                    - -(p^q) is logically equivalent to -pV-q
+                    - -(pVq) is logically equivalent to -p^-q
+                - Absorption Laws
+                    - pV(p^q) is logically equivalent to p
+                    - p^(pVq) is logically equivalent to p
+                - pV-p is logically equivalent to T
+                - p^-p is logically equivalent to F
+            - Logical Equivalences Involving Conditional Statements
+                - p -> q is logically equivalent to -pVq
+                - p -> q is logically equivalent to -q -> -p
+                - pVq is logically equivalent to -p -> q
+                - p^q is logically equivalent to -(-p -> -q)
+                - -(p ->q) is logically equivalent to p ^ -q
+                - (p -> q) ^ (p -> r) is logically equivalent to p -> (q^r)
+                - (p -> r) ^ (q -> r) is logically equivalent to (pVq) -> r
+                - (p -> q) V (p -> r) is logically equivalent to p -> (qVr)
+                - (p -> r)V (q -> r) is logically equivalent to (P^q) -> r
+            - Logical Equivalences Involving Biconditional Statemments
+                - p <-> q is logically equivalent to (p -> q) ^ (q -> p)
+                - p <-> q is logically equivalent to -p <-> -q
+                - p <-> q is logically equivalent to (p^q)V(-p^-q)
+                - -(p <-> q) is logically equivalent to p <-> -q
+        - Satisfiability - satisfiable if there is an assignment of truth values to its variables that makes it true (tautology ALL T or contradiction at least one T)
+        - Trick
+            - Calculating Rows - 2^(Number of Variables)
+                - p and q - four rows
+                - p, q, and r - eight rows
+                - p, q, r, and v - 16 rows
+    c. Predicates and Quantifiers
+        -  Predicates
+            - Variables - x, y, z
+            - Predicates - P(x), M(x)
+            - Quantifiers - to be covered in a few slides
+            - Examples
+                - x is greater than 3 P(x)
+                    - x - variable
+                    - P() - is greater than 3 is the predicate
+                    - P(x) - is also said to be the value of the propositional function P at x
+                    - P(x) is a proposition and has a truth value
+                - P(x) = x > 3
+                    - P(4) truth value is true
+                    - P(2) truth value is false
+                - A(x) = Computer x is under attack by an intruder
+                    - A(CS1) truth value is false
+                    - A(CS2) truth value is true
+                    - A(MATH1) truth value is true
+                - Q(x, y) = x = y + 3
+                     - Q(1,2) truth value is false
+                     - Q(3,0) truth value is true
+                - R(x,y,z) = x + y = z
+                    - R(2, -1, 5) truth value is false
+                    - R(3, 4, 7) truth value is true
+                    - R(x, 3, z) no truth value, not a proposition
+            - Domain - denoted by U
+        - Compound Expressions
+            - P(x) = x > 0
+                - P(3) V P(-1) truth value is true 
+                - P(3) ^ P(-1) truth value is false
+                - P(3) -> P(-1) truth value is false
+                - P(3) -> -P(-1) truth value is true
+        - Preconditions and Postconditions
+            - Preconditions - statements that describe valid input
+            - Postconditions - statements that should describe when the program has run
+        - Quantifiers
+            - Quantification - expresses thge extent to which a predicate is true over a range of elements
+                - Words - all, some, many, none, and few
+            - Universal Quantifier - predicate is true for every element under consideration
+                - Example
+                    - P(x) for all values of x in the Domain
+                    - ∀xP(x) denotes the universal quantification of P(x)
+                    - ∀ is called the universal quantifier
+                    - ∀xP(x) is read as for all xP(x) or for ever xP(x)
+                    - Counterexample, an element for which P(x) is false
+                - Example
+                    - ∀xP(x)
+                        - If P(x) denotes x>0 and the domain U is integers, then ∀xP(x) is false
+                        - If P(x) denotes x>0 and the domain U is positive integers, then ∀xP(x) is true
+                        - If P(x) denotes x is even and hte domain U is integers, then ∀xP(x) is false
+            - Existential Quantifier - there is one or more element under consideration for which the predicate is true
+                - Example
+                    - There exists an element x in the domain such that P(x)
+                    - ƎxP(x) - there is an x such that P(x)
+                    - ƎxP(x) - thjere is at least one x such that P(x)
+                - Example
+                    - ƎxP(x)
+                        - If P(x) denotes x>0 and U is the integers, then ƎxP(x) is true
+                        - If P(x) denotes x>0 and U is the negative integers, then ƎxP(x) is false
+            - The Uniqueness Quantifier - there exists a unique x such that P(x) is true
+            - Thinking About Quantifiers
+                - Domain = Finite - then loop and evaluate each element in the array
+                    - ∀xP(x) - every evaluation needs to be true
+                    - ƎxP(x) - at least one evaluation needs to be true
+            - Precedence of Quantifiers
+                - ƎxP(x) and ∀xP(x) have higher precedence than all logical operators
+                - ∀xP(x) V Q(x) is the disjunction of ∀xP(x) and Q(x)
+            - Translating from English into Logical Expressions
+                - Example
+                    - Every student in this class has taken a course in Java
+                    - Option 1:
+                        - U is all students
+                        - x is student in this class
+                        - J(x) dentoes a student in this class has taken a course in Java
+                    - Option 2:
+                        - U is all people
+                        - S(x) denoting x is a student in this class
+                        - ∀x(S(x) -> J(x)) - if student in this class, then that student has taken a course in Java
+                - Example
+                    - Some student in this class has visited Mexico
+                        - Option 1
+                            - U is all students in this class
+                            - x is student in this class
+                            - M(x) is student has visited Mexico
+                            - ƎxM(x)
+                        - Option 2
+                            - U is all students
+                            - x is student in this class
+                            - S(x) is if student in the class
+                            - M(x) is student has visited Mexico
+                            - Ǝx(S(x) ^ M(x))
+            - Equivalence in Predicate Logic
+                - Statements involving predicates and quantifiers are logically equivalent if and only if they ahve the same truth value no matter which predicats are substituted into these statements and which domain of discourse is used for the variable in these propositional functions
+            - Negating Quantified Expressions
+                - Negation of Universal - there is a value for which the universal is false
+                    - ∀xJ(x) = Every student in your class has taken a course in Java
+                    - Negation of ∀xJ(x) is there is at least one student who has not taken Java
+                    - Ǝx-J(x) is equivalent to the negation of ∀xJ(x) or -∀xJ(x) is logically equivalent to Ǝx-J(x)
+                - Negation of Existential - for all domain, it is always false
+                    - ƎxK(x) = there is a student in this class who has taken a course in Java
+                    - Negation of ƎxK(x) is there is no student who has taken java
+                    - ∀x-K(x) is the equivalent of the negation of ƎxK(x) or -ƎxK(x) is equivalent to ∀x-K(x) 
+            - Predicate Calculus - area of logic that deals with predicates and quantifier
+    d. Nested Quantifiers
+        - Introduction
+            - Nested Quantifier - where one quantifier is within the scope of another
+        - Understanding Statements Involving Nested Quantifiers
+            - Example 1: ∀x∀y(x+y = y+x)
+                - Statement - x+y=y+x for all real numbers x and y.
+            - Example 2: ∀xƎy(x+y = 0)
+                - Statement - for every real number x, there is a real number y such that x + y = 0
+            - Example 3: ∀x∀y((x > 0) ^ (y < 0) -> (xy < 0))
+                - Statement - for every real number x, and every real number y, if x > 0 and y < 0, then x times y < 0
+            - Thinking of Quantification as Loops
+                - ∀x∀yP(x,y) - we loop through the values of x, and for each x we loop through the values of y, if we find that for all values of x that P(x,y) is true for all values of y, then ∀x∀yP(x,y) is true
+                    - If we ever hit a value of x, for which we hit a value y for which P(x,y) is false, we have shown that ∀x∀yP(x,y) is false
+                - ∀xƎyP(x,y) - we loop through the values of x, and for every value of x, there should be a value of y for which P(x,y) is true
+                    - If for even one x, there is not a value for y in which P(x,y) is true, then the statement is false
+                - Ǝx∀yP(x,y) - we loop through every value of x, and if there is a value of x, for which every value y P(x,y) is true, we have proved this
+                    - If we loop through every value of x, and there is no value of x for which every value of y (Px,y) is true, then we have proved Ǝx∀yP(x,y) false
+                - ƎxEyP(x,y) - for at least one value of x, there should be at least one value of y in which P(x,y) is true
+                    - If there is no x where there is at least one value of y in which P(x,y) is true, then the statement is false
+        - Order of Quantifiers
+            - Note - order matters only if the quantififers are not all universal or all existential
+            - Example
+                - P(x,y) is x+y=y+x, ∀x∀y(x+y = y+x) and ∀y∀x(x+y = y+x) are the same
+            - Example
+                - Q(x,y) is x + y = 0
+                    - Ǝy∀xQ(x,y) - there is at least one y that for every value of x, the statement is true - FALSE
+                    - ∀xƎyQ(x,y) - for all values of x, there is at least one value of y where Q(x,y) is true - TRUE
+        - Translating Mathematical Statements into Statements Involving Nested Quantifiers
+            - Statement - the sum of two positive integers is always positive
+                - ∀xVyQ( x + y > 0) - only deals with sum, must deal with "positive integers", this could be true if domain is positive integers
+                - ∀xVyQ( (x > 0) ^ (y > 0) -> (x + y > 0)) - domain consists of all integers
+            - Statement - Every real number except zero has a multiplicative inverse
+                - ∀x((x != 0)) -> Ǝy(xy = 1)
+        - Translating from Nested Quantifiers to English
+            - Statement - ∀x(C(x) v Ǝy(C(y) ^ F(x,y)))
+                - C(x) is x has a computer
+                - F(x,y) is x and y are friends
+                - Every student in the school has a computer, or that person has a friend and that friend has a computer
+            - Statement - Ǝx∀x∀z((F(x,y) ^ F(x,z) ^ (y != z)) -> -F(y,z))
+                - There is a student in the school where if the student is friends with 1 student and another student, and those two students are not the same, then those two students are not friend with each other
+        - Translating English Sentences into Logical Expressions
+            - Statement - if a person is female and is a parent, then this person is someone's mother
+                - ∀x(F(x) ^ P(x) -> ƎyM(x, y)) - domain is all people
+            - Statement - everyone has exactly one best friend
+                - ∀xƎy(F(x,y) ^ ∀z(y != z) -> -F(x,z))
+            - Statement - there is a woman who has taken a flight on every airline in the world
+                - P(w, f) - w has taken f
+                - Q(f, a) - f is a flight on a
+                - Ǝw∀aƎf(P(q, f) ^ Q(f, a))
+    e. Introduction to Proofs
+        - Direct Proof - p -> q
+        - Informal Proofs - where more than one rule of inference may be used in each step, where steps may be skipped, where the axios being assumed and the rules of inference used are not explicitly state
+        - Some Terminology
+            - Theorem - statement that can be shown to be true
+            - Propositions - Less important theorem
+            - Proof - a valid argument that establishes the truth of the theorem
+            - Axioms/Postulates - which are statements we assume to be true
+            - Lemma - theorem that is helpful in the proof of other results
+            - Corollary - a theorem that can be established directly from a therom that has been proved
+            - Conjecture - statement that is being proposed to be a true statement, usuually on the basis of some partial evidence, a heuristic argument, or the intuition of an expert
+        - Understanding How Theorems Are Stated
+            - For all positive real numbers x and y, if x > y, then x^2 > y^2
+        - Methods of Proving Theorems
+            - Direct, Contraposition, and Contradiction
+        - Direct Proof of conditional statement p -> q is constructed when the first step is the assumption that p is true, subsequent steps are constructed using rules of inference
+            - FIRST STEP - assume that p is true
+            - Example 1 - if n is an odd integer, than n^2 is odd
+                - #1 - assume that n is odd
+                - #2 - n = 2k + 1
+                - #3 - n^2 = (2k + 1)^2 = 4k^2 + 4k +1 = 2(2k^2 + 2k) + 1 - definition of odd integer, we can conclude that n^2 is an odd integer i.e. it is one more than twice an integer
+            - Example 2 -  if m and n are both perfect squares, then nm is also a perfect square
+                - #1 - assume that m and n are perfet squares
+                - #2 - m = s^2 and n = t^2
+                - #3 - mn = s^2t^2
+                - #4 - mn = sstt
+                - #5 - mn - stst
+                - #6 - mn = (st)^2 - perfect square because st is an integer
+        - Proof by Contraposition - is valid BECAUSE p -> q is logically equivalent to -q -> -p
+            - FIRST STEP -  assume that the conclusion of the conditional statement is false
+            - Example 3 - Prove that if n is an integer and 3n+2 is odd, then n is odd
+                - #1 - assume n is even i.e. not odd
+                - #2 - n = 2k
+                - #3 - 3(2k)+2 = 6k+2 = 2(3k+1)
+                - #4 - 3n+2 is even, and therefore not odd
+        - Vacuous and Trivial Proofs
+            - Vacuous - situation with p -> q, if we can show p to be false, then p -> q must be true
+            - Trivial - situation with p -> q, if we can show q to be true, then p -> q must be true
+        - A Little Proof Strategy - form ∀x(P(x) -> Q(x))
+            - #1 - evaluate whether direct proof looks promising
+                - Begin by expanding definition of hypotheses
+                - Start to reason using these hypotheses, together with axios and available theorems
+                - If nothing, try contraposition
+            - Definition - real number r is rational if there exists p and q with q != 0 such that r = p/q. A real number that is not rational is called irrational
+        - Proofs by Contradiction
+            - Goal - prove that -p -> r ^ -r is true, r ^-r is always false i.e. contradiction, so the statement must be true when -p is false i.e. p is true
+        - Proofs of Equivalence
+            - Prove p <-> q, we show that p -> q and q -> p are both true, based on p <-> q <-> (p -> q) ^ (q -> p)
+        - Cyclical
+            - Prove p1 -> p2, p2 -> p3, p3 -> 4
+        - Counter Examples
+            - Show statement of the form ∀xP(x) is false, we need only find a counterexample
+            - Example - show that "Every positive integer is the sum of the two squares of two integers" is false
+        - Mistakes in Proofs - arithmetic and algebra
+    f. Proof Methods and Strategy
+        - Exhaustive Proof and Proof by Cases
+            - Exhaustive (p1 V p2 V ... pN) -> q
+        - Proof by Cases - cover all possible cases that arise in a theorem
+            - Example - Prove that if n is an integer, then n^2 > or equal to n
+    APPENDIX. Chapter Review - Extra Examples on Rosen Site
+        - 01.01
+        - 01.02 - SKIPPED (RETURN TO TRANSLATION)
+        - 01.03
+        - 01.04
+        - 0.105
+        - 01.06
+        - 01.07
+        - 01.08
+
+Chapter 2: Basic Structures: Sets, Functions, Sequences, Sums, and Matrices
+    a. Sets
+        - Introduction
+            - Defintion of Set - unordered collection of distinct objects called elemnts or members, a set is said to contain its elements
+            - Example - a ∈ A to denote that a is an element of the set A.  
+            - Example - The set V of all vowels in the english alphabet can be written as V = {a, e, i, o, u}
+            - Example - The set O of odd positive integers less than 10 can be expressed as O = {1,3,5,7,9}
+        - Important Sets
+            - N = {0,1,2,3,...} - the set of all natural numbers
+            - Z = {...., -2, -1, 0, 1, 2, ...} - the set of all integers
+            - Z+ = {1,2,3,...} - the set of all positive Integers
+            - Q = {p/q | p ∈ Z, q ∈ Z, and q != 0} - the set of all rational numbers
+            - R - the set of all real numbers
+            - R+ - the set of all positive real numbers
+            - C - the set of all complex numbers
+            - Interval - set of all real numbers between numbers a and b
+                - [a,b] = {x | a ≤ x ≤ b} - closed interval
+                - [a, b) = {x | a ≤ x < b}
+                - (a, b] = {x | a < x ≤ b}
+                - (a , b) = {x | a < x < b} - open interval
+            - {N, Z, Q, R} - set containing four elements, each of which is a set
+            - Boolean Set - {0,1} with operators such as AND, OR, and NOT
+            - Empty Set - set that has no elemnts i.e. {} or ∅
+            - Singleton Set - set with one element {∅}
+        - Defintion - Two sets are equal if and only if they have the same elements i.e. if A and B are sets, ∀x(x ∈ A <-> x ∈ B ) i.e. A = B
+            - Example {1,3, 5} = {3,5,1} or {1,3,5} = {1,5,5,5,5,3}
+        - Venn Diagrams - graphical representation of sets
+            - Universal Set U - contains all the objects under consideration
+        - Subsets
+            - Definition - set A is a subset of B, and B is a superset of A, if and only if every element of A is also an element of B i.e. A ⊆ B or B ⊇ A
+                - ∀x(x ∈ A -> x ∈ B)
+            - Proper Subet  - A ⊆ B but A != B, then we say A is a proper subset of B, denoted by A ⊂ B, something belongs to B that does not belong to A
+        - Theorem - For every set S
+            - ∅ ⊆ S
+            - S ⊆ S
+        - The Size of a Sets
+            - Definition - If there are exactly n distinct elements in S where n is a nonnegative integer, we say that S is a finite set and that n is the cardinality of S. The cardinality of S is denoted by |S|
+            - Example - Let A be the set of odd positive integers less than 10. Than |A| is 5
+            - Example - Let S be the set of letters in the English alphabet. Then |S| is 26
+            - Example - Because the null set has no elements, it follows that |∅| = 0
+            - Definition - A set is said to be infinite if it is not finite e.g. the set of positive integers is infinite
+            - Cardinality Equality
+                - |I| = infinity and |Q| = infinity, same cardinality
+                - Watch out for |R|
+        - Definitions
+            - Set - unordered collection of distinct objects called elemnets or members, a set is said to contain its elements
+            - Set Equality - two sets are equal if and only if they have the same elements i.e. if A and B are sets, ∀x(x ∈ A <-> x ∈ B ) i.e. A = B
+            - Subset and Superset - set A is a subset of B, and B is a superset of A, if and only if every element of A is also an element of B i.e. A ⊆ B or B ⊇ A
+            - Cardinality of a Set - If there are exactly n distinct elements in S where n is a nonnegative integer, we say that S if a finite set and that n is the cardinality of S. The cardinality of S is denoted by |S|
+        - Power Sets
+            - Definition - Given a set S, the power set of S is the set of all subsets of the set S. The power set of S is denoted by P(S)
+            - Example - What is the power set of the set {0,1,2}
+                - P({0,1,3}) = {∅, {0}, {1}, {2}, {0,1}, {0,2}, {1,2}, {0,1,2}}
+                - IMPORTANT - the empty set and the set itself are members of this set of subsets
+            - Example - What is the power set of the empty set?
+                - P(∅) = {∅}
+            - Example - What is the power set of the set {∅}?
+                - P({∅}) = {∅, {∅}}
+        - Cartesian Products
+            - Ordered n-tuple (a1, a2, ..., an) is the ordered collection that has a1 as its first element, a2 as its second element, ..., and an as its nth element
+            - Definition - Let A and B be sets. The Cartesian Product of A and B, denoted by A x B, is the set of all ordered pairs (a, b), where a ∈ A and b ∈ B
+                - AxB = {(a,b) | a ∈ A ^ b ∈ B}
+            - Example - What is the cartesian product of A = {1,2} and B = {a,b,c}
+                - A x B = {(1,a), (1,b), (1,c), (2,a), (2,b), (2,c)}
+            - Example - What is the cartesian product of B = {a,b,c} and A = {1,2}
+                - B x A = {(a,1), (a,2). (b,1), (b,2), (c,1), (c,2)}
+            - Example - What is the cartesian product of A = {0,1}, B = {1,2}, and C = {0,1,2}
+                - AxBxC = 
+        - Using Set Notation with Quantifiers
+        - Truth Sets and Quantifiers
+    b. Set Operations
+        - Introduction
+            - Union Definition - Let A and B be sets. The union of the sets A and B denoted by A ∪ B, is the set that contains those elements that are either in A or in B, or in both
+                - A ∪ B = {x | x ∈ A V x ∈ B}
+            - Union Example - The union of the sets {1,3,5} and {1,2,3} is the set {1,2,3,5} i.e. {1,3,5} ∪ {1,2,3} = {1,2,3,5}
+            - Intersection Definition - Let A and B be sets. The intersection of the sets A and B denoted by A ∩ B is the set containing those elements in both A and B
+                - A ∩ B = {x | x ∈ A ^ x ∈ B }
+            - Disjoint Definition - Two sets are called disjoin if their intersection is the empty set
+                - Example - Let A = {1,2,3, 4} and B = {10, 11, 12}. A ∩ B = ∅, A and B are disjoint
+            - Difference Definition - Let A And B be sets. The difference of A and B, denoted by A - B, is the set containing those elements that are in A but not in B. The difference of A and B is also called the complement of B with respect to A
+                - Example A - B = {x | x ∈ A ^ x ∉ B}, let A = {1,2} and B = {2, 3, 5}, A - B is {1}
+            - Complement Definition - Let U be the universal set. The complement of the set A, denoted by A, is the complement of A with respect to U. Therefore the complement of the set A is U - A i.e. what exists in U that does not exist in A
+            - Cardinality of the Union of Two Sets
+                - |A ∪ B| = |A| + |B| - |A ∩ B|
+                - Example - Let A be the math majors and B the CS majors. To count the number of students who are either math or CS majors, you add math and cs majors and subtract those that are both math and CS
+                - Example |A ∪ B ∪ C| = |A| + |B| + |C| - |A ∪ B| - |A ∪ C| - |B ∪ C| + |A ∩ B ∩ C| 
+            - Symmetric Difference - the symmetric difference of A and B denoted by A XOR B is the set A-B U B-A
+                - Example
+                    - A = {1,2,3,4,5}
+                    - B = {4,5,6,7,8}
+                    - A XOR B = {1,2,3,6,7,8}
+        - Set Identities
+            - Charcters - ∪ - ∩ - ∈ - ∅
+            - Identity Laws
+                - A ∩ U = A
+                - A ∪ ∅ = A
+            - Domination Laws
+                - A ∪ U = U
+                - A ∩ ∅ = ∅
+            - Idempotent Laws
+                - A ∪ A = A
+                - A ∩ A = A
+            - Complementation Law
+                - (A Complement) Complement = A
+            - Commutative Laws
+                - A U B = B U A
+                - A N B = B N A
+            - Associative Laws
+                - A U (B U C) = (A U B) U C
+                - A N (B N C) = (A N B) N C
+            - Distributive Laws
+                - A U (B N C) = (A U B) N (A U C)
+                - A N (B U C) = (A N B) U (A N C)
+            - De Morgan's Laws
+                - (A U B)' = A' ∩ B'
+                - (A ∩ B)' = A' U B'
+            - Absorption Lawsw
+                - A ∪ (A ∩ B) = A
+                - A ∩ (A u B) = A
+            - Complement Laws
+                - A ∪ A Complement = U
+                - A ∩ A Complement = ∅
+        - Proving Set Theories
+            - Subset Method - Show that each side of the identity is a subset of the other side
+                - Example - Prove (A ∩ B)' = A' U B'
+            - Example A = B i.e. A ⊆ B and B ⊆ A => A = B
+        - Generalized Union and Intersections
+            - Definition - the union of a collection of sets is the set that contains those elements that are members of at least one set in the collection
+                - Notation - A1 U A2 U AN = i = 1 U N Ai
+            - Definition - the intersection of a collection of sets is the set that contains those elements that are members of all sets in the collection
+                - Notation - A1 N A2 N AN = i = 1 N N Ai
+    c. Functions
+        - Introductions
+            - Definition - a function f from A to B is an assignment of exactly one element of B to each element of A, we write f(a) = b if b is the unique element of B assigned by the function f to the element a of A, f : A -> B
+            - Definition - if f is a function from A to B, we say that A is the domain of f and B is the codomain of f, if f(a) = b, we say that b is the image of a and a is the preimage of b. The range, or image, of f is the set of all images of elements of A. f maps A to B
+                - image - f(a) = b, b is image
+                - preimage - f(a) = b, a is preimage
+                - range of f - set of of all images of elements of A
+        - One to One Functions
+            - Definition - a function is said to be one-to-one, or an injection, if and only if f(a) = f(b) implies that a = b for all a and b in the domain of 
+            - Definition - a function from A to B is called onto, or a surjection, if and only if for every element b ∈ B there is an element a ∈ A with f(a) = b.
+                - For every B, there is an element a that produces it
+                - Example - f(x) = x^2, no, there is no integer where x^2 = -1, etc negative numbers
+            - Definition - a function is one-to-one correspondence or a bijection if it is both one-to-one and onto, all values for B and only one to one
+            - Suppose f: A -> B
+                - To show that f is injective, show that if f(x) = f(y) for arbitrary x, y ∈ A, then x = y (Each unique x value produces a unique y value)
+                - To show that f is not injective, find particular elements x, y ∈ A, such that x != y and f(x) = f(y) (At least two different x values must produce the same y value)
+                - To show that f is surjective - consider an arbitrary element y ∈ B and find an element x ∈ A such that f(x) = y (Every value in the codomain must be produced by inputting an element from the domain into the function)
+                - To show that f is not surjective - find a particular y ∈ B such that f(x) != y for all x ∈ A (Find a value in the codomain that is not produced by inputting a value in the domain into the function)
+            - Definition - Let f be a one-to-one correspondence from the set A to the set B, the inverse function of F is the function that assigns to an element b belonging to B the unique element of a in A such that f(a) = b . The inverse function of f is denoted by f^-1. Hence f^-1(b) = 1 when f(a) = b
+                - Example - f: Z -> Z such that f(x) = x + 1, invertible f^-1(y) = y - 1
+            - Definition - Let g be a function from the sedt A to the set B and let f be a function from the set B to the set C, the composition of the functions f and g denoted fro all a ∈ A by fog, is the function from A to C defined by (fog)(a) = f(g(a))
+        - Some Important Functions
+            - Definition - the floor function assigns to the real number x the largest integer that is less than or equal to x. The value of the floor function at x is denoted by ⌊x⌋
+            - Definition - the ceiling function assigns to the real number x the smallest integer that is greater than or equal to x. The value of the ceiling function at x is denoted by ⌈x⌉
+                - Floor of 1/2 is 0 and Celing of 1/2 is 1
+                - Floor of -1/2 is -1 and Ceiling of -1/2 is 0
+                - Floor of 3.1 is 3 and Ceiling of 3.1 is 4
+                - Floor of 7 is 7 and Ceiling of 7 is 7
+                - Example - Byte is 8 bits, how many bytes required to encode 100 bits of data - CEILING of 100/8 = 12.5 = 13
+            - Useful Properties of the Floor and Ceiling Functions
+            - Factorial Function - f : N -> Z+ denoted by f(n) = n!
+                - f(0) = 0! = 1
+        - Partial Functions - FORGET ABOUT IT
+    d. Sequences and Summations
+        - Sequences
+            - Definition - a sequence is a function from a subset of the integers (usually either the set {0,1,2,...} or the set {1,2,3,...} to a set S. We use the notation An to denote the image of the integer n. We call an a term of the sequence
+                - Example - {an} where an = 1/n is {1, 1/2, 1/3, 1/4, 1/5}
+            - Definition - a geometric progression is a sequence of the form a, ar, ar^2,...,ar^n,... where the initial term a and the common ration r are real numbers
+                - Example - {bn} where bn = (-1)^n
+                - Example - {cn} where cn = 2*(5)^n
+                - Example - {dn} where dn = 6*(1/3)^n
+            - Definition - an arithmetic progression is a sequence of the form a, a +d, a + 2d, a + 3d, ..., a + nd, ... where the initial term a and the common difference d are real numbers
+        - Recurrence Relations
+            - Definition - a recurrence relation for the sequence {an} is an equation that expresses an in terms of one or more of the previous terms of the sequence, namely, a0, a1, a2, an-1 for all integers n with n >= n0 where n0 is a nonnegative integer.
+            - Definition - a sequence is called a solution of a recurrence relation if its terms satisfy the recurrence relation, a recurrence relation is said to recursively define a sequence
+                - Example - let {an} be a sequence that satisfies the recurrence relation an = an-1 + 3 for n = 1,2,3,... and suppose that a0 = 2. What are a1, a2, and a3
+                    - a1 = a0 + 3 = 5
+                    - a2 = a1 + 3 = 8
+                    - a3 = a2 + 3 = 11
+                - Example - let {an} be a sequence that satisfies the recurrence relation an = an-1 - an-2 for n = 2, 3, 4 and suppose that a0 = 3 and a1 = 5. What are a2 and a3?
+                    - a2 = a1 - a0 = 5 - 3 = 2
+                    - a3 = a2 - a1 = 2 - 5 = -3
+            - Initial Condition - for a recursively defined sequence specify the terms that precede the first term where the recurrence relation takes effect, using mathematical induction, a proof technique introduced in chapter 5, it can be shown that a recurrence relation together with its initial condition determines a unique solution
+                - Example - Fibonnaci Sequencee - fn = fn-1 + fn-2 where fo = 1 and f1 = 1
+                    - f2 = f1 + f0 = 1 + 1 = 2
+                    - f3 = f2 + f1 = 2 + 1 = 3
+                    - f4 = f3 + f2 = 5
+                    - f5 = f4 + f3 = 8
+        - Useful Sequences
+            - n^2 = 1, 4, 9, 16, ...
+            - n^3 = 1, 8, 27, ...
+            - n^4 = 1, 16, 81, ...
+            - fn = 1, 1, 2, 3, 5, 8, 11, ...
+            - 2^n = 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, ...
+            - 3^n = 3, 9, 27, 81, ...
+            - N! = 1, 2, 6, 24, 120, 720, 5040, 40320, ...
+        - Summations
+    e. Matrices
+        - Introduction
+            - Definition - A matrix is a rectangular array of numbers. A matrix with m rows and n columns is called a M X N matrix. The plural of matrix is matrices. A matrix with the same number of rows as columns is called a square
+            - Definition - Two matrices are equal if they have the same number of rows and the same number of columns and the corresponding entries in every position are equal
+        - Matrix Arithmetic
+            - Addition - Pair Wise
+            - Subtraction - Pair Wise
+            - Multiplication - Row x Column then SUM
+        - Transpose and Powers of Matrices
+        - Zero One Matrices
+            - Join - Bit Operation Pairwise AND
+            - Meet - Bit Operation Pairwise OR
+            - Boolean Product - m x n matric where cij = (ai1 ^ bi1) V (ai2 ^ bi2)
+            - Boolean Powers - Boolean product of r Factors of A, A must be Square*                                              
+
+
+Chapter 3: Algorithms
+    a. Algorithms
+        - Introduction
+            - Definition - an algorithm is a finite sequence of precise instructions for performing a computation or for solving a problem
+            - Algorithm - Finding Maxmimum - ice_cream.cpp
+            - Properties
+                - Input
+                - Output
+                - Definiteness - Steps of an algorithm must be defined precisely
+                - Correctness - An algorithm should produce the correct output values for each set of input values
+                - Finiteness - An algorithm should produce the desired output after a finite number of steps for any input in the step
+                - Effectivness - It must be possible to perform each step of an algorithm exactly and in an infinite amount of time
+                - Generality - The procedure should be applicable for all problems of the desired form, not just for a particular set of input values
+        - Searching Algorithms - locating an element in an ordered list
+            - General Problem - locate an element x in a list of distinct elements, or determine that it is not in the list
+            - Linear Search - compare x to every value in list until x = a1 in which the element is found, or until you reach the end of the list, meaning no match occurs
+            - Binary Search - compare x to the middle term of the list, split list and choose which half depending on if x is lower and higher than middle term, repeat check
+        - Sorting - ordering the elements of a list
+            - Bubble Sort - put a list into increasing order, by successively comparing adjacent elements, interchanging them if they are in the wrong order.
+            - Insertion Sort - start with second element, compare to first, if smaller, put in front of first, if larger stay, then third, start with 1, then 2, if larger stary, then n, start with 1, go till n, at end, use linear search
+        - String Matching - finding where a pattern occurs in a text string
+            - Naive String Matcher - run through all possible shifts, checking if starting at new index, next set of characters match each character in text
+        - Greedy Algoritms
+            - Optimization Problems - goal is to find a solution to a given problem that either minimzes or maximizes the value of some parameter
+            - Greedy Algorithm - select "best" choice at each step
+            - Example - Cashiers Algorithm
+                - Goal - making change using the least total number of coins
+                - Action - making a local optimal choice at each step, that is at each step we choose the coin of the largest denomination possible to add to the pile of change without exceeding n cents
+            - LEMMA 1 - If n is a positive integer, then n cents in change using quarters, dimes, nickels, and pennies using the fewest coins possible has at most two dimes, at most one nickel, at most four pennies, and cannot have two dimes and a nickel. The amount of change in dimes, nickels, and pennies cannot exceed 24 cents
+        - The Halting Problem - problem that cannot be solved using any procedure
+    b. Growth of Functions
+        - Introduction
+        - Big-O Notation
+            - Definition - Let f and g be functions from the set of integers or the set of real numbers to the set of real numbers.
+                - We say that f(x) is O(g(x)) if there are constants C and k such that |f(x)| <= C|g(x| whenver x > k.
+            - Same Order - two functions f(x) and g(x) that satisfy both of these Big-O relationships
+            - Why - Big-O is used extensivley to estimate the number of operations an algorithm uses as its input grows. With the help of this notation, we can determine whether it is practical to use a particular algorithm to solve a problem as the size of the input grows
+    c. Complexity of Algorithms
+        - Introduction
+            - How can the efficiency of an algorithm be analyzed?
+            - One measure of efficiency is the time used by a computer to solve a problem using the algorithm, when input values are of a specified size
+        - Time Complexity
+            - Definition - number of operations used by the algorithm when the input has a particular size
+        - Worst Case Complexity - largest number of operations needed to solve the given problem using this algorithm on input of a specified size
+            - Linear Search is O(n)
+            - Binary Search is O(logn)
+        - Complexity of Problems
+            - Tractable Problem - there exists a polynomial time algorithm to solve this problem
+            - Intractable Problem - there does not exist a polynomial time algorithm to solve this problem
+            - Unsolvable Problem - no algorithm exists to solve this problem
+            - Class NP - solution can be checked in polynomial time, but no polynomial time algorithm has been found for finding a solution to problems in this class
+            - NP Complete Class - if you find a polynomial time algoirthm for one member of the class, it can be used to solve all the problems in the class
+
+Chapter 4: Number Theory and Cryptography
+     a. Divisibility and Modular Arithmetic
+        - Division
+        - Division Algorithm
+        - Modular Arithmetic
+      b. Project: 
+         - Part 1: Write Multiplication of Two Numbers (31, 22) in Base 10 - Part 1
+            - Convert each number to binary
+            - Multiply according to Multiplication of Integers Algorithm - Algorithm 3
+            - Add, according to Addition of Integers Algorithm - Algorithm 2
+            - Convert product binary number back to decimal - Algorithm 1
+         - Part 2: Project: Writing Project - Two Topic Research - Part 2
+            - Describe some of the different algorithms for string matching
+            - Explain how the complexity of parallel algorithms can be measured. 
+               - Give some examples to illustrate this concept, showing how a parallel algorithm can work more quickly than on that does not operate in parallel.
+         - Part 3: Final Report
+
+Chapter 5: Induction and Recursion 
+    a. Introduction
+        - Principle of Mathematical Induction
+            - Basis Step - show that P(1) is true
+            - Inductive Step - show that for all positive integers k, if P(k) is true, then P(k + 1) is true
+
+Chapter 10: Graphs
+    a. Graph Terminology
+        - Graph - consists of vertices or nodes and edges
+        - Directed Graph - consists of vertices and directed edges, each directed edge is associated with an ordered pair of vertices, start at u and end at v
+        - Types
+            - Simple
+            - Multigraph
+            - Pseudograph
+            - Simple Directed
+            - Directed Multigraph
+            - Mixed Graph
+        - Regular - if every vertx has the same degree
+    b. Graph Terminology and Special Types of Graphs
+        - Basic Terminology
+            - Two vertices u and v in an undirected graph G are called adjacent if u and v are endpoints of an edge e. Edge e is called incident with u and v and is said to connect u and v
+            - Neighborhood - N(A) all vertices in G that are adjacent to at least one vertex in A
+            - Degree - degree of a vertex is the number of edges incident with it, except that loop at a vertex contributes twice to the degree
+            - Theorem 1 (Handshaking Theorem) - sum of the degrees of the vertices of an undirected graph is even
+            - Theorem 2 - an undirected graph has an even number of vertices of odd degree
+            - The in-degree of a vertex v, denoted by deg-(v), is the number of edges with v as their terminal vertex
+            - The out-degree, denoted by deg+(v), is the number of edges with v as their initial vertex
+            - Theorem 3 - for a directed graph, in-degree of a vertex is equal to out-degree of vertex
+        - Some Special Simple Graphs
+            - Complete Graph - simple graph that contains exactly one edge between each pair of distinct vertices
+            - Cycles - n >= 3, consists of n vertices and edges (v1, v2), (v2, v3), (v3, v4)
+            - Wheel - add an additional vertex to a cycle, for n >= 3, and connect this new vertex to each of the n vertices in the cycle
+            - N Cube - graph that has vertices representing the 2^n bit strings of length n
+            - Special Types of Network Graphs - Star, Ring, Hybrid
+        - Bipartite Graphs - graph has property that its vertex set can be divided into two disjoint subsets such that each edge connects a vertex in one of these subsets to a vertex in the other subset
+            - If triangle, then not bipartite
+            - Complete Bipartite - edge from every vertex in V1 to every vertex in V2
+        - New Graphs from Old
+            - Union of Two Simple Graphs - put vertices together and add edges
+            - Subgraph - G = (V,E) subgraph H (W, F) where W is subset of V and F subset of E
+    c. Representing Graphs and Graphs Isomorphism
+        - Adjaceny Lists - specify the vertices that are adjacent to each vertex of the graph
+        - Adjaceny Matrices - n x n zero one matrix with 1 as its entry when vi and vj are adjacent and 0 when they are not
+        - Incidence Matrices - n x m matrice where 1 when edge is incident with v and 0 otherwise
+        - Isomorphism of Graphs - G1 = (V1, E1) and G2 = (V2, E2) are isomorphic if there exists a one to one and onto function f from V1 to V2 with the property that a and b are adjacent in G1 if and only if f(a) and f(b) are adjacent in G2
+            - Trick, compare highest degrees of vertexes for a quick check
+            - Check vertex with matching degrees and check adjacent vertices for different degrees
+    d. Connectivity
+        - Introduction
+        - Paths
+            - Path - sequence of edges that begins at a vertex of a graph and travels from vertex to vertex along edges of the graph
+                - Edges - e1, e2, e3, e4, e5
+                - Vertices - u, x0, x1, x2, xn, v
+            - Simple Path - if it does not contain the same edge more than once
+            - Applications
+                - Determining whether a message can be sent between two computers
+                - Efficiently planning routes for mail delivery
+        - Connectedness
+            - Graph is called connected if there is a path between every pair of distinct vertices of the graph
+            - Connected Components - connected subgraph of G that is not a proper subgraph of another connected subgraph of G
+            - Cut Vertices - the removal of this vertex and all incident edges produces a graph with more connected components i.e. produces a subgraph that is not connected
+            - K-conneceted - k(G) >= k
+                - k(G) = 0, disconnected graphs
+                - k(G) = 1, graphs without cut vertices that can be disconnected by removing one vertex
+        - Edge Connectivity
+            - Measure connectivity of a connected graph G in terms of the minimum number of edges that we can remove to disconnect it
+        - Connectedness in Directed Graphs
+            - Strongly Connected - if there is a path from a to b and from b to a whenever a and b are vertices in the graph, must be a sequence of directed edges from any vertex in the graph to any other vertex
+            - Weakly Connected - if there is a path between every two vertices in the underlying undirected graph
+        - Strong Components of a Directed Graph - subgraphs of a directed graph G that are strongly connected but not contained in larger strong connected subgraphs, that is, the maximal strongly connected subgraphs, are called the strongly connected components or strong components of G
+        - Theorems
+            - There is a simple path between every pair of distinct vertices of a connected undirected graph
+    e. Euler and Hamilton Paths
+        - Euler Circuit - can we travel along the edges of a graph starting at a vertex and returning to it by traversing each edge of the graph exactly once?
+        - Hamilton Path - can we travel along the edges of a graph starting at a vertex and returning to it while visiting each vertex of the graph exactly once?
+        - Euler Paths and Circuits
+            - Seven Bridges of Konigsberg - no solution, what is notable is how Euler PROVED it had no solution
+            - Euler Circuit - simple circuit in graph G containing every edge of G
+            - Euler Path - simple path containing every edge of G
+        - Necessary and Sufficient Conditions for Euler Circuits and Paths
+            - Show every vertex must have an even degree
+        - Theorem
+            - A connected multigraph with at least two vertices has an Euler circuit if and only if each of its vertices has even degree
+            - A connected multigraph has an Euler path but not an Euler circuit if and only if it has exactly two vertices of odd degree
+            - If G is a simple graph with n vertices with n >= 3 such that the degree of every vertex in G is at least n/2, then G has a Hamilton Circuit
+            - A directed multigraph having no isolated vertices has an Euler circuit if and only if the graph is weakly connected and the in-degree and out-degree of each vertex are equal
+            - A directed multigraph having no isolated vertices has an Euler path but not an Euler circuit if and only if the graph is weakly connected and the in-degree and out-degree for each vertex are equal for all but two vertices, one that has in-degree one larger than out degree and the other that has out-degree one larger than its in-degree
+
+Chapter 11: Trees
+    a. Introduction
+        - Tree - a connected undirected graph with no simple circuits
+            - A tree cannot contain multiple edges or loops
+        - Forest - graphs containing no simple circuits that are not connected but grouped together
+        - Theorem - an undirected graph is a tree if and only if there is a unique simple path between any two of its vertices
+        - Rooted Tree - a tree in which one vertex has been designated as the root and every edge is directed away from the root
+        - Terminology
+            - Parent - unique vertex u such that there is a directed edge from u to v
+            - Child - when u is parent of v, v is called a child of u
+            - Siblings - vertices with the same parent
+            - Ancestors - vertices in the path from the root to this vertex, excluding the vertex itself
+            - Descendants - descendants of a vertex v are those vertices that have v as an ancestor
+            - Leaf - vertex with no children
+            - Internal - vertices that have children
+            - Height - maximum of the level of vertices
+        - M-ary Tree - rooted tree if every internal vertex has no more than m children
+        - Full M-ary Tree - every internal vertex has exactly m chlildren
+        - Ordered Rooted Trees - rooted tree where the children of each internal vertex are ordered
+        - Properties of Trees
+            - A tree with n vertices has n-1 edges
+            - A full m-ary tree with i internal vertices contains n = mi + 1 vertices
+            - There are at most m^h leaves in an m-ary tree of height h
+            - A full m-ary tree with i internal vertices has e = mi edges
