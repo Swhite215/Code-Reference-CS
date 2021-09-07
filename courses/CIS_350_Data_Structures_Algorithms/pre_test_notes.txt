@@ -30,13 +30,22 @@ Pre Test Review
                 return 1
             if n = 1
                 return 1
-            return fibonnaci(n - 1) + fibonnaci(n - 1)
+            return fibonnaci(n - 1) + fibonnaci(n - 2)
         - Node* find(Node* L, int t)
             if (L = nullptr)
                 return L
             if (L->data = t)
                 return L
             find(L->next)
+        - linearSum(A, n)
+            if n = 1
+                return A[0]
+            return LinearSum(A, n - 1) + A[n-1]
+        - reverseArray(A, i, j)
+            if i < j
+                Swap A[i] and A[j]
+                ReverseArray(A, i + 1, j - 1)
+            return
     3. Sorting Algorithms Pseudocode
         - linearSearch(arr, t)
         - binarySearch(l, r, t)
@@ -60,6 +69,12 @@ Pre Test Review
                     return L
                 L <- L->next
             return nullptr
+        - reverseArray(A, i, j)
+            while i < j do
+                Swap A[i] and A[j]
+                i <- i + 1
+                j <- j - 1
+            return
     5. Graphs and Trees
         - Vertex - Nodes
         - Edges - Lines
