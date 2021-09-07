@@ -1,0 +1,51 @@
+Title: PC Assembly Language
+Authors: Paul Carter
+
+Summarization of Content
+
+Chapter 1 - Introduction
+    a. Number Systems
+        - Important: Computer stores all information in a binary format
+        - Decimal - Base 10 numbers composed of 10 possible digits - 234 = 2*10^2 + 3*10^1 + 4*10^0
+            - Convert Decimal to Binary - Repeated divison by 2, storing the remainders
+        - Binary - base 2 numbers compse of 2 possible digits - 11001 = 1*2^4 + 1*2^3 + 0 + 0 + 1*2^0
+            - Convert Binary to Decimal - Summation of 2^value fo each bit
+            - Addition - Carry
+        - Data
+            - 8 bits is one byte
+            - 4 bit is a nibble
+            - Bytes value ranges from 0 to 11111111 in binary, 0 to FF in hex, and 0 to 255 in decimal
+        - Hexadecimal - Base 16 numbers composed of 16 possible digits i.e. 0-9 and A,B,C,D,E,F
+            - Convert Decimal to Hexadecimal - Repeated division by 2, storing the remainders
+            - Convert Hexadecimal to Binary - Simply convert each hex digit to a 4 bit binary number
+            - Important - always remember your leading zeroes
+    b. Computer Organization
+        - Memory
+            - Basic unit of memory is a byte
+            - Computer with 32 megabytes of memory can hold roughly 32 million bytes of information
+            - All data in memory is numeric
+            - Characters are stored by using a character code that maps numbers to characters - ASCII - American Standard Code for Information Interchange or Unicode
+        - The CPU
+            - Central Processing Unit is the physical device that performs instructions
+            - Instructions may required the data they act on to be in special storage locations in the CPU itself calledd registers
+            - Machine Langauge - instructions a type of CPU can execute
+            - Clock - synchronize instructions pulses at clock speed
+        - The x86 Family of CPUs
+        - 8086 16-Bit Registers
+            - Four 16-bit general purpose registers - AX, BX, CX, and DX
+                - AX decomposes to AH (Upper) and AL (Lower)
+            - Changing AX's value will change AH and AL and vice-versa
+            - Two 16-bit index registers - SI and DI
+                - Used as pointers, can't be decomposed into 8-bit registers
+            - Base Pointer BP and Stack Pointer SP - used to point to data in the machine langauge stack
+            - Four Segment Registers - CS, DS, SS, and ES
+                - Denote what memory is used for different parts of a program
+                - CS - Code Segment, DS - Data Segement, SS - Stack Segment, ES - Extra Segment
+            - Instruction Pointer - IP
+                - Used with the Code Segment register to keep track of the address of the next instruction to be executed by the CPU
+            - FLAGS regsiter stores important information about the results of a previous instruction
+                - Z bit is 1 if the result of the previous instruction was zero, or 0 if not zero
+        - 80386 32-bit regsiters
+            - 16-bit registers extended to be 32-bits i.e. AX -> EAX, both still exist, AX lower sixteen, EBX, ECX, EDX, ESI, and EDI
+            - BP -> EBP, SP -> ESP, FLAGS -> EFLAGS, and IP -> EIP
+            - 
