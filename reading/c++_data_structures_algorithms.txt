@@ -1,0 +1,71 @@
+Title: C++ Data Structures and Algorithms
+Authors: Michael T. Goodrich, Roberto Tamassia, David Mount
+
+Summarization of Content
+
+Chapter 3 - Arrays, Linked Lists, Recursion
+    a. Using Arrays
+        - Storing Game Entries in an Array
+            - Classes
+                - Game Entry
+                - Scores
+                    - GameEntry* entries
+            - Insertion
+                - When inserting, shift elements right/back, and then insert element at target index
+            - Object Removal
+                - When removing, start at target index, and shift elements left/forward
+        - Sorting an Array
+            - Insertion Sort
+                - Moving through the array, for each element, sort it into sorted section i.e. start of the array
+        - Two Dimensional Arrays and Positional Games
+            - C++ - int M[8][10] or int schedule[DAYS][HOURS]
+            - Dynamic Allocation of Matrices
+                - Pointer to a pointer of integers
+                    - int **M = new int*[n]
+                    - for int i = 0; i < n; i++
+                        - M[i] = new int[m]
+        - Using STL Vectors to Implement Matrices
+            - vector<vector<int> M(n, vector<int>(m))
+    b. Singly Linked Lists
+        - Linked List - collection of nodes that together form a linear ordering
+        - Node
+            - T data, Node* next
+        - Implementing a Singly Linked List - CIS 200 - Midterm 2
+        - Insertion to the Front of a Singly Linked List - CIS 200 - Midterm 2
+        - Removal from the Front of a Singly Linked List - CIS 200 - Midterm 2
+        - Implementing a Generic Singly Linked List - CIS 200 - Midterm 2
+    c. Doubly Linked Lists
+        - Header and Trailer Sentinels - do not store values, header points to first node of the list, trailer points to last node of the list
+        - Insertion into a Doubly Linked List - CIS 200 - Lab 07
+        - Removal from a Doubly Linked List - CIS 200 - Lab 07
+        - A C++ Implementation - CIS 200 - Lab 07
+    d. Circularly Linked Lists and List Reversal
+        - Circularly Linkied List - nodes of circularly linked list are linked into a circle
+            - Cursor - allows use to have a place to strart from if we ever need to traverse a circularly linked list
+            - Back - element referenced by the cursor
+            - Front - Element immediately following the back
+            - Methods - front(), back(), advance(), add(), remove()
+                - add() - insert node immediately after the cursor
+                - remove() - remove the node immediately after the cursor
+            - Example - maintaining a playlist for digital audio player
+        - Reversing a Linked List
+            - Copy the content of the list L in reverse order into a temporary list T (push into front of T)
+            - Copy the contents of T back into L (take from front of T and add to back of L)
+    e. Recursion
+        - The Factorial Function
+        - Ruler Drawing
+        - Examples
+            - Modern operating system file system directories
+            - Argument lists in modern programming languages
+            - Russian matryoshka dolls
+        - Linear Recursion - function is defined so that it makes at most one recursive call each time it is invoked
+            - Linear Sum for Array
+        - Key Concepts
+            - Base case and recursion step
+        - Reversing an Array by Recursion
+        - Tail Recursion - uses linear recursion and the algorithm make a recursive call as its very last operation
+            - Algorithms that lend themselves more easily and efficicently to conversion to nonrecursive solution
+            - Example - revereseArray
+        - Binary Recursion - when an algorithm makes two recursive calls e.g. fibonnaci
+        - Computing Fibbonaci Numbers via Linear Recursion - MUST REVIEW
+        - Multiple Recursion - when a function may make multiple recursive calls, with that number potentially being more than two
