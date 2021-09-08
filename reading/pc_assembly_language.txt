@@ -48,4 +48,87 @@ Chapter 1 - Introduction
         - 80386 32-bit regsiters
             - 16-bit registers extended to be 32-bits i.e. AX -> EAX, both still exist, AX lower sixteen, EBX, ECX, EDX, ESI, and EDI
             - BP -> EBP, SP -> ESP, FLAGS -> EFLAGS, and IP -> EIP
-            - 
+        - Real Mode - memory is limited to only one megabyte (2²⁰ bytes)
+            - Use two 16-bit values
+                - First 16 bit is called the selector - stored in segment registers
+                - Second 16 bit is called the offset
+                - Pair - 16 * selector + offset
+        - 16 Bit Protected Mode  - a selefctor value is an index into a descriptor table
+        - 32 Bit Protected Mode
+            - Offsets are expanded to be 32-bits
+            - Segments can be divided into smaller 4k sized units called pages
+        - Interrupts
+            - Handle situations where flow of program(s) are interrupted to process events that require prompt response
+            - Interrupt Handle - routines that process interrupts
+            - Interrupt Vectors - contain the segmented addresses of the interrupt handlers
+    c. Assembly Language
+        - Machine Language - each cpu, with instructions being numbers stored as bytes in memory
+            - Operation Code - unique numeric code, beginning of instruction
+            - Instructions can include data used by the instruction
+        - Assembly Language - stored as text, instruction represents exactly one machine instruction
+            - Form - memonic operand(s)
+            - Assembler - program that reads a text file with assembly instructions and converts the assembly into machine code
+        - Instruction Operands
+            - Register - operands refere directly to the contents of the CPU's registers
+            - Memory - refer to data in memory, the address of data may be a constant hardcoded into the instruction, or may be computed using values of registers
+            - Immediate - fixed values that are listed in the instruction itself
+            - Implied - operands are not explicitly shown, for example increment
+        - Basic Instructions
+            - mov - mov dest, src - moves data from one location to another
+                - mov eax, 3
+                - mov bx, ax
+            - add - add dest, src - adds src to dest
+                - add eax, 4
+                - add al, ah
+            - sub - sub dest, src - removes src from dest
+                - sub bx, 10
+                - sub ebx, edi
+            - inc - inc dest - increase dest value by one
+            - dec - dec dest - decreases dest value by one
+        - Directives - artificate of teh assembler, not the CPU, used to instruct the assembler to do something or inform the assembler of something
+            - Examples
+                - define constants, define memory to store data into, group memory into segments, conditionally include source code, include other files
+            - The equ directive - used to define a symbol i.e. a named constant
+                - symbol equ value
+            - The %define directive
+                - %define SIZE 100 and mov eax, SIZE
+            - Data Directives - used in data segments to define room for memory
+                - Letters for RESX and DX Directives
+                    - byte - B
+                    - word - W
+                    - double word - D
+                    - quad word - Q
+                    - ten bytes - T
+                - Option #1 - define room for data
+                    - L7 resb 1 - 1 unitialized byte
+                - Option #2 - define room for data and an initial value
+                    - L1 db 0 - byte labeled L1 with initial value 0
+                    - L2 dw 1000 - word labeled L2 with initial value 1000
+                    - L6 dd 1A92h - double word initialzed to hex 1A92
+                    - L9 db 0,1,2,3 - defines 4 bytes
+                    - L10 db "w","o","r","d", 0 - defines a C string = "word"
+                    - L12 times 100 db 0 - 100 bytes with initial value 0
+                - Using Labels
+                    - mov al , [L1] - copy byte at L1 into AL
+                    - mov eax, L1 - EAX = address of byte at L1
+                    - mov [L1], ah - copy value at ah into L1
+                    - mov dword [L6], 1 - store a 1 at L6 - MUST define value for 1
+        - Author Library
+            - %include "asm_io.inc" to use I/O and debugging utilities from author
+        - Input and Output
+            - Common for assembly routines to be interfaced with C
+            - Author had provded various routines
+                - print_int - prints out to the screen the value of the integer stored in EAX
+                - print_char - prints out to the screen the character whose ASCII value stored in AL
+                - print_string - prints out to the screen the contents of the string at the address stored in EAX, must be a C-type string i.e. null terminated
+                - print_nl - prints out to the screen a new line character
+                - read_int - reads an integer from the keyboard and stores it into the EAX register
+                - read_char - reads a single character from the keyboard and stores its ASCII code into the EAX register
+        - Debugging - display information about the state of the computer without modifying the state
+            - Macros are defined in the asm.io.inc file discussed above
+            - Macros are used like ordinary instructions, with operands separated by commas
+            - Routines
+                - dump_regs - dump_regs INT - prints out the values of the registers (in hexadecimal) of the computer to stdout, also displays the bits set in the FLAGS register
+                - dump_mem - dump_mem INT, ADDRESS, NUM_PARAGRAPHS prints out the values of a region of memory (in hexadecimal) and also asd ASCII characters
+                - dump_stack - INT, NUM_DWORDS_BELOW, NUM_DWORDS_ABOVE - prints out the values on the CPU stack
+                - dump_math - dump_math INT - prints out the values of the registers of the math coprocessor
