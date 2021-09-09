@@ -70,6 +70,43 @@ Chapter 3 - Arrays, Linked Lists, Recursion
         - Computing Fibbonaci Numbers via Linear Recursion - MUST REVIEW
         - Multiple Recursion - when a function may make multiple recursive calls, with that number potentially being more than two
 
+Chapter 4 - Analysis Tools
+    a. The Seven Functions Used iin This Book
+        - The Constant Function - f(n) = c
+            - Use - characterizes the number of steps needed to do a basic operation on a computer
+        - The Logarithmic Function - f(n) = logn
+            - Use - characterizes common operations in many algorithms where you repeatedly divide an input in half (divide and conquer)
+        - The Linear Function - f(n) = n
+            - Use - characterizes situations where we have to doa single base operation for each of n elements
+        - The N-Log-N Function - f(n) = nlogn
+            - Use - target growth rate to make improvements to programs that run at quadratic or exponential time
+        - The Quadratic Function - f(n) = n²
+            - Use - characterizes situations with nested loops
+        - The Cubic Function and Other Polynomials - f(n) = n³ and f(n) = anᵈ
+            - Use - Cubic not as frequent, polynomial very common, but leading degree determines growth rate
+        - The Exponential Function - f(n) = bⁿ
+            - Use - characterizes situations where the nuyber of operations performed each iteration doubles
+        - Comparing Growth Rates (Best to Worst Growth Rate)
+            - Constant -> Logarithm -> Linear -> N Log N -> Quadratic -> Cubic -> Exponential
+    b. Analysis of Algorithms
+        - Primitive Operations
+            - Assigning a value to a variable
+            - Calling a function
+            - Performing an arithmetic operation
+            - Comparing two numbers
+            - Indexing into an array
+            - Following an object reference
+            - Returning from a function
+        - Focus - The Worst Case
+        - Asymptotic Notation
+            - The Big-Oh Notation - f(n) <= cg(n)
+                - Describes that a function's growth rate is at worst, described by g(n)
+                - IMPORTANT - can ignore lower order terms and just focus on the highest degree
+            - The Big-Omega - f(n) >= cg(n)
+                - Describes that a function's growth rate is at best
+            - The Big-Theta - c'g(n) <= f(n) <= c''g(n)
+                - Describes that a function is bounded by two functions
+
 Chapter 5 - Stacks, Queues, and Deques
     a. Stacks - container of elements that are inserted and removed according to the last-in-first-out LIFO principle
         - Stack Abstract Data Type
