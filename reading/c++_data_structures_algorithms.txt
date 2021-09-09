@@ -143,3 +143,96 @@ Chapter 5 - Stacks, Queues, and Deques
         - Implementing a Deque with a Doubly Linked List
         - Adapters and the Adapter Design Pattern
             - Adapter - data structure, that translates one interface to another
+
+Chapter 6 - List and Iterator ADTs
+    a. Vectors
+        - The Vector Abstract Data Type
+            - at() - returns element of V with index i
+            - set() - replaces element at index i
+            - insert() - inserts a new element
+            - erase() - removes element at index i
+        - Array Based Implementation
+            - Issue - shifting elements back and forth as elements are inserted or removed
+        - Extendable Array Based Implementation
+            - When the length of array is full and insertion is required, you must:
+                - Allocate space for a new array in memory
+                - Copy all elements from old array to new aray
+                - Insert element
+                - Deallocate memory assocaited with array
+        - Analysis - REVIEW amortization*
+        - STL Vectors
+            - Container is a data structure that stores a collection of objects
+            - vector() - construct a vector
+            - size() - return number of elements in V
+            - empty() - return true if V is empty and false otherwise
+            - resize() - resize V
+            - reserve() - request allocated storage space
+            - operator[] - access at index i
+            - at() - same as access, throws an error
+            - front() - return a reference to the first element of V
+            - back() - return a reference to the last element of V
+            - push_back() - append a copy of the element to the end of V
+            - pop_back() - removes the last element of V
+    b. Lists
+        - Node Based Operators and Iterators
+            - Goal - gaining speed over index based functions, making remove and insert constant time
+            - Iterator - access individual elements and move around in order to enumerate all the elements of a list
+            - Containers and Positions
+                - Container - data structure that stores any collection of elements
+                - Position - abstract data type that is assocataed with a particular container
+            - Iterators - navigate through a container by advancing to the next position
+                - ADT of Iterator
+                    - begin(), end(), ++p, --p
+        - The List Abstract Data Type
+            - begin() - return iterator referring to the first element
+            - end() - return iterator referring to the last element
+            - insertFront() - insert a new element in front
+            - insertBack() - insert a new element in the back
+            - insert() - insert element before position
+            - eraseFront() - remove the first element
+            - eraseBack() - remove the last element
+            - erase() - remove element at position p
+        - Double Linked List Implementation
+            - Implement list as Doubly Linked List, to enable easy access to front and back
+        - STL Lists
+            - list() - construct a list with n elements
+            - size() - return number of elements
+            - empty() - return true if empty and false otherwise
+            - front() - return a reference to first element of L
+            - back() - return a reference to the last element of L
+            - push_front() - insert a copy of e at beginning
+            - push_back() - insert a copy of e at end
+            - pop_front() - remove first element
+            - pop_back() - remove last element
+        - STL Containers and Iterators
+            - STL Containers - vector, deque, list, stack, queue, priority_queue, set, multiset, map, multimap
+            - STL Iterators
+                - Methods
+                    - ++p, move forward
+                    - --p, move backwards
+                    - begin - returns iterator at beginning
+                    - end - returns iterator at end
+                - Bidirectional Iterator - moving forward and backward
+                - Random Access Iterator - addition and substraction of an integer, to access different positions
+            - STL Iterator Based Container Functions
+                - vector() - construct a vector
+                - assign() - delete contents of V, assign new contents by iterating between start and end
+                - insert() - insert a copy of e prior to position
+                - erase() - remove and destroy an element of V at position p
+                - erase () - iterate between start and end and remove and destory each element
+                - clear() - delete all elements
+            - STL Vectors and Algorithms
+                - sort() - sort elements in a range
+                - random_shuffle() - rearrange elements in range in random order
+                - reverse() - reverse elements in range
+                - find() - return iterator to first element in the range
+                - min_element() - return iterator to minimum element in range
+                - max_element() - return iterator to max element in range
+                - for_each() - apply function f to the elements in range
+    c. Sequences
+        - The Sequence Abstract Data Type
+            - atIndex() - return position of the element at index i
+            - indexOf() - return index of the element at position p
+        - Implementing a Sequencee with an Array
+            - For each index in an array, store a pointer to a new kind of position object that contains the index and the element
+            
