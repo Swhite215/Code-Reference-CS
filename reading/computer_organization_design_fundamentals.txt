@@ -1,0 +1,30 @@
+Title: Computer Organization and Design Fundamentals
+Authors: David Tarnoff
+
+Summarization of Content
+
+Chapter 4 - Logic Functions and Gates
+    a. Logic Gate Basics
+        - Gate - takes one or more binary signals as input and using a specific algorithm ouputs a single bit as a result
+        - NOT Gate - takes a single input and flips the value of the signal
+        - AND Gate - produces 1 only if all of its inputs are logic 1
+            - Example - A lamp is on if there is power, wall switch, and lamp switch
+        - OR Gate - produces 1 if any of its inputs are logic 1
+            - Example - A security alarm goes off if door open sensor, or glass break sensor, or motion sensor goes off
+        - XOR Gate - produces 1 if number of 1 is odd
+    b. Truth Tables
+    c. Timing Diagrams for Gates - REVIEW
+    d. Combinational Logic
+        - Power of logic gates comes when you combine them to create combinational logic
+        - Example
+            - Door, Glass, Motion sensors into OR Gate
+            - Result of OR Gate + Armed into AND Gate
+        - Gates
+            - NAND GATE, NOR GATE, EXCLUSIVE NOR
+    e. Truth Tables for Combinational Logic
+        - Start with A, B, C
+        - Then Complete Each Step, Using the Appropriate Inputs
+        - A Step - B value and NOT Gate
+        - B Step - Result of A Step, and A value
+        - C Step - Result of B Step and C Value
+        - D Step - Result of C and NOT Gate
