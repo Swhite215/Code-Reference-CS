@@ -41,7 +41,7 @@ Chapter 3 - Arrays, Linked Lists, Recursion
         - A C++ Implementation - CIS 200 - Lab 07
     d. Circularly Linked Lists and List Reversal
         - Circularly Linkied List - nodes of circularly linked list are linked into a circle
-            - Cursor - allows use to have a place to strart from if we ever need to traverse a circularly linked list
+            - Cursor - allows use to have a place to start from if we ever need to traverse a circularly linked list
             - Back - element referenced by the cursor
             - Front - Element immediately following the back
             - Methods - front(), back(), advance(), add(), remove()
@@ -71,13 +71,13 @@ Chapter 3 - Arrays, Linked Lists, Recursion
         - Multiple Recursion - when a function may make multiple recursive calls, with that number potentially being more than two
 
 Chapter 4 - Analysis Tools
-    a. The Seven Functions Used iin This Book
+    a. The Seven Functions Used in This Book
         - The Constant Function - f(n) = c
             - Use - characterizes the number of steps needed to do a basic operation on a computer
         - The Logarithmic Function - f(n) = logn
             - Use - characterizes common operations in many algorithms where you repeatedly divide an input in half (divide and conquer)
         - The Linear Function - f(n) = n
-            - Use - characterizes situations where we have to doa single base operation for each of n elements
+            - Use - characterizes situations where we have to do a single base operation for each of n elements
         - The N-Log-N Function - f(n) = nlogn
             - Use - target growth rate to make improvements to programs that run at quadratic or exponential time
         - The Quadratic Function - f(n) = n²
@@ -85,7 +85,7 @@ Chapter 4 - Analysis Tools
         - The Cubic Function and Other Polynomials - f(n) = n³ and f(n) = anᵈ
             - Use - Cubic not as frequent, polynomial very common, but leading degree determines growth rate
         - The Exponential Function - f(n) = bⁿ
-            - Use - characterizes situations where the nuyber of operations performed each iteration doubles
+            - Use - characterizes situations where the number of operations performed each iteration doubles
         - Comparing Growth Rates (Best to Worst Growth Rate)
             - Constant -> Logarithm -> Linear -> N Log N -> Quadratic -> Cubic -> Exponential
     b. Analysis of Algorithms
@@ -133,7 +133,7 @@ Chapter 5 - Stacks, Queues, and Deques
         - A C++ Queue Interface - CIS 200 - Midterm 2
         - A Simple Array Based Implementation - CIS 200
             - Using an Array in a Circular Way - in order to implement enqueue and dequeue in constant times
-            - Using the Module Operator to Implement a Circular Array
+            - Using the Modulo Operator to Implement a Circular Array
         - Implementing a Queue with a Circularly Linked List
             - Insert/Enqueue - insert a node new just after the cursor (back), and set new back
             - Remove/Dequeue - remove a node just after the curor (back), and set new front
@@ -158,7 +158,7 @@ Chapter 6 - List and Iterator ADTs
                 - Allocate space for a new array in memory
                 - Copy all elements from old array to new aray
                 - Insert element
-                - Deallocate memory assocaited with array
+                - Deallocate memory associated with old array
         - Analysis - REVIEW amortization*
         - STL Vectors
             - Container is a data structure that stores a collection of objects
@@ -233,6 +233,6 @@ Chapter 6 - List and Iterator ADTs
         - The Sequence Abstract Data Type
             - atIndex() - return position of the element at index i
             - indexOf() - return index of the element at position p
-        - Implementing a Sequencee with an Array
+        - Implementing a Sequence with an Array
             - For each index in an array, store a pointer to a new kind of position object that contains the index and the element
             
