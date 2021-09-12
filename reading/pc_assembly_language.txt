@@ -16,7 +16,7 @@ Chapter 1 - Introduction
             - 4 bit is a nibble
             - Bytes value ranges from 0 to 11111111 in binary, 0 to FF in hex, and 0 to 255 in decimal
         - Hexadecimal - Base 16 numbers composed of 16 possible digits i.e. 0-9 and A,B,C,D,E,F
-            - Convert Decimal to Hexadecimal - Repeated division by 2, storing the remainders
+            - Convert Decimal to Hexadecimal - Repeated division by 16, storing the remainders
             - Convert Hexadecimal to Binary - Simply convert each hex digit to a 4 bit binary number
             - Important - always remember your leading zeroes
     b. Computer Organization
@@ -27,8 +27,8 @@ Chapter 1 - Introduction
             - Characters are stored by using a character code that maps numbers to characters - ASCII - American Standard Code for Information Interchange or Unicode
         - The CPU
             - Central Processing Unit is the physical device that performs instructions
-            - Instructions may required the data they act on to be in special storage locations in the CPU itself calledd registers
-            - Machine Langauge - instructions a type of CPU can execute
+            - Instructions may require the data they act on to be in special storage locations in the CPU itself called registers
+            - Machine Language - instructions a type of CPU can execute
             - Clock - synchronize instructions pulses at clock speed
         - The x86 Family of CPUs
         - 8086 16-Bit Registers
@@ -37,13 +37,13 @@ Chapter 1 - Introduction
             - Changing AX's value will change AH and AL and vice-versa
             - Two 16-bit index registers - SI and DI
                 - Used as pointers, can't be decomposed into 8-bit registers
-            - Base Pointer BP and Stack Pointer SP - used to point to data in the machine langauge stack
+            - Base Pointer BP and Stack Pointer SP - used to point to data in the machine language stack
             - Four Segment Registers - CS, DS, SS, and ES
                 - Denote what memory is used for different parts of a program
                 - CS - Code Segment, DS - Data Segement, SS - Stack Segment, ES - Extra Segment
             - Instruction Pointer - IP
                 - Used with the Code Segment register to keep track of the address of the next instruction to be executed by the CPU
-            - FLAGS regsiter stores important information about the results of a previous instruction
+            - FLAGS register stores important information about the results of a previous instruction
                 - Z bit is 1 if the result of the previous instruction was zero, or 0 if not zero
         - 80386 32-bit regsiters
             - 16-bit registers extended to be 32-bits i.e. AX -> EAX, both still exist, AX lower sixteen, EBX, ECX, EDX, ESI, and EDI
@@ -53,23 +53,23 @@ Chapter 1 - Introduction
                 - First 16 bit is called the selector - stored in segment registers
                 - Second 16 bit is called the offset
                 - Pair - 16 * selector + offset
-        - 16 Bit Protected Mode  - a selefctor value is an index into a descriptor table
+        - 16 Bit Protected Mode  - a selector value is an index into a descriptor table
         - 32 Bit Protected Mode
             - Offsets are expanded to be 32-bits
             - Segments can be divided into smaller 4k sized units called pages
         - Interrupts
             - Handle situations where flow of program(s) are interrupted to process events that require prompt response
-            - Interrupt Handle - routines that process interrupts
+            - Interrupt Handlers - routines that process interrupts
             - Interrupt Vectors - contain the segmented addresses of the interrupt handlers
     c. Assembly Language
-        - Machine Language - each cpu, with instructions being numbers stored as bytes in memory
+        - Machine Language - each CPU, with instructions being numbers stored as bytes in memory
             - Operation Code - unique numeric code, beginning of instruction
             - Instructions can include data used by the instruction
         - Assembly Language - stored as text, instruction represents exactly one machine instruction
             - Form - memonic operand(s)
             - Assembler - program that reads a text file with assembly instructions and converts the assembly into machine code
         - Instruction Operands
-            - Register - operands refere directly to the contents of the CPU's registers
+            - Register - operands refer directly to the contents of the CPU's registers
             - Memory - refer to data in memory, the address of data may be a constant hardcoded into the instruction, or may be computed using values of registers
             - Immediate - fixed values that are listed in the instruction itself
             - Implied - operands are not explicitly shown, for example increment
@@ -85,7 +85,7 @@ Chapter 1 - Introduction
                 - sub ebx, edi
             - inc - inc dest - increase dest value by one
             - dec - dec dest - decreases dest value by one
-        - Directives - artificate of teh assembler, not the CPU, used to instruct the assembler to do something or inform the assembler of something
+        - Directives - artificate of the assembler, not the CPU, used to instruct the assembler to do something or inform the assembler of something
             - Examples
                 - define constants, define memory to store data into, group memory into segments, conditionally include source code, include other files
             - The equ directive - used to define a symbol i.e. a named constant
@@ -129,6 +129,6 @@ Chapter 1 - Introduction
             - Macros are used like ordinary instructions, with operands separated by commas
             - Routines
                 - dump_regs - dump_regs INT - prints out the values of the registers (in hexadecimal) of the computer to stdout, also displays the bits set in the FLAGS register
-                - dump_mem - dump_mem INT, ADDRESS, NUM_PARAGRAPHS prints out the values of a region of memory (in hexadecimal) and also asd ASCII characters
+                - dump_mem - dump_mem INT, ADDRESS, NUM_PARAGRAPHS prints out the values of a region of memory (in hexadecimal) and also as ASCII characters
                 - dump_stack - INT, NUM_DWORDS_BELOW, NUM_DWORDS_ABOVE - prints out the values on the CPU stack
                 - dump_math - dump_math INT - prints out the values of the registers of the math coprocessor
