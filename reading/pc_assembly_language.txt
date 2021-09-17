@@ -8,7 +8,7 @@ Chapter 1 - Introduction
         - Important: Computer stores all information in a binary format
         - Decimal - Base 10 numbers composed of 10 possible digits - 234 = 2*10^2 + 3*10^1 + 4*10^0
             - Convert Decimal to Binary - Repeated divison by 2, storing the remainders
-        - Binary - base 2 numbers compse of 2 possible digits - 11001 = 1*2^4 + 1*2^3 + 0 + 0 + 1*2^0
+        - Binary - base 2 numbers composed of 2 possible digits - 11001 = 1*2^4 + 1*2^3 + 0 + 0 + 1*2^0
             - Convert Binary to Decimal - Summation of 2^value fo each bit
             - Addition - Carry
         - Data
@@ -85,7 +85,7 @@ Chapter 1 - Introduction
                 - sub ebx, edi
             - inc - inc dest - increase dest value by one
             - dec - dec dest - decreases dest value by one
-        - Directives - artificate of the assembler, not the CPU, used to instruct the assembler to do something or inform the assembler of something
+        - Directives - artifacts of the assembler, not the CPU, used to instruct the assembler to do something or inform the assembler of something
             - Examples
                 - define constants, define memory to store data into, group memory into segments, conditionally include source code, include other files
             - The equ directive - used to define a symbol i.e. a named constant
@@ -109,7 +109,7 @@ Chapter 1 - Introduction
                     - L10 db "w","o","r","d", 0 - defines a C string = "word"
                     - L12 times 100 db 0 - 100 bytes with initial value 0
                 - Using Labels
-                    - mov al , [L1] - copy byte at L1 into AL
+                    - mov al, [L1] - copy byte at L1 into AL
                     - mov eax, L1 - EAX = address of byte at L1
                     - mov [L1], ah - copy value at ah into L1
                     - mov dword [L6], 1 - store a 1 at L6 - MUST define value for 1
@@ -117,7 +117,7 @@ Chapter 1 - Introduction
             - %include "asm_io.inc" to use I/O and debugging utilities from author
         - Input and Output
             - Common for assembly routines to be interfaced with C
-            - Author had provded various routines
+            - Author has provided various routines:
                 - print_int - prints out to the screen the value of the integer stored in EAX
                 - print_char - prints out to the screen the character whose ASCII value stored in AL
                 - print_string - prints out to the screen the contents of the string at the address stored in EAX, must be a C-type string i.e. null terminated
