@@ -28,3 +28,10 @@ Chapter 4 - Logic Functions and Gates
         - B Step - Result of A Step, and A value
         - C Step - Result of B Step and C Value
         - D Step - Result of C and NOT Gate
+    f. Adder Circuit in ALU
+        - 4-Bit Parallel Adder - 74LS283 - assembly/circuits/four_bit_adder_circuit
+        - Full Adder Truth Table - assembly/circuits/full_adder_truth_table
+        - Full Adder Boolean Expressions
+            - Sum = (A XOR B) XOR Cin
+            - Carry Out = A AND B OR Cin(A XOR B)
+        - Full Adder Circuit - assembly/circuits/full_adder_circuitverse
