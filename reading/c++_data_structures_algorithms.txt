@@ -285,4 +285,35 @@ Chapter 9 - Hash Tables, Maps, and Skip Lists
                 - erase - List is O(n), Hash Table is O(n), Search Table is O(n)
 
 Chapter 10 - Search Trees
-    
+    a. Binary Search Trees
+        - Introduction
+            - Binary Search Tree - binary tree T such that each internal node v of T stores an entry (k, x) such that:
+                - Keys stored at nodes in the left subtree of v are less than or equal to k
+                - Keys stored at nodes in the right subtree of v ar greatewr than or equal to k
+        - ADT Methods
+            - find() - if M contains an entry e = (k, v), then returns an iterator p referring to this entity, otherwise return end iterator
+            - put() - add entry if does not exist, replace value if key exists
+            - erase() - remove entry with key k
+            - erase() - remove entry referenced by iterator p
+            - begin() - return an iterator to the first entry of M
+            - end() - return an iterator to a position just beyond the end of M
+        - Binary Search Trees and Ordered Maps
+        - Searching
+            - We view T as a decision tree, at each internal node v of T, we ask whether the search key k is less than, equal to, or greater than the key stored at node v
+                - If smaller, we continue the search on the left subtree
+                - If larger, we continue the search on the right subtree
+                - If we reach an external node, then the search terminates
+                - If same, return the node
+        - Analysis of Binary Tree Searching
+            - Algorithm TreeSearch is recursive and executes a constant number of primitive operations for each recursive call
+            - Each recursive call of TreeSearch is made on a child of the previous node
+            - Number of node is bounded by h + 1, where h is the height of the tree
+            - Search runs in O(h) time, where h is the height of the binary search tree
+        - Update Operations
+            - Insertion
+                - insertAtExternal() - insert element e at the external node v, and expand v to be internal, having new empty external node children, returns an error if v is an internal node
+            - Removal
+                - removeAboveExternal() - remove an external node v and its parent, replacing v's parent with v's sibling
+        - Performance of a Binary Search Tree
+            - find, insert, and erase are O(h)
+        - A C++ Implementation fo a Binary Search Tree - TODO:
