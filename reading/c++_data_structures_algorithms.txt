@@ -236,3 +236,53 @@ Chapter 6 - List and Iterator ADTs
         - Implementing a Sequence with an Array
             - For each index in an array, store a pointer to a new kind of position object that contains the index and the element
             
+Chapter 9 - Hash Tables, Maps, and Skip Lists
+    a. Maps
+        - Introduction
+            - Map - allows use to store elements so they can be located quickly using keys, stores key value pairs called entries
+            - Entries and the Composition Pattern - defines a single object that is composed of other objects
+        - The Map ADT
+            - Posiiton/Iterator - pointer object which permits us to reference entries of the map
+            - Methods
+                - size() - returns number of entries in M
+                - empty() - returns true if M is empty and false otherwise
+                - find() - if M contains an entry e = (k, v), then returns an iterator p referring to this entity, otherwise return end iterator
+                - put() - add entry if does not exist, replace value if key exists
+                - erase() - remove entry with key k
+                - erase() - remove entry referenced by iterator p
+                - begin() - return an iterator to the first entry of M
+                - end() - return an iterator to a position just beyond the end of M
+        - A C++ Map Interface - TODO:
+        - The STL Map Class
+            - Methods
+                - size() - returns number of entries in M
+                - empty() - returns true if M is empty and false otherwise
+                - find() - if M contains an entry e = (k, v), then returns an iterator p referring to this entity, otherwise return end iterator
+                - operator[] - provides reference to the value of k 
+                - insert(pair()) - insert pair, returning iterator to its position
+                - erase() - remove entry with key k
+                - erase() - remove entry referenced by iterator p
+                - begin() - return an iterator to the first entry of M
+                - end() - return an iterator to a position just beyond the end of M
+        - A Simple List Based Map Implementation - TODO:
+    b. Hash Tables
+    c. Ordered Maps 
+        - Ordered Map - perform usual map operations and also maintain an order relation for the keys in our map and use this order in some of the map functions
+        - ADT Methods
+            - firstEntry() - return an iterator to the entry with smallest key value
+            - lastEntry() - return an iterator to the entry with largest key value
+            - ceilingEntry() - return an iterator to the entry with the least key value greater than or equal to k
+            - floorEntry() - return an iterator to the entry with the greatest key value less than or equal to k
+            - lowerEntry() - return an iterator to the entry with the greatest key value less than k
+            - higherEntry() - return an iterator to the entry with the least key value greater than k
+        - Implementing an Ordered Map
+        - Ordered Search Table and Binary Search - efficient structure and algorithm together for searching through
+        - Comparing Map Implementation
+            - Method
+                - size,empty - List is O(1), Hash Table is O(1), Search Table is O(1)
+                - find - List is O(n), Hash Table is O(n), Search Table is O(logn)
+                - insert - List is O(1), Hash Table is O(1), Search Table is O(n)
+                - erase - List is O(n), Hash Table is O(n), Search Table is O(n)
+
+Chapter 10 - Search Trees
+    
