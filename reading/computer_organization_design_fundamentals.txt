@@ -3,6 +3,40 @@ Authors: David Tarnoff
 
 Summarization of Content
 
+Chapter 1 - Digital Signals and Systems
+    a. Should Software Engineers Know About Hardare?
+        - Important Concepts/Advantages - System Design Tools, Software Design Tools, Troubleshooting Skills, Interconnectivity, Marketability
+    b. Non-Digital Signals
+        - Analog - continuous, infinite number of places to the right of the decimal point
+    c. Digital Signals
+        - Digital Value - fixed number of digits the right of the decimal place, discrete
+        - Sample - measurements at different intervals
+        - Sample Rate - the rate that samples are taken
+        - Concerns - information can be lost between measurements and lost due to the rounding of the measurement
+    d. Conversion Systems
+        - Sensor (Weak, Noisy) -> Signal Conditioning (Strong, Clean) -> Analog to Digital Converter (Digital Measurement)
+        - Benefits
+            - Noise cannot attach itself to a digital signal, sequence of numbers do not change (unless loss during transporation e.g.)
+            - Algorithms can be used to operate on data - DSP or Digital Signal Processing
+    e. Representation of Digital Signals
+        - Transistor - remembers either 0 (logic 0) or 1 (logic 1) i.e. a binary system
+    f. Types of Digital Signals
+        - Edges
+            - Rising Edge - a transition from a logic 0 to a logic 1
+            - Falling Edge - a transition from a logic 1 to a logic 0
+        - Pulses
+            - Pulse - a signal changes from one value to the other for a short period, then returns to its original value
+            - Positive-Going Pulse - idle state of logic 0, and a pulse to logic 1
+            - Negative-Going Pulse - idle state of logic 1, and a pulse to logic 0
+        - Non-Periodic Pulse Trains - some signals do not have a characteristic pattern in their changes e.g. ethernet or address lines
+        - Periodic Pulse Trains - all measurements between any two subsequent identical parts of the waveform produce the same value (period)
+            - Width - time at logic 1 during the period, may differ with another train with a similar period
+        - Frequence (Hertz) = 1 / period in seconds
+            - Example - .1 second to complete period, so 1 / .1 = 10 or 10hz i.e. 10 periods per second
+        - Pulse Width Modulation
+            - Duty Cycle - represents the percent of time that a periodic cycle is a logic 1
+            - Dimming lights can be done by changing pulse train/duty cycle, shine half as bright is to reduce by 50%
+
 Chapter 4 - Logic Functions and Gates
     a. Logic Gate Basics
         - Gate - takes one or more binary signals as input and using a specific algorithm ouputs a single bit as a result
