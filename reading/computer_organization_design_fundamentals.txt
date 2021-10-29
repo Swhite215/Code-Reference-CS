@@ -118,3 +118,32 @@ Chapter 4 - Logic Functions and Gates
             - Sum = (A XOR B) XOR Cin
             - Carry Out = A AND B OR Cin(A XOR B)
         - Full Adder Circuit - assembly/circuits/full_adder_circuitverse
+
+Chapter 5 - Boolean Algebra
+    a. Need for Boolean Expressions
+        - Describes digital circuitry, and the possibly complex relationships amongst signals
+    b. Symbols of Boolean Algebra
+        - AND, OR, NOT, XOR, NAND, NOR, NOTXOR
+    c. Laws of Boolean Algebra
+        - Commutative Law - A + B = B + A
+        - Associative Law - A(BC) = (AB)C or A+(B+C) = (A+B)+C
+        - Distributive Law - A(B+C) = AB+AC
+        - OR Rules
+            - A + 0 = A
+            - A + 1 = 1
+            - A + A = A
+            - A + !A = 1
+        - AND Rules
+            - A^0 = 0
+            - A^A = A
+            - A^!A = 0
+            - A^1 = A
+        - XOR Rules
+            - A XOR O = A
+            - A XOR 1 = !A
+            - A XOR A = 0
+            - A XOR !A = 1
+    d. Simplification - through use of laws of boolean algebra
+    e. DeMorgan's Theorem
+        - !(A+B) = !A^!B
+        - !A + !B = !(AB)
