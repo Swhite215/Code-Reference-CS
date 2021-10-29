@@ -266,6 +266,28 @@ Chapter 9 - Hash Tables, Maps, and Skip Lists
                 - end() - return an iterator to a position just beyond the end of M
         - A Simple List Based Map Implementation - TODO:
     b. Hash Tables
+        - Definition - Composed of a bucket array and a hash function
+        - Bucket Arrays - Array of size N, where each cell of A is a collection of key-value pairs
+        - Hash Functions
+            - Hash Code - takes an arbitrary key in our map and assigns it an integer value
+                - Memory Address
+                - Converting to an Integer
+                - Component Sum
+                - Polynomial Hash Codes
+                    - Horner's Rule - Dynamic Programming - Start from desired value and work backwards
+                - Cyclic Shift Hash Code
+            - Compression Function - Map integer value to the range of [0, N - 1]
+                - Division Method - h(k) = |k| mod N
+                - MAD Method - Multiply, Add, and Divide h(x) = |ak+b| mod N
+                    - N is prime, a and b are nonnegative, and a mod N != 0
+        - Collision Handling Schemes
+            - Separate Chaining - Array of buckets, each cell can hold multiple values
+            - Open Addressing - if cell is full, must probe for open cell to place item
+                - Linear Probing - increment cell by cell checking for open or available cell
+                - Quadratic Probing - increment quadratically, it may be necessary to produce new table, if current table is more than halfway full
+                - Double Hashing - hash once, if cell is not open, hash again
+        - ADT
+            - size(), empty(), find(), put(), erase()
     c. Ordered Maps 
         - Ordered Map - perform usual map operations and also maintain an order relation for the keys in our map and use this order in some of the map functions
         - ADT Methods
