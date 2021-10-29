@@ -235,7 +235,63 @@ Chapter 6 - List and Iterator ADTs
             - indexOf() - return index of the element at position p
         - Implementing a Sequence with an Array
             - For each index in an array, store a pointer to a new kind of position object that contains the index and the element
-            
+
+Chapter 8
+    a. Priority Queue
+        - Definition - abstract data type for storing a collection of prioritized elements that support arbitrary element insertion but supports removal of elements in order of priority
+        - Total Order Relation - comparios rule is defined for every pair of keys and it must satisfy the following properties
+            - Reflexive Property - k <= k
+            - Antisymmetric Property - k1 <= k2, k2 <= 1, k1 = k2
+            - Transitive Property - k1 <= k2, k2 <= k3, k1 <= k3
+        - ADT
+            - insert(), size(), empty()
+            - min() - return an element of P with the smallest associated key value, that is an element whose key is less than or equal to that of every other element in P
+            - removeMin() - remove from P the element min()
+        - Comparators
+            - isLess(p, q) - T if p < q, F otherwise
+            - (p == q) if isLess(p, q) = F and isLess(q, p) = F
+        - Soritng with a Priority Queue
+            - Pattern - Insert values into Priority Queue, retrieve values in sorted nondecreasing order
+            - Example
+                - insert: 2, 9, 11, 1, 15, 17, 6
+                - removeMin: 1, 2, 6, 9, 11, 15, 17
+            - Sequence Based Priority Queues
+                - Unsorted List = Selection Sort which is Θ(n^2)
+                    - Input: 7, 4, 8, 2, 5, 3, 9 = PQ List: 7, 4, 8, 2, 5, 3, 9
+                    - Result: 2, 3, 4, 5, 7, 8, 9
+                - Sorted List = Insertion Sort which is O(N^2) and Ω(N)
+                    - Input: 7, 4, 8, 2, 5, 3, 9 = PQ List: 2, 3, 4, 5, 7, 8, 9
+                    - Result: 2, 3, 4, 5, 7, 8, 9
+    b. Heaps
+        - Definition - abstract data type, binary tree that stores collection of elements with their associated keys and satifies two properties i.e. heap-order property, and complete binary tree property
+        - Properties
+            - Heap-Order Property - In a heap T, for every node v other than the root, the key assocaited with v is greater than or equal to the key assocated with v's parent
+            - Complete Binary Tree Property - A heap T with height h is a complete binary tree, that is levels 0, 1, 2, ..., h-1 of T have maximum number of nodes possible, namely level i has 2^i nodes, for 0 <= i <= h-1, and the nodes at level h fill this level from left to right
+        - ADT
+            - add() - add to T, and return a new external node v storing element e, such that the resulting tree is a complete binary tree with last node v
+            - remove() - remove the last node of T and return its element
+        - Insertion Priority Queue
+            - If bottom level is not full
+                - add() inserts a new node on the bottom level of T, immediately after the rightmost node of this level, i.e. the last node
+                - Start at last node, go up until node has isLeft relationship with parent, go up to parent and into right child, then go as far left as possible
+            - if bottom level is full
+                - add() inserts a new node as the left child of the leftmost node of the bottom level of T
+                - Start at root, go as far left as possible
+            - Up-heap Bubbling - After inseriton, must fix any violations of the heap-order property
+                - Compare inserted node's key with parent, if violation i.e. node->key is < parent->key, swap values, continue moving up the tree, swapping values until the node->key > parent->key or node->parent becomes null, i.e. root
+        - Removal
+            - Access the last node w of T, copy its entry into the root r, then delete the last node by using binary tree remove
+            - After removing, root may violate heap-order priority
+                - Option #1 - if r has no children, done
+                - Option #2 - if r has no right child, let s be the left child or r
+                - Option #3 - if r has both children, select the child with the smallest key
+            - Down-heap Bubbling - compare r->key with r->child->key, if smaller, swap
+                - Again look for child using one of the options above, compare, and swap if necessary
+        - Performance of a Priority Queue
+            - size(), empty(), min() = O(1)
+            - insert() = O(logn)
+            - removeMin() = O(logn)
+
 Chapter 9 - Hash Tables, Maps, and Skip Lists
     a. Maps
         - Introduction
