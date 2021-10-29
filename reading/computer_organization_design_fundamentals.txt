@@ -57,6 +57,35 @@ Chapter 2 - Numbering Systems
     f. Binary Coded Decimal
         - 1692 is 0001 0110 1001 0010
 
+Chapter 3 - Binary Math and Signed Representations
+    a. Binary Addition
+        -  0010
+        - +1010
+        -  1100
+    b. Binary Subtraction
+        -  1010
+        - -1001
+        -  0001
+    c. Binary Complements
+        - One's Complement - 1010 = 0101
+        - Two's Complement - 1010 = 0101 + 1 = 0110
+    d. Signed
+        - Most Significant Bit as A Sign Indicator
+            - A binary value with a 0 in the MSB position is considered positive
+            - A binary value with a 1 in the MSB position is considered negative
+    e. Hexadecimal Addition
+        -  ABC
+        - +921
+        - 13DD
+    f. Multiplication
+        - Shifting all of the bit positions to the left is multiplying by two
+        - 000001001 = 9, 18 = 000010010
+    g. Divison
+        - Shifting all of the bit positions to the right is dividing by two
+        - 000001001 = 9, 18 = 000010010
+        - A division by 16, is 4 shifts to the right, as 2^4 = 16
+        - Important - make sure you verify data isn't being lost*
+
 Chapter 4 - Logic Functions and Gates
     a. Logic Gate Basics
         - Gate - takes one or more binary signals as input and using a specific algorithm ouputs a single bit as a result
