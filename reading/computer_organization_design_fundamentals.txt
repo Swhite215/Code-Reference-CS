@@ -155,3 +155,16 @@ Chapter 6 - Standard Boolean Expression Formats
     d. Product of Sums - Outputs of multiple OR gates are combined with a single AND gate
     e. Converting POS to Truth Table - Review Class Notes
     f. Converting a Truth Table to a POS Expression - Review Class Notes
+
+Chapter 7 - Karnaugh Maps
+    a. Main Idea - graphic representations of truth tables
+    b. Using Karnaugh Maps
+        - The key to effectively using K-Maps is to find the largest group of adjacent cells containing 1's
+        - The larger the groups, the fewer products and inputs will be needed to create the boolean expression that produces the truth table
+        - Rules
+            - Grouping must be in the shape of a rectangle
+            - All cells in a rectangle must contain ones, or an X
+            - The number of the cells must equal a power of two i.e. 1, 2, 4, 8, or 16
+            - Outside edges of maps are considered adjacent
+            - Cells may be contained in more than one rectangle, but every rectangle must have atleast one cell unique to it
+            - Every 1 must be covered by at least one rectangle
