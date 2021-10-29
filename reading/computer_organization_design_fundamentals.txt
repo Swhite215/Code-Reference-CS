@@ -168,3 +168,32 @@ Chapter 7 - Karnaugh Maps
             - Outside edges of maps are considered adjacent
             - Cells may be contained in more than one rectangle, but every rectangle must have atleast one cell unique to it
             - Every 1 must be covered by at least one rectangle
+
+Chapter 8 - Combinational Logic Applications
+    a. Adders
+        - Half Adder
+            - Inputs - A, B
+            - Outputs - Sum, Carry Out
+        - Full Adder
+            - Inputs - A, B, CarryIn
+            - Outputs - Sum, CarryOut
+        - Daisy chain Full Adders to produce adder's of any size
+    b. Seven Segment Displays
+        - Segments - A, B, C, D, E, F, G
+        - Main Idea - light segments to produce numbers e.g. b and c produce 1
+        - Inputs - A, B, C, D
+        - Outputs - Active Mix of A, B, C, D, E, F, G
+    c. Active Low Signals
+        - On signal is equivalent to a logic 0, and off is equivalent to a logic 1
+    d. Decoders
+        - Digital signals are used to enable a device
+    e. Multiplexers
+        - Uses a set of control inputs to select which of several data inputs is to be connected to a single data output
+    f. Demultiplexer
+        - Take a single input and select one channel out of a group of output channels to which it will route the input
+    g. Integrated Circuits
+        - Chips made to perform specific tasks like those mentioned above
+
+
+
+        
