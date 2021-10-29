@@ -316,4 +316,38 @@ Chapter 10 - Search Trees
                 - removeAboveExternal() - remove an external node v and its parent, replacing v's parent with v's sibling
         - Performance of a Binary Search Tree
             - find, insert, and erase are O(h)
-        - A C++ Implementation fo a Binary Search Tree - TODO:
+        - A C++ Implementation fo a Binary Search Tree - Code-Reference-C
+    b. AVL Trees
+        - Definition - BST that uses the height-balance property
+            - Height Balance Property - For every internal node v of T, the heights of the children of v differ by at most 1
+        - ADT
+            - insert(), erase(), height(), setHeight(), isbalanced(), rebalance()
+        - Insertion
+            - Key Concept - must insert into tree, and then from that position, traverse up the tree looking for an unbalanced node, if one is found, the node must be balanced
+        - Removal
+            - Key Concept - must perform BST removal, and then from position of removed node, traverse up the tree looking for unbalanced nodes, if one is found, the node must be balanced
+        - Balancing Actions
+            - Single Rotation
+                - z = unbalanced node, y = child of z with greatest height, x = child of y with greatest height or on same side as y
+                - Rotate y to root of subtree, giving it's children to x and z
+            - Double Rotation
+                - Single Rotation(X, Y)
+                - Single Rotation(X, Z)
+    c. Splay Trees
+        - Definition - BST that uses concept of splaying
+            - Splaying - a node is splayed by moving node to the root of the tree through a series of restructuring
+            - When to Splay
+                - Insertion - at newly inserted node, or updated node
+                - Removal - at parent of removed successor node, or last node visited
+                - Search - at last visited node
+        - Splaying Actions
+            -  Zig-Zig
+                - x = node to splay, y = parent, z = grandparent, all are on the same side
+                - Rotate x to root of subtree, making y a child of x, and z a child of y, passing x child to y and y child to z
+            - Zig-Zag
+                - x = node to splay, y = parent, z = grandparent, all are not on the same side
+                - Rotate x to root of subtree, making y and z children of x, and giving x's children to y and z
+            - Zig
+                - x = node to splay, y = parent, z = DNE, w = child of x
+                - Rotate x to root of subtree, making y and w children of x, and giving x's children to y and w
+        - Key Concept of Analysis - Amortized Analysis (Cyber Dollars) = O(logn)
