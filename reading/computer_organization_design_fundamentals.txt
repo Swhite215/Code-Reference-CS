@@ -147,3 +147,11 @@ Chapter 5 - Boolean Algebra
     e. DeMorgan's Theorem
         - !(A+B) = !A^!B
         - !A + !B = !(AB)
+
+Chapter 6 - Standard Boolean Expression Formats
+    a. Sum of Products - a sum of one or more products e.g. ABCD + A!BD + C!D + A!D
+    b. Converting an SOP Expression to a Truth Table - Review Class Notes
+    c. Converting a Truth Table to an SOP Expression - Review Class Notes
+    d. Product of Sums - Outputs of multiple OR gates are combined with a single AND gate
+    e. Converting POS to Truth Table - Review Class Notes
+    f. Converting a Truth Table to a POS Expression - Review Class Notes
