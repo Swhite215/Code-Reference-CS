@@ -37,6 +37,26 @@ Chapter 1 - Digital Signals and Systems
             - Duty Cycle - represents the percent of time that a periodic cycle is a logic 1
             - Dimming lights can be done by changing pulse train/duty cycle, shine half as bright is to reduce by 50%
 
+Chapter 2 - Numbering Systems
+    a. Unsigned Binary Counting
+        - 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1110, 1111
+    b. Binary Terminology
+        - Nibble - a four bit binary number
+        - Byte - eight it binary numbe 
+        - Word - sixteen bit, two byte binary number
+        - Double Word - thirty-two bit, four byte binary number
+    c. Unsigned Binary to Decimal Conversion
+        - 2^N*(1 | 0) + , ...
+    d. Decimal to Unsiged Binary
+        - Decimal / 2, take remainder
+    e. Hexadecimal Representation
+        - ABC = 1010 1011 1100
+        - Converting Binary to Hexadecimal - group by four, use table
+        - Converting Decimal to Hexadecimal - decimal / 16, take remainder
+        - Converting Hexadecimal to Decimal - 16^N*(X) + , ...
+    f. Binary Coded Decimal
+        - 1692 is 0001 0110 1001 0010
+
 Chapter 4 - Logic Functions and Gates
     a. Logic Gate Basics
         - Gate - takes one or more binary signals as input and using a specific algorithm ouputs a single bit as a result
