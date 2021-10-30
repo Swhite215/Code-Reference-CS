@@ -273,3 +273,102 @@ Chapter 12 - Introduction to Memory
             - Dynamic Ram - using a capacitor made from a pair of conductive plates that are held parallel to each other and very close together but not touching
             - Leakage Current - movement of electrons from one plate to the other
 
+Chapter 13 - Memory Hierarchy
+    a. Characteristics of the Memory Hiearchy
+        - (FAST, LOW CAPACITY) Registers -> Cache RAM -> Main Memory -> Long Term Storage (SLOW, HIGH CAPACITY)
+    b. Physical Characteristics of a Hard Drive
+        - Strucutre
+            - Platter - magnetic material and a substrate
+            - Data is recorded to the platter using a conductive coil called a head
+            - Head is shaped like a C, with the gap between the ends positioned to face the magnetic material
+            - To write data, an electrical current is passed through the wire creating a magnetic field within the gap of the head close to the disk, this field magnetizes the material on the platter in a specific direction
+            - Reversing the current would polarize the magnetic material in the opposite direction
+            - Magnetized patterns on the platter represent the data
+        - Data Encoding
+            - Controller detects the changes in magnetic direction, not the direction of the field itself
+            - Set up a clock to define the bit positions, and watch how the magentic field changes with respect to that clock
+            - Frequency Modulation - magnetic field change at the beginning and middle of a bit time represented a logic one, while a magnetic field chiange only at the beginning represented a logic zero
+            - Modified Frequency Modulation - defines a change in polarization in the middle of a bit time as a one and no changes in the middle as a zero
+        - Hard Drive Access Time - Queue, Seek, Rotation, Transfer
+        - Organization of Data
+            - Tracks - concentric circles of magnetic material
+            - Sector - divisions of tracks
+    c. Cache RAM
+        - Why - principle of locality
+            - Spatial Locality - data near current address will be accessed as well
+            - Temporal Locality - same data will be accessed repeatedly
+        - L1 - In Processor, L2 - Between Processor and Memory
+        - Cache Organization - Divide Memory in Blocks
+            - Cache has no sequential order, therefore it is the addressing scheme of main memory that is used to define the blocks of words and the method for locating them
+            - Block - by removing a small group of bits at the end of an address, the resulting identifier points to a group of memory locations rather than a specific address
+            - To organize memory into blocks, a memory address is divided into two logical sets of bits, one to represent the block number and one to identify the word's position or offset within the block
+            - Example
+                - How many blocks of 8 words are there in a 1 GB memory space?
+                    - 1GB uses 30 Address lines i.e. 2^30 - 1073741824 / 1024 / 1024 / 1024 = 1
+                    - Three bits are needed to identify eight words - 3
+                    - 30 - 3 = 27, 27 bits represent the block
+        - Cache Operation
+            - When a processor needs a word from memory, a check in the cache and check in main memory is performed, if in the cache, hit, if not, miss
+        - Cache Characteristics
+            - Size of the Cache
+            - Size of a Block - when combined with the size of the cache defines the number of lines
+            - Number of Caches - i.e. multiple levels or split cache
+            - Mapping Function - link between a block's address in memory and its location in the cache
+            - Replacement Algorithm - method used to figure out which block to remove from the cache in order to free up a line
+            - Write Policy - how the processor writes data to the cache so that main memory eventually gets updated
+        - Cache Mapping Functions
+            - Direct Mapping
+                - Assuming main memory is divided up into n blocks and the cache has room to contain exactly m blocks, if we divide m into n, we should get an integer that represents the number of times main memory could fill the cache with different blocks from its contents
+                - Example
+                    - Assume a cache system has been designed such that each block contains 4 words and the cache has 1024 lines i.e. 1024 blocks. What line of the cache is supposed to hodl the block that contains the word from the twenty-bit address 3A456. What is the tag number?
+                    - Start by dividing the address into its word id, line id, and tag bits.
+                        - 4 = 2^2, then the two least significat beats identify the word, there are 4 words!, 00, 01, 10, 11
+                        - Since the cache has 2^10 lines, i.e. 2^10 = 1024, 10 bits are needed to identify the line number.
+                        - t = 20 - w - l = 20 - 2 - 10 = 8
+                        - 8 bits are the tag bits.
+                        - 3A456 = 0011 1010 0100 0101 0110
+                            - 10 = word bits
+                            - 0100 0101 01 = line bits
+                            - 0011 1010 = tag bits
+                - Example
+                    - 4096 bytes
+                    - 16 byte cache line
+                    - 4096 / 16 = 256 blocks, 2^8 = 256, so 8 bits for index
+                    - 16 byte cache line, so 2^4 = 16, so 4 bits needed for byte
+                    - Tag is 32 - 8 - 4 = 20 bits fo the tag
+                - Important - Determine the offset by looking at the block size, # of bytes in the block, 2^m that gets you bytes is the offset
+                - Important - Determine the number of blocks, memory/block size, 2^m that gives you this is your index
+                - Important - Determine tag, totals bits addressing - offset - index bits
+            - Fully Associative Mapping
+                - Divides the main memory address into two parets, the word id and a tag
+                - In order to see if a block is stored in memory, the tag is pulled from the memory address and a search is performed through all of the lines of the cache to see if the block is present
+                - Replacement Algorithm
+                    - Least Recently Used
+                    - First In First Out
+                    - Least Frequently Used
+                    - Random
+            - Set Associative Mapping
+                - Uses direct mapping to identify the sets, and the lines within each set are treated like a minature fully associative cache where any block that is to be stored in the set can be stored to any line within the set
+                - Example
+                    - Cache has 512 lines i.e. 2^9
+                    - Block contains 8 words, 2^3
+                    - Full Memory Space is 1GB 2^30
+                    - Tag Bits are 30 - 3 - 9 = 18
+                    - Two Lines Per Set, so 512 / 2 = 256 sets, so 2^8 to determine the line, which means 30 - 3 - 8 = 19 bits for the tag
+                    - Four Lines Per Set, so 512 / 4 = 128 sets, so 2^7 to determine the line, which means 30 - 3 - 8 = 20 bits for the tag
+                - Example
+                    - Identify the set number where the block containing the address 29ABCDE8 will be stored.
+                    - In addition, identify the tag, the lower and upper addresses of the BLOCK
+                    - Cache is 4 way set with 4K lines, each block contains 16 words, main memory is 1GB
+                    - 4096 / 4 = 1024 sets, 2^10 to determine the line
+                    - 2^4 = 16, so 4 bits for the offset
+                    - 30 - 10 - 4 = 16 bits for the tag
+                    - 29ABCDE8 = 00101001101010111100110111101000
+                        - 1000 = offset
+                        - 0011011110 = set
+                        - 001010011010101111 = tag
+                    - Lowest Address - 00101001101010111100110111100000
+                    - Highest Address - 00101001101010111100110111101111
+            - Cache Write Policy - method used to determine how memory is updated when the cache is written to the processor
+                - Write Through Polciy - cache update memory every time the processor writes to the cache
+                - Write Back Policy - cache updates main memory only when a line of the cache that has been modified is about to be replaced with a new block from memory
