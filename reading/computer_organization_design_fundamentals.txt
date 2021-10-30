@@ -221,3 +221,55 @@ Chaptert 11 - State Machines
         - Produce Karnaugh Maps for Each Next State and Output
         - Generate Boolean Expressions
         - Produce Circuit
+
+Chapter 12 - Introduction to Memory
+    a. Early Memory
+        - Magnetic Core Memory - made by weaving fine copper wires through tiny rings of magnetic material in an array, when electrical current was sent through the center of one of the rings, it polarized it with a magentic charge
+    b. Organization of Memory Device
+        - Memory is like a matrix, where the number of rows identifies the number of memory location in the memory, and the number of columsn identifies the number of bits in each memory location
+        - To store or retrieve data, the processor must place a binary number called an address on special inputs to teh memory device
+        - Data Lines - allow data to either be stored or read from the latches
+        - Chip Select - enables and disables the memory device
+        - Read Enable - whether to read or not
+        - Write Enable - whether to write or now
+        - Address Decoder - selects exactly one row of the memory array to be active, leaving the others inactive
+    c. Interfacing Memory to a Processor
+        - Bus - Group of wires that connect and enable communication on the chip
+            - Data Lines - electrical connections used to send data or receive data from memory
+            - Address Lines - controlled by the processor and are used to specify which memory location the processor wishes to communicate with
+            - Control Lines - signals that manage the transfer of data
+            - Bus Contention - two devices tried to drive the data lines simulataneously
+        - Memory Maps
+            - Memory - several filing cabinets where each folder can contain a single piece of data, size of the data is the number of bits that can be stored in a single memory location
+            - Memory Map - represents a system's memory with a long, vertical column
+            - Memory Space - full address range available, 2^m wherer m equals the number of address lines coming out of the processor
+                - 20 address lines, 2^20 = 1048576 / 1024 / 1024 = 1MB
+        - Address Decoding
+            - Method for using an address to enable a unique memory device while leaving all other devices idle
+            - Scheme - bits of the full address are divided into two groups.
+                - One group that is used to identify the memory device - MSB
+                - One group that is used to identify the memory location within the selected memory device - LSB
+            - Example
+                - A processor with a 256 MB address space is using the address 35E3C03 to access a 16 MB memory device
+                    - How many address lines are used to define when the 16 MB memory space is enabled?
+                        - 256MB = 2^28 = 268435456 / 1024 / 1024 = 256
+                        - 156 / 16 = 16 devices. Four bits are required to produce 16 different values - Four MSB*
+                        - Remaining 24 bits are used to unqieuly identify all of its addresses
+                    - What is the bit pattern of these enable bits that enables this particular 16MB device?
+                        - 0011 = 3
+                    - What is the address within the 16MB device that this address is going to transfer data to or from?
+                        - 5E3C03 = 0101 1110 0011 1010 0000 0011
+                    - What is the lowest address in the memory map of the 16MB device?
+                        - 0011 0000 0000 0000 0000 0000 0000
+                    - What is the highest address in the memory map of the 16MB device?
+                        - 0011 FFFF FFFF FFFF FFFF FFFF FFFF
+    d. Memory Mapped Input and Output
+        - Practice of interfacing an I/O device as if it was a memory device is called memory mapping
+    e. Memory Terminology
+        - Random Access Memory - applied to memory that is easily read from and written to by the microprocessor, means that any address can be accessed at any time
+        - Read Only Memory - stable and impervious to power loss, cannot be written to without special mechanisms, commonly used to store BIOS - Basic Input Output System
+        - Static RAM vs. Dynamic RAM
+            - Static Ram - made from an array of latches such as the D-Latch, better adapted for speed
+            - Dynamic Ram - using a capacitor made from a pair of conductive plates that are held parallel to each other and very close together but not touching
+            - Leakage Current - movement of electrons from one plate to the other
+
