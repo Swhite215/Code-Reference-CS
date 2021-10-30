@@ -204,4 +204,20 @@ Chapter 10 - Latches
         - Undefined Values - states that should not occur*
     b. The S-R, D, T, and JK Flip Flops - Review Class Notes
 
-        
+Chaptert 11 - State Machines
+    a. Introduciton to State Machines
+        - State Machine - a digital ciruit that relies not only on circuit's inputs, but also the current state of the system to determine the proper output
+        - States - defines the current conditions of a system
+        - State Diagrams - models a state machine by using circles to represent each of the possible states and arrows to represent all of the possible transitions between the states
+        - Clock - used to drive the system from one state to another
+        - Errors in State Diagrams
+            - Any state other than the initial state that has no transitions going into it should be removed.
+            - For a system with n inputs, there should be 2^n transitions coming out of every state
+    b. State Machine Design Process
+        - Define the System
+        - Define the State Diagram
+        - Determine Latch and Number Needed
+        - Developer Truth Tables, Next State Truth Tables
+        - Produce Karnaugh Maps for Each Next State and Output
+        - Generate Boolean Expressions
+        - Produce Circuit
