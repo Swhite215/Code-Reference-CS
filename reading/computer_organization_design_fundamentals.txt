@@ -194,6 +194,14 @@ Chapter 8 - Combinational Logic Applications
     g. Integrated Circuits
         - Chips made to perform specific tasks like those mentioned above
 
-
+Chapter 10 - Latches
+    a. New Truth Table Symbols
+        - Edges/Transitions
+            - Rising Edge - Transition from a zero to a one
+            - Falling Edge - Transition from a one to a zero
+        - Stored Values
+            - Q represents a stored value
+        - Undefined Values - states that should not occur*
+    b. The S-R, D, T, and JK Flip Flops - Review Class Notes
 
         
