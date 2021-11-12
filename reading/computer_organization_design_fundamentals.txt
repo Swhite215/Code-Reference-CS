@@ -373,7 +373,7 @@ Chapter 13 - Memory Hierarchy
                 - Write Through Polciy - cache update memory every time the processor writes to the cache
                 - Write Back Policy - cache updates main memory only when a line of the cache that has been modified is about to be replaced with a new block from memory
 
-Chapter 15: Introduciton to Processor Architecture
+Chapter 15 - Introduciton to Processor Architecture
     a. Components
         - Bus - transfers data from one device to another
         - Registers - stores a binary value using a group of latches
@@ -415,3 +415,39 @@ Chapter 15: Introduciton to Processor Architecture
         - Interrupts - each device is given a software or hardware interface that allows it to request the processor's attention
         - Direct Memory Access - data is transferred directly from the I/O device to memory, without requiring the processor to perform the data transfer
 
+Chapter 16 -  Intel 80x86 Base Architecture
+    a. Execution Unit
+        - EU - acts as the control unity and also as a portion of the instruction decoder, also contains the ALU, processor flags, and general purpose and address registers
+        - General Purpose Registers - AH, AL, BH, BL, CH, CL, DH, DL, AX, BC, CX, DX, EAX
+            - AH is 8 most significant bits, and AL is least significant bits
+            - AX - accumulator register
+            - BX - base register - base addrewss or pointer to things like data arrays
+            - CX - counter register - index for loops usually stored here
+            - DX - data register - used with AX for special arithmetic functions
+        - Address Registers
+            - SP - stack pointer - porints to the address of the last piece of data stored to the stack
+            - BP - base pointer - point to the parameters that are passed to a function during a function call
+            - IP - instruction pointer - points to where to retrieve the next instruction
+            - SI - source index - memory locations from which characters are to be retrieved
+            - DI - destination index  - memory locations where characters are to be stored
+        - Flags
+            - Trap Flag - used for debugging and allows code to be executed one instruction at a time
+            - Direction Flag - dictates whether a string is to be examined by incrementing through the characters, or decrementing
+            - Interrupt Flag - enable or dissable interrupts
+            - Overflow Flag - indicates when an overflow has occurred in a mathematical operation
+            - Sign Flag - follows the sign bit of mathematical or logical result, 0 when result is positive and 1 when the result is negative
+            - Zero Flag - set to 1 when the result of a mathematical or logical function is zero, 0 other wise
+            - Auxillary Carry Flag
+            - Parity Flag - 1 if the result contains an even number of ones, 0 otherwise
+            - Carry Flag - carry out of the most significant bit position
+    b. Bus Interface Unit
+        - Goal - controsl the transfer of information between the processor and external devices such as memory, I/O ports, and storage devices
+        - Segment Addressing
+            - Code Segment - contains the base address of the segment assigned to contain code of an application
+            - Data Segment - contains the base address of the segment assigned to contain the data used by an application
+            - Stack Segment - contains the base address of the stack segment
+            - Extra Segment - points to the data segemnt assigned to an applicaiton
+        - Instruction Queue - maintain a sequence of fetched instructions for the EU to execute
+    c. Memory vs. I/O Ports
+        - MRDC Active Low - read data from memory
+        - MWTC Active Low - write data to memory
