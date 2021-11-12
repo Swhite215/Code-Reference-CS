@@ -372,3 +372,46 @@ Chapter 13 - Memory Hierarchy
             - Cache Write Policy - method used to determine how memory is updated when the cache is written to the processor
                 - Write Through Polciy - cache update memory every time the processor writes to the cache
                 - Write Back Policy - cache updates main memory only when a line of the cache that has been modified is about to be replaced with a new block from memory
+
+Chapter 15: Introduciton to Processor Architecture
+    a. Components
+        - Bus - transfers data from one device to another
+        - Registers - stores a binary value using a group of latches
+            - Data Registers - hold values on which to perfom arithmetic or logic functions
+            - Address Registers - stores addresses e.g. pointers
+            - Instruction Registers - represents a command to be executed
+            - Flag Registers - represent status of an operation or of the processor itself
+        - Flags
+            -  Single Register i.e. the Flags Register
+        - Buffers - holds data until it is ready to be picked up
+        - The Stack - block of memory locations reserved to function as temporary memory - LIFO
+        - I/O Ports - any connections that exist between the processor and its external devices
+    b. Processor Level
+        - Central Processing Unit (CPU) - brain of the processor, execution of all instructions occurs inside the CPU
+        - Internal Memory - small but quick memory
+        - Data Buffer - bidirectional device that holds outgoing data until the memory bus is ready for it or incoming data until the CPU is ready for it
+        - Address Latch - group of latches maintains the address that the processor wishes to exchange data with on the memory bus
+        - I/O Ports - represent the device interfaces that have been incorporated into the processor's hardware
+        - Configurable Registers - flags that represent current configuration of the processor
+    c. The CPU
+        - Control Unit- controls CPU, timing
+        - Arithmeitc Logic Unit - performs arithmetic and logical operations
+        - Instruction Decorder - receives instruction from memory and tells the ALU and registers which circuits to energize in order to perform the function
+        - Registers - store data, addresses, and flags
+    d. Assembly and Machine Language
+        - Machione code - instruciton set that the processor uses
+        - Assembly Language - oen to one correlation between human readable abbreviated text/code and machine language
+    e. Big Endian/Little Endian
+        - Big - first byte or word stored is the most significant byte
+        - Little - first byte or word stored is the least significant byte
+    f. Pipelined Architectures
+        - Fetch - get the next instruction to execute from its location in memory
+        - Decode - determine which circuits to energize in order to execute the fetched instruction
+        - Execute - use the ALU and the processsor to memory interface to execute the instruction
+        - Pipelining - keeping fetch, decode, execute busy during each cycle
+    g. Passing Data To and From Peripherals
+        - Memory Mapped I/O - processor places address of memory to exchange data with, either writes or reads
+        - Polling - processor continually reads the status registers of the I/O device to see if it needs attention
+        - Interrupts - each device is given a software or hardware interface that allows it to request the processor's attention
+        - Direct Memory Access - data is transferred directly from the I/O device to memory, without requiring the processor to perform the data transfer
+
