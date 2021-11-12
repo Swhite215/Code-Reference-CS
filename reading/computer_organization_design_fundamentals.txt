@@ -451,3 +451,70 @@ Chapter 16 -  Intel 80x86 Base Architecture
     c. Memory vs. I/O Ports
         - MRDC Active Low - read data from memory
         - MWTC Active Low - write data to memory
+
+Chapter 17 - Intel 80x86 Assembly Language
+    a. Assemblers vs. Compilers
+        - Comiler - take source code and converts it into machine language instructions
+        - Assembler - takes assembly language programs, and converts each line of assembly language to a single machine code instruction
+    b. Components of a Line of Assembly Language
+        - Label - identify a specific line of code or the memory location of a piece of data
+        - Instruction or opcode - contains the assembly language command that the processor is supposed to execute for this line of code
+        - Operand field - contains data or operands that the assembly langauge instruction needs for its execution
+        - Comment field - ... comments
+    c. Assembly Language Directives
+        - Segment Directive - Code, Data, and Stack
+            - Settings - Byte, Word, DWORD, PARA, PAGE
+        - .MODEL, .STACK, .DATA, .CODE Directives
+            - .Model - TINY, SMALL, MEDIUM, COMPACT, LARGE, HUGE, FLAT
+            - .STACK - integer to define the size of the segment reserved for the stack
+        - PROC Directive - defines a block of code or function
+        - END DIrective - tells assembler it has reached the end of all code
+        - Data Definition Directives - define entities that the assembler will convert directky to components to be used by the code
+            - Hex - leading zero must be placed in front of A, B, C, D, E, F
+            - Label D[Characte for size] expression
+                - label DB expression - byte
+                - label DW expression - word
+            - Expression Formats
+                - Constants - converted to binary and stored in the order they are defined
+                - String - divided into it's characters and store each character in the incremental space required by the selected define directive
+                - Undefiend - tell assembler memory is reserved but undefined
+                - Duplicated - used to replicate the same value in order to fill a block of memory
+        - EQU Directive - define strings or constants to be used during assembly
+    d. 80x86 Opcodes
+        - Data Transfer
+            - mov dest, src
+        - Data Manipulation
+            - add dest, src
+            - sub dest, src
+            - and dest, src
+            - or dest, src
+            - xor dest, src
+            - adc dest, src
+            - mul dest, src
+            - div dest, src
+            - neg dest - take's two's complement
+            - dec dest
+            - not dest - bit wise inverse
+            - inc dest
+            - sar dest, count - arithmetic shift right i.e. division by two and make sure most significant bit is replicated
+            - shr dest, count - logical shift right
+            - sal dest, count - arithmetic shift left i.e. multiplcation by Two
+            - shl dest, count - logical shift left
+        - Program Control
+            - jmp label - loads instruction pointer with the address that serves as the jump operad
+            - cmp one, two - substractions second operand from first
+            - loop label - takes address of first instruction of the loop, CX should be first loaded with a count of times to execute loop, each time loop is executed CX is decremented and instruction pointer is set back to first instruction of the loop
+            - call proc - calls a procedure, proc is address
+        - Special Operations
+            - CLC - clear carry flag
+            - CLD - clear direction flag
+            - CLI - clear interrupt flag
+            - CMC - complement carry flag
+            - STC - set carry flag
+            - STD - set direction flag
+            - STI - set interrupt flag
+            - PUSH and PULL
+    e. Addressing Modes
+        - Register Addressing - simply use the name of the register for src or dest
+        - Immediate Addressing - use of constant as an operand
+        - Pointer Addressing - register name is enclosed in brackets to identify it as a pointer [BX]
