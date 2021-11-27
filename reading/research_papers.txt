@@ -25,3 +25,6 @@ Various Read Whitepapers and Dissertations:
 
 6. Computer Networks
   - An Analysis of Public REST Web Service APIs: https://www.researchgate.net/publication/325770704_An_Analysis_of_Public_REST_Web_Service_APIs
+
+7. Operating Systems
+  - AIFM: High Performance Application Integrated Far Memory: https://www.usenix.org/system/files/osdi20-ruan.pdf
