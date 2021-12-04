@@ -28,3 +28,6 @@ Various Read Whitepapers and Dissertations:
 
 7. Operating Systems
   - AIFM: High Performance Application Integrated Far Memory: https://www.usenix.org/system/files/osdi20-ruan.pdf
+
+8. Computer Graphics
+  - Particle Based Fluid Simulation for Interactive Applications: https://matthias-research.github.io/pages/publications/sca03.pdf
