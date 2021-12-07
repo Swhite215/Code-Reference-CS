@@ -1,0 +1,111 @@
+PARSEC Benchmark
+
+1. PARSEC
+    - Princeton Application Repository for Shared-Memory Computers is a collection of parallel programs which can be used for performance studies of multiprocessor machines
+2. Structure
+    - Packages - benchmark program, libraries, and other essential components
+    - Requirements - 8GB-12GB
+        - Disk Usage
+            - Raw Installation - 7GB
+            - Each Binary x500MB
+            - Temporary Files - ++
+    - Systems - Linux/x86_64
+3. Structure
+    - /bin Key Tools
+        - parsecmgmt - build and run packages as well as perform other management operations
+        - bldconfadd - create build configuration
+        - bldconfdel - delete build configuration
+    - config/ - global configuration files
+    - log/ log files of builds and runs
+    - man/ - man pages of the PARSEC distribution
+    - pkgs
+        - apps/ - PARSEC workloads that are applications
+        - kernels/ - PARSEC workloads that are kernels
+        - libs/ - Libraries required by other packages
+        - tools/ - tools required by other packaegs
+        - .../ - additional groups that may have been created
+    - Packages
+        - inputs/ - directory with input archives
+        - inst/ - installation directory (dynamically created)
+        - obj/ - build directory (dynamically created)
+        - outputs/ - directory with reference outputs
+        - parsec/ - direction with local configuration and other files for the PARSEC framework
+        - run/ - temporary default directory for program execution
+        - src/ - source code of the package
+    - env.sh
+        - Modifies environment to make accessing documentation easier
+        - source env.sh
+    - IMPORTANT - add PARSEC bin directory to the path - source env.sh
+4. Workloads
+    - Original
+        - blackscholes
+        - bodytrack
+        - canneal
+        - dedup
+        - facesim
+        - ferret
+        - fluidanimate
+        - freqmine
+        - raytrace
+        - streamcluster
+        - swaptions
+        - vips
+        - x264
+    - Network
+        - netdedup
+        - netferret
+        - netstreamcluster
+    - Related
+        - SPLASH-2
+        - SPLASH-2x
+5. Inputs
+    - test - minimal input to verify that programs are executable. Execution time is less than 1 second
+    - simdev - very small input which causes code execution comparable to a typical inpout for this program, intended for microarchitecture simulator development. Execution time is less than 1 second
+    - simsmall - small input for performance measurements with microarchitectural simulators. Execution time about 1 second
+    - simmedium - medium sized input for performance measurements with microarchitectural simulations. Execution time about 3 to 5 seconds.
+    - simlarge - large sized input for performance measurements with microarchitectural simulators. Execution time about 10 to 20 seconds
+    - native - very large input intended for large scale experiments on real machines. Execution time about 10 to 30 minutes
+6. Files
+    - Types of Configuration Files
+        - System - contains all platform-specific information about an operating system. There is exactly one system configuration file for each operating system supported by the framework. They have the suffix .sysconf. Only exists globally
+        - Build - contains all the information necessary to build packages in a desired way, such as which compiler and what flags to use. Build configuration files have the suffix .bldocnf and exist both in a global and a local version. Build configurations are managed using bldconfadd and bldconfdel tools
+        - Package - decsribes a package in more detail. Contains information that tells the PARSEC framework where a package is located and how it is to be made accessible to the user. Further specifies what exactly the package does and who contributed to it. Package configuration have the suffix .pkgconf and exist only in a global version
+        - Run - specifies how to execut a workload with a specific input set. One run configuration for each supported input set. They have the suffix .runconf and exist both in a local and global version
+        - Locations
+            - config/ - global configuration files
+            - pkgs/*/*/parsec - local configuration files
+7. Usage of parsecmgmt
+    - Build Packages
+    - Run Benchmark
+    - OPTIONS
+        - -a ACTION - action to perform
+            - build - build and install specified package
+            - run - run specified package
+            - clean - remove all files generated during the build and run phase
+            - uninstall - removes the installed files of the given packages for the current platform
+            - fullclean - clean all platforms
+            - fulluninstall - uninstall all platforms
+            - status - show a summary of the current status of the PARSEC distribution
+            - info - list available packages and configurations
+        - -p PACKAGE - package on which action is to be performed
+        - -c CONFIG - while build configuration to use
+        - -d RUNDIR - use directory RUNDIR as root in which to run the benchmarks
+        - -i INPUT - the input set to use to run the benchmarks
+        - -n THREADS - minimum number of threads, default is 1
+        - -s SUBMIT - command to use to subimt the benchmark for execution. Default is time
+    - Example - Run benchmark ferret with input simsmall and 4 threads
+        - parsecmgmt -a run -p ferret -i simsmall -n 4
+8. Build Configurations
+    - regular*
+    - gcc - build parallel version of suite with gcc
+    - gcc-serial - build serial version of suite with gcc
+    - gcc-hooks - build parallel version of suite with PARSEC hooks enabled with gcc
+    - icc - build parallel version of suite with intel compile
+    - gcc-pthreads - build with pthreads parallelization (if supported)
+    - gcc-openmp - build with openmp parallelization (if supported)
+    - gcc-tbb - build with tbb parallelization (if supported)
+9. Performance Measurement and Research
+    - Region of Interest - includes the computationally intensive, parallelized phaser of the benchmark, but not the initialization or shutdown phase
+    - Inputs - as described above ^
+10. PARSEC Hooks
+    - All benchmark programs of the benchmark suite support PARSEC hooks, a library which allows rapid instrumentation of all benchmark.
