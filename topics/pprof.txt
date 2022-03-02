@@ -124,3 +124,56 @@
             - Save As - current refinement settings are saved under a specified name
             - Default - switches back to the default view by removing all refinements
 
+2. Understanding a C++ Program's Memory Usage with Pprof - https://www.thoughtspot.com/codex/understand-c-programs-memory-usage-pprof
+    - Goal - use pprof to analyze memory usage
+    - Step #1 - Getting an SVG presentation of the current heap allocations
+        1. Import a copy of the binaries of the service you would like to profile to your local machine
+        2. Get a copy of the heapz_dump (the currently heap allocated memory by the service)
+        3. Confirm you have pprof on your machine: which pprof
+        4. Run pprof in interactive shell mode, passing the binary as the first argument and the heapz_dump files as the second
+            - pprof binary heapz_dump
+        5. Run web, this will load a webpage with the SVG, find log line 'Loading web page file:////tmp/pprof15228.0/svg'
+        6. Copy using scp: scp <user>@<IP>:/tmp/pprof15228.0.svg
+    - Step #2 - Inspecting the memory SVG
+        - Top Left - name of service, total heap memory recorded, size of nodes dropped
+        - Each node includes:
+            - Name of the function
+            - Memory it is currenlty holding
+            - Memory currently held by its children
+        - Important - image is a snapshot in time of where memory is currently allcoated in the service
+        - Important - pprof does not include stack memory
+    - Step #3 - Additional Useful Commands
+        - Generate SVG without dropping any nodesx or edges - pprof -nodefraction=0 -edgefraction=0  user_usage_service_main heapz_dump
+        - See memory on the heap for specific functions
+            - env HEAPPROFILE=pprof_memory ./build-dbg/<name of your service test binary>
+            - pprof --lines --stacks --show_bytes --text --alloc_space ./build-dbg/<your service test binary>  pprof_memory.0001.hea
+    - Step #4 - Important Notes and Caveats
+        - SVG is not 100% of the memory taken by the program
+        - You can increase the sampl rate
+
+3. Profile Proto Format
+    a. Overview
+        - Purpose - data representation for profile data, independent of the type of data being collected and the sampling process used to collect that data
+        - Representation - gzip compressed protocol bugger, described at src/proto/profile.proto
+        - Profile - collection of samples, each one representing measurements performed at a certain point in the life of a job
+            - Sample associates a set of measurement values with a list of locations, commonly representing the program call stack when the sample was taken
+    b. General Structure of a Profile
+        - Profile Message Fields
+            - sample - a profile samples, with the values measured and the associated call stack as a list of location ids, samples with identical call stacks can be merged by adding their respective values, element by element
+            - location - a unique place in the program, commonly mapped to a single instruction address, source information in the form of lines, and a mapping id that points to a binary
+            - function - a program function as defined in the program source, nonzero ID, human readable name, system name, source file, and other fn attributes
+            - mapping - binary that is part of the program during the profile collection, includes details on how the binary was mapped during program execution
+            - string_table - all strings in the profile are represented as indices into this repeating field
+    c. Measurement Values
+        - Representation - 64 bit integer
+        - ValueType Message
+            - Type - human readable description of the type semantics, e.g. cpu to represent CPU time, will or time to wallclock time, or mmeory for bytes allocated
+            - Unit - human readable name of the unit represented by the 64 bit integer values e.g. nanoseconds or milliseconds for a time value, bytes or megabytes for a memory size, count for number of events
+        - Note - a profile can represent multiple measurements per sample, but all samples must have hte same number and type of measurements
+    d. Locations, Functions, and Mappings
+        - C++/GO - Unsymbolized Profiles - only contain instruction addresses, and are to be symbolized by a separate tool, it is critical for each location to point to a valid mapping
+        - Symbolized Profile - contain all the symbol information available for the profile, mappings and instruction addresses are optional for symbolized location
+    e. Lables
+        - Purpose - annotations to discriminate samples with identical locations
+        - Type - string or numeric
+    f. Keep and Drop Expressions
