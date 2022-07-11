@@ -1,0 +1,36 @@
+Design Tools
+
+1. Figma
+    a. What is Figma?
+        - Design - Look, Feel, Act, Good->Great
+        - Things - Design, Wireframe, Prototype
+    b. Figma for Beginners
+        - Invite Team Members - w/ Access
+        - Wireframe - simplified design void of any design
+            - Purpose - map out user flows
+        - Editor - Canvas
+        - Frames - containers we place content in, single screen of design
+        - Toolbar
+            - Frame -> Pick Type -> Desktop
+        - Controls - Basic
+            - T - text tool
+            - CTRL-D - duplicate
+            - CTRL-C - copy
+            - CTRL-V - paste
+        - Creating New Layers
+        - Selecting Color
+        - Groups
+        - Components and Libraries
+            - Components - building blocks
+            - Library - share components across files
+        - Design System - consistency at scale
+        - Iterations and Feedback
+            - Create multiple designs
+            - Share -> Copy Link -> Share Link
+    c. Create Designs
+        - Color
+        - Typography
+        - Pages
+        - Measuring and Layout Gridlines
+        - Style - resuable properties to apply to objects
+        

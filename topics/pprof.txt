@@ -154,7 +154,7 @@
 3. Profile Proto Format
     a. Overview
         - Purpose - data representation for profile data, independent of the type of data being collected and the sampling process used to collect that data
-        - Representation - gzip compressed protocol bugger, described at src/proto/profile.proto
+        - Representation - gzip compressed protocol buffer, described at src/proto/profile.proto
         - Profile - collection of samples, each one representing measurements performed at a certain point in the life of a job
             - Sample associates a set of measurement values with a list of locations, commonly representing the program call stack when the sample was taken
     b. General Structure of a Profile
