@@ -34,4 +34,4 @@ Various Read Whitepapers and Dissertations:
   - Particle Based Fluid Simulation for Interactive Applications: https://matthias-research.github.io/pages/publications/sca03.pdf
 
 9. Computer Hardware/History
-  - Electronic Computers: A Historical Survey
+  - Electronic Computers: A Historical Survey: https://dl.acm.org/doi/pdf/10.1145/356540.356543
