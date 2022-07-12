@@ -30,9 +30,15 @@ Various Read Whitepapers and Dissertations:
   - AIFM: High Performance Application Integrated Far Memory: https://www.usenix.org/system/files/osdi20-ruan.pdf
   - Evolution of Operating Systems - Brinch Hansen: https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=F038CE9FB115E54CDF3E4C0D19DF47F5?doi=10.1.1.104.1524&rep=rep1&type=pdf
   - Supervisory and Monitor Systems by Robert Rosin: https://dl.acm.org/doi/10.1145/356540.356544
+  - An Experimental Time Sharing System: https://dl.acm.org/doi/10.1145/1460833.1460871
 
 8. Computer Graphics
   - Particle Based Fluid Simulation for Interactive Applications: https://matthias-research.github.io/pages/publications/sca03.pdf
 
-9. Computer Hardware/History
+9. Computer Science Surveys
   - Electronic Computers: A Historical Survey: https://dl.acm.org/doi/pdf/10.1145/356540.356543
+
+10. Languages
+
+11. Compilers/Interpreters/Translators
+  - An Elementary Discussion of Compiler/Interpreter Writing: https://dl.acm.org/doi/pdf/10.1145/356540.356545
