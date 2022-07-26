@@ -42,3 +42,8 @@ Various Read Whitepapers and Dissertations:
 
 11. Compilers/Interpreters/Translators
   - An Elementary Discussion of Compiler/Interpreter Writing: https://dl.acm.org/doi/pdf/10.1145/356540.356545
+
+12. Blockchain
+  - Finding Consensus Bugs in Ethereum via Multi-transaction Differential Fuzzing: https://taesoo.kim/pubs/2021/yang:fluffy.pdf
+  - Securify - Practical Security Analysis of Smart Contracts: https://arxiv.org/pdf/1806.01143.pdf
+  - Making Smart Contracts Smarter: https://eprint.iacr.org/2016/633.pdf
