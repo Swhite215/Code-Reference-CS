@@ -47,3 +47,6 @@ Various Read Whitepapers and Dissertations:
   - Finding Consensus Bugs in Ethereum via Multi-transaction Differential Fuzzing: https://taesoo.kim/pubs/2021/yang:fluffy.pdf
   - Securify - Practical Security Analysis of Smart Contracts: https://arxiv.org/pdf/1806.01143.pdf
   - Making Smart Contracts Smarter: https://eprint.iacr.org/2016/633.pdf
+
+13. Database
+  - Elements of Data Management Systems: https://dl.acm.org/doi/pdf/10.1145/356546.356550
