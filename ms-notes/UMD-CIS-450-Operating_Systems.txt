@@ -47,7 +47,34 @@ Operating Systems CIS 450
             - Upward Compatability - app developers can write a single app that works across over a billion devices
 
 2. 08/32/2022 - Three Important Pieces
-    - 
+    - Review of OS C Programming Examples from OSTEP
+    - Illusion
+        - The system has a very large number of virtual CPUs
+        - Each running program has allocated memory at the same address, each program acts as it has its own private memory
+    - Virtualization
+        - Idea - take a physical resource and transform it into a more general, powerful, and easy to use virtual form of itself
+        - Virtualization of the CPU - Central Processing Unit
+            ./cpu A & ./cpu B &
+        - Virtualization of the Memory
+            - ./mem 100 & ./mem 1000 & - the memory address location is the same, this is the illusion demonstrated
+    - Concurrency
+        - Threads
+            - ./thread 100 - produces expected value
+            - ./thread 100000 - doesn't produce expected value... why?
+            - Issue
+                - This relates to how instructions are executed
+                - A key part of the porogram, where the shared counter is incremented, takes three instructions
+                    - Load the value
+                    - Increment the value
+                    - Store back to memeory
+                - These DO NOT execute atomically all at once, and the results become indeterminate
+        - Idea - How to manage multiple things at once
+    - Persistence
+        - Goal - store data for a long period of time
+        - Hardware and Software Support
+            - Hardware I/O Device
+            - Software - File System
+        - Unique - OS does not create a private, virtualized disk, instead we create a virtual to physical mapping
 
         
 
