@@ -1,0 +1,53 @@
+Operating Systems CIS 450
+
+1. 08/31/2022 - Introduction
+    - System Basics
+        - Hardware - CPU attached to main memory
+            - Buses connect components e.g. CPU, memory, graphics, peripheral devices
+            - Questions
+              - How close should each component be?
+              - How do we deal with limited space?
+        - Software
+            - Questions
+                - What happens when a program runs?
+                    - It executes instructions, many millions/billions of times every second. The CPU
+                        - fetches an instruction from memory
+                        - decodes it i.e. figures out which instruction
+                        - executes it i.e. does the thing
+                        - moves to next instruction F-D-E
+                - What else happens in the background when a user program runs?
+                    - Body of software, OS Kernel, runs all the time to
+                        - make it easy to run programs
+                        - allow programs to share memory
+                        - enabling programs to interact with devices
+        - Basics of Von Nuemann Model of Computing
+    - What is an OS?
+        - Language, Command Interpreter, Library of Commands, Set of Utilities - NO
+        - Definitions
+            - Bottom-Up Perspective - Resource Manager
+                - Resources - CPU, Memory, Disks, I/O, Timer, Battery, Touch Screens
+                - Layers - User -> Application -> Operating System -> Hardware
+                - Collection of software that manages computer hardware, intermediary
+                - Benefits
+                    - Sharing/multiplxing - more that 1 app/user to use resource
+                    - Protection of apps from each other
+                    - Performance - efficient/fair access to resources
+                - Challenges
+                    - Managing all kinds of resources
+            - Top-Down Perspective - Hardware Abstraction Layer
+                - OS as a virtual machine providing a standard library
+                - Applications issue system calls to use OS abstractions
+                - Benefits
+                    - Ease of use
+                    - Reusability - provide common functionality
+                    - Portablity
+                - Challenges
+                    - What are the right abstractions?
+        - Example - Android
+            - Upward Compatability - app developers can write a single app that works across over a billion devices
+
+2. 08/32/2022 - Three Important Pieces
+    - 
+
+        
+
