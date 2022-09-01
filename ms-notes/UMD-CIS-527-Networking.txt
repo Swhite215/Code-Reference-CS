@@ -1,0 +1,138 @@
+Computer Networking CIS 527 
+
+1. 08/31/2022 - Lecture Notes
+    - Topics
+        - Principles and Concepts
+        - General Purpose Computer Networks
+            - Other Networks - Television, Telephone (4G)
+            - UM Dearborn - Cisco IP Phones, Future - Zoom Telephone Network
+        - Internet Perspective
+        - Network Software
+        - Designing and Building a System - 10^9
+            - Linear complexity is inadequate
+            - Target complexity is O(logn) - Target
+            - Achieving complexity requires hierarchical structures
+            - Network - Tree - Depth is O(logn)
+        - Satellite Networking - StarLink - SpaceX - Optical Fiber - Capacity Limited
+    - History
+        - Packet Switching 1961-1972
+        - Proprietary Networks and Internetworking 1072-1980
+        - Proliferation 1980-1990
+        - Internet Explosion - 1990s
+        - New Millenium
+    - Building Blocks
+        - Nodes - PC, Special Purpose Hardware
+            - Edge Hosts (Cellphones, Laptop, Desktop, Server)
+            - Switches/Routers - Optimized for Input and Output - Programmed
+                - Historical - devices were not programmable, relying on 3rd party software e.g. Cisco
+                - Current - Software Defined Networking - SDN
+        - Links
+            - Type - coaxial cables, optical fibers, wireless
+            - Network Topologies
+                - Point to Point (Direct Link)
+                - Mesh
+                - Hybrid
+                - Multiple Access
+                - Star
+                - Fiber Optics
+                - Terrestial Radio Channels - requires conversion to frequency
+                - Satellite Radio Channels - requires conversion to frequency
+            - Technique for Quality - Automatic Repeat Request
+            - Issues
+                 - Collision between hosts sending data on the same bus
+                 - Solution - regulating access to the media i.e media access controls
+            - Switched Networks
+                - Definition - two or more nodes connected by a link
+                - Definition - two or more networks connected by a node e.g. a gateway node
+                - Types - Radio, DoD, Commercial, Incompatible
+                    - Differences - packet formats
+                - Routers - designed to connect different networks together
+                - Issue
+                    - How do we uniquely identify each node? 
+                        - Internet Protocol Address - Globally Unique - Configurable - XXX.XXX.XXX.XXX
+                        - Routers
+                            - IP Addresses for Each Port, Relatively Consistent
+                        - Dynamic Host Configuration Protocol - Local IP Address
+                        - Media Access Control Address - Network Card
+                    - How do we communicate?
+                        - Networks must use standard protocol - IPv4 and IPv6
+            - Addressing and Routing
+                - Address - byte string that identifies a node, usually unique
+                    - MAC 48 bits - 2.8147498e+14
+                    - IPV4 32 Bits - 4294967296
+                    - IpV6 128 Bits - 3.4028237e+38
+                - Types of Addresses
+                    - Uncast - node specific
+                    - Broadcast - all nodes on the network, limited to "local" network
+                    - Multicast - some subset of nodes on the network, can be anywhere on the internet
+                        - Limited - relatively hard to implement, requires designing a tree, incorporating many networks, multiple sends
+                - Routing
+                    - What - process of forwarding mesages to the destination mode based on its address
+                    - Issue - maintaining records of routers, we must be able to aggregate
+            - Strategies
+                - Circuit Switching - carry bit streams, reservation based
+                    - Original telephone network - need to share the same link
+                    - Time Divison Multiplexing - switch between L1, L2, L3 using configured time slots
+                        - Issue - time slots are wasted if host has nothing to share
+                        - How do you determine period of time slot?
+                            - Depends on the need of the application i.e. the data rate
+                        - Issue - requires entire set of links and circuits to be set up
+                    - Frequency-Divison Multiplexing - any data can be sent over any frequency using signal encoding
+                    - Telephone - makes sense because connection is persistent, take samples per second one byte
+                - Packet Switching - Statistical Multiplexing
+                    - On-Demand Time Division
+                    - Schedule the link on a per packet basis, more effectively uses the link
+                    - Packets from different sources are interleaved on link
+                    - Buffer packets that are contending for the link
+                    - Issue - congestion at the link, incoming rate is larger than link buffer i.e buffer congestion
+                        - We need to provide feedback to source nodes to alter their rate of packet submissions
+                    - Statistical Multiplexing
+                    - Technique - Store and Forward
+                        - Forward - Table Lookup using the destination address
+                    - Fault Tolerance
+                        - If link has failed, network can adapt to changing circumstances to still deliver packet to target destination
+                - Data
+                     - Header and Data
+                        - Header - Source Address, Destination Address (CONSTANT)
+                    - To make it worth using packet switching, your data should be large enough to not be dominated by the header
+    - Performance Metrics
+        - Bandwidth - data transmitted per unit time
+            - How quickly data can be inserted into the network
+            - Bit Width - how long it takes to transmit each bit of data
+                - E.g. 10Mbs (10 million bits per second), it takes 0.1 microseconds to transmit each bit
+            - Notation (speed of the clock) - BITS PER SECOND*
+                - 1Kbps - 10^3
+                - 1Mbs - 10^5
+                - 1B = 8bits
+            - Transmit (Insert Time)
+                - Transmit Time = Size / Bandwidth
+        - Latency (Delay) - time it takes a packet to travel from one end of a network to the other
+            - One Way
+            - Round Trip Time (RTT)
+            - Propogation Delay - Distance / speed of light (3.0x10^8 meters/second COAX or 2.0x10^8 meters/second OPTICAL or 2.3*10^8 Copper)
+            - Total Time Required to Transfer ( End to End Delay )
+                - Transfer Time = Transmit Time + Latency
+            - Latency Delay in Packet Switched Networks
+                - Nodal Processing - check bit errors
+                - Queueing - time waiting at output link for transmission
+                - Retransmission
+                - Propogation
+        - Bandwidth vs. Latency
+            - 1-byte: 1ms vs 100 ms dominates 1Mbs vs 100 Mbps
+        - Calculation of Transfer Time
+            - 1. Convert Size from Bytes to bits
+            - 2. Divide bits Binary bandwidth to determine transmit time
+            - 2.5. DETERMINE LATENCY*
+            - 3. Add transfer time + latency to determine total transfer time
+        - Infinite Bandwidth
+            - RTT Dominates
+                - Effective Throughput - TransferSize / TransferTime
+                - TransferTime = (RTT + 1) / (Bandwidth x Transfer Size)
+        - Typical Internet Packet Size - 1Kilobyte
+        - Reducing to single bit, you recreate circuit switching, constant stream of bits
+    - Questions
+        - Satellite Networks
+        - Web2 and Web3 Application Layers
+            - Web2 - Google, Facebook
+            - Web3 - Individuals
+        - Blockchain/IPFS - Crytocurrency
