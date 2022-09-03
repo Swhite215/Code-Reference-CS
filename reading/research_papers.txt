@@ -51,3 +51,11 @@ Various Read Whitepapers and Dissertations:
 
 13. Database
   - Elements of Data Management Systems: https://dl.acm.org/doi/pdf/10.1145/356546.356550
+
+14. Graduate Research - University of Michigan Dearborn
+  - MemLiner: Lining Up Tracing and Application for a Far-Memory Friendly Runtime
+    - Working Set Alignment - Reordering objects traced by GC threads to follow a similar memory access path of the concurrent application threads
+  - Software Defined Far Memory in Warehouse Scale Computers
+    - Software approach to proactively compress cold memory pages to effectively create a far memory tier in software
+  - NVM Based Hybrid BFS with Memory Efficient Data Structure
+    - Merges redundant datra structures to a single graph data structure, while offloading infrequent accessed graphs on NVMs based on the detailed analysis of access patterns
