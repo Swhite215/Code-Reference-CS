@@ -136,3 +136,193 @@ Computer Networking CIS 527
             - Web2 - Google, Facebook
             - Web3 - Individuals
         - Blockchain/IPFS - Crytocurrency
+
+2. 09/07/2022 - Lecture Notes
+    - Bandwidth vs. Latency
+        - Round Trip Dominates
+            - Effective Throughput = TransferSize/TransferTime
+            - Transfer Time - RTT + 1/ Bandwidth + ????
+    - Latency (Delay) - how long it takes a packet to travel from onoe of a network to the other
+        - Propogation Delay
+        - Lateny Delay in a Packet Switched Network
+            - Nodal Processing - determine output link and check bit errors (fixed)
+            - Queuing - time waiting at output link for transmission, depends on congestion level (dynamic)
+            - Retransmission - placing packet on link (fixed)
+            - Propogation - movement of packet from source to destination router, depends on distance (fixed)
+    - Queuing
+        - Packet size will vary, packet arrival rate will vary
+        - Lambda - packets per second queued
+        - Mu - packets processed
+        - # of packets in system = p / 1 - p
+        - Distribution - Poison
+        - Address - Reduce Load or Increase Capacities
+    - Performance Metric
+        - Delay Time Bandwidth - Amount of data in flight or in the pipe
+            - Example = (Latency) 100ms x  (Bandwidth) 45Mbps = 560KB
+            - How much before first bit arrives - delay time
+            - Goal - keep the pipe full
+        - Round Trip Time x Bandwidth - amount of data before you get a response
+            - Transfer this amount of data before looking for a response
+        - Bandwidth Requirements - constant rate, burst, and peak rate
+            - Voice over IP - Constant Rate, Video Conference - Burst and Peak
+            - Adaptive (Elastic) Bandwidth is ideal in many situations, but not all
+            - Jitter - Variance in latency e.g. inter packet gaps
+    - Video Applications
+        - Video - sequence of frames
+            - Frame Size - (352x240 x 24 bits per pixel) = 2027520 bits = 2Mb
+            - 30 FPS (frame per second) - 30fps x 2MB/frame = 60Mbps needs to be transmitted, required bandwidth
+            - We must compress to reduce the required bandwidth
+            - Compression
+                - remove redundancy, transmit differences in frame beginning from base frame to derive next frame
+                - reduce what of each frame is resent, if there is duplicate values
+        - After compression
+            - Average Rate = 2Mbps
+            - Peak Rate = 3Mbps
+        - Decompression - GPU card can perform the task optimally
+        - Addressing Jitter
+            - Buffer - wait at beginning, and then play out at the target rate
+            - Buffer Issue - repeat buffering - caused by not enough bandwidth - bandwidth provided by network is lower than neeeded by application
+            - Youtube - adaptive playout - must reduce application need to align with network rate, store multiple versions in different encodings/resolutions for different rates, automatically switch between resolutions
+    - Inter-Process Communication
+        - Turn host to host connectivity into process to process communication
+        - Fill gap between what applications expect and what the underlying technology provides
+        - IPC Abstractions - Transport Layer
+            - Request/Reply - distributed file systems, digital libraries e.g. web
+            - Stream-Based - video applications, on-demand video, video conferencing - ideal latency <300ms <150ms for humans
+    - Possible Errors and Failures
+        - Bit-level errors (electrical inference) - bit flips from 0-1 or 1-0
+            - Number of bits is dependent on the clock speed
+            - Fiber - 1 / 10^12 - 10^4 - rare
+            - Cat - 1 / 10^7
+            - Wireless
+        - Packet-level errors (congestion)
+            - Messages are delayed
+            - Message arrive out of order - packets can take different paths - add sequence number at transport layer to determine packet arrival sequence
+            - Third parties eavesdrop - cannot trust the network - add end to end encryption - application data is encrypted
+        - Link and Node Failures
+            - Physically cut link
+            - Router can fail or need to be rebooted
+
+    - Socket Interfaces
+        - What are sockets?
+            - Endpoint of communcation to which a name can be bound
+            - Provides access to transport protocols (TCP or UDP)
+            - Designed to implement the client server model for interprocess communication 
+                - 1. Server must be listening for client requests
+                - 2. Client connects to server
+                - 3. Client makes request to server.
+                - 4. Server responds to request
+        - Purpose - Transport layer interface to facilitate connection
+        - Socket Domain
+            - Unix domain sockets are named with UNIX paths, enable communiation of processes on a single host
+            - Internet domain communication uses the TCP/IP suite, between processes on different hosts
+        - Types
+            - Stream - enables processe to communicate using TCP (SOCK_STREAM)
+                - Guaranteed reliable in order delivery packet service (SOCK_DGRAM)
+            - Datagram - enables processses to communicate using UDP (SOCK_RAW)
+            - Raw Sockets - bypass transport layers
+        - Libraries
+            - libsocket.so - linux
+            - libsocket.a - static linking library
+            - Compile and Link
+                - Linux - g++ main.c -o main
+                - SunOS - g++ main.c -o main -lsocket -lnsl
+        - Interprocess Communication
+            - Issues
+                - Creating sockets, naming sockets, sending/receiving data over socks
+            - Mechanism
+                - UNIX system calls and library routines
+                    - if (code = syscall() < 0) { perror("syscall"); exit(1);}
+                    - Success - >= 0, Failure = -1
+        - Socket Creation
+            - s = socket(domain, type, protocol)
+                - domain - AF_INET, AF_UNIX
+                - type - SOCK_STREAM, SOCK_DGRAM, SOCK_RAW
+                - protocol - 0
+                - s = socker(AF_INET, SOCK_STREAM, 0) (0 = default protocol tcp) - returns a socket number (file descriptor)
+                - file descriptor indexed to open file tables, stdin 0, stdout 1, stderr 2, others 3+, defined networks
+        - Naming Sockets
+            - int bind(s, name, namelen) - bind socket to some address
+                - name - Socket Address STRUCT - sockaddr_in is a C structure
+                    - sin_family - internet domain (AF_INET, AF_UNIX)
+                    - sin_addr - (141.215.10.30) - typically 0.0.0.0
+                    - sin_port - 6666 - 0-65535
+            - Internet Address and Ports
+                - sin_addr values
+                    - four bytes - 141.216.69.204 - using sbin/ifconfig
+                    - if you specify INADDR_ANY for local host address, all host address apply
+                - sin_port values
+                    - 0-1024 reserved for system
+                    - well known ports are important
+                        - http is port 80
+                        - telnet is port 23
+            - Understanding Ports
+                - Packet - Port and Data - determines application to direct to
+        - Client Server Model
+            - Connections - Tuples - Server Port, Server IP, Client Port, Client IP
+        - Project Number One
+            - Single Client and Single Server
+        - Project Number Two
+            - Multiple Clients and Single Server
+            - Issues
+                - System calls or blockcing, unable to handle data from two clients simultaneously, and you dont know when data will arrive
+        - Data Transfer
+            - Send - will return 0 to indicate connection has closed, after data has been receieved
+                - write(s, buf, siezeof buf)
+                - send(s, buf, sizeof buf, flags)
+                    - s - socket
+                    - buf - data to send
+                    - sizeof - bytes of buffer
+                    - flags - 0
+            - Receieve - will return whatever is in the buffer, partial or full, will return number of bytes receieved
+                - read(s, buf, sizeof buf)
+                - recev(s, buf, sizeof buf, flags)
+                    - s - socket
+                    - buf - where to store data
+                    - sizeof - bytes of buffer
+                    - flags - 0
+        - Other System Calls
+            - int connect(s, name, namelen) - specifies peer with which sd is to be associated - name (Server IP Address and Port Number) - CLIENT
+            - int listen(s, backlog) - specifics maximum backlog of connections a server will allow - SERVER
+            - int accept(s, addr, addrlen) - extracts first connection off queue of pending connections - BLOCKS - SERVER
+            - int close(s) - deletes descriptor from system tables
+        - Connection Orriented Communication Using Stream Socket - Review Diagram - Bidirectional
+            - SETUP
+                - Server - socket(), bind(), listen()
+                - Client - socket(), connect(server IP address and port number)
+                - Server - accept()
+            - COMMUNICATION
+                - Server - send(), recv()
+                - Client - send(), recv()
+            - CLOSING
+                - Server - close()
+                - Client - close()
+        - Code
+            - Copy and Paste to Machine
+            - run ```make```
+            - run ./server
+            - run ./client [ip] with server IP (127.0.0.1) loopback
+        - Socket Programming with TCP
+             - TCP - provides reliable, in order transfer of bytes between client and server, repeats until confirmation
+             - Procedure
+                - Client must contact running server with socket
+                - Clietn creates local socket, specifies IP address and port of process
+                - When contacted by client, server creates a new socket for server process to communicate with specific client
+        - Synchronous I/O Multiplexing - select()
+            - select() - gives you the power to monitor several sockets at the same time
+        - Additional Methods
+            - htonl() - long integers
+            - htons() - convert between host byte order and network byte order - host to network
+            - ntohl() - long integers
+            - ntohs - convert between network byte order and host byte order - network to host
+        - Programming Assignment #1
+            - Notes on Setup
+                - FIND Instructions for Accessing Secure Server.....
+                - Update client.c and server.c SERVER_PORT constant
+                - Integers - some use endian and some use big endian
+                    - Strategy - convert host format to network format
+                - new_s is client dependent socket
+                - Changes - update in server loop where receiving message to add desired functionality
+            - Notes on Assignment
+                - 
+        - 

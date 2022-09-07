@@ -1,0 +1,1 @@
+docker run --name xv6cp -v /Users/swhit210/Desktop/xv6:/xv6 -it shqwang/xv6 bash
