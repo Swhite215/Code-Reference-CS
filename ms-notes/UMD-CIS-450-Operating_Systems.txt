@@ -46,7 +46,7 @@ Operating Systems CIS 450
         - Example - Android
             - Upward Compatability - app developers can write a single app that works across over a billion devices
 
-2. 08/32/2022 - Three Important Pieces
+2. 08/31/2022 - Three Important Pieces
     - Review of OS C Programming Examples from OSTEP
     - Illusion
         - The system has a very large number of virtual CPUs
@@ -76,5 +76,58 @@ Operating Systems CIS 450
             - Software - File System
         - Unique - OS does not create a private, virtualized disk, instead we create a virtual to physical mapping
 
-        
-
+3. 09/07/2022
+    - Virtualization
+        - OS - takes a physical resource (CPU or memory) and transforms it into a more general, powereful,m and easy to use resource
+        - Abstraction - Process
+            - One of the most fundamental abstractions - basic unit of resource virtualization from the perspective of an application
+        - Process - CPU acitivities and memory usage
+            - What is a process?
+                - Informal - a running program, exeuction stream: stream of instructions
+            - Examples
+                - Web browser, execute compiled program, shell
+            - Process vs. Program
+                - Program - lifeless thing, code, instructions
+                - OS takes program and runs them
+                - Program - passive
+                - Process - active
+                - Different processes may be associated with the same program
+            -  Linux/Unix Commands
+                - ps - list running processes - excluding some background
+                - top - tabular view of running processes
+        - Abstraction - A Process
+            - What constitutes a process?
+                - Machine state of a process
+                    - What a program can read or update when it is running
+                    - Take inventory of the different pieces of the system it accesses or affects during the coures of its exeuction
+            - Machine State
+                - Memory - address space
+                - Program Code - instructions
+                - Stack - local variables
+                - Heap - dynamically alocated memory
+                - Data - global variables
+                - Design - stack can grow, heap can grow, split to increase the size of each, naturally boundary has to exist for a process
+                - Registers
+                    - Program Counter - indicating the instruction of the program that is currently being executed
+                    - Stack Pointer and Frame Pointer - managing the stack for function parameters, local variables, and return addresses
+                - I/O Information - a list of open files the process currently has open
+            - Process States
+                - Initial
+                - Ready - ready to run
+                - Running - executing instructions
+                - Blocked/Waiting/Sleeping - not ready to run until some other events takes place
+                - Zombie
+                - Running depends on number of CPUs
+            - CPU Bound and I/O Bound
+                - CPU Bound - Majority time on CPU
+                - I/O Bound - Majority time on I/O
+            - Data Structures
+                - Process List - list of processes
+                - Process Control Block - struct object representing each process
+                    - Identifier, state, cpu registers
+                    - Scheduling, memory management, accounting, and I/O information
+            - Xv6 Proc Data Structure
+                - proc.h and proc.ch
+                    - UNUSED - initial state
+                - ptable is the process list inside of proc.c
+    
