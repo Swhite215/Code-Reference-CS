@@ -130,4 +130,48 @@ Operating Systems CIS 450
                 - proc.h and proc.ch
                     - UNUSED - initial state
                 - ptable is the process list inside of proc.c
+
+4. 09/08/2022
+    - Process APIs
+        - Pattern
+            - Code -> Store on Disk -> Load into Memory -> 
+        - Important Process APIS - man fork, wait, exec
+            - fork() - child begins execution of code immediately at line after fork(), entire parent code is duplicated and givne to child
+                    - if rc negative, something went wrong
+                    - if rc = 0, child process was created and has control
+                    - else, parent logic
+                - Each process has its own memory allocation
+                - Processes become concurrent running processes, non-deterministic who runs first
+                - QUIZ - if fork() n times, how many processes? 2^n
+                - Practical
+                    - Parent makes a duplicate copy of its memory, including code segment, into antoher memory location for the child process
+                    - Child has same code, but in a different location
+                    - Child wont change code until exec() is called
+                - fork() in xv6
+                    - When the shell sh forks a new spin process, the new process name remains as sh until exec() is called
+            - wait() - instruction to parent to wait until child process execution has finished
+                - delays parent exeuction until ONE of its children finishes executing
+                - waitpid(pid_t pid) - wait for specific child
+                - Zombie state in xv6
+                    - When child process is completed, state is changed to zombie state
+                    - When the parent process sees the child process change to zombie state, it stops waiting
+            - exec()
+                - variants - execl(), execle(), execlp(), execv(), execvp(), execvP()
+                - int execvp(const char *path, char *const argv[])
+                    - path identifies the location of the new process image within the hierarchical file system
+                    - argv is a pointer to an array of pointers to null-terminated character strings
+            - Separation of fork() and exec()
+                - Why? without separation, we dont have flexibility in the shell
+                - Shell Pattern
+                    - figures out where executable is
+                    - calls fork() to create a new child processs
+                    - calls some variant of exec() to run the command
+                    - waits for the command to completed by calling wait()
+                    - returns from wait() and prints out a prompt again, ready for your next command
+                - The Trick - right after fork() and before exec(), the shell can run code that can alter the environment of the about to be run program, and enables a variety of interesting features
+            - Unix Shell - list, redirection, and pipes
+        - Create
+        - Destroy
+        - Wait
+        - Status
     
