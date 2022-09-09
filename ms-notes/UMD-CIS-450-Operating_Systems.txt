@@ -175,3 +175,76 @@ Operating Systems CIS 450
         - Wait
         - Status
     
+5. 09/09/2022
+    - Virtualization - CPU Mechanisms
+        - Time Sharing - share a resource in different time
+        - Space Sharing - share a resource in different parts
+        - Challenges
+            - Performance - how can we implement virtualization without adding execssiv overhead
+            - Control - how can we run processes while retaining control over the CPU
+        - Separation of Mechanism/Policy in System Design
+            - Mechanism - low level machinery - part that controls the authorization of operations and the allocation of resources
+            - Policy - high level intelligence - where decisions are made about which operations to authorize and which resources to allocate
+            - Separation Achieves
+                - modularity - allows one easily to change policies without having to rethink the mechanism
+        - Low Level Machinery - Mechanism
+            - How does a program run on CPU?
+            - How does the OS stop running progam and start running another?
+        - Simple Mechanism
+            - Direct Execution - just run program on CPU
+                - OS 
+                    - Create entry for process list
+                    - Allocate memory for program
+                    - Load program into memory
+                    - Set up stack with argc/argv
+                    - Clear registers
+                    - Execute call main()
+                - Program
+                    - Run main()
+                    - Return 
+                - OS
+                    - Free memory of process
+                    - Remove from process list
+            - Direct Execution Benefits
+                - Process runs natively on hardware
+            - DE Problems
+                - How can the OS make sure the process doesn't do anything that we don't want it to do?
+                - How does the OS Stop it from running and switch to another process for time sharing?
+            - Problem #1 - direct execution prevenets the construction of many kinds of desirable systems
+            - Problem #1 Solution - Restricting Operations
+                - Dual Processor Modes - User and Kernel
+                    - User Mode - application runs with restrictions, no I/O, exceptions are raised
+                    - Kernel Mode - kernel runs with privilege
+                - System Call - user application makes call to get access to protected reources or privileged operations
+                    - Limited direct execution with restriction
+                    - Most modern OSes exposes a few hundred such operations
+                    - Examples - See Slide 
+                - How does a system call work?
+                    - A process executes a special trap instruction, jumps into the kernel, and raises kernel mode
+                    - Kernel performs privileged operations
+                    - Kernel calls a special return from trap instruction, returns into the calling user program, and reduces to user mode
+                - Three Potential Sources for Interrupt
+                    - Hardware
+                    - Processor
+                    - Software
+                - Harware Support
+                    - Special instructions
+                        - to trap into the kernel
+                        - return from trap
+                    - Assist the OS to provide user and kernel mode
+                    - Careful when executing a trap, save enough of caller's register state to return correctly
+                    - x86
+                - Trap Hanlder
+                    - How does the trap know which code to run?
+                        - OS must carefully control what code executes upoon trap
+                    - OS sets up a trap table or interrupt descriptor table at boot time
+                    - OS informs the hardware of the locations of different trap handlers
+                - System Call Number - number assigned to each system call
+                    - User code is responsible for placing the desired system call number in a register or at a specified location
+                    - OS examines number, ensures it is valid, and if it is, executes the corresponding code
+                    - Indirection serves as a form of protestion, user code cannot specifiy an exact address to jump to
+                - xv6 - see slides for example
+                
+
+                    
+
