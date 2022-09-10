@@ -175,7 +175,7 @@ Operating Systems CIS 450
         - Wait
         - Status
     
-5. 09/09/2022
+5. 09/09/2022 - Session One
     - Virtualization - CPU Mechanisms
         - Time Sharing - share a resource in different time
         - Space Sharing - share a resource in different parts
@@ -244,6 +244,34 @@ Operating Systems CIS 450
                     - OS examines number, ensures it is valid, and if it is, executes the corresponding code
                     - Indirection serves as a form of protestion, user code cannot specifiy an exact address to jump to
                 - xv6 - see slides for example
+        
+5. 09/09/2022 - Session Two
+    - Virtualization - CPU Mechanisms
+        - Switching Between Processes
+            - Problem
+                - If a process is running the CPU, it means the OS is not running
+                - How can the OS regain control of the CPU so that it can switch between processes
+            - Cooperative Approach - wait for system calls
+                - OS trusts the process of the system to behave reasonably
+                - OS regains control of the CPU by waiting for a system call or an illegal operation
+            - Non-Cooperative - OS takes control
+                - Timer Interrupt - a timer device can be programmed to raise an interrupt every so many milliseconds
+                - When the interrupt is raised, the running process is halted, and a preconfigured interrupt handler in the OS runs
+            - Saving and Restoring the CPU Context
+                - Decision - continue process or switch to a new one, made by high level policy the scheduler
+                - Save general purpose registers, PC, and kernel stack pointer
+                - Restore regsiter, PC, and switch to kernel stack
+            - xv6 Context Switch
+                - Save P1's user mode context and switch to kernel mode
+                - Handle system call or interrupt
+                - Save P1s kernel context and switch to scheduler context
+                - Select another process P2
+                - Switch to P2's address space
+                - Save Scheduler CPU context and switch to P2's kernel context
+                - Switch from kernel to user mode and load P2's user mode context
+            - xv6 - Timer Interrupt Workflow
+                - Scheduler - two infinite loops
+        
                 
 
                     
