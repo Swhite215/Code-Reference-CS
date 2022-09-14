@@ -478,4 +478,71 @@ Computer Networking CIS 527
             - Web 3.0 - User centered control of data
 
 4. 09/14/2022 - Direct Link Networks
-    - 
+    - Classes of Links
+        - Buidling Blocks
+            - Nodes/Hosts and Switches
+            - Link 
+                - Guided coaxial, fiber optic, twisted pair
+                    - Twisted Pair - CAT 3, CAT 5 - twisted to cancel interference, signal is voltage different between two wires, four pairs
+                        - Normal - One pair computer to switch, one pair switch to computer
+                        - Gigabit - Use multiple pairs to deliver that speed
+                    - Coaxial Cable - signal is electric
+                        - Copper Core, Insulating Material, Braided Outer Conductor, Protective Plastic Covering
+                    - Optical Fiber Cables - signal is light
+                        - Core Glass, Cladding Glass, Jacket Plastic
+                        - Propogation using reflection/refraction, transmit multiple values - multi mode
+                        - Propogation using a straight line - single mode
+                        - Issues - less flexible and more fragile
+                        - Speed of Fiber - limited by how fast we can convert electrical signal to optical
+                        - Design - optic ring with active repeaters
+                - Unguided - radio (low), microwaves (wifi, cellular, bluetooth, satellite), infrared (high), lasers (high)
+                - Properties of a Link
+                    - Frequency
+                        - Fiber Optic Fast - using high frequencies
+                    - Encoding
+                        - Lower Layers - modulation (change frequency, voltage, and phase) - transmit 8 bits, one byte
+                        - Upper Layers - high and low signals - transmit single bit
+                    - Multiple Access Links
+                    - Point to Point Links
+                        - Full-Duplex - two directions, same time
+                        - Half-Duplex - two directions, one at a time
+                - Bandwidth and Capacity
+                    - Bandwidth - width of the frequency range of signal or transmission e.g. human voice 100-3300 Hz, BW is 3200
+                    - Capacity - rate in bits per second
+                        - Baud Rate - how many symbols per second
+                        - Bit Rate - number of bits /symbol * baud rate
+                        - How to determine number of bits per symbol?
+                            - log2(number of symbols)
+                        - Example - 8 voltage outputs - 2^3 = 8, so 3 bits can be carried
+                - Shannon's Theorem
+                    - Maximum bit rate for noisy channel
+                    - C = BW * log2(1 + S/N)
+                        - S = strength of signal - decibels
+                        - N = strength of noise - decibels
+                        - S/N = 1000, 10log10(1000) = 30 decibels
+                    - Always a base noise when transporting, your signal should be stronger than the noise
+                    - Maximum Speed thru Telephone Line
+                        - BW = 3200HZ
+                        - S/N = 1000
+                        - C = 3200 * log2(1 + 1000) = 31,890 bps - Dial Up
+                    - Modern Dial Up - 56kbps
+                        - To improve, must change (increase or decrease?) signal to noise ratio, e.g. small distance or high quality lines
+                    - Asymmetric Digital Subscriber Line - 16Kbps - 8.448 Mbps
+                        - Multiple MB per second
+                        - Bandwidth improvement results in increases
+                        - Asymmetric - Download and Upload link speed are different
+                        - 1Mhz - 256 channels
+                            - Most channel downlink
+                            - Fewer channel uplink
+                    - V (Very High Data Rate) Digital Subscriber Line - 12.96-55.2 Mbps
+                        - High Frequency, Short Distance (Decent Signal to Noise Ratio)
+                        - Distance from home to neighbor unit, no more than 4500 feet, neighbor unit connected to office with optical fibers
+                        - U-Verse AT&T - Cable, Internet, and Telephone
+                        - Telephone line is dedicated, not shared with anyone else
+                - Internet over Cable
+    - Five Issues
+        - Encoding - how to encode binary data to signals involving voltages, frequencies, etc.
+        - Framing - how to identify beginning and end of a frame/packet
+        - Error Detection - how to identify flipped bit/frame errors
+        - Reliable Delivery - how to ensure reliable deliveries (automatic repeat)
+        - Access Mediation - media access controls, how to regulate access to maximize throughput and minimize interference between hosts
