@@ -324,5 +324,158 @@ Computer Networking CIS 527
                 - new_s is client dependent socket
                 - Changes - update in server loop where receiving message to add desired functionality
             - Notes on Assignment
-                - 
-        - 
+                - Must init address book with file on disk
+                - To write file, must be done either on delete, client quit, or server quit
+                - Issue - LIST
+                    - Server sends multiple messages, how do we match client receiving all these messages
+                - Issue - TCP Byte Stream
+                    - "200 OK\n" + "1001 Test User \m" results in concatenated message
+                    - Client must deal with this. If client calls recv(), and server is done sending, now you are blocked
+                    - Solution - concatenate entire message, send one message, single receieve, parse
+                - Shutdown - optionally terminate client
+                - Quit - terminate client
+                - Files
+                    - Make, Server.c, Client.c, README, Address Text File
+                - Submission
+                    - Create tar of project file
+
+3. 09/14/2022 - Continuing Introductions
+    - Layering
+        - Objectives - Use abstractions to hide complexity
+        - Abstrations naturally lead to layering
+        - Example Layering
+            - Appliation Programs - HTTP, SMTP, etc.
+            - Process to Process Channels - Coordinate Between Processes - Client, Server, Peer-to-Peer
+                - Request/Reply Channel
+                - Message Stream Channel
+            - Host to Host Connectivity - Exchange Packets
+            - Hardware - Exchange Bits
+    - Protocols
+        - Building blocks of a network architecture
+        - Implementation at each abstraction layer
+        - Interfaces
+            - Service Interface - operations on this protocol
+            - Peer-to-Peer - how protocols connect peers, what is frame, what makes up packet bit significance and orde 
+        - Example - Transmission Control Protocol - TCP
+            - Host Service Interface - Socket
+        - Example - File Transfer Protocol - FTP
+            - Specification - actual FTP program e.g. FileZilla
+            - Module - API to participate in FTP
+        - Protocol Graph
+            - Collection of protocols and their dependencies
+            - Most peer-to-peer communication is indirect
+        - How many layers do we need?
+            - Solution - a standard
+    - Multiplexing and Demultiplexing
+        - Goal - deliver packets to correct process
+        - Encapsulation is needed to process the message at each level of the protocol graph
+        - Demultiplexing - deliver packet to which host, application, etc.
+        - Multiplexing
+    - Encapsulation
+        - Building layers of control information around the message
+    - Standard Architectures
+        - Open Systems Interconection OSI
+            - Groups
+                - International Standards Organization
+                - International Telecommunication Union ITU
+                - Series - X.25, X.400, X.500
+            - Reference Architecture
+                - Application
+                    - 
+                - Presentation
+                    - Not in internet architecture
+                    - Integer representation e.g. big or little endian
+                    - File formatting
+                - Session
+                    - Not in internet architecture, normally implemeted at application level for internet
+                    - Dealing with multiple streams of data e.g. multiple cameras, audio devices, and closed captioning in a room that should be synced
+                - Transport
+                    - Process to process communiation - interprocess communiation IPC
+                - Network
+                    - Datagram - how to route packet from source to destination, multiple links will be used
+                - Data Link
+                    - Transfer frames directly between hosts, links, or switches
+                - Physical
+                    - Transfer sequence of bits
+                    - Key action -  how to encode binary data to signals
+                    - Key action - what types of cables
+        - The Internet Architecture
+            - Group
+                - Internet Engineering Task Force
+            - Application
+                - FTP, HTTP, NV
+            - Transport Layers
+                - TCP and UDP
+            - IP
+                - Internet Protocol - IPv4 and IPv6
+                - Current Research - trouble with media/video conferenceing in order to achieve Quality of Service requirements
+                - Guarantee - best effort service
+            - Network
+                - Data Link + Physical
+            - Features
+                - Implement as you go - Request for Comments RFCs
+                - RFCs defined by Internet Engineering Task Force
+        - Source to Destination Big Picture
+            - Source Encapsulation
+                - Application - M
+                - Transport - Header + M
+                - Network - Port Addresses + Header + M
+                - Link - Link Address + Port Addresses + Header + M
+            - Link Analysis
+                - Decapsulate and Evaluate Network to Determine Next Link
+            - Destination
+                - Decapsulate and Demultiplex to deliver message to application
+            - Additional Levels
+                - Firewall - needs to evaluate up to application layer
+        - Internet Structure - Network of Networks
+            - Roughly Hierarchical
+            - Center - Tier-1 ISPs - ~12
+                - Tier-1 ISPs carry each others traffic for free
+            - Tier-2 ISPs
+                - Regional coverage, connecting to one or more Tier-1 ISPs or other Tier-2 ISPs
+                - Must pay for receipt or sending from Tier-1 ISPs, encourages peering
+                - Payment is based on volume
+            - Tier-3 ISPs
+                - Last hop acceess network closest to end systems
+            - Some companies cover multiple Tiers e.g. AT&T
+            - Idea - fixed shared value amongst Tiers, given they are providing infrastructure
+        - Internet Content
+            - Content Delivery Networks - Google, Amazon, Cloudflare - largely monopolies
+        - Internet History
+            - 1961 - 1972 - Early Packet Switching Principles
+                - 1961 - queuing theory with packet switching - Kleinrock
+                - 1964 - Baran - packet switching in military nets - Baran
+                    - Fault tolerant network to survive nuclear holocaust i.e. rich connectivities
+                    - Baran shows network can operate wth 60% link failures 
+                - 1967 - ARPAnet conceived by Advanced Research Projects Agency
+                - 1969 - First ARPAnet node operational - four nodes (UCLA, Stanford Research Institute, University of Utah)
+                - 1972 - ARPAnet demonstrated publicly - fifteen nodes
+                    - NCP - Network Control Protocol
+            - 1972 - 1980 - Internetworking, New and Proprietary Uses
+                - 1970 - ALOHAnet
+                - 1973 - Metcalfe's PhD Thesis - Ethernet
+                - 1974 - Cerf and Kahn - Architecture for Interconnecting Networks - Inventors
+                    - Minimalism, Autonomy, Best Effort Service Model, Stateless Routers, Decentralized Control
+                - Late 70's - Proprietary Architectures
+                - Late 70's - Switching Fixed Length Packets
+                - 1979 - ARPAnet has 200 nodes
+            - 1980's
+                - Supercomputing
+            - 1990 - 2000's
+                - 1990's ARPAnet decommissioned
+                    - Transfer control of internet from government to private companies
+                - 1991 - NSFnet - connect Supercomputing, Universities, and Research Laboratories
+                - Early 1990's - World Wide Web
+                    - Hypertext
+                    - HTML, HTTP - Tim Berners-Lee
+                    - 1994 Mosaic, Later Netscape - Graphic Web Browsers
+                - Late 1990s-2000s
+                    - More Applications - instant messaging, P2P file sharing
+                    - Network Security
+                    - 50m hosts, 100m users
+                    - Backbones 1Gbps
+            - Web 2.0 - User generated content enabled by platforms
+            - Web 3.0 - User centered control of data
+
+4. 09/14/2022 - Direct Link Networks
+    - 
