@@ -273,6 +273,43 @@ Operating Systems CIS 450
                 - Scheduler - two infinite loops
         
                 
-
-                    
+6. 09/15/2022 - Policies #1
+    - Focus - which process should the OS run?
+    - CPU Scheduling - motivation for multiprogramming
+        - Typical Execution Profile
+            - Start -> CPU Burst -> I/O -> REPEAT
+        - CPU scheduler is managing the execution of CPU bursts
+        - Histogram of CPU Burst Times
+            - Most CPU bursts is quite small < 2ms
+        - Scheduling Structure
+            - Ready queue of running processes
+            - Scheduler chooses which to pick
+    - Workload Assumptions
+        - Job - processes
+        - Each job has - arrival time, cpu burst time or running time, completion time
+    - Scheduling Metrics
+        - User
+            - Turnaround time - time between submission and completion
+            - Waiting time - sum of periods waiting in ready queue
+            - REsponse time - time from submission and first response, first waiting time
+        - System
+            - CPU Utilization - percentage of time CPU is executing
+            - Throughput - number of jobs completed per time unit
+        - Good Scheduler
+            - maximize COU utilization anbd throughpout
+            - minimze turnaround time, response time, and waiting time
+    - First Come First Served - First In First Out
+        - Order of arrival in queue determines execution order
+        - Waiting Time
+            - P1 = 0 runs for 7
+            - P2 = 2-7 so 5, runs for 4
+            - P3 = 4 - 11 so 7, runs for 1
+            - P4 = 5 - 12 so 7, runs for 4
+            - 0 + 5 + 7 + 7 / 4 = 19 / 4 = 4.75
+        - Features
+            - Pros - simple and fair
+            - Cons - long waiting times, poor dynamic behavior e.g. convoy effect
+            - Convoy Effect
+                - Happens when a set of processes need to use a resource for a short time, and one process holds the resource for a long time, blocking the other proceses
+                - Cases long waiting times and poor utilization of other resources in the system
 
