@@ -298,7 +298,7 @@ Operating Systems CIS 450
         - Good Scheduler
             - maximize COU utilization anbd throughpout
             - minimze turnaround time, response time, and waiting time
-    - First Come First Served - First In First Out
+    - First Come First Served - First In First Out (FCFS or FIFO)
         - Order of arrival in queue determines execution order
         - Waiting Time
             - P1 = 0 runs for 7
@@ -313,3 +313,54 @@ Operating Systems CIS 450
                 - Happens when a set of processes need to use a resource for a short time, and one process holds the resource for a long time, blocking the other proceses
                 - Cases long waiting times and poor utilization of other resources in the system
 
+7. 09/15/2022 - Policies #1 - Shortest Job First (SJF)
+    - Shortest Job First
+        - Focus - reducing turnaround time
+        - Action - whenever CPU is idle, pick process with shortest next CPU burst, non-preemptive, must wait for jobs to complete
+        - Issue - how do we know how long a job will run?
+        - Example
+            - Break Tie - FCFS - P1, P3, P2, P4
+            - Review example on slides!
+        - Features
+            - Pro - minimize average waiting time, optimal
+            - Cons - starvation for long jobs and it is hard to determine length of next CPU burst
+        - How to prove SJF is the best for minimizing average waiting time?
+            - Induction
+                - Moving a short proecss before a long one decreases the waiting time of the short process more than it increases the waiting time of the long process
+            - Proof
+                - Plong -> PShort
+                - Swap Jobs, Delta W < 0, subtracting P1 length minus P short length to determine delta
+                - Review Slides!, Swapping technique to reduce waiting time
+        - SJF in Practice
+            - How do you determine execution time of next CPU burst?
+                - Guess? Inspection?
+            - Forecasting Exponential Average
+    - Shortest Remaining Time First (SRTF)
+        - Optimal among all preemptive scheduling policies in terms of minimizing waiting time, overlook overhead
+        - Can lead to starvation, and is not practically
+        - Review slides!
+    - Quiz - FCFS, SJF, SRTF
+        - REVIEW
+    - Priority Scheduling - Non-Preemptive, Preemptive
+        - Pick the process with the highest priority
+            - Priority - class, urgency
+            - Preemptive or Non-Preemptive
+        - SJF and SRTF is special priority scheduling
+        - Problem - starvation of low priority
+        - Aging - gradually increase the priority over time
+        - Example - smallest number is highest priority
+    - Round Robin
+        - Circular Queue - with pointer to next job
+        - During each turn, run for time quantum
+        - After turn, move pointer to next job in a circular manner
+        - Work Conserving - relinquish quantum of time if larger than remaining time on process
+        - Pros - time sharing and response time
+        - Cons - long average waiting time, large context switch overhead
+        - Choice of Quantum
+            - Large
+            - Small - processor sharing illusion
+            - Larger quantum, more cpu utilization
+            - Rule of thumb - 80% of cpu bursts should be shorter than the time quantum
+    - Quiz
+        
+        
