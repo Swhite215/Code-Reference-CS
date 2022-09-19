@@ -363,4 +363,84 @@ Operating Systems CIS 450
             - Rule of thumb - 80% of cpu bursts should be shorter than the time quantum
     - Quiz
         
+8. 09/19/2022 - Multi-Level Feedback Queue
+    - Summary
+        - First Come First Server
+            - PRO - Simple and Fair
+            - CON - Long Turnaround/Waiting Time, Convoy Effect
+        - SJF/SRTF
+            - PRO - Minimum Turnaround/Waiting time
+            - CON - Starvation, Not Practical
+        - NP-PS/P-PS
+            - PRO - Serves Urgent Jobs
+            - CON - Starvation
+        - RR
+            - PRO - Short Response Time
+            - CON - Long Turnaround/Waiting Time
+            - Large Overhead for Context Switchg
+    - Question - Can we achieve short response time and short turnaround time?
+    - Goals
+        - Short Turnaround/Waiting Time
+            - SJF/SRTF
+            - OS doesn't generally know how long a job will run
+        - Short Response for Interactive Jobs
+            - RR
+            - Long waiting time
+        - Incorporating I/O
+        - Avoid Starvation
+    - Multi Level Feedback Queue - Hybrid Version
+        - Compatible Time Sharing System CTSS - Corbato
+        - Use Multiple Queues
+            - Student
+            - Batch
+            - Interactive
+            - System Process
+        - First Level - Which Queue - Interqueue
+            - System -> Interactive -> Batch -> Student
+        - Second Level - Within Queue - Which Job? - Intraqueue
+            - RR
+        - Building Blocks
+            - Rule 1 - Priority(A) > Priority(B) - A Runs - Intraqueue
+            - Rule 2 - Priority(A) = Priority(B) - A and B run in RR
+            - Rule 3 - When a job enteres the system, it is placed at the highest priority
+            - Rule 4 - if a job uses up an entire time slice, its priority is reduced - LONG RUNNING
+            - Rule 5 - If a job gives up the CPU, it stays at same priority level - I/O
+        - Problems
+            - Starvation given too many interactive jobes
+            - Rule #3 - can be abused by gaming the scheduler
+        - Solution
+            - Priority Boost - after sometime, move all jobs to the highest queue
+        - Solution
+            - Perform better accounting at each level
+            - Instead of forgettting how much a time slice a process used at a given level, the scheduler should keep track
+            - Update Rule 4 - Once a process has used its allotment, demoted to next queue
+        - Rules
+            - If P(A) > P(B), run A first
+            - IF P(A) == P(B), A and B run in RR
+            - When job enters, place at highest priority
+            - If a job uses its time allotment at a given level, reduce its priority
+            - After soe time, move all jobs to the highest priority queue
+        - Tuning
+            - How many queues?
+            - How big shoudl the time slice be per queue
+            - How often should priority be boosetd:
+        - Common Practice
+            - High Priority Queue - short time slices
+            - Lower Priority Queue - longer time slices
+        - Two Hawks? More?
+            - How does it reduce turnaround and waiting time? - SRTF Mimic with Rule 3
+            - How does it reduce response time? - Mimic RR with short time quantum
+            - Use Boost Priority to avoid starvation
+            - Better Accounting to avoid gaming the scheduler
+        - Issues with MLFQ
+            - MLFQ uses history to approximate the future
+                - Use the age of a job to approximate the remaining size...
+            - Not Perfect ^^
+                - The job with the smallest remaiing size is likely to be the job with the largest age
+        - Case Study Solaris
+            - 1st Column Priority Queues 0 - 59 - highest number is highst priority
+            - 2nd - time quantum at each priority
+            - 3rd - run one round done with time quantum, which priority queue you are demoted to
+            - 4th - I/O - during execution I/O request, you are promoted to a higher queue
+        
         
