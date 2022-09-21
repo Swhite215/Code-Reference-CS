@@ -509,7 +509,7 @@ Computer Networking CIS 527
                 - Bandwidth and Capacity
                     - Bandwidth - width of the frequency range of signal or transmission e.g. human voice 100-3300 Hz, BW is 3200
                     - Capacity - rate in bits per second
-                        - Baud Rate - how many symbols per second
+                        - Baud Rate - how many symbols per second, speed at which the signal changes
                         - Bit Rate - number of bits /symbol * baud rate
                         - How to determine number of bits per symbol?
                             - log2(number of symbols)
@@ -522,7 +522,7 @@ Computer Networking CIS 527
                         - S/N = 1000, 10log10(1000) = 30 decibels
                     - Always a base noise when transporting, your signal should be stronger than the noise
                     - Maximum Speed thru Telephone Line
-                        - BW = 3200HZ
+                        - BW = 3200HZ - range of human voice and telephone
                         - S/N = 1000
                         - C = 3200 * log2(1 + 1000) = 31,890 bps - Dial Up
                     - Modern Dial Up - 56kbps
@@ -546,3 +546,223 @@ Computer Networking CIS 527
         - Error Detection - how to identify flipped bit/frame errors
         - Reliable Delivery - how to ensure reliable deliveries (automatic repeat)
         - Access Mediation - media access controls, how to regulate access to maximize throughput and minimize interference between hosts
+
+5. 09/21/2022
+    - The Electromagnetic Spectrum
+        - Categories
+            - Radio
+            - Microwave - wireless state communications, wave length is between 1m and 1mm
+            - Infrared
+            - Ultraviolet
+            - X-Ray
+            - Gamma Radiation
+        - Types - In Order
+            - Radio AM
+            - Coaxial
+            - Radio FM
+            - Television
+            - Satellite
+            - Terrestrial Microwave
+            - Fiber Optics
+        - Base Frequency High, Range of Frequency (Bandwidth) is Greater
+    - Common Types of Cables and Fibers Available for Local Links
+         - Cat 5 - 10-100Mbps
+         - Thin-net Coax
+         - Thick-net Coax
+         - Multi Node Fiber
+         - Single Mode Fiber
+    - Carrier Services - Wide Area Network - Lease Lines
+        - DS1 - T1 - 1.544 Mbps
+        - DS3 - T3 - 44.736Mbps
+        - STS-1 - OC1 - 51.840 Mbps - Optical Fiber
+        - STS-3 - OC3 - 155.529 Mbps - Optical Fiber
+        - STS-N - N*51.840 Mbps - Optical Fiber
+    - Common Services Available to Home
+        - POTS - Plain Old Telephone Service
+        - ISDN
+        - ADSL
+        - VDSL
+        - CATV
+        - Starlink - Low Earth Orbit
+            - Small Disk Receiver/Sender
+            - Satellite - Few Hundred Miles Above the Ground
+            - Currently launching 60+ satellites per launch
+            - Latency - less than optical fiber due to direct
+            - Signal travels faster in space, advantage, then hits atmosphere
+    - Spectrum Allocation
+        - 0-750MHz
+            - Upstream, 0 - 42
+            - TV 54 - 88
+    - Encoding (Wired)
+        - Idea - signals propogate over a physical medium
+            - Modulate electromagnetic waves e.g. vary voltage
+        - Encode binary data onto signals
+            - 0 as low signal, 1 as high signal
+            - Low Voltage vs. High Voltage - what are the voltages?
+            - Non-Return to Zero
+        - Problem - Consecutive 1s or 0s
+            - Baseline Wander - If your signal is high for awhile, it will push the average up, making it difficult to determine low
+                - If you travel a long distance, voltage will vary over time
+                - The average of the signal strength over time determines low and high
+                - Compare the average to the signal received, if higher, than high, and lower, than low
+            - Unable to Recover the Clock
+                - The number of bits is determined by tbe clock speed
+                - Every clock, one bit, sender and receiver need to be precisely synchronized
+                - If out of sync, one might interpret more or less data than actually transferred
+                - Synchronizing the clock is difficult given their speed
+                - If Gbps, clock will change up and down 1 billion times per second
+                - Need to periodically resynchronize with other clock
+            - How do we synchronize the clcok?
+                - Send both the data and clock, this is an expensive option
+                - When transition occurs, this is boundary of the clock, and you can adjust your clock based off this value
+            - Low Signal (0) may be interpreted as no signal, making it difficult to resync the receiver's clock
+            - Goal - always want transitions to enable clock synchronization
+        - Alternate Encodings
+            - Non-Return to Zero Inverted
+                - Make a transition from current signal to encode a one
+                - Stay at current signal to encode a zero
+                - Solves the problem of consecutive ones
+                - Great for data with all ones or alternatives, what about all consecutive zeros?
+            - Manchester
+                - 0 low to high transition
+                - 1 high to low transition
+                - Manchester is equivalent to transmit XOR of the NRZ encoded data and the clock
+                - Only 50% efficient (the bit rate = half baud rate) - receiver needs to detect transition at twice the speed
+                - LOOK AT MIDDLE OF THE CLOCK, SO YOU CAN PREPARE FOR TRANSITIONS
+                - Issue - too many transitions, due to consecutive numbers you need two transitions, one as prep, and the actually signal change representing transition
+            - 4B/5B (FDDI) - Optical Fiber Array Network and Fast Ethernet
+                - Every 4 bits of data encoded in a 5 bit code
+                - 5 bit codes to have no more than one leading 0, and nor more than two trailing 0s
+                - Thus, never get more than three consecutive 0s
+                - Resulting 5-bit codes are transmitted using NRZI
+                - Achieves 80% efficiency - transmit 5 bits that carry only 4 bits of data
+            - 8B/10B
+                - Every 8 bits of data encoded in a 10 bit code
+        - Framing
+            - Goal - break sequence of bits into a frame
+            - Typically implemented by a network adaptor
+            - Approaches
+                - Sentinel Based Approach
+                    - Byte Oriented Protocols
+                    - At beginning, send a sequence of characters to sync and declare this is beginning of a new frame, also synchronizes with reciver's clock
+                    - 8 SYN, 8 SYN, 8 SCH, Header, 8 STX, Body
+                    - At end, send 8 bits for End of Text (ETX)
+                    - Cyclial Redundnacy Check 16
+                    - Issue, special character SYN or ETX appear in the data portion
+                        - Solution Character Stuffing - precede the ETX with a data link escape character
+                        - First data link escape character is thrown away
+                        - To insert a DLE, insert another DLE - first is thrown away, second is evaluated
+                    - Issue - you don't know how many DLE need to be inserted, so it is difficult to make each frame the same size
+                - Bit Oriented Protocols
+                    - Delineate frame with special pattern 01111110 - beginning and end
+                    - Issue - special pattern appears in the payload
+                    - Solution - bit stuffing
+                        - sender - insert 0 after five consecutive 1s
+                            - User Data - 01111110
+                            - Stuffed - 011111010
+                        - receiver - delete 0 after five consecutive 1s
+                    - Can error detect, if you have seven consecutive 1s
+                - Counter Based Approaches
+                    - SYN, SYN, Class, Count, Header, Body, CRC
+                    - Count = size of body or frame
+                    - SYN is beginning
+                    - Count = size
+                    - Count the data up to size, and then frame is over
+                    - Problem - count field is corrupted, could negatively impact multiple frames
+                    - Solution - catch when CRC fails
+                - Clock Based Approach
+                    - SONET - Synchronous Optical Network
+                    - Each frame is 125us long
+                    - STS-N (STS-1 = 51.84 Mbps)
+                    - (9 Rows and 10 Columns) 810 bytes / BW = 125us
+                    - STS-3 - Speed 3x faster, Size 3x larger
+                    - Each row (9), always include two characters SYNC, SYNC
+                    - When multiplexing into higher STS, you interleave the bits from the low speed to the high speed
+                    - With interleaveing, the data arrives at the speed to match the outgoing lower speed links
+                    - Encoding in SONET
+                        - NRZ
+                        - Sender - XOR of the data by the use of a well known bit patterns (127 bits long)
+                        - Receiver - how to invert XOR, XOR on same bit pattern results in original data
+                        - Issue, users data is same as bit pattern used for XOR, results in zeros
+                        - Solution - be careful when picking 2^127 pattern
+        - Error Detection - Frame - Link Layer
+            - Goal - how to determine frame is correct
+            - Pattern - data + redundancy code, should satify some properties
+            - Redundnacy - use a function, pass data, and produce redundancy code
+            - Two Dimensional Parity
+                - Add parity bit on each row, such that the number of 1s in each row is even
+                - Add parity bit on each column, such that the number of 1s in each column is even
+                - Can perform recovery of a single bit, given we have row and column
+                - Can detect a two bit error, but can not perform a recovery
+                - Can detect odd number errors
+                - Cannot detect error with same two columns and same two rows....
+                - Uses - storage devices
+                - Not used much for communication, there is a lot of overhead
+            - Internet Checksum Algorithm - sum of 16 bit integers and redundnacy results in all Os
+                - View message as a sequence of 16 bit integers
+                - Sum using 16 bit ones complement arithmetic
+                - Take ones complement of the result, invert direclty
+                - Checksum is always the same length, 16 bits
+                - Uses - Internet Protocol and Transmission Control Protocol
+                - Pro - overhead is relatively low, checksum is always exactly the same
+                - Issue - corruption in bits additon lead to same sum
+                - SUMMATION
+                - Done by software components in network or transport layer
+            - Cyclic-Redundancy Check - sum of data and redundancy is divisble by a value
+                - Uses - link layer protocols - wifi, ethernet - implemented in network card
+                - Pattern
+                    - Add k bits of redundant data to an n-bit message, want k << n
+                        - You want K much smaller than n
+                        - CRC code is always 32 bits for ethernet and wifi
+                    - Represent n bit message as an n-1 degree polynomial
+                        - MSG - 10011010 - M(X) = x^7 + x^4 + x^3 + x^1
+                    - Let k be the degree of some divisor polynomial
+                        - C(X) = X^3 + x^2 + X^1 = 1101
+                        - k = 3
+                    - Transmit P(x) that is evenly divisible by C(X)
+                        - Shift left k bits
+                        - Obtain Remainder - M()
+                    - Receiver if you get remainder 0, there are no errors
+                        - E(X) was zero, no error
+                        - E(X) is exactly divisible by C(X), can't detect the error
+                - Polynomial Division
+                    - Representedin binary, do XOR NOT numerical analysis
+                    - Hardware - XOR and Shift Gates - can be implemented efficiently
+                - Selecting C(X)
+                    - All single bit errors, as long as the X^k and x^n terms hve non-zero coefficients
+                    - All double bit errors, as long as C(X) contains a factor with at lest three terms
+                    - Any odd number of errors, as long as C(x) contains the factor (x+1)
+                    - Any burst errors (i.e. sequence of error bits) for which the length of the burst is less than k bits
+                    - Most burst errors of larger than k bits can also be detected
+        - Acknowledgements and Timeouts
+            - Goal - how do we ensure reliability?
+            - Protocol - Automatice Repeat Request (ARQ)
+                - Stop and Wait
+                    - Send Single Frame
+                    - Receiver Performs Error Detection
+                    - Receiver Does or Does Not Send ACK
+                    - No Acknowledgement - Sender Repeats
+                    - Acknowledgement - Sender Sends New Frame
+                    - Problem - keeping the pipe full
+                        - Calc = 1.5Mbps link x 45ms RTT = 67.5kb (8kb
+                        - 1 KB frame implies 1/8th link utilization
+                        - Volume = RTT x BW - data before 1st bit arrives
+                    - Solution - Sliding Window
+                - Sliding Window
+                     - Allow mulitple outstanding frames
+                     - Upper bound outstanding frames called window
+                     - Window = number of frames allowed to transmit to fill up the pipe
+                     - Window = ( RTT x BW ) / Frame Size
+                     - Continue sending frames as ACK are received
+                     - Resend frame if missing ACK
+                     - Ensure reliability and in order delivery - from sender to receiver
+                - Concurent Logical Channels
+            - Implementation - Transport Layer by TCP
+            - Equivalent for Link - Frame Relay or X.25
+            - Situations
+                - Frame Received but Ack Corrupted - sender still sends, end up with two copies
+                - Frame received but Ack delayed for long enough - sender still sends, end up with two copies
+                - Solution - for each frame add a sequence number, drop duplicate frames with same sequence number, alternate 0 1
+            
+
+
