@@ -442,5 +442,80 @@ Operating Systems CIS 450
             - 2nd - time quantum at each priority
             - 3rd - run one round done with time quantum, which priority queue you are demoted to
             - 4th - I/O - during execution I/O request, you are promoted to a higher queue
-        
+
+9. 09/21/2022
+    - Multiple Processor Scheduling
+        - Sharing
+            - Time Sharing
+            - Space Sharing
+        - Single vs. Multi CPUs
+            - Single: CPU - Memory
+            - Multiple:
+                - CPU + Cache - Memory
+                - CPU + Cache - Memory
+                - Bus
+            - Problems with Multiple CPUs
+                - Cache Coherence - CPUs have different versions of variables locally cached
+            - Solution to Cache Coherence
+                - Bus Snooping - each cache pays attention to memory udpates by observing the bus
+            - Locality
+                - Temporal Locality - when a peice of data is accesssed, it is likely to be accessed again
+                - Spatial Locality - if a program accesses a data item at address x, it is likely to access data items near x as well
+        - Cache Affinity
+            - Often advantageous to run a process on same CPU it was running on before
+        - Scheduling
+            - Single Queue Scheduling
+                - Put all jobs that neede to be scheduled into a single queue
+                    - Queue - A - B - C - D - E - Null
+                    - Round Robin Rotation to Different CPUs
+                - Pro
+                    - Simple to implement
+                - Cons
+                    - Does not maintain cache affinity
+                    - Lacks scalability
+                    - Issues with lock for concurrent access to single queue
+            - Multi-Queue Scheduling
+                - Each queue follows a particular scheduling discipline
+                - When a job enters, it is placed on exactly on scheduling queue according to some heuristic
+                - Then job is scheduled essential independently
+                - Pros
+                    - Scalability
+                    - Cache Affinity
+                - Cons
+                    - Load Imbalance
+                    - Solution - occasionally migrate from CPU to different CPU
+            - Linux Multiprocessor Schedulers
+                - Single Queue BFS
+                - Multi Queue Q1
+    - XV6 Scheduler
+        - Design - One global queue across all CPUs
+        - Design - Per-CPU schedling algorithm: RR with quanmtim size = 10ms
+        - Scheduler in proc.c
+            - Per-CPU Scheduler
+            - Each CPU calls scheduler() after setting itself up
+            - Scheduler never returns and it loops doing
+                - Choose a process to run
+                - Switch to start running that process
+        - Timer interrupt in trap.c
+            - trap -> yield -> sched -> swtch
+        - XV6 Context Switch
+            - Save P1s user mode context and switch from user to kernel mode
+            - Handle system call or interrupt
+            - Save P1s kernel context and switch to scheduler context
+            - Select another process P2
+            - Switch to P2's address space
+            - Save scheduler CPU context and switch to P2's kernel context
+            - Switch from kernel to user mode and load P2's user mode context
+    - Program #2 - Revised MLFQ Scheduler
+        - Note - Current is RR
+        - Action - Change to rMLFQ
+        - Note - Three rounds is 270 ms
+        - Note - Why 10, 30, and 90 ms?
+            - Interrupt is 10MS
+            - Have a counter, sequence of timer interrupt to meet queue quantim size
+        - Note - all changes should be done inside of proc.c 277
+        - Note - DO NOT CHANGE switchuvm
+        - Note - our job is to pick the right next proc = p
+        - Note - use existing global array with additional value queue type (p->queuetype)
+        - Note - do not change the yield in the trap
         
