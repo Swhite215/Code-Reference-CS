@@ -518,4 +518,89 @@ Operating Systems CIS 450
         - Note - our job is to pick the right next proc = p
         - Note - use existing global array with additional value queue type (p->queuetype)
         - Note - do not change the yield in the trap
-        
+
+10. 09/23/2022
+    - Evolution of Computer Systems
+        - Early systems were easy
+        - Systems became increasingly complex
+        - Users expectations increased as well
+    - Early Systems
+        - OS with Routines + Current Program
+    - Multiprogramming - jobs were batched and multiple processes were ready to run at a given time and OS would switch between them
+        - Benefits - increased effective utilization of the CPU
+    - Time Sharing - interactivity became important, as users might be concurrently using a machine, each waits for a timely response
+    - How to implement time sharing?
+        - Run one process for a while, give it full access to all memory
+        - Stop process, save it its state to disk
+        - Load another process and run it for awhile
+        - Problem - saving the entire contents of memory to disk is brutally non-performant
+    - How to implement time sharing?
+        - Leave processes in memory while switching between them
+        - Problem - need to prohibit a process from accessing some other's mmeory-protection, also requires abstraction of physical memory
+    - Example mem.c - run multiple process at time, illusion that they have the same memory address, really virtual representation
+    - Virtualizing the Memory
+        - Abstraction - Address Space
+        - An abstraction of a private address space for multiple running processes in a single, physical memory
+        - Logically, each process in memory always starts at addresses 0 and end at the maximum size
+    - Generating Address Space
+        - Compiler - generates an object code file that describes the instructions and data used and created
+        - Linker - combines object code into an executable file that defines how the program will be loaded into memory
+        - The loader in the OS reads the instructions in an executable file and sets up the logical address space to run the program
+    - Address Space
+        - All processes have similar address space structure
+    - Address Space Structure
+        - 0-1KB - Program Code
+        - 1KB-2KB - Heap
+        - 2KB-15KB - Free (Heap and Stack can both expand)
+        - 15KB-16KB - Stack
+    - Unix Memory API
+        - Stack Memory - declare memory on the stack and the compiler does the rest
+        - Heap - all allocation and deallocation
+        - malloc(size_t size) - asks for room on the heap
+        - free() - frees memory on the heap
+        - malloc() and free() are built on top of system calls
+    - How to implement memroy virtualization?
+        - Goal - attaining performance while maintaining control
+        - Crux- How can we build an efficient and flexible virtualization of memory
+    - Address Translation
+        - Hardware Based Adddress Translation
+        - Hardware transforms each memory access e.g. fetch, load store, from virutal to physical address
+        - OS must keep track of which locations are free and which are in use, and maintain control over how memory is usedx
+    - Simple Scenario
+        - Contiguous allocation - processes' address space must be placed contigulousy in physical memory
+        - Small address space - less than the physical memory space
+        - All address spaces are the same size
+    - A Memory Trace
+        - Fetch instruction at address 128
+        - Execute instruction, load from address 15KB
+        - Fetch instruction at address 132
+        - Execute
+        - Fetch instruction at address 135
+        - Execute
+    - A Memory Trace
+        - Virtualize memory with transparency
+    - A simple relocated process
+        - Code, Heap, Free, Stack - 16KB
+        - Place inside of space with OS and Free Space
+        - Allocate from 32KB to 48KB
+        - Name - Base and Bounds
+        - Need
+            - Physical Address = Virtual Address + Base
+            - Virtual address is within the bounds
+    - Memory Management Unit
+        - Bounds Register
+        - Base Register
+    - Example
+        - Base Register Value = 320KB - Physical Memory Start
+        - Bounds Register Value = 64KB - Size of process memory and indicates 320KB + 64KB = 384KB is second bounding value
+    - OS Issues
+        - Find space for its address space in memory when a process is created - solution = maintain a free list
+        - Reclaim all of its memory when a process is terminated
+        - Perform context switch - save/restore the values of the base and bounds registers to/from memory in PCB
+        - Access to the base and bound registers is privileged, special hardware instructions required to access i.e. system call
+    - Limitation of Base and Bounds Dynamic Allocation
+        - Simple
+        - Potentially a lot of free space between the stack and the heap
+        - Internal Fragmentation - wate of memory that has been reserved/allocatd to a process but never used
+
+
