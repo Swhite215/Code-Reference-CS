@@ -603,4 +603,109 @@ Operating Systems CIS 450
         - Potentially a lot of free space between the stack and the heap
         - Internal Fragmentation - wate of memory that has been reserved/allocatd to a process but never used
 
+11. 09/23/2022
+    - Segmentation
+        - Generalized Base and Bounds
+        - Logical segments of address space, apply base and bounds for each to different parts of physical memory
+        - Beneit - avoid filling physical memory with unused virtual address space
+        - Issue - extra to maintain base and size information for each segment
+    - How to address segments?
+        - Explicit Approach - bit
+            - Segment Bit 
+            - Offset Bit
+        - Implicit Approach
+            - If the address was generated from the program counter then the address is within the code segment
+            - If the address is based off of the stack or base pointer, it must be in the stack segment
+            - Any other address must be the heap
+        - What about the stack?
+            - Trick - stack grows backwards or negatively
+        - The hardware needs to know which way the segment grows
+        - Support for Sharing
+            - Basic support adds a few bits (protection bits) per segment
+                - Indicates whether or not a program can read or write a segment, or perhaps execute code
+            - By setting a read only, the same code can be shared across multiple processes
+        - OS Support
+            - Context Switch - registers must be saved and stored
+            - Manage Free Space - when new address space is creatd, OS has to be bale to find space in physical memory
+    - Fine Grained Segmentation
+        - More segments
+            - subroutine, symbol table, individual methods
+        - Segment Table - maintaing the address translation
+    - Simulation - OSTEP - segmentation.py
+        - Split
+            - seg 0 is code
+            - seg1 - stack
+            - unallocated
+        - Virtual to Physical
+            - Virtual - 0-512-1024
+                - Seg 0 - 472 maps to Seg 0 Physical 6890
+                - Seg 1 - 450 maps to Seg 1 Physical 4692
+            - Physical
+                - Seg 1 - 4692
+                - Seg 0 - 6890
+        - Address Translation
+            - Determine Violation Range
+                - Boundary
+                    - Start is 472
+                    - End is 1024 - 450 = 574
+                    - Violation Range - [472-574] - MEMORY CANNOT BE IN THIS SPACE
+            - 202 - VALI 
+                - Seg 0 is 0 - 472
+                - Seg 0 Start in Physical is 6890
+                - 6890 + 202 = 7092 - PHYSICAL MEMORY ADDRESS
+            - 523 - INVALID
+            - 662 - VALID
+                - Seg 1 is 574 to 1024
+                - Seg 1 start in Physical is 4692
+                - Offset from base = 1024 - 662 = 362
+                - 4692 - 362 = 4330
+            - 414 - VALID
+                - Seg 0 is 0 - 472
+                - Seg 0 Start in Physical is 6890
+                - 6890 + 414 = 7304 - PHYSICAL MEMORY ADDRESS
+            - 802 - VALID - TRICKY
+                - Seg 1 is 574 - 1024
+                - Seg 1 Start in Physical is 4692
+                - Offset from base = 1024 - 802 = 222
+                - 4692 - 222 = 4470
+            - 778 - Valid + Tricky
+                - Seg 1 is 574 - 1024
+                - Seg 1 start in Physical is 4692
+                - Offset from base = 1024 - 778 = 246
+                - 4692 - 246 = 4446
+            - 310 - VALID
+                - Seg 0 is 0 - 472
+                - Seg 0 Start in Physical is 6890
+                - 6890 + 310 = 7200 - PHYSICAL MEMORY ADDRESS
+            - 488 - INVALID
+    - Quiz
+        - Information
+            - Virtual Seg 0 is 0-7554
+            - Physical Seg 0 is 441001
+            - Virtual Seg 1 is (16384 - 7200) = 9184 to 16384
+            - Physical Seg 1 is 278693 and grows backwards
+            - Violation Range is [7554-9184]
+        - 8376 - INVALID
+        - 6634 - VALID
+            - Physical Address is 441001 + 6634 = 
+        - 12841 - VALID
+            - Offset is 16384 - 12841 = 3543
+            - Physical Address is 278693 - 3543
+        - 4969 - VALID
+        - 7808 - INVALID
+    - Segmentation Issue
+        - External Fragmentation
+            - The physical memory quickly becoems full of little holes of free space
+            - Each individual is too small for a new segment, too small for allocation
+        - Reducing - appraoch to use a free-list managmetn algorithm that tries to keep large extents of memory available for allocation
+            - First Fit - search for first hole that is big enough, starting from beginning
+            - Next Fit - search for next hole that is big enough, in circular manner
+            - Best Fit - search for smallest hole that is big enough
+            - Worst Fit - search for largest hole and see if it fits
+        - Example
+            - Self Explanatory - don't get cocky about it though
+        - Reducing
+            - Compact physical memory by rearranging the existing segments
+            - Compaction is expensive, as copying segments is memory intensive and thus would use a fair amount of processor time
+        - Can we relax the contiguous allocation restraint?
 
