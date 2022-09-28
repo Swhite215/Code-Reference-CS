@@ -764,5 +764,203 @@ Computer Networking CIS 527
                 - Frame received but Ack delayed for long enough - sender still sends, end up with two copies
                 - Solution - for each frame add a sequence number, drop duplicate frames with same sequence number, alternate 0 1
             
+6. 09/28/2022 - Part One
+    - Sliding Window Algorithm
+        - Goal - allow multiple outstanding (un-ACKed) frames
+        - Window - upper bound on un-ACKed frames
+    - Idea - ARQ - Automatic Repeat Request
+        - Sender is smart enough to determine time to retransmit
+        - Acknowledgement - receiver has recieved frame
+        - Timeout - wait to send the next frame based on acknowledgement or no acknowledgement
+             - How to determine timeout values?
+                - RTT - shortest time is when you send and send back i.e. RTT
+                - Timeout >= RTT e.g. 2x RTT
+    - Stop and Wait
+        - Send Frame, Wait for Response
+        - Problem - keeping the pipe full
+    - Sliding Window - most important algorithm in networking - used in TCP
+        - Window - Sending Window Side
+        - Estimate for Sending Window Size
+            - Desire - fully virtualize network
+            - BW x RTT = Volume
+            - (BW x RTT) / Frame Size = Senders Window Size
+            - (8KB / 1KB) = 8 Frames to transmit
+        - Pattern
+            - Send SWS
+            - For every acknowledgement, you send one frame
+        - SW: Sender Parameters
+            - Send Window Size
+            - Lack Acknowledgement Recieved
+            - Last Frame Sent
+        - Maintain Invariant - LFS - LAR <= SWS
+        - Advance Last Acknowledgement Received by one when ACK arrives
+        - Buffer up to SWS Frames, in case you have to retransmit any of the frames
+        - SW: Receiver Parameters
+            - Received Window Size
+            - Largest Acceptable Frame
+            - Last Frame Received
+            - Invariant - LAF - LFR <= RWS
+            - Frame SegNum Arrives
+                - If LFR < SegNum <= Last Acceptable Frame - accept
+                - If SegNum <= LFR or SegNum > LAF - discard
+            - Send cumulative ACKs (Send 0-5)
+        - Examples
+            - Loss - missed or error detected
+        - Scenario - 2RTT
+            - Likely to retransmit other frames, even already accepted, waiting for earlier frame to be sent
+        - Scenario - DUPACK[1] - means I am waiting for a specific frame
+            - Sender immediately resends frame 1 after DUPACK[1], instead of waiting for the timeout
+        - If higher ack received, and lower missed, implies lower already received
+        - You can group higher ACKs given this, and won't impact performance
+        - ACK can be piggy backed on dataframe going other directions, mark as also acknowledgement in the headers
+    - Sequence Number Space - Issue
+        - SeqNum is finite, and sequence numbers wrap around
+        - Sequence number space must be larger than the number fo outstanding frames
+        - Example - Four bits, 0-15 and then wrap, 0000 -> 0001 -> ... -> 1111 -> 0000
+        - MaxSegNum >= SWS + 1 is not sufficient
+        - Example
+            - Three Bits - Max Sequence Number is 7 (0 - 7)
+            - SWS = 7
+            - RWS = 7
+            - Sequence Space is 8
+            - All frames arrive, but all receiver ACKs are lost
+            - Sender waits and repeats with zero frame
+            - Receiver already has all frames in order and is expecting next frame to have zero sequence number
+            - Next packets should be dropped as they are duplicates, but they will be accepted
+        - Rule MaxSeqNum >= 2SWS when Sender Window Size = Receiver Window Size
+        - Rule MaxSeqNum = SWS + RWS when Sender Window Size != Receiver Window Size
+    - Out of Order Arrival - Possible ABOVE link layer, is issue to be revisited in Ch. 5
+    - Achieves
+        - Reliability - guaranteed to deliver packet
+        - In-order - guaranteedt to be in order
+    - Concurrent Logical Channels
+        - Multiplex 8 logical chanels over a single link
+        - Run stop and wait on each logical channel
+        - Maintain three state bits per channel
+            - channel busy
+            - current sequence number out
+            - next sequence number in
+        - Header - 3 bit channel num, 1 bit sequence num
+            - 4 bits total
+            - same as sliding window
+        - Separates reliability from order
+
+7. 09/28/2022 - Part Two
+    - Shared Access Networks are Different
+        - Shared Access Networks assume multiple nodes on the same physical link
+            - Bus, ring and wireless structures
+            - Transmission sent by one node is received by all others (broadcasting)
+            - No intermediate switches
+        - Need methods for moderating access (MAC Protocols)
+            - Fairness
+            - Performance
+            - How can this be done?
+        - Issue - two nodes transmitting at the same time i.e. collision and signal interference
+    - Multiple Access Methods
+        - Fixed Assignment
+            - Partition channel, circuit switching, so each node gets a slide of the bandwidth
+            - Time Division Multiple Access (GSM), Frequency Division Multiple Access, Code Division Multiple Access (3G)
+                - CDMA - receiver can filter out results from multiple sources
+        - Contention-Based
+            - Nodes content equally for bandwidth and recover from collision
+            - No assignment and no reservations, when you have data, you transmit
+        - Token-Based or Reservation Based
+            - Take turns using the channel
+            - Whoever holds the object can talk
+    - Ethernet
+        - History
+            - Developed by Xerox PARC in mid 1970s, Metcalfe, meant to share printer among multiple individuals, shared cable
+            - Roots in Aloha packet radio network
+            - Standardized by DEC, Intel, and Xerox in 1978 (DIX)
+            - Similar to IEEE 802.3 standard
+            - 802.11 WiFi
+            - 802.15 Bluetooth
+        - CSMA/CD (Ethernet) - CSMA/CA (Wireless)
+            - Carrier Sense - sense in the channel for idle status in order to transmit, cannot avoid collision completely
+            - Multiple Access - allow multiple nodes to share cable
+            - Collision Detection - detect, while transmitting, for one or more nodes transmitting as well
+        - Frame Formats
+            - Ethernet DIX - minimum 64 bytesm pad so payload is at least 64 bytes
+                - Preamble - 6 Bytes - 010101, sync
+                - Destination Address - 6 Bytes 
+                - Source Address - 6 Btes
+                - Type - 2 (0x0800 IP Datagram) Bytes
+                - Payload - 0-1500 Bytes
+                - Pad - 0-46 Bytes
+                - Check Sum - 4 Bytes
+            - IEEE 802.3
+                - Preamble
+                - SoF
+                - DEstination
+                - Source
+                - Length
+                - Data
+                - Pad
+                - Check-Sum
+        - Ethernet Cabling - Manchester Encoding - Need 20Mhz * 50% (Manchester Efficiency) = 10Mbps
+            - 10Base - data rate is 10MBps
+            - 5 - 500 meters
+            - 10Base5 - Thick Coax, vampire tap insecure, can become loose
+            - 10Base2 - Thin Coax, uses T connector, more reliable
+            - 10Base-T - Twisted Pair
+            - 10Base-F - Fiber Optics
+        - Ethernet Details
+            - Address (Media Acces Control)
+                - Unique 48 bit unicast address assigned to each adapter
+                - Example - 8:0:2b:34:b1:@
+                - Does not change, permanent
+                - Broadcast - all 1s
+                - Multicase - first bit is 1 - send packet to a group
+            - Bandwidth - 10Mbps, 100Mbps, 1Gpbs
+                - For all bandwidths, frame format is the same, allowing speed switching between cables
+            - Length = <= 2500m (500m segments with 4 repeaters), maximum distance between two nodes 2500m
+                - Latency = 51.2 microseconds, maximum latency between two nodes
+            - Problem: distributed algorithm that provides fair access
+        - Aloha Networks - Wireless
+            - Developed in 1960's by Norm Abramson at U of HI for use with packet radio systems
+                - Mainframe computers and many terminals
+                - Two channels, mainframe to terminals, shared terminal to mainframe channel
+                - Any stations can send data at any time
+                - Receiver sends an ACK for data
+                - Random Backoff - Once collision is detected, randomly wait to retransmit, A wait for 10us and B wait for 30us
+            - Slotted Aloha Improvement
+                - Divide timeline into multiple slots
+                - If you have data ready before the beginning of a slot, you can trasnmit and must only transmit at the beginning of a new slot
+                - Random backoff from slots
+            - Utilization Aloha - 18%
+            - Utilization Slotted Aloha 36%
+        - Ethernet Transmit Algorithm
+            - Metcalfe analyze Aloha
+            - In Aloha, no consideration is given to other nodes activity on channel, difficult with wireless, propogation back is also difficult
+            - Ethernet uses CSMA/CD, listen to line before/during sending
+            - If line is idle - carrier sense
+                - send immediately
+                - upper bound message size of 1500 bytes
+                - must wait 9.6us between back to back frames, fairness
+            - If lines is busy
+                - wait until idle and transmit immediately
+                - caled 1-persistent (special case of p-persistent)
+                - .3 percent, transmit only 30% of the time, 70% don't transmit
+            - If collision
+                - guaranteed way to detect a collision - make sure the transmit time >= max RTT
+                    - So collision returns before you finish transmitting
+                    - Frame Size / BW >= max RTT
+                    - minimum frame size = maxRTT * BW (EQUATION)
+                    - Classic Ethernet
+                        - Distance 2500m
+                        - maxRTT is 51.2us x 10Mbps (classic ethernet) = 512bits or (512/8) = 64 bytes
+                    - Fast Ethernet
+                        - BW x 10
+                        - maxRTT / 10 - achievable by dramatically reducing distance, maxRTT needs to be < 5.12us
+                        - minFrameSize = NO CHANGE
+                        - Distance 200m
+                - jam for 32 bits (inform everywhere there is collision), then stop transmitting frame
+                - minimum frame is 64 bytes
+                - delay and try again
+                    - 1st time 0 or 51.2us (2 choices) - 1/2
+                    - 2nd time, 0 51,2us, 102.4us, 153.6us (0,1,2, or 3) (4 choices)
+                    - nth time *k=0.2^n - 1 (8 choices)
+                    - give up after several tries
+                    - exponential backoff
 
 
