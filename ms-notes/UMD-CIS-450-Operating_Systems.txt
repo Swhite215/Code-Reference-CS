@@ -709,3 +709,102 @@ Operating Systems CIS 450
             - Compaction is expensive, as copying segments is memory intensive and thus would use a fair amount of processor time
         - Can we relax the contiguous allocation restraint?
 
+12. 09/28/2022
+    - Paging
+        - Instead of logical segments, we break up our address space into fixed sized units
+            - Each unit is called a page
+            - Each page of physical memory is called a page frame
+        - Page Table
+            - Used to record mapping betwqeen virtual page and physical framer
+            - This is a per process data structure
+        - Overhead
+            - Index, Physical Page Frame, Page Size, dont need to maintain Virtual Page Number
+        - Features
+            - Pros
+                - No external fragmentation
+                - Support the abstraction of an address space effectively
+                - No assumptions about how the heap and stack grow and how they are used
+            - Cons
+                - Large maintenance with page table
+                - Internal fragmentation for last page
+        - Address Translation with Paging
+            - To translate this virtual address that the process generated, we split into two components
+                - The virtual page number and the offset within the page
+                - 6 overall bits for the 64 bytes address space
+                - Translate VPN to PFN
+        - Page Table Size
+            - Page tables can get large, much bigger than segment table or base/bounds pair
+            - Example - 32bit address space (20 bit VPN and 12 bit offset
+                - 4KB (2^12) page size
+                - Maximum 2^20 page table entries for each process
+                - 4MB(2^20*4) = page table size with 4 bytes per PTE
+                - 400MB of memory of page tables for 100 processes running
+        - Where are page tables stored?
+            - Too big to be placed in MMU
+        - Implementation
+            - Linear Page Table - VPN <-> PFN per PTE
+            - Extra Bits
+                - Valid/invalid
+                - Protection
+                - Present
+                - Dirty
+                - Reference
+            - Example Page Table Entry from Xv6
+                - Present Bit (P)
+                - R/W - Read Write Bit
+                - U/S - user/supervisor bit
+                - PWT, PCD, PAT, and G - determine how hardware cahcing works for these pages
+                - A - accessed reference biut
+                - D - dirty bit
+                - the PFN
+        - Managing Free Frames
+            - Bitmap
+                - Each bit is used to indicate whether the frame is free or in use
+            - Linked List
+                - Each entry specifies a hole or process, the address at which it starts, the length, and a pointer to the next entry
+        - Context Switch in Xv6
+            - switchuvm(p) = switch to use p's page table
+            - switchkvmn() = switch to use kernel's page table
+        - Address Translation Workflow
+            - Copy virtual memory into register - logical address
+            - Split virtual address into VPN and offset
+            - Find PFN and offset
+            - VPN points to Page Table, return PGN
+            - Go to PFN and find value with offset
+        - A Memory Trace
+        - Simulation
+            - paging-linear-translate.py from OSTEP
+            - Map Virtual Address to Physical Address
+                - Figure out VPN
+                - Figure out Offset
+            - Example
+                - How many bits for VPN?
+                    - How many entries in page table? 4, so 2^2 = 4 so 2 bits
+                    - How large is address space size
+                        - 16k / 4K = 4, so 2^2 = 4 so 2 bits
+                - How many bits for offset?
+                    - Take your page size and determine number of bits to produce page size
+                    - Page Size is 4K i.e. 2^12 = 4096 = 4K so 12 bits
+                - How many bits for address space?
+                    - 16k i.e. 2^14 = 16384 so 14 bits
+                - Convert Hexadecimal to Binary
+                    - 0x00003229 = 0011 0010 0010 1001
+                - Identify Bits to Ignore
+                    - We have 16 bits, but only 14 is neede for addresss space
+                - From left, determine VPN
+                    - 2 bits for VPN, so 11 is 3 or page table 3
+                - Remainder 12 bits is offset
+                    - 0010 0010 1011
+                - Determine Bits for Physical Mem Size
+                    - Phys Mem = 64k so 2^16 = 65536 so 16 bits
+                - Take VPN starting address i.e. 0x80000006 or 6 and add offset bits
+                    - 0110 = 6
+                    - 0010 0010 1011 = offset
+                    - 0110 0010 0010 1011 = final address
+            - Example
+                - 0x00001369 - Convert Hexadecimal to Binay
+                    - 0001 0011 0110 1001
+                    - VPN is 2 bits
+                    - 01 -> points to Page Table 1 which is invalid
+                    - Memory address is invalid!
+            - REDO EXAMPLES
