@@ -807,4 +807,280 @@ Operating Systems CIS 450
                     - VPN is 2 bits
                     - 01 -> points to Page Table 1 which is invalid
                     - Memory address is invalid!
+                - Translation Steps 
+                    - How many bits for VPN?
+                        - 16k / 2k = 8 = 2^3 = 3 bits
+                    - How many bits for offset?
+                        - 2K = 2^11 = 2098 - 11 bits
+                    - How many bits needed?
+                        - 3 + 11 = 14
+                    - Convert to Binary - 3481
+                        - 0011 0010 1000 0001
+                    - Take Bottom 14
+                        - 110 = 6 = VPN
+                        - 010 1000 0001 = Offset
+                    - Take Existing - 1D
+                        - 0001 1110
+                    - Add 5 to Make 16 with Address bottom
+                        - 1 1110 + 010 1000 0001 = 1111 0010 1000 0001
+
+                    - Convert to Binary - 3629
+                        - 0011 0110 0010 1001
+                        - VPN 110 = 6
+                        - 1111 0110 0010 1001
+                        - 15629
             - REDO EXAMPLES
+
+12. 10/03/2022
+    - Improving Paging
+    - Issues with Paging
+        - How many bits for VPN?
+        - How many bits for offset?
+        - Page Table Base Register - initial location is begging address of page 1
+        - Fetch the content once you have address
+        - Validate
+    - Faster Translations
+        - Translation Lookaside Buffer
+            - Part of MMU
+            - Cache of popular address translations
+        - Upon each virtual memory reference, hardware first checks TLB
+        - TLB Hit
+        - TLB Miss
+        - Worst case is worse than before, TLB and table look
+    - Effective Access Time / Average Memory Access Time
+    - Expected Value
+        - Value One * Probability of One + Value Two * Probability of Two
+        - Example
+            - TLB Access Time - 2ns
+            - Memory Accces Time - 20ns
+            - TLB Hit
+                - (TLB + Memory) = (2 + 20) = 22ns
+                - p1 - hit ratio = a
+            - TLB Miss
+                - p2 - miss ratio = 1-a
+                - (TLB + Memory x 2) = (2 + 20*2) = 42ns
+            - Effective Access Time
+                - 22 * a + 42 * (1-a) = 22a + 42 - 42a = 42-20a
+    - Three Value
+        - Access TLB with 100%
+        - Access page tabel in memory 1-a
+        - Access Physical location with 100%
+        - Exampl 
+            - EAT - 2 - TLB
+            - EAT = 20 * (1-a) - PAGE TABLE
+            - EAT = 20 - Physical Location of Page in Memory
+            - EAT = EAT1 + EAT 2 + EAT3 = 32-20a
+    - QUIZ - What is the minimum hit ratio for EAT is no longer than 40ns?
+        - TLB Access Time is 4ns
+        - Memory Access Time is 30ns
+        - Expectation - X * p(X) + Y * p(Y)
+        - TLB Hit
+            - (4 + 30) = 34 ns
+            - a
+        - TLB Miss
+            - (4 + 30*2) = 64ns
+            - 1-a
+        - Expectation
+            - 34ns * a + 64 * (1-a)
+            - 34a + 64 - 64a
+            - 64 - 30a
+        - Answering the Question
+            - 64-30a <= 40
+            - 24 <= 30a
+            - 24/30 = .80 = a
+    - TLB Issue - Context Switches
+        - The contents of the TLB contain virtual to physical translations that are only valid for the current running process
+        - When one prcoess is running, another process amy also be ready in system and the OS might be context switching between them
+    - TLB Solution
+        - Provide an address space identifier, identified by a few bits
+    - TLB Issue - Replacement Policy
+        - What entries should be kept?
+        - Policy - Least Recently Used, take advange of locality and evict the lease used
+    - Reducing Page Table Size
+        - Issue - large tables, filled with mostly unused or invalid entries
+        - Solution - Bigger Page
+            - Doubleing the page size can cut the page table size in half
+            - Issue - it leads to waste within each page, a problem known as internal fragmentation
+            - In practice, most systems use relatively small page table 
+        - Solution - Paging + Segmentation
+            - Use Base and Bounds Segmentation
+            - We use the base to hold the physical address of the page table of that segment
+            - The bounds register is used to indicate the end of the page table
+            - Have one pagee table per logical segment, e.g. three page tables one for the code, heap, and stack parts of the address space
+            - Issues - external fragmentation, page table can be of arbitrary size
+        - Solution - Multi-Level Page Tables
+            - Split Page Table into page sized units
+            - If an entire page of page table entries is invalid, don't allocate that page of the page tablea at all
+            - Use a page directory to tell you
+                - Where a page of the page table is or
+                - that the entire page of the page table contains no valid pages
+            - Page Directory
+                - Each page is stored in the page directory - 1, 2, 3, 
+                - If everything in page is invalid, don't provide PFN
+                - Page 1 - PFN - something is valid
+                - Page 2 - NO PFN - No Allocation
+                - Page 3 - NO PFN - No Allocation
+                - Page 3 - PGN - something is valid
+                - Compress the empty
+            - Example
+                - Page Size 16B
+                - Address Space is 256B
+                - Pages are 256 / 16 = 16 Pages
+                - What is Physical Address of Virtual Address 0xe4?
+                    - Convert to Binary - 1110 0100
+                    - How many bits for directory?
+                        - 2 bits - Page 0, 1, 2, 3
+                    - How many bits for second level?
+                        - 2 bits, 4 entries within a page table
+                - 11 - Page Directory - Valid 
+                - 10 - Page of Page 11 - 2 - Valid
+                - PFN is 86
+                - Convert 86 to decimal 56 base 16 address
+                    - 86 - 0101 0110
+                    - Add to last four of address 0100
+            - Trade off Between Time and Space
+                - More Levels
+                    - Smaller Page Table
+                    - Slower Paging
+                - Fewer levels
+                    - Larger Page Table
+                    - Faster Paging
+                - Prefer two levels of paging
+
+13. 10/05/2022
+    - Virtualization: Memory (Beyond Physical Memory)
+        - What to do if we run out of memory?
+            - Bad Solution - dont allow it to happen, the programmer needs to take care of it
+            - Bad Solution - run one process, give it full access to memory, stop it, save all of its state to disk, then load another process
+                - Issue - extremely slow particulary as mmeory grows
+                - Issue - saving the entire contens of memory to disk is brutally non-performant
+        - Storage Hierarchy
+            - Disk -> Memory -> Cache -> Register
+            - Larger <- Size -> Smaller
+            - Slower <- Speed -> Faster
+        - Swap Space
+            - Create a swap space (page size units) to
+                - Swap out pages that are currenlty not in great demand
+                - Swap some into memory from the swap space
+                - Such as virtual memory in hard disk in Windows
+                - The OS will need to remember the disk address of a given page in the swap space
+            - Example
+                - 4 Page Physical Memory
+                - 8 Page Swap Space - 7 Occupied, 1 Free
+                - 4 Processes (3 active, 1 inactive)
+            - Features
+                - Pros - addition of swap spaces creates the illision of a large virtual memory for multiply concurrently running processes
+                - Cons - overhead of slow swapping
+        - Page Fault
+            - If the page is not in physical memory, we must load from swap space
+            - Present Bit - used to indicate whether the page is present in physical memory
+                - 1 - Page Hit
+                - 0 - Page Fault
+            - Demand Paging
+                - Initially most of the page is not present in physical memory
+                - On demand, a non-present page will be loaded into physical memory
+             - Recall: Paging with TLB - If Present Bit is 0 at Physical Memory Location
+            - Upona page fault, the OS is invoked to service the page fault by swapping the page into memory
+            - How will the OS know where to find the desired page?
+                - Use the PFN of the PTE in the page table for a disk address
+            - The process will be in the blocked state while the page fault is being serviced
+            - Paging with TLB + Swap Space
+                - CPU has Virtual Page Number and Offset
+                - Check Translation Lookaside Buffer
+                - If TLB Hit
+                    - Find Page Frame Number and Offset
+                    - Use PFN and Offset to access page from physical memory
+                - If TLB Miss
+                    - Go to Page Table
+                    - Check Present Bit
+                    - If 1
+                        - Use PFN and Offset to access page from physical memory
+                    - If 0
+                        - Enter swap space
+                        - Allocate Page Frame
+                        - Swap page into Physical Memory
+                        - Return PFN and Offset
+                        - Access Page from Physical Memory
+            - Effective Access Time with Page Faults
+                - Page Fault Rate 0 <= p <= 1.
+                    - if p = 0, no page faults
+                    - if p - 1, every page reference is a fault
+                - Access Time
+                    - p = 0, x1 = 2 * memory access time
+                    - p = 1, x2 = 2 * memory access time + swapping time
+                - Calculating EAT (without TLB)
+                    - EAT = (1-p) * x1 + p * x2
+                - Example
+                    - 9 out of 10 reference in memory
+                        - Hit Rate = 90%
+                        - Page Fault = 10%
+                    - Access Time
+                        - memory access time = 100 nanoseconds
+                        - Swapping = 10 milliseconds
+                    - EAT
+                        - (2 * 100ns * .9) + (2 * 100 + 10000000) * 0.1 = 1,000,200 ns
+                    - EAT
+                        - Page Fault - .1%
+                        - (2 * 100ns * .999) + (2 * 100 + 10000000) * 0.001 = 10,200 ns
+                - Disk Access is magnitude of difference from RAM
+            - Quiz Page Fault
+                - Memory Access Time = 200 ns
+                - Swapping Time = 15ms
+                - Question: What is the maximum page fault rate for achieveing maximum EAT time 1ms?
+                - (2 * 200ns) * (1-p) + (2 * 200ns + 15,000,000ns) * p <= 1,000,000
+                - 400 * (1-p) + (400 + 15,000,000) * p
+                - 400 - 400p + 15,000,400p
+                - 400 + 15,000,000 * p <= 1,000,000
+                - 15,000,000 * p <= 999,600
+                - p <= 999,600 / 15,000,000 = 6.664%
+            - What is memory is full?
+                - The os needs to page out one or more pages to make room for the new page
+                    - Page Replacement
+    - Page Replacement
+        - How can the OS decide which page (or pags) to evict from memory
+        - Page Replacement Policies
+            - Performance - want lowest page fault rate
+            - Evaluation method - eval algorithm by running it on a particular string of memory references, and computing the number of pages faults on that string
+            - Policies
+                - First In First Out - First Come First Served
+                    - Reference String - 1 2 3 4 1 2 5 1 2 3 4 5 (Pages)
+                    - Three Free Frames
+                        - 1,2,3 are Cold Start Misses - Lower Cost, No Swapping as Free Frame
+                        - Add 1 so [1] - X
+                        - Add 2 so [1, 2] - X
+                        - Add 3 so [1, 2, 3] - X
+                        - Evict 1 so [4, 2, 3] - X
+                        - Evict 2 so [4, 1, 3] - X
+                        - Evict 2 so [4, 1, 2] - X
+                        - Evict 4 so [5, 1, 2] - X
+                        - 1 is a hit
+                        - 2 is a hit
+                        - Evict 1 so [5, 3, 2] - X
+                        - Evict 2 so [5, 3, 4] - X
+                        - 5 is a hit
+                        - Page Faults - 9
+                        - Total Accessses - 12
+                    - Four Free Frames
+                        - Page Faults - 10
+                    - Belady's Anomaly - more frames more page faults - not always, anomalous value occurs
+                - OPT - Optimal Approach - Waiting Time is Longest
+                    - Replace plage that will not be used for the longest period of time
+                        - How do you know this?
+                        - Used for measuring how well your algorithm performs
+                    - Example
+                        - Four Frames
+                            - Add 1 so [1] - X
+                            - Add 2 so [1, 2] - X
+                            - Add 3 so [1, 2, 3] - x
+                            - Add 4 so [1, 2, 3, 4] - X
+                            - 1 hit
+                            - 2 hit
+                            - 5 - MIss - Look At List so [1, 2, 3, 5] - X 
+                            - 1 hit
+                            - 2 hit
+                            - 3 hit
+                            - 4 - Miss - Look at List (If list end, just evict) so [4, 2, 3, 5] - X
+                            - 5 hit
+                - Least Recently Used - Approximates OPT
+
+

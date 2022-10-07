@@ -963,4 +963,264 @@ Computer Networking CIS 527
                     - give up after several tries
                     - exponential backoff
 
+8. 10/05/2022
+    - Direct Link Ethernet Review/Final Notes
+        - CSMA/CD
+            - Carrier Sensing
+            - Multiple Access
+            - Collision Detection
+            - Three States - contention, transmission, or idle
+        - Exponential Backoff
+        - The link layer cannot guarantee delivery, after 16 tries on ethernet, the packet is discarded
+        - Ethernet doesn't guarantee fairness
+    - Switched Ethernet
+        - Switch - multiple ports - one dedicated link for each device
+        - Switch Port - Store and Forward
+    - Fast and Gigabit Ethernet
+        - Classic Ethernet 10Mbps - Metcalfe
+            - Four Twisted Pair
+        - Fast 100Mbps - 1990
+            - Uses 48/5B - 80% - Clock must be 125 Mhz
+            - 1 Pair - Computer to Switch
+            - 2 Pair - Switch to Computer
+            - Parallel Pair Usage
+        - Gigabit Etherent - 1Gbps = 1000 Mbps
+            - Four Pairs in Parallel
+            - Collision Detection only necessary if you share link with another
+        - Crossover - Computer to Computer
+    - Experiences with Ethernet
+        - Works best on light loads < 30%
+        - As load increases, post 30%, throughput begins to fall
+        - Most networks are limited to about 200 hosts, specification allows for up to 1024
+        - Most networks are much shorter than 2500 meters - 50 to 10 us RTT
+        - Ethernet is inexpensive, fast, and easy to administer
 
+9. 10/05/2022
+    - Token Rings/Token Array
+        - Token Ring Overview
+            - Ring of Devices
+            - Token - Bit Pattern Rotating
+            - To transtmit, token must be retrieved
+        - Examples
+            - 16Mbps IEEE 802.5
+            - 100 Mbps Fiber Distributed Data interface FDDI
+        - Idea
+            - Frame flows in one detection upstream to downstream
+            - You must discard your own frame, once it returns to you
+        - Issues
+            - If node holding the token crashes, what happens?
+            - If transmit frame and you crash, token can circle forever - requiring monitors to manage various aspects of the network
+        - FDDI Network - Fiber Distributed Data Interface
+            - Dual Fiber Rings for fault tolerance
+            - Uses fiber optics instead of cables
+        - Timed Token Algorithm (FDDI)
+            - Token Holding Time - upper limit on how long a station can hold the token
+            - Token Rotation Time - how long it takes the token to traverse the ring
+                - Upper Bound - Token Rotation Time = ActiveNodes * Token Holding Time + RingLatency
+            - Target Token Rotation Time
+                - Agreed upon upper bound on TRT
+            - Latencies
+                - Ethernet - worst latency is infinite
+                - FDDI - maxTRT
+            - Scenarios
+                - Single Node - THT / THT + Ring Latency - utilizations of network - must wait for rotation before transmitting
+                - Token Holding Time - As large as possible to maximize use from a single node
+
+10. 10/05/2022
+    - Wireless LANs
+        - Characteristics
+            - WiFi is omnidirectional and all nodes within range can receive it
+            - All nodes see all frames
+        - Versions
+            - IEEEE 802.11 - 1 or 2Mbps
+            - IEEE 802.11a 54 Mbps
+            - IEEE 802.11b 11 Mbps
+            - IEEE 802.11g 54 Mbps
+            - IEEE 802.11ay 20 Gbps
+            - Wifi 6.0E
+        - Bands in the United States
+            - Microwave Technology 300 Mhz to 300 Ghz
+            - Wavelength - 1m and 1mm
+            - Equation - lambda c = f
+                - lambda = wavelength
+                - c is speed of light
+                - f = frequency
+            - Spectrum is highly regulated, requiring a license to operate 
+        - ISM Bands - Unlicensed
+            - 900 Mhz - cordless phones
+            - 2.4Ghz to 2.4835 Ghz - 802.11 b/g and Bluetooth
+            - 5.736 Ghz
+        - Shannon's Theorem - C = BW * log2(1 + S/N)
+        - Modulation - change signal voltage levels
+            - Binary Single
+            - Amplitude Shift keying - Low 0 High 1
+            - Frequency Shift Keying - Faster Change 1 Slower Change 0
+            - Phase Shift Keying - 90, 180, 270
+            - 8 voltage, 8 frequencies, 4 phases = 256 bits
+            - 1 symbol is 8 bits
+        - The 802.11 Protocol Stack
+            - Upper Layer
+            - Data Link Layer
+                - Logical Link Layer
+                - Mac Sublayer
+            - Physical Layer
+                - 1997-1999 - 802.11 - 1Mbps - frequencey hopping
+                - 1999 - 802.11a - 54 Mbps
+                - 1999 - 802.11b - 11MBps spread spectrum, 7x larger than 802.11a
+                - 2003 - 802.11g - 54 Mbps - OFDM - Most popular physical layer technologies
+                - 2009 - 802.11n - MIMO - Multiple Input Multiple Output
+                - 802.11ay - Wifi 6E
+        - Spread Spectrum - minimize interference
+            - Idea - spread signal over wider frequence band than required
+            - Originally designed to thawrt jamming, if you have narrow range, enemy can jam the range (Spaceballs)
+            - Frequency Hopping
+                - Transmit over random sequence of frequencies
+                - Sender and receiver share pseudorandom number generator and see
+                - 802.11 uses 79 Mhz wide frequence bands
+            - Direct Sequence
+                - For each bit, send XOR of that bit and n random bits
+                - random sequence knwo to both sender and receiver
+                - Called n bit chipping code
+                - 802.11 defines an 11-bit chipping code
+            - OFDM Out of Scope - Orthoganal Frequence Division Multiplexing
+    - Elements of a Wireless Network
+        - End Hosts - Laptop, Phone, Tablet, WifiCard
+        - Base Stations
+            - Forwards messages to other device or the rest of the network
+        - Infrastructure Mode
+            - Handoff, mobile changes base station providing connection into wired network
+        - Ad Hoc Mode - MANET - Mobile Ad Hoc Network
+            - No base station required
+            - Nodes can transmit to other nodes within coverage
+            - Mesh, communicating what nodes are connected to communicate with each other
+            - Routing can be a challenge, links may disappear, requires constant tracking and planning
+                - Solution - forward packet based on location, along direction towards target
+            - Sensor Network - weather measurement, earth quake detection, power consumption is low as well
+        - CSMA/CA
+            - Carrier Sensing
+            - Multiple Access
+            - Collision Avoidance
+                - Colliison Detection isn't viable, given the difficult of returning the signal back to the sender indicating collision
+                - Random back off window i.e. 8 slots, larger number larger wait time
+                - Exponential back off occurs as well, 8 -> 16 -> 32
+            - Flow
+                - ACK confirms received
+                - No ACK you can conclude collisions or interference
+                - ACK frames have higher priority, frame may be transmitted back, wait post transmission for ACK
+        - Hidden Node and Exposed Node
+            - Hidden Node
+                - C is transmitting to B
+                - C's radio range only include B and not A
+                - If A wants to send to B, but cant sense C, A thinks B is idle
+                - A starts to transmit, interference occurs
+                - C's transmission to B will be damaged by A's tranmission to B
+            - Exposed Node
+                - B wants to transmit to C
+                - A is transmitting to D
+                - B thinks transmit to C will fail
+                - However A-D and B-C can actually be performed in parallel
+                - issue - close to transmitter but not receiver and can still actually transmit
+        - MACAW - Collision Avoidance for Wireless Network
+            - Virtually Sensing - Additional Control Frames
+                - Request to Send Frame RTS
+                - Clear to Send Frame CTS
+            - Neighbors
+                - See CTS - something will be sent and you are closer to reciever so be quiet - HIDDEN NODE
+                    - Wait until ACK
+                - See RTS but not CTS, ok to transmit - something will be sent, you are not closer to receiver, okay to transmit - EXPOSED NODE
+            - Collisions
+                - NO CTS predict collision
+                - Exponential backoff after detcting a collision
+            - Scenario
+                - A and B send RTS
+                - Exponential Random Backoff
+                - A sends RTS
+                - Receiver responds with CTS
+                - A sends data
+                - Receiver sends ACK
+            - Key Characteristics
+                - Data Frame >> RTS and CTS
+                - Data Frame > 1KB
+                - RTS and CTS should be transferred at a lower speed and wider coverage, frame smaller but air time is similar
+        - Supporting Mobility
+            - Case 1: Ad Hoc Networking
+            - Case 2: Access Points
+                - Change access points as you move through the environment
+            - Requirements
+                - Scanning
+                    - Node sends probe frame
+                    - All APs w/in reach reply wih ProbeResponse Frame
+                    - Node selects one AP, sends it AssociateRequest Frame
+                    - AP replies with AssociationResponse frame
+                    - New AP informs old AP via tethered network
+                - Access Point periodically sends Beacon frame
+    - Bluetooth
+        - General Information
+            - Designed for Inter System connections e.g. computer to mouse or computer to keybaord
+            - Bluetooth Signal Strength - 10 meters
+            - Data Rate - 1Mbps
+            - 7 Layer Protocol - Physical, Data, Network, Transport, Session, Presentation, Application
+            - 802.15 - Bluetooth Link and Physical Layer Standard
+        - Bluetooth Architecture
+            - Design - Asymmetrical - Master and Slave Design
+            - Piconet = Meshnet
+            - Two Piconets can be connected to form a scatternet, connected through slave bridge node
+            - Slave bridge node must pair with both masters, requiring special configuration
+    - Midterm
+        - Split
+            - Multiple-Choice - Topic Understanding
+            - Open Response - HWK 1 and 2
+        - Performance Metrics
+            - Bandwidth
+            - Transmit Time
+            - Tranfer Time
+            - Propogation Delay
+            - Store and Forward Retransmit Time
+            - Cut Through Retransmit Time
+            - Delay Time Bandwidth Product - Meaning + Calculation
+            - Round Trip Time Product - Meaning + Calculation 
+        - Multiplexing
+            - Encapsulation - Upper Layer Unit Wrapped in Lower Layer Unit - Data -> Wrap + Data + Wrap ->
+                - Network - Datagram
+                - Link Layer - Frame wrapped Datagram
+        - Network Architecture
+            - Client Server Model
+            - Open Systems Interconnection Model - REFERENCE
+            - Internet Architecture
+                - TCP and UDP - Transport
+                - IP - Network Layer
+        - Encoding
+            - NRZ, Manchester, NRZI, 4B/5B
+            - Convert Binary Sequence to Diagram
+        - Framing
+            - Identify frame beginnig and end concepts
+        - Error Detection
+            - Parity
+            - CRC
+            - Internet Checksum Algorithm
+            - What errors detectable and strengths/pros
+        - Sliding Window Algorithm
+            - Draw Diagram for Frame Lost
+            - Draw Diagram for ACK Lost
+            - Draw Diagram for DUPACK
+        - Ethernet 
+            - Multiple Access Control Algorithm
+            - Content Based Appraoched
+            - Carrier Sense
+            - Collision Detection
+            - Minimum Frame Size
+            - Exponential Backoff
+            - Probability After Collision and Backoff - Exponential Growth
+        - Token Ring
+            - Token Holding Time
+            - Token Rotation Time Computation
+            - Network Utilizations of Token Array Network
+        - Wireless Networks
+            - Wifi
+                - Limitations of Wifi Carrier Sense
+                - Hidden Node
+                - Exposed Node
+                - RTS, CTS Exchange to Avoid Collisions
+        - Homework 1 and Homework 2 Review
+            - Homework 2 Solutions - 10/07 Weekend
+        - 
