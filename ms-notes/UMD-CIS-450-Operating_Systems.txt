@@ -1083,4 +1083,92 @@ Operating Systems CIS 450
                             - 5 hit
                 - Least Recently Used - Approximates OPT
 
+14 10/07/2022
+    - Swapping Policy - Least Recently Used
+        - Replace the page that has not been used for the longest period of time
+        - Action - look backward to approximate the futuree, whichever hasn't been referenced
+        - Principle of Locality
+            - Programs tend to access certain code sequences and data structures quite frequently, temporal locality
+            - Use history to figure out which pages are important
+        - LRU Example
+            - Reference String - 1 2 3 4 1  5 1 2 3 4 5
+            - Each step, look back, out of what it is in the frame, which has been used leat recently?
+        - LRU Implementation
+            - Timestamp
+                - Must keep record of what has been recently accessed, each page has a timestamp, sort by oldest time
+                - Issue - requires a lot of bits, reliant on clock
+            - Counter
+                - Increment each time
+                - A logical clock for every page table entry and a global clock in the clock register
+                - For every memory reference, global counter is incrementeds and copied to the counter for the page table entry of memoery reference
+                - When a page needs to be changed, choose the page with the smallest logical clock
+        - LRU Approximation
+            - Few computer systems provide sufficient hardware support for true LRU due to the overhead
+            - Approximation Approach
+                - Basis - Reference Bit
+                    - When a page is brought in, its bit set to 0
+                    - When a page is referenced, its bit set to 1
+                    - Replace the one which is o (if one exists)
+                        - Issue - many 0s, we do not know which one
+                - Second Chance or Clock Algorithm
+                    - Date Structure - Circular Lst
+                    - Pointer p: next potential victim
+                    - if p* = 0, replace this page and new p* = 0
+                    - Otherwise, *p = 0, p++ until *p == 0, iterate till you find 0
+        - Quiz Page Replacement
+            - FIFO
+            - OPT
+            - LRU
+            - Second Chance
+        - Other Options
+            - Counting Based
+                - keep a counter of the number of refrence that have been made
+                - Least Frequently Accessed - replace page with smallest count
+                - Most Frequently Accessed 
+            - Random Page Replcaement
+                - Simply pick a random page, similar to FIFO
+            - 80-20 Workload
+                - 80% of the references are made to 20% of the pages (hot pages)
+                - The reamining 20% of the references are made to the remaining 80% of the pages (cold pages)
+                - It has locality within it
+                - Results
+                    - X Axis - Cache Size (Blocks)
+                    - Y Axis - Hit rate
+                    - No Locality
+                        - LRU, FIFO, and RAND same
+                    - 80-20%
+                        - OPT Best
+                        - LRU Second
+                        - FIFO and RAND
+                        - Second Chance? Approximates LRU well
+            - Other Techniques
+                - Page Buffering - keep a pool of free frames to avoid waiting for teh victim page to be swapped out
+                - Page Pre-fetching - guess that a page is about to be used, and thus bring it in ahead of time
+                - Demand Paging - bring the page into memory when it is accessed
+                - Clustering of Writing - collect a number of pending writes together in memory and write them to disk in one (more efficient) write
+    - Thrashing
+        - Issue with Page Replacement
+            - Initial - CPU utilization is very low
+            - Increase # of processes
+            - Memory is used up, then use page replacement
+            - This leads to more page faults
+            - Actual lower CPU utilization
+        - Graph
+            - Degreee of Multiprogramming X Axis
+            - CPU Utilization Y Axis
+            - As x increases, y increases, until a point where you run out of memory, not page eviction results and CPU utilization drops
+        - Thrashing
+            - Under Page Replacement
+                - Move frames from one process to another process
+                - No process has enough frames to execute
+                - Getting worse as more processes admitted
+            - Idea - let some process hold enough frames but the others wait?
+            - Approach - allocate enough frames to a process to accomodate its current locality and disallow page faults to use page in the locality as victim
+            - How to find locality?
+                - Working Set Strategy
+                    - Page Reference Table
+                    - Working Set - Approximation of locality
+                    - Keep the most recent delta page references
+                    - If a page is in active use, it will be in the working set
+
 
