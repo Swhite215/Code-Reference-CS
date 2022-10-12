@@ -1116,9 +1116,9 @@ Computer Networking CIS 527
                 - C's transmission to B will be damaged by A's tranmission to B
             - Exposed Node
                 - B wants to transmit to C
-                - A is transmitting to D
+                - A is transmitting to B
                 - B thinks transmit to C will fail
-                - However A-D and B-C can actually be performed in parallel
+                - However A-B and B-C can actually be performed in parallel
                 - issue - close to transmitter but not receiver and can still actually transmit
         - MACAW - Collision Avoidance for Wireless Network
             - Virtually Sensing - Additional Control Frames
@@ -1223,4 +1223,3 @@ Computer Networking CIS 527
                 - RTS, CTS Exchange to Avoid Collisions
         - Homework 1 and Homework 2 Review
             - Homework 2 Solutions - 10/07 Weekend
-        - 
