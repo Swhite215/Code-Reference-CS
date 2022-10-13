@@ -1130,7 +1130,7 @@ Computer Networking CIS 527
                 - See RTS but not CTS, ok to transmit - something will be sent, you are not closer to receiver, okay to transmit - EXPOSED NODE
             - Collisions
                 - NO CTS predict collision
-                - Exponential backoff after detcting a collision
+                - Exponential backoff after detecting a collision
             - Scenario
                 - A and B send RTS
                 - Exponential Random Backoff
