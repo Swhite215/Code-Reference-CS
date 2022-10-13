@@ -1083,7 +1083,7 @@ Operating Systems CIS 450
                             - 5 hit
                 - Least Recently Used - Approximates OPT
 
-14 10/07/2022
+14. 10/07/2022
     - Swapping Policy - Least Recently Used
         - Replace the page that has not been used for the longest period of time
         - Action - look backward to approximate the futuree, whichever hasn't been referenced
@@ -1172,3 +1172,76 @@ Operating Systems CIS 450
                     - If a page is in active use, it will be in the working set
 
 
+15. 10/12/2022
+    - Concurrency - Thread
+        - Multi-Threading
+            - Example
+                - Web Server w/ multiple clients connected through the internet
+                - Problems
+                    - Thousands of concurrent access
+                    - Enormous waiting time for some clients with server running as a single process
+                - Original Solution
+                    - Create multiple process to serve all accesses
+                    - Problem - time consuming and resource intensive to create a new process, process competing for CPU
+                - Better Soltion - light weight process called a thread
+            - New Abstraction - Multi-Threading
+                - Traditional Process - a single poiint of execution within a prorgram
+                - Multi-Threaded - more than one point of execution, multiple program counter
+                    - Threads in a process share the same address space
+                - Features
+                    - Unique for Each Thread
+                        - Program Counter, Register Set, Stack
+                    - Shared Address Space
+                        - Code, Data, Heap, Open Files
+                - Benefits
+                    - Resource Sharing - instructions, global variables, files, etc.
+                    - Responsiveness - fast thread creating
+                    - Parallel Executing
+                        - Utiliizing multi cores e.g. adding two large arrays together in parallel
+                        - Avoiding blocking program progress due to slow I/O e.g. loading web pages with images
+                - Multithreaded Web Server
+                    - Dispatcher Thread - manages allocation
+                    - Worker Thread - handles individual requests
+                    - Web Page Cache - shared
+            - Thread Control Block
+                - Program Counter
+                - Thread State
+                - Register Values
+                - Stack Pointer
+                - Pointer to Process Control Block
+            - Context Switches
+                - Same - address space remains the same, must change registers
+                - Differences
+                    - Context switch is performed between threads as compared to processes
+                    - Need one or more TCBs to store the state of each thread instead of PCBs
+            - Process Exeuction
+                - A process with two threads of execution on a single processor
+            - Summary Process vs. Thread
+                - Process
+                    - memory isolation for protection and reliability
+                    - Chrome Browser - individual tab is process, to protect and isolate data
+                - Thread
+                    - Fast to create threads
+                    - Saving memory space by sharing among different threads from the same process if possible
+                    - Web Servers - manage multiple requests at once
+            - Thread Library
+                - Library provides API for creating and managing threads
+                - PThreads
+                    - IEEE POXIS strandard, Unix and Linux
+                    - Defined as a set of C language programming types and procedure calls
+                - APIs
+                    - pthread_create() - creates a new thread
+                    - pthread_exit() - terminates the thread
+                    - pthread_join() - blocks the calling thread until the specified tid thread terminates
+            - Race Condition
+                -  Issue - counter++, three instructions, load, increment, store
+                    - These three instructions to not execute atomically (all at once), causing strange things to happen
+                - Uncontrolled Scheduling - Interleaved Operations
+                    - Simulation x86.py
+                    - Exercise - 17:00 minutes
+            - Why in OS?
+                - The OS was the first concurrent program, and many techniques were created for use within the OS
+            - Key Concurrency Terms
+                - Critical Section - segment of code, in which multiple threads may be changing shared variables e.g. a counter
+                - Race Condition - multiple threads executing the critical section can result in a race condition, e.g. two threads doing counter++, not necessarily parallel
+                - Mutual Exclusion - if one's thread PC is already inside critical section, other will be prevented from entering theirs
