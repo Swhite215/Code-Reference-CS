@@ -29,7 +29,7 @@ Operating Systems CIS 450
                 - Layers - User -> Application -> Operating System -> Hardware
                 - Collection of software that manages computer hardware, intermediary
                 - Benefits
-                    - Sharing/multiplxing - more that 1 app/user to use resource
+                    - Sharing/multiplexing - more than 1 app/user to use resource
                     - Protection of apps from each other
                     - Performance - efficient/fair access to resources
                 - Challenges
@@ -78,7 +78,7 @@ Operating Systems CIS 450
 
 3. 09/07/2022
     - Virtualization
-        - OS - takes a physical resource (CPU or memory) and transforms it into a more general, powereful,m and easy to use resource
+        - OS - takes a physical resource (CPU or memory) and transforms it into a more general, powereful, and easy to use resource
         - Abstraction - Process
             - One of the most fundamental abstractions - basic unit of resource virtualization from the perspective of an application
         - Process - CPU acitivities and memory usage
@@ -134,9 +134,9 @@ Operating Systems CIS 450
 4. 09/08/2022
     - Process APIs
         - Pattern
-            - Code -> Store on Disk -> Load into Memory -> 
+            - Code -> Store on Disk -> Load into Memory -> Run
         - Important Process APIS - man fork, wait, exec
-            - fork() - child begins execution of code immediately at line after fork(), entire parent code is duplicated and givne to child
+            - fork() - child begins execution of code immediately at line after fork(), entire parent code is duplicated and given to child
                     - if rc negative, something went wrong
                     - if rc = 0, child process was created and has control
                     - else, parent logic
@@ -180,7 +180,7 @@ Operating Systems CIS 450
         - Time Sharing - share a resource in different time
         - Space Sharing - share a resource in different parts
         - Challenges
-            - Performance - how can we implement virtualization without adding execssiv overhead
+            - Performance - how can we implement virtualization without adding excessive overhead
             - Control - how can we run processes while retaining control over the CPU
         - Separation of Mechanism/Policy in System Design
             - Mechanism - low level machinery - part that controls the authorization of operations and the allocation of resources
@@ -234,7 +234,7 @@ Operating Systems CIS 450
                     - Assist the OS to provide user and kernel mode
                     - Careful when executing a trap, save enough of caller's register state to return correctly
                     - x86
-                - Trap Hanlder
+                - Trap Handler
                     - How does the trap know which code to run?
                         - OS must carefully control what code executes upoon trap
                     - OS sets up a trap table or interrupt descriptor table at boot time
@@ -291,12 +291,12 @@ Operating Systems CIS 450
         - User
             - Turnaround time - time between submission and completion
             - Waiting time - sum of periods waiting in ready queue
-            - REsponse time - time from submission and first response, first waiting time
+            - Response time - time from submission and first response, first waiting time
         - System
             - CPU Utilization - percentage of time CPU is executing
             - Throughput - number of jobs completed per time unit
         - Good Scheduler
-            - maximize COU utilization anbd throughpout
+            - maximize CPU utilization anbd throughpout
             - minimze turnaround time, response time, and waiting time
     - First Come First Served - First In First Out (FCFS or FIFO)
         - Order of arrival in queue determines execution order
@@ -365,7 +365,7 @@ Operating Systems CIS 450
         
 8. 09/19/2022 - Multi-Level Feedback Queue
     - Summary
-        - First Come First Server
+        - First Come First Served
             - PRO - Simple and Fair
             - CON - Long Turnaround/Waiting Time, Convoy Effect
         - SJF/SRTF
@@ -422,8 +422,8 @@ Operating Systems CIS 450
             - After soe time, move all jobs to the highest priority queue
         - Tuning
             - How many queues?
-            - How big shoudl the time slice be per queue
-            - How often should priority be boosetd:
+            - How big should the time slice be per queue
+            - How often should priority be boosetd
         - Common Practice
             - High Priority Queue - short time slices
             - Lower Priority Queue - longer time slices
@@ -476,7 +476,7 @@ Operating Systems CIS 450
                     - Issues with lock for concurrent access to single queue
             - Multi-Queue Scheduling
                 - Each queue follows a particular scheduling discipline
-                - When a job enters, it is placed on exactly on scheduling queue according to some heuristic
+                - When a job enters, it is placed on exactly one scheduling queue according to some heuristic
                 - Then job is scheduled essential independently
                 - Pros
                     - Scalability
@@ -489,7 +489,7 @@ Operating Systems CIS 450
                 - Multi Queue Q1
     - XV6 Scheduler
         - Design - One global queue across all CPUs
-        - Design - Per-CPU schedling algorithm: RR with quanmtim size = 10ms
+        - Design - Per-CPU scheduling algorithm: RR with quantum size = 10ms
         - Scheduler in proc.c
             - Per-CPU Scheduler
             - Each CPU calls scheduler() after setting itself up
@@ -559,9 +559,9 @@ Operating Systems CIS 450
         - malloc(size_t size) - asks for room on the heap
         - free() - frees memory on the heap
         - malloc() and free() are built on top of system calls
-    - How to implement memroy virtualization?
+    - How to implement memory virtualization?
         - Goal - attaining performance while maintaining control
-        - Crux- How can we build an efficient and flexible virtualization of memory
+        - Crux-  How can we build an efficient and flexible virtualization of memory
     - Address Translation
         - Hardware Based Adddress Translation
         - Hardware transforms each memory access e.g. fetch, load store, from virutal to physical address
@@ -626,7 +626,7 @@ Operating Systems CIS 450
             - By setting a read only, the same code can be shared across multiple processes
         - OS Support
             - Context Switch - registers must be saved and stored
-            - Manage Free Space - when new address space is creatd, OS has to be bale to find space in physical memory
+            - Manage Free Space - when new address space is creatd, OS has to be able to find space in physical memory
     - Fine Grained Segmentation
         - More segments
             - subroutine, symbol table, individual methods
@@ -649,7 +649,7 @@ Operating Systems CIS 450
                     - Start is 472
                     - End is 1024 - 450 = 574
                     - Violation Range - [472-574] - MEMORY CANNOT BE IN THIS SPACE
-            - 202 - VALI 
+            - 202 - VALID
                 - Seg 0 is 0 - 472
                 - Seg 0 Start in Physical is 6890
                 - 6890 + 202 = 7092 - PHYSICAL MEMORY ADDRESS
@@ -697,7 +697,7 @@ Operating Systems CIS 450
         - External Fragmentation
             - The physical memory quickly becoems full of little holes of free space
             - Each individual is too small for a new segment, too small for allocation
-        - Reducing - appraoch to use a free-list managmetn algorithm that tries to keep large extents of memory available for allocation
+        - Reducing - appraoch to use a free-list managment algorithm that tries to keep large extents of memory available for allocation
             - First Fit - search for first hole that is big enough, starting from beginning
             - Next Fit - search for next hole that is big enough, in circular manner
             - Best Fit - search for smallest hole that is big enough
@@ -715,7 +715,7 @@ Operating Systems CIS 450
             - Each unit is called a page
             - Each page of physical memory is called a page frame
         - Page Table
-            - Used to record mapping betwqeen virtual page and physical framer
+            - Used to record mapping betwqeen virtual page and physical frame
             - This is a per process data structure
         - Overhead
             - Index, Physical Page Frame, Page Size, dont need to maintain Virtual Page Number
@@ -744,7 +744,7 @@ Operating Systems CIS 450
         - Implementation
             - Linear Page Table - VPN <-> PFN per PTE
             - Extra Bits
-                - Valid/invalid
+                - Valid/Invalid
                 - Protection
                 - Present
                 - Dirty
@@ -753,7 +753,7 @@ Operating Systems CIS 450
                 - Present Bit (P)
                 - R/W - Read Write Bit
                 - U/S - user/supervisor bit
-                - PWT, PCD, PAT, and G - determine how hardware cahcing works for these pages
+                - PWT, PCD, PAT, and G - determine how hardware caching works for these pages
                 - A - accessed reference biut
                 - D - dirty bit
                 - the PFN
@@ -823,7 +823,6 @@ Operating Systems CIS 450
                         - 0001 1110
                     - Add 5 to Make 16 with Address bottom
                         - 1 1110 + 010 1000 0001 = 1111 0010 1000 0001
-
                     - Convert to Binary - 3629
                         - 0011 0110 0010 1001
                         - VPN 110 = 6
@@ -863,9 +862,9 @@ Operating Systems CIS 450
                 - 22 * a + 42 * (1-a) = 22a + 42 - 42a = 42-20a
     - Three Value
         - Access TLB with 100%
-        - Access page tabel in memory 1-a
+        - Access page table in memory 1-a
         - Access Physical location with 100%
-        - Exampl 
+        - Example
             - EAT - 2 - TLB
             - EAT = 20 * (1-a) - PAGE TABLE
             - EAT = 20 - Physical Location of Page in Memory
@@ -895,11 +894,11 @@ Operating Systems CIS 450
         - Provide an address space identifier, identified by a few bits
     - TLB Issue - Replacement Policy
         - What entries should be kept?
-        - Policy - Least Recently Used, take advange of locality and evict the lease used
+        - Policy - Least Recently Used, take advange of locality and evict the least used
     - Reducing Page Table Size
         - Issue - large tables, filled with mostly unused or invalid entries
         - Solution - Bigger Page
-            - Doubleing the page size can cut the page table size in half
+            - Doubling the page size can cut the page table size in half
             - Issue - it leads to waste within each page, a problem known as internal fragmentation
             - In practice, most systems use relatively small page table 
         - Solution - Paging + Segmentation
@@ -969,7 +968,7 @@ Operating Systems CIS 450
                 - 8 Page Swap Space - 7 Occupied, 1 Free
                 - 4 Processes (3 active, 1 inactive)
             - Features
-                - Pros - addition of swap spaces creates the illision of a large virtual memory for multiply concurrently running processes
+                - Pros - addition of swap spaces creates the illusion of a large virtual memory for multiply concurrently running processes
                 - Cons - overhead of slow swapping
         - Page Fault
             - If the page is not in physical memory, we must load from swap space
@@ -979,8 +978,8 @@ Operating Systems CIS 450
             - Demand Paging
                 - Initially most of the page is not present in physical memory
                 - On demand, a non-present page will be loaded into physical memory
-             - Recall: Paging with TLB - If Present Bit is 0 at Physical Memory Location
-            - Upona page fault, the OS is invoked to service the page fault by swapping the page into memory
+            - Recall: Paging with TLB - If Present Bit is 0 at Physical Memory Location
+            - Upon a page fault, the OS is invoked to service the page fault by swapping the page into memory
             - How will the OS know where to find the desired page?
                 - Use the PFN of the PTE in the page table for a disk address
             - The process will be in the blocked state while the page fault is being serviced
@@ -1064,7 +1063,7 @@ Operating Systems CIS 450
                         - Page Faults - 10
                     - Belady's Anomaly - more frames more page faults - not always, anomalous value occurs
                 - OPT - Optimal Approach - Waiting Time is Longest
-                    - Replace plage that will not be used for the longest period of time
+                    - Replace page that will not be used for the longest period of time
                         - How do you know this?
                         - Used for measuring how well your algorithm performs
                     - Example
@@ -1171,7 +1170,6 @@ Operating Systems CIS 450
                     - Keep the most recent delta page references
                     - If a page is in active use, it will be in the working set
 
-
 15. 10/12/2022
     - Concurrency - Thread
         - Multi-Threading
@@ -1245,3 +1243,4 @@ Operating Systems CIS 450
                 - Critical Section - segment of code, in which multiple threads may be changing shared variables e.g. a counter
                 - Race Condition - multiple threads executing the critical section can result in a race condition, e.g. two threads doing counter++, not necessarily parallel
                 - Mutual Exclusion - if one's thread PC is already inside critical section, other will be prevented from entering theirs
+            

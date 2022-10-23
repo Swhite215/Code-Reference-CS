@@ -1223,3 +1223,55 @@ Computer Networking CIS 527
                 - RTS, CTS Exchange to Avoid Collisions
         - Homework 1 and Homework 2 Review
             - Homework 2 Solutions - 10/07 Weekend
+
+11. 10/19/2022
+    -  Programming Assignment Two
+        - Notes
+            - Multiple Clients for Server
+                - use select() - manage multiple sockets at once
+                - use separate threads for each socket
+            - Dealing with recv - which is blocking
+                - Recommended is to use the select() function, monitors all four sockets at the same time, in a set
+                - server - select() returns will tell you which socket data is ready
+                - client - select() returns whether is is the socket or stdin, stdin and socket should be in rdfs
+                    - if blocked fgets, then cant handle the server response
+            - Working with fd_set
+                - FD_ZERO - clear
+                - FD_SET - add
+                - FD_CLR - remove
+                - FD_ISSSET - test
+            - What are Pthreads?
+                - Portable standardized thread programming interface
+            - Why Pthread?
+                - Try to realize potential program performance gains
+                - Notes
+                    - heap and data are shared among the threads
+                    - stack is separate for each thread
+                    - Must use lock when accesssing shared data i.e. the address book
+                    - pthread_create() - run child thread function to manage request -> lock address book -> perform action -> unlock address book
+                        - cast input value to void * for function
+                    - pthread_exit(return value)
+                    - pthread_join() - main function, should we wait?, grab return value
+                    - global variable - address book - should be accesible by all the thread funtions defined!!
+                    - #include <pthread.h> and g++ -l pthread
+                    - maintain list on server side - socket, users logged in, user ID, IP address, port number
+                    - exit(), terminates entire process, server side*
+            - Shutdown - All clients should be shutdown using broadcast, which means all clients must listen to such broadcast
+            - Notes
+        - Cellular Networks 
+            - Mobile Five Generations
+                - Analog Voice 1G
+                - Digital Voice 2G
+                - Mobile Broad Band 3G - Code Division Multiple Access
+                - Better and Fater MBB 4G - Long Term Evolution - 10Mbps Download, 5Mbps Upload
+                - A Connected World 5G - Goal 20Gbps
+            - Components of Cellular Network Architecture
+                - Tower/base station cover a cell - combination is a cellular network - a few miles
+                - Mobile switching center
+                - Cell
+                    - Base Station + Mobile Users + Air Interface (physical and link between mobile and base station)
+            - Cellular Networks - The First Hop
+                - Combined Frequency Divison Multiple Access and Time Division Multiple Access
+                - CDMA - Code Division Multiple Access - 3G
+                - Orthogoanl Frequencey Division Multiple Access - 4G
+            - 
