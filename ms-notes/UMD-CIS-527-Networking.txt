@@ -1274,4 +1274,77 @@ Computer Networking CIS 527
                 - Combined Frequency Divison Multiple Access and Time Division Multiple Access
                 - CDMA - Code Division Multiple Access - 3G
                 - Orthogoanl Frequencey Division Multiple Access - 4G
-            - 
+        - 5G Service Scenarios
+            - Mission Critical Service
+            - Massive IoT
+            - Fixed Broadband
+            - Mobile Broadband
+        - 5G Service Enablers
+            - Millimeter Waves - 18Ghz, <6GHz currently
+                - Microwave 300 MHz to 300 GHz
+                - 30GHz, wavelength = 10mm, small wavelengths can be blocked, challenge
+            - New Channel Coding
+            - Massive Connectivity
+            - Network Slicing - single physical network separated into multiple virtual networks
+            - Low Latency NW - vehicle to vehicle communication, range within a few ms
+            - Devie to Device communication directly
+        - New for 5G
+            - CP-OFDM
+            - Massive Multiple Input Multiple Ouput - large number of bearers to icnrease bandwidth
+            - MM Wave
+            - Beam Forming 
+            - Shortened TTI
+            - Flexibility in Band Sizing
+            - Device to Device, Vehicle to Anything V2X
+    - Switching and Forwarding - Bridges and Extended LANs
+        - Limits Classical Ethernet
+            - Node < 1024
+            - Distance < 2500M
+        - Switches
+            - actions - stores and forwards packets
+            - Incoming Ports -> Lookup in Table -> Output Ports
+            - Each port is a dedicated link
+            - Advantages
+                - Cover large geographic area
+                - Support large number of hosts, built recurvisely
+                - Add new hosts without affecting the performance of existing hosts
+        - Circuit Switching vs. Packet Switching
+            - Circuit Switching - end to end physical circuit, directly connected, low latency, only delays are propogation and link reservation
+            - Packet Switching - software, construct packet with source, destination, and data, and hop by hop send it, various delays cause higher latencies, parallel link usage
+            - Midterm Exam - Circuit Switching (Constant) vs. Packet Switching (Bursty)
+        - Message Switching
+            - Entire message sent as unit e.g. telegraph
+        - Comparison of Circuit Switched and Packet Switched Networks
+            - Call Setup
+                - C - Y
+                - P - NO
+            - Dedicated Path
+                - C - Y
+                - P - N
+            - Packet Follows Same Route
+                - C - Y
+                - P - N
+            - Packets Arrive in Order
+                - C - Y
+                - P - N
+            - Switch Crash Fatal?
+                - C - Y
+                - P - N
+            - Bandwidth Available
+                - C - Fixed
+                - P - Dynamic
+            - Congestion
+                - C - At Setup
+                - P - Every Packet
+            - Wasted Bandwidth
+                - C - Y
+                - P - N
+            - Store and Forward
+                - C - N
+                - P - Y
+            - Transparency
+                - C - Y
+                - P - N
+            - Charging
+                - C - Per Minute
+                - P - Per Packet
