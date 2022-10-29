@@ -1305,4 +1305,36 @@ Operating Systems CIS 450
     - Condition Variable
         - Limitations of Locks
             - Many cases where a thread wishes to check whether a condition is true before continuing execution
-        - 
+        - Example - ensuring parent effectively waits for child
+            - Costly Solution
+                - Parent spinning, checking done variable until child performs action
+        - Condition Variable
+            - Explicit queue that
+                - threads can put themselces on when some state of execution is not as desired
+                - Some other thread, when it changes said state, can then wake one of the threads
+            - Operations
+                - wait() - thread puts itself to sleep
+                - signal() - when a thread has changed something in the program
+            - Pthread
+                - pthread_cond_t
+                - pthread_cond_init
+                - pthread_cond_destroy
+                - pthread_cond_wait
+                - pthread_cond_signal
+                - pthread_cond_broadcast
+            - Example - Parent and Child
+                - Create Thread
+                - Lock
+                - Pthread Condition Wait - Mutex Unlock and Parent Thread Put to Sleep
+                - Child runs
+                - Lock Mutex
+                - Perform Action
+                - Signal Parent
+                - Unlock Mutex
+            - Example - Three Threads
+                - Two threads increment counter
+                - One thread watches counter
+                - When counter reachers target, it uses signal to wake up sleeping thread
+            - Example Class Registration
+                - register() - lock mutex, if reached capacity, wait until someone drops
+                - drop() - lock mutex, reduce sum, signal another can register, unlock mutex
