@@ -1243,4 +1243,66 @@ Operating Systems CIS 450
                 - Critical Section - segment of code, in which multiple threads may be changing shared variables e.g. a counter
                 - Race Condition - multiple threads executing the critical section can result in a race condition, e.g. two threads doing counter++, not necessarily parallel
                 - Mutual Exclusion - if one's thread PC is already inside critical section, other will be prevented from entering theirs
-            
+    - Concurrency Lock
+        - Questions
+            - How to provide support for synchronization?
+            - How can we build these primitves efficiently?
+        - Basics
+            - Locks
+                - Lock before critical section, unlock after critical section
+                - Mutex
+                - lock(&mutex)
+                    - tries to acquire the lock mutex
+                    - if no other thread holds the lock, the thread will acquire the lock and enter the critical section
+                    - if another thread then calls lock on that sasme lock mutex, it will not return while the lock is held
+                - unlock()
+                    - once the owner calls unlock, the lock is now available again
+                    - if there are waiting threads, one of them will notice the change lock state and acquire the lock and enter the crticial section
+                - Pthread locks
+                    - pthread_mutex_lock
+                    - pthread_mutex_trylock
+                    - pthread_mutex_unlock
+            - How to build a lock?
+                - Evaluating Locks
+                    - Mutual Exclusion - does it do the job?
+                    - Fairness - do contending threads get a fair chance at obtaining the lock
+                    - Performance - cost of lock
+                - Software Solution
+                    - Implementation One
+                        - Use a simple variable to indicate whether some thread has possession of a lock
+                        - Problem - interrupts between calling lock and setting lock - Peterson's solution
+                        - Problem - spin waiting, thread is wasting time
+                    - Peterson's Solution - interleaved operations
+                        - int turn- whose turn to enter section
+                        - flag - if thread is ready to enter its critical section
+                        - if you want to go in, and it is your turn, you enter, else you wait
+                    - Yielding Solution - spin waiting
+                        - When gong to spin, give up the CPU to another thread
+                        - OS switches the threads between running and ready/runnable
+                        - Problem - 100 threads, 99 call lock an dyield, thread runs again
+                    - Sleeping Solution - spin waiting
+                        - The sleeping thread is in blocked/waiting state
+                        - Sleepin gthread does not comepte for CPU
+                    - Remarks on Software
+                        - Developing locks without special hardware support is interesting and challenging
+                        - Much easier to assume a little hardware support, order of instructions matter
+                - Hardware Solution
+                    - Controlling Interrupts
+                        - lock -> disable_interrupts()
+                        - unlock -> enabled_interrupts()
+                        - Pro - simple
+                        - Con - any calling threads uses a privileged operation
+                    - TestAndSet()
+                        - Enables us to test the old value, while simulataneously setting the memory location to a new value
+                        - This is an atomic exchange
+                        - Using TestAndSet - check flag, if 0, immediately grab and lock
+                    - Xv6 Locking
+                        - acquire(), release(), multiple cores try to access table
+                        - acquire() - xchg is atomic and serializes, swaps a word in memory with the contents of a register
+                            - freeze other CPUs memory activity for address, unfreeze other memory activity
+
+16. 10/18/2022
+    - Condition Variable
+        - Limitations of Locks
+            - Many cases where a thread wishes to check whether a condition is true before continuing execution
+        - 
