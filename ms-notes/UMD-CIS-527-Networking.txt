@@ -1348,3 +1348,179 @@ Computer Networking CIS 527
             - Charging
                 - C - Per Minute
                 - P - Per Packet
+
+12. 10/26/2022
+    - Packet Switching Method - Source Routing
+        - Source nodes decides how to forward the packet
+        - Source 1 says switch 1 forward to port 1
+        - Source 1 says switch 2 forward to port 0
+        - Source 1 says switch 3 forward to port 3
+        - Requires knowledge of all the switches, difficult to implement, impractical
+    - Packet Switching Method - Datagram Switching
+        - Each packet forwarded independently
+        - Each switch maintains a forwarding (routing) table
+            - Dest = A - Port = 2
+            - Dest = B - Port = 1
+            - Dest = C - Port = 3
+        - Unicast - individual destination and port
+        - Network#
+        - Prefix - 141.215.30.222 - 141.215/10
+        - Connectionless
+        - Used in Network and IP
+        - Notes
+            - No round trip time delay waiting for connection setup
+            - Source hosts has no way of knowing if the network is capable of delivering packet or if dest host i up
+            - Possible to route around link and node failures given packets are treated independently
+            - Overhead per packet is higher than for connection, given packet must carry full address of the destination
+    - Packet Switching Method - Virtual Circuit Switching
+        - Explicity connection setup and tear down phase
+        - Subsequent packets follow same circuit
+        - Connection oriented model
+        - Table
+            - Incoming Port - 2 
+            - Incoming Virtual Circuit Identifier - 5
+            - Outgoing Port - 1
+            - Outgoing Virtual Circuit Identifier - 11
+        - Reserve Bandwidth - up to 64Kbps
+        - Guarantee performance
+        - Used by ATM - Asynchronous Transfer Model
+        - Notes
+            - Typically wait full RTT for connection set up
+            - Connection request contains full address, each packet contains only a small identifier, making per packet header overhead small
+            - If a switch or link in connection fails, connection is broken and a new one needs to be established
+            - Connection setup provides an opportunity to reserve resources
+    - Creating Switches
+        - Optimized for I/O operations
+        - Better Design
+            - Switch with multiple ports, cross bar design, go directly from input to output without going through shared memory
+    - Bridges and Extended LANs - Datagram
+        - LANs have physical limitations e.g. 2500m
+        - Connect two or more LANs with a bridge
+        - Level 2 connection, does not add packet header
+        - Accept and forward strategy
+        - Learning Bridges
+            - Do not forward when unnecessary
+            - Maintain forwarding table
+                - Manually configured
+                - Dynamic
+                    - Initially empty table
+                    - Learn table entries based on source address
+                    - Always forward broadcast frames
+                - Table is an optimization, need not be complete
+        - Example - Learning Bridge Algorithm - Lecture 08 - 50:00:00
+            - Review for Test or HWK #3
+            - Abuse - MAC Overflow Attack - Can put any source address, thousands of address, can result in flushing of addresses, control one node and take over all nodes to receive all packets
+        - Spanning Tree Algorithm
+            - Problem - network forming loops, broadcasts results in packeting forwarding infinitely in loop
+            - Solution - take graph and produce spanning tree, spanning tree is a tree that includes all of the vertices of graph G
+            - Question - how do you optimally produce a spanning tree?
+            - All bridges must participate in construction of spanning tree, distributed
+            - Overview
+                - Each bridge has a unique id e.g. B1, B2, B3
+                - Select bridge with smallest id as root
+                - Select Bridge on each LAN closest to root as designated bridge
+                - B1 root
+                - C uses B2, A uses B5, B3 will be deactivated, no need to use, breaking a loop
+                - When tie, select smaller ID, B4, B6 is disabled
+            - Details
+                - Bridges exchange configuration messages
+                    - id for bridge sending the message
+                    - id for what the sending brdige believes to be the root bridge
+                    - Every bridge says it is the leader, distance 0
+                    - Receiving bridge checks, if larger, accept smaller and calculate distance from root
+                    - Every bridge learns shortest path to root
+                    - Nodes can then select bridge with shortest distance to root as bridge to send message to, disable bridges that have longest path to root
+                    - in steady state, only root sends messages
+                    - if bridge does not receiev config message, it starts generating config messages to claim root
+        - Broadcast and Multicast
+            - Forward all broadcast/multicast frames - current practice
+            - Learn when no group members downstream
+            - Accomplished by having each member of group G send a frame to brdige multicast address with G in source field
+        - Limitations of Bridges
+            - Does not scale, running algorithm is dificult
+            - Issue is transparency when performing broadcast, bridges are known, latency changes through bridges
+            - Does not accomodate heterogenity, each node needs to have same package format
+    - Asynchronous Transfer Mode: ATM (Network)
+        - 1980's-1990's - Standard for High Speed
+        - Goal - integrated, end to end transport of carry voice, video, and data
+        - ATM - Broadband Integraetd Service Digital Network Architecture
+        - Requirements
+            - Meeting timing/quality of service requirements of voice, video
+            - "Next generation" telephony, roots in telephone world
+            - Packet switching (fixed length packets called cells - 58 Bytes - 48B Data, 5B header ) using virtual circuits, mainly just need virtual circuit identifiers
+        - Architecture
+            - Physical Optical Fiber
+            - ATM Network Layer - cell switching and routing
+            - AAL - Adaptation Layer - at edge of ATM Network
+                - data segmentation/reassembly
+                - roughly analagous to Internet transport layer
+            - Cell Switching
+                - connection oriented packet switched network
+                - WAN and LAN
+            - Cell Format
+                - GFC - generical flow control
+                - VCI - virtual circuit identifier
+                - VPI - virtual path identifier
+            - Service Categories
+                - CBR - Constant Bit Rate - T1 circuit
+                - Variable Bit Rate - Real Time - real time videoconferencing
+                - Variable Bit Rate - Non Real Time - multimedia email
+                - ABR - Available Bit Rate - browsing the web
+                - Unspecified Bit Rate - background file transfer
+            - Virtual Paths
+                - Switch maintains per connection information, possibly millions
+                - Identifier - 8 bit virtual path identifier + 16 bit virtual circuit identifier 
+                - Advantage - the switches in the public network behave as if only one connection
+    - Internetworking
+        - Goal #1 - scalable, and logn height of the tree is critical
+            - Devices - 10^9
+        - Goal #2 - interconnect multiple networks together
+        - What?
+            - An arbitraty collection of networks interconnected to provide some sort of host to host packet delivery service
+            - Example - Ethernet, Wireless, Point to Point
+        - What is IP?
+            - Internet Protocol
+            - Key tool used today to build scalable, heterogenous internetworks
+            - Add an additional layer between link and transport, called IP
+            - Example
+                - Hello - TCP Header - IP Header - Wifi Header (over wifi)
+                - Hello - TCP Header - IP Header - Ethernet Header (over ethernet)
+                - Helo - TCP Headder - IP Header - PPP Headers 
+        - IP Service Model
+            - Packet Delivery Model
+                - Connectionless model for data delivery
+                - Best Effort Delivery (unreliable service)
+                    - packets are lost - TCP handles
+                    - packets are delivered out of order - TCP handles
+                    - duplicate copies - TCP handles
+                    - packets can be delayed for a long time
+                - Global Addressing Scheme
+                    - Provide a way to identify all hosts in the network, must be hierarchical
+                    - Address - network # and host IP
+        - Why is the IP service so simple?
+            - Simple, dumb, minimal, faster, more streamlined and lower cost to build and maintain
+            - The end to end principle, where possible, implement complex features in end host
+            - Allows a variety of reliable or unreliable services to be built on top
+            - Workes over any link layer, IP makes very few assumptions about the link layer below
+        - IP Service Model Details
+            - Tries to prevent packets looping forever
+            - Will fragment packets if they are too long
+            - Uses a header checksum to reduce changes of delivering datagram to wrong destination
+            - Allows for new versions of IP
+                - Currently IPv4 with 32 bit addresses
+                - IPv6 with 128 bit addresses
+            - Allows for new options to be added to header
+        - Packet Format
+            - Version - 4 bits
+            - Header Length - 4 bits
+            - Type of Service - 8 bits - 
+            - Length - 16 bits - number of bytes in this datagram - 64KB max
+            - Ident - 16 bits - used by fragmentation
+            - Flags/Offset - 16 bits - used by fragmentation
+            - TTL - Time to Live - 8 bits - number of hops this datagram has traveled
+            - Protcol - 8 bits - TCP = 6, UDP = 17
+            - Checksum - 16 bits - of the header only
+            - Destination Address - 16 bits
+            - Source Address - 32 bits
+
+        
