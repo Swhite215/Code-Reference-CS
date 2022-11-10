@@ -1526,3 +1526,160 @@ Operating Systems CIS 450
         - Device drivers are a huge percentage of kernel code e.g. Linux over 70%
         - A modern OS has millions of lines of code i.e. millions of lines of device driver code
         - Bug in device driver - drivers written by amateurs tend to have many more bugs and thus are a primary contributor to kernel crashes
+
+20. 11/10/2022
+    - IO and Disks
+        - Hard Disk Basics
+            - Basic Geometry for Magnetic Disks
+                - Platter, Disk Head, Spindle, Actuator
+                - Access Process
+                    - First move disk arm to desired cylinder
+                    - Then rotate the platter to place desired sector under the head
+                - Disk Structure
+                    - Track, Sector, Track Sector, Cluster
+                - Interface
+                    - Drive consists of a large number of sectors/blocks, each of whis is 521 bytes and can be read or written
+                    - Multi-sector operations are possible
+                - Features of Disk Access
+                    - Sequential access is faster than random access
+                - Single Track Rotational Delay
+                    - Average Rotational Delay - R/2
+                    - Worst Case Rotaional Delay - R
+                - Multiple Track Seek Time
+                    - Seek - move to outermost track where sector 11 is located in
+                    - Wait for rotation
+                    - Actions
+                        - Acceleration
+                        - Coasting
+                        - Deceleration
+                        - Settling
+                    - Flow
+                        - Seek - Track
+                        - Rotate - Platter
+                        - Transfer - Over Head
+                    - Track Skew - use to make sure that sequential reads can be properly serviced even when crossing track boundaries
+                    - Outer tracks trend to have more sector than inner tracks
+                - Reading
+                    - When reading, drive might decide to read in all of the sectors and cache, allows to quikcly respond to subsequent requests
+                - Write Back
+                    - Acknowledges the write has completed when it has put the data in memory, makes the drive appear fatster, but can be dangerous
+                - Write Through
+                    - It acknowledges the write has completed after the write has actually been written to disk
+                - Performance
+                    - I/O Time = Tseek + Trotation + Ttransfer
+                    - I/O Rate = Size of Transfer/ (I/O Time)
+                    - Large I/O Rate = Short I/O Time
+                - Important - Random vs. Sequential - Random is SLOW
+            - Disk Scheduling
+                - All I/O request placed in disk queue, OS will pick which one to service next
+                - I/O Request Includes
+                    - Is it input or output?
+                    - What is the disk address?
+                    - What is the memory address?
+                    - What is the number of sectors?
+                - Context Swtiching - Disks switch time is extremely high compared with CPU context switch
+                - Main Focus - seeking dominates, transferring is fast
+                - Performance Evaluation
+                    - Shortest Seek Time First - orders the queue of I/O requests by track, and pickes the request on the nearest track
+                        - Issues - not enough information, just array of blocks, must search by index e.g. Nearest Block First
+                        - Issue - staravation - how can we avoid?
+                    - SCAN (Elevator) and C-SCAN
+                        - We call a single pass across the disk a sweep
+                        - Instead of sweeping in both direction, only sweep outer to inner, more fair
+                        - Example
+                            - For SCAN on the way toward 0
+                            - Start at one, go from closest to farther, count number of head movements
+                        - Issues - ignores rotational delay
+                - How to account for disk rotation costs?
+                    - Difficult to consider two motions and not enough information
+        - Redundant Array of Inexpensive Disks
+            - Objectives - faster, bigger, more reliable
+            - Interface
+                - RAID looks like a disk
+            - Internals
+                - RAID is built as separate hardware box with sstandard connection
+                - Specialized computer system
+            - Transparency
+            - Capacity
+            - Reliabilility
+                - Fault Model - working or failed, when a disk has failed, we assume that this is easily detected
+            - Designs
+                - Raid Level 0 Striping - spread the blocks of the array across the disks in a round robin fashion
+                    - Small chunk size implies better parallelism
+                    - Performance
+                        - Failure Rate = f = failure rate. 1 - (1-4f) = 4f = disks * failure rate
+                        - Performance - disks * speed
+                - Raid Level 1: Mirroring
+                    - Duplicate chunks in multiple disks
+                    - Failure Rate - failure rate = f^2
+                    - Performance
+                        - Reading - can read first and second half in parallel 2*
+                        - Writing - same speed
+                - Raid Level 4: Saving Space with Parity
+                    - Add a single parity block that stores the redundant information for that stripe of blocks
+                    - Capacity - increase with disk addition
+                    - Failure Rate - f^2 dominating
+                    - Six combinations 6f^2
+                    - Performance
+                        - Reading - parallel
+                        - Writing - parallel, issue is writing to disk 4 in addition for any changes on a disk
+                - Raid Level 5: Rotating Parity
+                    - It rotates the parity block across the drives
+                    - 5 disks for 4 dissk space
+                    - Failure rate 10f^2
+                    - Reading 4x, Writing 4x
+            - Performance
+        - Flash Based SSD
+            - Solid State Disk
+                - NAND Based Flash - built out of transistors, much like memory DRAM
+                - No mechanical or moving parts
+                - Benefits - random access and sequential access are similar magnitude
+            - Storing Bits
+                - Design to store one or more bits in a single transistor
+                - Single Level Cell 0 or 1
+                - Multi Level Cell - 00, 01, 10, 11
+            - From Bits to Banks/Planes
+                - Die
+                - Die Made Up of Planes
+                - Planes Made Up of Blocks
+                - Bloacks Made Up of Pages
+            - Basic Flash Operations
+                - Read A Page
+                - Write a Page
+                    - Erase the whole block first, setting all bits in the block to 1
+                    - Program some of the 1s within a page to 0's as desired
+                - States of a Page - Invalid, Valid, Erased
+                    - Issue - you can only program an erased page
+                - Erase - make sure any data that you care about in the block has been copied elswhere before executing the erase
+                - Example
+                    - Four Pages
+                    - Back Up Page 1, 2, 3
+                    - Erase All
+                    - Update 0, and Replace 1, 2, and 3
+            - Raw Flash Performance
+                - SLC - Read - 25us, Erase 1500-200us, Prorgam 200-3400us
+                - MLC - 
+                - TLC -
+            - Reliability
+                - Wear Out - Program/Erase Cycles
+                - MLC Based Block - 10,000 P/E
+                - SLC Based Block - 100,000 P/E
+            - From Raw Flash to Flash Based SSDs
+                - Flash Translation Layer - Logical Blocks -> Physical Blocks Pages
+                - Design Concerns - wear out, program disturbance, write amplification
+                - Wear Out
+                    - Spread writes evenly as possible around
+                - Program Disturbance
+                    - program pagees within an erased block in order, from low page to high page
+                - Write Amplification
+                    - Reduce write traffic
+            - Direct Mapped
+                - A read to logical page N is mapped directly to a read of physical page N
+                - A write to logical page N
+                    - the FTL has to first read in the entire block
+                    - erase the block
+                    - program old pages as well as the new one
+            - Log Structured FTL
+                - Upon a write, device appends the write to the next free spot
+                - To allow for subsequent reads, the device keeps a mapping table in its memory, and persistent, in some form, on the device
+            - 
