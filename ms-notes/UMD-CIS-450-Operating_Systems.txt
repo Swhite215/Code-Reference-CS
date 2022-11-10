@@ -1471,5 +1471,58 @@ Operating Systems CIS 450
             - Most users prefer an ocasional deadlock to rule that unduly restricts them
 
 19. 11/10/2022
-    - IO and Disks
-        - 
+    - Persistence: IO Devices and Disks Storage
+        - System Architecture
+        - Why?
+            - high perfromance components closer to CPU
+            - faster memory closer to CPU
+        - Persistence - store information for a long period of time
+        - Need hardware and softare to be able to store data
+        - Hardwre - input/output device
+        - Software - filesystem
+    - Uniqueness of the Abstraction
+        - The OS does nto create private virtualized disks for I/O
+    - A Canonical Device
+        - Hardware Interface - allows the system software to control its operations
+        - Three Registers
+            - Status regsaier - current status of device
+            - COmmand - tell device to perform a task
+            - Data - pass or get data
+            - Write Flow - check status, write data to DATA, write command Write, check status
+            - Read Flow - check status, write command READ, read data from DATA
+        - Problems
+            - Polling seems inefficient, wastes a great deal of time
+            - Solution - spin lock or interrupts
+        - Solution
+            - No waiting but sleep
+            - Notification - when device is finished, raise hardware interrupt
+        - Benefit - interrupt thus allow for overlap of computation and I/O which is key for improved utilization
+        - Interrupt is not always best, for a fast device, will slow down system, swtiching process is expewnsive
+    - DMA
+        - Direct Memory Access
+            - When CPU is involved with data movement, we refer to it as programmed I/O
+            - Problem when transferring large chunk of data
+                - CPU is again overburdened with a rather trivial task
+                - Waste a lot of time and effort that could be better spent
+            - Solution - delegate task to DMA unit, let CPU do its own thing
+    - Issues
+        - How does the OS communicate with I/O device?
+            - Explicit I/O instructions
+            - Memory Mapped I/O - hardware makes device registers available as if they were memory locations
+        - How do we deal with different devices, interfaces and patterns?
+            - Solution - abstraction
+            - Lowest level - device driver, OS knows how a device works
+            - Example Linux
+                - Application
+                - POSIX API
+                - File System
+                - Generic Block Interface
+                - Generic Block Layer
+                - Specific Block Interface
+                - Device Driver
+                - Pattern
+                    - An applicaiton issues block read and write request to the generic block layer which routes them to the appropriate device driver which handles the details of issuing the specific request
+    - Interesting Facts
+        - Device drivers are a huge percentage of kernel code e.g. Linux over 70%
+        - A modern OS has millions of lines of code i.e. millions of lines of device driver code
+        - Bug in device driver - drivers written by amateurs tend to have many more bugs and thus are a primary contributor to kernel crashes
