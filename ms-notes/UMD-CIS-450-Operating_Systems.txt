@@ -1359,7 +1359,7 @@ Operating Systems CIS 450
             - post
     - Three Classical Questions
         - Bounded Buffer Problem
-            - Producer and Consumer Threads
+            - Producer and Consumer Threads - Symmetric
             - Producer produces something and wishes to place them in a buffer
             - Consumers grabs data from buffer
             - Example - a multi-threaded web server, producer puts HTTP requests in a work queue, consumer takes requests out of queue and processes them
@@ -1373,5 +1373,103 @@ Operating Systems CIS 450
                     - Issue, multiple producers call put() at roughly the same time
                     - Solution - add mutual exclusion - sempahore mutex
                         - wait() - wait() - get()/put() - post() - post()
-        - Reader Writer Problem
-            - 
+        - Reader Writer Problem - Asymmetric
+            - A data set is shared among a number of concurrent threads
+            - Readers - only read the data set, do not perform any updates
+            - Writers - can write
+            - Problem
+                - Allowing multiple readers to read at the same time
+                - Only one single writer can access the shared data at the same time
+            - Sequence
+                - R1 - R2 - W1 - R3 - R4 - W2 - W3 - R6
+            - First Reader Writer Problem
+                - No reader will be kept waiting unless a writer has already obtained permission to write the shared data
+            - Second Reader Writer Problem
+                - Once a writer is ready, that writer perfrorms its write as fast as possible
+            - Code
+                - write() - acquire write lock - write - release write lock
+                - reader() - acquire read lock - read - release read lock
+                - Solution
+                    - Data Set
+                    - Semaphore mutex initialized to 1
+                    - Sempahore wrt initialized to 1
+                    - Integer readcount initialized to 0
+                    - Important note - reader first read, takes write lock to block writing, any readers can join to read. After last reader leaves, release write lock
+        - Dining Philosopher's Problem
+            - 5 Philosopher 
+            - 5 Chopsticks
+            - 5 Binary Semaphores
+            - To dine, acquire left and write chopstick, eat, release left and write chopstick
+            - Issue - what if everybody grabbed the left, no one could eat
+            - Solution - dealing with deadlock - next video
+
+18. 11/10/2022
+    - Deadlock
+        - Mars Pathfinder - Priority Inversion
+            - A lock on a lower priority task blocks a higher priority task from performing an action
+        - Why?
+            - Several process compete for a finite number of resource
+            - A process requests resource, if not available, process enters waiting state
+            - Sometimes, a waiting process is never again able to change state
+        - Deadlock in a Law
+            - When two trains approach each other at a crossing, both shall come to a full stop and neither shall start up again until the other has gone
+        - The Resource Model
+            - A number of serially reusable resources, R1, ... , Rm
+                - Number is constant and no sharing for single unit
+            - A set of threads
+            - Operations - request, use, release
+            - Resource Allocation Graph
+                - Vertices
+                    - Threads - Circle
+                    - Resources - Square
+                - Quiz
+                    - Vertices - intersections, traffic
+                    - Forms a cycle, deadlock
+        - Necessary Conditions for Deadlock - deadlock, these conditions are true, not reverse
+            - Mutual Exclusion - threads claim exclusive control of resources that they require
+            - Hold and Wait - threads hold resources allocated to them e.g. locks they have acquired, while waiting for additional resources
+            - No Preemption - resources cannot be forcibly removed from threads that are holding them
+            - Circular Wait - there exists a circular chain of threads such that each thread holds oen more resources that are beign requested by the next thread in the chain
+        - RAG and Deadlocks
+            - If a RAG does not have a cycle, then no process is deadlocked, something will eventually be released
+            - If a RAG has a cycle, then a deadlock may exists
+    - Deadlock Prevention
+        - Prevent occurencet of deadlock by preventing occurrence of any one of the four necessary conditions for deadlock
+            - ME
+                - Make resources sharable, locking cells in spreadsheet instead of locking the whole spreadsheet
+                - Limitation - can we share cell in spreadsheet?
+            - HW
+                - Requesting resources simulataneously and atomically
+                - Thrashing - no processes are allocated enough frames, each is fighting, holding and waiting
+                - When request, you always get exactly what you need, or nothing
+                - Limitation - encapsulation works against us, we woul dneed to know the number of needed locks, also likely decreases concurrency
+            - NP
+                - Cause - we generally view locks as held until unlock is called
+                - trylock(), grab the lock if it is available, or return -1 indicating that the lock is held right now
+            - CW
+                - Impose a total ordering on lock acquisition
+                - Action - request resources in increasing order, no circular wait condition can occurr
+                - Limitation
+        - Avoidance via Scheduling
+            - Require some global knowledge of resource usage
+            - Schedule all requests carefully
+            - The Banker's Algorithm
+                - Hvae every thread declare its maximum resource requriements
+                - Whenever a thread requests resources, determine if granting the request at this time leaves system in a safe state i.e. no potential deadlock
+                    - If not, delay request
+                - Issue - estimating maximum resources
+        - Detection and Recovery
+            - Prevention and Avoidance are caution approaches
+            - Alternative - periodically analyze RAG, detect deadlocks, and initiate recovery
+            - Advantages - a priori knowledge of resource requirements, higher resource utilization
+            - Disadvantages - cost of recovery
+        - Engineer's Approach
+            - Why not ignore deadlocks altogether?
+                - Ostrich Algorithm - pretend no problem
+            - Deadlocks in Unix
+                - limit number of processes or number of open files
+            - Most users prefer an ocasional deadlock to rule that unduly restricts them
+
+19. 11/10/2022
+    - IO and Disks
+        - 
