@@ -1338,3 +1338,40 @@ Operating Systems CIS 450
             - Example Class Registration
                 - register() - lock mutex, if reached capacity, wait until someone drops
                 - drop() - lock mutex, reduce sum, signal another can register, unlock mutex
+
+17. 11/10/2022
+    - Concurrency - Semaphores
+        - Djikstra - invented semaphore as a singl eprimite for all things related to synchronization
+        - Sempahore Resource
+            - Object with an integer value i.e. a unit of resource
+            - sem_wait() - request for a unit of resource - atomic
+                - if unit available, get, else wait
+            - sem_post() - release one unit of resource - atomic
+                - wake a waithing thread
+            - sem_init() - can share between processes
+        - Sempahore Implementation
+            - Each semphore will be associated with a queue for sleeping threads
+            - atomic dones as mutex lock
+        - Use Semaphore
+            - init
+            - wait
+            - act
+            - post
+    - Three Classical Questions
+        - Bounded Buffer Problem
+            - Producer and Consumer Threads
+            - Producer produces something and wishes to place them in a buffer
+            - Consumers grabs data from buffer
+            - Example - a multi-threaded web server, producer puts HTTP requests in a work queue, consumer takes requests out of queue and processes them
+            - Design - Implement quere with an array, produce enqueue, consumer dequeue, FIFO
+            - Example
+                - How to synchronize the access to the buffer?
+                - Attempt #1
+                    - Sempahore full initialized to the value, one slot is empty
+                    - Semaphore full, six slots
+                    - Wrap put and get, wait() - get()/put() - post(), co dependency between producer and consumer
+                    - Issue, multiple producers call put() at roughly the same time
+                    - Solution - add mutual exclusion - sempahore mutex
+                        - wait() - wait() - get()/put() - post() - post()
+        - Reader Writer Problem
+            - 

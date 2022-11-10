@@ -1518,9 +1518,329 @@ Computer Networking CIS 527
             - Ident - 16 bits - used by fragmentation
             - Flags/Offset - 16 bits - used by fragmentation
             - TTL - Time to Live - 8 bits - number of hops this datagram has traveled
+                - Typical path length/network diameter is < 30 nodes
             - Protcol - 8 bits - TCP = 6, UDP = 17
             - Checksum - 16 bits - of the header only
             - Destination Address - 16 bits
             - Source Address - 32 bits
 
-        
+13. 11/02/2022
+    - IP Service Model
+        - IP Fragmentation and Reassembly
+            - Each network has some MTU Maximum Transmission Unit
+                - Ethernet - 1500 bytes
+                - FDDI - 4500 bytes
+            - Offset field is used to indicate which fragment of fragmented set, used for ordering
+            - Ident, all fragments carry this to indicate they are part of a larger packet
+            - Flag - fragmentation or not
+                - 0 flag and 0 offset - single packet
+            - Reassembly is done at the receiving host
+            - Fragments are self contained datagrams with IP headers
+            - IP does not recover from missing fragments, if one is lost, all the fragments are thrown away and the packet needs to be resent
+            - Each fragment needs to be a multiple of 8
+        - Details of IP Fragmentation and Reassembly
+            - H1 to R1 - Ethernet 1400 Bytes - MTU is 1500 Bytes - NO FRAGMENTATION
+            - R1 to R2 - FDDI - 1400 Byts - MTU is 4500 Bytes - NO FRAGMENTATION
+            - R2 to R3 - PPP - Split into 521 Bytes - MTU is 532
+                - Fragment 1 - 512 - Offset = 0
+                - Fragment 2 - 512 - Offset = 64 x 8 = 512 - UNIT 8
+                    - Length is 2^16, Offset is 2^13
+                    - To represent length, do 2^13 * 2^3 = 2^16
+                - Fragment 3 - 378 - Offset = 128 * 8 = 1024 = 512 * 2
+            - R3 to H2
+                - What if next MTU is 256?
+                    - MTU - 20 = 236
+                    - Reduce to multiple of 8
+                    - 232 is closest
+                - First Fragment - 512
+                    - Fragment 1 - 232
+                    - Fragment 2 - 232
+                    - Fragment 3 is 48
+                - Second Fragment
+                - Third Fragment
+        - Path MTU - Should be lowest MTU on the path - IPv6 - source node should determine this
+    - Global Addresses
+        - IPv4 Properties
+            - Globally Unique - 2^32
+            - Hierarchical - network + host ID
+            - Classes
+                - A - First Bit = 0, Network 7 Bits i.e. 2^7 networks, Host 24 Bits i.e. 2^24 hosts - 16 million
+                    - X.Y.Z.A
+                    - X is less thatn 128, class A
+                - B = First Bit = 1, Second Bit = 0, Network 14 bits i.e. 2^14 networks, Host 16 Bits i.e. 2^16 hosts - 65535
+                    - X.Y.Z.A
+                    - X is greater than 128 and less than 191, class B
+                - C - First Bit = 1, Second Bit = 1, Third Bit = 0, Network 21 bits i.e. 2^21 bits, Host is 8 bits i.e. 2^8 hosts - only 256
+            - Issue - Network has 300 hosts, too large for C and too small for B
+            - Above - Classful System
+            - Current - Classless System - Prefix 2-32 bits
+        - IPv4 Dot Notation
+            - 10.3.2.4
+            - 128.96.33.81
+            - 192.12.69.77
+            - 0-255, 0-255, 0-255, 0-255x
+        - Hierarchical
+            - For every host in the same network, they must share the same network numbers
+        - Datagram Forwarding
+            - Strategy
+                - Every datagram contains destination address
+                - If direclty connected to destinations network, then forward to host
+                - If not directly connected, forward to some router
+                - In each network, there is a default router address to forward out of network
+                - Forwarding table maps network number into next hop
+                - Each host has a default router
+                - Each router maintains a forwarding table
+                - Table
+                    - Network Number 1, 2, 3, 4
+                    - Next Hop R3, R1, Interface 1, Interface 0
+        - Address Translation
+            - Map IP addresses into physical addresses (MAC)
+                - Destination Host
+                - Next Hop router MAC Address
+            - Techniques
+                - Encode physical address in host part of IP address
+                    - IP Address - Network and Host ID
+                        - Issue IPv4 - no size, possible in IPv^6 as Network and Host ID are 64 bits
+                        - Issue IPv$ - security concern
+                - Table Based Approach
+                    - IP - 
+                    - MAC - 
+                    - How to create
+                        - Broadcast request if IP address not in table e.g. 141.215.10.30
+                        - Target machine responds wth its physical address
+                        - Table entries are discarded if not refreshed
+            - Address Resolution Protocol Packet Format
+                - Hardware Type - Wifi, Ethernet 1
+                - Protocol Type - IP 0800
+                - Header Length
+                - Packet Length
+                - Operation - Request and Reply
+                - Source Hardware Address (MAC)
+                - SOurce Hardware Address (MAC)
+                - SOurce Protocol Address
+                - Source Protocol Address
+                - Target Hardware Address - Possible to be all zeroes, or a previously learned MAC address
+                - Target Protocol Address
+            - ARP Details/Notes
+                - Table entries timeout in about 10 minutes
+                - Update table with source when you are the target
+                - Update table if already have an entry
+                - Do not refresh table entries upon reference
+    - Host Configuration Protoocl
+        - Etherenet address are configured into network by manufacturer and they are unique
+        - IP addresses must be unique on a given internetwork, but also must reflect the structure of the internetwork
+        - Dynamic Host Configuration Protocol DHCP
+            - Responsible for providing configuration information to hosts
+            - At least one DHCP server for an administrative domain
+            - DHCP server maintains a pool of available addresses
+        - IPconfig
+            - IPv4 Address, Lease Time, Default Gateway, DNS Servers, DHCP Server, DNS Servers
+        - Most OS provide  way to manually configure the IP information for the host
+        - Drawbacks of manual configuration - complexity, prone to errors
+        - DHCP Process
+            - DISCOVER - Newly booted or attached hosts sends DHCP Discover message to a special IP address (255.255.255.255)
+            - OFFER - DHCP relay agent unicast the message to DHCP server and waits for the response or DHCP server receive and unicast
+            - REQUEST - Client broadcast request for chosen IP address
+            - ACKNOWLEDGE - DHCP server acknowledges and unicasts to client
+        - Other Messages
+            - Release IP, Refresh IP
+        - Notes
+            - Built on UDP
+            - Listening on Port 67
+    - Internet Control Message Protocol (ICMP)
+        - Define a collection of error message that are sent back to the source host whenever a router or host is unable to process an IP datagram successfully
+            - Destination host unreachable due to link/node failure
+                - IP address is invalid or source host is unactive
+                - Network is unreachable, network portion of IP
+                - No service listening on the port specified
+            - Reassembly process failed
+            - TTL had reached 0
+            - IP header checksum failed
+            - Parameter problem
+            - Source quench - slow down on packets sent, not typically used
+            - Echo request - ask if machine is alive
+            - Echo reply - yes I am alive
+            - Timestamp request - same as echo request with timestamp
+            - Timestamep reply - same as echo reply with timestampm - accurate measurement of RTT
+        - Transport Layer Protocol on top of Internet Protocol, like TCP 6, UDP 17, ICMP 1
+        - ICMP Redirect
+            - From router to a source host
+            - With a better route information
+            - Hackers can pretend to perform this redirect to form a man in the middle as a router along the path
+        - Tools
+            - tracert
+                - Send UDP packet, set TTL large
+                - If TTL is small, we can trigger router to send ICMP messages back, inside messages we get router information, and can measure round trip time (time exceeded error)
+                - Send until you get destination unreachable error, reach host but no service running on that port
+            - tracerroute
+        - Important: For security reasons, routers can disable ICMP messages (timeout error)
+        - Programming Assignment
+            - travert domain > file.txt
+    - Tunneling
+        - IPv6 Network 1 to R1 to IPv4 Network to R2 to IPv6 Network
+        - Idea, encapsulate IPv6 packet inside of IPv4 packet
+    - Virtual Private Networks
+        - A Leased Line Private Network - high cost
+        - Virtual Private Network - set up tunnels between the sides, when data goes through the network, data is encrypted, nodes must exist in each LAN to perform encryption/decryption and coordination of packets
+    - Introduction to Routing
+        - Goal - produce forwarding tables, to learn the paths to reach each different network
+        - Two Algorithms - Distance Vector Routing and Link State Routing for Intradomain
+        - Two Levels of Routing
+            - Intradomain
+            - Interdomain
+        - Classless Inter-Domain Routing (Supernetting)
+        - Reduction - Deal with Domain, Deal with Networks, Deal with Hosts
+        - Overview
+            - Forwarding vs. Routing
+                - Forwarding - to select an output port based on destination address and routing table
+                - Routing - process by which routing (forwarding) table is built for each router
+            - Network as a Graph
+                - Problem - find the lowest cost (shortest) path between two nodes
+                - Edge - cost, higher bandwidth is smaller cost, greater distance is higher cost
+                - Djikstra's Shortest Path Algorithm - REVIEW
+                - Factors
+                    - Topology of the network (nodes and connections)
+                    - Load in the network
+                    - Link failures
+                    - Node crashes
+                    - Must be a distributed algorithm
+        - Distance Vector Routing
+            - Each node maintains a set of triplets (Destination, Cost, Next Hop)
+            - Exchange updates directly to connected neighbors
+            - Example - Table for Node A
+                - A sends messsage, learns can reach B, C, E, and F and each costs, sends to all neighbors
+                - B sends message, learns can reach A and C and each costs, sends to all neighbors
+                - C Sends message, learns can reach A, B, and D and each costs, sends to all neighbors
+
+
+14. 11/09/2022
+    - Distance Vector - Distributed Algorithm - Few Hundred/Thousand Networks
+        - Exchange entire forwarding tables (destination, cost)
+        - When learning something new, update and send to neighbors
+        - Issues
+            - Infinite loops when links breaks and interleaved updates, integer overflow catches this issue, count to infinity problem
+            - Core of the problem - when X tells Y it has a path somewhere, Y has no way o knowing whether itself is on the path, if Y on path, it is a loop
+            - Route Information Protocol - RIP - Open Shortest Path Forwarding
+            - Solutions
+                - Set infinity to maximum distance between two nodes i.e. network diameter
+                - Split Horizon - dont allow back sends from specific nodes, i.e. nodes where you have already used it
+    - Link State Routing - Few Hundred/Thousand Networks
+        - Strategy - send to all node, not just neighbors, information about directly connecetd links - FLOODING
+        - Five Parts
+            - Discover its neighbors and learn their network addresses
+            - Measure the delay or costs to each neighbor
+            - Construct a packet telling all it has learned
+            - Send packet to all routes
+            - Compute the shortest path to every other router
+        - Measure Line Costs
+            - Echo Packet
+            - Round Trip Time divide by two
+            - Load e.g. 1/BW - higher bw link is preferred
+        - Link State Packet
+            - id of the node that created the LSP
+            - cost of link to each directly connected neighbor
+            - sequence number, only forward when you receive a packet with a new sequence number
+            - time to live - how long in the network the packet will be valid
+        - Example
+            - Network as a Graph
+            - Once all link state packets are collected, you can create the graph
+            - You can then run shortest path algorithm
+        - Reliable Flooding
+            - store most recent LSP from each node
+            - forward LSP to all nodes but one that sent it
+            - generate new LSP periodically
+            - start seqno at 0 when reboot
+            - decrement TTTL of each stored LSP, discard when TTL = 0
+        - Route Calculation
+            - Dijkstra's Shortest Path Algorithm - Centralized Algorithm
+            - IS-IS - Intermediate System to Intermediate System
+            - OSPF
+    - Metrics
+        - Original ARPANET Metric
+            - Measure number of packets enqueued on each link, took neight latency or bandwidth into consideration
+        - New ARPANET Metric
+            - stamp each incoming packet with its arrival time
+            - record departure time
+        - Fine Tuning
+            - Mulitple a constant binary (1/Bandwidth) - higher the bandwidth, the lower the cost
+    - Hierarchical Routing
+        - Region
+            - One entry for each domain, and then one entry for each network in your own region
+        - Route is usually longer, to reach region hops is correct, but within region, unclear of hops needed to find target within network, unoptimal
+        - Domains are unlikely to share their internal information
+        - Multiple Regions = Zone = Domain + Domain = Bigger Domain
+    - How to Make Routing Scale?
+        - Flat vs. Hierarchical Address
+        - Inefficient use of Hierarchical Address Space
+        - Still Too Many Networks
+            - Routing table does not scale
+            - Route propogation protocols do not scale
+        - Use more Hierarchy
+            - Host - subnet and host ID
+        - Subnetting
+            - Add another level to address/routing hierarchy
+            - Subnet masks define variable partiion of host part
+            - Subnets visible only wihtin site
+            - Network Number | Host Number e.g. 141.215 - Network Number = Class B Address
+            - Subnetted Address - Network Number | Subnet ID | Host ID
+            - Subnet Mask - Which part is subnet ID?
+                - Address is 32 bit, if address in subnet is 1, than that is the subnet ID e.g. 255.255.255.0 is 3 bytes 1, so 8*3 = 24 1s which are subnet, 8 zeroes which are host ID
+            - 255.255.224.0
+                - 11111111 1111111 1100000 00000000
+            - Example
+                - Host 128.96.34.15
+                - Mask 255.255.255.128 - BIT WISE AND
+            - Subnet is only internal, outside it is about network numbers
+            - Subnet Example
+                - Class C Network 210.10.2.0
+                - Subnetwork 210.10.2.255
+                 - Depts
+                    A - 72 hosts - 255.255.255.128
+                        - Subnet ID = 0
+                        - Range of IP Addresses 210.10.2.0 - 210.10.2.127 - first bit is 0
+                    B - 18 hosts - 255.255.255.224
+                    C - 35 hosts - 255.255.255.192
+                        - Subnet ID = 10
+                        - Rang of IP Addressse 210.10.2.128 - 210.10.2.191 - first three bits are 10
+                    D - 25 hosts - 255.255.255.224
+                    Total - 150 Computers
+                - Subnet # - First Address - dont assign to host
+        - Classless Addressing
+            - Classes Inter Domain Routing CIDR
+                - A technique that addres two scaling concerns in the internet
+                    - The growth of backbone routing table as more and more network numbers
+                    - Potential exhaustion of the 32 bit address space
+                - Address Assignment Efficiency
+                    - Arises because of thet IP address structure with class A, B, and C addresses
+                    - Forces us to hand out network address space in fixed sized chunks of three very different sizes
+            - Size of network, is 2^I, I is 1 to 32
+            - Assign blocks of contiguous networks numbers to nearby networks
+            - Represent block with a single pair (first_network_address, length)
+            - Restrict block size to powers of 2
+            - All routers must understand CIDR addressing
+            - How does a network get part of IP addr?
+                - ICANN - Internet Corporation for Assigned Names and Numbers
+                - ARIN - American Register for Internet Numbers
+                    - Allocates addresses
+                    - Manages DNS
+            - Route Aggregation with CIDR
+            - IP Forwarding
+                - Assumes it can find the network number in a packet and then look up that number in forwarding table
+                - We need to change this assumption in case of CIDR, prefixes may be of any length, from 2 to 32 bits
+                - It is possible to have prefixes in the forwarding tables that overlap
+                    - e.g. find both 171.69 a 16 it prefix and 171.69.10 a 24 bit prefix, so pick the longest one, longest one addresses are contained in the shorter more general prefix
+                    - We always want the longest match*
+            - Route Aggregation
+                - How to perform a longest prefix match Classes IP Addressing - microsecond speed
+    - The Global Internet
+        - The Tree Structure of the Internet in 1990
+            - NSFNET Backbone - Regional Networks - Universities
+        - The Internet - Simple Multi Provider
+            - Multiple backbone service providers - Tier 1 (AT&T, Sprint, <100), Tier 2 Regional ISPs, 
+    - Route Propogation
+        - Idea - provide an additional way to hierarchically aggregate routing information in a large internet
+        - Routing within a single autonomous system - Intra-Autonomous Systems - Open Shortest Path First OSPF or IS-IS Intermediate System to Intermediate System
+        - Routing betweeen autonomous systems - Inter-Autonomous Systems - Border Gateway Protocol v4
+        - Another name for AS is routing domain
+    - Interdomain Routing
+        - 
