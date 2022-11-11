@@ -1682,4 +1682,52 @@ Operating Systems CIS 450
             - Log Structured FTL
                 - Upon a write, device appends the write to the next free spot
                 - To allow for subsequent reads, the device keeps a mapping table in its memory, and persistent, in some form, on the device
-            - 
+
+21. 11/11/2022
+    - Files and Directories
+        - Abstraction: File
+            - A file is a linear array of bytes
+            - Each file has some kind of low level name, usually a number, called an inode, user is not aware
+            - File system is to store the data persistently on disk and make sure that when you request the data again it is available
+        - Abstraction: Directory
+            - A directory like a file, has a low level name
+            - Content is a list of user readable names pairs
+            - Each entry in a directory refers to either files or other directories
+        - Path
+            - Absolute path /foo/bar.txt, Relative foo/bar.txt
+        - Abstraction: File Descriptors
+            - Small integer representing a kernel managed object that a process may read from or write to
+            - Opened by opening a file, directory, or device, creating a pipe, or duplicating an existing descriptor
+            - xv6 - uses file descriptor as index into a per process table
+            - stdin 0, stdout 1, stderr 2
+        - Opening a File
+            - int fd = open("foo")
+        - Creating a File
+            - int fd = creat("foo")
+        - Reading a File
+            - ssize_t read(int fd, \, \)
+        - Writing a File
+            - ssize_t write(int fd, |, |)
+        - Read and Write Not Sequentially
+            - off_t lseek(int fd)
+        - Writing Immediately
+            - fsync(fd) - force all dirty data of the fd file to disk
+        - Renaming Files
+            - Change the name or move a file to a different directory with the same or different name, keep same inode number
+        - Getting Info About Files
+            - Metadata - struct stat{}
+        - Removing Files
+            - unlink() - takes the name of the file to be removed
+                - Why unlink()? What is file has multiple names?
+                - Unlink removes all instances of the file
+        - Making Directories
+            - mkdir
+        - Reading Directories
+        - Deleting Directories
+            - rmdir
+        - Removing Files
+            - link() - when you link, you create another link to the file
+            - Hard Link - same file different names
+            - Soft Link - shortcut, pointer
+        - Making and Mounting File System
+            - mount
