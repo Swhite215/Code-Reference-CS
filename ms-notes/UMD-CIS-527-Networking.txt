@@ -1843,4 +1843,126 @@ Computer Networking CIS 527
         - Routing betweeen autonomous systems - Inter-Autonomous Systems - Border Gateway Protocol v4
         - Another name for AS is routing domain
     - Interdomain Routing
-        - 
+
+15. 11/16/2022
+    - Review
+        - Border Gateway Protocol - IMPORTANT
+        - Pakistan Telecom Prefix Hijakcing Youtube Article
+    - Border Gateway Protocol Routing
+        - Path Vector Algorithm
+            - Indicates complete path (ISPs Autonomous System Numbers) and distance - AS1 -> AS2 -> AS4
+        - BGP Example
+            - Speaker - advertise information, or cancel previously advertised paths
+        - Example
+            - A, B, and C are provider networks
+            - Preferred path is the cheapest path
+            - X,W,Y are customer of provided networks
+            - X is dual homed i.e. attached to two networks
+            - X does not want to route from B via X to C, so X will not advertise B a route to C
+        - Example
+            - A advertises to B the path AQ
+            - B advertises to X the path BAW
+            - Should B advertise to C the path BAW?
+                - No, B gets no revenue for routing CBAW since neither W nor C are B's customers
+                - B wants to force C to route w viw A
+                - B wants to route only to/from its customers
+            - Peers do not carry the BLANK traffic
+        - BGP Issues
+            - AS numbers carried in BGP need to be unique
+            - AS numbers are 16 bit numbers assigned by a central authority
+            - AS 2 can only recognize itself in the AS path in the example if no other AS identifies in the same way
+        - BGP Example
+            - AS1, AS2, and AS3 are access ISPS.
+            - AS4 and AS5 are regional ISPS
+            - AS6 is a Tier 1 ISP
+            - What path does a packet from host X to Y take?
+            - Money flow is arrow direction
+                - Option X -> AS1 -> AS2 -> AS3 -> Y
+                    - AS2 no incentive to advertise, they are not paid to transfer to AS3
+                - Option X -> AS1 -> AS4 -> AS6 -> AS5 -> AS3 -> Y
+                - Option X -> AS1 -> AS4 -> AS5 -> AS3 -> Y - PREFERRED
+            - First Choice - Customer
+            - Second Choice - Peer
+            - Third Choice - Provider 
+    - Integrating Interdomain and Intradomain Routing
+        - All routers run iBGP and an intradomain routing protocol.
+        - Border routers A, D, and E also run eBGP to other ASs
+        - BGP Table for the AS - pushed to B and C internal routers, how to get to prefix/outside - Inter-AS
+        - B Table - how to reach A, C, D, E, internal routers - Intra-AS
+        - Combined Table for B, how to get to external using internal path
+    - Repeaters, Hubs, Bridges, Switches, Routers, and Gateways
+        - Physical - Repeater/Hub
+        - Data Link - Bridge/Switch - looks at frame headers
+        - Network - Router - looks at packet/IP headers
+        - (Endhost) Transport Layer - Transport Gateway - looks at TCP header - Intrusion Detection System or Firewalls can operate here for visibility purposes
+        - (Endhost) Application Layer - Application Gateway - looks at user data
+    - Network Address Translation
+        - Goal - allow many hosts to share a single IP address
+        - Setup
+            - All datagrams leaving local network have same single soruce NAT IP Address: 128.76.29.7, different source port numbers, range shared amonst the host
+            - Datagrams with soruce or destination in this network have 10.0.0/24 address for source, destination
+        - Motivation - local network uses just one IP address as far as outside world is concerned
+            - No need to allocate a range of addresses
+            - Can change addresses of devices in local network without notifying outside world
+            - Can change ISP without changing addresses of devices in local network
+            - Devices inside local net not explicitly addressable, visible by outside world
+        - Private IP Addresses - Source of Local Addresses
+            - 65,536 - 192.168.0.0 - 192.168.255.255 - Needs to be mapped to global IP before being addressable
+            - 1,048,576 - 172.16.0.0 - 172.31.255.255
+            - 16,777,216 - 10.0.0.0-10.255.255.255
+        - NAT Router Must:
+            - Outgoing datagrams - replace source IP address and port# with NAT IP address and new port #
+            - Remember in NAT translation table
+        - Consequences - difficult to create applications where LAN hosts are clients and servers, given they are inaccessible
+        - 16 bit port number field - 60,000 simultaneous connections with a single LAN side address
+        - NAT is controversial
+            - Routers should only process up to layer 3, port number is layer 4
+            - violates end to end argument
+            - address shortage shuold instead be solved by IPv6
+    - IPv6
+        - Initial Motivation - 32 bit address space soon to be completely allocated
+            - IPv6 only services and devices, requires assigning an IPv6 and mapping IPv6 to IPv4
+            - Header format helps speed processing/forwarding
+            - Header changes to faclitate QoS
+        - Adoption
+            - Increasing slowly - US is ~ 50%, Russia is ~7%
+        - Support IPv4 and IPv6 - Dual Stack - two tables
+        - Most ISPs are avoiding the work, until the mobile devices, billions of them, come in and push the need for IPv6 addresses
+        - Headers
+            - Version - 4 bits
+            - Priority - 
+            - Flow Label - Datagram in same flow - (Source IP, Dest IP, Source Port, Dest Port)
+            - Payload Len - 
+            - Next Header - TCP or UDP, upper layer protocol for data TCP, UDP, ICMP, VPN headers
+            - Hop Limit
+            - Source Address - 128 bits
+            - Destination Address - 128 bits
+            - Data
+        - Other Changes from IPv4
+            - Checksum - removed entirely to reduce processing time at each hop, 
+                - IP4 Error Detection
+                    - Link CRC
+                    - IP - Internet Checksum - considered redundant by IPv6
+                    - TCP - Internet Checksum
+            - Options - allowed, but outside of header indciatd by Next Header field
+            - ICMPv6 - new version of ICMP, additional messages types "Packet Too Big", multicast group management functions
+        - IPv6 Address Notation
+            - 16 numbers in IPv4 format
+            - Group of 16 bit numbers in hex separated colons - 69DC:FFFF:FFFF:AAAA:BBBB:DDDD:EEEE:FFFF
+            - FF05:0:0:0:0:0:0:B3 -> FF05::B3
+        - IPv6 Address Space Allocation
+            - Prefix and Use
+                - 0000 0000 - IPv4 Compatability
+                - 001 - Global Unicast Address
+            - Aggregate Global Unicast Addresses
+                - 001 - 3 bits
+                - Registry ID
+                - Provider ID
+                - Subscriber ID
+                - Subnet ID
+                - Interface ID - 64 bits - Host ID LOWER
+        - Transition from IPv4 to IPv6
+            - Not all routers can be upgraded simultaneously
+                - No flag days
+                - How will the newtwork operate with mixed IPv4 and IPv6 routines? Dual Stack*
+            - Tunneling - IPv6 carried as payload in IPv4 datagram among IPv4 routers
