@@ -1966,3 +1966,83 @@ Computer Networking CIS 527
                 - No flag days
                 - How will the newtwork operate with mixed IPv4 and IPv6 routines? Dual Stack*
             - Tunneling - IPv6 carried as payload in IPv4 datagram among IPv4 routers
+        - Goal - deliver packet over network of routers
+
+16. 11/16/2022
+    - End to End Protocols
+        - Goal - deal with end to end host management
+        - Problem - turn host to host packet delivery service into a process to process communication service
+        - Protocols
+            - User Datagram Protocol
+            - Transmission Control Protocol
+        - Underlying Best Effort Network of IP
+            - Common End-to-End Services
+                - Guarantee message delivery
+                - Messages delivered in order
+                - Delivered at most once
+                - Arbitrarily large
+                - Support synchronization
+                - Allows reciever to flow control the sender
+                - Support multiple application processes on each host
+        - Simple Demultiplexer UDP
+            - Unreliable and unordered datagram service
+            - Adds multiplexing
+            - No flow control
+            - Endpoints defined by ports
+            - Header Format - Source Port, Dest Port, Checksum, Length, Data
+            - Optional Checksum
+            - Pseudo Header - Source/Dest IP and ????
+            - UDP Message Queue - Packets arrive, check the destination port and place in application process queue
+            - UDP Message - each has its own boundaries, each is its own segment, do not mix segments, unlike TCP
+            - Use Cases
+                - Majority 90% of intenet traffic is TCP
+                - VoIP - Skype
+                - DHCP - Dynamic Host Configuration Protocol
+                - DNS
+        - Transmission Control Protocol
+            - Connection Oriented
+            - Byte Stream
+                - Application writes bytes, copied to TCP buffers, TCP forms segments, sent over IP, arrives in TCP buffers, app reads bytes from buffer
+                - MTU - Headers e.g. 1500 - 20 = 1480 maximum size
+                - Either send full segment, push tiny, or wait till timeout and push what you have
+            - Flow Control
+                - Ask for available buffer size to avoid overflow
+            - Congestion Control - keep sender from overrunning the network, observe ack acknowledgements, when timeout, reduce your sending rate
+            - Adaptive Timeout - Goal >= RTT
+            - Transport Versus Data Link Sliding Window Algorithms
+                - Potentially connect many different hosts, needs explicit connection establishment and termination
+                - Potentially different RTT - needs adaptive timeout mecahnism
+                - Potentially long delay in network - need to be prepared for arrival of very old packets (two minutes late...)
+                - Potentially different capacty at destination, neeed to accommodate different node capacity - flow control
+                - Potentially different network capcaity, need to be prepared for network congestion, congestion control, done by end host largely
+            - TCP Header Format
+                - 20 Bytes, Each Row is Four bytes
+                - Source Port - 16 bits
+                - Destination Port - 16 bits
+                - Sequence Number - 32 bits - number of bytes of previous segment
+                - Acknowledge Number - next byte expected
+                - TCP Header Length
+                - URG - 1 bit - segment contains urgent data, indicates where non urgent data is, simpler approach, set up multiple connections i.e. one for data stream and one for control
+                - ACK - 1 bit - if set, look at acknowledgement field
+                - PSH - 1 bit - sender invokved the push operation, receiving side of TCP that it should notify the receiving process of this fact
+                - RST - 1 bit
+                - SYN - 1 bit - establishing TCP connection
+                - FIN - 1 bit - terminating TCP connection
+                - Window Size
+                - Checksum
+                - Urgent Pointer
+                - Options
+                - Data
+            - Connection Establishment - Three Way Handshake
+                - Client Active Participant Sends SYN to Passive Participant Server with sequence number random number x i.e. 2^32 -1 - packets sent from client to server
+                - Server sends SYN + ACK with acknowledgement = x + 1, sequence number = y - packets sent from server to client
+                - Client sends Acknowledgement with y + 1
+                - Connection Issue
+                    - Connect -> Terminate -> New Connection w/ Same Tuple - can't tell the difference between the two, there may be a packet in transit
+            - Connection Termination
+                - Client First, Server First, Both at Same Time
+                - Client First
+                    - Client sends FIN to server
+                    - Server sends ACK to client
+                    - Server sends FIN to client and stops sending
+                    - Client sends ACK and stops sending
