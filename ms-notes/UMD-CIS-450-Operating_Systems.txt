@@ -1731,3 +1731,102 @@ Operating Systems CIS 450
             - Soft Link - shortcut, pointer
         - Making and Mounting File System
             - mount
+
+22. 11/16/2022
+    - Very Simple File System Implementation
+        - Very Simple File System - simplified version of a UNIX file system, pure software, basic on disk structures, access method and verious policie 
+        - The Crux
+            - What structures are needed on disk?
+            - What do they need to track?
+            - How are they accessed?
+        - Memory Management
+            - Abstraction - address space of a process
+            - Memory Allocation - relocation, segementation, paging
+            - Memory Access - conversion from virtual address to physical address, memory management unit and segment/pag table
+        - Data Structures
+            - Divide disk into blocks of some size, assume just 64 blocks, each of size 4KB
+            - Blocks are addresssed from 0 to 63
+            - Filling the Blocks
+                - Data Region - User Data
+                - Inode Table - Meta Data
+                    - Data blocks used for a file, the size of a file, its owner and access rights, access and modify times, and etc.
+                    - The name inode is short for index node, historical name given to it by UNIX inventor Ken Thompson
+                    - Each inode is implicitly referred to by a number (called the inumber), low level name of the file
+                    - Given an inumber, we can calculate where on the disk the corresponding inode is located
+                - Free List - Bitmap - Free Space Management
+                    - bitmap - each bit is used to indicate whether the corresponding object/block is free or in use
+                    - i-bitmap - each bit is space for an inode object
+                    - d-bitmap - each bit - space for a datablock
+                    - Advantage - simplicity and its efficiency
+                    - data region and inode table
+                - Superblock - information about this file system
+                    - Number of inodes and datablocks, where the inode table begins and etc.
+            - Multi-Level Index in An Inode
+                - Direct Pointers
+                - Indirect Pointer - points to a block that contains multiple direct pointers
+                - Double Indirect Pointer - points to a block that contains multiple indirect pointers
+                - Triple Indirect Pointer - points to a block that contains multiple double indirect pointers
+                - Example Unix FS
+                    - Direct Blocks -> Blocks
+                    - SIngle -> Pointer Block -> Direct Blocks
+                    - Double INdirect -> Pointer Block -> Pointer Blocks -> Direct Blocks
+                    - Unix UFS
+                        - A file uses the following index blocks
+                            - 8 direct blocks
+                            - 4 single indirect blocks
+                            - 2 double indirect blocks
+                            - 1 triple indirect blocks
+                            - Maximum File Size
+                                - 4KB Block, 4B Size Pointer 4K/4B = 2^10 Pointers
+                                -  8 + (4 * 2^10) + (2 * 2^10 * 2^10) + (1* 2^10 * 2^10  * 2^10)
+                - Why tree?
+                    - Most files are smalll
+                    - Average file size is small
+                    - Most bytes are stored in large files
+                    - File systems contains lots of files
+                    - Files systems are roughly half full
+                    - Directories are typically small
+                - Typical Allocation Methods
+                    - Indexed-Based Inode
+                        - Keep all pointers to boocks in one location, multi level index
+                        - Pro - cached in memory, supports direct access, no external fragmentation
+                        - Cons - internal fragmentation in inode
+                        - Problem - what is good size for inode? Fragmentation vs. file length
+                    - Extent Based
+                        - A chunk of contiguous space is allocated initially, if not enough, another chunk of contiguous is added
+                        - Pro - minimzeds head movements, simplicity of both sequential and direct access
+                        - Cons - when disk is full, number of big extents are limited
+                    - Link Based
+                        - Scatter logical blocks throughout the disk, link each block to next one by forsard pointer, may need backward pointer for backspacing
+                        - Pro - flexible
+                        - Con - poor direct access, not reliable
+                - File Allocation Table
+                    - Allocating a new block to a file
+                    - Advantage - fast access
+                    - Disadvantage - lacks scalability
+                - Directory Organization
+                    - Directories - list of entry name and inode numbers, special type of file
+
+11/18/2022
+    - Reading
+        - Open - using a path, and control parameters, open a File
+            - Find the inode for the file bar
+            - Start at root, recursively traverse path name, finally read its destination inode into memory
+            - FS can do a permissions check, allocate a file descriptor, and return it to the user
+        - Read - read from the opened file
+            - Read block by block of the files based on the lcoated inode address
+            - May also update the inode with a new last accessed time
+    - Writing
+        - creat() or open()
+            - locate the directory and then create a file bar under the directory
+            - Update inode bitmap
+            - Update directory "foo" data block
+            - Create "bar" inode
+            - Update "foo" inode
+        - write()
+            - Each write to a file logically generates three I/Os
+            - Read the data bitmap
+            - Write to the bitmap
+            - Write to the actual block
+    _ Simulator
+        - mkdir(), creat(), open(), write(), close(), link(), unlink()
