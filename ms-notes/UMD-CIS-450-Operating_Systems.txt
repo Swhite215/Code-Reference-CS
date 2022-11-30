@@ -1807,7 +1807,7 @@ Operating Systems CIS 450
                 - Directory Organization
                     - Directories - list of entry name and inode numbers, special type of file
 
-11/18/2022
+11/23/2022
     - Reading
         - Open - using a path, and control parameters, open a File
             - Find the inode for the file bar
@@ -1830,3 +1830,127 @@ Operating Systems CIS 450
             - Write to the actual block
     _ Simulator
         - mkdir(), creat(), open(), write(), close(), link(), unlink()
+
+11/30/2022
+    - Problems of vsfs
+        - Poor performance, only delivered 2% of overall disk bandwidth since the data blocks may be very far away from their inodes
+        - Files are fragmented and reading a fragmented file is slow
+    - Fast File System
+        - Questions
+            - How can we organzie the file system structure?
+            - What type of allocation policies do we need?
+        - Goal and Drive - Disk Awareness
+        - Example - NBA
+        - Organization Structure - Cylinder Group
+            - Cylinders across each platter surface
+            - Each Group
+                - Super Block, Inode Bitmap, Data Bitmap, Inodes, Data Blocks
+                - Super Blocks are redundant in all groups
+                - Distance is 1/4 given the groups
+            - Block Group
+                - Disks use a logical address space of blocks and hide details of geometry
+        - Policies
+            - Keep related stuf together and unrelated far apart
+            - Directories - find the group with
+                - A low number of allcoatd directories to balance directories
+                - A high number of free inodes to allocate
+            - Files
+                - Allocate teh blocks of a finel in the same group as inode
+                - Place all files in teh same directory in the group
+            - Large Files
+                - Without a different rule, a large file would entirely fill up its first block group
+                - Solution - split the file into different groups
+                - This hurts the performance for sequential access
+        - ffs.py
+        - Tradeoff
+        - FFS Simple Practice for Large Files
+            - FFS is based on the structure of the inode itself
+                - First twelve direct blocks were placed in the same group
+                - Each subsequent indirect and all blocks pointed to it, was placed in a different group
+            - With a block size of 4KB and 32 bit (4B) disk addresses
+                - Everey 1024 blocks of the file were placed in separate groups, exect that the first 48KB of the file as pointed to by direct pointers 12 * 4KB
+    - Journaling
+        - Data Persistency - What about system crashes or power losses?
+        - Actions
+            - Append to the File - Content changes, additional pointers, change to d-bitmap
+            - System crash during update, and lose power between any two writes
+            - How many crash scenarios?
+                - 6 scenarios
+                    - Only B2 or D2 or LV2 is updated - 3
+                    - Only B2 or D2 or LV2 is not updated - 3
+                - How do we ensure file system keeps the on-disk image in a reasonable state?
+            - Consistent Update Problem
+                - We want to move file system from one consistent state to another
+                - We cant do this easily because the disk only commits one write at at time, and crashes may occur
+            - Old Consistent Update Solution: fsck
+                - Tool for finding inconsistencies and repairing them, let them happen and fix later
+                - Makes sure each allocated inode has avalid type field, inodes can be cleared
+                - Fsck does integirty check on contents of each directory, . and .. check, each inode referred to is allcoated
+                - Cons
+                    - Cant fix all problems
+                    - Very slow for a large disk
+            - New Consistent Update Solution - Journaling
+                - Linux ext3 files system
+                    - Write Ahead Logging or Journaling
+                    - Idea - before over writing, write down a little note somewhere else on disk, describe what you are about to do
+                    - Writing the note is write ahead
+                    - Writing to the structure is called a log
+                - Example
+                    - Writing LV2, B2, and D2
+                        - TXBegin - information about the pending update to teh file system and some transaction identifier TID
+                        - TXEnd - a marker of the end of the transaction, and also includes TID
+                - Data Journaling Protocol
+                    - Journal Write
+                        - Write TX -> TXEnd
+                        - Wait for writes to complete
+                    - Checkpoint
+                        - Write update to file system proper
+                        - Wait for writes to complete
+                    - Free
+                        - Mark the transaction free in journal
+                - Problem with ^
+                    - What if a crash occurs during the writes to the journal?
+                    - Solution - two steps
+                        - Make sure writs occur and then write TxEnd
+                        - Disks guarantee 512B write will either happen or not
+                    - If there is no end, then treat it as invalid
+                - Data Journaling Protocol Revied Version
+                    - Journal Write
+                        - WRite TX, LV2, B2, D2
+                        - Wait
+                    - Journal Commit
+                        - Write the tx commit TxEnd to the log
+                        - Wait
+                    - Checkpoint
+                        - Write the update LV2, B2, D2 to the final location
+                    - Free
+                        - Mark the transaction free in the journal
+                - Data Journaling Timeline
+                - Recovery
+                    - If crash happens before written to log - skip
+                    - If crash happens before tx commit, but before checkpoint
+                        - Look for txs committed but not freed and replay each transaction
+                        - Mark free if TX completed
+                - Data Journaling Revised Issue
+                    - What if you have a lot of data to write? Can we reduce?
+                    - Reducing Data Journaling Costs
+                        - Overhead - double D2 writings
+                            - Write journal to the log
+                            - WRite the update to file system proper
+                        - Metadata Journaling
+                            - Write TXbegin, IV2, B2 and TxEnd
+                            - D2 would simply be written to the final location
+                - Metadata Journaling
+                    - Data Write
+                        - Write D2 to the final location
+                        - Wait
+                    - Journal Write
+                        - Write TXBegin, IV2, and B2 to the log
+                        - Wait
+                    - Journal Commit
+                        - Write TxEnd to log
+                        - Wait
+                    - Checkpoint
+                        - Write the update to the final location
+                    - Free
+                        - Mark the transaction free in the journal
