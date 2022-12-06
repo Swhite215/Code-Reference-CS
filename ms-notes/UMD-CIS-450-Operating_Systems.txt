@@ -1181,9 +1181,9 @@ Operating Systems CIS 450
                 - Original Solution
                     - Create multiple process to serve all accesses
                     - Problem - time consuming and resource intensive to create a new process, process competing for CPU
-                - Better Soltion - light weight process called a thread
+                - Better Solution - light weight process called a thread
             - New Abstraction - Multi-Threading
-                - Traditional Process - a single poiint of execution within a prorgram
+                - Traditional Process - a single point of execution within a prorgram
                 - Multi-Threaded - more than one point of execution, multiple program counter
                     - Threads in a process share the same address space
                 - Features
@@ -1195,7 +1195,7 @@ Operating Systems CIS 450
                     - Resource Sharing - instructions, global variables, files, etc.
                     - Responsiveness - fast thread creating
                     - Parallel Executing
-                        - Utiliizing multi cores e.g. adding two large arrays together in parallel
+                        - Utilizing multi cores e.g. adding two large arrays together in parallel
                         - Avoiding blocking program progress due to slow I/O e.g. loading web pages with images
                 - Multithreaded Web Server
                     - Dispatcher Thread - manages allocation
@@ -1212,7 +1212,7 @@ Operating Systems CIS 450
                 - Differences
                     - Context switch is performed between threads as compared to processes
                     - Need one or more TCBs to store the state of each thread instead of PCBs
-            - Process Exeuction
+            - Process Execution
                 - A process with two threads of execution on a single processor
             - Summary Process vs. Thread
                 - Process
@@ -1225,7 +1225,7 @@ Operating Systems CIS 450
             - Thread Library
                 - Library provides API for creating and managing threads
                 - PThreads
-                    - IEEE POXIS strandard, Unix and Linux
+                    - IEEE POSIX strandard, Unix and Linux
                     - Defined as a set of C language programming types and procedure calls
                 - APIs
                     - pthread_create() - creates a new thread
@@ -1254,7 +1254,7 @@ Operating Systems CIS 450
                 - lock(&mutex)
                     - tries to acquire the lock mutex
                     - if no other thread holds the lock, the thread will acquire the lock and enter the critical section
-                    - if another thread then calls lock on that sasme lock mutex, it will not return while the lock is held
+                    - if another thread then calls lock on that same lock mutex, it will not return while the lock is held
                 - unlock()
                     - once the owner calls unlock, the lock is now available again
                     - if there are waiting threads, one of them will notice the change lock state and acquire the lock and enter the crticial section
@@ -1277,12 +1277,12 @@ Operating Systems CIS 450
                         - flag - if thread is ready to enter its critical section
                         - if you want to go in, and it is your turn, you enter, else you wait
                     - Yielding Solution - spin waiting
-                        - When gong to spin, give up the CPU to another thread
+                        - When going to spin, give up the CPU to another thread
                         - OS switches the threads between running and ready/runnable
-                        - Problem - 100 threads, 99 call lock an dyield, thread runs again
+                        - Problem - 100 threads, 99 call lock and yield, thread runs again
                     - Sleeping Solution - spin waiting
                         - The sleeping thread is in blocked/waiting state
-                        - Sleepin gthread does not comepte for CPU
+                        - Sleeping thread does not comepte for CPU
                     - Remarks on Software
                         - Developing locks without special hardware support is interesting and challenging
                         - Much easier to assume a little hardware support, order of instructions matter
@@ -1310,7 +1310,7 @@ Operating Systems CIS 450
                 - Parent spinning, checking done variable until child performs action
         - Condition Variable
             - Explicit queue that
-                - threads can put themselces on when some state of execution is not as desired
+                - threads can put themselves on when some state of execution is not as desired
                 - Some other thread, when it changes said state, can then wake one of the threads
             - Operations
                 - wait() - thread puts itself to sleep
@@ -1334,24 +1334,24 @@ Operating Systems CIS 450
             - Example - Three Threads
                 - Two threads increment counter
                 - One thread watches counter
-                - When counter reachers target, it uses signal to wake up sleeping thread
+                - When counter reaches target, it uses signal to wake up sleeping thread
             - Example Class Registration
                 - register() - lock mutex, if reached capacity, wait until someone drops
                 - drop() - lock mutex, reduce sum, signal another can register, unlock mutex
 
 17. 11/10/2022
     - Concurrency - Semaphores
-        - Djikstra - invented semaphore as a singl eprimite for all things related to synchronization
+        - Djikstra - invented semaphore as a single primative for all things related to synchronization
         - Sempahore Resource
             - Object with an integer value i.e. a unit of resource
             - sem_wait() - request for a unit of resource - atomic
                 - if unit available, get, else wait
             - sem_post() - release one unit of resource - atomic
-                - wake a waithing thread
+                - wake a waiting thread
             - sem_init() - can share between processes
         - Sempahore Implementation
             - Each semphore will be associated with a queue for sleeping threads
-            - atomic dones as mutex lock
+            - atomic done as mutex lock
         - Use Semaphore
             - init
             - wait
@@ -1363,7 +1363,7 @@ Operating Systems CIS 450
             - Producer produces something and wishes to place them in a buffer
             - Consumers grabs data from buffer
             - Example - a multi-threaded web server, producer puts HTTP requests in a work queue, consumer takes requests out of queue and processes them
-            - Design - Implement quere with an array, produce enqueue, consumer dequeue, FIFO
+            - Design - Implement queue with an array, producer enqueue, consumer dequeue, FIFO
             - Example
                 - How to synchronize the access to the buffer?
                 - Attempt #1
@@ -1385,7 +1385,7 @@ Operating Systems CIS 450
             - First Reader Writer Problem
                 - No reader will be kept waiting unless a writer has already obtained permission to write the shared data
             - Second Reader Writer Problem
-                - Once a writer is ready, that writer perfrorms its write as fast as possible
+                - Once a writer is ready, that writer performs its write as fast as possible
             - Code
                 - write() - acquire write lock - write - release write lock
                 - reader() - acquire read lock - read - release read lock
@@ -1399,7 +1399,7 @@ Operating Systems CIS 450
             - 5 Philosopher 
             - 5 Chopsticks
             - 5 Binary Semaphores
-            - To dine, acquire left and write chopstick, eat, release left and write chopstick
+            - To dine, acquire left and write chopstick, eat, release left and right chopstick
             - Issue - what if everybody grabbed the left, no one could eat
             - Solution - dealing with deadlock - next video
 
@@ -1429,12 +1429,12 @@ Operating Systems CIS 450
             - Mutual Exclusion - threads claim exclusive control of resources that they require
             - Hold and Wait - threads hold resources allocated to them e.g. locks they have acquired, while waiting for additional resources
             - No Preemption - resources cannot be forcibly removed from threads that are holding them
-            - Circular Wait - there exists a circular chain of threads such that each thread holds oen more resources that are beign requested by the next thread in the chain
+            - Circular Wait - there exists a circular chain of threads such that each thread holds one or more resources that are being requested by the next thread in the chain
         - RAG and Deadlocks
             - If a RAG does not have a cycle, then no process is deadlocked, something will eventually be released
-            - If a RAG has a cycle, then a deadlock may exists
+            - If a RAG has a cycle, then a deadlock may exist
     - Deadlock Prevention
-        - Prevent occurencet of deadlock by preventing occurrence of any one of the four necessary conditions for deadlock
+        - Prevent occurence of deadlock by preventing occurrence of any one of the four necessary conditions for deadlock
             - ME
                 - Make resources sharable, locking cells in spreadsheet instead of locking the whole spreadsheet
                 - Limitation - can we share cell in spreadsheet?
@@ -1442,7 +1442,7 @@ Operating Systems CIS 450
                 - Requesting resources simulataneously and atomically
                 - Thrashing - no processes are allocated enough frames, each is fighting, holding and waiting
                 - When request, you always get exactly what you need, or nothing
-                - Limitation - encapsulation works against us, we woul dneed to know the number of needed locks, also likely decreases concurrency
+                - Limitation - encapsulation works against us, we would need to know the number of needed locks, also likely decreases concurrency
             - NP
                 - Cause - we generally view locks as held until unlock is called
                 - trylock(), grab the lock if it is available, or return -1 indicating that the lock is held right now
@@ -1474,21 +1474,21 @@ Operating Systems CIS 450
     - Persistence: IO Devices and Disks Storage
         - System Architecture
         - Why?
-            - high perfromance components closer to CPU
+            - high performance components closer to CPU
             - faster memory closer to CPU
         - Persistence - store information for a long period of time
-        - Need hardware and softare to be able to store data
-        - Hardwre - input/output device
-        - Software - filesystem
+        - Need hardware and software to be able to store data
+        - Hardware - input/output device
+        - Software - file system
     - Uniqueness of the Abstraction
-        - The OS does nto create private virtualized disks for I/O
+        - The OS does not create private virtualized disks for I/O
     - A Canonical Device
         - Hardware Interface - allows the system software to control its operations
         - Three Registers
-            - Status regsaier - current status of device
-            - COmmand - tell device to perform a task
+            - Status register - current status of device
+            - Command - tell device to perform a task
             - Data - pass or get data
-            - Write Flow - check status, write data to DATA, write command Write, check status
+            - Write Flow - check status, write data to DATA, write command WRITE, check status
             - Read Flow - check status, write command READ, read data from DATA
         - Problems
             - Polling seems inefficient, wastes a great deal of time
@@ -1497,7 +1497,7 @@ Operating Systems CIS 450
             - No waiting but sleep
             - Notification - when device is finished, raise hardware interrupt
         - Benefit - interrupt thus allow for overlap of computation and I/O which is key for improved utilization
-        - Interrupt is not always best, for a fast device, will slow down system, swtiching process is expewnsive
+        - Interrupt is not always best, for a fast device, will slow down system, switching process is expensive
     - DMA
         - Direct Memory Access
             - When CPU is involved with data movement, we refer to it as programmed I/O
@@ -1521,7 +1521,7 @@ Operating Systems CIS 450
                 - Specific Block Interface
                 - Device Driver
                 - Pattern
-                    - An applicaiton issues block read and write request to the generic block layer which routes them to the appropriate device driver which handles the details of issuing the specific request
+                    - An application issues block read and write request to the generic block layer which routes them to the appropriate device driver which handles the details of issuing the specific request
     - Interesting Facts
         - Device drivers are a huge percentage of kernel code e.g. Linux over 70%
         - A modern OS has millions of lines of code i.e. millions of lines of device driver code
@@ -1538,7 +1538,7 @@ Operating Systems CIS 450
                 - Disk Structure
                     - Track, Sector, Track Sector, Cluster
                 - Interface
-                    - Drive consists of a large number of sectors/blocks, each of whis is 521 bytes and can be read or written
+                    - Drive consists of a large number of sectors/blocks, each of which is 512 bytes and can be read or written
                     - Multi-sector operations are possible
                 - Features of Disk Access
                     - Sequential access is faster than random access
@@ -1562,7 +1562,7 @@ Operating Systems CIS 450
                 - Reading
                     - When reading, drive might decide to read in all of the sectors and cache, allows to quikcly respond to subsequent requests
                 - Write Back
-                    - Acknowledges the write has completed when it has put the data in memory, makes the drive appear fatster, but can be dangerous
+                    - Acknowledges the write has completed when it has put the data in memory, makes the drive appear faster, but can be dangerous
                 - Write Through
                     - It acknowledges the write has completed after the write has actually been written to disk
                 - Performance
@@ -1582,7 +1582,7 @@ Operating Systems CIS 450
                 - Performance Evaluation
                     - Shortest Seek Time First - orders the queue of I/O requests by track, and pickes the request on the nearest track
                         - Issues - not enough information, just array of blocks, must search by index e.g. Nearest Block First
-                        - Issue - staravation - how can we avoid?
+                        - Issue - starvation - how can we avoid?
                     - SCAN (Elevator) and C-SCAN
                         - We call a single pass across the disk a sweep
                         - Instead of sweeping in both direction, only sweep outer to inner, more fair
@@ -1597,7 +1597,7 @@ Operating Systems CIS 450
             - Interface
                 - RAID looks like a disk
             - Internals
-                - RAID is built as separate hardware box with sstandard connection
+                - RAID is built as separate hardware box with standard connection
                 - Specialized computer system
             - Transparency
             - Capacity
@@ -1625,7 +1625,7 @@ Operating Systems CIS 450
                         - Writing - parallel, issue is writing to disk 4 in addition for any changes on a disk
                 - Raid Level 5: Rotating Parity
                     - It rotates the parity block across the drives
-                    - 5 disks for 4 dissk space
+                    - 5 disks for 4 disk space
                     - Failure rate 10f^2
                     - Reading 4x, Writing 4x
             - Performance
@@ -1642,7 +1642,7 @@ Operating Systems CIS 450
                 - Die
                 - Die Made Up of Planes
                 - Planes Made Up of Blocks
-                - Bloacks Made Up of Pages
+                - Blocks Made Up of Pages
             - Basic Flash Operations
                 - Read A Page
                 - Write a Page
@@ -1650,7 +1650,7 @@ Operating Systems CIS 450
                     - Program some of the 1s within a page to 0's as desired
                 - States of a Page - Invalid, Valid, Erased
                     - Issue - you can only program an erased page
-                - Erase - make sure any data that you care about in the block has been copied elswhere before executing the erase
+                - Erase - make sure any data that you care about in the block has been copied eleswhere before executing the erase
                 - Example
                     - Four Pages
                     - Back Up Page 1, 2, 3
@@ -1670,7 +1670,7 @@ Operating Systems CIS 450
                 - Wear Out
                     - Spread writes evenly as possible around
                 - Program Disturbance
-                    - program pagees within an erased block in order, from low page to high page
+                    - program pages within an erased block in order, from low page to high page
                 - Write Amplification
                     - Reduce write traffic
             - Direct Mapped
@@ -1734,7 +1734,7 @@ Operating Systems CIS 450
 
 22. 11/16/2022
     - Very Simple File System Implementation
-        - Very Simple File System - simplified version of a UNIX file system, pure software, basic on disk structures, access method and verious policie 
+        - Very Simple File System - simplified version of a UNIX file system, pure software, based on disk structures, access methods and verious policies
         - The Crux
             - What structures are needed on disk?
             - What do they need to track?
@@ -1768,8 +1768,8 @@ Operating Systems CIS 450
                 - Triple Indirect Pointer - points to a block that contains multiple double indirect pointers
                 - Example Unix FS
                     - Direct Blocks -> Blocks
-                    - SIngle -> Pointer Block -> Direct Blocks
-                    - Double INdirect -> Pointer Block -> Pointer Blocks -> Direct Blocks
+                    - Single -> Pointer Block -> Direct Blocks
+                    - Double Indirect -> Pointer Block -> Pointer Blocks -> Direct Blocks
                     - Unix UFS
                         - A file uses the following index blocks
                             - 8 direct blocks
@@ -1788,16 +1788,16 @@ Operating Systems CIS 450
                     - Directories are typically small
                 - Typical Allocation Methods
                     - Indexed-Based Inode
-                        - Keep all pointers to boocks in one location, multi level index
+                        - Keep all pointers to blocks in one location, multi level index
                         - Pro - cached in memory, supports direct access, no external fragmentation
                         - Cons - internal fragmentation in inode
                         - Problem - what is good size for inode? Fragmentation vs. file length
                     - Extent Based
                         - A chunk of contiguous space is allocated initially, if not enough, another chunk of contiguous is added
-                        - Pro - minimzeds head movements, simplicity of both sequential and direct access
+                        - Pro - minimzes head movements, simplicity of both sequential and direct access
                         - Cons - when disk is full, number of big extents are limited
                     - Link Based
-                        - Scatter logical blocks throughout the disk, link each block to next one by forsard pointer, may need backward pointer for backspacing
+                        - Scatter logical blocks throughout the disk, link each block to next one by forward pointer, may need backward pointer for backspacing
                         - Pro - flexible
                         - Con - poor direct access, not reliable
                 - File Allocation Table
@@ -1814,7 +1814,7 @@ Operating Systems CIS 450
             - Start at root, recursively traverse path name, finally read its destination inode into memory
             - FS can do a permissions check, allocate a file descriptor, and return it to the user
         - Read - read from the opened file
-            - Read block by block of the files based on the lcoated inode address
+            - Read block by block of the files based on the located inode address
             - May also update the inode with a new last accessed time
     - Writing
         - creat() or open()
@@ -1837,7 +1837,7 @@ Operating Systems CIS 450
         - Files are fragmented and reading a fragmented file is slow
     - Fast File System
         - Questions
-            - How can we organzie the file system structure?
+            - How can we organize the file system structure?
             - What type of allocation policies do we need?
         - Goal and Drive - Disk Awareness
         - Example - NBA
@@ -1850,13 +1850,13 @@ Operating Systems CIS 450
             - Block Group
                 - Disks use a logical address space of blocks and hide details of geometry
         - Policies
-            - Keep related stuf together and unrelated far apart
+            - Keep related stuff together and unrelated far apart
             - Directories - find the group with
-                - A low number of allcoatd directories to balance directories
+                - A low number of allocated directories to balance directories
                 - A high number of free inodes to allocate
             - Files
-                - Allocate teh blocks of a finel in the same group as inode
-                - Place all files in teh same directory in the group
+                - Allocate the blocks of a file in the same group as inode
+                - Place all files in the same directory in the group
             - Large Files
                 - Without a different rule, a large file would entirely fill up its first block group
                 - Solution - split the file into different groups
@@ -1868,7 +1868,7 @@ Operating Systems CIS 450
                 - First twelve direct blocks were placed in the same group
                 - Each subsequent indirect and all blocks pointed to it, was placed in a different group
             - With a block size of 4KB and 32 bit (4B) disk addresses
-                - Everey 1024 blocks of the file were placed in separate groups, exect that the first 48KB of the file as pointed to by direct pointers 12 * 4KB
+                - Eveey 1024 blocks of the file were placed in separate groups, except that the first 48KB of the file as pointed to by direct pointers 12 * 4KB
     - Journaling
         - Data Persistency - What about system crashes or power losses?
         - Actions
@@ -1885,7 +1885,7 @@ Operating Systems CIS 450
             - Old Consistent Update Solution: fsck
                 - Tool for finding inconsistencies and repairing them, let them happen and fix later
                 - Makes sure each allocated inode has avalid type field, inodes can be cleared
-                - Fsck does integirty check on contents of each directory, . and .. check, each inode referred to is allcoated
+                - Fsck does integrity check on contents of each directory, . and .. check, each inode referred to is allcoated
                 - Cons
                     - Cant fix all problems
                     - Very slow for a large disk
@@ -1897,7 +1897,7 @@ Operating Systems CIS 450
                     - Writing to the structure is called a log
                 - Example
                     - Writing LV2, B2, and D2
-                        - TXBegin - information about the pending update to teh file system and some transaction identifier TID
+                        - TXBegin - information about the pending update to the file system and some transaction identifier TID
                         - TXEnd - a marker of the end of the transaction, and also includes TID
                 - Data Journaling Protocol
                     - Journal Write
@@ -1911,7 +1911,7 @@ Operating Systems CIS 450
                 - Problem with ^
                     - What if a crash occurs during the writes to the journal?
                     - Solution - two steps
-                        - Make sure writs occur and then write TxEnd
+                        - Make sure writes occur and then write TxEnd
                         - Disks guarantee 512B write will either happen or not
                     - If there is no end, then treat it as invalid
                 - Data Journaling Protocol Revied Version
@@ -1936,7 +1936,7 @@ Operating Systems CIS 450
                     - Reducing Data Journaling Costs
                         - Overhead - double D2 writings
                             - Write journal to the log
-                            - WRite the update to file system proper
+                            - Write the update to file system proper
                         - Metadata Journaling
                             - Write TXbegin, IV2, B2 and TxEnd
                             - D2 would simply be written to the final location
