@@ -1290,7 +1290,7 @@ Computer Networking CIS 527
             - Devie to Device communication directly
         - New for 5G
             - CP-OFDM
-            - Massive Multiple Input Multiple Ouput - large number of bearers to icnrease bandwidth
+            - Massive Multiple Input Multiple Ouput - large number of bearers to increase bandwidth
             - MM Wave
             - Beam Forming 
             - Shortened TTI
@@ -1369,11 +1369,11 @@ Computer Networking CIS 527
         - Used in Network and IP
         - Notes
             - No round trip time delay waiting for connection setup
-            - Source hosts has no way of knowing if the network is capable of delivering packet or if dest host i up
+            - Source hosts has no way of knowing if the network is capable of delivering packet or if dest host is up
             - Possible to route around link and node failures given packets are treated independently
             - Overhead per packet is higher than for connection, given packet must carry full address of the destination
     - Packet Switching Method - Virtual Circuit Switching
-        - Explicity connection setup and tear down phase
+        - Explicit connection setup and tear down phase
         - Subsequent packets follow same circuit
         - Connection oriented model
         - Table
@@ -1435,7 +1435,7 @@ Computer Networking CIS 527
         - Broadcast and Multicast
             - Forward all broadcast/multicast frames - current practice
             - Learn when no group members downstream
-            - Accomplished by having each member of group G send a frame to brdige multicast address with G in source field
+            - Accomplished by having each member of group G send a frame to bridge multicast address with G in source field
         - Limitations of Bridges
             - Does not scale, running algorithm is dificult
             - Issue is transparency when performing broadcast, bridges are known, latency changes through bridges
@@ -1443,7 +1443,7 @@ Computer Networking CIS 527
     - Asynchronous Transfer Mode: ATM (Network)
         - 1980's-1990's - Standard for High Speed
         - Goal - integrated, end to end transport of carry voice, video, and data
-        - ATM - Broadband Integraetd Service Digital Network Architecture
+        - ATM - Broadband Integraeted Service Digital Network Architecture
         - Requirements
             - Meeting timing/quality of service requirements of voice, video
             - "Next generation" telephony, roots in telephone world
@@ -1479,13 +1479,13 @@ Computer Networking CIS 527
             - An arbitraty collection of networks interconnected to provide some sort of host to host packet delivery service
             - Example - Ethernet, Wireless, Point to Point
         - What is IP?
-            - Internet Protocol
+            - Internet Protocol - 20 byte headers, for fragmenting
             - Key tool used today to build scalable, heterogenous internetworks
             - Add an additional layer between link and transport, called IP
             - Example
                 - Hello - TCP Header - IP Header - Wifi Header (over wifi)
                 - Hello - TCP Header - IP Header - Ethernet Header (over ethernet)
-                - Helo - TCP Headder - IP Header - PPP Headers 
+                - Helo - TCP Header - IP Header - PPP Headers 
         - IP Service Model
             - Packet Delivery Model
                 - Connectionless model for data delivery
@@ -1566,7 +1566,7 @@ Computer Networking CIS 527
             - Classes
                 - A - First Bit = 0, Network 7 Bits i.e. 2^7 networks, Host 24 Bits i.e. 2^24 hosts - 16 million
                     - X.Y.Z.A
-                    - X is less thatn 128, class A
+                    - X is less than 128, class A
                 - B = First Bit = 1, Second Bit = 0, Network 14 bits i.e. 2^14 networks, Host 16 Bits i.e. 2^16 hosts - 65535
                     - X.Y.Z.A
                     - X is greater than 128 and less than 191, class B
@@ -1601,7 +1601,7 @@ Computer Networking CIS 527
                 - Encode physical address in host part of IP address
                     - IP Address - Network and Host ID
                         - Issue IPv4 - no size, possible in IPv^6 as Network and Host ID are 64 bits
-                        - Issue IPv$ - security concern
+                        - Issue IPv6 - security concern
                 - Table Based Approach
                     - IP - 
                     - MAC - 
@@ -1635,7 +1635,7 @@ Computer Networking CIS 527
             - DHCP server maintains a pool of available addresses
         - IPconfig
             - IPv4 Address, Lease Time, Default Gateway, DNS Servers, DHCP Server, DNS Servers
-        - Most OS provide  way to manually configure the IP information for the host
+        - Most OS provide way to manually configure the IP information for the host
         - Drawbacks of manual configuration - complexity, prone to errors
         - DHCP Process
             - DISCOVER - Newly booted or attached hosts sends DHCP Discover message to a special IP address (255.255.255.255)
@@ -1719,7 +1719,7 @@ Computer Networking CIS 527
         - When learning something new, update and send to neighbors
         - Issues
             - Infinite loops when links breaks and interleaved updates, integer overflow catches this issue, count to infinity problem
-            - Core of the problem - when X tells Y it has a path somewhere, Y has no way o knowing whether itself is on the path, if Y on path, it is a loop
+            - Core of the problem - when X tells Y it has a path somewhere, Y has no way of knowing whether itself is on the path, if Y on path, it is a loop
             - Route Information Protocol - RIP - Open Shortest Path Forwarding
             - Solutions
                 - Set infinity to maximum distance between two nodes i.e. network diameter
@@ -1811,7 +1811,7 @@ Computer Networking CIS 527
                     - The growth of backbone routing table as more and more network numbers
                     - Potential exhaustion of the 32 bit address space
                 - Address Assignment Efficiency
-                    - Arises because of thet IP address structure with class A, B, and C addresses
+                    - Arises because of the IP address structure with class A, B, and C addresses
                     - Forces us to hand out network address space in fixed sized chunks of three very different sizes
             - Size of network, is 2^I, I is 1 to 32
             - Assign blocks of contiguous networks numbers to nearby networks
@@ -1847,7 +1847,7 @@ Computer Networking CIS 527
 15. 11/16/2022
     - Review
         - Border Gateway Protocol - IMPORTANT
-        - Pakistan Telecom Prefix Hijakcing Youtube Article
+        - Pakistan Telecom Prefix Hijacking Youtube Article
     - Border Gateway Protocol Routing
         - Path Vector Algorithm
             - Indicates complete path (ISPs Autonomous System Numbers) and distance - AS1 -> AS2 -> AS4
@@ -1864,7 +1864,7 @@ Computer Networking CIS 527
             - B advertises to X the path BAW
             - Should B advertise to C the path BAW?
                 - No, B gets no revenue for routing CBAW since neither W nor C are B's customers
-                - B wants to force C to route w viw A
+                - B wants to force C to route w via A
                 - B wants to route only to/from its customers
             - Peers do not carry the BLANK traffic
         - BGP Issues
@@ -2039,10 +2039,309 @@ Computer Networking CIS 527
                 - Client sends Acknowledgement with y + 1
                 - Connection Issue
                     - Connect -> Terminate -> New Connection w/ Same Tuple - can't tell the difference between the two, there may be a packet in transit
+                - Must wait roughly two RTTs before you can begin sending messages
+                    - TCP may not be efficient for simple protocols e.g. DHCP and DNS
+                    - HTTP and HTTPS -> TLS -> TCP
+                        - TLS - Two RTT
+                        - TCP - Two RTT
+                        - Four RTT in HTTPs situation
+                - QUIC - Replaces TLS and TCP (UDP)
             - Connection Termination
                 - Client First, Server First, Both at Same Time
                 - Client First
                     - Client sends FIN to server
                     - Server sends ACK to client
                     - Server sends FIN to client and stops sending
-                    - Client sends ACK and stops sending
+                    - Client sends ACK and stops
+                    - Timed wait, up to two minutes, to confirm other component has closed
+            - 578 Advanced Operating Systesm, 525 Web Technologies
+                    
+17. 11/30/2022
+    - Final Exam
+        - First Part - Multiple Choice - 45 Points - 45 Minutes
+        - Second Part - Free Reesponse - 55 Points - 2 Hour
+        - Content - Will review on 11/07/2022
+    - End to End Protocols
+        - TCP Connection Management - Simple Scenarios
+            - TCP Client Lifecycle
+                - CLOSED -> SYN_SENT -> ESTABLISHED -> FIN_WAIT_1 -> FIN_WAIT_2 -> TIME_WAIT
+            - TCP Server Lifecycle
+                - CLOSED -> LISTEN -> SYN_SEND -> ESTABLISHED -> CLOSE_WAIT -> LAST_ACK
+        - TCP Flow Control and Congestion Control
+            - Sliding Window Used for Flow and Congestion Control - Automatic Repeat Request
+            - A - A fast network feeding a low capacity receiver - receiver overflows
+                - To solve - adjust the sending rate, to align with draining rate
+            - B - A slow network feeding a high capacity receiver - routers buffers overflow
+                - To solve - adjust the sending rate to align with the capacity of the network
+                - Challenge - how does each flow set its own sending rate
+            - Sliding Window Algorithm Revisited
+                - TCP Connection is a Byte String
+                - Sending Side
+                    - LastByteAcked <= LastByteSent - between are bytes already sent
+                    - LastByteSent <= LastByteWritten - between are bytes in TCP buffer untransmitted
+                    - LastByteAcked and LastByteWritten buffer bytes between - if full block
+                - Receving Side
+                    - LastByteRead < NextByteExpected - application must use recv to pick up from buffer
+                    - NextByteExpected <= LastByteRcvd + 1
+                    - Buffer bytes between NextByteRead and LastByteRcvd
+                        - Relationship is all the value that are currently in the buffer
+            - Example
+                - ACK should be next byte expected sliding window
+                - SEQ shuld increment by size of data
+        - TCP Flow Control
+            - Goal - sender wont overflwo receivers buffer by too much too fast
+            - Recevie side of TCP connection has a receive buffer, where data is placed when it arrives
+            - Every time acknowledgement is sent, you share available buffer space, in windows field
+            - SWS <= Advertising Window Size
+            - Persist when Advertising Window = 0 - send probe frame to trigger acknowledgement should be returned
+            - SYN Attack - overflow the receiving buffer to create a simple denial of service attack
+        - Protection Against Wraparound
+            - Issue - when higher and higher bandwidth
+                - Problem - wrap around
+                    - A byte with sequence number x could be sent at on time, and then at a later time a second byte with the same sequence number x could be sent
+                    - If 32 bits, 4GB before sequence number flips
+                    - How long? TABLE
+                        - 1.5Mbps - 6.4 hours
+                        - 622 Mbps - 55 seconds
+                    - Assumption - packet cannot survive for longer than MSL, Maximum Segment Life e.g. 120 seconds
+                    - We need to make sure sequence number does not wrap around within MSL
+                    - Issue packet sent and thought lost, arrives, this packet shuold be dropped if it falls in the window
+                - Problem - keeping the pipe full
+                    - 16 bit advertised window field must be big enough to allow the sender to keep the pipe full
+                    - SWS <= Advertised Window i.e. SWS <= 2^16 or 64KB
+                    - One RTT, only allowed up to 64KB, if fast connection, capable of sending more
+                    - TCP cant keep the pipefull, wastin bandwidth
+                    - Estimate Window Size = delay x bandwidth  or RTT x Bandwidth
+                    - Assuming RTT is 100s
+                    - Example 10MBps 122KB, only utilize 50 percent, much worse of GB speeds
+                    - Serious Issue - TCP can't support higher speeds
+            - TCP Extensions
+                - TCP Header 20 Bytes add options
+                - Store timestamp in outgoing messages, to extend the sequence space with a 32 bit timestamp
+                - Timestamp + Sequence Numbers to determine if message is old or new
+                - Can increment timestamp at desired rates e.g. every millisecond
+                - Use timestamp to determine if it is older than 2 minutes
+                - Shift/Scale advertised window - take 2^16, negotiate scale values e.g. 2^16 * 2^10 = 2^26, 16KB to 16MB
+                - Selective ACK, SACK - when ack sent back, you include next byte expected, which part received, and which is missing
+        - Triggering Transmission
+            - How does TCP decide to transmit a segment?
+                - TCP maintains a MSS, Maximum Segment Size, and sends a segment as soon as it has collected MSS bytes from the sending process, related to MTU - TCP Headers
+                - Sending process has explicitly asked TCP to send it
+                - Timer based
+        - Silly Window Syndrome
+            - If send fills empty container as soon as it arrives, any small container remains in the system indefinitely, perpetuating small containers
+            - Nagle's Algorithm - solves timeout values
+                - We may want to wait some time before sending the available data
+                - How long?
+                - Too long - hurt interactive
+                - Too short - risking a bunch of tiny packets
+                - Action - use a clock based timer, self clocking solution
+                - Key Idea
+                    - As long as TCP has any data in flight, the sender will eventually receive an ACK
+                    - This ACK can be treated like a timer firing, triggering the transmission of more data
+                    - Ensure 1 segment in transmit always
+                - Key Logic
+                    - If both available data and window >= MSS - send a full segment
+                    - else if unACKed data in flight - buffer the new data until an ACK arrives
+                    - else send all the new data now
+        - TCP Timer Management
+            - Timeout
+                - Small - too many retransmits
+                - Large - wasting time
+                - Ideal - 25, as you over almost 100% of all cases
+                - IDeal timeout - consider average and standard variation
+        - Adaptive Retransmission (Original Algorithm)
+            - Measure SampleRTT for each segment/ACK pair
+            - Compute Weighted Average of RTT - a should be between 0.8 and 0.9
+            - Set timeout based on EstRTT - Timeout = 2 x EstRTT
+            - Do not sample RTT when retransmitting
+            - Double timeout after each retransmission
+        - Jacobson/Karel's Algorithm - REVIEW
+            - Difference = SimpleRTT - EstRTT
+    - TCP Congestion Control
+        - Issues
+        - Goal - Dynamically allcoate available bandwidth to share across different flows
+            - Issues - many demands on the link, and demands may join or leave at any point
+            - Two Sides
+                - Pre allocate resources to avoid congestion
+                - Control congestion if and when it occurs
+            - Two Points of Implementation
+                - Hosts at the edge of the network (transport protocol), decide own rate with feedback from the network
+                    - Source - acknowledgements
+                    - Source - RTT, RTT increase as more demand on the network
+                - Routers inside the network (queuing discipline)
+                    - Arrange flow of packets into different queues
+            - Underlying Service Model
+                - Best Effort
+                - Multiple Qualities of Service
+        - Internet Collapse
+            - Positive Feedback - repeat messages when something is not ACKed, when in reality you should slow down, leads to persistent congestions
+        - Principls of Congestion Control
+            - How to determine a flow's sending rate?
+            - This is a top 10 problem in computer networking
+            - Congestion
+                - Informally, too many sources sending too much data too fast for the network to handle, all sending together no more than network capacity
+                - Manifestations
+                    - lost packets (buffer overflow at routers) no ACKs
+                    - long delays (queueing in router buffers)
+                    - wasted bandwidth - cannot make it through because constantly being dropped
+            - General Questions
+                - How can congestion happen?
+                    - Single Bottleneck - infinite buffer, faster flow, if greater than the link in combination with other flows, will fill up the buffer and increase the latency substantially
+                    - Single Bottleneck - finite buffer, through put decreases, zombie packet if dropped from router 2 to router 5, means router 1 to router 2 bandwidth was wasted
+                    - Cost of Congestion
+                        - Wasted upstream bandwidth when a pkt is discarded downstream
+                        - Wasted bandwidth due to retransmission or a pkt goes through a link multiple times
+                        - Avoid load aove the knee, where latency grows exponentially
+                - What is congestion control? changing rate when congestion is experienced
+                    - Rate Based - adjust sending rate explicitly, set sending rate at 128Kbps
+                    - Window Based - control the window size for a transport scheme i.e. the congestion window size
+                        - SWS <= MIN(CongestionWindowSize, AdvertisedWindowSize)
+                        - Advantage - self clocking, considers flow conservation and adjusts to RTT variation automatically
+                - Why is congestion control dificult?
+        - Sliding Window Congestion Control
+            - Congestion Window Size cwnd integer - indicates number of segments that can be in transit
+                - Throughput = cwnd * MSS / RTT bytes per second
+        - Desired Properties of a Congestion Control Scheme
+            - Efficiency - close to full utiliztation but low delays, fast convergence after disturbance
+            - Fairness - resource sharing
+            - Distributedness - no central knowledge for scalability
+        - Implicit vs. Explicity
+            - Explicity - routers provide feddback to end systems
+                - Explicit rate sender should send at
+                - Single bit indicating congestion (SNA, DECbit, TCP ECN, ATM)
+            - Implicity - congestion inferred by end systems through observed loss or delay
+        - TCP Congestion Control
+            - Closed loop, end to end, window based congestion control
+            - Van Jacobsen in late 1980s, based on AIMD Dah-Ming Chu and Raj Jain
+            - Works well when the bandwidth of the Internet has increased by more than 200,000 times
+            - Many versions
+                - TCP/Tahoe - least optimized
+                - TCP/Reno - used by many OSes, called the New Reno
+                - TCP/Vegas - not currently used
+                - TCP CUBIC - Linux
+                - QUIC by Google
+                - BBR
+            - New Protocol - Fast and TCP Friendly
+            - TCP Fast Retransmit
+                - Issue - time out period is often relatively long
+                - Detect lost segments via duplicate ACKs
+                    - Sender sends man segments back to back
+                    - If segment is lost there will likely be many duplicate ACKs
+                    - Immediately send missing packet when triple dupack received
+                    - Why triple?
+                        - Packets may arrive out of order and may take awhile to arrive, we dont want to be too aggressive
+                        - Sending window size is large, must be large to guarantee triple can even occur
+            - TCP/Reno Congestion Detection
+                - Timeout or Triple ACKs
+                - Basic structure
+                    - First - Slow Start - initial cwnd = 1MSS
+                        - Double cwnd every RTT
+                        - done by incrementing cwnd for every ACK received
+                        - Do this until congestion detected
+                    - Second - Additive Increase Multiplicative Decrease
+                        - Increase cwnd by one with every RTT
+                        - When congestion, decrease to 1
+                    - Important Variables
+                        - cwnd - integer congestion window size
+                        - ssthresh - threshold between slow start phase and congestion avoidance phase
+                        - if cwnd > ssthresh, switch
+                - TCP Slow Start
+                    - When connection begins, increase rate exponentially until first loss event
+                        - Initially cwnd = 1 MSS
+                        - Double cwnd every RTT
+                        - Achieved by incrementing cwnd for every ACK received
+                        - Initial rate is slow, but ramps up exponentially fast
+                - Additive Increase Multiplicative Decrease
+                    - Adjust to changes in the available capacity
+                    - New State Variable Per Connection
+                        - Increase cwnd by one, when congestion goes down
+                        - Decrease cwnd when congestion goes up, reduce by half or back to one, or divide by two when a timeout occurs
+                        - MaxWin = MIN (cwnd, AdvertisedWindow)
+                        - EffWin = MaxWin - (LastByteSent - LastByteAcked)
+                    - Question - how does the source determine whether or not the network is congested
+                        - Timeouts or Triple Dupack to signal a packet was loss, which is an assumption that lost packet means congestion and not transmission error
+                        - TCP may not perform well if you have a high loss rate due to transmission errors e.g. Wifi
+                    - In practice, increemnt a little for each ACK i.e. cwnd = cwnd += 1/cwnd
+                    - Loss indicated by timeout - set cwnd to 1, return to slow start
+                    - Loss indicated by triple dupack, set cwnd to cwnd / 2
+                    - TCP Tahoe - always sets to 1
+                    - Variable ssthresh, on loss event, ssthresh is set to 1/2 of cwnd just before loss event
+                    - If already experienced a timeout event, double the timeout value
+                - Key Ideas
+                    - Maintains equilibrium and reacts around equalibrium
+                - Network condition is dynamic, bottle neck link is shared between different flows, capacity always changes
+            - TCP Fairness
+                - Fairness Goal
+                    - If K TCP sessions share same bottleneck link of bandwidth R, each should have average rate of R/K
+                    - Review graph example, shows TCP tends towards fair usage of the bandwidth
+                    - Disabling congestion control, allows you to take a larger control of the bandwidth
+                    - Assumption RTT is same
+                    - If RTT is smaller for one, the cwnd will adjust faster than the other node, will not be fair, that node will get higher bandwidth
+            - TCP Friendliness
+                - If you design a new protocl, new congestion control algorithm, it is easier to get faster than existing TCP, you need to be friendly to existing TCP users
+            - Fairness and UDP
+                - UDP no congestion control
+                - If TCP and UDP go through same bottleneck, TCP will reduce and UDP will stay the same
+            - Fairness, Parallel TCP Connections
+                - Can open multiple parallel connections between two hosts e.g. web browsers and web servers up to 6 connections
+                - Example - link of rate R with 9 existing connections
+                    - New app asks for 1 TCP, gets R/10
+                    - New app asks for 11 TCPs, gets R/2, take advantage of others to get more bandwidth
+            - TCP Cubic - Linux OS
+                - Two Problems
+                    - Variable RTT, some connections have lower or higher, if smaller, window size can increase faster
+                        - Adjusts window size based on duration of time, not RTT
+                    - Bandwidth x RTT product becomes larger and larger, with AIMD and big windows, takes a long time to reach the full window size with additive increase
+
+18. 12/07/2022
+    - Naming Services - Domain Name Service
+        - Goal - translate human friendly domain name to an IP address
+        - Name Space
+            - Defines a set of possible names
+            - Consists of a set of name to value bindings
+            - Flat versus hierarchical, more computers, name needs to be hierarchical
+                - protocol, sub domain, second level domain, top level domain, sub directory
+        - Resolution Mechanism
+        - Network Information Center
+        - Domain Name System
+            - 1984
+            - Distributed Database w/ billions of records
+            - Managed by 100,000 of computers in the world
+            - Each server maintains a zonal duplicate
+    - Advantagees of Naming
+        - Permits use of human readable names
+        - Permits server to change numeric address without notifying anyone on the internet
+        - One name can refer to multiple hosts, to share the load
+    - Example Flow
+        - Submit domain name
+        - Ask name server
+        - Responds with IP address
+        - Create packets with IP address and send out
+    - Hierarchical - Name Space
+        - Top Level - com, edu, gov, org, net, mil initially
+            - Now include one for each country, and some for other domains ~100
+    - Name Servers
+        - Partition hierarchy into zones
+            - Each zone implementd by two or more name servers
+            - 13 root servers, target of attack to DNS, 9 are in the U.S.
+            - Example zones are circles in Name Servers slide
+    - Resource Records
+        - Record - Name, Value, Type, Class, TTL
+        - Name/Value - not necessarily host names to IP addresses
+        - Types
+            - A - value is an IPv4 address
+            - AAAA - value is an IPv6 address
+            - NS - value gives domain name for host running name server that knows how to resolve names within specified domain
+            - CNAME - value gives canonical name for particular host
+            - MX - value gives domain name for host running mail server that accepts messages for specified domains
+        - Class - allow other entities to define types, IN
+        - TTL - how long the resource record is valid, how long to use in cache
+    - Name Resolution
+        - Iterative Query
+            - Client to Local Name Server (Resolver)
+            - Local Name Server, if it does not have it, will reach out to
+                - Root Name Server
+                - .edu Name Server
+                - Princeton Name Server
+                - Computer Science Name Server
