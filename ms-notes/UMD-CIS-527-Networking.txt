@@ -1616,7 +1616,7 @@ Computer Networking CIS 527
                 - Packet Length
                 - Operation - Request and Reply
                 - Source Hardware Address (MAC)
-                - SOurce Hardware Address (MAC)
+                - Source Hardware Address (MAC)
                 - SOurce Protocol Address
                 - Source Protocol Address
                 - Target Hardware Address - Possible to be all zeroes, or a previously learned MAC address
@@ -1779,8 +1779,8 @@ Computer Networking CIS 527
             - Host - subnet and host ID
         - Subnetting
             - Add another level to address/routing hierarchy
-            - Subnet masks define variable partiion of host part
-            - Subnets visible only wihtin site
+            - Subnet masks define variable partition of host part
+            - Subnets visible only within site
             - Network Number | Host Number e.g. 141.215 - Network Number = Class B Address
             - Subnetted Address - Network Number | Subnet ID | Host ID
             - Subnet Mask - Which part is subnet ID?
@@ -1791,7 +1791,7 @@ Computer Networking CIS 527
                 - Host 128.96.34.15
                 - Mask 255.255.255.128 - BIT WISE AND
             - Subnet is only internal, outside it is about network numbers
-            - Subnet Example
+            - Subnet Example - TODO: REWATCH THIS VIDEO
                 - Class C Network 210.10.2.0
                 - Subnetwork 210.10.2.255
                  - Depts
@@ -1805,9 +1805,9 @@ Computer Networking CIS 527
                     D - 25 hosts - 255.255.255.224
                     Total - 150 Computers
                 - Subnet # - First Address - dont assign to host
-        - Classless Addressing
+        - Classless Addressing - TODO: REWATCH THIS VIDEO
             - Classes Inter Domain Routing CIDR
-                - A technique that addres two scaling concerns in the internet
+                - A technique that address two scaling concerns in the internet
                     - The growth of backbone routing table as more and more network numbers
                     - Potential exhaustion of the 32 bit address space
                 - Address Assignment Efficiency
@@ -1848,7 +1848,7 @@ Computer Networking CIS 527
     - Review
         - Border Gateway Protocol - IMPORTANT
         - Pakistan Telecom Prefix Hijacking Youtube Article
-    - Border Gateway Protocol Routing
+    - Border Gateway Protocol Routing - TODO: Review CONTENT
         - Path Vector Algorithm
             - Indicates complete path (ISPs Autonomous System Numbers) and distance - AS1 -> AS2 -> AS4
         - BGP Example
@@ -1918,7 +1918,7 @@ Computer Networking CIS 527
         - NAT is controversial
             - Routers should only process up to layer 3, port number is layer 4
             - violates end to end argument
-            - address shortage shuold instead be solved by IPv6
+            - address shortage should instead be solved by IPv6
     - IPv6
         - Initial Motivation - 32 bit address space soon to be completely allocated
             - IPv6 only services and devices, requires assigning an IPv6 and mapping IPv6 to IPv4
@@ -1964,7 +1964,7 @@ Computer Networking CIS 527
         - Transition from IPv4 to IPv6
             - Not all routers can be upgraded simultaneously
                 - No flag days
-                - How will the newtwork operate with mixed IPv4 and IPv6 routines? Dual Stack*
+                - How will the network operate with mixed IPv4 and IPv6 routines? Dual Stack*
             - Tunneling - IPv6 carried as payload in IPv4 datagram among IPv4 routers
         - Goal - deliver packet over network of routers
 
@@ -1999,6 +1999,7 @@ Computer Networking CIS 527
                 - VoIP - Skype
                 - DHCP - Dynamic Host Configuration Protocol
                 - DNS
+                - ICMP
         - Transmission Control Protocol
             - Connection Oriented
             - Byte Stream
@@ -2074,7 +2075,7 @@ Computer Networking CIS 527
             - B - A slow network feeding a high capacity receiver - routers buffers overflow
                 - To solve - adjust the sending rate to align with the capacity of the network
                 - Challenge - how does each flow set its own sending rate
-            - Sliding Window Algorithm Revisited
+            - Sliding Window Algorithm Revisited - TODO: Review Video
                 - TCP Connection is a Byte String
                 - Sending Side
                     - LastByteAcked <= LastByteSent - between are bytes already sent
@@ -2089,8 +2090,8 @@ Computer Networking CIS 527
                 - ACK should be next byte expected sliding window
                 - SEQ shuld increment by size of data
         - TCP Flow Control
-            - Goal - sender wont overflwo receivers buffer by too much too fast
-            - Recevie side of TCP connection has a receive buffer, where data is placed when it arrives
+            - Goal - sender wont overflow receivers buffer by too much too fast
+            - Receive side of TCP connection has a receive buffer, where data is placed when it arrives
             - Every time acknowledgement is sent, you share available buffer space, in windows field
             - SWS <= Advertising Window Size
             - Persist when Advertising Window = 0 - send probe frame to trigger acknowledgement should be returned
