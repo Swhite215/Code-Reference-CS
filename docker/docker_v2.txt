@@ -1,0 +1,49 @@
+Docker Fundamentals
+    1. Quick Start
+        - Three Innovations
+            - Image, Registry, and Container
+                - Image - representation of application
+                    - Applicaiton, Dependencies, Binaries, Libraries
+                - Registry - image/app distribution
+                - Container - identical runtime environments
+        - Playground - labs.play-with-docker.com
+        - Docker System
+            - Client
+            - Server - Socket, TCP/TLS, SSH Tunnel
+        - Major Linux
+            - Namespaces, CGroups, VETH, IP Tables, Union Mount
+        - Areas
+            - Isolation - running multiwple applications on same system and avoiding conflicts
+            - Environments - reduced envirnoment variances, contain runs same way with same dependencies 
+                - The "Matrix From Hell" Breeds Complexity
+            - Speed - develop, build, test, and deploy faster
+                - Mainframe to PC
+                - Baremetal to Virtual
+                - Datacenter to Cloud
+                - Host to Container
+    2. Course Introduction
+    3. Setup
+    4. Creating and Using Containers Like a Boss
+        - CLI Command Structure
+            - docker command
+            - docker command sub-command
+        - Image vs. Container
+            - Image - binary source code
+            - Container - running instance
+            - Registry - contains images
+        - Running a Container
+            - Look for image locally in image cache
+            - Look in remote image repository
+            - Download version
+            - Create new container based on image
+            - Gives it a virtual IP on a private network inside docker engine
+            - Open up port 80 on host and forward to port 80 on container
+        - Containers vs Virtual Machines
+            - Container - process running on host machines hardware
+            - Virtual Machines - virtualized hardware
+            - Docker runs lightweight Linux Virtual Machine
+        - Assignment Manage Multiple Containers
+            - Documentation - docs.docker.com
+            - Run nginx, mysql, and httpd, detach and name
+        - Container Information
+            - 
