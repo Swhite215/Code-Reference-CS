@@ -23,3 +23,14 @@ docker container stats
 docker container run -it # start new container interactively
 docker container exec -it container /bin/bash # run additional processes
 docker container start -ai container # restart container interactively
+
+docker container port container
+docker container inspect --format "{{ .NetworkSettings.IPAddress }}" container
+
+docker network ls
+docker network inspect
+docker network create --drive
+docker network connect
+
+docker image history
+ 

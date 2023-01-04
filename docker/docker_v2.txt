@@ -46,4 +46,30 @@ Docker Fundamentals
             - Documentation - docs.docker.com
             - Run nginx, mysql, and httpd, detach and name
         - Container Information
-            - 
+        - Docker Networks: Concepts
+            - Bridge Network Default
+            - Each network routes through NAT firewall on host IP
+            - Best practice, create a new virtual network for each app
+            - Batteries Included, But Removable - defaults can be swapped
+        - Docker Networks: CLI Management of Virtual Networks
+            - Frequently we overexpose applications on traditional hosting in virtual machines
+        - Docker Networks - DNS
+            - Note: Containers shuol dnot rely on IPs for inter-communication
+            - Docker uses container name as equivalent to host name
+        - DNS Round Robin
+            - Create Virtual Network
+            - Create Containers
+            - Set Network Alias to give them an additional DNS name to respond to
+        5. Container Images
+            - Image - binaries and dependencies, metadata about image data and how to run the image
+            - Docker Hub Registry Images
+                - Official - image
+                - Personal - accountname/image
+                - Tags - description of image
+                - Best Practice - specify exact version of the image
+            - Images and Layers
+                - Layers
+                    - First Layer - Scratch
+                    - Each Change = New Layer
+                - Cache - only store one copy of a layer, multiple containers can use same layers
+                - 
