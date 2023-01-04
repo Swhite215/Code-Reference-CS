@@ -72,4 +72,24 @@ Docker Fundamentals
                     - First Layer - Scratch
                     - Each Change = New Layer
                 - Cache - only store one copy of a layer, multiple containers can use same layers
+            - Image Tagging and Pushing
+                - user/repo:tag
+                - Pull image
+                - Create new tag
+                - Push image with new tag
+            - Building Images - Dockerfile
+                - FROM - normally a minimal distribution to save time and pain
+                    - You inherit everything from previous image
+                - ENV - set environment varaibles, main way we set keys and values for building
+                - RUN - executes shell commands, installing software, file edits, etc.
+                    - Best Practice - reduce layers
+                - EXPOSE - expose these ports on the docker virtual network, you still need to open/forward to these ports
+                - CMD - Required, final command to run when container is launched
+                - WORKDIR - changing directories
+                - COPY - copy source code from local machine to build
+            - Building Images - Running Docker Builds
+                - Order is Appropriate
+                    - Keep Change Least At the Top of Dockerfile
+                    - Keep Change Most At the Bottom of Dockerfile
+            - Building Images - Extending Official Images
                 - 

@@ -33,4 +33,10 @@ docker network create --drive
 docker network connect
 
 docker image history
- 
+docker image tag <image> <tag>
+docker image push <image-tag>
+
+docker login
+docker logout
+
+docker image build -t customnginx -f Dockerfile
