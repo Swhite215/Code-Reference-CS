@@ -35,8 +35,23 @@ docker network connect
 docker image history
 docker image tag <image> <tag>
 docker image push <image-tag>
+docker image build -t customnginx -f Dockerfile
 
 docker login
 docker logout
 
-docker image build -t customnginx -f Dockerfile
+dockver volume inspect container
+
+docker compose up
+docker compose up --build
+docker compose down
+docker compose ps
+docker compose top
+docker compose build
+
+docker swarm init
+docker swarm --help
+docker node ls
+docker service create alpine ping 8.8.8.8
+docker service update sbrtbt4vnxbu --replicas 3
+docker update
