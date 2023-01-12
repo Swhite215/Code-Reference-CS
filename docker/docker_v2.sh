@@ -55,3 +55,13 @@ docker node ls
 docker service create alpine ping 8.8.8.8
 docker service update sbrtbt4vnxbu --replicas 3
 docker update
+
+docker container run -d -p 5000:5000 --name registry registry
+docker pull hello-world
+docker tag hello-world 127.0.0.1:5000/hello-world
+docker image ls
+docker push 127.0.0.1:5000/hello-world
+docker container rm 127.0.0.1:5000/hello-world
+docker pull 127.0.0.1:5000/hello-world
+
+docker container run -d -p 5000:5000 --name registry -v $(pwd)/registry-data:/var/lib/registry registry

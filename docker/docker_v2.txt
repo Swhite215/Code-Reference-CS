@@ -142,4 +142,87 @@ Docker Fundamentals
                 - docker service - replaces run
             - Paradigm Shift
                 - Docker - do something to container
-                - Swarm - do something to orchestrate containers
+                - Swarm - do something to orchestrate container
+        8. Docker Hub and Docker Registry
+            - Auto Build
+                - GitHub Commit
+                - Repository Links - FROM automatic builds
+            - Docker Registry
+                - Private Image Registry for your network
+                - Web API and Storage System
+                - Secure Registry with TLS - Secure by Default
+                - Storage Cleanup via Garbage Collection
+            - Run a Private Docker Registry
+                - 59-65
+            - Secure Docker Regsitry with TLS
+            - Using Docker Registry with Swarm
+                - Swarm - All nodes must be able to push and pull from same registry
+                - Use a hosted SaaS registry if possible
+        9. Docker in Production
+            - Solutions Not Needed Day One
+                - Fully Automatic CI/CD
+                - Dynamic Performance Scaling
+                - Persistent Data Started
+                - Containerizing All or Nothing
+            - First Focus: Dockerfiles
+                - New Build Documentation
+                - Dockerfile Maturity Model
+                    - Make It Start
+                    - Make Logs
+                    - Make Documentation
+                    - Make It Work for Others
+                    - Make It Lean
+                    - Make It Scale
+            - Dockerfile Anti-Patterns
+                - Trapping Data
+                    - Problem - storing unique data
+                    - Define Volume for Each Location
+                - Using Latest
+                    - Always use a version
+                    - Use specific FROM tags
+                    - Specify version for critical apt/yum/apk packages
+                    - Set ENV variables for dependencies version
+                - Leaving Default Config
+                    - Update default configs via ENV, RUN, and ENTRYPOINT
+                - Environment Specific
+                    - You should have a single Dockerfile with default ENVs and overwrite per-environment with ENTRYPOINT script
+            - Big 3 Decisions
+                - Containers on VM or Container on Bare Metal
+                    - Stick with what you know at first
+                - OS Linux Distribution/Kernel Matters
+                    - Docker is kernel and storage driver dependent
+                    - Minimum != best version
+                    - Ubuntu 16.04 LTS
+                        - 4.x Kernel and wide storage driver support
+                    - Get docker distribution from store.docker.com
+                - Container Base Distribution - Which FROM?
+                    - Match your existing deployment process
+            - Build Your Swarm
+                - Good Defaults: Swarm Architectures
+                - Baby Swarm - 1 Node
+                - HA Swarm: 3-Node - Failure
+                - Biz Swarm: 5-Node
+                    - Minimum for uptime that affects $$$
+                - Flexy Swarm: 10+ Nodes
+                - Swole Swarm: 100+ Nodes
+            - Reasons for Multiple Swarms
+                - Bad
+                    - Different hardware
+                    - Different subnets or security groups
+                    - Different availability zones
+                    - Security Boundaries
+                - Good
+                    - Learning - Run on Test Swarm
+                    - Geographical Boundaries
+                    - Management Boundaries using Docker API
+            - Outsource Well Define Plumbing
+                - Image Registry
+                - Logs
+                - Monitoring and Alerting
+            - Tech Stacks
+            - Summary
+                - Trim optional requirements
+                - Focus on Dockerfile/dockercompose
+                - Watch out for antipattern
+                - Stick with familiar OS and FROM
+                - Find ways to outsource
