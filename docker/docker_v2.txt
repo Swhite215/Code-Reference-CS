@@ -60,169 +60,251 @@ Docker Fundamentals
             - Create Virtual Network
             - Create Containers
             - Set Network Alias to give them an additional DNS name to respond to
-        5. Container Images
-            - Image - binaries and dependencies, metadata about image data and how to run the image
-            - Docker Hub Registry Images
-                - Official - image
-                - Personal - accountname/image
-                - Tags - description of image
-                - Best Practice - specify exact version of the image
-            - Images and Layers
-                - Layers
-                    - First Layer - Scratch
-                    - Each Change = New Layer
-                - Cache - only store one copy of a layer, multiple containers can use same layers
-            - Image Tagging and Pushing
-                - user/repo:tag
-                - Pull image
-                - Create new tag
-                - Push image with new tag
-            - Building Images - Dockerfile
-                - FROM - normally a minimal distribution to save time and pain
-                    - You inherit everything from previous image
-                - ENV - set environment varaibles, main way we set keys and values for building
-                - RUN - executes shell commands, installing software, file edits, etc.
-                    - Best Practice - reduce layers
-                - EXPOSE - expose these ports on the docker virtual network, you still need to open/forward to these ports
-                - CMD - Required, final command to run when container is launched
-                - WORKDIR - changing directories
-                - COPY - copy source code from local machine to build
-            - Building Images - Running Docker Builds
-                - Order is Appropriate
-                    - Keep Change Least At the Top of Dockerfile
-                    - Keep Change Most At the Bottom of Dockerfile
-            - Building Images - Extending Official Images
-            - Container Lifetime and Persistent Data
-                - Volumes - make special location outside of container UFS
-                - Bind Mount - link container path to host path
-            - Persistent Data
-                - VOLUME - any files in the path, will persist until it is cleaned up, path in container maps to specific location on the host
-                - Named Volumes - friendly way to provide a name for a volume name:/path/in/container
-                - docker volume create - specify volume driver, metadata, etc.
-                - Bind Mounting - mapping of a host file or directory to a container file or directory
-                    - Cannot use in dockerfile, can use in docker-compose
-        6. Docker Compose
-            - CLI Tool and Configuration File
-            - Pieces
-                - First Portion - YAML Configuration File
-                    - Compose YAML Formats 1, 2, 2,1, 3, 3.1
-                    - Name - docker.compose.yml is default filename
-                    - Segments
-                        - Version
-                        - Services/Containers
-                            - image
-                                - build and image together switches to build custom image with a specific name
-                            - command
-                            - environment
-                            - volumes
+    5. Container Images
+        - Image - binaries and dependencies, metadata about image data and how to run the image
+        - Docker Hub Registry Images
+            - Official - image
+            - Personal - accountname/image
+            - Tags - description of image
+            - Best Practice - specify exact version of the image
+        - Images and Layers
+            - Layers
+                - First Layer - Scratch
+                - Each Change = New Layer
+            - Cache - only store one copy of a layer, multiple containers can use same layers
+        - Image Tagging and Pushing
+            - user/repo:tag
+            - Pull image
+            - Create new tag
+            - Push image with new tag
+        - Building Images - Dockerfile
+            - FROM - normally a minimal distribution to save time and pain
+                - You inherit everything from previous image
+            - ENV - set environment varaibles, main way we set keys and values for building
+            - RUN - executes shell commands, installing software, file edits, etc.
+                - Best Practice - reduce layers
+            - EXPOSE - expose these ports on the docker virtual network, you still need to open/forward to these ports
+            - CMD - Required, final command to run when container is launched
+            - WORKDIR - changing directories
+            - COPY - copy source code from local machine to build
+        - Building Images - Running Docker Builds
+            - Order is Appropriate
+                - Keep Change Least At the Top of Dockerfile
+                - Keep Change Most At the Bottom of Dockerfile
+        - Building Images - Extending Official Images
+        - Container Lifetime and Persistent Data
+            - Volumes - make special location outside of container UFS
+            - Bind Mount - link container path to host path
+        - Persistent Data
+            - VOLUME - any files in the path, will persist until it is cleaned up, path in container maps to specific location on the host
+            - Named Volumes - friendly way to provide a name for a volume name:/path/in/container
+            - docker volume create - specify volume driver, metadata, etc.
+            - Bind Mounting - mapping of a host file or directory to a container file or directory
+                - Cannot use in dockerfile, can use in docker-compose
+    6. Docker Compose
+        - CLI Tool and Configuration File
+        - Pieces
+            - First Portion - YAML Configuration File
+                - Compose YAML Formats 1, 2, 2,1, 3, 3.1
+                - Name - docker.compose.yml is default filename
+                - Segments
+                    - Version
+                    - Services/Containers
+                        - image
+                            - build and image together switches to build custom image with a specific name
+                        - command
+                        - environment
                         - volumes
-                        - networks
-                - Second Portion - docker-compose CLI - not a production grade tool, but ideal for local development and test
-            - Adding Image Building to Compose Files
-        7. Swarms
-            - Swarm Mode - Built-In Orchestration - 2016
-                - Server Clustering Solution
-                - Not enabled by default
-                - Nodes
-                    - Manager Nodes - Authority in Swarm, Encrypted Traffic
-                    - Worker Nodes
-                    - Control Plane - How orders are sent around the swarm
-                    - RAFT - Consensus Mechanism for Swarms
-                    - Service - Swarm Manager
-                    - Task or Replicas - Image, Container - Instance
-                - Manager
-                    - API, Orchestrator, Allocator, Scheduler, Dispatcher
-            - Some Important Questions
-                - How do we automate?
-                - How do we scale up, in down?
-                - How can we ensure containers are recerated?
-                - How can we replace containers without downtime?
-            - First Service
-                - docker swarm init - setup, PKI, security automation, RAFT Database
-                - docker service - replaces run
-            - Paradigm Shift
-                - Docker - do something to container
-                - Swarm - do something to orchestrate container
-        8. Docker Hub and Docker Registry
-            - Auto Build
-                - GitHub Commit
-                - Repository Links - FROM automatic builds
-            - Docker Registry
-                - Private Image Registry for your network
-                - Web API and Storage System
-                - Secure Registry with TLS - Secure by Default
-                - Storage Cleanup via Garbage Collection
-            - Run a Private Docker Registry
-                - 59-65
-            - Secure Docker Regsitry with TLS
-            - Using Docker Registry with Swarm
-                - Swarm - All nodes must be able to push and pull from same registry
-                - Use a hosted SaaS registry if possible
-        9. Docker in Production
-            - Solutions Not Needed Day One
-                - Fully Automatic CI/CD
-                - Dynamic Performance Scaling
-                - Persistent Data Started
-                - Containerizing All or Nothing
-            - First Focus: Dockerfiles
-                - New Build Documentation
-                - Dockerfile Maturity Model
-                    - Make It Start
-                    - Make Logs
-                    - Make Documentation
-                    - Make It Work for Others
-                    - Make It Lean
-                    - Make It Scale
-            - Dockerfile Anti-Patterns
-                - Trapping Data
-                    - Problem - storing unique data
-                    - Define Volume for Each Location
-                - Using Latest
-                    - Always use a version
-                    - Use specific FROM tags
-                    - Specify version for critical apt/yum/apk packages
-                    - Set ENV variables for dependencies version
-                - Leaving Default Config
-                    - Update default configs via ENV, RUN, and ENTRYPOINT
-                - Environment Specific
-                    - You should have a single Dockerfile with default ENVs and overwrite per-environment with ENTRYPOINT script
-            - Big 3 Decisions
-                - Containers on VM or Container on Bare Metal
-                    - Stick with what you know at first
-                - OS Linux Distribution/Kernel Matters
-                    - Docker is kernel and storage driver dependent
-                    - Minimum != best version
-                    - Ubuntu 16.04 LTS
-                        - 4.x Kernel and wide storage driver support
-                    - Get docker distribution from store.docker.com
-                - Container Base Distribution - Which FROM?
-                    - Match your existing deployment process
-            - Build Your Swarm
-                - Good Defaults: Swarm Architectures
-                - Baby Swarm - 1 Node
-                - HA Swarm: 3-Node - Failure
-                - Biz Swarm: 5-Node
-                    - Minimum for uptime that affects $$$
-                - Flexy Swarm: 10+ Nodes
-                - Swole Swarm: 100+ Nodes
-            - Reasons for Multiple Swarms
-                - Bad
-                    - Different hardware
-                    - Different subnets or security groups
-                    - Different availability zones
-                    - Security Boundaries
-                - Good
-                    - Learning - Run on Test Swarm
-                    - Geographical Boundaries
-                    - Management Boundaries using Docker API
-            - Outsource Well Define Plumbing
-                - Image Registry
-                - Logs
-                - Monitoring and Alerting
-            - Tech Stacks
-            - Summary
-                - Trim optional requirements
-                - Focus on Dockerfile/dockercompose
-                - Watch out for antipattern
-                - Stick with familiar OS and FROM
-                - Find ways to outsource
+                    - volumes
+                    - networks
+            - Second Portion - docker-compose CLI - not a production grade tool, but ideal for local development and test
+        - Adding Image Building to Compose Files
+    7. Swarms
+        - Swarm Mode - Built-In Orchestration - 2016
+            - Server Clustering Solution
+            - Not enabled by default
+            - Nodes
+                - Manager Nodes - Authority in Swarm, Encrypted Traffic
+                - Worker Nodes
+                - Control Plane - How orders are sent around the swarm
+                - RAFT - Consensus Mechanism for Swarms
+                - Service - Swarm Manager
+                - Task or Replicas - Image, Container - Instance
+            - Manager
+                - API, Orchestrator, Allocator, Scheduler, Dispatcher
+        - Some Important Questions
+            - How do we automate?
+            - How do we scale up, in down?
+            - How can we ensure containers are recerated?
+            - How can we replace containers without downtime?
+        - First Service
+            - docker swarm init - setup, PKI, security automation, RAFT Database
+            - docker service - replaces run
+        - Paradigm Shift
+            - Docker - do something to container
+            - Swarm - do something to orchestrate container
+    8. Docker Hub and Docker Registry
+        - Auto Build
+            - GitHub Commit
+            - Repository Links - FROM automatic builds
+        - Docker Registry
+            - Private Image Registry for your network
+            - Web API and Storage System
+            - Secure Registry with TLS - Secure by Default
+            - Storage Cleanup via Garbage Collection
+        - Run a Private Docker Registry
+            - 59-65
+        - Secure Docker Regsitry with TLS
+        - Using Docker Registry with Swarm
+            - Swarm - All nodes must be able to push and pull from same registry
+            - Use a hosted SaaS registry if possible
+    9. Docker in Production
+        - Solutions Not Needed Day One
+            - Fully Automatic CI/CD
+            - Dynamic Performance Scaling
+            - Persistent Data Started
+            - Containerizing All or Nothing
+        - First Focus: Dockerfiles
+            - New Build Documentation
+            - Dockerfile Maturity Model
+                - Make It Start
+                - Make Logs
+                - Make Documentation
+                - Make It Work for Others
+                - Make It Lean
+                - Make It Scale
+        - Dockerfile Anti-Patterns
+            - Trapping Data
+                - Problem - storing unique data
+                - Define Volume for Each Location
+            - Using Latest
+                - Always use a version
+                - Use specific FROM tags
+                - Specify version for critical apt/yum/apk packages
+                - Set ENV variables for dependencies version
+            - Leaving Default Config
+                - Update default configs via ENV, RUN, and ENTRYPOINT
+            - Environment Specific
+                - You should have a single Dockerfile with default ENVs and overwrite per-environment with ENTRYPOINT script
+        - Big 3 Decisions
+            - Containers on VM or Container on Bare Metal
+                - Stick with what you know at first
+            - OS Linux Distribution/Kernel Matters
+                - Docker is kernel and storage driver dependent
+                - Minimum != best version
+                - Ubuntu 16.04 LTS
+                    - 4.x Kernel and wide storage driver support
+                - Get docker distribution from store.docker.com
+            - Container Base Distribution - Which FROM?
+                - Match your existing deployment process
+        - Build Your Swarm
+            - Good Defaults: Swarm Architectures
+            - Baby Swarm - 1 Node
+            - HA Swarm: 3-Node - Failure
+            - Biz Swarm: 5-Node
+                - Minimum for uptime that affects $$$
+            - Flexy Swarm: 10+ Nodes
+            - Swole Swarm: 100+ Nodes
+        - Reasons for Multiple Swarms
+            - Bad
+                - Different hardware
+                - Different subnets or security groups
+                - Different availability zones
+                - Security Boundaries
+            - Good
+                - Learning - Run on Test Swarm
+                - Geographical Boundaries
+                - Management Boundaries using Docker API
+        - Outsource Well Define Plumbing
+            - Image Registry
+            - Logs
+            - Monitoring and Alerting
+        - Tech Stacks
+        - Summary
+            - Trim optional requirements
+            - Focus on Dockerfile/dockercompose
+            - Watch out for antipattern
+            - Stick with familiar OS and FROM
+            - Find ways to outsource
+    10. Kubernetes
+        - What is Kubernetes?
+            - Popular Container Orchestrator
+            - Makes many servers act like one
+            - Set of APIS that run on top of docker
+            - Provides API/CLI to manage containers across servers
+        - Why Kubernetes?
+            - Server * Change Rate = Benefit of Orchestration
+            - Distribution - Cloud or Self Managed
+        - Kubernetes vs. Swarm
+            - Swarm
+                - Comes with Docker, single vendor container platform
+                - Easiest orchestrator to deploy/manage yourself
+                - 80/20
+                - Runs Anywhere - local, cloud, datacenter, ARM, Windows, 32-bit
+                - Secure by default
+                - Easier to troubleshoot
+            - Kube - More Features/Flexibility
+                - Clouds will deploy/manage Kubernetes for you
+                - Widest adoption and support
+                - Flexible and covers wide use case set
+    11. Kubernetes Install and First Pods
+        - Architecture Terminology
+            - System Parts
+                - Kubernetes - whole orchestration system k8s
+                - Kubectl - CLI tool to talk to Kubernetes API
+                - Node - single server in the kubernetes cluster
+                - Kubelet - Kubernetes agent running on nodes
+                - Control Plane/Master - set of containers that manage the cluster\
+                    - etcd - distributed storage system
+                    - API
+                    - Scheduler - how and where containers are placed in pods
+                    - Controller Manager
+                    - CoreDNS
+                - Node
+                    - Kubelet
+                    - Kube-Proxy
+                - Consensus - RAFT Protocol
+        - Install Kubernetes Locally
+            - Docker Desktop - Enable in Settings
+            - Docker Toolbox
+            - MicroK8s
+            - katacoda.com
+        - Kubernetes Container Abstractions
+            - Pod - one or more containers running together on one node
+            - Controller - For creating and updating pods
+            - Service - network endpoint to connect to a pod
+            - Namespace - filtered group of objects in cluster
+            - Secrets, ConfigMaps
+        - Kubernetes Run, Create, and Apply
+            - kubectl run - single pod per command since 1.18
+            - kubectl create - CLI or yaml
+            - kubectl apply - YAML
+        - Kubernetes Deployment
+            - Creates deployment, replicaset, and pod with unique name
+            - ReplicaSet - one per new deployment, supporting high availability and no downtime
+        - Scaling ReplicaSets
+            - kubectl.sh
+            - Set desired state of end result
+            - Scale will change the spec/configuration, which results in updated number of pods and containers running
+        - Inspecting Kubernetes Objects
+            - Lookup Stern Tool
+    - Kubernetes Exposing Ports
+        - Exposing Containers
+            - kubectl expose - creates a service
+            - CoreDNS allows uys to resolve services by name
+        - Service Types
+            - ClusterIP - default - set of pods communicating with another set of pods
+                - Single, internal virtual IP allocated
+                - Only reachable from within cluster (nodes and pods)
+                - Pods can reac service on apps port number
+            - NodePort - designed for something outside of the cluster
+                - High port allocated on each node
+                - Port is open on every node's IP
+            - LoadBalancer - request from external source
+                - Controls a LB endpoint external to the cluster
+                - LoadBalancer comes from external
+                - Creates NodePort + ClusterIP, tells LB to send to NodePort
+            - ExternalName
+                - Adds CNAME DNS record to CoreDNS only
+                - Gives a pod a DNS name to use for something outside Kubernetes
+        - 
