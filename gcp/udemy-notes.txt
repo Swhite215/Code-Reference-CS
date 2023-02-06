@@ -1,0 +1,38 @@
+GCP For Beginners - Becomer a Google CLoud Digital Leader
+
+1. Introduction to GCP
+    - Challenges
+        - High cost of procuring infrastructure
+        - Ahead of time planning
+        _ Low infrastructure utilization
+        - Dedicated infrastructure team
+    - Solution/Benefits
+        - On-demand resource provisioning or elasticity
+        - Trade captial expense for variable expense
+        - Benefit from massive economies of scale
+    - Google Cloud Platform
+        - One of top three cloud providers
+        - 200+ services
+        - Relibale, secure, and highly performant
+
+2. Regions and Zones
+    - Challenge
+        - Providing low latency
+        - Enabling high availability
+        - Adhering to regulations
+    - Solution
+        - Regions - 20+ - specific geographic location to host your resources
+        - Zones - achieving high availability in a specific region, increased fault tolerance
+            - Cluster - distinct physical infrastructure that is housed in a data region
+
+3. Compute Engine, Instance Groups, and Load Balancing
+    - Compute Engine - Provision and Manage Virtual Machines
+        - Create and manage lifecycle of VMs
+        - Load balancing and auto scaling for multiple VM instances
+        - Attach storage to your VM instances
+        - Manage network connectivity and configuration for VM instances
+    - IP Addresses
+        - Internal - permanent internal IP address that does not change during the lifetime of an instance
+        - External - IP address that changes when an instance is stopped
+        - Static - permanent external IP address that is associated with an instance
+        - 
