@@ -35,4 +35,94 @@ GCP For Beginners - Becomer a Google CLoud Digital Leader
         - Internal - permanent internal IP address that does not change during the lifetime of an instance
         - External - IP address that changes when an instance is stopped
         - Static - permanent external IP address that is associated with an instance
-        - 
+    - Quick Setup
+        - Start-Up Script
+            - Bootstrapping - install OS patches or software when a VM is launched
+            - Management -> Startup Script
+        - Instance Templates
+            - Define machine type, images, labels, startup script, and other properties
+            - Can be used for managed instance groups
+            - CANNOT be updated
+            - Virtual Machines -> Instance Templates
+        - Custom Image
+            - Customize images to your corporate security standards - hardened
+            - Use over start up to reduce boot up time
+            - Storage Disks -> Disk -> Actions -> Create Image
+    - Sustained Use Discounts
+        - Automatic discounts for running VM instances for significant portion of the billing month
+        - Discount increases with usage
+        - Applicable for Google Kubernetes Engine and Compute Engine
+        - Does not apply to certain machines or App Engine Flexible and Dataflow VMs
+    - Committed Use Discounts
+        - For workloads with predictable resource needs e.g. VM for 1-3 years
+        - Higher discount than sustained use discount
+        - You cannot cancel commitments
+    - Preemptible Virutal Machines
+        - Short lived cheap compute instances
+        - Maximum runtime of 24 hours
+        - Instances get 30 seconds warning before being stopped
+        - Use
+            - Application is fault tolerant
+            - You are cost sensitive
+            - Your workload is not immediate e.g. batch processing
+        - Not always available
+        - No SLA
+        - Cannot be migrated to regualr VMs
+        - No automatic restarts
+    - Spot VMs - latest version of preemptible VMs
+        - Does not have a maximum runtime
+    - Sole Tenant Nodes
+        - Default is Shared Tenancy - Single host machine can have instances from multiple customers
+        - Virtualized instances on hardware are dedicated to one customer
+        - Sole-Tenant Nodes -> Create a Node Group -> Label and VM Instance -> Sole Tenancy -> Node Affinity Label
+        - Security and Compliance Requirements
+        - High Performance Requirements
+        - Licensing Requirements
+    - Custom Machine Types
+        - Adjust vCPUs, memory, and GPUs
+        - Choose between E2, N2, or N1
+        - Billed per vCPUs and memory provisioned
+        - VM Instances -> Machine Type -> Custom
+    - Primary Costs
+        - Infrastructure Costs - CPUs, RAM, Disks
+        - Licensing Costs - Operating Systems
+            - Options
+                - Pay as you go - PAYG
+                - Use existing license - BYOS or BYOL
+    - Instance Groups
+        - Group of VM instances managed by a single entity
+        - Types
+            - Managed - identical VMs created using a template
+                - Features: auto scaling, auto healing, and managed releases
+            - Unmanaged - different configuration for VMs in same group
+                - None of the managed features
+        - Location can be Zonal or Regional
+        - Managed Instance Groups
+            - Identical VMs created using an instance template
+            - Maintain certain number of instances
+            - Detect application failures using health checks
+            - Increase and descrease instances based on load
+            - Add load balancer to distribute load
+            - Release new application versions without downtime
+            - Rolling updates
+            - Canary Deployment - test new version with a group of instances before releasing it across all instances
+    - Creating Managed Instance Group
+        - Create instance template
+        - Configure auto scaling, min/max instances and autoscaling metrics, cool down, scale in control, auto healing
+    - Load Balancing
+        - Distribute traffic across VM instances in one or more regions - global
+        - Managed Service
+            - Google Cloud ensures it is highly available
+            - Auto scales to handle huge loads
+            - Public or Private
+        - Types
+            - External HTTP(S)
+            - Internal HTTP(S)
+            - SSL Proxy
+            - TCP Proxy
+            - External Network TCP/UDP
+            - Internal TCP/UDP
+        - Network Services -> Load Balancing
+            - Backend Configuration - Managed Instance Group
+            - Host and Path Rules
+            - Frontend Configuration - URL for Load Balancer
