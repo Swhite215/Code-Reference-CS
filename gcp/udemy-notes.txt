@@ -126,3 +126,134 @@ GCP For Beginners - Becomer a Google CLoud Digital Leader
             - Backend Configuration - Managed Instance Group
             - Host and Path Rules
             - Frontend Configuration - URL for Load Balancer
+    
+4. Managed Services
+    - Infrastructure as a Service
+        - Use infrastrucutre from cloud provider e.g. using VM to deploy applications
+        - You responsible for:
+            - Application Code and Runtime
+            - Configuring Load Balancing
+            - Auto Scaling
+            - OS Upgrades and Patches
+            - Availability
+    - Platform as a Service
+        - Use a platform provided by cloud
+        - Cloud Provider responsible for:
+            - OS
+            - Application Runtime
+            - Auto Scaling, Availability and Load Balancing
+        - You responsible for:
+            - Configuration
+            - Application Code
+        - Examples - FaaS, CaaS, Databases, Queues, 
+    - Function as a Service
+    - Container as a Service
+        - Microservices - small focused microservices, flexibility to innovate, deployments are increasingly complex
+        - How can we have one way of deploying? Containers
+        - Advantages of CaaS
+            - Runs same way on any infrastructure
+            - Lightweight, isolated, and cloud neutral
+        - Container Orchestration
+            - Solutions - Kubernetes
+            - Features - auto scaling, service discovery, load balancing, self-healing/resiliency, zero downtime deployments
+    - Databases
+    - Serverless
+        - Servers are abstracted away meaning you dont need to worry about infrastructure, get scaling and high availability
+        - Pay for Use
+        - Function as a Service - Google Functions
+    - Software as a Service
+        - Centrally hosted software on the cloud offered on a subscription basis
+        - Examples - email, calendars, office tools
+    - Shared Responsibility Model
+        - Security is a shared responsibility between GCP and a customer
+        - GCP Features
+            - Encryption at rest, IAM, KMS
+        - Customer Responsibilities
+            - SaaS - Content, Access Policies, and Usage
+            - PaaS - SaaS, Deployment, and Web Application Security
+            - IaaS - PaaS, Operations, Network Security, and Guest OS
+    - GCP Managed Services for Compute
+        - Compute Engine - VMs - IaaS
+        - Google Kubernetes Engine - Containers and Orchestration - CaaS
+        - App Engine - Scalable Managed Platform - PaaS, CaaS, Serverless
+        - Cloud Functions - Event Driven Simple Applications - FaaS, Serverless
+        - Cloud Run - No Cluster Containerized Application - CaaS, Serverless
+
+5. Google Cloud Computer Services
+    - App Engine
+        - Overview
+            - Simplest way to deploy anbd scale applications in GPC
+            - Supports multiple langauges, containers, connection to other products
+            - No Usage charges, pay for resources provisioned
+            - Features
+                - Automatic load balancing and scaling
+                - Managed platform updates
+                - Application versioning
+                - Traffic splitting
+            - PaaS, Serverless, Lower Responsibility, Lower Flexibility
+        - Environments
+            - Standard - application run in language specific sandboxes
+                - V1 - old version of langauges
+                - V2 - newer versions of languages
+                - Complete isolation from OS/Disk
+                - Supports scale down to zero instances
+            - Flexible - application instances run within Docker containers
+                - Supports any runtime
+                - Makes use of compute engine virtual machines
+                - Canot scale down to zero instances
+        - Create App Engine
+            - Enable API
+            - Load code editor
+            - Load code with app.yaml
+            - Set project in cloudshell
+            - Go to IAM and Admin, update member to role Storage Object Viewer
+            - Run gcloud app deploy
+            - Run another using gcloud app deploy --version=v2
+            - Commands
+                - gcloud app services list - show serviecs
+                - gcloud app versions list - show versions
+                - gcloud app instances list - show instances
+                - gcloud app browse - link to active version
+                - gcloud app browse --version <ID> - link to old version
+    - Service Categories and Scenarios
+        - VM - IaaS
+        - Gmail - SaaS
+        - App Engine - PaaS
+    - Google Kubernetes Engine
+        - Overview
+            - Cluster Management - Different VMs
+            - Orchestration - auto scaling, service discovery, self healing, zero downtime, auto repair, auto upgrade, pods and cluster scaling
+            - Integrates with Cloud Logging and Cloud Monitoring
+            - Provides support for persistent disk and local SSD
+        - Demo - Creating a GKE Cluster
+            - Enable API
+            - Create a kubernetes cluster with the default node pool - gcloud container clusters create
+                - Cluster Mode
+                    - Standard - customer manages  node configuration and pay per node
+                    - Autopilot - reduce operational cost in running cluster
+            - Connect to project - gcloud config set project <project>
+            - Connect to cluster - gcloud container clusters get-credentials my-cluster --zone <zone> -c --project <project>
+            - Create deployment - kubectl create deployment <deployment> --image=<image>
+            - Get deployment - kubectl get deployment
+            - Expose deployment/Create a service - kubectl expose deployment <deployment> --type=LoadBalancer --port=8080
+            - Get Service - kubectl get services
+            - Increase instances - kubectl scale deployment <deployment> --replicas=3
+            - Get pods - kubectl get pods
+            - Decrease nodes - gcloud container clusters resize <cluster> --node-pool <pool> --num-nodes=2 --zone=<zone>
+            - Setup autoscaling microservice - kubectl autoscale deployment <deployment> --max=4 --cpu-percent=70
+                - Horizontal pod autscaling hpa is created
+            - Get hpa - kubectl get hpa
+            - Auto scale cluster - gcloud container clusters update <cluster> --enable-autoscaling --min-nodes=1 --max-nodes=10
+            - Delete service - kubectl delete service <service>
+            - Delete deployment - kubectl delete deployment <deployment>
+            - Delete cluster - gcloud container clusters delete <cluster> --zone <zone>
+    - Google Cloud Functions
+        - Overview
+            - Goal - execute some code when an event happens e.g. file upload, error log, message in Pub/Sub
+            - Pay only for what you use, invocations, compute time, amount of memory and cpu provisioned
+            - Each execution runs in a separate instance
+        - Demo
+            - Enable API
+            - Generations - difference in timeout and memory that can be allocated
+            - Configuration -> Code -> Deploy
+    - Cloud Run and Cloud Run for Anthos
