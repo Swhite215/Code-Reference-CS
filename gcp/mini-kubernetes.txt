@@ -1,0 +1,111 @@
+GCP Mini-Course - Intro to Kubernetes
+
+1. Container Registry Lab Path
+    - Create Application
+    - Test Application
+    - Create Dockerfile
+    - Build Image - docker build
+    - Tag Image - docker tag image [HOST]/[PROJECT ID]/[IMAGE] e.g. docker tag quickstart-image gcr.io/qwiklabs-gcp-04-ddbd975b1d20/quickstart-image
+    - Push Image to Registry
+        - Allow docker access to projects container registry - gcloud auth configure-docker
+        - Push image - docker push gcr.io/[PROJECT ID]/[IMAGE] e.g. docker push gcr.io/qwiklabs-gcp-04-ddbd975b1d20/quickstart-image
+    - Pull Image
+        - gcloud docker -- pull [HOST]/[PROJECT ID]/[IMAGE] e.g. gcloud docker -- pull gcr.io/qwiklabs-gcp-04-ddbd975b1d20/quickstart-image
+        - docker pull [HOST]/[PROJECT ID]/[IMAGE] e.g. docker pull gcr.io/qwiklabs-gcp-04-ddbd975b1d20/quickstart-image
+    - List Images
+        - gcloud container images list
+    - Run Image
+        - docker run -p 8080:8080 gcr.io/qwiklabs-gcp-04-ddbd975b1d20/quickstart-image
+
+
+2. Compute Options
+    - Where can you run containers?
+        - Virtual Machine
+        - Google Kubernetes Engine - rich administration of container workloads
+        - App Engine - containers run by the service
+            - App Engine Standard
+            - App Engine Flexible
+        - Cloud Run - stateless containers - Knative
+        - Cloud Functions - event driven serverless compute service
+
+3. Introduction to Kubernetes
+    - What is Kubernetes?
+        - Open Source
+        - Container Management
+        - Imperative Configuration
+        - Automation
+        - Declarative Configuration
+    - Kubernetes Infrastructure
+        - Cluster
+            - Control Plane - server that runs management tools for kubernetes
+                - Kube-APIServer
+                - Kube-Scheduler - which node to run on
+                - Kube-Controller-Manager - reacting to changes in the network
+                - etcd - configuration management
+                - Kube-Cloud-Manager - 
+            - Node - environment for running and managing containers
+                - Kubelet
+                - Kube-Proxy
+            - Pod
+                - When you deploy containers on nodes you use a wrapper called a pod
+                - Pods provide isolation from other pods
+                - Pods provide networking and other services
+                - Pods are the basic unit of deployment in kubernetes
+                - Pods run on nodes
+        - GKE vs. Open Source
+            - GKE is the managed solution and takes care of Control Plane components and Kubelet and Kube-Proxy
+            - GKE AutoPilot - manages the nodes as well
+            - GKE Features
+                - Fully Managed, Auto Upgrade, Auto Repair, Cluster Scaling, Seamless Integration
+                - Container Optimized OS, IAM, Integrated Logging and Monitoring, Integrated Networking, Cloud Console
+            - GKE Cluster Options
+                - Autopilot - pay by the pod, GKE manages the entire cluster and node infrastructure
+                - Standard - you pad for the nodes regardless of utilization
+        - Kubectl - transforms commands into API calls to manage your cluster and its resources
+    - Google Cloud Organization
+        - Regions - data center campus
+        - Zone - data center, fault tolerance
+        - Multi-Region - Europe
+
+4. Kubernetes Lab
+    - Deploy GKE Cluster
+    - Modify GKE Cluster
+    - Deploy Workload to Cluster
+
+5. Introduction to Kubernetes Workloads
+    - Kubectl - transforms your commands into API calls to manage your cluster and its resources
+        - Create kubernetes objects, view objects, delete objects, view and export configurations
+        - kubectl - command type name flags e.g. kube get pods my-test-app -o=wide
+    - Deployments
+        - Manages a set of replica pods
+        - kubectl create deployment nginx --image nginx:1.14.2 --replicas 3 
+        - YAML File
+            - Specification - Replicas and Template
+            - Specification for Pod - Containers, Image, Ports
+        - Three Ways to Create a Deployment
+            - kubectl apply -f Deployment_File
+            - kubectl create deployment Deployment_Name --image IMAGE --replicas NUMBER --labels KEY:VALUE --port PORT --generator GENERATOR --save-config
+            - UI Setup
+        - Inspect deployment - kubectl get deployment DEPLOYMENT_NAME
+        - Manual Scaling - kubectl scale deployment DEPLOYMENT_NAME --replicas=NUMBER
+        - Auto Scaling - kubectl autoscale deployment DEPLOYMENT_NAME --min=NUMBER --max=NUMBER --cpu-percent=NUMBER
+        - Deploy Version Two
+            - Edit deployment YAML and run deployment again
+            - Change image associated with deployment
+            - Edit YAML file on CLI
+            - Rolling Update in UI
+        - Process Behind Updating
+            - Creates new replica set
+            - Gradually creates pod in new replica and removes pod from old replica
+
+6. Kubernetes Controllers and Services
+    - Controller Types
+        - Deployment - manage a set of stateless pods that run continuously
+        - StatefulSet - manages a set of pods with attached storage that runs continuously
+        - Job - manages a set of pods that run to task completion and then exit
+        - CronJob - like a Job controller but runs on a schedule
+    - Service - stable network representation of a set of pods
+        - LoadBalancer - exposes the groups of pods externally using a load balancer
+        - NodePort - exposes the group of pods on each Node's IP at a static port
+        - ClusterIP - exposes an internal IP address for a group of pods
+        - Creating a load balancer service from the CLI - kubectl expose deployments nginx --port=80 --type=LoadBalancer
