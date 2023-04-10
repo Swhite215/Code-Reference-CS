@@ -1,0 +1,68 @@
+Google Cloud Fundamentals: Core Infrastructure
+
+1. Introducing Google Cloud
+    - Overview of Cloud Computing
+    - IaaS and PaaS and Saas
+        - Infrastructure as a Service
+        - Platform as a Service
+        - Software as a Service
+    - The Google Cloud Network
+        - Features
+            - Designed for High Throughput
+        - Infrastructure Locations
+            - North America, South America, Europe, Asia, Austrailia
+            - https://cloud.google.com/about/locations
+        - Location -> Multiple Regions -> Multiple Zones
+        - Europe - europe-west2 -> europe-west2-a, europe-west2-b, europe-west2-c
+        - Note - some services can run in multiple geographic locations
+        - Current Numbers - 112 Zones, 37 Regions 04/10/2023
+    - Environmental Impact
+        - Commitment 
+            - Carbon Neutral, Renewable Energy, Carbon Free
+    - Security
+        - GCP - designed with security in mind
+        - Layered Approach
+            - Hardware Layer
+                - Hardware Design and Provenance
+                - Secure Boot Stack - ensure booting correct software stack
+                - Premises Security - multiple layers of physical security protections
+            - Service Deployment
+                - Encryption of inter-service communication
+            - User Identity Level
+                - Universal Two-Factor Authentication
+                - Zero Trust Model
+            - Storage Service Level
+                - Encryption at Rest
+                - Hard Drives and SSDs Hardware Encryption
+            - Internet Communication Level
+                - Google Front End - all registered services use TLS
+                - Denial of Service Protection - multi-tier, multi-layer DoS protections
+            - Operational Security Level
+                - Intrustion Detection
+                - Reducing Insider Risk
+                - Employee Universal Second Factor
+                - Software Development Practices
+            - https://cloud.google.com/docs/security/infrastructure/design
+    - Open APIs and Open Source
+        - Open-Source Friendly
+        - Examples
+            - TensorFlow - open source library for machine learning
+            - Kubernetes - container orchestration
+            - Google Cloud's Operation Suite
+    - Pricing and Billing
+        - Types
+            - Google Compute Products - billed per second (after 1st minute)
+            - Sustained Use Discount - use resource a dedicated amount results in a discount
+            - Committed Use Discount
+            - Custom Virtual Machine Types
+        - Google Cloud Pricing Calculator
+        - Billing Tools - Budgets, Alerts, Reports, Quotas (Hard Limits)
+            - Rate Quota - resets after a specific time
+            - Allocation Quota - govern number of resources in a project
+2. Resources and Access in the Cloud
+3. Virtual Machiens and Networks in the Cloud
+4. Storage in the Cloud
+5. Containers in the Cloud
+6. Applications in the Cloud
+7. Developing and Deploying in the Cloud
+8. Monitoring in the Cloud
