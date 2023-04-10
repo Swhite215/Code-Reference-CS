@@ -402,6 +402,74 @@ Google Cloud Fundamentals: Core Infrastructure
     - Deployment: Infrastructure as Code
         - Pathways
             - Manually set up environment in Google CLoud
-            - 
+        - Terraform
+            - Terraform Templates
+    - Lab: Automating the Deployment of Infrastructure Using Terraform
+        - TODO:
 
 8. Monitoring in the Cloud
+    - Monitoring
+        - The foundation of product reliability
+        - Reveals what needs urgent attention
+        - Shows trends in application usage patterns
+        - Helps improve an application experience
+        - Real Time System Information
+            - Query counts and types
+            - Errors counts and types
+            - Processing times
+            - Server lifetimes
+        - Goal
+            - Ensure continue system operations
+            - Uncover trend analyses over time
+            - Build dashboards
+            - Alert personnel when systems violate predefined SLOs
+            - Compare systems and systems changed
+            - Provide data for improved incident response
+        - Product Reliability Triangle
+            - Monitoring
+            - Incident Response
+            - Root Cause Analysis/Post Mortems
+            - Testing
+            - Capacity Planning
+            - Developing
+            - Product
+        - Product Needs
+            - Continual improvement, dashboards, automated alerts, monitoring tools
+        - Golden Signals
+            - Latency, Traffic, Saturation, Errors
+    - SLIs, SLOs, and SLAs
+        - Service Level Indicator - carefully selected monjitoring metrics that measure one aspect of a service's reliability
+        - Service Level Objective - combines a service level indicator with a target reliability and will generally be somewhere just short of 100%
+            - Specific, Measurable, Achievable, Relevant, and Time-Bound
+        - Service Level Agreement - commitments made to your customer that your systems and applications will only have a certain amount of down time
+    - Integrated Monitoring, Logging, Alerting, and Debugging
+        - Cloud Operations
+            - Capture Signals
+                - Metrics - apps, services, platform, microservice
+                - Logs - apps, service, platforms
+                - Trace - apps
+            - Visualize and Analyze
+                - Dashboards
+                - Metrics Explorer
+                - Logs Explorer
+                - Service Monitoring
+                - Health Checks
+                - Snapshot Debugger
+                - Profiler
+            - Manage Incidents
+                - Alerts
+                - Error Reporting
+                - SLO
+            - Monitoring
+                - BigQuery - queries in flight, scanned bytes billed, slots used
+                - Cloud Run - cpu utilization, billable time, memory utilization
+                - Compute - cpu and memory utilization, disk throughput
+                - Applications - OpenTelemetry custom metrics
+        - Cloud Logging
+            - Cloud Audit Logs
+            - Agent Logs
+            - Network Logs
+            - Service Logs
+        - Error Reporting - counts, analyzes, and aggregrates the crashes in your running cloud services
+        - Cloud Trace - tracing system that collects latency data from your distributed applications and displays it in the google console
+        - Cloud Profiler - sues statistical techniques and low impact instrumentation to provide a complete CPU and heap picture of an application without slowing it down
