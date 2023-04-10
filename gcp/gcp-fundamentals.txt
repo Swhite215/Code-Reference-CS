@@ -262,6 +262,50 @@ Google Cloud Fundamentals: Core Infrastructure
     - Comparing Storage Options
 
 5. Containers in the Cloud
+    - Introduction to Containers
+        - Containers group your code and its dependencies
+        - Concepts
+            - Invisible box around code and its dependencies
+            - Has limited access to its own partiion of the file system and hardware
+            - Only requires a few system calls to create and start as a process
+            - Only needs an OS kernel that supports containers and a container runtime, on each host
+            - It scales like PaaS, but gives nearly the same flexibility as IaaS
+            - Scale by duplicating single containers
+            - Scale an application with multiple conjtainers
+            - Modular, easily deployable, and scale independently across a group of hosts
+    - Kubernetes and Google Kubernetes Engine
+        - Kubernetes
+            - Manages containerized workloads
+            - Open-source platform for managing containerized workloads and services
+            - Makes it easy to orchestrate many containers on many hosts, scale them as microservices, and deploy rollouts and callbacks
+            - Is a set of APIs to deploy containers on a set of nodes called a cluster
+            - Divided into a set of primary components that run as the control plane and a set of nodes that run containers
+            - You can describe a set of applications and how they should interact with each other and Kubernetes figures how to make that happen
+            - Rolling updates can be triggered on the command line or by updating the configuration file
+        - Kubernetes Components
+            - Container - application
+            - Pods - lowest level, contains multiple containers
+            - Node - environment for running and managing containers
+            - Control Plane - manages the cluster
+            - Deployments - replicas of a specific pod, can be scaled on command, can be modified by changing configuration files
+            - Load Balancer - routes traffic to pods
+            - Service - ingress and egress from pods
+            - Configuration File - describe how to create and scale deployments, declarative
+        - Google Kubernetes Engine
+            - Google's managed Kubernetes service
+            - Can create customized Kubernetes clusters
+            - Benefits
+                - Load balancing for Compute Engine instances
+                - Node pools to designate subsets of nodes within a clsute 
+                - Automatic scaling
+                - Automatic upgrade
+                - Node auto-repair
+                - Logging and monitoring
+            - Commands
+                - gcloud container clusters create k1
+    - Hybrid and Multi-Cloud
+        - Anthos - hybrid cloud management - cloud.google.com/anthos
+    - Lab - Google Cloud Fundamentals: Getting Started with GKE
 
 6. Applications in the Cloud
 
