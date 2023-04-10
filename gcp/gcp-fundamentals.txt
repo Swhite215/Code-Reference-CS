@@ -59,10 +59,142 @@ Google Cloud Fundamentals: Core Infrastructure
         - Billing Tools - Budgets, Alerts, Reports, Quotas (Hard Limits)
             - Rate Quota - resets after a specific time
             - Allocation Quota - govern number of resources in a project
+
 2. Resources and Access in the Cloud
-3. Virtual Machiens and Networks in the Cloud
+    - Google Cloud Resource Hierarchy
+        - Org Node -> Folders -> Projects -> Resources
+        - Project
+            - Separate entities under the Org node
+            - Hold resources, each of which belongs to just one project
+            - Can have different owners and users
+            - Billed separately
+            - Project ID - globally unique, assigned, immutable
+            - Name - not unique, chosen by you, mutable
+            - Project Number - globally unique, assigned, immutable
+        - Resource Manager - manages projects
+            - Gather a list of projects
+            - Create new projects
+            - Update existing projects
+            - Delete projects
+            - Recover previouslyu deleted projects
+            - Access through RPC API or REST API
+        - Folder - contains resources
+            - The resources inherit policies and permissions assigned to folders
+            - Group projects together
+        - Organziation Node/Roles
+            - Policy Administration - super user for the whole of the organization
+            - Project Creator
+            - New Organization
+                - Google Workspace Customer - projects will automatically belong to your org node
+                - Non-Google Workspace - use cloud identity to create organization node
+        - Policies - who can do what, access is granted
+            - Organization Node Policy
+    - Identity and Access Management
+        - Big Idea - who can do what on which resources
+        - Policies are managed and applied by IAM
+    - IAM Roles
+        - Basic - broad in scope, basic viewer, editor
+        - Predefined - match job needs e.g. instanceAdmin, about 1,300, bundled permissions
+        - Custom - name, description, id, and permissions
+    - Service Accounts
+        - Applications that need to communicate with other services or applications e.g. virtual machine communicating with cloud storage
+        - Identity applied to resource as a service account, and permissions can be applied to service accounts
+    - Cloud Identity (Google not GCP)
+        - Manages team and organization access
+        - Gmail Account -> Google Cloud Consoles -> Google Groups
+    - Interaction with Google Cloud
+        - Google Cloud Console - https://console.cloud.google.com/
+        - CloudShell + GCloud - Browser Terminal and CLI Tool
+        - Cloud SDK + GCloud - Local Terminal and CLI Tool
+        - APIs REST and RPC
+        - Cloud Mobile App
+    - Lab - Getting Started with Cloud Marketplace
+        - Deploy LAMP Application using Bitnami
+
+3. Virtual Machines and Networks in the Cloud
+    - Virtual Private Cloud Networking
+        - Secure, individual, private cloud computing model hosted within a public cloud
+        - Features
+            - Connect Google Cloud resources to each other and to the internet
+            - Segments networks
+            - Globally unique and have subnets in any Google Cloud region worldwide
+            - VPC subnets connect resources in different zones
+            - Uses firewall to restrict access to instances
+            - Creates static routes to forward traffic to specific destinations
+    - Compute Engine
+        - Virtual Machines
+        - Configuration
+            - General Purpose, Compute Optimized, Memory Optimized, GPUs
+            - https://cloud.google.com/compute/docs/machine-resource
+        - Pricing and Billing
+            - Sustained Use - use for a specific amount of time
+            - Committed Use - commit to using a specific amount of resources for a specific amount of time
+            - Spot VMs - 80-90% discount, VM might not be available and can be taken away from you at anytime
+                - https://cloud.google.com/compute/docs/instances/create-use-preemptible#best_practices
+                - https://cloud.google.com/compute/docs/instances/create-use-spot#best-practices
+            - Pay for only what you need, use, want
+    - Scaling Virtual Machines
+        - Auto-Scaling - multi-dimensional scaling based on multiple metrics
+    - Important VPC Capabilities
+        - VPCs do not require a router to be provisioned
+        - Routing Tables
+            - Built in so you dont have to provision or manage a router
+            - Used to forward traffic from one instance to another
+        - VPCs do not require a firewall to be provisioned
+        - VPC Firewall
+            - Restricts access to instances through both incoming and outgoing traffic
+            - Rules be defined through network tags on Compute Engine instances
+        - VPC Peering - VMs in different VPCs communicate using internal IPs
+        - Shared VPC - VMs in other projects can join VPC in another project
+    - Cloud Load Balancing
+        - Load balancing distributes traffic across instances
+        - Cloud Load Balancing
+            - Full distributed, software-defined, managed service
+            - HTTP, TCP, SSL, UDP, Proxy, Regional, Regional Internal
+            - Provides single as well as cross region load balancing, including automatic multi-region failover
+            - No pre-warming is required for anticipated spikes in traffic
+            - Internal vs. External
+    - Cloud Domain Name Service
+        - Public DNS Service - 8.8.8.8
+    - Cloud Content Delivery Network
+    - Connecting Networks to Google VPC
+        - Cloud VPN
+            - IPSec VPN Protocol
+                - Creates a VPN tunnel connection
+                - Use Cloud Router to make the connection dynamic
+                - Let others network and Google VPC exchange route information over the VPN using the Border Gateway Protocol
+                - Not always the best option because of security concerns or bandwidth reliability
+                - Small number of MBs
+            - Dedicated Interconect
+                - Good solution for getting highest uptimes for interconnection
+                - Allows for one or more direct private connections to Google
+                - 99.99% SLA
+                - Connections can be backed up by a VPN for even greater reliability
+                - More MBs than IPSec VPN
+            - Partner Interconnecxt
+                - ISP links your on-prem with your VPC
+                - Can be configured to suppor tmission criticl services or applications that can tolerate some downtime
+                - Small number of MBs
+                - 99.99% SLA
+            - Direct Peering
+                - Puts a router in the same public datacenter as a Google Point of Presence
+                - Uses a router to exchange traffic between networks
+                - Connects to more than 100 Google points of presence around the world
+            - Carrier Peering
+                - ISP
+    - Lab - Getting Started with VPC Networking and Google Compute Engine
+        - Notes
+            - Make sure you create the firewall rules
+            - Allow internal -> Allow custom firewall rule
+            - Routes do not appear to disappear, refresh the page
+            - Don't confuse SSH terminals with Cloud Shell
+
 4. Storage in the Cloud
+
 5. Containers in the Cloud
+
 6. Applications in the Cloud
+
 7. Developing and Deploying in the Cloud
+
 8. Monitoring in the Cloud
