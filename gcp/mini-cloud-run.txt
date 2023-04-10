@@ -1,0 +1,22 @@
+GCP Mini-Course - Cloud Run
+
+1. Hello Cloud Run
+    - Enable Cloud Run API in Shell
+        - gcloud services enable run.googleapis.com
+        - gcloud config set compute/region us-central1
+        - LOCATION="us-central1"
+    - Create Sample Application
+    - Containerize the App
+     - gcloud builds submit --tag gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld
+     - gcloud container images list
+    - Deploy to Cloud Run
+        - gcloud run deploy --image gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld --allow-unauthenticated --region=$LOCATION
+
+2. Creating Application Containers with Google Cloud Buildpacks
+    - Enable Cloud Run API in Shell
+        - gcloud services enable run.googleapis.com
+        - gcloud config set compute/region us-central1
+    - Pack CLI
+        - Build - pack build --builder=gcr.io/buildpacks/builder name
+    - Build and Run on Cloud Run
+        - gcloud beta run deploy --source .

@@ -1,0 +1,56 @@
+GCP Mini-Course - Cloud Storage Tasks
+
+1. Storage and Database Decision Chart
+    - Options: Filestore, Cloud Storage, Cloud Spanner, Cloud SQL, Firestore, Cloud BigTable, BigQuery
+    - Questions
+        - Is your data structured or unstructured?
+        - Do you need a shared file system?
+        - Is your workload analytics?
+            - Transactional Database - save real time data as events occur
+            - Analytical Database - perform complex analysis on large amounts of stored data
+        - Is your data relational?
+        - Do you need updates or low latency?
+        - Do you need horizontal scalability?
+
+2. Storage and Database Services
+    - Cloud Storage - Objects
+    - File Store - File
+    - CloudSQL and Cloud Spanner - Relatinal
+    - Firestore and Cloud BigTable - Non-Relational
+    - BigQuery - Warehouse
+
+3. Cloud Storage
+    - Objective - object storage service
+    - Demo
+        - Select Cloud Storage -> Buckets
+        - Create a Bucket
+        - Configure
+    - Key Features
+        - Scalable
+        - High Availability
+        - Single API
+        - Customer Supplied Encryption Key CSEK
+        - Object Lifecycle Management
+        - Object Versioning
+        - Direct Synchronization
+        - Object Notifications using Pub/Sub
+        - Strong Global Consistency
+    - Classes
+        - Standard - frequent
+        - Nearline - once a month
+        - Coldine - once a quarter
+        - Archive - once a year
+    - gsutil
+        - CLI tool for working with Cloud Storage
+    - Individual Object Level
+        - Live object configuration
+        - Edit Access -> Edit access to specific object
+    - Access Options
+        - Access Control Lists
+        - Signed URLs
+        - Individual Object Level
+        - Bucket Level
+    - General Google Cloud Encryption Options
+        - Google Managed Encryption Key
+        - Customer Managed Encryption Key
+        - Customer Supplied Encryption Key
