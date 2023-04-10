@@ -190,6 +190,76 @@ Google Cloud Fundamentals: Core Infrastructure
             - Don't confuse SSH terminals with Cloud Shell
 
 4. Storage in the Cloud
+    - Cloud Storage
+        - Fully managed service
+        - Uses - website content, archival and disaster recovery, direct download
+        - Bucket
+            - Where - region, multiple zone, zonal
+            - Storage Class - standard, nearline, coldline, archive
+            - Access Control - uniform, fine-grained
+            - Data Protection - object versioning, retention policy, data encryption
+        - Pricing: https://cloud.google.com/storage/pricing
+    - Cloud SQL
+        - Databases - MySQL, PostgreSQL, SQL Server
+        - Tasks
+            - Applying patches/updates, managing backups, and configuring replications
+        - Reasons
+            - Doesn't require any software installation or maintenance
+            - Can scale up to 64 processor cores, 400+GB of RAM and 64 TB of storage
+            - Supports automatic replication scenarios
+            - Supports managed backups
+            - Encrypts data
+            - Includes a network firewall
+        - Cloud SQL instances are accessible by other Google Cloud and external services
+        - SLA: https://cloud.google.com/sql/sla
+    - Cloud Spanner
+        - Fully managed relational database
+        - Features
+            - Scales horizontally and globally
+            - Strongly consistent
+            - Speaks SQL
+            - Strongly Consistent
+        - Applications
+            - SQL relational database management system
+            - High availability
+            - Strong global consistency
+            - High numbers of I/O operations per second
+    - Firestore
+        - NoSQL Database
+        - Forms
+            - Document
+            - Data Store
+        - Features
+            - Flexible, scales horizontally, NoSQL cloud database
+            - Automatic multi region data replication
+            - Strong consistency guarantees
+            - Atomic batch operations
+            - Real transaction support
+        - Applications
+            - Ideal for mobile and web development
+        - NoSQL Queries
+            - Retrieve individual documents
+            - Retrieve all documents in a collection
+        - Mode
+            - Offline and online data synchronization
+    - Cloud Bigtable
+        - Google's NoSQL big database service
+        - Features
+            - Handle massive workloads
+            - Consistent low latency
+            - High throughput
+            - Millions of Rows a Second
+            - Less than 10ms updates
+            - More than 10 Petabytes of data
+            - Works with more than 1TB of semi-structured or structured data
+        - Applications
+            - Operational applications
+            - Analytical applications
+            - Time series or has natural semantic ordering
+            - Machine learning algoirthms on data
+        - BigTable != BigQuery
+            - BigQuery - SQL, Google Cloud Data Warehouse
+    - Comparing Storage Options
 
 5. Containers in the Cloud
 
