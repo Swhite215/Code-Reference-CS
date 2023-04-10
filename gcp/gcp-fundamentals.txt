@@ -260,6 +260,13 @@ Google Cloud Fundamentals: Core Infrastructure
         - BigTable != BigQuery
             - BigQuery - SQL, Google Cloud Data Warehouse
     - Comparing Storage Options
+    - Lab - Getting Started with Cloud Storage and Cloud SQL
+        - Create Bucket with GSUTIL in Cloud Shell
+            - export LOCATION=US
+            - gsutil mb -l $LOCATION gs://$DEVSHELL_PROJECT_ID
+            - gsutil cp gs://cloud-training/gcpfci/my-excellent-blog.png my-excellent-blog.png
+            - gsutil cp my-excellent-blog.png gs://$DEVSHELL_PROJECT_ID/my-excellent-blog.png
+            - gsutil acl ch -u allUsers:R gs://$DEVSHELL_PROJECT_ID/my-excellent-blog.png
 
 5. Containers in the Cloud
     - Introduction to Containers
@@ -308,7 +315,93 @@ Google Cloud Fundamentals: Core Infrastructure
     - Lab - Google Cloud Fundamentals: Getting Started with GKE
 
 6. Applications in the Cloud
+    - App Engine
+        - Full Range of Services
+            - NoSQL Datastores
+            - Memcache
+            - Load Balancing
+            - Health Checks
+            - Application Logging
+            - User Authentication API
+        - Interfaces
+            - Use Languages, Libraries, and Frameworks
+            - Eclipse, IntelliJ, Maven, Git, Jenkins, PyCharm
+        - Pricing
+            - Only pay for the resources used
+        - Versions
+            - Standard
+                - Persistent storage with queries, sorting, and transactions
+                - Automatic scaling and load balancing
+                - Asynchronous task queues for perfomring work outside the scope of a request
+                - Scheduled tasks for triggering events at specified times or regular intervals
+                - Integration with other Google Cloud services and APIs
+                - Requirements
+                    - Use specific versions of Java, Python, PHP, Go, NodeJS, and Ruby
+                    - Application must conform to sandbox constraints that are dependent on runtime
+            - Flexible
+                - Uses custom containers
+                - Instances are health checked, healed, and co-located
+                - Critical, backward-compatible updates are automatically applied to the underlying operating system
+                - VM instancees are automatically located by geographical region according to the settings in your project
+                - VM instances are restarted on a weekly basis
+                - Use Cases
+                    - Microservices
+                    - Authorization
+                    - SQL and NoSQL Database
+                    - Traffic Splitting
+                    - Logging
+                    - Search
+                    - Versioning
+                    - Security Scanning
+                    - Memcache
+                    - Content Delivery Networks
+                - Advantages
+                    - Custom configurations and libraries
+                    - Customize runtime and operating system of your virtual machine
+                    - Customize or provide runtimes by supplying a custom Docker image or a Dockerfile
+    - Google Cloud API Management Tools
+        - API Management Tools
+            - Cloud Endpoints
+                - Distributed API management system
+                - Provides an API console, hosting, logging, monitoring, and other features
+                - Use with any APIs that support the OpenAPI specification
+                - Supports applications running in App Engine, Google Kubernetes Engine, and Compute Engine
+                - Clients include Android, iOS, and Javascript
+            - API Gateway
+                - Backend implemtations can vary
+                - Managed by Google
+                - Provide secure access to your backend services through a well defined REST API
+                - Clients consume your REST APIs to implement standalone apps
+            - Apigee Edge
+                - Specific focus on business problems, like rate limiting, quotas, and analytics
+                - Many Apigee Edge uysers provide a software service to other companies
+                - Backend services for Apigee Edge don't need to be in Google Cloud
+    - Cloud Run
+        - A managed compute platform that can run stateless containers
+        - Serverless, removing the need for infrastructure management
+        - Built on Knative, an open API and runtime environment built on Kubernetes
+        - Can automatically scale up and dowm from zero almost instantaneoulsy, charging only for the resources used
+        - Workflows
+            - Write -> Build and Packaage in Registry -> Deploy to Cloud Run
+            - Write Code -> Deploy to Cloud Run using Buildpacks
+        - Cloud Run handles HTTPs serving for you
+        - Only charged when your container is handling requests
+        - Cloud Run can run any binary that is Linux 64 bit compatible\
+    - Lab: Hello Cloud Run
 
 7. Developing and Deploying in the Cloud
+    - Development in the Cloud
+        - Cloud Source Repositories - repositories support compute products
+        - Cloud Functions - handle application events e.g. convert format, convert thumbnail size, store new files
+            - Lightweigfht, event based, asynchronous compute solutions
+            - Allow you to create small, single purpose functions that respnd to cloud events without the need to manage a server
+            - Use these functions to construct applications from bite sized business logic and connect and extend cloud services
+            - Billed to the nearest 100th milliseconds, and only while your code is running
+            - Supports writing source code in a number of programming languages
+            - Events from Cloud Storage and Pub/Sub can trigger CLoud Functions asynchronously, or use HTTP invocation for synchronous execution
+    - Deployment: Infrastructure as Code
+        - Pathways
+            - Manually set up environment in Google CLoud
+            - 
 
 8. Monitoring in the Cloud
