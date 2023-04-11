@@ -405,7 +405,12 @@ Google Cloud Fundamentals: Core Infrastructure
         - Terraform
             - Terraform Templates
     - Lab: Automating the Deployment of Infrastructure Using Terraform
-        - TODO:
+        - Module Registry - https://registry.terraform.io/browse/providers
+        - Commands
+            - terraform init - initialize terraform with provider and other values
+            - terraform fmt - rewrite terraform config files to a canonical format and style
+            - terraform plan - create execution plan
+            - terraform apply - apply the desired changes i.e. produce planned resources
 
 8. Monitoring in the Cloud
     - Monitoring
