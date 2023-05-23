@@ -145,3 +145,29 @@ External Lecture 1
         - Choose the I/O Needs - general, serial, A/D and D/A
         - Select other Peripherals - clock, timer, watchdog, ethernet, pulse width modulation, power saving, etc.
         - Find Available Tools and Software - compilers, ICE, evaluation boards, operating systems
+
+Lecture 3
+    - Language Issues - chartacteristics of a language significantly affect the real time performance of the program
+        - Languages - FORTRAN, C, Ada, Pascal, Modula-2
+        - Parameter Passing
+            - Global Variables, Call by Value, Call by Reference
+        - Recursion - good structured programming, bad due to unknown stack size - Convert Recursive to Non-Recursive
+        - Re-Entrant - program segment that can be concurrenlty executed by two or more threads
+        - Non-Reentraant - program segment that is cllaed a critical section or vulnerable window, where a thread executing in the window is interrupted by a second thread
+        - Dynamic Allocation - slow but important
+        - Typing - Strong, Weak
+        - Exception Handling - Ada is best
+        - Abstract Data Types - records, structures, custom types, etc. e.g. enum
+        - Object Oriented Languages - Abstract Data Types, Inheritance, Polymorphism
+        - Modularity
+        - C Special Variable Types
+            - Register - CPU register
+            - Volatile - wont optimize code affecting this variable
+            - static - known only to fgunctions within the file, "private" global
+        - Assembly - efficient, difficult, tedious, error prone, not portable
+    - Rules
+        - Avoid Recursion
+        - Avoid Unbounded While Loops
+        - Avoid Priority Inversion
+        - Avoid Over-Engineering
+        - Know the Compiler
