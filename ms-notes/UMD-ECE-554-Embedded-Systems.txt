@@ -135,3 +135,13 @@ Embedded Systems ECE 554
             - Single Instruction, Multiple Data
             - Multiple Instruction, Single Data
             - Multiple Instruction, Multiple Data
+        
+External Lecture 1
+    - Choosing an Embedded Controller
+        - Know the Application - power, floating point, OS, I/O, internet connection, size, algorithms
+        - Choose a Processor - 4, 8, 16, 32, or 64 bit
+        - Evaluate the Processor's Performance
+        - Decide on the Memory Needed - RAM, ROM/Flash, EEPRON, Mask ROM
+        - Choose the I/O Needs - general, serial, A/D and D/A
+        - Select other Peripherals - clock, timer, watchdog, ethernet, pulse width modulation, power saving, etc.
+        - Find Available Tools and Software - compilers, ICE, evaluation boards, operating systems
