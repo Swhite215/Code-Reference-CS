@@ -193,3 +193,39 @@ Lecture 4
             - System Integration and Testing
         - ISO 9000-3
         - IEEE 830
+
+Lecture 5
+    - Real Time Specification and Design Techniques
+        - Natural Languages
+            - Pro - easy
+            - Con - ambiguous, tedious
+        - Mathematics
+            - Pro - precise/unambiguous
+            - Con - cryptic and difficult to understand, hard to use, 
+        - Flowcharts
+            - Pro - well understaood, okay for simple/small systems
+            - Con - difficult showing interaction between simultaneous tasks, encourages GOTO
+        - Structure Charts
+            - Pro - widely used, Top-down design, sub-processes
+            - Con - no conditional bnranching or concurrent process interaction
+        - Pseudocode and PDLs
+            - PDL - compiler
+            - Pro - close to programming language, models concurrency, formal methods apply
+            - Con - Learn language, error prone
+        - Finite State Automata
+            - Moore - outputs are a function of the current state only
+            - Mealy - outputs are  afunctiuon of the current state and the inputs
+            - Pro - widely used, easy, structured, can optimize
+            - Con - cant see inside of states, difficult for concurrent processes
+        - Dataflow Diagrams
+            - Pro - widely used, shows concurrency, partitioning
+            - Cons - must be used with other methods for Rt, difficult to show signaling/sync between processes
+        - Petri Nets
+            - Pro - mathematical, visual, concurrency/interprocess
+            - Con - overkill for simple systems, timing can be obscure
+        - Warnier-Orr Notation
+            - Pro - branching, model data structures
+            - Cons - diagrams can get very large and complex, sync of concurrent processes using only conditionals is restrictive, not well known
+        - State Charts
+            - Pro - structure of FSM, depth, concurrent processes, inter-process communication
+            - Con - ????
