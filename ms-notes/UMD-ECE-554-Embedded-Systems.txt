@@ -1,0 +1,34 @@
+Embedded Systems ECE 554
+
+1. Lecture 1
+    - System Concepts
+        - Define - mapping of a set of inputs into a set of ouptuts
+        - Stimulus - input
+        - Behavior - response
+        - Response Time - time between stimulus and behavior
+        - Embedded System - hardware/software computer system embedded within and controlling a product
+        - Real Time System - system that must satisfy explicit bounded response time constrains or risk servere consequences including failure
+            - Airplane Surface Flight Controller, Reservation System, Computer Game
+        - Failed System - A system that cannot satisfy one or more of the requirements stipulated in the system specification
+        - Real Time System - one whose logical correctness is based on both the correctness of the outputs and their timeliness
+        - Soft Real Time System - one in which performance is degraded but not destroyed by failure to meet constraints on response time
+        - Firm Real Time System - missing more than a few deadlines may lead to complete and catastrophic system failure
+        - Hard Real Time System - missing a single deadling may lead to complete and catastrophic system failure
+        - Event - causes the proigram counter to change nonsequentially
+            - Synchronous - occur at predictable times
+            - Asynchronous - occur at unpredictable times
+            - Aperiodic - do not occur at regular intervals
+            - Sporadic - aperiodic that occur infrequently
+            - Periodic - occur at regular intervals
+        - Release Time - time at which an instance of a scheduled task is ready to run, generally associated with an interrupt
+        - Determinism - for each possible state and each set of inputs, a unique set of outputs and next state of the system can be determined
+        - Time Loading - CPU utilization U is a measure of non-idle processing
+            - U = Summations from 1 to N of ei/pi
+            - 0-25%
+            - 26-50% - Very Safe
+            - 51-68% - Safe
+            - 69% - Theoretical Limit
+            - 70-82% - Questionable
+            - 83-99% - Dangerous
+            - 100+ - Overloaded
+
