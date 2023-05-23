@@ -32,3 +32,106 @@ Embedded Systems ECE 554
             - 83-99% - Dangerous
             - 100+ - Overloaded
 
+2. Lecture 2
+    - Computer Hardware and Architecture Review
+        - Basics
+            - Primary Memory - Random Access Memory RAM
+            - Secondary Memory - Hard Disk
+            - CPU - Central Processing Unit
+                - Interrupt Controller
+                - Control Unit
+                - Arithmetic Logic Unit
+                - Process - Fetch, Decode, Execute
+            - Bus
+                - Data, Address, Command
+            - Input and Output
+        - Microcontrollers - computer system that is programmable via microinstructions
+            - Microinsstruction Register, Microcontrol Unit, Decoder, Microinstructions, Micromemory
+        - Instruction Sets
+            - Addressing Modes
+                - Implied - location of data implicit in instruction
+                - Immediate - data specified in instructions
+                - Direct - address of data in instruction
+                - Indirect - address of address in instruction
+                - Register Direct - operands in regsiter
+                - Register Indirect - address of operand in register
+                - Indexed - context of index register added to offset in instruction to get address
+            - Types
+                - 0 - implied, uses stack, many instructions required for simple tasks - long program fast execution
+                - 1 - implied or 1 address, accumulator in CPU
+                - 2 - two register or memory references allowed
+                - 3 - three register or memory references allowed
+        - Reduced Instruction Set Computer - fewer instructions using 2 or 3, longer program, load/store access to memory, simple
+            - Simple instructions take one clock cycle
+            - LOAD/STORE architecture to reference memory
+            - Highly pipelined design
+            - Instructions executed direclty by hardware
+            - Fixed format instructions
+            - Few instructions and addressing modes
+            - Large multiple register sets
+            - Complexity handled by the compiler and software
+        - Complex Instruction Set Computer - many instructions and addresss modes, complex, shorter programs
+            - Complex instructions take many different cycles
+            - Any instruction can reference memory
+            - No instructions are pipelined
+            - A micro-program is executed for each native instruction
+            - Instructions are of variable format
+            - Multiple instructions and addressing modes
+            - Single set of registers
+            - Complexity is in the micro-program and hardware
+        - Memory Technologies
+            - Read and Write RAM
+            - Read Only Memory
+            - Dynamic RAM - 50-60ns
+            - Static RAM - 10-20ns
+            - Electronically Erasable Programmable Read Only Memory - 50-100ns
+            - Flash - 20-50ns
+            - Hierarhcy
+                - Internal CPU Memory
+                - Registers
+                - Cache
+                - Main Memory
+                - Memory on External Devices
+        - I/O Devices
+            - Memory-Mapped I/O - address of I/O devices are mapped into CPUs addressable memory
+            - I/O Mapped I/O - separate instructions used for I/O access
+            - I/O Methods
+                - Polling, Interrupt-Driven, Direct Memory Access
+                    - DMA Steps
+                        - I/O Device Request DMA
+                        - DMA Controller Requests Bus
+                        - CPU Grants Bus
+                        - DMA Controller Gives DMA ACK
+                        - Device Transfers Data
+                        - DMA Interrupts CPU at Done
+            - Bit Map - view of a set of devices that are accessed by a single discrete signal and organized into a single word of memory for convenient access
+        - Interrupt Pattern
+            - Interrup Signal to CPU
+            - CPU Completes Instruction
+            - CPU Saves Program Counter (Next Instruction)
+            - CPU Loads PC w/ Address of Interrupt Signal Routine
+            - ISR Runs
+            - CPU Retrieves Original PC and Resumes
+        - External Programmable Interrupt Controller - prioritizes interrupts
+            - Interrupt Register, Priroity Register, Interrupt Vector, Status Register, Mask Register
+        - Pipelining and Co-Processors
+            - Pipelining - FDE at every clock pulse
+            - Co-Processor - processor loads co-processor to perform calculation
+        - ASIC - Applicaiton Spefici Integrated Circuits
+        - Programmable Array Logic or Logic Array - programmable AND array followed by a fixed number of input OR elements
+        - Field Programmable Gate Array - provides the construction for a system on a chipe with an integrated processor, memory, and I/O
+        - Transducers - converts energy from one form to another
+        - Temperature Sensors
+        - Accelerometers
+        - Gyroscopes
+        - Position Revolvers
+        - Analog/Digital Converters
+            - A/D voltage input to digital output
+            - D/A digital output to voltage
+        - Non-Von Neumann
+            - Ring, Hypercube, Mesh
+        - Flynns Taxonomy for Parallelism
+            - Single Instruction Single Data
+            - Single Instruction, Multiple Data
+            - Multiple Instruction, Single Data
+            - Multiple Instruction, Multiple Data
