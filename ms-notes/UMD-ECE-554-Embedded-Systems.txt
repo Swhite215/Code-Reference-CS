@@ -171,3 +171,25 @@ Lecture 3
         - Avoid Priority Inversion
         - Avoid Over-Engineering
         - Know the Compiler
+
+Lecture 4
+    - Software Design Lifecycle
+        - Planning, Requirements, Design, Implementation, Test, Maintenance
+    - Waterfall Model - Linear
+        - Simple, Easy, Divides the Task, Straightforward
+        - Requires a lot of up front planning, if requirements change, must start at the beginning, little sense of progress till end
+        - Concepts - WHY, Requirements WHAT - Functional and Non-Functional, Design - HOW, Programming, Test, Maintenance
+        - Parnas Partitioning - identify all difficult design decisions e.g. things likely to change, design modules to hide these things from the rest of the system
+    - Agile - Cyclical, Focus on Code Delivery
+    - Standards
+        - DOD-STD-2167A
+            - System Requirements Analysis and Design
+            - Software Requirements Analysis
+            - Preliminary Design
+            - Detailed Design
+            - Coding and Computer Software Unit Testing
+            - Computer Software Component Integration and Testing
+            - Computer Sofftware Component Integration Item Testing
+            - System Integration and Testing
+        - ISO 9000-3
+        - IEEE 830
