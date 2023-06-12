@@ -229,3 +229,64 @@ Lecture 5
         - State Charts
             - Pro - structure of FSM, depth, concurrent processes, inter-process communication
             - Con - ????
+
+Lecture 6
+    - Real Time Kernels
+        - Introduction
+            - Specialized OS for size and speed
+            - 3 Functions - Task Scheduling, Task Dispatching, Inter-Task Communication
+        - Role of Kernel
+            - Human Interface, Basic I/O, Extended I/O, User Applicaitons
+        - Kernel Types
+            - Nano-Kernel - dispatching, thread/task control and block management
+            - Micro-Kernel - Task Scheduling 
+            - Kernel - interprocessor communication and synchronization
+            - Executive - Kernel + I/O Services - file and disk suppport
+            - OS - Exectuve plus user I/F, security, file mgmt, etc. - user interface and shell
+        - Implementation
+            - Polled Loop
+                - Simplest, infinite loop checking flags till an event occurs
+                - Handle one event or several non overlapping events
+                - +Interrupt - fixed clock interrupt to occur n times and process event
+            - Phase/State-Driven
+                - Facilitates basic multi-tasking system
+                - Each task is divided into segments
+                - Each segment executes without interruption
+                - When a segment finishes executing, the task changes to the next state
+                - Task can be suspended
+            - Coroutines
+                - Implementaiton of state-driven code into a multi-tasking system
+                - Any single task can be state driven
+                - Two or more tasks, executing simulataneously where each task is state driven
+                - Dispatcher initiates Task 0 -> Task 0 Execute -> Save Context -> Dispatcher inits Task 1
+            - Interrupt Driven
+                - Interrupt Service Routine ISR
+                - Fixed Rate -> Fixed Rate
+                - Variable Rate -> Sporadic
+                - Mixed-> Hybrid
+                - Scheduling done via interrupt priorities
+                - Switching context is an important cost - save PC, registers, status, flags
+                - Task Control Block - context of a task
+                    - PC, Register Contents, Processor Status, Task IDs, LINKED LIST
+                    - States - Executing, Ready, Suspended, Dormant
+                - Stack Model - use stack to store context, simpler and faster
+                - Patterns
+                    - Round-Robin - interrupt occurs at a fixed rate, task suspended, context saved, context loaded, task executes
+                    - Preemptive Priority - a higher priority task can interrupt and prempt a lower priority task
+                - Rate Monotonic Systems
+                    - Special case of preemptive where priority is based on frequency of execution
+                    - Problem - priority inversion - lower priority task may need to be executed frequently and may ned up holding a resource a high priority one needs
+                 - Problem - time wasted in the loop, no useful work done with no interrupts
+            - Foreground-Background
+                - Solution to interupt, call main process in background and put slow, low priority useful tasks in it
+                - Interrupt now called foreground
+                - How to Acquire Data
+                    - Read all parameters every 1ms - bad
+                    - Read parameters at 3 rates
+                        - Initiate each task by an interrupt that is synchronous to the 1ms, 10ms, or 100ms update rates
+                        - Preemptive priority using rate monotonic i.e. 1ms has highest priority
+                - Background
+                    - Initialize ISRs, service the network, modify acquisition table
+            - Full Features RTOS
+                - Come w/ network interfaces, device drivers, debugging tools, etc.
+                - Con - commercial RTOS is larger and usually slower/more generic
