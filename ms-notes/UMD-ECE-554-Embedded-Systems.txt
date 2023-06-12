@@ -341,3 +341,54 @@ Lecture 7
                 - Banker's Algorithgm
                     - Can never assign more resources than exist
                     - Can never make a "dangerous" allocation"
+
+Lecture 8
+    - Real Time Memory Management
+        - Process Stack Management
+            - Idea - How do we keep track of the context of each task when we switch to another one?
+            - Methods
+                - Run-Time Stack
+                    - Hard RT Systems - each ISR may be responsible to save only the context it will alter
+                    - Commerical RTOS - general save() and restore() procedures for a fixed number of registers
+                    - Traditional stacks work well on preemption priority type systems
+                    - Round Robin - Ring-Buffer
+                    - Alternative
+                        - Use multiple stacks, one main and one for each task
+                        - Advantage - can execute tasks in any order, not just in order that they are pushed
+                        - Main stack contains pointers to run-time stacks for each task
+                        - Last stack saves context when tasks are suspended
+                    - Limit - tasks are not executed in the reverse order in which they were suspended
+                - Task-Control Block
+                    - Fixed Size - fixed # of tasks
+                    - Variable - variable # of tasks - complex
+                    - Round Robin or Preemptive
+                        - TCB - each task stores its own Stack Pointer, in multiple stacks centrally store Stack Pointers
+        - Dynamic Alloctation
+            - Idea - How do we allocate memory required by the OS or by application tasks?
+            - Bottom Line - no form of dynamic memory allocation is good
+            - Methods - Secondary Memory
+                - Swapping
+                    - OS and 1 Task reside in memory
+                    - Task is suspended, swapped to memory, and new task enters
+                    - Issue - access time for context switch
+                - Overlays
+                    - Program broken into sections called overlays, only a subset of task overlays are in memory, same access time problem
+                - Multiprogramming w/ Fixed Number of Tasks
+                    - Application memory divided into a number of fixed-size partitions
+                    - Tasks loaded on required memory, partitions assigned
+                    - Constraint - task must be in contiguous partitions
+                    - Problems
+                        - External Fragmentation, enough memory for a task but it is not contiguous
+                        - Internal Fragmentation, fixed-size block allocated to a ask but not all of it is utilized
+                        - 
+                        - Disk Swapping Time
+                - Multiprogramming w/ Variable Number of Tasks
+                    - Memory is allocated based on requests of process requesting memory
+                    - Internal Fragmentation is elinminated
+                    - External Fragmentation - still a problem
+                    - Disk Swapping Time is still a problem
+                - Paging
+                    - Each task is broken into small fixed size blocks called pages
+                    - Pages are loaded as needed and do not have to be contiguous
+                    - Page Fault - a needed page is not in memory - use replacement method
+                    - Disk Swapping - still a problem
