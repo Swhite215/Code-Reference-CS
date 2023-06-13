@@ -392,3 +392,54 @@ Lecture 8
                     - Pages are loaded as needed and do not have to be contiguous
                     - Page Fault - a needed page is not in memory - use replacement method
                     - Disk Swapping - still a problem
+
+Lecture 9
+    - System Performance Analysis and Optimization
+        - Performance Measure
+            - Response Time - time from the request for a task until the task completes
+            - Time Loading - percentage fo time CPU is doing useful processing
+            - Memory Loading - percentage of usable memory in use
+        - Measuring Response Time - Polled Loop Systems
+            - Tr = time to check flag(s) + time to process
+                - Send Flag ns + Check Flag us + Process Flag ms
+        - Measuring Response Time - Coroutines/Phase Driven Code
+            - Summation from i=1 to 5 of t sub Ai + t sub Bi
+        - Measuring Response Time - Interrupt Driven System
+            - t = Li + Cs + Ai
+                - Li = latency time - time to recognize and process interrupt
+                - Cs = context switch
+                - Ai = actual ISR processing time
+            - Factor weight - ns -> us -> us -> ms
+        - Measuring Response Time Case 1
+            - High priority task interrupting a lower priority
+        - Mesuring Response Time CAse 2
+            - Lower priority task interrupting a higher priority
+        - Ways to Measure Time Loading
+            - Logic Analyzer
+            - Instruction Counting - REVIEW Example
+        - Response Time and Time Loading
+            - Compute at lowest cycle - all tasks should be done at slowest possible rate
+            - Use scaled arithmetic - convert FP operations into integer
+        - Scaled Arithmetic
+        - Binary Angle Measurement
+        - Look Up Table
+        - Advice
+            - Eliminate exponentials, square roots, or other time consuming calculations
+        - Post Integration Software Optimization
+            - Compiler Optimization  -List Slide 34 - Lecture 8.1
+            - Reduction in Strength - use the fastere macroinstruction possible e.g. multiplying by a power of two use shift
+            - Intrinsic functions - macros where the actual function call is replaced by inline code during compilation
+            - Constant Folding - manually folding of constant multiples
+            - Loop Invariant Optimization - move computations outside loops that do not need to be performed in the loop
+            - Loop Induction Elimination - if every time i changes it value it is incremented or decremented by some constant
+            - Register-to-Register > Register-to-Memory
+            - Remove Redundant or Unreachable Code
+            - Flow of Control Optimization - remove unnecessary jump to jump
+            - Constant Propogation
+            - Dead Store Elimination
+
+REVIEW FOR TEST:
+1. Lecture 7.0 Example - Measuring Time to Respond - Slide 40
+2. Homework #3
+3. Lecture 9 Video Example - Measuring Time Loading - 1:44
+3. Scaled Arithmetic
