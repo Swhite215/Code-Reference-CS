@@ -238,9 +238,9 @@ Lecture 6
         - Role of Kernel
             - Human Interface, Basic I/O, Extended I/O, User Applicaitons
         - Kernel Types
-            - Nano-Kernel - dispatching, thread/task control and block management
+            - Nano-Kernel - Task Dispatching
             - Micro-Kernel - Task Scheduling 
-            - Kernel - interprocessor communication and synchronization
+            - Kernel - Task Scheduling, Task Dispatching, Inter-Task Communication
             - Executive - Kernel + I/O Services - file and disk suppport
             - OS - Exectuve plus user I/F, security, file mgmt, etc. - user interface and shell
         - Implementation
@@ -294,7 +294,7 @@ Lecture 6
 Lecture 7
     - Inter-task Communication and Synchronization
         - Data Sharing
-            - Issues:
+            - Issues: Data Sharing, Synchronization, Limited Resources
                 - Embedded Server - Limited resource i.e. common netwqork link amongst two server applications
                 - Task Division - A main task, B,C, and D substasks. Results of C and B combined by D
             - Solutions
@@ -309,13 +309,13 @@ Lecture 7
                     - OS tracks mailbox stats to identify filled or empty
                     - Ring buffer and queue to control pool of devices
                 - Sempahores
-                    - Variable used to protect critical regions of code i..e code that accesses a shared resource
+                    - Variable used to protect critical regions of code i.e. code that accesses a shared resource
                     - Operations
-                        - Wait or P(s) - read s until resource is available
+                        - Wait or P(s) - read s until resource is available - busy
                         - Signal or V(s) - sets s to available
                     - Mailboxes
                         - Use pend and post rather than wait and signal
-                        - Waiting task is suspended
+                        - Waiting task is suspended - improvement
                     - Formats
                         - Binary
                         - Counter
@@ -324,20 +324,20 @@ Lecture 7
                         - Semaphore S - protects shared variable R
                         - Sempahore T - true if suspended task must wait
                     - Problems
-                        - Test and Set - ability to test if something is fale or true and perform in action in a single step, avoding interrupts between reading and setting
+                        - Test and Set - ability to test if something is false or true and perform in action in a single step, avoiding interrupts between reading and setting
                 - Event Flags and Signals
                     - Event Flags - simulated interrupts created by the programmer
                     - ASNI-C
                         - Raise() - call signal operation for event
                         - signal() - set OS to fo to hanlder routine
-                        - handler routing is blocked until event is raised
+                        - handler routine is blocked until event is raised
             - Deadlock
                 - Idea - two or more tasks are competing for two or more shared resources
-                - Conditions - ALL four are needed
+                - Conditions - ALL four are needed, fixing one fixes the deadlock
                     - Mutual Exclusion - device can be shared by multiple tasks
                     - Circular Wait - each tasks holds a resource another needs, can fix by requiring all task to request resources in particular order
-                    - Hold and Wait - task is holding resources while waiitng for others, can fix by never allowing a task to require more than one resource at a time
-                    - No Preemption - higher priority taszk can't preempt a lower priority one
+                    - Hold and Wait - task is holding resources while waiting for others, can fix by never allowing a task to require more than one resource at a time
+                    - No Preemption - higher priority tasks can't preempt a lower priority one
                 - Banker's Algorithgm
                     - Can never assign more resources than exist
                     - Can never make a "dangerous" allocation"
@@ -379,8 +379,7 @@ Lecture 8
                     - Constraint - task must be in contiguous partitions
                     - Problems
                         - External Fragmentation, enough memory for a task but it is not contiguous
-                        - Internal Fragmentation, fixed-size block allocated to a ask but not all of it is utilized
-                        - 
+                        - Internal Fragmentation, fixed-size block allocated to a task but not all of it is utilized
                         - Disk Swapping Time
                 - Multiprogramming w/ Variable Number of Tasks
                     - Memory is allocated based on requests of process requesting memory
@@ -409,6 +408,7 @@ Lecture 9
                 - Li = latency time - time to recognize and process interrupt
                 - Cs = context switch
                 - Ai = actual ISR processing time
+                - Schedule involves time as well
             - Factor weight - ns -> us -> us -> ms
         - Measuring Response Time Case 1
             - High priority task interrupting a lower priority
@@ -432,14 +432,16 @@ Lecture 9
             - Constant Folding - manually folding of constant multiples
             - Loop Invariant Optimization - move computations outside loops that do not need to be performed in the loop
             - Loop Induction Elimination - if every time i changes it value it is incremented or decremented by some constant
-            - Register-to-Register > Register-to-Memory
+            - Register-to-Register faster than Register-to-Memory
             - Remove Redundant or Unreachable Code
             - Flow of Control Optimization - remove unnecessary jump to jump
             - Constant Propogation
             - Dead Store Elimination
 
 REVIEW FOR TEST:
-1. Lecture 7.0 Example - Measuring Time to Respond - Slide 40
+1. Lecture 9 Example - Measuring Time to Respond - Slide 40
 2. Homework #3
 3. Lecture 9 Video Example - Measuring Time Loading - 1:44
-3. Scaled Arithmetic
+4. Lecture 9 Video Example - Memory Requirements
+5. Lecture 9 Video Example - Scaled Arithmetic
+6. Lecture 10 Video Example - Reliability Metric - 1:15

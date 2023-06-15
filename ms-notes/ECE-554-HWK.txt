@@ -34,6 +34,7 @@ Homework #1
     - Determine Page Size - 2^m+1 * 2^x = # Bits in Address
     - Convert Page Size to Hex
     - Add Hex Value to Starting Hex Address
+    - 2^10 is K, 2^20 is M, 2^30 is G
 
 6. Watchdog Timer
     - Determine Period
