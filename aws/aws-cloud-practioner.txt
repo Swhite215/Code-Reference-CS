@@ -1,0 +1,21 @@
+AWS Certified Cloud Practioner Exam
+
+1. Introduction to Amazon Web Services
+    - Outline
+        - Compute, Storage, Network Security, Blockchain, Machine Learning, Artificial Intelligence, Satellites
+        - Cloud Compute Client-Server Model
+            - Client - Request
+            - Server - Response
+    - Cloud Computing
+        - Cloud - on-demand delivery of IT resources over the internet with pay as you go pricing
+            - Undifferentiated Heavy Lifting of Information Technology
+        - Deployment Models - Cloud, On-Premise (Private Cloud), Hybrid
+        - Benefits
+            - Pay As You Go Variable Expenses
+            - Infrastructure Managed
+            - Dynamic Adjustment to Capacity Needs
+            - Economies of Scale
+            - Flexibility, Speed, and Agility
+            - Global Deployment
+
+2. 
