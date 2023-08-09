@@ -18,4 +18,64 @@ AWS Certified Cloud Practioner Exam
             - Flexibility, Speed, and Agility
             - Global Deployment
 
-2. 
+2. Compute in the Cloud
+    - Amazon Elastic Compute Cloud EC2
+        - Compute As A Service Model
+        - Built, installed, secured, and powered compute capacity available for use
+        - Multitenancy - sharing underlying hardware between virtual machines
+        - Configurations - OS, number, security, disk, software
+        - Resizable - Vertical Scaling - Bigger or Smaller
+        - Networking - Request, Public, Private
+    - Working with EC2
+        - Configure and Launch EC2 Instance
+        - Connect to EC2 Instance
+        - Use EC2 Instance
+    - EC2 Instance Types
+        - General Purpose
+        - Compute Optimized - High Performance Processors
+        - Memory Optimized - Fast for Large In-Memory Data Set Work
+        - Accelerated Computing - Floating Point Calculations, GPU
+        - Storage Optimized - High Performance Sequential Read and Write Access to Large Datasets in Local Storage
+    - EC2 Pricing
+        - On-Demand - pay for the duration that your instance runs
+        - Savings Plans - low prices on EC2 usage based on a 1 or 3 yr term commitment
+        - Reserved Instances
+            - Standard - you know the EC2 instance type and size
+            - Convertible - different availablity zones or instance types
+        - Spot Instances - spare 90% Amazon EC2 instances
+        - Dedicated Hosts - compliance requirements and sole tenancy
+    -  Scaling EC2
+        - Scalability - architecture automatically responds to changing demand by scaling in or out
+        - EC2 Auto Scaling - automatically add or remove EC2 instances in response to chanig application demand
+            - Dynamic Scaling - responds to changing demand
+            - Predictive Scaling - schedules number of EC2 instances based on predicted demand
+        - Scale Up - more resources to the instances when they are running
+        - Scale Out - more instances depending on the workload
+    - Directing Traffic with Load Balancing
+        - Goal - ensure even distribution of requests to multiple resources
+        - Managed Service (Load Balancer) - takes request and routes to appropriate server
+            - High performance, cost efficient, scalable, configurable
+            - Regional Construct - automatically highly available
+            - ELB automatically scales with traffic and changing EC2 instances
+            - Front End Single URL ELB redirects to Back Ends
+    - Messaging And Queueing
+        - Goal - deal with issue between production and subscription
+        - Goal - loosely coupled
+        - Amazon Simple Queue Services
+            - Send, store, and receive messages between any services
+            - Payload - data within a payload
+        - Amazon Simple Notification Services
+            - Send, store, and receive messages between any services
+            - Send messages to users
+            - Publish, subscribe model
+            - Topic - where messages are delivered
+            - Subscribers subscribe to topic
+            - Publishers send messages to topics
+    - Additional Compute Services
+        - Serverless - underlying infrastructure is managed by AWS
+            - AWS Lambda - upload code to Lambda function, configure trigger, execute code, repeat, 15 minutes, scalable
+        - Container Services - Amazon Elastic Container Service or Amazon Kubernetes Service
+            - Container - package for your code
+            - Registry - store images
+            - Orchestrator - ECS and AKS
+            - AWS Fargate - serverless compute platform for ECS and AKS
