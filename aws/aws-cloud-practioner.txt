@@ -117,4 +117,45 @@ AWS Certified Cloud Practioner Exam
             - Provision resources in parallel
     
 4. Networking
-    - 
+    - Amazon Virtual Cloud - Virtual Private Cloud
+        - Public Subnet - customer
+        - Private subnet - backend processes and communication
+    - Connectivity to AWS
+        - Virtual Private Cloud - private IP range
+        - Subnets - chunks of IPs, control private or public availability
+        - Public Facing
+            - Internet Gateway - doorway to the public
+        - Private Facing
+            - Virtual Private Gateway - VPN from on-premise/private to AWS VPC
+        - Private Dedicated Connection
+            - AWS Direct Connect - private fiber data connection to AWS VPC
+        - One VPC can have multiple subnets that server public and private and direct
+    - Subnets and Network Access Control Lists
+        - Network Hardening
+            - Subnet - control access to the gateway, public has access
+            - Network Access Control List - check packets permission to enter and leave based on sender and type
+            - If multiple instances, you need security group e.g. EC2 with own group that blocks traffic by default
+                - Security Group can be modifed to accept a particular type of traffic
+            - ACL vs Security Group - Security Group is stateful, ACL is stateless and checks every packet regardless
+            - Packet Flow
+                - EC1 - send packet
+                - EC1 - packet meets security group and is allowed exit
+                - EC1 - packet meets access control list at subnet boundary and is allowed exit
+                - EC2 - packet meets access control list at subnet boundary
+                - EC2 - packet meets security group and is allowed entry
+                - Return
+                    - Security Group - automatically allows
+                    - Access Control List - always check
+        - Application Security
+        - User Identityd
+        - DDos Prevention
+        - Data Integrity
+        - Encryption
+    - Global Networking
+        - Amazon Route 53 - Domain Nam Service - resolves names to IP addresses
+            - Routing Policies
+                - Latency Based Routing
+                - Geolocation DNS - direct where requests are coming from
+                - Geoproximity Routing
+                - Weighted Round Robin
+        - Amazon CloudFront - Edge Locations to serve content as close as possible i.e. Content Delivery Network
