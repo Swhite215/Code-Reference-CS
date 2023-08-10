@@ -79,3 +79,42 @@ AWS Certified Cloud Practioner Exam
             - Registry - store images
             - Orchestrator - ECS and AKS
             - AWS Fargate - serverless compute platform for ECS and AKS
+
+3. Global Infrastructure and Reliability
+    - AWS Global Infrastructure
+        - Question: How can we build fault tolerant systems?
+        - Region - Paris, Tokyo, Sao Paolo, contains multiple data centers
+            - Regions are connected using a high speed fiber network
+            - Each region is isolated from every other region, you must explicitly grant access to move data
+            - Regional data sovereignty
+            - What region to pick?
+                - Compliance Requirements
+                - Proximity to Customer Base
+                - Feature Availability
+                - Pricing
+            - Many services run at the region level and automatically run over multiple availability zones
+        - Availability Zones
+            - A single or group of data centers with redundant power, networking, and security
+            - Multiple zones exist in a region, where they are separated
+            - Deploy application to multiple data centers in the zone
+            - Run across at least two Availability Zones in a region
+    - Edge Locations
+        - Question: How do we serve customers across the globe
+        - Cached Content Delivery Networks - Amazon CloudFront
+        - Deliver data, video, and images to customer all over the world
+        - Edge Locations are separate from regions, running Amazon Route 53 DNS system
+        - AWS Outpost - installed mini-region inside of your building
+    - How to Provision Resources
+        - Application Programming Interface
+        - AWS Management Console
+        - AWS Command Line Interface
+        - AWS Software Development Kits
+        - AWS Elastic Beanstalk - EC2 Based Environments
+            - Adjusts Capacity, Load Balancing, Automatic Scaling, Application Health Monitoring
+        - AWS Cloud Formation - Infrastructure as Code
+            - Templates in .yaml
+            - Storage, database, machine learning, etc 
+            - Provision resources in parallel
+    
+4. Networking
+    - 
