@@ -159,3 +159,85 @@ AWS Certified Cloud Practioner Exam
                 - Geoproximity Routing
                 - Weighted Round Robin
         - Amazon CloudFront - Edge Locations to serve content as close as possible i.e. Content Delivery Network
+
+5. Storage and Databases
+    - Instance Stores and Amazon Elastic Block Store
+        - Block - Files
+            - Hardware Types - Instance Store Volumes attach to EC2 Host
+        - Instance Store Volume - if stop and start EC2, host can change, data may be lost
+        - Amazon Elastic Block Store - virtual hard drives called EBS volumes that will persist between stop and start of EC2
+            - Define size, type, and configuration that you need
+            - Configure application to write to the volume
+            - Snapshots - incremental backup of your data
+        - Amazon Simple Storage Service
+            - Store data as objects
+                - Object - data, metadata, and key
+            - Store objects in buckets
+            - Maximum object size of 5TB
+            - Storage tiers
+                - S3 Standard 99.9999999% Durability
+                - S3 Standard Infrequent Access
+                - S3 One Zone Infrequent Access
+                - S3 Intelligent Tiering
+                - S3 Glacier Instant Retrieval
+                - S3 Glacier Flexible Retrieval - Long Term
+                - S3 Glacier Deep Archive
+                - S3 Outposts - On-Premise S3
+            - Lifecycle Policies - move data between tiers programmatically
+            - Static Website Hosting - HTML Files as Pages
+        - Amazon EBS vs. Amazon S3
+            - EBS - Persistent, Solid State, Up to 16 TB
+            - SSS - Unlimited, Write Once/Read Many, 99.9999999%, Up to 5TBs
+            - Use Case - Photo Analysis
+                - S3
+                    - Web Enabled
+                    - Image Access Rights
+                    - Distributed
+                    - Offset Cost Savings
+            - Use Case - 80GB Video File
+                - Object - file is complete discrete object, entire object must be uploaded
+                - Block - file is broken into blocks, which can be separately updated
+        - Amazon Elastic File System
+            - Managed File System
+            - EBS - Attach to EC2, Availability Zones Requirement
+            - EFS - Multiple Instances R/W, Linux File System, Regional Resource - Data Across Multiple AZs, Auto Scaling
+        - Amazon Relational Database Service
+            - Supported - MSQL, PostgreSQL, Oracle, Microsoft SQL Server
+            - Key Action - Lift and Shift or Database Migration
+            - ARDS Managed Service
+                - Automated patching, backups, redunancy, failover, disaster recovery
+            - Amazon Aurora - MySQL or PostgresSQL - Full Managed
+                - Data Replication, up to 15 Read Replicas, Continuous Back up, Point in Time Recovery
+        - Amazon DynamoDB
+            - Serverless Non-Relational NoSQL Database
+                - Table - place to store and query data
+                - Data - item with attributes
+                - Scales Automatically
+                - Redunant Across AZs, and Duplicated
+                - Millisecond Response Time
+                - Key Query, Indexing
+        - ARDS vs. DynamoDB
+            - Use Case - Sales Supply Chain Management System
+                - RDS
+            - Use Case - Non-Relational, Single Table Needs
+                - DynamoDB
+        - Amazon Redshift
+            - Data Warehousing Solution
+                - Multi-Database and Complex Historical Analytics
+                - Massively scalable, peta and exabyte size
+        - AWS Database Migration Services
+            - Migrate between source and target
+            - Source database is fully operational
+            - Homogenous Databases - SQL to SQL
+            - Heterogenous Databases
+                - Schema Conversion
+                - Migration
+            - Database Consolidation
+            - Continuous Database Replication
+        - Additional Database Services
+            - Amazon Document DB - MongoDB
+            - Amazon Neptune - Graph
+            - Amazon Quantum Database - Ledger
+            - Amazon Managed Blockchain - Blockchain
+            - Amazon ElastiCache
+            - Aamzon DynamoDB Accelerator - Non-Relational Caching
