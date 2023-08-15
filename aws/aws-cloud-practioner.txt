@@ -308,3 +308,27 @@ AWS Certified Cloud Practioner Exam
         - Amazon GuardDuty Thread Detection - identify anomalies and threats
         - Advance Shield
         - Security Hub
+
+7. Monitoring and Analytics
+    - Amazon CloudWatch
+        - Monitor AWS infrastructure in real time
+        - Metrics - variables tied to your resources
+        - Alarm - set threshold basd on metric, when reached, perform an action e.g. SNS
+        - Dashboard - metrics in near real time
+        - Benefits
+            - Central access to metrics
+            - Gain visibility across applications, infrastructure, and services
+            - Reduce mean time to resolution MTTR and improve total cost of ownership TCO
+            - Drive insights to optimize applications and operational resources
+    - AWS CloudTrail
+        - Trust but Verify
+        - Comprehensive API auditing tool
+        - Every request gets logged in the CloudTrail Engine - who, when, where, what, how
+        - Logs can be saved indefinitely in S3 bucket
+    - AWS Trusted Advisor
+        - Automated service that will evaluate resopurces against:
+            - Cost Optimization
+            - Performance
+            - Security
+            - Fault Tolerance 
+            - Service Limits
