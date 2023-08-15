@@ -241,3 +241,70 @@ AWS Certified Cloud Practioner Exam
             - Amazon Managed Blockchain - Blockchain
             - Amazon ElastiCache
             - Aamzon DynamoDB Accelerator - Non-Relational Caching
+
+6. Security
+    - AWS Shared Responsibility Model
+        - Customer - In the Cloud
+            - Operating System - Patches
+            - Application
+            - Data
+        - AWS - Of the Cloud
+            - Physical Layer
+            - Network
+            - Hypervisor
+    - User Permissions and Access
+        - AWS Account Root User - Owner of Account
+            - Recommend - turn on multi-factor authentication
+        - AWS Identity and Access Management
+            - IAM User - Default = No Permissions
+            - Principle of Least Privileged
+            - Associated an IAM Policy to a User - JSON Yes or No Description
+            - Effect: Allow or Deny
+            - Action - Any API Call
+            - Resource - Any Resource
+            - IAM Groups - Policy Attachable
+            - Role - associated permissions allow or deny specific actions, can be assumed for temporary amount of time
+                - Previous permission abandoned
+            - Federating User - Corporate Identity to IAM Roles
+    - Organizations
+        - Central location to manage multiple AWS accounts
+        - Main Feautures
+            - Centralized management of all accounts
+            - Consolidated billing for all member accounts and bulk discounts
+            - Hierachical groupings of accounts
+            - AWS Service and API actions access control
+            - Server Control Policies - maximum permissions
+                - Apply to an individual member account and an organizational unit
+    - Compliance
+        - Examples
+            - General Data Protection Regulation
+            - Health Insurance Portability and Accountability Act
+        - Region can be selected, and data replication can be controlled to meet compliance
+        - Encryption - varies by service
+        - AWS Resources - whitepapers, documents, infrastructure
+        - AWS Artifact - compliance reports by 3rd parties
+            - Agreements - agreement with AWS regarding use of certain types of information through AWS services
+                - Review, accept, and manage agreements for an individual account and for all your accoutns in AWS organziations
+            - AWS Artifact Reports - compliance reports from third party audtors who have tested and verified AWS's compliance with a variety of global, regional, and industry specific security standards and regulations
+        - AWS Customer Compliance Center - everything compliance all in one place
+    - Distributed Denial of Service
+        - Attack leverages other machines to attack network and deny services
+        - UDP Flood - give fake return address, specifically your service, which floods your network
+        - HTTP Level Attack - repetitive, seemingly legitimate
+        - Slow Loris Attack - pretend to have a slow connection, blocking other requests
+        - Solutions
+            - UDP Flood - security groups, only allow proper request traffic, operate at network level, shift off of EC2
+            - Slow Loris - elastic load balancer, wait for complete message from users, scalable, regional
+            - AWS Shield with AWS WAF
+                - Web Application Firewall - filter traffic for bad actor signatures or identities
+    - Additional Security Services
+        - Encryption at Rest
+        - Encryption in Transit
+        - AWS Key Management Services
+        - Amazon Inspector - automated security assessments, identifying deviances of security best pracvtices
+            - Netwqork Reachability
+            - Amazon Agent
+            - Security Assessment Service
+        - Amazon GuardDuty Thread Detection - identify anomalies and threats
+        - Advance Shield
+        - Security Hub
