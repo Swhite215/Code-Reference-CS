@@ -332,3 +332,87 @@ AWS Certified Cloud Practioner Exam
             - Security
             - Fault Tolerance 
             - Service Limits
+
+8. Pricing and Support
+    - AWS Free Tier
+    - AWS Pricing Concepts
+        - Pay For What You Use
+        - Pay Less When You Reserve
+        - Pay Less When You Use More Volume Based Discounts
+        - AWS Pricing Calculator
+    - Billing Dashboard
+        - Compare current month to date balance with previous month, forecase future
+        - View month to date spend by services
+        - View Free Tier usage by service
+        - Cost Explorer and create budgets
+        - Purchase and manage Savings Plans
+        - Publish AWS Cost and Usage Reports
+    - Consolidated Billing
+        - Single bill for all AWS accounts in your organization
+        - Share builk discout pricing, savings plans, and reserved instances across the accounts in your organziation
+    - AWS Budgets
+        - Set custom alerts when usage exceeds the budgeted amount
+    - AWS Cost Explorer
+        - Visualize, understand, and manage your AWS costs and usage over time
+    - AWS Support Plans
+        - Basic - free, access to white papers, documentation, and support communities
+        - Developer - best practice guidance, client side diagnostic tools, building block architecture support
+        - Business - use case guidance, AWS Trusted Advisor Checks, limited support for third part software
+        - Enterprise On-Ramp - Technical Account Managers, Cost Optimization Workshop, Concierge Support TEam, Monitoring Tools
+            - Consultation Review and Architecture Guidance
+            - Infrastructure Event Management Support
+            - Automation Workflows
+            - 30 minutes or < response time for business critical issues
+        - Enterprise - Technical Account Manager, Concierge Support, Operations Review, Training and Game Days, Monitoring Toolss
+    - AWS Marketplace
+        - Categories - Infrastructure Software, DevOps, Data Products, Professional Services, Business Applications, Machine Learning, Industries, Internet of Things
+
+9. Migration and Innovation
+    - AWS Cloud Adoption Framework
+        - Perspectives
+            - Business - ensures IT aligns with business needs and that IT investments link to key business results
+            - People - development of an organization wide change management strategy for successful cloud adoption
+            - Governance - skills and processes to align IT strategy with business strategy
+            - Platform - includes principles and patterns for implementing new solutions on the cloud
+            - Security - ensures organization meets security objectives for visibility, auditability, control, and agility
+            - Operations - enable, run, use, operate, and recover IT workloads to an agreed upon level
+    - Migration Strategies
+        - Rehosting - lift and shift, moving applica=tions without change
+        - Replatforming - lift, tinker, and shift, make cloud optimizations to realize a tangible benefit
+        - Refactoring/Rearchitecting - reimagining how an application is architected and developed by using cloud-native feature
+        - Repurchasing - moving from a traditional license to a software-as-a-service model
+        - Retaining - keeping applications taht are critical for the business in the source environment
+        - Retiring - removing applications that are no longer needed
+    - AWS Snow Family
+        - Goal - Physical devices that help to physically transport up to exabytes of data into and out of AWS
+        - Snowcone - small, rugged, and secure edge computing and data transfer device, 2CPUs, 4GB of memory and up to 14TB of usable storage
+        - Snowball
+            - Snowball Edge Storage Optimized - well suited for large scale data migrations and recurring transfer workflows
+                - 80TB of HDD, 1TB of SATA SSD
+                - 40 vCPUs, and 80 GiB of Memory
+            - Snowball Edge Compute Optimized - powerful computing resources for machine learning, full motion video analysis, analytics, and local computing stacks
+                - 80TB HDD and 28 TB of NVMe SSD
+                - 104 vCPUs, 416 GiB and ~V100 GPU
+        - AWS Snowmobile - exabyte scale data transfer service used to move large amounts of data
+            - 100 petabytes of data per mobile, a 45 foot long ruggedized shipping container, pulled by a semi trailer truck
+
+10. AWS Well-Architected Framework
+    - Pillars
+        - Operational Excellence
+            - Ability to run and monitor systems to deliver business value and continually improve supporting processes and procedures
+            - Performing operations as code, annotating documentation, aniticpating failure, and frequenlty making small, reversible changes
+        - Security
+            - Ability to proetct information, systems, and assets while delivering business value through risk assessments and mitigation strategies
+            - Automate security best pratics when possible, apply security at all layers, protect data in transit and at rest
+        - Reliability
+            - Recover from infrastructure or service failure, dynamically acquire computing resources to meet demand, mitigate disruptions
+            - Testing recovery procedures, scaling horiztonally, and automatically recovering from failure
+        - Performance Efficiency
+            - Ability to use computing resources efficiently to meet system requirements and maintain efficiency as demand changes and technologies evolve
+            - Experimenting, serverless architecture, and designing systems to be able to go global in minutes
+        - Cost Optimization
+            - Ability to run systems to deliver business value at the lowest price point
+            - Adopting a consumption model, analyzing and attributing expenditure, and using managed services to reduce the cost of ownership
+        - Sustainability
+            - Ability to continually improve sustainability by reducing energy consumption adn increasing efficiency
+            - Understand your impact, establish sustainability goals, maximize utilization, anticipate and adopt, use managed services, reduce downstream impact of your cloud workloads
