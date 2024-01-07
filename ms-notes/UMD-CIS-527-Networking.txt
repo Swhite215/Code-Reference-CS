@@ -16,7 +16,7 @@ Computer Networking CIS 527
         - Satellite Networking - StarLink - SpaceX - Optical Fiber - Capacity Limited
     - History
         - Packet Switching 1961-1972
-        - Proprietary Networks and Internetworking 1072-1980
+        - Proprietary Networks and Internetworking 1972-1980
         - Proliferation 1980-1990
         - Internet Explosion - 1990s
         - New Millenium
@@ -59,15 +59,15 @@ Computer Networking CIS 527
             - Addressing and Routing
                 - Address - byte string that identifies a node, usually unique
                     - MAC 48 bits - 2.8147498e+14
-                    - IPV4 32 Bits - 4294967296
-                    - IpV6 128 Bits - 3.4028237e+38
+                    - IPv4 32 Bits - 4294967296
+                    - IPv6 128 Bits - 3.4028237e+38
                 - Types of Addresses
                     - Uncast - node specific
                     - Broadcast - all nodes on the network, limited to "local" network
                     - Multicast - some subset of nodes on the network, can be anywhere on the internet
                         - Limited - relatively hard to implement, requires designing a tree, incorporating many networks, multiple sends
                 - Routing
-                    - What - process of forwarding mesages to the destination mode based on its address
+                    - What - process of forwarding messages to the destination node based on its address
                     - Issue - maintaining records of routers, we must be able to aggregate
             - Strategies
                 - Circuit Switching - carry bit streams, reservation based
@@ -142,9 +142,9 @@ Computer Networking CIS 527
         - Round Trip Dominates
             - Effective Throughput = TransferSize/TransferTime
             - Transfer Time - RTT + 1/ Bandwidth + ????
-    - Latency (Delay) - how long it takes a packet to travel from onoe of a network to the other
+    - Latency (Delay) - how long it takes a packet to travel from one end of a network to the other
         - Propogation Delay
-        - Lateny Delay in a Packet Switched Network
+        - Latency Delay in a Packet Switched Network
             - Nodal Processing - determine output link and check bit errors (fixed)
             - Queuing - time waiting at output link for transmission, depends on congestion level (dynamic)
             - Retransmission - placing packet on link (fixed)
@@ -202,7 +202,6 @@ Computer Networking CIS 527
         - Link and Node Failures
             - Physically cut link
             - Router can fail or need to be rebooted
-
     - Socket Interfaces
         - What are sockets?
             - Endpoint of communcation to which a name can be bound
@@ -214,7 +213,7 @@ Computer Networking CIS 527
                 - 4. Server responds to request
         - Purpose - Transport layer interface to facilitate connection
         - Socket Domain
-            - Unix domain sockets are named with UNIX paths, enable communiation of processes on a single host
+            - Unix domain sockets are named with UNIX paths, enable communication of processes on a single host
             - Internet domain communication uses the TCP/IP suite, between processes on different hosts
         - Types
             - Stream - enables processe to communicate using TCP (SOCK_STREAM)
@@ -265,7 +264,7 @@ Computer Networking CIS 527
         - Project Number Two
             - Multiple Clients and Single Server
             - Issues
-                - System calls or blockcing, unable to handle data from two clients simultaneously, and you dont know when data will arrive
+                - System calls are blocking, unable to handle data from two clients simultaneously, and you dont know when data will arrive
         - Data Transfer
             - Send - will return 0 to indicate connection has closed, after data has been receieved
                 - write(s, buf, siezeof buf)
@@ -274,7 +273,7 @@ Computer Networking CIS 527
                     - buf - data to send
                     - sizeof - bytes of buffer
                     - flags - 0
-            - Receieve - will return whatever is in the buffer, partial or full, will return number of bytes receieved
+            - Receive - will return whatever is in the buffer, partial or full, will return number of bytes receieved
                 - read(s, buf, sizeof buf)
                 - recev(s, buf, sizeof buf, flags)
                     - s - socket
@@ -282,7 +281,7 @@ Computer Networking CIS 527
                     - sizeof - bytes of buffer
                     - flags - 0
         - Other System Calls
-            - int connect(s, name, namelen) - specifies peer with which sd is to be associated - name (Server IP Address and Port Number) - CLIENT
+            - int connect(s, name, namelen) - specifies peer with which fd is to be associated - name (Server IP Address and Port Number) - CLIENT
             - int listen(s, backlog) - specifics maximum backlog of connections a server will allow - SERVER
             - int accept(s, addr, addrlen) - extracts first connection off queue of pending connections - BLOCKS - SERVER
             - int close(s) - deletes descriptor from system tables
@@ -306,7 +305,7 @@ Computer Networking CIS 527
              - TCP - provides reliable, in order transfer of bytes between client and server, repeats until confirmation
              - Procedure
                 - Client must contact running server with socket
-                - Clietn creates local socket, specifies IP address and port of process
+                - Client creates local socket, specifies IP address and port of process
                 - When contacted by client, server creates a new socket for server process to communicate with specific client
         - Synchronous I/O Multiplexing - select()
             - select() - gives you the power to monitor several sockets at the same time
@@ -344,7 +343,7 @@ Computer Networking CIS 527
         - Objectives - Use abstractions to hide complexity
         - Abstrations naturally lead to layering
         - Example Layering
-            - Appliation Programs - HTTP, SMTP, etc.
+            - Application Programs - HTTP, SMTP, etc.
             - Process to Process Channels - Coordinate Between Processes - Client, Server, Peer-to-Peer
                 - Request/Reply Channel
                 - Message Stream Channel
@@ -355,7 +354,7 @@ Computer Networking CIS 527
         - Implementation at each abstraction layer
         - Interfaces
             - Service Interface - operations on this protocol
-            - Peer-to-Peer - how protocols connect peers, what is frame, what makes up packet bit significance and orde 
+            - Peer-to-Peer - how protocols connect peers, what is frame, what makes up packet bit significance and order
         - Example - Transmission Control Protocol - TCP
             - Host Service Interface - Socket
         - Example - File Transfer Protocol - FTP
@@ -381,7 +380,6 @@ Computer Networking CIS 527
                 - Series - X.25, X.400, X.500
             - Reference Architecture
                 - Application
-                    - 
                 - Presentation
                     - Not in internet architecture
                     - Integer representation e.g. big or little endian
@@ -408,7 +406,7 @@ Computer Networking CIS 527
                 - TCP and UDP
             - IP
                 - Internet Protocol - IPv4 and IPv6
-                - Current Research - trouble with media/video conferenceing in order to achieve Quality of Service requirements
+                - Current Research - trouble with media/video conferencing in order to achieve Quality of Service requirements
                 - Guarantee - best effort service
             - Network
                 - Data Link + Physical
@@ -436,14 +434,14 @@ Computer Networking CIS 527
                 - Must pay for receipt or sending from Tier-1 ISPs, encourages peering
                 - Payment is based on volume
             - Tier-3 ISPs
-                - Last hop acceess network closest to end systems
+                - Last hop access network closest to end systems
             - Some companies cover multiple Tiers e.g. AT&T
             - Idea - fixed shared value amongst Tiers, given they are providing infrastructure
         - Internet Content
             - Content Delivery Networks - Google, Amazon, Cloudflare - largely monopolies
         - Internet History
             - 1961 - 1972 - Early Packet Switching Principles
-                - 1961 - queuing theory with packet switching - Kleinrock
+                - 1961 - queueing theory with packet switching - Kleinrock
                 - 1964 - Baran - packet switching in military nets - Baran
                     - Fault tolerant network to survive nuclear holocaust i.e. rich connectivities
                     - Baran shows network can operate wth 60% link failures 
@@ -701,7 +699,7 @@ Computer Networking CIS 527
             - Internet Checksum Algorithm - sum of 16 bit integers and redundnacy results in all Os
                 - View message as a sequence of 16 bit integers
                 - Sum using 16 bit ones complement arithmetic
-                - Take ones complement of the result, invert direclty
+                - Take ones complement of the result, invert directly
                 - Checksum is always the same length, 16 bits
                 - Uses - Internet Protocol and Transmission Control Protocol
                 - Pro - overhead is relatively low, checksum is always exactly the same
@@ -736,7 +734,7 @@ Computer Networking CIS 527
                     - Most burst errors of larger than k bits can also be detected
         - Acknowledgements and Timeouts
             - Goal - how do we ensure reliability?
-            - Protocol - Automatice Repeat Request (ARQ)
+            - Protocol - Automatic Repeat Request (ARQ)
                 - Stop and Wait
                     - Send Single Frame
                     - Receiver Performs Error Detection
@@ -744,7 +742,7 @@ Computer Networking CIS 527
                     - No Acknowledgement - Sender Repeats
                     - Acknowledgement - Sender Sends New Frame
                     - Problem - keeping the pipe full
-                        - Calc = 1.5Mbps link x 45ms RTT = 67.5kb (8kb
+                        - Calc = 1.5Mbps link x 45ms RTT = 67.5kb 8kb
                         - 1 KB frame implies 1/8th link utilization
                         - Volume = RTT x BW - data before 1st bit arrives
                     - Solution - Sliding Window
@@ -760,8 +758,8 @@ Computer Networking CIS 527
             - Implementation - Transport Layer by TCP
             - Equivalent for Link - Frame Relay or X.25
             - Situations
-                - Frame Received but Ack Corrupted - sender still sends, end up with two copies
-                - Frame received but Ack delayed for long enough - sender still sends, end up with two copies
+                - Frame eeceived but ACK corrupted - sender still sends, end up with two copies
+                - Frame received but ACK delayed for long enough - sender still sends, end up with two copies
                 - Solution - for each frame add a sequence number, drop duplicate frames with same sequence number, alternate 0 1
             
 6. 09/28/2022 - Part One
@@ -832,7 +830,7 @@ Computer Networking CIS 527
     - Out of Order Arrival - Possible ABOVE link layer, is issue to be revisited in Ch. 5
     - Achieves
         - Reliability - guaranteed to deliver packet
-        - In-order - guaranteedt to be in order
+        - In-order - guaranteed to be in order
     - Concurrent Logical Channels
         - Multiplex 8 logical chanels over a single link
         - Run stop and wait on each logical channel
@@ -862,7 +860,7 @@ Computer Networking CIS 527
             - Time Division Multiple Access (GSM), Frequency Division Multiple Access, Code Division Multiple Access (3G)
                 - CDMA - receiver can filter out results from multiple sources
         - Contention-Based
-            - Nodes content equally for bandwidth and recover from collision
+            - Nodes contend equally for bandwidth and recover from collision
             - No assignment and no reservations, when you have data, you transmit
         - Token-Based or Reservation Based
             - Take turns using the channel
@@ -880,7 +878,7 @@ Computer Networking CIS 527
             - Multiple Access - allow multiple nodes to share cable
             - Collision Detection - detect, while transmitting, for one or more nodes transmitting as well
         - Frame Formats
-            - Ethernet DIX - minimum 64 bytesm pad so payload is at least 64 bytes
+            - Ethernet DIX - minimum 64 bytes pad so payload is at least 64 bytes
                 - Preamble - 6 Bytes - 010101, sync
                 - Destination Address - 6 Bytes 
                 - Source Address - 6 Btes
@@ -1079,7 +1077,7 @@ Computer Networking CIS 527
                 - 802.11 uses 79 Mhz wide frequence bands
             - Direct Sequence
                 - For each bit, send XOR of that bit and n random bits
-                - random sequence knwo to both sender and receiver
+                - Random sequence known to both sender and receiver
                 - Called n bit chipping code
                 - 802.11 defines an 11-bit chipping code
             - OFDM Out of Scope - Orthoganal Frequence Division Multiplexing
@@ -1100,7 +1098,7 @@ Computer Networking CIS 527
             - Carrier Sensing
             - Multiple Access
             - Collision Avoidance
-                - Colliison Detection isn't viable, given the difficult of returning the signal back to the sender indicating collision
+                - Collision Detection isn't viable, given the difficulty of returning the signal back to the sender indicating collision
                 - Random back off window i.e. 8 slots, larger number larger wait time
                 - Exponential back off occurs as well, 8 -> 16 -> 32
             - Flow
@@ -1431,19 +1429,19 @@ Computer Networking CIS 527
                     - Every bridge learns shortest path to root
                     - Nodes can then select bridge with shortest distance to root as bridge to send message to, disable bridges that have longest path to root
                     - in steady state, only root sends messages
-                    - if bridge does not receiev config message, it starts generating config messages to claim root
+                    - if bridge does not receive config message, it starts generating config messages to claim root
         - Broadcast and Multicast
             - Forward all broadcast/multicast frames - current practice
             - Learn when no group members downstream
             - Accomplished by having each member of group G send a frame to bridge multicast address with G in source field
         - Limitations of Bridges
-            - Does not scale, running algorithm is dificult
+            - Does not scale, running algorithm is difficult
             - Issue is transparency when performing broadcast, bridges are known, latency changes through bridges
             - Does not accomodate heterogenity, each node needs to have same package format
     - Asynchronous Transfer Mode: ATM (Network)
         - 1980's-1990's - Standard for High Speed
         - Goal - integrated, end to end transport of carry voice, video, and data
-        - ATM - Broadband Integraeted Service Digital Network Architecture
+        - ATM - Broadband Integrated Service Digital Network Architecture
         - Requirements
             - Meeting timing/quality of service requirements of voice, video
             - "Next generation" telephony, roots in telephone world
@@ -1501,7 +1499,7 @@ Computer Networking CIS 527
             - Simple, dumb, minimal, faster, more streamlined and lower cost to build and maintain
             - The end to end principle, where possible, implement complex features in end host
             - Allows a variety of reliable or unreliable services to be built on top
-            - Workes over any link layer, IP makes very few assumptions about the link layer below
+            - Works over any link layer, IP makes very few assumptions about the link layer below
         - IP Service Model Details
             - Tries to prevent packets looping forever
             - Will fragment packets if they are too long
@@ -1584,7 +1582,7 @@ Computer Networking CIS 527
         - Datagram Forwarding
             - Strategy
                 - Every datagram contains destination address
-                - If direclty connected to destinations network, then forward to host
+                - If directly connected to destinations network, then forward to host
                 - If not directly connected, forward to some router
                 - In each network, there is a default router address to forward out of network
                 - Forwarding table maps network number into next hop
@@ -1616,8 +1614,6 @@ Computer Networking CIS 527
                 - Packet Length
                 - Operation - Request and Reply
                 - Source Hardware Address (MAC)
-                - Source Hardware Address (MAC)
-                - SOurce Protocol Address
                 - Source Protocol Address
                 - Target Hardware Address - Possible to be all zeroes, or a previously learned MAC address
                 - Target Protocol Address
@@ -1627,7 +1623,7 @@ Computer Networking CIS 527
                 - Update table if already have an entry
                 - Do not refresh table entries upon reference
     - Host Configuration Protoocl
-        - Etherenet address are configured into network by manufacturer and they are unique
+        - Ethernet addresses are configured into network by manufacturer and they are unique
         - IP addresses must be unique on a given internetwork, but also must reflect the structure of the internetwork
         - Dynamic Host Configuration Protocol DHCP
             - Responsible for providing configuration information to hosts
@@ -1757,7 +1753,7 @@ Computer Networking CIS 527
             - OSPF
     - Metrics
         - Original ARPANET Metric
-            - Measure number of packets enqueued on each link, took neight latency or bandwidth into consideration
+            - Measure number of packets enqueued on each link, took latency or bandwidth into consideration
         - New ARPANET Metric
             - stamp each incoming packet with its arrival time
             - record departure time
