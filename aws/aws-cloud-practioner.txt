@@ -332,3 +332,14 @@ AWS Certified Cloud Practioner Exam
             - Security
             - Fault Tolerance 
             - Service Limits
+
+8. Pricing and Support
+    - AWS Free Tier
+        - Always free
+            - AWS Lambda - 1million invocations per month
+            - s3 - 12 months up to 5GB of storage
+            - AWS Lightsail - 1month trial up to 750
+            - SageMaker 
+            - DynamoDB
+        - 12 months free following initial sign up
+        - Trials - short term free trial
