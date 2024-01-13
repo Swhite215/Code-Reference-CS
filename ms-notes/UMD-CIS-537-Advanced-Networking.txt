@@ -1,0 +1,35 @@
+Advanced Networking and Distributed Systems CIS 537 
+
+1. 01/11/2024 - Summary of Lecture
+    - Main Topics
+        - Course Introduction
+            - Introduction - Professor Othman
+            - Syllabus Key Points
+                - Textbooks, Assignments, Rubric, Grading, Discussions, Final Project
+        - Culture/History of Networking
+            - Professor Othman presented comments on the importance of networking history and the 'relatively' new ubiquitous nature of networking and its consequences
+                - Data usage has grown exponentially
+                - Access to technology in various forms has grown exponentially
+                - New services have grown out of these more performant networks e.g. uber, streaming, etc.
+        - Network Examples
+            - LAN - local area networks connect hosts up to a distance of tens of kilometers
+            - MAN - metropolitan area networks connect hosts up to a distance of hundreds of kilometers
+            - WAN - wide area networks connect hosts located anywhere on Earth
+        - Network Components
+            - Hosts (Clients, Servers), Links (Wireless, Physical)
+            - Topologies - Mesh, Star, Bus, Ring, Tree
+        - Services and Protocols
+            - Service - capabilities enabled by the network that users make use of
+            - Protocols - networking rules/standards/policies that govern how data is structured, transmitted, and processed in the network
+        - Open System Interconnection Model
+            - What - a conceptual model concerning system interconnection
+            - Please Do Not Throw Spencer's Pizza Away (PDNTSPA)
+                - Physical, Data, Network, Transport, Session, Presentation, Application
+        - Designing Networks
+            - Business Requirements - who, what, where, why
+                - Who is using the network?
+                - What service is being provided by the network?
+                - Where are network users located?
+            - Technical Concepts/Requirements
+                - In order to meet the business requirements what architecture, software, physical components, performance, etc. is needed? 
+
