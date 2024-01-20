@@ -31,5 +31,54 @@ Advanced Networking and Distributed Systems CIS 537
                 - What service is being provided by the network?
                 - Where are network users located?
             - Technical Concepts/Requirements
-                - In order to meet the business requirements what architecture, software, physical components, performance, etc. is needed? 
+                - In order to meet the business requirements what architecture, software, physical components, performance, etc. is needed?
 
+2. 01/18/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - Catch up for absent students i.e. review of discussions, assignments, and expectations
+        - Evolution of Technology
+            - Ethernet, while important as the back bone of much of the wired internet, is largely behind the scenes today given the rise of ubiquitous wireless technologies
+            - Capabilities Enabled by Ethernet: VoIP, Media Streaming, Infrastructure for Autonomous Vehicles, etc.
+        - Important Groups
+            - Institue of Electrical and Electronics Engineers - "What Members are Saying"
+            - Association for Computing Machinery
+        - General Ethernet Information
+            - Physical Link
+                - Unshieled Twister Pair, Shielded Twister Pair or Foiled Twister Pair
+                - Ethernet Ports and Ethernet Switches
+            - Speed of Link - Cat 5, 5e, 6, 6a, 7, 7a, 8
+        - Commerical Resource - Cables to Go
+        - Types of Ethernet
+            - Ethernet, Fast Ethernet, Gigabit Ethernet, 10 Gigabit Ethernet
+        - Certifications
+            - Purpose - professional, relevant, and current proof of skills and knowledge
+            - Vendors: CompTIA Network+, Cisco, Microsoft Azure, Amazon Web Services, TechTarget Networking
+        - Advantages of Ethernet
+            - Security, Speed, Reliability, Cost, Compatibility
+        - Ethernet Architecture
+            - Topologies
+                - Bus
+                    - All devices are connected to a single bus, and each device analyzes every packet sent through the network
+                    - Advantages - ease of use, low cost
+                    - Disadvantages - high collision probability and degradation of performance as devices increase
+                - Star
+                    - All devices are connected to a central device
+                    - Hub - Logical Bus - when a message arrives at the hub, it is broadcast to all connected devices
+                    - Switch - Logical Bus - when a message arrives at the switch, it is sent directly to the destination device
+            - Cable Types
+                - Copper Coaxial, Copper Unshielded Twisted Pair Cabling, Fiber Optic Cabling
+            - Carrier Sense Multiple Access/Collision Detection
+                - Carrier Sense - listen to medium to determine if anyone is sending
+                - Collision - two messages are sent at the same time and the signals collide
+                - Jam Signal - emitted to indicate to all devices on the bus that sending will occur
+                - Back Off - waiting a period of time before restarting the CSMA process
+                - CSMA is not required with Ethernet and Switches
+            - Ethernet Packet
+                - Preamble, MAC Destination, MAC Source, Payload, Cyclic Redundancy Check Field
+
+Research Assignment #1:
+    - Ethernet
+        - Robert M. Metcalfe and David R. Boggs. 1976. Ethernet: distributed packet switching for local computer networks. Commun. ACM 19, 7 (July 1976), 395–404. https://0-doi-org.wizard.umd.umich.edu/10.1145/360248.360253
+        - J. A. B. Moura, J. A. Field, and J. W. Wong. 1979. Evaluation of collision control algorithms in Ethernets. In Proceedings of the sixth symposium on Data communications (SIGCOMM '79). Association for Computing Machinery, New York, NY, USA, 82–86. https://0-doi-org.wizard.umd.umich.edu/10.1145/800092.802984
+        - Guy T. Almes and Edward D. Lazowska. 1979. The behavior of Ethernet-like computer communications networks. In Proceedings of the seventh ACM symposium on Operating systems principles (SOSP '79). Association for Computing Machinery, New York, NY, USA, 66–81. https://0-doi-org.wizard.umd.umich.edu/10.1145/800215.806572
