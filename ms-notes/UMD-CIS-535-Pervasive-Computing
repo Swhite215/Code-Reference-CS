@@ -1,0 +1,101 @@
+Advanced Networking and Distributed Systems CIS 537
+
+1. 01/22/2024 - Summary of Lecture
+- Terminology
+    - Network - group of computers and devices that are connected by communication infrastructure
+        - Local Area Network
+        - Wireless Local Area Network
+        - Wireless Personal Area Network
+        - Wireless Body Area Network
+        - Metropolitan Area Network
+    - Topologies - mesh, bus star, ring
+    - Protocols
+        - Building blocks of a network architecture
+        - Formal standards and policies enabling communication
+        - Institure of Electrical and Electronics Engineers
+    - Key Questions
+        - Who initiates communication?
+        - What is the order of communication?
+        - How long can I talk?
+        - How loud can I speak?
+        - Do I have something specific to say at beginning or end?
+        - Do I have meta data to add?
+        - What do I do if I get interrupted?
+        - What do I do if I was not understood?
+        - Client/Server Model - HTTP, SMTP, ICMP, SSH, DNS
+    - Open System Interconnection Model
+        - Physical - physical/electrical characteristics, binary data, cable, connectors, voltage, signal duration
+            - Low frequency = longer wavelengths, low data rates, long distances, penetrate objects
+            - High frequency = shorter wavelengths, high data rates, short distances, line of sight
+            - Wavelength = Speed of Light / Frequency
+        - Propogation Behaviors
+            - Ground Wave < 2MHz - follow earth's surface, long distances
+            - Sky Wave 2-30MHz - reflectd at ionosphere around the world
+            - Line of Sight >30MHz - straight lines, waves are bent at atmosphere due to refraction
+            - Effects - shadowing, reflection, refraction, scattering, diffraction
+        - Signal Propogation Ranges
+            - Transmission Range - communication possible, low error rate
+            - Detection Range - detection possible, no communication possible
+            - Interference Range - signal may not be detected, signal adds to background noise
+        - Multipath Propogation
+            - Signal may take different paths between sensor and receiver due to reflection, scattering, and diffraction
+        - Modulation
+            - Digital - digial data is translated into an analog signal
+            - Amplitude Key Shifting - amplitude is varied to represent binary data
+            - Frequency Key Shifting - frequency is varied to represent binary data (Binary or Multiple Frequency)
+            - Amplitude Modulation AM - amplitude, measure of amount of energy transferred by a wave, distance between peak or trough and equilibrium
+            - Frequency Modulation FM - number of waves that pass a certain point in a certain period of time
+            - Phase Modulation
+    - Data - frames, Media Access Control sublayer
+        - How/when medium is accessed for transmission, frames, error detection/correction
+        - Multiplexing
+            - Space Multiplexing - different paths or channels for each signal
+            - Time Multiplexing - different interval, each signal assigned to an interval
+            - Frequency Multiplexing - different frequencies, each signal assign to a frequency
+            - Code Multiplexing - assign unique code to channel or user, receivers uses code to extract desired information
+        - Ethernet
+            - Local Area Network technology
+            - Carrier Sense Multiple Access, Collision Detection
+        - Wireless Transmissions
+            - Signal = Signal to Interference plus Noise Ration
+            - Signal Power - decreases as distance increases
+            - Terminals
+                - Hidden Terminal (A -> B <- C) - C does not hear A, and A cannot hear C, but C can interfere with A at B and should NOT transmit
+                - Exposed Terminal (Y <- X - A -> B) - X hears A and wants to Transmit to Y, it cannot interfere with A at B and should transmit
+            - 802.11 Wireless
+                - Carrier Sense Multiple Access Collision Avoidance
+                    - Sender Emit Request to Send RTS
+                    - Receiver Emits Clear to Send CTS
+                    - Others Silenced
+                    - Sender Emits
+                - Exponetial Backoff
+                    - Wait random time before transmitting, if collision, exponential backoff, once transmit, reset rand to 0
+    - Network - Internet Protocol, addressing and routing
+        - Internet Protocol
+        - Address and Routing - Sender/Receiver IP Addresses
+            - 32bit hierarchical address space e.g. 128.100.11.156
+                - Network ID
+                - Host ID
+            - IPv4
+                - Class A - Network.Host.Host.Host
+                - Class B - Network.Network.Host.Host
+                - Class C - Network.Network.Network.Host
+            - IPv6
+                - 128 Bits
+                - 16 Byte Hexadecimal
+        - Routers
+            - Consume source and destination IP address
+            - Route to Next Hop dependening on destination IP address
+    - Transport - User Datagram Protocol (UDP), Transmission Control Protcool (TCP)
+        - Port - which application on a specific computer
+        - User Datagram Protocol - unreliable, lost or out of order packets
+        - Transmission Control Protocol - reliable, in order packet delivery
+            - Adds flow control and congestion control
+    - Session - authentication, management
+    - Presentation - data translation, formatting, encryption, compression
+    - Application - interface between user applications and lower network services
+    - TCP/IP Model
+        - Application maps to Application, Presentation, Session
+        - Transport maps to Transport
+        - Network maps to Network
+        - Network Interface maps to Data Link and Physical
