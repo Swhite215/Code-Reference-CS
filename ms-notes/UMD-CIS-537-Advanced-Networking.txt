@@ -77,8 +77,47 @@ Advanced Networking and Distributed Systems CIS 537
             - Ethernet Packet
                 - Preamble, MAC Destination, MAC Source, Payload, Cyclic Redundancy Check Field
 
-Research Assignment #1:
-    - Ethernet
-        - Robert M. Metcalfe and David R. Boggs. 1976. Ethernet: distributed packet switching for local computer networks. Commun. ACM 19, 7 (July 1976), 395–404. https://0-doi-org.wizard.umd.umich.edu/10.1145/360248.360253
-        - J. A. B. Moura, J. A. Field, and J. W. Wong. 1979. Evaluation of collision control algorithms in Ethernets. In Proceedings of the sixth symposium on Data communications (SIGCOMM '79). Association for Computing Machinery, New York, NY, USA, 82–86. https://0-doi-org.wizard.umd.umich.edu/10.1145/800092.802984
-        - Guy T. Almes and Edward D. Lazowska. 1979. The behavior of Ethernet-like computer communications networks. In Proceedings of the seventh ACM symposium on Operating systems principles (SOSP '79). Association for Computing Machinery, New York, NY, USA, 66–81. https://0-doi-org.wizard.umd.umich.edu/10.1145/800215.806572
+3. 01/25/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - Catch up for absent students i.e. review of discussions, assignments, and expectations
+            - Week 3 Assignment - Exploring the Evolution of Mobile and Wireless Networking
+            - Review of Week 2 content
+        - Topics in Wireless Networks
+            - Technologies
+                - Bluetooth - short range wireless communication technology
+                - RFID
+                    - Radio Frequency Identification - a tool to identify an object using radio waves
+                    - Electronic Pickpocketing/Data Skimming - exploitation of RFID to steal credit card information
+                    - Protection - RFID Shield
+                - NFC - Near Field Communication
+                - VoIP - Voice over Internet Protocol
+                - eFax - fax without the physical machine
+                - WiMAX - Worldwide Interoperability fo Microwave Access
+            - Standards
+                - IEEE 802.11 - Wireless LAN Media Access Control and Physical Layer Specifications
+                - Physical Layer - method of transmitting data
+                    - DSSS - Direct Sequence Spread Spectrum
+                    - FHSS - Frequency Hopping Spread Spectrum
+                    - Infrared
+                    - OFDM - Orthogonal Frequency Division Multiplexing
+                - IEEE 802.11B, IEEE 802.11a, IEEE 802.11g, IEEE 802.11n, IEEE 802.11ac, IEEE 802.11ax
+            - Frequencies
+                - 2.4GHz 802.11b, 5GHz 802.11a
+                - Frequencies determine data rate, and influence whether the signal can permeate objects or not
+            - Wireless Management Protocols
+                - Authentication - who are you in the system
+                - Authorization - what can you do in the system
+            - A Day Made of Glass
+            - Basic Service Set, Extended Service Set
+            - Mobility Types
+                - Basic Service Set
+                - Extended Service Set
+                - Session Mobility, User Mobility, Device Mobility, Service Mobility, Host Mobility
+            - Physical Architecture and Components
+                - Access Point/Base Station - provides user access to wireless networks
+                - SSID - Service Set Identifier - unique ID for a Wi-Fi network
+            - Virtual Private Networks
+                - Secure connection between computer and server that protects your personal and technical data
+            - Site Survey
+                - Determine what is required to provide wireless technology to a site
