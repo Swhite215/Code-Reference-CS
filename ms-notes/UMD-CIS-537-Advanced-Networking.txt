@@ -121,3 +121,32 @@ Advanced Networking and Distributed Systems CIS 537
                 - Secure connection between computer and server that protects your personal and technical data
             - Site Survey
                 - Determine what is required to provide wireless technology to a site
+
+4. 02/01/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - Review of schedule and assignments
+            - Research Assignment #2 Options: OWASP, SQL Injection, Cross Site Scripting, Protocol Survey
+        - Application Layer
+            - Deals with protocols and interface methods for hosts in a communiucation network
+            - Protocols: HTTP, FTP, SSH, DNS, SMTP
+                - HTTP - Hypertext Transfer Protocol
+                    - Transfer information between client and server
+                - FTP - File Transfer Protocol
+                    - Efficient transfer of files between hsots
+                - SSH - Secure Shell
+                    - Secure communication over an insecure network connection
+                - DNS - Domain Name Server
+                    - Resolves human readable names to their IP address equivalant
+                - Secure Simple Mail Tansfer Protocol
+                    - Communication between mail servers
+                - POP3 - Post Office Protocol Version 3
+                    - Communication between mail server and client
+                - IMAP - Internet Message Access Protocol
+                - HL7 - Health Level Seven
+                    - Protocol for transferring health information
+                - MQTT - MQ Telemetry Protocol
+                    - Protocol for efficient and lightweight communication between edge IoT devices and a broker
+            - Models
+                - Client-Server - request and response pattern, dedicated server responds to requests from client
+                - Peer-to-Peer - hosts are both client and server
