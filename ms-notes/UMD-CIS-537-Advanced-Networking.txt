@@ -150,3 +150,39 @@ Advanced Networking and Distributed Systems CIS 537
             - Models
                 - Client-Server - request and response pattern, dedicated server responds to requests from client
                 - Peer-to-Peer - hosts are both client and server
+
+5. 02/08/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - NMAP Assignment - use of network analysis tool, option to use both Nmap and ZenMap
+            - Tools: Wireshark, Nessus, Ncat, Kali
+            - Advice: Review job applications and gear your personal training to the needs of the role
+        - Transport Layer
+            - Provides host to host communication services between for applications
+            - Services
+                - Connection Establishment
+                - Reliable/Unreliable Delivery
+                - Flow Control
+                - Congestion Control
+                - Application Multiplexing
+            - Protocols
+                - Transmission Control Protocol
+                    - TCP is a connection oriented, reliable protocol, that implements flow control, congrestion control, and ensures data integrity
+                    - Application: situations where you need a guarantee the data will be delivered, in order, and unmodified e.g. HTTP, SMTP, SSH
+                - User Datagram Protocol
+                    - UDP is a connectionless, unreliable protocol, that does NOT implement flow or congestion control
+                    - Application: situations where the application can tolerate loss in packets, and benefits from fast transmission of data e.g. VoIP, DNS, Online Gaming, ICM
+            - Security
+                - Secure Socket Layer - encryption, data integrity, and authentication mechanisms
+                - Transport Layer Security - successor to SSL, HTTPS, SMTPS, POP3S, IMAPS, VoIP
+                - Network Access Control/Access Control List - allow or deny access to a computer environment based on custom rules
+                - Authentication and Authorization
+                    - Authentication - proving WHO you are
+                    - Authoriation - what you can DO
+                    - Tools - Okta, Duo, Microsoft Authenticator, AWS Cognito
+                - Intrusion Detection System - monitor network traffic and system activities in real time to identify and alert about potential security incidents
+                - Intrusion Prevention System - blocks or prevents security threats and attacks in real time
+                - Social Engineering
+                    - When an individual is the attack vector used to infiltrate a computer system
+                    - Common Attacks - Phishing, Whaling, Vishing, Smishing, Pretexting, Baiting, Quid Pro Quo, Tailgating, Impersonation
+                - OWASP
