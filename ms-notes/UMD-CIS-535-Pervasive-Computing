@@ -99,3 +99,70 @@ Advanced Networking and Distributed Systems CIS 537
         - Transport maps to Transport
         - Network maps to Network
         - Network Interface maps to Data Link and Physical
+
+2. Mobile Application Development
+    - Specifications
+        - List of requirements that project/product must meet - WHAT
+    - Application Design - Sketch, Wireframe, Mockup, Prototype
+    - Android History
+        - OS - linux based, open soruce, multi user operating system - Android Inc by Andy Rubin
+    - Android Architecture
+        - Android Framework
+        - Android API
+        - Android Apps
+        - System API
+        - System Services
+        - HAL
+        - Android Runtime - ART
+            - Application runtime environment used by Android OS, translates bytecode into native instructions
+        - System Services and Daemons
+        - Linux Kernel
+    - Android Java Compilation
+        - Source Code -> Java Compiler -> Byte Code -> Java Virtual Machine -> Native Machine Code
+    - Android Fundamentals
+        - APK - Android Package
+        - Components
+            - Activity - single focused thing a user can do, entry point for an app's interaction with the user
+            - Service - component that performs long running operations in the background, no user interface
+            - Content Provider - manages access to a central repository of data
+            - Broadcast Receiver - receives and handles broadcast intents
+        - Manifest File
+            - App Components, Permissions, API Level, HW/SW Features, API Libraries
+                - <Activity>, <Service>, <Provider>, <Receiver>
+        - Multiple Entry Points - one component can start another
+        - Intent
+            - Activates activities, services, and broadcast receivers - startActivity(), startService, sendBroadcast()
+            - Messaging object you can use to request an action from another app component
+            - Explicit Intent - which component of application will satisfy the intent
+            - Implicit Intent - declare a general action to perform, which allows a component from another app to handle it
+                - Examples: View Map, or Open Browser
+            - Receiving Intent - specify an intent-filter
+        - Concepts
+            - Process - running instance of a program
+                - Address Space - stack, heap, data, code
+                - States - New, Ready, Running, Waiting, Terminated
+            - Program - instructions
+            - Thread - unit of execution within a process, share same virtual memory address space
+                - Default - all components of an App run in same thread and same process
+                - Can run components in different processes and create multiple threads per process
+                - Main Thread - created when application is launched
+                - Worker Thread - used to make UI thread light weight and responsive, cannot access UI toolkit elements
+                - 
+            - Inter-Process Communication - shared memory, signals, messaging
+            - Process Hiearchy
+                - Foreground - ongoing activities
+                - Visible - not in Foreground but visible\
+                - Service - concurrent
+                - Background - not visible
+                - Empty - lowest priority
+            - App Responsive
+                - Questions
+                    - How big a task should we do in UI thread?
+                    - How big a task can we do in UI thread?
+                    - What is the alternative?
+                    - What is the limitation of the alternative?
+                - Lesson
+                    - Do not block the UI thread i.e. dont run long running tasks
+                    - Do not access the Android UI toolkit from outside the UI
+                - Solutions
+                    - Async Task (Deprecated) - perform blocking in worker and publish results to UI thread
