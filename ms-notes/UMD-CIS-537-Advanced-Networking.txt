@@ -186,3 +186,64 @@ Advanced Networking and Distributed Systems CIS 537
                     - When an individual is the attack vector used to infiltrate a computer system
                     - Common Attacks - Phishing, Whaling, Vishing, Smishing, Pretexting, Baiting, Quid Pro Quo, Tailgating, Impersonation
                 - OWASP
+
+6. 02/15/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - Review of Research Assignment #3
+        - Network Layer
+            - How data is formed and routed across networks
+            - Components
+                - Hosts - addressed entity
+                - Router - implements routing protocol to determine next hop
+                - SDN - Software Defined Networking
+                - ARP - Address Resolution Protocol - connection between dynamic internet protool address and a fixed physical machine address
+            - Addressing Schemes
+                - IPv4 - XXX.XXX.XXX.XXX
+                - IPv6 - XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX
+        - Voice Over Internet Protocol
+            - Allows users to make phone calls over the internet i.e. conversion and transmission of voice data using packet switched IP network
+            - Providers - Zom, Microsoft Team, Aircall, Vonage
+            - VoIP Server - connect calls between VoIP endpoints
+            - VoIP Endpoint - client to a VoIP server
+                - Hard - network connected phone like device
+                - Soft - software running on mobile device
+            - VoIP Gateway - convert between Public Switched Telephone Network and IP network
+            - VoIP Protocols - UDP, TCP
+            - VoIP Codecs - data compression algorithm
+        - Virtualization
+            - Install and run multiple operating systems on a single physical machine
+            - Host Machine - physical device w/ RAM, CPU, NIC, HDD
+            - Hypervisor - interaction between virtual machine and hardware without host OS
+                - Type 1 - OS on a physical host machine
+                - Type 2 - software application
+            - Providers - VirtualBox, HyperV, VMWare
+        - Virtual Private Networks
+            - Encrypted communication tunnel between user and remote location on top of an existing internet connection
+            - Tunnels
+                - Full - routes all of a user's traffic through the tunnel
+                - Split - routes certain type of traffic
+            - Protocol
+                - Layer 2 Forwarding - mutual auth, no encryption, operates at Data Link Layer, IP
+                - Layer 2 Tunneling - mutual auth, multiple protocols, IPsec for encryption
+                - Internet Protocol Security - auth and encryption
+                    - Transport Mode - end to end encryption, header not encrypted
+                    - Tunnel - link to link communication, packet contents and header encrypted
+                - Secure Socket Layer - secure HTTP, FTP, SMTP, auth and encryption
+                - Transport Layer Protocol - auth and encryption
+        - Cloud Computing
+            - Public Cloud - accessed by anyone
+            - Private Cloud - accessed by a single organization
+            - Multi-Cloud - mixed environments
+            - Providers - Amazon Web Services, Microsoft Azure, Google Cloud
+            - Services
+                - Infrastructure as a Service
+                - Platform as a Service
+                - Software as a Service
+                - Infrastructure as Code
+                - Desktop as a Service
+        - Internet of Things
+            - Sensor network of smart devices that connect people, systems, and other applications
+            - Devices - light, phone, TV, camera, plug, smart speaker, lock
+            - Protocols
+                - Zigbee, Bluetooth, Near Field Communication, Matter and Thread
