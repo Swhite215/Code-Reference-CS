@@ -166,3 +166,84 @@ Advanced Networking and Distributed Systems CIS 537
                     - Do not access the Android UI toolkit from outside the UI
                 - Solutions
                     - Async Task (Deprecated) - perform blocking in worker and publish results to UI thread
+
+3. Cellular Networks
+    - Basics
+        - Radio based technology where electromagnetic waves are propogated by antennas
+        - Frequency Bands - 850 MHz, 900 MHz, 1.8 GHz, 1.9 GHz
+            - 4G - 1, 3, and 6 GHZ
+            - 5G - 24-100 GHz
+            - 6HG - 100GHz - 800 THz
+        - Components
+            - Base Station - transmit to and receive from mobile devices
+            - Cell - service area of a base station
+            - Mobile Device -> Base Station -> Mobile Switching Center -> External Network
+        - Services    
+            - Registration - emit identity to multiple base stations, tune or register with the one with the strongest signal
+            - Service Request - mobile device emits a signal to obtain a service e.g call setup, handover, acitvation, emergency calls, registration, quality of service
+            - Paging - deliver calls, messages or signals to a specific mobile device in a cell
+            - Broadcastr - deliver calls, messages or signals to all mobile devices in a cell
+            - Channel Assignment - allocation of radio frequency channels to users or links
+            - Handoff - transfer of ongoing call from one base station to another
+        - Generations
+            - 0G - briefcase size mobile radio
+            - 1G - analog cellular telephony, voice communication, 2.4Kbps, 1980
+            - 2G - digital cellular telephony. GLobal System for Mobile Communications, 64Kbs, voice, text, multimedia
+            - 3G - high speed digital cellular telephony
+                - Short Message Service - 160 chars max
+                - General Packet Radio Service - IP based packet data transmission up to 114 Kbps
+                - Always on internet access and Multimedia Mesaging Service, text, audio, video 
+            - 4G - IP based anytime anywhere
+            - 5G - high frequency, fast speeds, low latency, more devices
+        - Multiple Access Problem
+            - What - how does a base station serve many mobile terminals at the same time
+            - Schemes
+                - Frequency Division Multiplexing - variance in frequency, all broadcast at same time
+                - Time Division Multiplexing - assigned time slot, only broadcast during slot
+                - Code Division Multiplexing - assigned code, all broadcast at same time
+                    - Spreading Code - convert symbol of bit to larger number of bits
+                - FTDMA - variance in frequency and within frequency band assigned time slot, only broadcast during your time slot within the frequency band
+        - GSM
+            - GSM Channels
+                - Physical - timeslot on a carrier is referred to as a physical channel
+                - Logical - variety of information transmitted between MS and BTS, traffic, control, etc.
+            - GSM Frequencies
+                - Uplink - 1710 MHz - 1785 MHz
+                - Downlink - 1805 MHz - 1880 MHz
+            - Architecture
+                - Mobile Station -> Base Transceiver -> Base Station Controller -> Mobile Switching Center -> Gateway MSC -> PSTN
+                - Mobile Station - equipment and subscriber identity module
+                    - SIM - International Mobile Subscriber Identity
+                - Base Station Sub System
+                    - Transcoding and Adaptation Unit - coding between 64 Kbps PCM code in backbone and 13 Kbps coding use for Mobile Stations
+                    - Base Station Controller - controls channel allocation, manages handovers, knows which mobile stations are in cell
+                    - Base Transceiver System - controls several transmitters, each having 8 time slots
+                - Network and Switching Subsystem
+                    - Mobile Switching Center - telephony exchange supporting mobile communications,
+                        - Visiter Location Register - a database containing location of active mobile stations
+                    - Gateway Mobile Switching Center - link system to Public Switched Telephone Network and other operators
+                    - Home Location Register - contains subscriber information
+                        - Authentication Center - contains authentication information for subscribers
+                    - Equipment Identity Register - International Mobile Station Equipment Identity codes e.g. blacklisting phones
+                - Home Location Register
+                    - One DB per Operator
+                    - Subscriber Information
+                        - Mobile Subscriber ISDN Number - telephone
+                        - International Mobile Subscriber Identity - 15 digit code links MSISDN to SIM
+                - Operation Support System - vendor dependent GSM network management
+            - Services
+                - Location Updates - Mobile Station monitors identifier for Base Station Controllerm when new BSC is reached, request location update, update is forwarded to Mobile Switching Center, entered into Visiter Location Register, and old BSC is notified
+                - Handoff (Handover) - call is in process, change in location processing
+                    - Hard/Soft - Base Station Controller prepares an available channel in the new BTS, MS is told to switch to new
+                    - Types
+                        - Intra-cell - mobile station moves within coverage area, switching frequency or time slots
+                        - Inter-cell - mobile stations move from one cell to another within same GSM network
+                        - Inter-frequency - mobile station moves between cells operating on different carrier frequencies within the same GSM network
+                        - Inter-system -  mobile station moves between cells operated by different radio acces technologies or networks
+                    - Decision - signal strength, quality measurements, threshold settings
+                - Roaming - mobile station enters another operator's network and is allowed to use the services of this operator
+        - Universal Mobile Telecommunications System (UMTS) - 3G
+            - Architecture
+                - Core Network - switching, routing, and transit for traffic
+                - UMTS Terrestrial Radio Access Network - air interface access method for user equipment
+                - User Equipment - terminals work as air interface counterpart for base stations
