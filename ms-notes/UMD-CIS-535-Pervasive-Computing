@@ -247,3 +247,93 @@ Advanced Networking and Distributed Systems CIS 537
                 - Core Network - switching, routing, and transit for traffic
                 - UMTS Terrestrial Radio Access Network - air interface access method for user equipment
                 - User Equipment - terminals work as air interface counterpart for base stations
+
+4. Ad Hoc Network
+    - What - for this purpose
+    - Problem - the large overhead of maintaining routing tables
+    - Solution
+        - Mobile Ad-Hoc Network (MANET) -  network composed of self organizing mobile compute devices
+            - Dynamic Topology - each device is free to move independently
+            - Challenge
+                - Equipping each mobile device to maintain information for routing traffic
+                - Scalability
+                - Fault Detection/Management
+                - Varying link/node capabilities
+                - Energy constraints
+        - Vehicular Ad-Hoc Network (VANET) - network composed of self organizing network capable vehicles
+        - Flying Ad-Hoc Network (FANET) - network composed of self organizing network capable drones
+        - Wireless Sensor Network (WSN) - MANET of smart sensors
+            - Sensor - sensor, RF transceiver, microcontroller, energy source, energy harvesting module to trap solar radiation\
+            - Applicaiton - traffic monitoring, smart labels, wireless networks, environmental monitoring
+        - Wireless Mesh Networks
+            - Mesh topology with each compute on the network connecting to every other
+            - Point to Point connection between all the devices of the network
+            - High level of redundancy
+            - Interconnected MANETs and fixed network 
+            - Node - access point devices that act as routers/gateways
+            - Client - wireless devices such as laptops, phones, and tablets
+            - Examples - broadband internet, military communications, community networks
+    - Routing
+        - Ad-Hoc Routing Protocol -  convention that controls how nodes decie which way to route packets between computing devices
+        - Node must discover the topology of their network
+            - Node announces its presence and listens for broadcast messages from neighbors
+            - Each node learns about others nearby and how to reach them
+        - Types
+            - Table Driven (Proactive) - maintain fresh list of destinations and their routes, distribute tables periodically through the network
+                - PRO - route immediately available, minimize flooding
+                - Optimized Link State Routing (OLSR) - link-state algorithms
+                    - Each node shares its link information so that all nodes can build a map of the full network topology
+                    - Nodes advertise info only about links with neighbors who are in its multipoint relay selector set
+                    - Use only multipoint relay nodes to send information in the network
+                    - Regular Flooding - send to all known, send to all known, send to all known
+                    - Multipoint Relay - each node selects a subset of neighbors as MPRs, send to all MPRs, send to all MPRs, send to all MPRs
+                    - Neighbor Sensing - broadcast HELLO containing neighbor list of addresses and link status
+            - On-Demand (Reactive) - find a route on demand by flooding the network with Route Request packets
+                - Dynamic Source Routing
+                    - Each packet header contains a route, which is a complete sequence of nodes
+                    - Phase One - Route Discovery
+                        - Source broadcasts route requests
+                        - Intermediate nodes
+                            - If target - return route record with full route i.e. existing route, reversed through previous route
+                            - Else - append address in route record and rebroadcast
+                        - After Route Request Reply, packet is sent with header containing route, each intermediate node use the source route included in a packet to determine next hop
+                    - Phase Two - Route Maintenance
+                    - Problem - stale caches
+                    - Advantages
+                        - Establish route between nodes needed
+                        - Route caching further reduces management cost
+                        - A single route discovery may yield many routes
+                    - Disadvantages
+                        - Packet header size grows with route length
+                        - Route request requires flooding
+                        - Rebroadcasting may lead to collisions
+                        - Many route replies can be returned
+                        - Stale caches contain outdated routes
+                        - Initial delay before transmission
+                - Ad Hoc On Demand Distance Vector Routing
+                    - RREQs for Route Discovery
+                    - Packets do not store route
+                    - Each forwarder remembers reverse path to transmitter
+                    - Target replies with RREP, travels along reverse path
+                    - At most one next hop per destination maintained at each node
+                    - Sequence numbers used to avoid old/broken routes
+                    - Sequence numbers prevent formation of routing loops
+                    - Unused routes expire even if topology does not change
+                - Location Based Routing or Geographic Routing
+                    - Nodes use location information to make routing decisions
+                        - Sender must know the locations of itself, the destination, and its neighbors 
+                        - Location information can be queried or obtained from a location broker
+                    -  Unicast Location Based Routing
+                        - One single destination
+                        - Each forwarding node makes localized decision
+                        - Challenge - packet may arrive at a node without neighbors that bring packet closer to the destination
+                    - Forwarding Strategies
+                        - Greedy - minimize distance to destination in each hop
+                        - Nearest with Forwarding Progress - nearest of all neighbors that make positive progress towards destination
+                        - Most Forwarding Progress within Radius - neighbor that makes greatest positive progress
+                        - Compass Routing - neighbor with the smallest angle between a line drawn from source to the neighbor and the line connecting source and destination
+                    - Geocasting - Packet is sent to all or some nodes within specific geographic region
+                        - Geographic Forward Perimeter Geocast -  neighbor that makes positive progress and then perimeter of target geographic area
+            - Hybrid - Table Driven and On-Demand
+            - Hierarchical - choice between Table Driven and On-Demand depending on position in hierarchy
+        
