@@ -247,3 +247,76 @@ Advanced Networking and Distributed Systems CIS 537
             - Devices - light, phone, TV, camera, plug, smart speaker, lock
             - Protocols
                 - Zigbee, Bluetooth, Near Field Communication, Matter and Thread
+
+7. 02/22/2024 - Summary of Lecture
+    - Main Topics
+        - Midterm
+            - Date: 03/14/2024 at 6:00PM until 03/21/2024 at 6:00PM
+        - Previous Week: Internet of Things
+            - What - sensor network of interconnected smart devices that transmit data between people, systems, and other applicaitons.
+            - Pathways
+                - Edge Device -> IoT Gateway -> Internet
+                - Edge Device -> Edge Device
+            - IoT Security
+                - Encryption, Authentication, Authorization
+            - Devices: thermostat, phone, fire alarm, light, plug, camera, door lock
+            - IoT Protocols
+                - Zigbee, Bluetooth, Near Field Communication, Matter and Thread
+        - Data Link Layer
+            - What - rules and procedures for hosts as they access the physical layer i.e. (identification, access, verification of data, rate of transmission)
+            - Sublayers
+                - Logical Link Control - flow control and transmission for analog and/or digital streams
+                - Media Access Control Layer - protocol access to the physical medium, identificaiton, and authentication
+            - Framing
+                - Frame - unit of transmission, discernible block of information i.e. stream of bits
+                - Problems
+                    - Frame start/end, errors, overhead, compatibility
+            - Error Control
+                - Error Detection - has an error occured
+                    - Causes - interference, manipulation
+                    - Errors - Single Bit, Multiple Bits, Burst
+                    - Techniques - Parity Check, Checksum, Cyclic Redundancy Check
+                - Error Correction - fixing exact number of corrupted bits
+                    - Forward Error Correction
+                    - Backward Error Correction
+        - Access Control Lists - filtering rules to identify allowed traffic
+        - Firewalls
+            - What - software or hardware based network security system to allow or deny traffic based on rules
+            - Category
+                - Network - operates at edge of private network
+                - Host - opoeratees on a single computer in the network
+            - Types
+                - Packet Filtering - examining of IP packet header
+                    - Evaluate source, destination, port, and service
+                - Circuit - examining virtual circuit or sessions
+                    - Evaluate session state
+                - Applicaiton Layer - examining packet data portion
+                    - Examine entirety of content, filter by user, group, and data
+                    - Example - Proxy Server
+                        - Forward Proxy - handles requests from inside a private network
+                        - Reverse Proxy - handles request from the internet to a server located inside a private network
+                - Unified Thread Management Device
+                    - Features - firewall, VPN, anti-spam, anti-virus, load balancing
+                - Next Generation Firewall
+                    - Traditional firewall + other network device filtering functionalities
+            - Rules
+                - Implicity Deny - deny all traffic by default
+                - Explicit Deny - deny permission to a specific user
+        - Intrusion Detection System
+            - Monitor and detect security breached, does NOT prevent an attack, but rather produces alerts
+            - Detection Methods
+                - Signature - packets unique fingerprint, known in database/dictionary, based on patterns
+                - Anomaly - uses a defined baseline to identify traffic that falls out of it
+            - Process - collect data -> analyzer -> generate alerts and log -> update dictionary
+            - Traffic Assessment Types
+                - Positive - attack detected
+                - False-Positive - system misidentified harmless traffic as offensive
+                - Negative - traffic harmless
+                - False-Negative - system misidentified offensive traffic as harmless
+            - Implementations
+                - Host Based Intrusion Detection System - monitor system on single host
+                - Network Based Intrusion Detection System - monitor traffic at edge of a network
+                - Perimeter Intrusion Detection System - physical device
+                - Virtual Machine Intrusion Detection System
+        - Intrusion Prevention System
+            - IDS + perform tasks to stop intrusion including
