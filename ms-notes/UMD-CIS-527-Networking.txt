@@ -2342,3 +2342,61 @@ Computer Networking CIS 527
                 - .edu Name Server
                 - Princeton Name Server
                 - Computer Science Name Server
+
+19. 12/21/2022
+    - Summary of Lecture
+        - Final Project
+            - Complete research of a networking project
+            - Prepare and submit video presentation
+            - Review other student's submission and provide feedback (x3)
+        - Network Management
+            - Network Management Software
+                - ManageEngine Ops Manager
+                - CloudFlare
+        - Simple Network Management Protocol
+            - What - network hosts exchange configuration and status information
+            - Components
+                - Manager - performs management tasks
+                - Agent - communicate information to manager
+                - Management Information Base - database of configuration information
+                - Trap - event configured to an agent 
+                - Get - request
+                - Inform - share information
+                - Walk - navigate MIB
+                - Alert
+                - Community - group of components under the same admin control
+        - Network Performance
+            - Performance Baseline - network's usual state of operation
+                - Protocols, bandwidth, users, packets, errors, application usage
+                - Metrics - latency, bandwidth utilization, error rate
+        - Device Performance
+            - Metrics - processor, hard disk, and memory utilization
+            - Tools - Activity Monitor, Task Manager, Top,
+        - Log Messages
+            - Log Monitoring Software
+            - Syslog - log events from operating systems
+            - Information
+                - Facility, severity, mnemonic,  message, interface
+        - Network Monitoring Tools
+            - Log - record of events that have occurred on a system
+            - Types - applicaiton, security, system
+            - Tools
+                - Packet Sniffer - Wireshark
+                - Protocol Analyzer
+        - Environmental Monitoring
+            - What - monitoring of environmental conditions that impact reliability and lifespan of IT equipment
+            - Key Values: Temperature, Airflow, Fire, Humidity, Electrical, Flooding
+        - Policies, Procedures, and Plans
+            - Policy - framework to achieve a goal
+            - Procedure - step by step process to implement an action (Standard Operating Procedure)
+            - Plans - What-If scenarios e.g. indicent response
+            - Ogranizational Plans
+                - Change Management - structured appraoch to upgrades, installations, and procedural changes
+                - Incident Response - actions taken to deal with an incident during and after
+                - Business Continuity Plan - disaster responses that allow business operations to continue when infrastructure and capabilities are restricted or reduced
+                - Disaster Recovery Plan
+            - Security Policy
+                - Onboarding/Offboarding
+                - Documentation and Agreements
+                    - Non-disclosure Agreement, Non-compete agreement, service level agreement, memorandum of understanding
+                - Security Awareness Training
