@@ -386,3 +386,48 @@ Advanced Networking and Distributed Systems CIS 537
         - DCHP Relay Agent - forward DHCP requests to a DHCP server on another network
         - IP Helper - equivalent to relay agnt for other protocols e.g. NTP
         
+8. 04/04/2024
+    - Main Topics
+        - Security Fundamentals
+            - Confidentiality - protect data and resources from unauthorized access
+            - Integirty - protect data and resources from manipulation or alteration
+            - Availability - reliable access to data and resources
+        - Threats
+            - External - outside organization e.g. malware, viruses, trojan horses
+            - Internal - inside organization
+        - Vulnerabilities - security weakness
+            - Domains - software, hardware, policies, humans
+            - Resources
+                - Common Vulnerabilities and Exposure List - known vulnerability repository
+                - Common Vulnerabilities and Exposure Numbering Authorities - org review own produce
+                - Common Vulnerability Scoring System - standards for assessing risk level
+        - Exploits - breach through weakness in system, software, hardware, policies, or human behavior
+            - Examples - malware, social enginering, spoofing, DDOS, zero-day
+                - Zero Day - Vulnerability Exploited - Discovered - Fix Under Development - Fix Released - Signature Released 
+        - Unsecure vs. Secure Protocols
+            - HTTP vs. HTTPS
+            - RSH vs. SSH
+            - FTP vs. SFTP
+            - RCP vs. SCP
+            - TFTP vs. FTPS
+            - SNMPv[1-2] vs. SNMPv3
+            - Goals - authentication, authorization, integrity, confidentiality
+        - Security Challenges
+            - Increasing sophistication, tools, and attack surface
+        - Security Control Types
+            - Managerial - oversight of information system
+            - Operational - security guards and training programs
+            - Technical - hardware, software, or firmware
+            - Physical - alarms, gateways, locks, lighting
+        - Security Control Functioning Types
+            - Preventive, Detective, Corrective, Directive, Deterrent, Compensating
+        - Risk Assessment
+            - What - assess risk
+                - Asset Identification -> Threat Assessment -> Risk Assessment
+        - Cybersecurity Posture Assessment
+            - What - overall state and effectiveness of security in a network's hardware, software, database, transmission, process, and security of vendors]
+        - Risk Management
+            - Risk Avoidance
+            - Risk Reduction
+            - Transfer of Risk
+            - Risk Retention
