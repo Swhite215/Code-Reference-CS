@@ -320,3 +320,69 @@ Advanced Networking and Distributed Systems CIS 537
                 - Virtual Machine Intrusion Detection System
         - Intrusion Prevention System
             - IDS + perform tasks to stop intrusion including
+
+8. 03/28/2024
+    - Main Topics
+        - Network Documentation
+            - Details - who, what, where, when, why
+            - Goals - usability, clarity, detail, secure
+            - Examples
+                - Network Diagram - physical and logical
+                - Floor Plan - eletrical, plumbing, HVAC, and wiring
+                - Rack Diagram - multi-device units
+                - Main Distribution Frame
+                - Intermediate Distribution Frame
+                - Wiring
+                - Wireless Site Survey
+                - Audit and Assessment
+            - Tools
+                - UML, Microsoft Visio, SmartDraw
+        - Redundancy and High Availability
+            - High Availability Metrics
+                - Mean Time to Repair
+                - Mine Time Between Failure
+                - Recovery Time Objective
+                - Recovery Point Objectitve
+            - High Availability Solutions
+                - Load Balancing
+                - Multipathing 0 multipaths between CPU and mass storage
+                - Network Interface Card Teaming
+                - Clustering
+                - Multiple Internet Service Providers
+            - Redundancy Solutions
+                - Hot Site - duplicate entire system, minute to hours to activate
+                - Warm Site - duplicate, infrequent updates, days to activate
+                - Cold Site - less robust, frequeny, and delayed activation
+                - Cloud Site - disaster recovery backups
+        - Power Management
+            - Devices - see word document
+    - Active Directory
+        - What - centralized database for user account management
+        - Logical Components
+            - Domain - admin defined and managed network resources
+            - Object - resource e.g. users, groups, computers, printers, etc.
+            - Organization Unit - logical container for other resources
+            - Containers - built-in unalterable object
+        - Physical Components
+            - Domain Controller - Active Directory Service server
+            - Sites and Subnets - subnet = physical network segment, site = group of connected networks
+            - Data Store - directory information
+        - Advantanges - ogranization, delegation, replication, scalability
+        - Product - Azure Active Directory
+    - Dynamic Host Configuration Protocol
+        - Role
+            - What - enable automatic IP configuration when a device connects to the network
+            - IP Configuration - address, subnet mask, gateway, domain name system
+        - Configuring
+            - IP Range - set of available IP addresses
+            - Subnet Mask - network ID and host ID
+            - Exclusions - IP addresses that will not be assigned
+            - Reservations - MAC specific IP addresses
+            - Lease Time - time IP cannot be reassigned
+            - Gateway - where packets leaving the network shoudl go
+            - DNS Server
+        - Process
+            - Disover -> Offer -> Request -> Acknowledge
+        - DCHP Relay Agent - forward DHCP requests to a DHCP server on another network
+        - IP Helper - equivalent to relay agnt for other protocols e.g. NTP
+        
