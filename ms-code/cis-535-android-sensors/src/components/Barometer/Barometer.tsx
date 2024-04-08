@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Barometer } from "expo-sensors";
 
-export default function BSensor() {
+export default function App() {
   const [{ pressure, relativeAltitude }, setData] = useState({
     pressure: 0,
     relativeAltitude: 0,
@@ -30,9 +30,9 @@ export default function BSensor() {
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.header}>Barometer:</Text>
-      <Text style={styles.text}>Pressure: {pressure} hPa</Text>
-      <Text style={styles.text}>
+      <Text>Barometer: Listener {subscription ? "ACTIVE" : "INACTIVE"}</Text>
+      <Text>Pressure: {pressure} hPa</Text>
+      <Text>
         Relative Altitude:{" "}
         {Platform.OS === "ios"
           ? `${relativeAltitude} m`
@@ -46,26 +46,35 @@ export default function BSensor() {
 }
 
 const styles = StyleSheet.create({
-  button: {
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#eee",
-    padding: 10,
-    marginTop: 15,
   },
   text: {
-    color: "white",
     textAlign: "center",
+    color: "white",
   },
   header: {
     textAlign: "center",
     color: "white",
     fontSize: 32,
   },
-  wrapper: {
-    flex: 1,
+  buttonContainer: {
+    flexDirection: "row",
     alignItems: "stretch",
+    marginTop: 15,
+  },
+  button: {
+    flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 20,
+    alignItems: "center",
+    backgroundColor: "#eee",
+    padding: 10,
+  },
+  middleButton: {
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: "#ccc",
   },
 });
