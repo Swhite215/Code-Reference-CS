@@ -1,0 +1,339 @@
+Advanced Networking and Distributed Systems CIS 537
+
+1. 01/22/2024 - Summary of Lecture
+- Terminology
+    - Network - group of computers and devices that are connected by communication infrastructure
+        - Local Area Network
+        - Wireless Local Area Network
+        - Wireless Personal Area Network
+        - Wireless Body Area Network
+        - Metropolitan Area Network
+    - Topologies - mesh, bus star, ring
+    - Protocols
+        - Building blocks of a network architecture
+        - Formal standards and policies enabling communication
+        - Institure of Electrical and Electronics Engineers
+    - Key Questions
+        - Who initiates communication?
+        - What is the order of communication?
+        - How long can I talk?
+        - How loud can I speak?
+        - Do I have something specific to say at beginning or end?
+        - Do I have meta data to add?
+        - What do I do if I get interrupted?
+        - What do I do if I was not understood?
+        - Client/Server Model - HTTP, SMTP, ICMP, SSH, DNS
+    - Open System Interconnection Model
+        - Physical - physical/electrical characteristics, binary data, cable, connectors, voltage, signal duration
+            - Low frequency = longer wavelengths, low data rates, long distances, penetrate objects
+            - High frequency = shorter wavelengths, high data rates, short distances, line of sight
+            - Wavelength = Speed of Light / Frequency
+        - Propogation Behaviors
+            - Ground Wave < 2MHz - follow earth's surface, long distances
+            - Sky Wave 2-30MHz - reflectd at ionosphere around the world
+            - Line of Sight >30MHz - straight lines, waves are bent at atmosphere due to refraction
+            - Effects - shadowing, reflection, refraction, scattering, diffraction
+        - Signal Propogation Ranges
+            - Transmission Range - communication possible, low error rate
+            - Detection Range - detection possible, no communication possible
+            - Interference Range - signal may not be detected, signal adds to background noise
+        - Multipath Propogation
+            - Signal may take different paths between sensor and receiver due to reflection, scattering, and diffraction
+        - Modulation
+            - Digital - digial data is translated into an analog signal
+            - Amplitude Key Shifting - amplitude is varied to represent binary data
+            - Frequency Key Shifting - frequency is varied to represent binary data (Binary or Multiple Frequency)
+            - Amplitude Modulation AM - amplitude, measure of amount of energy transferred by a wave, distance between peak or trough and equilibrium
+            - Frequency Modulation FM - number of waves that pass a certain point in a certain period of time
+            - Phase Modulation
+    - Data - frames, Media Access Control sublayer
+        - How/when medium is accessed for transmission, frames, error detection/correction
+        - Multiplexing
+            - Space Multiplexing - different paths or channels for each signal
+            - Time Multiplexing - different interval, each signal assigned to an interval
+            - Frequency Multiplexing - different frequencies, each signal assign to a frequency
+            - Code Multiplexing - assign unique code to channel or user, receivers uses code to extract desired information
+        - Ethernet
+            - Local Area Network technology
+            - Carrier Sense Multiple Access, Collision Detection
+        - Wireless Transmissions
+            - Signal = Signal to Interference plus Noise Ration
+            - Signal Power - decreases as distance increases
+            - Terminals
+                - Hidden Terminal (A -> B <- C) - C does not hear A, and A cannot hear C, but C can interfere with A at B and should NOT transmit
+                - Exposed Terminal (Y <- X - A -> B) - X hears A and wants to Transmit to Y, it cannot interfere with A at B and should transmit
+            - 802.11 Wireless
+                - Carrier Sense Multiple Access Collision Avoidance
+                    - Sender Emit Request to Send RTS
+                    - Receiver Emits Clear to Send CTS
+                    - Others Silenced
+                    - Sender Emits
+                - Exponetial Backoff
+                    - Wait random time before transmitting, if collision, exponential backoff, once transmit, reset rand to 0
+    - Network - Internet Protocol, addressing and routing
+        - Internet Protocol
+        - Address and Routing - Sender/Receiver IP Addresses
+            - 32bit hierarchical address space e.g. 128.100.11.156
+                - Network ID
+                - Host ID
+            - IPv4
+                - Class A - Network.Host.Host.Host
+                - Class B - Network.Network.Host.Host
+                - Class C - Network.Network.Network.Host
+            - IPv6
+                - 128 Bits
+                - 16 Byte Hexadecimal
+        - Routers
+            - Consume source and destination IP address
+            - Route to Next Hop dependening on destination IP address
+    - Transport - User Datagram Protocol (UDP), Transmission Control Protcool (TCP)
+        - Port - which application on a specific computer
+        - User Datagram Protocol - unreliable, lost or out of order packets
+        - Transmission Control Protocol - reliable, in order packet delivery
+            - Adds flow control and congestion control
+    - Session - authentication, management
+    - Presentation - data translation, formatting, encryption, compression
+    - Application - interface between user applications and lower network services
+    - TCP/IP Model
+        - Application maps to Application, Presentation, Session
+        - Transport maps to Transport
+        - Network maps to Network
+        - Network Interface maps to Data Link and Physical
+
+2. Mobile Application Development
+    - Specifications
+        - List of requirements that project/product must meet - WHAT
+    - Application Design - Sketch, Wireframe, Mockup, Prototype
+    - Android History
+        - OS - linux based, open soruce, multi user operating system - Android Inc by Andy Rubin
+    - Android Architecture
+        - Android Framework
+        - Android API
+        - Android Apps
+        - System API
+        - System Services
+        - HAL
+        - Android Runtime - ART
+            - Application runtime environment used by Android OS, translates bytecode into native instructions
+        - System Services and Daemons
+        - Linux Kernel
+    - Android Java Compilation
+        - Source Code -> Java Compiler -> Byte Code -> Java Virtual Machine -> Native Machine Code
+    - Android Fundamentals
+        - APK - Android Package
+        - Components
+            - Activity - single focused thing a user can do, entry point for an app's interaction with the user
+            - Service - component that performs long running operations in the background, no user interface
+            - Content Provider - manages access to a central repository of data
+            - Broadcast Receiver - receives and handles broadcast intents
+        - Manifest File
+            - App Components, Permissions, API Level, HW/SW Features, API Libraries
+                - <Activity>, <Service>, <Provider>, <Receiver>
+        - Multiple Entry Points - one component can start another
+        - Intent
+            - Activates activities, services, and broadcast receivers - startActivity(), startService, sendBroadcast()
+            - Messaging object you can use to request an action from another app component
+            - Explicit Intent - which component of application will satisfy the intent
+            - Implicit Intent - declare a general action to perform, which allows a component from another app to handle it
+                - Examples: View Map, or Open Browser
+            - Receiving Intent - specify an intent-filter
+        - Concepts
+            - Process - running instance of a program
+                - Address Space - stack, heap, data, code
+                - States - New, Ready, Running, Waiting, Terminated
+            - Program - instructions
+            - Thread - unit of execution within a process, share same virtual memory address space
+                - Default - all components of an App run in same thread and same process
+                - Can run components in different processes and create multiple threads per process
+                - Main Thread - created when application is launched
+                - Worker Thread - used to make UI thread light weight and responsive, cannot access UI toolkit elements
+                - 
+            - Inter-Process Communication - shared memory, signals, messaging
+            - Process Hiearchy
+                - Foreground - ongoing activities
+                - Visible - not in Foreground but visible\
+                - Service - concurrent
+                - Background - not visible
+                - Empty - lowest priority
+            - App Responsive
+                - Questions
+                    - How big a task should we do in UI thread?
+                    - How big a task can we do in UI thread?
+                    - What is the alternative?
+                    - What is the limitation of the alternative?
+                - Lesson
+                    - Do not block the UI thread i.e. dont run long running tasks
+                    - Do not access the Android UI toolkit from outside the UI
+                - Solutions
+                    - Async Task (Deprecated) - perform blocking in worker and publish results to UI thread
+
+3. Cellular Networks
+    - Basics
+        - Radio based technology where electromagnetic waves are propogated by antennas
+        - Frequency Bands - 850 MHz, 900 MHz, 1.8 GHz, 1.9 GHz
+            - 4G - 1, 3, and 6 GHZ
+            - 5G - 24-100 GHz
+            - 6HG - 100GHz - 800 THz
+        - Components
+            - Base Station - transmit to and receive from mobile devices
+            - Cell - service area of a base station
+            - Mobile Device -> Base Station -> Mobile Switching Center -> External Network
+        - Services    
+            - Registration - emit identity to multiple base stations, tune or register with the one with the strongest signal
+            - Service Request - mobile device emits a signal to obtain a service e.g call setup, handover, acitvation, emergency calls, registration, quality of service
+            - Paging - deliver calls, messages or signals to a specific mobile device in a cell
+            - Broadcastr - deliver calls, messages or signals to all mobile devices in a cell
+            - Channel Assignment - allocation of radio frequency channels to users or links
+            - Handoff - transfer of ongoing call from one base station to another
+        - Generations
+            - 0G - briefcase size mobile radio
+            - 1G - analog cellular telephony, voice communication, 2.4Kbps, 1980
+            - 2G - digital cellular telephony. GLobal System for Mobile Communications, 64Kbs, voice, text, multimedia
+            - 3G - high speed digital cellular telephony
+                - Short Message Service - 160 chars max
+                - General Packet Radio Service - IP based packet data transmission up to 114 Kbps
+                - Always on internet access and Multimedia Mesaging Service, text, audio, video 
+            - 4G - IP based anytime anywhere
+            - 5G - high frequency, fast speeds, low latency, more devices
+        - Multiple Access Problem
+            - What - how does a base station serve many mobile terminals at the same time
+            - Schemes
+                - Frequency Division Multiplexing - variance in frequency, all broadcast at same time
+                - Time Division Multiplexing - assigned time slot, only broadcast during slot
+                - Code Division Multiplexing - assigned code, all broadcast at same time
+                    - Spreading Code - convert symbol of bit to larger number of bits
+                - FTDMA - variance in frequency and within frequency band assigned time slot, only broadcast during your time slot within the frequency band
+        - GSM
+            - GSM Channels
+                - Physical - timeslot on a carrier is referred to as a physical channel
+                - Logical - variety of information transmitted between MS and BTS, traffic, control, etc.
+            - GSM Frequencies
+                - Uplink - 1710 MHz - 1785 MHz
+                - Downlink - 1805 MHz - 1880 MHz
+            - Architecture
+                - Mobile Station -> Base Transceiver -> Base Station Controller -> Mobile Switching Center -> Gateway MSC -> PSTN
+                - Mobile Station - equipment and subscriber identity module
+                    - SIM - International Mobile Subscriber Identity
+                - Base Station Sub System
+                    - Transcoding and Adaptation Unit - coding between 64 Kbps PCM code in backbone and 13 Kbps coding use for Mobile Stations
+                    - Base Station Controller - controls channel allocation, manages handovers, knows which mobile stations are in cell
+                    - Base Transceiver System - controls several transmitters, each having 8 time slots
+                - Network and Switching Subsystem
+                    - Mobile Switching Center - telephony exchange supporting mobile communications,
+                        - Visiter Location Register - a database containing location of active mobile stations
+                    - Gateway Mobile Switching Center - link system to Public Switched Telephone Network and other operators
+                    - Home Location Register - contains subscriber information
+                        - Authentication Center - contains authentication information for subscribers
+                    - Equipment Identity Register - International Mobile Station Equipment Identity codes e.g. blacklisting phones
+                - Home Location Register
+                    - One DB per Operator
+                    - Subscriber Information
+                        - Mobile Subscriber ISDN Number - telephone
+                        - International Mobile Subscriber Identity - 15 digit code links MSISDN to SIM
+                - Operation Support System - vendor dependent GSM network management
+            - Services
+                - Location Updates - Mobile Station monitors identifier for Base Station Controllerm when new BSC is reached, request location update, update is forwarded to Mobile Switching Center, entered into Visiter Location Register, and old BSC is notified
+                - Handoff (Handover) - call is in process, change in location processing
+                    - Hard/Soft - Base Station Controller prepares an available channel in the new BTS, MS is told to switch to new
+                    - Types
+                        - Intra-cell - mobile station moves within coverage area, switching frequency or time slots
+                        - Inter-cell - mobile stations move from one cell to another within same GSM network
+                        - Inter-frequency - mobile station moves between cells operating on different carrier frequencies within the same GSM network
+                        - Inter-system -  mobile station moves between cells operated by different radio acces technologies or networks
+                    - Decision - signal strength, quality measurements, threshold settings
+                - Roaming - mobile station enters another operator's network and is allowed to use the services of this operator
+        - Universal Mobile Telecommunications System (UMTS) - 3G
+            - Architecture
+                - Core Network - switching, routing, and transit for traffic
+                - UMTS Terrestrial Radio Access Network - air interface access method for user equipment
+                - User Equipment - terminals work as air interface counterpart for base stations
+
+4. Ad Hoc Network
+    - What - for this purpose
+    - Problem - the large overhead of maintaining routing tables
+    - Solution
+        - Mobile Ad-Hoc Network (MANET) -  network composed of self organizing mobile compute devices
+            - Dynamic Topology - each device is free to move independently
+            - Challenge
+                - Equipping each mobile device to maintain information for routing traffic
+                - Scalability
+                - Fault Detection/Management
+                - Varying link/node capabilities
+                - Energy constraints
+        - Vehicular Ad-Hoc Network (VANET) - network composed of self organizing network capable vehicles
+        - Flying Ad-Hoc Network (FANET) - network composed of self organizing network capable drones
+        - Wireless Sensor Network (WSN) - MANET of smart sensors
+            - Sensor - sensor, RF transceiver, microcontroller, energy source, energy harvesting module to trap solar radiation\
+            - Applicaiton - traffic monitoring, smart labels, wireless networks, environmental monitoring
+        - Wireless Mesh Networks
+            - Mesh topology with each compute on the network connecting to every other
+            - Point to Point connection between all the devices of the network
+            - High level of redundancy
+            - Interconnected MANETs and fixed network 
+            - Node - access point devices that act as routers/gateways
+            - Client - wireless devices such as laptops, phones, and tablets
+            - Examples - broadband internet, military communications, community networks
+    - Routing
+        - Ad-Hoc Routing Protocol -  convention that controls how nodes decie which way to route packets between computing devices
+        - Node must discover the topology of their network
+            - Node announces its presence and listens for broadcast messages from neighbors
+            - Each node learns about others nearby and how to reach them
+        - Types
+            - Table Driven (Proactive) - maintain fresh list of destinations and their routes, distribute tables periodically through the network
+                - PRO - route immediately available, minimize flooding
+                - Optimized Link State Routing (OLSR) - link-state algorithms
+                    - Each node shares its link information so that all nodes can build a map of the full network topology
+                    - Nodes advertise info only about links with neighbors who are in its multipoint relay selector set
+                    - Use only multipoint relay nodes to send information in the network
+                    - Regular Flooding - send to all known, send to all known, send to all known
+                    - Multipoint Relay - each node selects a subset of neighbors as MPRs, send to all MPRs, send to all MPRs, send to all MPRs
+                    - Neighbor Sensing - broadcast HELLO containing neighbor list of addresses and link status
+            - On-Demand (Reactive) - find a route on demand by flooding the network with Route Request packets
+                - Dynamic Source Routing
+                    - Each packet header contains a route, which is a complete sequence of nodes
+                    - Phase One - Route Discovery
+                        - Source broadcasts route requests
+                        - Intermediate nodes
+                            - If target - return route record with full route i.e. existing route, reversed through previous route
+                            - Else - append address in route record and rebroadcast
+                        - After Route Request Reply, packet is sent with header containing route, each intermediate node use the source route included in a packet to determine next hop
+                    - Phase Two - Route Maintenance
+                    - Problem - stale caches
+                    - Advantages
+                        - Establish route between nodes needed
+                        - Route caching further reduces management cost
+                        - A single route discovery may yield many routes
+                    - Disadvantages
+                        - Packet header size grows with route length
+                        - Route request requires flooding
+                        - Rebroadcasting may lead to collisions
+                        - Many route replies can be returned
+                        - Stale caches contain outdated routes
+                        - Initial delay before transmission
+                - Ad Hoc On Demand Distance Vector Routing
+                    - RREQs for Route Discovery
+                    - Packets do not store route
+                    - Each forwarder remembers reverse path to transmitter
+                    - Target replies with RREP, travels along reverse path
+                    - At most one next hop per destination maintained at each node
+                    - Sequence numbers used to avoid old/broken routes
+                    - Sequence numbers prevent formation of routing loops
+                    - Unused routes expire even if topology does not change
+                - Location Based Routing or Geographic Routing
+                    - Nodes use location information to make routing decisions
+                        - Sender must know the locations of itself, the destination, and its neighbors 
+                        - Location information can be queried or obtained from a location broker
+                    -  Unicast Location Based Routing
+                        - One single destination
+                        - Each forwarding node makes localized decision
+                        - Challenge - packet may arrive at a node without neighbors that bring packet closer to the destination
+                    - Forwarding Strategies
+                        - Greedy - minimize distance to destination in each hop
+                        - Nearest with Forwarding Progress - nearest of all neighbors that make positive progress towards destination
+                        - Most Forwarding Progress within Radius - neighbor that makes greatest positive progress
+                        - Compass Routing - neighbor with the smallest angle between a line drawn from source to the neighbor and the line connecting source and destination
+                    - Geocasting - Packet is sent to all or some nodes within specific geographic region
+                        - Geographic Forward Perimeter Geocast -  neighbor that makes positive progress and then perimeter of target geographic area
+            - Hybrid - Table Driven and On-Demand
+            - Hierarchical - choice between Table Driven and On-Demand depending on position in hierarchy
+        

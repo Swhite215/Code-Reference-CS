@@ -77,8 +77,357 @@ Advanced Networking and Distributed Systems CIS 537
             - Ethernet Packet
                 - Preamble, MAC Destination, MAC Source, Payload, Cyclic Redundancy Check Field
 
-Research Assignment #1:
-    - Ethernet
-        - Robert M. Metcalfe and David R. Boggs. 1976. Ethernet: distributed packet switching for local computer networks. Commun. ACM 19, 7 (July 1976), 395–404. https://0-doi-org.wizard.umd.umich.edu/10.1145/360248.360253
-        - J. A. B. Moura, J. A. Field, and J. W. Wong. 1979. Evaluation of collision control algorithms in Ethernets. In Proceedings of the sixth symposium on Data communications (SIGCOMM '79). Association for Computing Machinery, New York, NY, USA, 82–86. https://0-doi-org.wizard.umd.umich.edu/10.1145/800092.802984
-        - Guy T. Almes and Edward D. Lazowska. 1979. The behavior of Ethernet-like computer communications networks. In Proceedings of the seventh ACM symposium on Operating systems principles (SOSP '79). Association for Computing Machinery, New York, NY, USA, 66–81. https://0-doi-org.wizard.umd.umich.edu/10.1145/800215.806572
+3. 01/25/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - Catch up for absent students i.e. review of discussions, assignments, and expectations
+            - Week 3 Assignment - Exploring the Evolution of Mobile and Wireless Networking
+            - Review of Week 2 content
+        - Topics in Wireless Networks
+            - Technologies
+                - Bluetooth - short range wireless communication technology
+                - RFID
+                    - Radio Frequency Identification - a tool to identify an object using radio waves
+                    - Electronic Pickpocketing/Data Skimming - exploitation of RFID to steal credit card information
+                    - Protection - RFID Shield
+                - NFC - Near Field Communication
+                - VoIP - Voice over Internet Protocol
+                - eFax - fax without the physical machine
+                - WiMAX - Worldwide Interoperability fo Microwave Access
+            - Standards
+                - IEEE 802.11 - Wireless LAN Media Access Control and Physical Layer Specifications
+                - Physical Layer - method of transmitting data
+                    - DSSS - Direct Sequence Spread Spectrum
+                    - FHSS - Frequency Hopping Spread Spectrum
+                    - Infrared
+                    - OFDM - Orthogonal Frequency Division Multiplexing
+                - IEEE 802.11B, IEEE 802.11a, IEEE 802.11g, IEEE 802.11n, IEEE 802.11ac, IEEE 802.11ax
+            - Frequencies
+                - 2.4GHz 802.11b, 5GHz 802.11a
+                - Frequencies determine data rate, and influence whether the signal can permeate objects or not
+            - Wireless Management Protocols
+                - Authentication - who are you in the system
+                - Authorization - what can you do in the system
+            - A Day Made of Glass
+            - Basic Service Set, Extended Service Set
+            - Mobility Types
+                - Basic Service Set
+                - Extended Service Set
+                - Session Mobility, User Mobility, Device Mobility, Service Mobility, Host Mobility
+            - Physical Architecture and Components
+                - Access Point/Base Station - provides user access to wireless networks
+                - SSID - Service Set Identifier - unique ID for a Wi-Fi network
+            - Virtual Private Networks
+                - Secure connection between computer and server that protects your personal and technical data
+            - Site Survey
+                - Determine what is required to provide wireless technology to a site
+
+4. 02/01/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - Review of schedule and assignments
+            - Research Assignment #2 Options: OWASP, SQL Injection, Cross Site Scripting, Protocol Survey
+        - Application Layer
+            - Deals with protocols and interface methods for hosts in a communiucation network
+            - Protocols: HTTP, FTP, SSH, DNS, SMTP
+                - HTTP - Hypertext Transfer Protocol
+                    - Transfer information between client and server
+                - FTP - File Transfer Protocol
+                    - Efficient transfer of files between hsots
+                - SSH - Secure Shell
+                    - Secure communication over an insecure network connection
+                - DNS - Domain Name Server
+                    - Resolves human readable names to their IP address equivalant
+                - Secure Simple Mail Tansfer Protocol
+                    - Communication between mail servers
+                - POP3 - Post Office Protocol Version 3
+                    - Communication between mail server and client
+                - IMAP - Internet Message Access Protocol
+                - HL7 - Health Level Seven
+                    - Protocol for transferring health information
+                - MQTT - MQ Telemetry Protocol
+                    - Protocol for efficient and lightweight communication between edge IoT devices and a broker
+            - Models
+                - Client-Server - request and response pattern, dedicated server responds to requests from client
+                - Peer-to-Peer - hosts are both client and server
+
+5. 02/08/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - NMAP Assignment - use of network analysis tool, option to use both Nmap and ZenMap
+            - Tools: Wireshark, Nessus, Ncat, Kali
+            - Advice: Review job applications and gear your personal training to the needs of the role
+        - Transport Layer
+            - Provides host to host communication services between for applications
+            - Services
+                - Connection Establishment
+                - Reliable/Unreliable Delivery
+                - Flow Control
+                - Congestion Control
+                - Application Multiplexing
+            - Protocols
+                - Transmission Control Protocol
+                    - TCP is a connection oriented, reliable protocol, that implements flow control, congrestion control, and ensures data integrity
+                    - Application: situations where you need a guarantee the data will be delivered, in order, and unmodified e.g. HTTP, SMTP, SSH
+                - User Datagram Protocol
+                    - UDP is a connectionless, unreliable protocol, that does NOT implement flow or congestion control
+                    - Application: situations where the application can tolerate loss in packets, and benefits from fast transmission of data e.g. VoIP, DNS, Online Gaming, ICM
+            - Security
+                - Secure Socket Layer - encryption, data integrity, and authentication mechanisms
+                - Transport Layer Security - successor to SSL, HTTPS, SMTPS, POP3S, IMAPS, VoIP
+                - Network Access Control/Access Control List - allow or deny access to a computer environment based on custom rules
+                - Authentication and Authorization
+                    - Authentication - proving WHO you are
+                    - Authoriation - what you can DO
+                    - Tools - Okta, Duo, Microsoft Authenticator, AWS Cognito
+                - Intrusion Detection System - monitor network traffic and system activities in real time to identify and alert about potential security incidents
+                - Intrusion Prevention System - blocks or prevents security threats and attacks in real time
+                - Social Engineering
+                    - When an individual is the attack vector used to infiltrate a computer system
+                    - Common Attacks - Phishing, Whaling, Vishing, Smishing, Pretexting, Baiting, Quid Pro Quo, Tailgating, Impersonation
+                - OWASP
+
+6. 02/15/2024 - Summary of Lecture
+    - Main Topics
+        - House Keeping
+            - Review of Research Assignment #3
+        - Network Layer
+            - How data is formed and routed across networks
+            - Components
+                - Hosts - addressed entity
+                - Router - implements routing protocol to determine next hop
+                - SDN - Software Defined Networking
+                - ARP - Address Resolution Protocol - connection between dynamic internet protool address and a fixed physical machine address
+            - Addressing Schemes
+                - IPv4 - XXX.XXX.XXX.XXX
+                - IPv6 - XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX
+        - Voice Over Internet Protocol
+            - Allows users to make phone calls over the internet i.e. conversion and transmission of voice data using packet switched IP network
+            - Providers - Zom, Microsoft Team, Aircall, Vonage
+            - VoIP Server - connect calls between VoIP endpoints
+            - VoIP Endpoint - client to a VoIP server
+                - Hard - network connected phone like device
+                - Soft - software running on mobile device
+            - VoIP Gateway - convert between Public Switched Telephone Network and IP network
+            - VoIP Protocols - UDP, TCP
+            - VoIP Codecs - data compression algorithm
+        - Virtualization
+            - Install and run multiple operating systems on a single physical machine
+            - Host Machine - physical device w/ RAM, CPU, NIC, HDD
+            - Hypervisor - interaction between virtual machine and hardware without host OS
+                - Type 1 - OS on a physical host machine
+                - Type 2 - software application
+            - Providers - VirtualBox, HyperV, VMWare
+        - Virtual Private Networks
+            - Encrypted communication tunnel between user and remote location on top of an existing internet connection
+            - Tunnels
+                - Full - routes all of a user's traffic through the tunnel
+                - Split - routes certain type of traffic
+            - Protocol
+                - Layer 2 Forwarding - mutual auth, no encryption, operates at Data Link Layer, IP
+                - Layer 2 Tunneling - mutual auth, multiple protocols, IPsec for encryption
+                - Internet Protocol Security - auth and encryption
+                    - Transport Mode - end to end encryption, header not encrypted
+                    - Tunnel - link to link communication, packet contents and header encrypted
+                - Secure Socket Layer - secure HTTP, FTP, SMTP, auth and encryption
+                - Transport Layer Protocol - auth and encryption
+        - Cloud Computing
+            - Public Cloud - accessed by anyone
+            - Private Cloud - accessed by a single organization
+            - Multi-Cloud - mixed environments
+            - Providers - Amazon Web Services, Microsoft Azure, Google Cloud
+            - Services
+                - Infrastructure as a Service
+                - Platform as a Service
+                - Software as a Service
+                - Infrastructure as Code
+                - Desktop as a Service
+        - Internet of Things
+            - Sensor network of smart devices that connect people, systems, and other applications
+            - Devices - light, phone, TV, camera, plug, smart speaker, lock
+            - Protocols
+                - Zigbee, Bluetooth, Near Field Communication, Matter and Thread
+
+7. 02/22/2024 - Summary of Lecture
+    - Main Topics
+        - Midterm
+            - Date: 03/14/2024 at 6:00PM until 03/21/2024 at 6:00PM
+        - Previous Week: Internet of Things
+            - What - sensor network of interconnected smart devices that transmit data between people, systems, and other applicaitons.
+            - Pathways
+                - Edge Device -> IoT Gateway -> Internet
+                - Edge Device -> Edge Device
+            - IoT Security
+                - Encryption, Authentication, Authorization
+            - Devices: thermostat, phone, fire alarm, light, plug, camera, door lock
+            - IoT Protocols
+                - Zigbee, Bluetooth, Near Field Communication, Matter and Thread
+        - Data Link Layer
+            - What - rules and procedures for hosts as they access the physical layer i.e. (identification, access, verification of data, rate of transmission)
+            - Sublayers
+                - Logical Link Control - flow control and transmission for analog and/or digital streams
+                - Media Access Control Layer - protocol access to the physical medium, identificaiton, and authentication
+            - Framing
+                - Frame - unit of transmission, discernible block of information i.e. stream of bits
+                - Problems
+                    - Frame start/end, errors, overhead, compatibility
+            - Error Control
+                - Error Detection - has an error occured
+                    - Causes - interference, manipulation
+                    - Errors - Single Bit, Multiple Bits, Burst
+                    - Techniques - Parity Check, Checksum, Cyclic Redundancy Check
+                - Error Correction - fixing exact number of corrupted bits
+                    - Forward Error Correction
+                    - Backward Error Correction
+        - Access Control Lists - filtering rules to identify allowed traffic
+        - Firewalls
+            - What - software or hardware based network security system to allow or deny traffic based on rules
+            - Category
+                - Network - operates at edge of private network
+                - Host - opoeratees on a single computer in the network
+            - Types
+                - Packet Filtering - examining of IP packet header
+                    - Evaluate source, destination, port, and service
+                - Circuit - examining virtual circuit or sessions
+                    - Evaluate session state
+                - Applicaiton Layer - examining packet data portion
+                    - Examine entirety of content, filter by user, group, and data
+                    - Example - Proxy Server
+                        - Forward Proxy - handles requests from inside a private network
+                        - Reverse Proxy - handles request from the internet to a server located inside a private network
+                - Unified Thread Management Device
+                    - Features - firewall, VPN, anti-spam, anti-virus, load balancing
+                - Next Generation Firewall
+                    - Traditional firewall + other network device filtering functionalities
+            - Rules
+                - Implicity Deny - deny all traffic by default
+                - Explicit Deny - deny permission to a specific user
+        - Intrusion Detection System
+            - Monitor and detect security breached, does NOT prevent an attack, but rather produces alerts
+            - Detection Methods
+                - Signature - packets unique fingerprint, known in database/dictionary, based on patterns
+                - Anomaly - uses a defined baseline to identify traffic that falls out of it
+            - Process - collect data -> analyzer -> generate alerts and log -> update dictionary
+            - Traffic Assessment Types
+                - Positive - attack detected
+                - False-Positive - system misidentified harmless traffic as offensive
+                - Negative - traffic harmless
+                - False-Negative - system misidentified offensive traffic as harmless
+            - Implementations
+                - Host Based Intrusion Detection System - monitor system on single host
+                - Network Based Intrusion Detection System - monitor traffic at edge of a network
+                - Perimeter Intrusion Detection System - physical device
+                - Virtual Machine Intrusion Detection System
+        - Intrusion Prevention System
+            - IDS + perform tasks to stop intrusion including
+
+8. 03/28/2024
+    - Main Topics
+        - Network Documentation
+            - Details - who, what, where, when, why
+            - Goals - usability, clarity, detail, secure
+            - Examples
+                - Network Diagram - physical and logical
+                - Floor Plan - eletrical, plumbing, HVAC, and wiring
+                - Rack Diagram - multi-device units
+                - Main Distribution Frame
+                - Intermediate Distribution Frame
+                - Wiring
+                - Wireless Site Survey
+                - Audit and Assessment
+            - Tools
+                - UML, Microsoft Visio, SmartDraw
+        - Redundancy and High Availability
+            - High Availability Metrics
+                - Mean Time to Repair
+                - Mine Time Between Failure
+                - Recovery Time Objective
+                - Recovery Point Objectitve
+            - High Availability Solutions
+                - Load Balancing
+                - Multipathing 0 multipaths between CPU and mass storage
+                - Network Interface Card Teaming
+                - Clustering
+                - Multiple Internet Service Providers
+            - Redundancy Solutions
+                - Hot Site - duplicate entire system, minute to hours to activate
+                - Warm Site - duplicate, infrequent updates, days to activate
+                - Cold Site - less robust, frequeny, and delayed activation
+                - Cloud Site - disaster recovery backups
+        - Power Management
+            - Devices - see word document
+    - Active Directory
+        - What - centralized database for user account management
+        - Logical Components
+            - Domain - admin defined and managed network resources
+            - Object - resource e.g. users, groups, computers, printers, etc.
+            - Organization Unit - logical container for other resources
+            - Containers - built-in unalterable object
+        - Physical Components
+            - Domain Controller - Active Directory Service server
+            - Sites and Subnets - subnet = physical network segment, site = group of connected networks
+            - Data Store - directory information
+        - Advantanges - ogranization, delegation, replication, scalability
+        - Product - Azure Active Directory
+    - Dynamic Host Configuration Protocol
+        - Role
+            - What - enable automatic IP configuration when a device connects to the network
+            - IP Configuration - address, subnet mask, gateway, domain name system
+        - Configuring
+            - IP Range - set of available IP addresses
+            - Subnet Mask - network ID and host ID
+            - Exclusions - IP addresses that will not be assigned
+            - Reservations - MAC specific IP addresses
+            - Lease Time - time IP cannot be reassigned
+            - Gateway - where packets leaving the network shoudl go
+            - DNS Server
+        - Process
+            - Disover -> Offer -> Request -> Acknowledge
+        - DCHP Relay Agent - forward DHCP requests to a DHCP server on another network
+        - IP Helper - equivalent to relay agnt for other protocols e.g. NTP
+        
+8. 04/04/2024
+    - Main Topics
+        - Security Fundamentals
+            - Confidentiality - protect data and resources from unauthorized access
+            - Integirty - protect data and resources from manipulation or alteration
+            - Availability - reliable access to data and resources
+        - Threats
+            - External - outside organization e.g. malware, viruses, trojan horses
+            - Internal - inside organization
+        - Vulnerabilities - security weakness
+            - Domains - software, hardware, policies, humans
+            - Resources
+                - Common Vulnerabilities and Exposure List - known vulnerability repository
+                - Common Vulnerabilities and Exposure Numbering Authorities - org review own produce
+                - Common Vulnerability Scoring System - standards for assessing risk level
+        - Exploits - breach through weakness in system, software, hardware, policies, or human behavior
+            - Examples - malware, social enginering, spoofing, DDOS, zero-day
+                - Zero Day - Vulnerability Exploited - Discovered - Fix Under Development - Fix Released - Signature Released 
+        - Unsecure vs. Secure Protocols
+            - HTTP vs. HTTPS
+            - RSH vs. SSH
+            - FTP vs. SFTP
+            - RCP vs. SCP
+            - TFTP vs. FTPS
+            - SNMPv[1-2] vs. SNMPv3
+            - Goals - authentication, authorization, integrity, confidentiality
+        - Security Challenges
+            - Increasing sophistication, tools, and attack surface
+        - Security Control Types
+            - Managerial - oversight of information system
+            - Operational - security guards and training programs
+            - Technical - hardware, software, or firmware
+            - Physical - alarms, gateways, locks, lighting
+        - Security Control Functioning Types
+            - Preventive, Detective, Corrective, Directive, Deterrent, Compensating
+        - Risk Assessment
+            - What - assess risk
+                - Asset Identification -> Threat Assessment -> Risk Assessment
+        - Cybersecurity Posture Assessment
+            - What - overall state and effectiveness of security in a network's hardware, software, database, transmission, process, and security of vendors]
+        - Risk Management
+            - Risk Avoidance
+            - Risk Reduction
+            - Transfer of Risk
+            - Risk Retention
