@@ -1,0 +1,28 @@
+{
+  "name": "cis-535-android-speech",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@pedrol2b/react-native-voice": "^3.2.8",
+    "expo": "~50.0.14",
+    "expo-dev-client": "^3.3.11",
+    "expo-status-bar": "~1.11.1",
+    "metro": "^0.80.8",
+    "metro-cache": "^0.80.8",
+    "react": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-chart-kit": "^6.12.0",
+    "react-native-svg": "^15.1.0",
+    "yarn": "^1.22.22"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}
