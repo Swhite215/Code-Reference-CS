@@ -13,7 +13,7 @@
     "@types/react": "~18.2.14",
     "@wdragon/react-native-voice": "^3.3.11",
     "expo": "50.0.14",
-    "expo-cli": "^6.3.10",
+    "expo-cli": "^6.3.12",
     "expo-sensors": "~12.3.0",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
