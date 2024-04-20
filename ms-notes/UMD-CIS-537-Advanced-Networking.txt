@@ -431,3 +431,35 @@ Advanced Networking and Distributed Systems CIS 537
             - Risk Reduction
             - Transfer of Risk
             - Risk Retention
+
+9. 04/11/2024
+    - Main Topics
+        - Network Security
+            - Penetration Testing
+                - Process - authorized planned attack on a network to find vulnerabilites
+                - Preparation - legal, organizational, technical
+                - Test Types - physical, operations, electronic
+                - Test Class - zero knowledge, full knowledge, partial knowledge, single blind, double blind
+                    - Black = Zero, White = Full, Gray = Partial
+                - Stages - recon, network enumeration, system enumeration, target selection, gaining access, control and reporting
+            - Ethical Hacking
+                - Red vs. Blue - Offense vs. Defense
+                - Phases - recon, enumeration, establish access, maintain access, clear tracks
+            - Frameworks
+                - Open Web Application Security Project (OWASP)
+                - Open Source Security Testing Metholodgy Manual (OSSTMM)
+                - National Institue of Standards and Technology Special Publication (NIST SP 800-115)
+            - Perimiter Security - video, guards, door barriers, training, 
+            - Inter-Facility Security - tokkens, proximity alarms, infrared, biometric scanners
+            - Physical Computer Security - locks, tags
+        - Operating System Security
+            - Workstations
+            - Endpoint Protection - planning and best practices for managing, deploying and securing endpoints
+            - Patch Management
+            - OS Hardening - access control, least privilege, allow and block lists, monitoring, configuration enforcement, decommissioning
+            - Encryption
+                - Full Disk Encryption
+                - Removable Media Encryption
+                - Virtual Private Networks
+                - Email Encryption
+

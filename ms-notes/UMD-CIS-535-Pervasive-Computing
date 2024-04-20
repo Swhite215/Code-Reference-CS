@@ -336,4 +336,52 @@ Advanced Networking and Distributed Systems CIS 537
                         - Geographic Forward Perimeter Geocast -  neighbor that makes positive progress and then perimeter of target geographic area
             - Hybrid - Table Driven and On-Demand
             - Hierarchical - choice between Table Driven and On-Demand depending on position in hierarchy
-        
+    
+5. Wireless Networks
+    - Infrastructure vs. Ad-Hoc Networks
+    - IEEE - Institute of Electrical and Electronic Engineers
+        - 802.11 Group in 1990
+        - Versions - 802.11b, 802.11a, 802.11g, 802.11n, 802.11ac
+    - 802.11
+        - Data Link Layer
+            - Logical Link Control - Framing, Addressing, Error Control, Flow Control
+            - Medium Access Control - Access, Frame Transmission, Fragmentation, Power Management
+        - Physical Layer
+            - Physical Layer Convergence Procedure - Frame Transmission
+                - Frame Encapsulation -> Symbol Mapping -> Channel Encoding -> Transmission
+            - Physical Medium Dependent
+    - 802.11b
+        - Issues
+            - Prone to interference, maxs 3 access points in ranges, 11 channels (3 non overlap), rates 1 to 11 Mbps, 100-300ft
+        - Channel Selection
+            - Width 22MHz, Channel 1 Center is 2412MHz, 5MHz increments
+    - 802.11g
+        - Issues - Shorter range than 802.11b
+        - Pro - ~54MBps theoretical, OFDM
+    - 802.11a
+        - + Access Points, + Channels, 5GHz range, 12 Channels (8 non overlap), 6 to 54Mbps, OFDM
+    - 802.11n & 802.11ac
+        - n - Multiple Input Multiple Output, 2.4 & 5Ghz, ~150Mbps, 230-820ft
+        - ac - 5GHz, 150-433Mbps, 115ft indoor
+    - Infrastructure
+        - Access Point = Hub, Multi-Access Point Network
+        - STA - mobile device
+        - Basic Service Set - group of stations using the same radio frequency
+        - Access Point - station integrated into wireless LAN
+        - Portal - bridge to other network
+        - Distribution System - extended service set based on multiple BSS
+    - 802.11
+        - Passive Scanning - Beacons from AP -> Request from Device to AP -> Response from AP to Device
+        - Active Scanning - Probe from Device -> Response from A to Device -> Request from Device to AP -> Response from AP to Device
+        - Roaming - Mobile Station moving from one BSS to another
+        - Medium Access Control Layers
+            - SIFS - Short Inter Frame Spacing - wait after transmission
+            - PIFS - Point Coordination Function Inter Frame Spacing - 
+            - DIFS - Distributed Coordination Function Inter Frame Spacing -  wait after idle medium
+            - EIFS - Extended Interframe Spacing - after a corrupted frame or missing ack, wait EIFS before retransmit of frame
+        - Carrier Sense Multiple Access and Collision Avoidance
+            - If IFS - send (Carrier Sense)
+            - If busy - wait IFS + random backoff (Collision Avoidance)
+        - OFDM
+            - 52 subcarriers - 48 data + 4 pilot and 312.5 kHz spacing
+    - IMPORTANT - REVIEW LECTURE CSMA/CA 
