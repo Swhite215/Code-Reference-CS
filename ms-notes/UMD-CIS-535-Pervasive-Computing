@@ -372,7 +372,7 @@ Advanced Networking and Distributed Systems CIS 537
         - Distribution System - extended service set based on multiple BSS
     - 802.11
         - Passive Scanning - Beacons from AP -> Request from Device to AP -> Response from AP to Device
-        - Active Scanning - Probe from Device -> Response from A to Device -> Request from Device to AP -> Response from AP to Device
+        - Active Scanning - Probe from Device -> Response from AP to Device -> Request from Device to AP -> Response from AP to Device
         - Roaming - Mobile Station moving from one BSS to another
         - Medium Access Control Layers
             - SIFS - Short Inter Frame Spacing - wait after transmission
@@ -384,4 +384,49 @@ Advanced Networking and Distributed Systems CIS 537
             - If busy - wait IFS + random backoff (Collision Avoidance)
         - OFDM
             - 52 subcarriers - 48 data + 4 pilot and 312.5 kHz spacing
-    - IMPORTANT - REVIEW LECTURE CSMA/CA 
+    - IMPORTANT - REVIEW LECTURE CSMA/CA
+
+6. Important Lecture Notes
+    - Medium Access Control in RFID Networks
+        - Slotted Aloha - Synchronized Time Slots and Backoff
+            - Multiple Stations
+                - Time Slot One - FREE
+                - Time Slot Two - Station 1 - DATA SENT
+                - Time Slot Three - Free - FREE
+                - Time Slot Four - Station 1 and Station 5 - COLLISION and Bacistkoff
+                - Time Slot N - FREE, DATA SENT, COLLISION
+        - Binary Tree Algorithm
+            - Reader - Send Query
+            - Tags Respond with ID and Information
+            - Data Encoding - Manchester Encoding
+                - 0 = a low to high transition
+                - 1 = a high to low transition
+                - Take caution when timing, timing interval must match so you can return to high or low for duplicate binary values
+            - Binary Tree Approach 1
+                - X is Root BECAUSE of the four tags 0111, 1011, 1110, and 0110 the 4th or leftmost bit is either 0 or 1
+                - Organize nodes in binary tree using tag IDs, order starting at first bit
+                - Left is 0
+                - Right is 1
+                - Query 0
+                    - 0111 and 0110
+                - 0111 and 0110 share 1
+                - 0111 and 0110 share 1
+                - 0110 has zero, first tag to send
+                - 0111 has 1, second tag to send
+                - Collision equals moment where value is one or zero... i.e. either can be selected, X represents this
+            - Binary Tree Aprroach Two
+                - Poll Tags Bit by Bit
+                    - Query X - all tags respond
+                    - Query 0x - 3 tags respond with collision
+                    - Query 00x - 1 tag responds
+                    - Query 01x - 2 tags respond with collision
+                    - Query 010x - 2 tags respond with collisions
+                    - Query 0100x - 1 tag responds
+                    - Query 0101x - 1 tag responds
+                    - Query 0110x - no tag responds
+                    - Query 1x - 4 tags respond
+                    - Query 10x - 1 tags responds
+                    - Query 11x - 3 tags respond with collision
+
+
+Final Exam Study Guide

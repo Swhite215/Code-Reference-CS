@@ -1,0 +1,88 @@
+Wireless Network Security CIS 546
+
+1. 05/09/2024 - Summary of Lecture
+    - Wireless Networks
+        - Ubiqutous, easy, convenient, broad
+        - Communication - radio waves
+        - System - analog or digial radio -> transceiver -> amplify front end -> antenna
+        - Characteristics
+            - Decreased signal strength
+            - Interferences from other sources
+            - Multipath propogation
+        - Access Techniques
+            - Frequency Division Multiplexing
+            - Time Division Multiplexing
+            - Code Division Multiplexing
+            - Space Division Multiplexing
+            - Orthogonal Frequeny Division Multiplexing
+        - Vulnerabilities
+            - No physical protection, rather logical association
+            - Broadcast nature of communication can be overheard, open participation
+            - Subject to eavesdropping, bogus messages, replayed messages, illegitimate acess, denial of service
+            - Subject to tracing, resource constraints, physical device insecurity (path)
+    - What is Security?
+        - Security - protection of assets from potential harm i.e. a vulnerable and valuable asset
+        - Information Security - processes and practices used to secure the digital assets you wish to protect
+        - Assets - hardware, software, data, resources, services, systems, networks
+        - Questions
+            - What are you trying to protect?
+            - Why are you trying to protect it?
+            - What is the value of the asset?
+            - What are you protecting it from?
+            - What constraints prevent you from protecting the asset?
+        - Constraints 
+            - Cost, undue impediment, nature of asset
+    - General Threat Categories
+        - Confidentitality, Integrity and Availability
+            - Confidentiality - encryption
+                - Secrecy of information i.e. hiding data
+                - User privacy i.e. preventing inferrence
+            - Integrity - protection from modification
+                - Data remains in original form
+                - Data has not been manipulated or tampered with
+                - Message Authentication Code (MAC) - keyed hash/digest algorithms for data integrity on an insecure network
+            - Availability - protection from failure
+                - Systems and services are available to users when they need them
+                - Systems and services are not withheld by unauthorized means
+                - Attack - Denial of Service i.e. jamming e.g TCP SYN flooding
+            - +Accountability - users accountable for actions
+                - Internal users audit trails, logs, action recording
+            - +Repudiation - preventing denial an action has been taken
+                - Signatures for nonrepudiation of origin and delivery
+        - Authorization and Access Control: AAA
+            - Authentication - verify who someone is
+            - Authorization - determine what someone can do
+            - Accountabiity - record of actions
+    - Threats to Wireless and Mobile Devices
+        - Data Theft
+            - Personally Identifiable Information, Personal Health Information
+            - Sniffing - intercept and view wireless signals
+            - Malware - control mobile development platform
+            - Browser - vulnerable web browsers
+            - Wireless Phishing - switch to fake screen for credential input
+            - Lost or Stolen Devices
+        - Device Control
+            - Lily Padding - attacker moves from device to device to get to target
+            - Jail Breaking
+            - Policy or Device Circumvention
+            - Ad-Hoc Connedctions
+            - Endpoint Attacks
+            - Bluetooth Hacks - Snarfing
+            - NFC and Proximity Hacking
+        - System Access
+            - Denial of Service Attacks
+            - Rogue Access Points - unauthorized access point plugged into a network to create a bypass
+            - Evil Twin - access point is set to the same network SSID as a legitimate WLAN or hotspot
+    - Risk Mitigation
+        - Mobile Devices - locks, password, wipe, GPS location and tracking, data encryption
+        - Defense in Depth
+            - Physical Controls - doors, locks, cameras, gates, fences
+            - Logical/Technical Controls - anti virus, firewalls, intrusion detection, intrusion prevention
+            - Administrative Controls - security policies, processes, and procedures
+            - Ring of Security - Policies, Physical, Perimeter, LAN, Host, Application
+            - Layers
+                - External Network Layer - servers exposed to the internet
+                - Perimeter Network Layer - between external network layer and internal resources
+                - Internal Network - where hosts reside
+                - Application Server Network - inner security zone
+                - Database Server Network - heart of data, tight security and access policies
