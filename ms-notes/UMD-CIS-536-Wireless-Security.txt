@@ -65,7 +65,7 @@ Wireless Network Security CIS 546
             - Lily Padding - attacker moves from device to device to get to target
             - Jail Breaking
             - Policy or Device Circumvention
-            - Ad-Hoc Connedctions
+            - Ad-Hoc Connections
             - Endpoint Attacks
             - Bluetooth Hacks - Snarfing
             - NFC and Proximity Hacking
