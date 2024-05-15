@@ -86,3 +86,103 @@ Wireless Network Security CIS 546
                 - Internal Network - where hosts reside
                 - Application Server Network - inner security zone
                 - Database Server Network - heart of data, tight security and access policies
+
+2. 05/14/2024 - Summary of Lecture
+    - Introduction
+        - Security - prevent, detect, recover
+        - Attack - deliberate attempt to compromise a system
+            - Passive - attempt to learn information, difficult to detect and should be prevented
+            - Active - attempt to alter system or affect operations, difficult to prevent and should be detected
+        - Technical
+            - Physical Protection
+            - Algorithmic - cryptographic algorithms
+        - Non-Technical
+            - People education, procedure enforcement
+    - Secure Data Communication
+        - Confidentiality - aim to protect data from disclosure
+            - Tool - encryption
+        - Integrity - aim to detect modification and replay, assure data is as sent
+            - Tool - Message Authentication Code and Digital Signature
+    - Encryption
+        - Classic Model - plaintext -> encrypted to cipher text using encryption key -> decrypted to plaintext using decryption key
+            - Adversary - recover plaintexts from ciphertext, guess decryption key
+            - Kerckoff's - assume adversary knows all details of E and D
+        - Adversary Models
+            - Ciphertext - observer ciphertexts produced by the same encryption key
+            - Known Plaintext - obtain plaintext-ciphertext pairs produced with same encryption key
+            - Adaptive Chosen Plaintext - adversary can choose ciphertexts and obtain corresponding plaintexts
+            - Related Key - adversary can obtain ciphertexts, or plaintext-ciphertext pairs produced with different encryption keys
+        - Security of Encryption Scheme
+            - Secure = computaitonally infeasible for the adversary to determine the target decryption key
+            - Note - for many, no proof of security exists
+            - Note - some are provably secure but those are often inefficient
+        - Basic Schemes
+            - Symmetric Key Encryption - can compute encryption from decryption and vice versa
+                - Stream - operate on individual characters of plaintext
+                - Block - process plaintext in large blocks of characters
+            - Asymmetric Key Encryption - hard to compute decryption key from encryption key
+                - Encryption key can be made public
+        - Symmetric Encryption
+            - Block Cipher - operate on fixed length blocks of data, converting plaintext to cipher text by applying key
+                - Traits
+                    - Completeness - each bit of output block should depend on each bit of input and each bit of key
+                    - Avalanche Effect - changing one bit of input, should change ~half of bits in output
+                    - Statistical Independence - input and output should appear to be statistically independent
+                - Design Criteria
+                    - complex encryption built by composing several simple operations
+                    - Data Encryption Standard
+                        - Feistal Structure
+                            - Split message
+                            - Scramble half of message i.e. change order of bits i.e. permutation
+                            - Take output and mix with other half
+                            - Repeat for N Rounds
+                            - Decrypt - perform process in reverse
+                - Exhaustive Key Search Attack
+                    - K can be recovered with 2^(k-1) operations
+                    - Pattern if (X,Y) and (X', Y')
+                        - Decrypt Y with K'
+                        - If not X, throw away K'
+                        - If X, check other pairs (X', Y')
+                        - If K' does not work for one pair, throw away K'
+                        - If K' works for all pairs, then K' is target key
+                    - Best Practice - 128 bit key size
+                - Algebraic Attacks
+                    - Naive Exhaustive Key Search - system of equations
+                    - Complementation Attacks - manipulate plaintext-ciphertext pairs, flipping bits to observe traits of key
+                    - Differential Cryptanalysis - analyze differences between plaintext and ciphertexts to observe traits of algorithm or key
+                    - Linear Cryptanalysis - analyze linear approximations between plaintext and ciphertexts
+                - Block Cipher Modes of Operation - enhance effect of algorithm or adapting to application
+                    - Electronic Codebook - each block of plaintext is encoded using same key
+                        - Identical plaintext blocks result in identical ciphertext blocks
+                        - Use - secure transmission of a single block of info
+                    - Cipher Block Chaining - input to encryption is XOR of next block of plaintext and preceding block of cipher text
+                        - Use - block data encryption and authentication
+                    - Cipher Feedback - input is processed s bits at a time, previous ciphertext is input to encryption to produce output which is XORed with plaintext to produce ciphertext
+                    - Output Feedback - input ia processed s bits at at time, previous keystream is encrypted
+                    - Counter - each block of plaintext is XORed with an encrypted counter
+            - Stream Ciphers - operate on individual characters
+                - Characteristics - speed, limited or no error propogation
+                - Conversion Modes for Block into Stream
+                    - s-bit Cipher Feedback Mode - output of encryption process for previous block is fed into next block
+                        - Use - stream data encryption, authentication
+                    - s-bit Output Feedback Mode - output of encryption of input data from previous block is fed into next block
+                        - Use - stream data over a noisy channel
+                    - s-bit Counter Mode - counter value is encrypted versus input or previous cipher text
+                        - Use - high speed network encryptions
+                        - Advantages - hardware/software efficiency, preprocessing, random access, provable security, simplicity
+            - XTS-AES - Data encryption for data stored in sector based devices, two pass tweakable
+                - Requirements
+                    - Data accessed independently from other, encryption performed in independent blocks, same plaintext encrypted to different ciphertexts at different locations
+                - Tweakable Block Cipher
+                    - Tweak - each data unit assigned a tweak, ensuring same position in two different data units will encrypt to two different ciphertext blocks
+                - Advantages
+                    - Efficiency - parallel encryption, simulataneous, random access, nonce and counter, solves stored data security concern
+            - Vernam Cipher and One-Time Pad
+                - Perfect Security
+                - Encryption involves taking each character and performing XOR with corresponding bit of key, reverse to decrypt
+                - Practical Limitation
+                    - Can only use key once, how to distribute key, key must be as long as message
+        - Asymmetric Encryption
+            - 
+
+            
