@@ -122,7 +122,7 @@ Wireless Network Security CIS 546
                 - Block - process plaintext in large blocks of characters
             - Asymmetric Key Encryption - hard to compute decryption key from encryption key
                 - Encryption key can be made public
-        - Symmetric Encryption
+        - Symmetric Encryption (K, K)
             - Block Cipher - operate on fixed length blocks of data, converting plaintext to cipher text by applying key
                 - Traits
                     - Completeness - each bit of output block should depend on each bit of input and each bit of key
@@ -182,7 +182,61 @@ Wireless Network Security CIS 546
                 - Encryption involves taking each character and performing XOR with corresponding bit of key, reverse to decrypt
                 - Practical Limitation
                     - Can only use key once, how to distribute key, key must be as long as message
-        - Asymmetric Encryption
-            - 
+        - Asymmetric Encryption (K, K')
+            - Characteristics
+                - Computionally infeasible to compute K' from K
+                - K can be made public due to the above fact
+                - Public keys are not confidential but must be authenticated
+            - Hard Problems
+                - Factoring Problem - exponentially difficult, no known algorithms, lack of structure
+                - Discrete Logarithm Problem
+                - Diffie-Hellman Problem
+            - RSA Encryption
+                - Key Generation 0 p,q large primes i.e. 500 bits
+                - Encryption - c = m^e mod n
+                - Decryption - m = c^d mod n
+                - Diffiucult - computing private key from public key is related to factoring, n is massive number i.e. hard to factor
+                - Salting - addd random bytes e.g. PKCS#1
+            - EIGamal Encryption Scheme
+                - What....
+        - Encryption in Practice
+            - Public Key Encryption i.e. K,K' to exchange Symmetric Key i.e. G,G
+            - Digital Enveloping
+                - A Generates Symmetric Key
+                - A Encrypts Data with Symmetric Key
+                - A Encrypts Symmetric Key with B's Public Key
+                - A Sends Envelop to B
+                - B Decrypts Envelope with Private Key
+                - B Decrypts Data with Symmetric Key
+            - Message Integrity
+                - Hash Function - map messages of arbitrary length to fixed length , collisions occur i.e. many to one mapping
+                    - Ease of computation
+                    - Strong Collision Resistance i.e. hard to find h(x) = h(y)
+                    - One Way Property i.e. hard to find h(x) = y if y is a hash value
+                    - Preimage - given a hash value, computationally difficult to find any message that hashes to that value
+                    - 2nd Preimage - given an input, computationallly difficult to find another input that hashes to the same value
+                    - Applications
+                        - Integrity check for software
+                        - Digital Signature Schemes
+                        - Key Generation
+                        - One Way Knowledge Proof
+                - Birthday Paradox
+                    - Probability any two people in a group share the same birthday quickly approaches one
+                    - It is easier to find colitions than to find preimages or 2nd preimages
+                - Message Authentication Codes
+                    - Hash that takes as input a message and a secret key, produces a fixed size output of n bit called the MAC
+                    - MAC Value = MAC(m, k), append MAC to message
+                    - Properties
+                        - Ease of computation
+                        - Key non-recovery i.e. computationally infeasible to recover secret key k given text-MAC pairs
+                        - Computaion Resistance - given (x, MAC(x)), infeasible to find (xi, MAC(xi)) for any new input
+                    - Cipher Block Chaining Message Authentication Code - secure for fixed number of blocks messages
+                    - Hash Based Message Authentication
+                    - Digital Signatures - message authentication and nonrepudiation
+                        - Generate K,K', sign using K', verify using K
+                    - Hash and Sign Paradigm - hash message first and then apply public/private key operations
+                        - Hash -> encrypt to form signature -> append signature to message
+                        - Decrypt signature with public key, compare hash value with message to decrypted signature, if same then valid
+                        - Schemes - Rivest Shamir, Adleman (RSA), Digital Signature Algorithm (DSA), Elliptic Curve DSA (ECDSA)
 
             
