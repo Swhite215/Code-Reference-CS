@@ -108,12 +108,12 @@ Wireless Network Security CIS 546
             - Adversary - recover plaintexts from ciphertext, guess decryption key
             - Kerckoff's - assume adversary knows all details of E and D
         - Adversary Models
-            - Ciphertext - observer ciphertexts produced by the same encryption key
-            - Known Plaintext - obtain plaintext-ciphertext pairs produced with same encryption key
+            - Ciphertext - adversary can see ciphertexts produced by the same encryption key
+            - Known Plaintext - adversary can obtain plaintext-ciphertext pairs produced with same encryption key
             - Adaptive Chosen Plaintext - adversary can choose ciphertexts and obtain corresponding plaintexts
             - Related Key - adversary can obtain ciphertexts, or plaintext-ciphertext pairs produced with different encryption keys
         - Security of Encryption Scheme
-            - Secure = computaitonally infeasible for the adversary to determine the target decryption key
+            - Secure = computationally infeasible for the adversary to determine the target decryption key
             - Note - for many, no proof of security exists
             - Note - some are provably secure but those are often inefficient
         - Basic Schemes
@@ -222,7 +222,7 @@ Wireless Network Security CIS 546
                         - One Way Knowledge Proof
                 - Birthday Paradox
                     - Probability any two people in a group share the same birthday quickly approaches one
-                    - It is easier to find colitions than to find preimages or 2nd preimages
+                    - It is easier to find collisions than to find preimages or 2nd preimages
                 - Message Authentication Codes
                     - Hash that takes as input a message and a secret key, produces a fixed size output of n bit called the MAC
                     - MAC Value = MAC(m, k), append MAC to message
@@ -239,4 +239,88 @@ Wireless Network Security CIS 546
                         - Decrypt signature with public key, compare hash value with message to decrypted signature, if same then valid
                         - Schemes - Rivest Shamir, Adleman (RSA), Digital Signature Algorithm (DSA), Elliptic Curve DSA (ECDSA)
 
-            
+3. 05/16/2024 - SAummary of Lecture
+    - Key Distribution
+        - Symmetric-key cryptogrpahic primitives require that the communicat ing parties share a secret key
+        - Categories - symmetric key distribution, public key distribution
+        - Examples
+            - Physical, purchase of phone with subscriber identity module and key, impractical
+    - Symmetric Key Distribution
+        - Physical
+        - Existing Key - encrypt new key with old key and transmit
+        - Public Key - encrypt key with public key and send
+        - Key Distribution Center - use encrypted mututal connection to third party C
+            - Hierarchy of Keys
+                - Master Key - user uses master key to communicate with KDC to get a temporary session key
+                - Session Key - temporary use key
+                    - Limits available ciphertext
+                    - Limit exposure caused by compromised key
+                    - Create indepenendec across sessions or applications
+                    - Avoid long term storage of a large number of keys
+                    - Lifetime
+                        - Connection-Oriented Comunication - use one key for length of time connection is open
+                        - Connection Less - not obvious how often session key needs to be changed
+            - Sequence i.e. Needham-Schroeder Protocol
+                - Pre-Work
+                    - Ka shares Master Key with KDC
+                    - Kb shares Master Key with KDC
+                - Alice sends KDC request with Alice ID, Bob ID, and nonce
+                - KDC generates message encrypted with Alice Key ad includes Session Key, Envelope for Bob with Session Key
+                - Alice decrypts the message and gets symmetric key, Alice forwards Envelope to Bob
+                - Bob decrypts envelop and gets symmetric key, sends message to Alice using symmetric key with a challenge
+                - Alice decrypts message and looks at challenge, Alice sends back challenge value encrypted with session key
+            - Denning-Sacco Attack
+                - Suppose Eve recorded an old session where she knows the sessions key Ks
+                - Eve impersonates Alice to force B to use an old Ks for the new session, sends envelope with old session key and Alice ID
+                - Response
+                    - Add timestamps to limit usefulness/scope of old session keys.
+    - Public Key Distribution
+        - Problem - how does Bob know Alice's public key is actually hers?
+        - Attack - Man in the Middle Attack
+            - Adversary controls communication channel between Alice and Bob.
+            - Adversary takes Alice's ID, encrypts it with their own public key, and forwards to Bob
+            - Bob generates a session key and transmits to Adversary using the Adversary public key
+            - Adversary decrypts the message and retrieves the session key
+            - Adversary encrypts session key with Alice's key and sends
+            - Adversary can now decrypt any message in the channel
+            - Alice and Bob are not aware of the attack occurring
+        - Solution - Digital Certificate
+            - Task - associate an identity to a public key
+            - Action - contains owner's public key and other info about owner. Signed by a Certificate Authority
+            - Certificate authority verifies the owner and that the public key belongs to that owner
+            - Setup Flow
+                - Alice registers public key with CA
+                - CA creates a certificate binding Alice to public key
+            - Verification Flow
+                - Alice sends certificate to Bob
+                - Bob uses CA's public key to verify expiration revocation etc about certificate
+                - Bob extracts Alice's public key from certificate
+                - Bob use's Alice's public key to send a secure message
+            - Server Certificates
+                - Server must obtain certificate before communicating
+                - Flow
+                    - Browser sends request to server
+                    - Server responds with certificate
+                    - Browser verifies certificate and creates pre-master secret, sends keys to server using public key from certificate
+                    - Server decrypts with private key and creates master secret and session keys from pre master secret
+                    - Browser creates master secret and session keys from pre master secret
+                - Padlock Icon and Certificate Information
+                    - https:// Hyper Text Transfer Protocol Secure
+                    - Icon - displays information about the digital certificate
+            - X.509 Certificates
+                - Standard which defines a freamework for the provision of authentication services
+                - Elements: version, serial number, signature algorithm identifier, issuer name, period of validity, subject name, public-key info, issuer identifier, subject identifier, extensions, signature
+            - Certificate Verification
+                - Is certificate authority trusted?
+                - Is signature correct?
+                - Has the certificate expired?
+                - Has the certificate been revoked?
+                - Is the entity correct?
+            - Vulnerabilities
+                - Trusting all certificates
+                - Allowing all hostnames
+                - Trusting many CAs
+                - Mixed Mode/No SSL
+            - Extended Validation SSL Certificate
+                - Requires more extensive verification of a business
+                - Browser can indicate to users they are connected to EV SSL
