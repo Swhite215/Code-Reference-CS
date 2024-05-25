@@ -239,9 +239,9 @@ Wireless Network Security CIS 546
                         - Decrypt signature with public key, compare hash value with message to decrypted signature, if same then valid
                         - Schemes - Rivest Shamir, Adleman (RSA), Digital Signature Algorithm (DSA), Elliptic Curve DSA (ECDSA)
 
-3. 05/16/2024 - SAummary of Lecture
+3. 05/16/2024 - Summary of Lecture
     - Key Distribution
-        - Symmetric-key cryptogrpahic primitives require that the communicat ing parties share a secret key
+        - Symmetric-key cryptographic primitives require that the communicating parties share a secret key
         - Categories - symmetric key distribution, public key distribution
         - Examples
             - Physical, purchase of phone with subscriber identity module and key, impractical
@@ -255,7 +255,7 @@ Wireless Network Security CIS 546
                 - Session Key - temporary use key
                     - Limits available ciphertext
                     - Limit exposure caused by compromised key
-                    - Create indepenendec across sessions or applications
+                    - Create independence across sessions or applications
                     - Avoid long term storage of a large number of keys
                     - Lifetime
                         - Connection-Oriented Comunication - use one key for length of time connection is open
@@ -272,7 +272,7 @@ Wireless Network Security CIS 546
             - Denning-Sacco Attack
                 - Suppose Eve recorded an old session where she knows the sessions key Ks
                 - Eve impersonates Alice to force B to use an old Ks for the new session, sends envelope with old session key and Alice ID
-                - Response
+                - Solution
                     - Add timestamps to limit usefulness/scope of old session keys.
     - Public Key Distribution
         - Problem - how does Bob know Alice's public key is actually hers?
@@ -281,7 +281,7 @@ Wireless Network Security CIS 546
             - Adversary takes Alice's ID, encrypts it with their own public key, and forwards to Bob
             - Bob generates a session key and transmits to Adversary using the Adversary public key
             - Adversary decrypts the message and retrieves the session key
-            - Adversary encrypts session key with Alice's key and sends
+            - Adversary encrypts session key with Alice's key and sends to Alice
             - Adversary can now decrypt any message in the channel
             - Alice and Bob are not aware of the attack occurring
         - Solution - Digital Certificate
@@ -308,7 +308,7 @@ Wireless Network Security CIS 546
                     - https:// Hyper Text Transfer Protocol Secure
                     - Icon - displays information about the digital certificate
             - X.509 Certificates
-                - Standard which defines a freamework for the provision of authentication services
+                - Standard which defines a framework for the provision of authentication services
                 - Elements: version, serial number, signature algorithm identifier, issuer name, period of validity, subject name, public-key info, issuer identifier, subject identifier, extensions, signature
             - Certificate Verification
                 - Is certificate authority trusted?
@@ -324,3 +324,394 @@ Wireless Network Security CIS 546
             - Extended Validation SSL Certificate
                 - Requires more extensive verification of a business
                 - Browser can indicate to users they are connected to EV SSL
+    - User Authentication - process of verifying an identity claimed by or for a system enttiy
+        - Process
+            - Present identity
+            - Verify identity
+        - General Means
+            - Somemthing the individual knows e.g. password
+            - Something the individual possesses e.g. keyfob
+            - Something the individual is (static biometrics) e.g. fingerprint
+            - Something the individual does (dynamic biometrics) e.g. voice
+        - Weak Authentication
+            - Static, guessable, sniffable, vulnerable to dictionary attacks
+        - Strong Authentication
+            - Prove identity by demonstrating knowledge of a secret known to be associated without revealing anything meaningful
+        - Challenge-Response
+            - Verifier prompts a challenge
+            - Prover generates a cryptographic response specific to the challenge
+            - Response
+                - Private/public key encyption
+                - Integrity mechanism e.g. MAC or hash
+                - Digital signatures
+        - Private Key or Symmetric Key Based Authentication
+            - Protocol 1
+                - Alice sends Bob a message "I am Alice"
+                - Insecure, Eve can lie
+            - Protocol 2
+                - Alice sends Bob a message "I am Alice" in an IP Packet containing her source IP address
+                - Insecure, Eve can spoof Alice's address
+            - Protocol 3
+                - Alice sends Bob a message "I am Alice" and sends her secret password
+                - Insecure, Eve can intercept and replay later
+            - Protocol 4
+                - Alice sends Bob a message "I am Alice" and sends her encrypted password
+                - Insecure, Eve can sniff packet and playback to Bob
+            - Protocol 5
+                - Alice sends message, Bob sends Alice a challenge, Alice must return R, encrypted with shared secret key
+                - The challenge value must be un-predictable and must not be re-used by Bob
+            - Man in the Middle
+                - Eve impersonates Bob
+                    - Alice to E, I am Alice
+                    - Eve to Alice, B's challenge R
+                    - Alice responds with Enc(R)
+                - Eve Impersonates Alice
+                    - Eve to Bob, I am Alice
+                    - Bob to Eve, B's challenge R
+                    - Eve to Bob, Enc(R) from above
+            - Protocol 6
+                - Alice to Bob, I am Alice
+                - Bob sends challenge with Alice's public key
+                - Alice uses symmetric key to encrypt response
+                - Alice uses Bob's public key to send encrypted response
+                - Bob decrypts response with private key, Bob decrypts response with symmetric key
+        - Freshness and Liveness of Authentication Protocols
+            - Freshness - message has not been used previously
+            - Liveness/Timeliness - message was sent recently i.e. within timeframe
+            - Nonce - one time random challenge
+                - Requires good source of random numbers that are long and unpredictable and are not re-used
+            - Timestamp - include date/timestamp in the message
+                - Requires synchronized clocks which is hard in practice
+        - Mutual Authentication
+            - Previous - unilateral i.e. only Alice authenticated herself to Bob allowing Eve to impersonate Bob
+            - Option A - two rounds of unilateral
+            - Option B - piggyback to reduce to 3 rounds
+                - Reflection Attack - Eve Impersonates B
+                    - Alice sends to Eve A Identity and Challenge
+                    - Eve initiates separate communication channel with B Identity and A's own challenge back to Alice
+                    - Alice sends to Eve Encrypted Response and Value
+                    - Eve sends back on the first channel the Encrypted Response and Value
+                    - Alice sends back the response
+                    - Eve on the second channel sends back the response
+                - Solution
+                    - Include direction, one key for sending, one key for responding
+                    - include direction in response, add target to encrypted value
+            - Option C - synchronized clock
+                - Alice to Bob, Identity and Encrypted Time and Bob Identity
+                - Bob to Alice, Encrypted Time + 1 and Identity
+            - Option D - MAC
+                - Alice to Bob - Identity and Challegne
+                - Bob to Alice - Challenge Response and then HMAC of challenge response, own challenge, and A as target
+                - Alice to Bob - HMAC challenge response, challenge response, and B as target
+
+4. 05/21/2024 - Summary of Lecture
+    - Mobile Computing
+        - Mobile Communication
+            - What - infrastructure or ad-hoc
+            - Forms - cellular, wifi, bluetooth, RFID
+        - Mobile Hardware
+            - Mobile devices or components that recieve or access service of mobility e.g. laptops, smart phone, smart cards, wearables
+        - Mobile Software
+            - Program that runs on mobile hardware i.e. operating system and applications
+            - Operating System - iOS and Android\
+        - Trends and Implications
+            - Trends
+                - Increasing reliance on personal mobile device
+                - Increasing reliance on cloud infrastructure
+                - Increasing use of mobile app vs web use
+                - Unlimited amounts of applications, increased opportunities for gathering sensitive data
+            - App Market Place
+                - Central location to find, buy and download applications
+                - Bettter protection than app install
+                - Applications frequently require review before distribution
+            - Phone Application - broad application, broad data collection, broad attack surface
+        - Open Web Application Security Project Top Ten
+            - Improper Platform Usage
+            - Insecure Data storage
+            - Insecure Communication
+            - Insufficient Cryptography
+            - Insecure Authorization
+            - Client Code Quality
+            - Code Tampering
+            - Reverse Engineering
+            - Extraneous Functionality
+        - Mobile Platform Thread Models
+            - Attack w/ Physical Access
+            - System Attacks
+            - Application Attacks
+    - Mobile Malware Attacks
+        - Examples
+            - DroidDream (Android) - data theft and credential scavenging from +58 apps
+            - Ikee (iOS) - worm capabiltiies, jailbroken phones
+            - Zitmo - propogates via SMS via "security certificate", captures info from SMS to defeat two-factor authentication
+        - Android Malware
+            - 2015 - 61% increase year by year in mobile malware targeting android devices
+                - 76% trojan, 15% adware, 7% theft
+                - 3.5 million samples per year or 8,400 new instances per day
+            - Recent Android Malware
+                - AccuTrack, Ackposts, Acnetdoor, Adsms, Airpush/STopSMS, BankBot
+            - Recent iOS Malware
+                - AdThief/Spad, FindCall, Ikee, iKeyGuard, KeyRaider
+                - AceDeceiver - successful malware infection for non jailbroken iOS devices
+                    - FairPlay DRM Main in the Middle
+                        - Malware on PC, installs malicious app in store, continues to work after app removed
+    - Protection vs. Physical Attacker
+        - Device Locking and Unlocking
+            - Pin/Pattern -> Pin/Pattern per Application -> Logging of Pin/Pattern Failure e.g. photo with camera
+        - Brute Force Password Attack
+            - Offline
+                - Steal password file -> try all i.e. Brute Force or Dictionary
+                - Defense - hashed passwords
+            - Online - Guessing
+            - iOS PIN - ~20 minutes on iPhone 4 for a four data pin to guess
+        - Attack on Patterns
+            - Smudge Attacks - entering pattern leavees smudging
+            - Entropy - people choose simple patterns with few strokes
+         - Biometric Unlocking - fingerprint, face, no more secure than backup pin, cannot be changed
+    - System Architecture and Defense: iOS Platform
+        - iOS - created and developed by Apple, exclusive OS for devices
+        - Diagram
+            - Hardware
+                - Device Key, Group Key, Apple Root Certificate
+                - Crypto Engine
+            - Software
+                - Kernel
+                    - Secure Enclave, Secure Element
+                - Encrypted File System
+                    - OS Partition
+                    - User Partition
+                    - App Sandbox - Data Protection Class
+        - Security Guide
+            - System Security - Protecting Mobile Platform
+                - Secure Boot Chain - ensures integrity of operating system
+                    - Boot Read Only Memory - Immutable
+                        - Root of Trust - Apple Root Public Key
+                    - Low Level Boot Loader - Run if Boot ROM signature is valid
+                    - iBoot - Run if LLBL signature is valid
+                    - iOS Kernel - Run if iBoot signature is valid
+                    - Jailbreaking - exploit bugs in the chain to disable verification
+                - Software Update
+                    - Software Update - signed from Apple's servers, devices update version is tracked
+                - Runtime Security - Sandbox
+                    - Apps cannot access files stored by other applications
+                    - Each application has a unique home directory
+                    - Jailbreaking - install applications outside of sandbox, privilege esclation for the purpose of removing software restrictions
+            - Encryption and Data Protection
+                - Encryption
+                    - Application Files
+                        - Per-file Key - encrypts all file contents (AES-XTS)
+                        - Class Key - encrypts per-file key
+                        - File-System Key - encrypts file metadata, derived from hardware key
+                        - All encryption/decryption occurs in the secure enclave
+                    - Secure Enclave - hardware co-processor
+                        - Encrypted memory, random number generator
+                        - Stores keys, hardware UDID, crypto methods 
+                    - Backup to iCloud
+                        - Data Backup - encrypted data sent from device to iCloud
+                        - Class Keys Backup - device migration to decrypt encrypted data backup files
+            - App Security - App Isolation and Protection
+                - Mandatory Code Signing
+                    - Native Applications, 3rd Party Applications, Dynamic Libraries
+                    - Problem: Charlie Miller's InstaStock - storing data in non-XN region...
+                    - Problem: Masque Attack - could replace genuine app if both apps have the same bundle identiifier
+                - Runtime Protection
+                    - System Resources/Kernel shielded from user applications
+                    - Application Sandbox
+                        - Each application has its own sandbox and can only access its own data
+                    - Code Generation Prevented
+                - Application Data Protection
+                    - Content of a file is encrypted with a per-file key, which is encrypted by the class key and stored in a file's meta data, which is encrypted with the file system key
+            - Services Security
+            - Network Security
+            - Developer Kit Security
+            - Secure Device Management
+            - Apple Pay
+            - Internet Services
+            - User Password Management
+            - Device Controls - User Level
+                - Device Unlock and Locking
+                    - Passcode
+                        - Passcode Key - derived by hashing
+                        - Flow
+                            - passcode key is derived by hashing pascode and device ID
+                            - hardware key + passcode key derives class key
+                            - class key + file system key produces a file key
+                            - file key hashes file contents
+                        - Question
+                            - Can attacker try all 6 digit passcode?
+                            - 5.5 years to try all 6 digit pins
+                            - 5 failed attempts => 1 min delay
+                            - 9 failed attempts => 1 hour delay
+                            - 10 failed attempts => erase phone
+                    - Touch and Face ID
+                        - Reality - provide easy access to device because they do not change
+                        - Passcode can always be used instead
+                        - How?
+                            - Enclave stores skeleton/sketch with secure enclave key
+                            - Fingerprint is detected
+                            - Image is sent to enclave to check against fingerprint skeleton
+                            - With Touch ID off, class key is deleted, requiring pin enter
+                            - With Touch ID on, class key is stored in secure enclave and decrypted when fingerprint recognized
+                                - Class key is deleted upon reboot, 48 hours of inactivity or five failed attempts
+                        - How secure is touch ID?
+                            - Easy to build fake finger...
+                            - Fingerprints are not secret...
+                            - More secure solutions exist... e.g. passcode + fingerprint
+            - Privacy Controls - User Level
+                - User controls which apps access location, microphone, and other services
+            - Security Certification and Programs
+
+5. 05/23/2024 - Summary of Lecture
+    - Android Platform and Architecture
+        - What is Android?
+            - Popularity - most widelyt deployed smart phone operating system
+            - Open Handset Alliance - 84 firms
+            - History
+                - Founded by Andy Rubin around 2003
+                - Acquired by Google in 2005
+                - 1st Phone HTC Dream or T-Mobile G1
+                - Open Source Software Project
+                    - Hardware vendors can customize software for their products
+                    - Open marketplace for applications
+            - Application Market
+                - Self-signed applications i.e. by the developer
+                - Application Permissions
+                    - Installation Requests - Android 5.0 or earlier
+                    - Runtime Requests - Android 6.0 or higher
+                - Open Market
+                    - Bad applications may show up on the market
+                    - Shift focus from remote exploit to privilege escalation
+        - Android Software Architecture
+            - Linux Kernel
+                - Drivers - display, keypad, camera, wifi, flash memory, audio
+            - Hardware Abstraction Layer - allows android to be hardware agnostic i.e. same Android OS can run on different hardware
+            - Libraries
+                - WebKit, SQLite, Media Framework
+            - Android Runtime
+                - Core Libraries
+                - Dalvik Virtual Machine
+            - Application Framework
+                - Activity Manager
+                - Window Manger
+                - View System
+                - Content Providers
+                - Package Manager
+                - Telephone Manager
+                - Resource Manager
+                - Location Manager
+                - Notification Manager
+            - Applications
+                - Home, Contacts, Phone, Browser, etc.
+        - Android Applications
+            - Structure - multiple separated modules or components communicating through Inter Component Communication
+            - Language - Java, protected against standard buffer overflow attacks due to implicit bounding checking
+    - Android Security Mechanisms
+        - Discretionary Access Control - inherited from Linux
+            - Restrict access to objects based on identity or group
+            - Subject - read, write, and exec
+            - Each application is assigned a unique (user id, group id) pair when installed
+        - Sandboxing
+            - DAC (user id, group id) enables sandbox
+            - Applications are isolated from each other and from system resources
+            - Application can only have access to files owned by itself or files explictly set as avaialble
+        - Permission Mechanism
+            - Security sensitive interfaces are protected by standard Android permissions
+            - Permissiosn are written in manifest file
+            - Permissions are granted by user at install or runtime
+            - At runtime, permission check is performed
+            - Example - INTERNET, BLUETOOTH, SEND_SMS, READ_EXTERNAL_STORAGE
+        - Accessibility fo Components
+            - Components can be public or private
+            - Private - accessibly only by components within the same app
+            - Public - reachable by other applications
+        - Application Signing
+            - Developers must sign their application to verify the origin of applications
+            - Signature based permissions, applications from same developer share ID
+            - Signature is validated at installation time
+    - Privilege Escalation Attack and Defense
+        - Issues with Security
+            - Application Permissions - prevent sensitive data from unauthorized access
+            - Issue - relies on user diligence and awareness
+            - Permissions are granted all at once and only at installation time
+            - Focus, circumvent permissions through permission attacks
+        - Privilege Escalation Attack
+            - What - application without privilege gets permission through another application
+            - Applications A, B, and C
+                - Application A is a bad application installed by the user
+                - Application A has no granted permissions
+                - Application A has CA1 and CA2
+                - Application B is granted permission P1
+                - Application B has CB1 and CB2, which can be accessed without permissions
+                - CB1 and CB2 can access resources protected by P1
+                - Application C has no granted permissions
+                - Application C has CC1 and CC2
+                - CC1 is protected by P1 and CC2 is protected by P2
+                - Application A CA1 cannot access CC1, because it does not have P1
+                - Application A CA1 can access CB1, because no permission.
+                - Through CB1, CA1 can access CC1 , because CB1 can access components with P1
+            - How?
+                - Android permist any application to access an applicaitons public interface
+                - 2011 - 872 apps, 320 have permissions for sensitive resources and at least one type of public component
+                    - Found 15 permission re-delegation vulnerabilities in 5 core system applications
+            - Power Control Widget
+                - Third party applications can change protected system settings without requesting permissions
+                - Attack
+                    - Wthin an intent, send broadcast to SettingsAppWidgetProvider with particular data value to trigger permission action
+                    - https://issuetracker.google.com/issues/36916759?pli=1
+                - Solution
+                    - IPC Inspector, at the OS level, performs privilege reduction on the application to reduce the callee's privilege after receiving communication from a less privileged application
+    - Android Privacy and TaintDroid
+        - Issue - privacy in the smartphone age
+            - Increased risk of private data falling prey to snooping
+            - Increased risk of private data collected
+            - Increased risk of exposure to malware
+        - Issue - non-sensitive data can reveal sensitive information e.g. accelerometer can infer keystroke, driving path, or floor level
+        - TaintDroid - monitoring smartphone behavior
+            - Step 1: Look inside applications to watch how they use privacy sensitive data
+            - Challenges
+                - Smartphones are resource constrained
+                - Third party applications are entrusted with several types of privacy information
+                - Context based privacy information is dynamic and can be difficult to identify
+                - Applications can share information
+            - Dynamic Taint Analysis - technique that tracks information dependencies from an origin
+                - Phases
+                    - Taint Source - mark data with label for sensitivity
+                    - Taint Propogation - as tainted data moves, taint tags are propogated
+                    - Taint Sink - monitor data to see if it reaches a potentially dangerous sink e.g. file system
+                - Limitations - instruction level tracking, performance and granularity is a trade off
+            - Tracking
+                - Variable level tracking with untrusted application code
+                - Message level tracking between applications
+                - Method level track for syustem provided native libraries
+                - File level tracking to ensure persistent information retains its taint marking
+                - Requires updates to the operating system
+            - Sample of 30 Applicaitons
+                - Of 105 flagged TCP connections, only 37 clearly legitimate
+                - 15 of the 30 shared physical location with an ad server, in no case was sharing obious to user
+                - 7 applications sent device IMEI and 2 apps sent phone info to a remote server
+    - Application Vulnerability
+        - SSL Implementation Vulnerability
+            - Secure Socket Layer - end to end user channel through a secure handshake process to prevent man in the middle
+            - SSL has been shown completely  broken in many security applications and libraries
+            - Trusting all certificates irrespective of who signed them or even for what subject they were issued
+            - Allowing all hostnames - forgo check whether the certificate was issued for this hostname or not
+            - Trusting many CAs
+            - Mixed-Mode/NoSSL - no way for common app user to check whether a secure connection is being used, mixed connections in application
+        - Webview Javascript Code
+            - WebView - embedded browser inside smart phone applications, enables apps to interact with web content through an API
+                - Apps invoke JavaScript code within web pages or insert their own
+                - App monitors and intercepts events within web pages and respond to them
+                - Javascript code in web pages invoke app interfaces
+                - Weakend Web Security
+                    - Trusted Computing Base at Client, we trust standalone browsers, can we trust apps with web views
+                    - Browser Based Sandbox Protection, isoloate web pages from system and web pages of one origin from those of another, WebView allows you to punch through sandbox
+                - Attacks from Malicious Web Pages
+                    - Goal - compromise apps and their intended web applications, trick victim to load web pages into apps
+                - Attacks from Malicious Apps
+                    - Goal - attack website with application, e.g. javascript injection attack to pop a fake dialog to collect username and password
+        - HTML5 Based App Vulnerability
+            - Vulnerability - data and code can be mixed together allowing for code injection atacks e.g. when a string containing both data and code is processed
+            - Code Injection Channels - internet, wifi, bluetooth, SMS, scanning, audio, video, picture
+            - Order - Channel -> Payload -> Loaded in WebView -> Execute and Attack
+
+        
