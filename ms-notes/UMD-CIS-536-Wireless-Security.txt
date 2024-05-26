@@ -564,7 +564,7 @@ Wireless Network Security CIS 546
 5. 05/23/2024 - Summary of Lecture
     - Android Platform and Architecture
         - What is Android?
-            - Popularity - most widelyt deployed smart phone operating system
+            - Popularity - most widely deployed smart phone operating system
             - Open Handset Alliance - 84 firms
             - History
                 - Founded by Andy Rubin around 2003
@@ -620,7 +620,7 @@ Wireless Network Security CIS 546
             - Permissions are granted by user at install or runtime
             - At runtime, permission check is performed
             - Example - INTERNET, BLUETOOTH, SEND_SMS, READ_EXTERNAL_STORAGE
-        - Accessibility fo Components
+        - Accessibility for Components
             - Components can be public or private
             - Private - accessibly only by components within the same app
             - Public - reachable by other applications
@@ -650,7 +650,7 @@ Wireless Network Security CIS 546
                 - Application A CA1 can access CB1, because no permission.
                 - Through CB1, CA1 can access CC1 , because CB1 can access components with P1
             - How?
-                - Android permist any application to access an applicaitons public interface
+                - Android permits any application to access an applicaitons public interface
                 - 2011 - 872 apps, 320 have permissions for sensitive resources and at least one type of public component
                     - Found 15 permission re-delegation vulnerabilities in 5 core system applications
             - Power Control Widget
@@ -682,7 +682,7 @@ Wireless Network Security CIS 546
             - Tracking
                 - Variable level tracking with untrusted application code
                 - Message level tracking between applications
-                - Method level track for syustem provided native libraries
+                - Method level track for system provided native libraries
                 - File level tracking to ensure persistent information retains its taint marking
                 - Requires updates to the operating system
             - Sample of 30 Applicaitons
