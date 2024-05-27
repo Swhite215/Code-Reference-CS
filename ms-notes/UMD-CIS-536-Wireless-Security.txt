@@ -36,7 +36,7 @@ Wireless Network Security CIS 546
         - Confidentitality, Integrity and Availability
             - Confidentiality - encryption
                 - Secrecy of information i.e. hiding data
-                - User privacy i.e. preventing inferrence
+                - User privacy i.e. preventing inference
             - Integrity - protection from modification
                 - Data remains in original form
                 - Data has not been manipulated or tampered with
@@ -195,7 +195,7 @@ Wireless Network Security CIS 546
                 - Key Generation 0 p,q large primes i.e. 500 bits
                 - Encryption - c = m^e mod n
                 - Decryption - m = c^d mod n
-                - Diffiucult - computing private key from public key is related to factoring, n is massive number i.e. hard to factor
+                - Difficult - computing private key from public key is related to factoring, n is massive number i.e. hard to factor
                 - Salting - addd random bytes e.g. PKCS#1
             - EIGamal Encryption Scheme
                 - What....
@@ -205,11 +205,11 @@ Wireless Network Security CIS 546
                 - A Generates Symmetric Key
                 - A Encrypts Data with Symmetric Key
                 - A Encrypts Symmetric Key with B's Public Key
-                - A Sends Envelop to B
+                - A Sends Envelope to B
                 - B Decrypts Envelope with Private Key
                 - B Decrypts Data with Symmetric Key
             - Message Integrity
-                - Hash Function - map messages of arbitrary length to fixed length , collisions occur i.e. many to one mapping
+                - Hash Function - map messages of arbitrary length to fixed length, collisions occur i.e. many to one mapping
                     - Ease of computation
                     - Strong Collision Resistance i.e. hard to find h(x) = h(y)
                     - One Way Property i.e. hard to find h(x) = y if y is a hash value
@@ -413,7 +413,7 @@ Wireless Network Security CIS 546
             - Mobile devices or components that recieve or access service of mobility e.g. laptops, smart phone, smart cards, wearables
         - Mobile Software
             - Program that runs on mobile hardware i.e. operating system and applications
-            - Operating System - iOS and Android\
+            - Operating System - iOS and Android
         - Trends and Implications
             - Trends
                 - Increasing reliance on personal mobile device
@@ -613,10 +613,10 @@ Wireless Network Security CIS 546
         - Sandboxing
             - DAC (user id, group id) enables sandbox
             - Applications are isolated from each other and from system resources
-            - Application can only have access to files owned by itself or files explictly set as avaialble
+            - Application can only have access to files owned by itself or files explictly set as available
         - Permission Mechanism
             - Security sensitive interfaces are protected by standard Android permissions
-            - Permissiosn are written in manifest file
+            - Permissions are written in manifest file
             - Permissions are granted by user at install or runtime
             - At runtime, permission check is performed
             - Example - INTERNET, BLUETOOTH, SEND_SMS, READ_EXTERNAL_STORAGE
