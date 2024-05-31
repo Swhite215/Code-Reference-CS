@@ -714,4 +714,160 @@ Wireless Network Security CIS 546
             - Code Injection Channels - internet, wifi, bluetooth, SMS, scanning, audio, video, picture
             - Order - Channel -> Payload -> Loaded in WebView -> Execute and Attack
 
-        
+6. 05/30/2024 - Summary of Lecture
+    - Cellular Network Security
+        - Elements of Wireless Networks
+            - Wiresless Hosts - laptop, PDA, IP phone, wireless not necessarily mobility
+            - Base Station - connected to wired network, responsible for sending packets between wired network and wireless hosts
+            - Wireless Link - used to connect mobile to base station
+            - Operation Modes 
+                - Infrastructure (Cellular, Wi-Fi)
+                    - Base station connects mobile into wired network
+                    - Communication between hosts occurs through the base station
+                    _ Dedicated Infrastructure
+                - Ad-Hoc (MANET, FANET, Bluetooth)
+                    - No dedicated infrastructure
+                    - Peer to peer connections
+                    - Nodes must organize themselves and determine routing among themselves
+        - Cellular Networks
+            - Architecture
+                - Cell - geographic region
+                - Base Station - provides services within the Cell
+                - Mobile Hosts - attach to network through Base Station
+                - Mobile Switching Center - connect cells to wide area net and manage call setup
+                - Public Telephone Network and Internet
+                - Links - fiber optic, ethernet, radio, etc.
+            - Evolution of Network Standards
+                - 1G
+                    - Transmits voice
+                    - Advanced Mobile Phone Service (AMPS)
+                    - Two 25 MHz bands
+                    - Unencrypted
+                    - Analog
+                - 2G
+                    - Transmits voice
+                    - Digital modulation techniques
+                    - Encrypted
+                    - Improved access channel
+                    - Standards
+                        - GSM - Global Systems for Mobile Communications
+                        - Personal Digital Cellular
+                        - CDMA
+                        - NA-TDMA
+                        - Digital-AMPS
+                - 3G
+                    - Transmits voice and data
+                    - Code Division Multiple Access w/ Time Division Multiple Access for channel access
+                    - UMTS - Universal Mobile Telecommunications Service - evolution of GSM
+                - 4G
+                    - Setting peak speed requirements at 100Mbps i.e. high mobility communication
+                    - Setting peak speed requirements at 1GBps for low mobility communication
+                - 5G
+                    - More bandwidth, download speeds, upload speeds
+            - Features
+                - Wide coverage, large number of users, more capacity
+                - High deployment costs - licensed bands, wired communication, billing, customer care
+                - Trust Assumptions
+                    - Security is not designed to defend against a malicious operator e.g. giving up privacy when you subscribe to cellular
+                    - Security is designed to protect operators from malicious users and eavesdroppers
+        - GSM Security (2G)
+            - Security Requirement
+                - Subscriber authentication - for billing
+                    - SIM - Subscriber Identity Module
+                    - Long term secret key shared between the subscriber and the home network operator
+                    - Challenge response protocol
+                    - Supports roaming without revealing long-term key to the visited networks
+                - Confidentiality of communications and signaling over the wireless interface
+                    - Encryption key shared betweeen the subscriber and the visited network is established with the help of the home network as part of the subscriber authentication protocol
+            - Subscriber Identity Module
+                - International Mobile Subscriber Identity - permanent user's identity
+                - PIN
+                - Temporary Mobile Subscriber Identity
+                - Ki - user's secret key shared with home network
+                - Kc - cipher key to encrypt communication data
+                - List of last call attempts
+                - List of preferred operators
+                - Supplementary service data
+            - Authentication Principle of GSM
+                - Mobile devices enters a visitor network
+                - Mobile device reads IMSI and sends to visitor network
+                - Visitor identifies home network
+                - Visitor forwards IMSI to home network
+                - Home network will look up secret key by IMSI and creates (Session Key, Challenge, Challenge Response)
+                - Triplet is sent to visitor network
+                - Visitor network issues challenge to mobile station
+                - If mobile station responds correctly, session key is provided
+                - Rand and long term key used to encrypt response
+                - Visitor network compares and authorizes if passed
+            - Cryptographic Algorithms of GSM - Creating Triplet
+                - RAND - random number generator to produce challenge
+                - SRES - Challenge Response, generated from random number and user's secret key
+                - Kc - cipher key, generated from random number and user's secret key
+                - A3 - subscriber authentication algorithm (operator dependent)
+                - A5 - cipher/decipher algorithm (standardized algorithm)
+                - A8 - cipher generation (operator dependent)
+            - Ciphering in GSM
+                - Plaintext Sequence -> Encrypted by A5 produced from cipher key and frame number -> Ciphertext Sequence
+                - Ciphertext Sequence -> decrypted by A5 produced from cipher key and frame number -> Plaintext Sequence
+            - Protection of Subscriber's Identity
+                - After authentication, visitor network generates a temporary mobile subscriber identifier
+                - Encrypt TMSI with cipher key
+                - Send TMSI to mobile phone
+                - TMSI is used to identify a mobile phone in subsequent authentication
+            - Conclusion
+                - Subscriber Authentication
+                - Confidentiality of Wirless Link Communications
+                - Protection of Subscriber's Identity
+            - Issues
+                - Provides only unilateral authentication i.e. visitor network is not authenticated
+                - Subject to fake base station atack
+                - Authentication triplets can be used indefinitely
+                - No integrity protection services
+                - Short length of encryption
+                - Weakness in A3 and A8
+        - UMTS Security (3G)
+            - Reuse fo 2nd Generation Principles
+                - Removable hardware security module
+                - Radio interface encryption
+                - Limited trust of visitor network
+                - Protection of end user identity
+            - Updates
+                - Deal with attacks from a faked base station
+                - Deal with lack of encryption in some network
+                - Data integrity
+            - New Features
+                - New service providers
+                - Increased control for the user over service profile
+                - Enhanced resistance to active attacks
+                - Increase importance of non-voice services
+            - Authentication in UMTS
+                - When IMSI is sent to Home Network, Home Network generates authentication vector instead of triplet
+                - Authentication Vector
+                    - RAND - random number
+                    - Expected Respose (XRES) - value derived from rand and secret key
+                    - CK - cipher key used for encrypting communication between UE and network, derived from RAND and shared secret key
+                    - IK - integrity key used to protect integrity of signaling between UE and network, derived from RAND and shared secret key
+                    - Authentication Token - token that provides proof to the UE that the authentication challenge came from network it claims to be from
+                - Verifying Authentication Token
+                    - RAND and AUTN received by UE
+                    - MAC is computed - stored secret key, received RAND, sequence number, and the AMF
+                    - MACs are compared 
+                    - Subscriber verifies SQN in correct range by decrypting
+                    - New response generated and sent to visitor network
+                    - Compare XRES and RES
+                    - Ck and IK are computed and used for communication
+                - Functions F1-F5 to create Authetnication Vector are operator specific
+            - Signalling Integrity Protection Method
+                - Mobile Station or Radio Network Controller - MAC-1
+                    - MAC-1 dervies from integrity key, message, count, fresh random input, and direction
+                - Receiver - XMAC-1
+                    - Produce Expected MAC XMAC-1 and compares to MAC-1
+                    - If equal, no modifications
+            - Ciphering Method
+                - Plaintext Block XOR with Keystream Block (Cipher Key + Bearer, Count, Length, Direction)
+                - Reverse to Decrypt
+            - Improvements
+                - Crytopgrahic algorithms
+                - Integrity of signalling messages
+            - Issues
+                - Visitor network can authenticate to home network but not subscriber, X to home but Y as subscriber
