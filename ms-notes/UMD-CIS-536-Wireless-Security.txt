@@ -871,3 +871,116 @@ Wireless Network Security CIS 546
                 - Integrity of signalling messages
             - Issues
                 - Visitor network can authenticate to home network but not subscriber, X to home but Y as subscriber
+
+7. 06/04/2024 - Summary of Lecture
+    -  Wi-Fi Security
+        - WLAN Technologies
+            - Introduction
+                - WLAN - wireless local area network
+                - WiFi - most popular WLAN technology, based on IEEE 802.11
+            - Infrastructure Based Mode
+                - Access Point and Wireless Stations
+                - STA only community through the AP
+                - AP is assigned a service set identifier SSID
+                - If APs SSID are equal, and correct credential supplied, client handed over to strongest signal
+                - AP uses different channels to avoid interference
+            - WiFi Access
+                - Scan
+                    - Passive - client listens for a beacon which AP emits. If config match, connect.
+                    - Active - client scans the network by sending out probe pulse requests. If config match, connect.
+                - Joining
+                    - AP emits beacon w/ MAC, timestamp, SSID
+                    - STA initiates by sending an association request
+                    - AP runs an authentication process
+                    - AP sends association response if valid
+            - 802.11 Standards
+                - 802.11a - 5Ghz, 1.5-54Mbps
+                - 802.11b - 2.4Ghz, 11Mbps
+                - 802.11g - 2.5GHz, 54Mbps
+                - 802.11n - 2.4Ghz and 5Ghz, 600 Mbps
+                - 802.11ac - 1.3Gbpz on 5Ghz
+                - 802.11af - Super Wifi, 35Mbps
+            - Evolution of WLAN Security
+                - WEP - not secure
+                - 802.11/802.1X - adds authentication
+                - 802.11A+WPA - 
+                - 802.11i WPA2 - new cipher
+                - WPA3 - Simultaneous Authentication of Equals, CCMP-128, 192-bit Cryptographic Strength
+        - WEP Security Design - Wired Equivalent Privacy
+            - Goal - access control, integrity, authentication, wifi at least as secure as wired LAN
+            - Design Overview
+                - Access Control
+                    - Goal - STA must be authenticated by the AP before association
+                    - Authentication = Challenge and Response
+                        - STA -> AP - authenticate request
+                        - AP -> STA - authenticate challenge
+                        - STA -> AP - encrypt response with symmetric key
+                        - AP -> STA - authentication sucess/failure
+                - Message Confidentiality
+                    - RC4 - Stream Cipher
+                        - For each message
+                            - RC4 is intiialized with shared secret
+                            - RC4 produces a pseudo-random byte sequence
+                            - Sequence is XORed to the message
+                            - Essential that each message is encrypted with a different key stream
+                            - RC4 generator is initalized with shared secret and IV (24 bit changes for every message)
+                        - Example
+                            - M1 encrypted with K, M2 encrypted with K
+                            - M1 XOR M2 = M1 XOR K + M2 XOR K
+                - Integrity
+                    - Encrypted CRC Value
+                    - Operation
+                        - Integrity Check Value is computed and appended to the message
+                        - ICV and message are encrypted together
+                        - Message + ICV -> Encrypted by IV and Secret Key i.e. RC4
+                        - IV is esent along with message/icv for decryption
+                - Key Management
+                    - Keys
+                        - Default Key - shared, group, multicast, broadcast
+                            - Shared to all STA, used for braodcase messages
+                        - Key Mapping - individual, per-station, unique
+                            - Shared to specific STA, used for communication between STA and AP
+                        - In practice, only default keys are supported, each STA uses the same shared secret key, in principle STAs can decrypt each other's messages
+                    - Default Key
+                        - Group key needs to be changed when a member leaves a group, practically impossible to do this simultaneously
+                        - WEP supports multiple default keys
+                            - One key is active, used for encryption
+                            - Any key can be used for decryption
+                        - Key Change Process
+                            - ABC key used for encryption
+                            - AP encrypts with ABC and sends to STA
+                            - STA decrypts with ABC
+                            - AP generates a new key DEF
+                            - New STA joins, AP sends ABC and DEF and says DEF is key
+                            - ABC is still active key
+                            - STA 1 sends message encrypted with ABC
+                            - AP decrypts with ABC
+                            - AP sends STA 1 DEF as active key
+                            - All STA use DEF as active key
+        - WEP Security Flaws
+            - Reality - does not achieve any of the design goals...
+            - Authentication and Access Control
+                - Authentication is one way i..e AP is not authenticated to STA and STA is vulnerable to rogue AP
+                - Same shared key is used for both authentication and encryption
+                - No session key is established during authentication
+                    - Once STA has authenticated and associated to the AP, attacker can send message using MAC address of STA, replay of STA messages is possible
+                    - Attacker can compute K with r XOR (r XOR key) after intercepting the message, use K later
+            - Integrity and Replay Protection
+                - Attacker can manipulate messages desptive the ICV mechanism and encryption
+                - No replay protection at all because IV is not mandated to be incremented after each message
+            - Confidentiality
+                - IV resuse - IV space is tool small i..e 16,777,216 possible IVs because of 24 bits
+                    - After around 17 million messages, IV reused
+                    - IV space is used at about 7 hours if AP at 11Mbs transmits 700 packets per second
+                    - In many IVs, IVs are initialized at 0 at startup i.e. devices switched on at nearly same time use same sequence, and with both using default key, IV collisions are readily available
+                - Weak RC4 Keys
+                    - For some seed values, Rc4 output is not really random
+                    - First few bytes of output reveals alot, breaking key is easier
+            - Lessons Learned
+                - Engineering security protocols is difficult
+                    - Strong building blocks combined in the wrong way produce insecure system in the end
+                        - Stream ciphers and chalenge response should not be combines
+                        - linear message digest function with respect to encryption function makes ICV ineffective
+                    - Using an expert in design phase pays out
+
+        - WPA and WPA 2
