@@ -982,5 +982,45 @@ Wireless Network Security CIS 546
                         - Stream ciphers and chalenge response should not be combines
                         - linear message digest function with respect to encryption function makes ICV ineffective
                     - Using an expert in design phase pays out
-
         - WPA and WPA 2
+            - Novelties
+                - Access control based on 802.1X
+                - Authentication Framework - Extensible Authentication Protocol
+                - Strong Protocols - Transport Layer Security
+                - Shared Session Key
+                - Encryption/Integirty Split Keys
+            - Overview of 802.11i
+                - Robust Security Network - AES, erquires new hardware, integrity with CBC-MAC, encryption CTR
+                - Temporal Key Integrity Protocol
+                - TKIP -> WiFi Protected Access - runs on old software, corrects WEP flwas
+                - WiFi Protected Access 2
+                - Authentication Model
+                    - Supplicant requests access to services (mobile device)
+                    - Authenticator controls access to the services (access point)
+                    - Authentication Server authorizes access to the services (application on AP or dedicated machine)
+                    - Port - logical state implemented in software in the AP
+                    - Note - successful authenticatqon results not only in switching port on, but also in a session key between mobile device and authentiacvtion server
+                - Extensible Authentication Protocol
+                    - Carrier protocol designed to transport messages of authentication protocols
+                    - Messages
+                        - EAP request - supplication to authentication
+                        - EAP response - authenitcation server to supplicant
+                        - EAP success - signals success
+                        - EAP failure - signals failure
+                - EAPOL - Extensible Authentication Protocol over LAN
+                    - EAP messages encapsulated into LAN protocols
+                    - EAP messages between STA and the AP
+                - RADIUS Remote Access Dial-In User Servic
+                    - EAP messages between AP and Auth Server
+                - Key Hierarchies in WAP
+                    - Pairwise Master Key - session key established during session procedure, STA, AP, and Auth Server, used to derive encryption and integrity
+                    - Pairwise Transient Keys
+                        - Data Encryption Key - protect unicast transport AP to STA
+                        - Data Integrity Key - protect unicast transport AP to STA
+                        - Key Encyption Key - protect group keys transport AP to STA
+                        - Key Integrity Key - protect group keys transport AP to STA
+                    - Group Master Key - AP for producing Group Transient Keys
+                    - Group Transient Key - BROADCAST
+                        - Group Encryption Key and Group Integrity Key
+                        - Used to support group communication i.e. AP to all mobile devices
+                        - Derived from Group Master Key known only to the AP
