@@ -933,7 +933,7 @@ Wireless Network Security CIS 546
                         - Integrity Check Value is computed and appended to the message
                         - ICV and message are encrypted together
                         - Message + ICV -> Encrypted by IV and Secret Key i.e. RC4
-                        - IV is esent along with message/icv for decryption
+                        - IV is sent along with message/icv for decryption
                 - Key Management
                     - Keys
                         - Default Key - shared, group, multicast, broadcast
@@ -966,7 +966,7 @@ Wireless Network Security CIS 546
                     - Once STA has authenticated and associated to the AP, attacker can send message using MAC address of STA, replay of STA messages is possible
                     - Attacker can compute K with r XOR (r XOR key) after intercepting the message, use K later
             - Integrity and Replay Protection
-                - Attacker can manipulate messages desptive the ICV mechanism and encryption
+                - Attacker can manipulate messages despite the ICV mechanism and encryption
                 - No replay protection at all because IV is not mandated to be incremented after each message
             - Confidentiality
                 - IV resuse - IV space is tool small i..e 16,777,216 possible IVs because of 24 bits
