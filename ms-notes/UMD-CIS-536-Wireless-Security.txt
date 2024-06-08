@@ -1024,3 +1024,80 @@ Wireless Network Security CIS 546
                         - Group Encryption Key and Group Integrity Key
                         - Used to support group communication i.e. AP to all mobile devices
                         - Derived from Group Master Key known only to the AP
+
+8. 06/06/2024 - Summary of Lecture
+    - RFID System Overview
+        - RFID - Radio Frequency Identification, allows automatic identification of objects and people by computers
+        - Sytem - store identifier in RFID object, string is sent to computer for identification purposes
+        - Tag/Responder - minaturized radio devices that store information, powered by reader or own power
+            - Active - own battery
+            - Passive - no battery, can be eavesdropped from larger distance
+            - Examples - building access card, credit card, e-passort, ez Pass, speedpass, phone
+                - EPC - low end, small data, no power, cheap tag, 1m
+                - ISO 15693 - vicinity cards, 1m, library book
+                - ISO 14443 - proximity cards, 10cm range, crytpo,
+        - Reader/Interrogator - queries tags for info
+        - Backend Database - manages actions after a read occurs
+    - RFID Applications
+        - Inventory Control, E-Passport, Electronic Toll Collection, Medical Implants
+        - Near Field Communication - RFID tag and reader
+    - Security and Privacy Issues
+        - Source - tags resposne to any reader requests enables eavesdropping, unauthorized reading, owner tracking, and cloning
+        - Challenges - constraints of tag in terms of computation, memory, and power, and usability requirements
+        - Major Attacks
+            - Eavesdropping
+            - Unauthorized Reading
+                - Clandestine Inventory (Consumer Privacy Problem) - read info without user's awareness
+                - Tracking Problem - tag serial number is combined with personal inforamtion
+            - Inventoy Tracking
+            - Cloning
+        - Advanced Attacks
+            - Relay Attacks
+                - Ghost and Leech
+                    - Leech, malicious reader, reading info from innocent tag
+                    - Ghost, malicious tag, recieves info from the leech and relays it to the good reader
+                    - Ghost ends up impersonating the innocent tag to the legitimate reader
+                - Reader and Ghost
+                    - Malicious reader is the one which the innocent tag intends to make a payment with
+                    - Reader relays tag information to Ghost tag, which is sent to legitimate reader for altered purchase
+                    - User knows talking with reader
+    - Countermeasures for Standard Tags
+        - Cover RFID Tags with Mesh/Foil
+        - Kill Tags, simple/effeective, eliminates post purchase benefits of RFID for customer e.g. no return, cant always be applied
+        - Sleep -  temporarily deactivated, difficult to manage in practice
+        - Rename - respond with information unrecognizable, only authorized readers should be able to determine real identifier, tags cannot perform computation
+            - Pseudonym - Encryption of Random Number and ID with Key
+            - Problems - tracking is possible between operations, pseudonym reused, no reader authentication
+        - Proxying (Selective Unlocking) - tags respond
+            - Blocker 
+                - Binary Tree Walking - reader reads multiple devices, how to determine which tags are present i.e. singulation procedure
+                - Privacy Zone - set bits of ID starting with 0 or 1, blocker tag special device simulates a collision
+            - RFID Enhanceer Proxy
+            - RFID Guardian
+            - Disadvantages - specialized auxillary device
+    - Countermeasures for Crypto Capable Tags
+        - Renaming - tags can compute their own pseudonyms, a solution that doesn't scale
+            - Reader must try all possible keys until it finds the right one, verification may be too slow
+        - Synchronization Approach
+            - Counter Value + Key Shared between Tag and Reader
+            - Tag responds with it scurernt psuedonym and incremenets counter
+            - Reader - matain table with counters, find pseudonym in tables
+        - Hash-Chain Based Approach
+            - Tag - tag responds with pseudonym and hash of state
+            - Forward Secrecy - even if a disposed tag is broken and its current state is determined, previous states cannot be computer
+        - Key Tree-Based Approach
+            - Tree, unique key is assigned to each tag/leaf
+            - Tag contains three keys e.g. K1, K11, K111
+            - To identify a tag:
+                - Reader issues a challenge
+                - Tag uses all keys to generate challenge response (pseudonym)
+                - Reader tries all first level keys till one works, then second level, then third level
+                - Nice, each time key is identified, reduce next level sub space considerably
+                - Worst case, traverse all tags
+        - Group Based Approach
+            - Tags are divided into groups
+            - Tags have group key and unique key
+            - To identify a tag:
+                - Reader isues a challenge
+                - Tag uses unique and group key to generate challenge response (pseudonym)
+                - Reader tries all groups, then tries all unique keys
