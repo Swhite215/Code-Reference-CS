@@ -1102,7 +1102,7 @@ Wireless Network Security CIS 546
                 - Tag uses unique and group key to generate challenge response (pseudonym)
                 - Reader tries all groups, then tries all unique keys
 
-9. 06/11/2024 - Summary of Lecture
+9. 06/12/2024 - Summary of Lecture
     - Bluetooth Overview
         - What - open standard, short range communication, wireless personal area networks
         - Operations
@@ -1200,3 +1200,133 @@ Wireless Network Security CIS 546
             - Avoid sharing sensitive information
             - Avoid connecting in public
             - Delete unused Bluetooth connections
+
+10. 06/14/2024
+    - Automotive Security
+        -  Modern Car Systems
+            - Aspects
+                - Telematics - remote control, diagnostics, and repair
+                - Driver Support - navigation, augmented vision
+                - System Automation - Advanced Driver Assistance System, Dynamic EV Charging
+                - Content and Communication - Voice/Data, Information and Entertainment
+            - Distributed Systems
+                - Electronic Control Units - embedded computer
+                - Code - millions of lines
+                - Controller Area Network, FlexRay Bus, LIN - ECU interconnection
+            - Vehicle Networks
+                - Controller Area Network - Dominant, 8 bytes at 1MBps transmission
+                - CAN FD - extension. 64 bytes at 8Mbps
+                - LIN - Universal Asychronous Receiver/Transmitter - master slave used for small sensors and devices
+                - FlexRay - 20Mbps, 254 bytes
+                - MOST - multimedia
+                - Ethernet - deployed in high end vehicles and considered as future protocol
+                - NOTE: no built in security
+            - CAN
+                - ECU accepts only certain IDs
+                - MITM i spossible if Gateway ECU is compromised
+                - Message
+                    - Identifier - destination, control, data, crc, ack, ef, ifs
+                - CAN System
+                    - High Speed Bus - safety, critical, trusted, powertrain
+                    - Low Speed Bus - non-critical
+                - ECU Lists.... Slide 8
+            - Network External Interfaces
+                - OBD Diagnostics, USB, CD
+                - Wireless - Bluetooth, WiFi, RFID, Telematics, V2X, Cellular
+        - Automotice Cybersecurity
+            - CAN Packets
+                - Issue - no address, all packets broadcast, all nodes process
+                    - All nodes see all traffic
+                    - DDoS Vulnerable
+                    - Weak access controls
+                    - Protections often ignord by ECUs
+                - Attacks
+                    - #1 - Attack sends brake command when none is needed
+                    - #2 - Attacker floods the bus with messages when the emergency brake siutation occurs to prevent braking
+            - Seed to Key Algorithm
+                - Authentication method for sensitive operations e.g. firmware update
+                    - ECU sends challenge, another ECU sends response
+                    - Each ECU has its own seed and key
+                    - Keys and seeds are fixed and stored in the memory of each ECU
+            - Denial of Service - CAN node sends mesage back to back to prevent real communication
+            - Message Spoofing - a CAN message can be sent to any node on the bus
+            - Traffic Analysis - reverse engineering
+            - Physical Attack - CAN node alters Baud rate which causes sending error frames
+            - Access - any ECU can communicate with any other EC
+            - Research
+                - 2010 Pioneering Remote Vehicle Attacks
+                    - Possible to read CAN network traffic and send CAN commands to the vehicle
+                - 2011 - Demonstrated remote attacks
+                - 2011 - Privacy Vulnerabilities in Tire Pressure Monitoring System
+                    - Can send false messages to TPMS causing inaccurate display
+                    - Able to track vehicle by reading TPMS ID in one of the tires
+                - 2015 - Miller/Valasek
+                    - Using internet and sprint cellular, were abel to take control of 2014 unmodified Jeep
+                    - Hacker in Pittsburg performed attacks on Jeep in St. Louis
+                    - FCA issued recall 1.4 million vehicles
+                - 2015 - OwnStar
+                    - Device to track, unlock, remote start and make full use of all features in the OnStar RemoteLink
+                    - Attack - MITM, fake WiFi access point for OnStar Remote Link
+                    - Reason - no check for valid secure socket layer certificate in the RemoeLink application
+                    - July 31 2015 update issued
+        - Comprehensive Attack Vector Analysis
+            - Threat Model Characterization - systematically synthesize a set of possible external attack vectors
+                - Technical Capabilities - knowledge of vehicle and skills
+                - Operational Capabilities - direct, indirect, short range, long range
+                - Attack Vectors
+                    - Direct - OBD
+                        - OBD - most significat automotive interface, direct access to key CAN buses for diagnostics
+                    - IOndirect - OBD/Entertainment
+                    - Short Range - Bluetooth, WiFi, Remote Keyless
+                    - Long Range - GPS, Satellite, Digital Radio, Telematics
+            - Vulnerability Analysis - for each attack vector, investigate one or more concrete attacks in depth
+                - Experiment - every vulnerability allowed complete control of vehicle's system
+                    - Identify microprocessor
+                    - Extract firmware and reverse engineer using debugging
+                    - Exploit vulnerability or reprogram ECU
+                - Resulst
+                    - Channel - how interface
+                    - Capability - how actions
+                    - Visible to User - Yes/No
+                    - Scale - 
+                    - Full Control - Yes/No
+                    - Cost
+                - Direct Physical Access
+                    - Example - packet sniffer/injection tool plugged into OBD, used fuzzing to identify commands to check for abilities
+                        - Under control - brakes, wipers, horn, engine, doors
+                - Indirect Physical Access
+                    - Media Player
+                        - Use CD in a particular format and name, prompt user, reflash unit with data within
+                        - WMA Parser - use buffer overflow vulnerability to execute arbitrary code
+                    - PassThru - Laptop -> PassThru -> Vehicle
+                        - No authentication for PCs on same WiFi network
+                        - Possible to reprogram PassThru to create worms, enable control of vehicle, include unsecured or unused Linux programs
+                - Short Range Wireless
+                    - Bluetooth - allow occupants cell phone to connect to car
+                        - Found custom code with 20 calls to strcpy()
+                        - Indirect Attack - attacker already paired, use device with Trojan as stepping stone
+                        - Direct Attack - no paired device, able to brute force search the PIN to pair device
+                - Long Range Wireless
+                    - Telematics - focus on cellular capabilities built into car's telematics unit
+                        - Foudn exploit from 3rd party to manufacturer command program for data transfer
+            - Threat Assessment - utility to an attacker, what capability does the vulnerability enable?
+                - Motives
+                    - Theft, Surveillance
+            - Synthesis - security recommendations
+                - Vulnerabilities are not unique to automobile, which means security and solution can be applied to automotive
+                - Issues
+                    - CAN is insecure low level protocol
+                    - Automobiles have not been subject to significat adversarial pressures
+                    - All vulnerabilities emerged at the interface boundies between code written by distinct organizations
+                    - Developing security solutions compatible with automotive ecosystem is challenging
+        - Counter Measures
+            - Secure Automotive EcoSystem - Collaboration on detect, protect and correct identifiable or avoidable, and protect from unknown or unavoidable ones
+                - Hardware Based Protection for ECU
+                - Software Base In-Vehicle Defense
+                - Network Monitoring and Enforcement
+                - Secure Cloud Services
+                - Data Privacy and Anonymity
+            - Short Term Mitigations - firewalls, gateways, IDS, IPS, crypto
+            - Future Mitigations
+                - Layers
+                    - SOTA -> Firewall -> IDS/IPS -> Secure Gateway -> Hardware Software Module
