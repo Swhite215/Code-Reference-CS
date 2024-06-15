@@ -1101,3 +1101,102 @@ Wireless Network Security CIS 546
                 - Reader isues a challenge
                 - Tag uses unique and group key to generate challenge response (pseudonym)
                 - Reader tries all groups, then tries all unique keys
+
+9. 06/11/2024 - Summary of Lecture
+    - Bluetooth Overview
+        - What - open standard, short range communication, wireless personal area networks
+        - Operations
+            - Frequency - 2.4GHz - 2.4835GHz
+            - Range - <10M
+        - Ad-Hoc Network
+            - Piconet - one device acts as a master, and others as slaves, max 7 slaves, 255 inactive
+        - Benefits
+            - Cable replacement, easy file sharing, wireless synchronozation, internet connectivity
+        - Evolution of Bluetooth Versions
+            - Increasing data rates
+            - Increased security - Secure Simple Pairing SSP
+        - Securtiy Concerns
+            - Susceptible to general wireless network threats
+            - Characteristics make job of an attacker more difficult
+                - Eavesdropping - frequency hopping uses 79 channels and changes 1600 times per second, and over small distance
+        - Basic Security Services
+            - Authentication - Bluetooth device address
+            - Confidentiality - encrypted data
+            - Authorization - device must be authorized to use a service
+            - NOT Provided - integrity, non-repudiation, audit
+        - Security Modes
+            - Security Mode 1: no security
+            - Security Mode 2: Service level enforced service mode, security procedues after link and before logical
+            - Security Mode 3: Security procedures before physical link is established, service discovery after authentication, encryption, and authorization
+            - Security Mode 4: Security procedures after physical and logical, uses Secure Simple Pairing for link key generation
+    - Pairing (Link Key Generation)
+        - MITM - attack can control communication between devices
+        - Solution - authenticated communication, bootstrap secret, key setup/device pairing
+        - Pairing - setup of association and security context for subsequent communication
+        - Security Mode 2,3,4 - authentication of device to each other and confidential channel
+        - Pairing Methods
+            - PIN - Security Mode 2 and 3 - both devices are capable of entering the same PIN code
+            - Secure Simple Pairing - Security Mode 4 - flexible in terms of device input/output capability
+        - Pin (Legacy/Classic)
+            - Setup temporary intialization key
+                - Slave selects RAND, sends to device
+                - Device computes key with RAND and PIN
+                - Link Key Approach One
+                    - Device A stores one key, sends long term unit key encrypted with initialization key
+                - Link Key Approach Two
+                    - Device A and B generate random numbers and transfer securely with initialization key
+                    - Both generate link key based on exchanged random numbers and unique device addresses
+        - Secure Simple Pairing
+            - Flexible in terms of device I/O
+            - Elliptive Curve Based Difie-Hellman ECDH Public Key Cryptography
+            - Association Modes
+                - Just Works
+                    - At least one device has neither a display nor a keyboard
+                    - No user interaction
+                    - User must accept connection
+                    - Susceptible to MITM
+                - Numeric Comparison
+                    - Bluetooth devices are capable of displaying a 6 digit number and a yes/no
+                    - Protection against MITM
+                - Passkey Entry
+                    - One or both have keyboard to input a passkey
+                    - One device generate, user inputs in another
+                    - Protection against MITM
+                - Out of Band
+                    - Support common additional wireless or wired technology e.g. NFC
+                    - Device taps one device against another
+                    - Assumption is that OOB channel employs sufficient security method
+            - Model 4 Link Key Generation
+                - ECDH Key Exchange
+                - Authentication Stage 1
+                - Authentication Stage 2
+                - Link Key Calculation
+        - Authentication and Encryption (Mode 2, 3, and 4)
+            - Authentication
+                - Challenge-Response authentication protocol after the link key is established
+                    - Verifier generates RAND and sends to claimant
+                    - Both compute authentication response
+                    - Claimant sends response
+                    - Verifier verifies response by comparing
+                    - If authentication fails, wait before a new attempt
+                - Encryption Key Generation
+                    - Master device sends RAND to slave
+                    - Encryption key is generated, stream cipher
+                - Weakness
+                    - Strength of PIN is based on strength of PIN, 4 digit is only 10000 values
+                    - Pin can be cracked off line
+                    - Many devices use default PIN
+                    - Fixed and unique device address
+                    - Weakness in stream cipher
+        - Bluetooth Threats
+            - Bluesnarfing - attackers gain access to device by exploitng firmware flaw in older devices
+            - Bluejacking - attackers send an unsolicited message to user of bluetooth device, message entices users to respond, if respond problem occurs
+            - Bluebugging - Bluetooth attack, exploting security flaw to gain access to device and commands e.g. eavesdrop, send messaegs, access data
+            - Car Whisperer - software tool, exploits key implementation issue in hands free bluetooth car kits, attacjer can send or receive audio
+            - Fuzzing Attacks - sending malformed or non standard data and observing reaction
+        - Best Practices
+            - Keeo your OS up to date
+            - Turn off Bluetooth or make it not discoverable
+            - Avoid sharing sensitive information
+            - Avoid connecting in public
+            - Delete unused Bluetooth connections
