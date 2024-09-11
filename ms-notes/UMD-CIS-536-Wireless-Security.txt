@@ -4,7 +4,7 @@ Wireless Network Security CIS 546
     - Wireless Networks
         - Ubiqutous, easy, convenient, broad
         - Communication - radio waves
-        - System - analog or digial radio -> transceiver -> amplify front end -> antenna
+        - System - analog or digital radio -> transceiver -> amplify front end -> antenna
         - Characteristics
             - Decreased signal strength
             - Interferences from other sources
@@ -158,7 +158,7 @@ Wireless Network Security CIS 546
                     - Cipher Block Chaining - input to encryption is XOR of next block of plaintext and preceding block of cipher text
                         - Use - block data encryption and authentication
                     - Cipher Feedback - input is processed s bits at a time, previous ciphertext is input to encryption to produce output which is XORed with plaintext to produce ciphertext
-                    - Output Feedback - input ia processed s bits at at time, previous keystream is encrypted
+                    - Output Feedback - input is processed s bits at at time, previous keystream is encrypted
                     - Counter - each block of plaintext is XORed with an encrypted counter
             - Stream Ciphers - operate on individual characters
                 - Characteristics - speed, limited or no error propogation
@@ -176,7 +176,7 @@ Wireless Network Security CIS 546
                 - Tweakable Block Cipher
                     - Tweak - each data unit assigned a tweak, ensuring same position in two different data units will encrypt to two different ciphertext blocks
                 - Advantages
-                    - Efficiency - parallel encryption, simulataneous, random access, nonce and counter, solves stored data security concern
+                    - Efficiency - parallel encryption, simultaneous, random access, nonce and counter, solves stored data security concern
             - Vernam Cipher and One-Time Pad
                 - Perfect Security
                 - Encryption involves taking each character and performing XOR with corresponding bit of key, reverse to decrypt
@@ -196,7 +196,7 @@ Wireless Network Security CIS 546
                 - Encryption - c = m^e mod n
                 - Decryption - m = c^d mod n
                 - Difficult - computing private key from public key is related to factoring, n is massive number i.e. hard to factor
-                - Salting - addd random bytes e.g. PKCS#1
+                - Salting - add random bytes e.g. PKCS#1
             - EIGamal Encryption Scheme
                 - What....
         - Encryption in Practice
@@ -324,7 +324,7 @@ Wireless Network Security CIS 546
             - Extended Validation SSL Certificate
                 - Requires more extensive verification of a business
                 - Browser can indicate to users they are connected to EV SSL
-    - User Authentication - process of verifying an identity claimed by or for a system enttiy
+    - User Authentication - process of verifying an identity claimed by or for a system entity
         - Process
             - Present identity
             - Verify identity
@@ -400,7 +400,7 @@ Wireless Network Security CIS 546
                 - Alice to Bob, Identity and Encrypted Time and Bob Identity
                 - Bob to Alice, Encrypted Time + 1 and Identity
             - Option D - MAC
-                - Alice to Bob - Identity and Challegne
+                - Alice to Bob - Identity and Challenge
                 - Bob to Alice - Challenge Response and then HMAC of challenge response, own challenge, and A as target
                 - Alice to Bob - HMAC challenge response, challenge response, and B as target
 
@@ -410,7 +410,7 @@ Wireless Network Security CIS 546
             - What - infrastructure or ad-hoc
             - Forms - cellular, wifi, bluetooth, RFID
         - Mobile Hardware
-            - Mobile devices or components that recieve or access service of mobility e.g. laptops, smart phone, smart cards, wearables
+            - Mobile devices or components that receive or access service of mobility e.g. laptops, smart phone, smart cards, wearables
         - Mobile Software
             - Program that runs on mobile hardware i.e. operating system and applications
             - Operating System - iOS and Android
@@ -422,12 +422,12 @@ Wireless Network Security CIS 546
                 - Unlimited amounts of applications, increased opportunities for gathering sensitive data
             - App Market Place
                 - Central location to find, buy and download applications
-                - Bettter protection than app install
+                - Better protection than app install
                 - Applications frequently require review before distribution
             - Phone Application - broad application, broad data collection, broad attack surface
         - Open Web Application Security Project Top Ten
             - Improper Platform Usage
-            - Insecure Data storage
+            - Insecure Data Storage
             - Insecure Communication
             - Insufficient Cryptography
             - Insecure Authorization
@@ -435,17 +435,17 @@ Wireless Network Security CIS 546
             - Code Tampering
             - Reverse Engineering
             - Extraneous Functionality
-        - Mobile Platform Thread Models
+        - Mobile Platform Threat Models
             - Attack w/ Physical Access
             - System Attacks
             - Application Attacks
     - Mobile Malware Attacks
         - Examples
             - DroidDream (Android) - data theft and credential scavenging from +58 apps
-            - Ikee (iOS) - worm capabiltiies, jailbroken phones
+            - Ikee (iOS) - worm capabilities, jailbroken phones
             - Zitmo - propogates via SMS via "security certificate", captures info from SMS to defeat two-factor authentication
         - Android Malware
-            - 2015 - 61% increase year by year in mobile malware targeting android devices
+            - 2015 - 61% increase year by year in mobile malware targeting Android devices
                 - 76% trojan, 15% adware, 7% theft
                 - 3.5 million samples per year or 8,400 new instances per day
             - Recent Android Malware
@@ -465,7 +465,7 @@ Wireless Network Security CIS 546
             - Online - Guessing
             - iOS PIN - ~20 minutes on iPhone 4 for a four data pin to guess
         - Attack on Patterns
-            - Smudge Attacks - entering pattern leavees smudging
+            - Smudge Attacks - entering pattern leaves smudging
             - Entropy - people choose simple patterns with few strokes
          - Biometric Unlocking - fingerprint, face, no more secure than backup pin, cannot be changed
     - System Architecture and Defense: iOS Platform
@@ -533,7 +533,7 @@ Wireless Network Security CIS 546
                     - Passcode
                         - Passcode Key - derived by hashing
                         - Flow
-                            - passcode key is derived by hashing pascode and device ID
+                            - passcode key is derived by hashing passcode and device ID
                             - hardware key + passcode key derives class key
                             - class key + file system key produces a file key
                             - file key hashes file contents
@@ -820,19 +820,19 @@ Wireless Network Security CIS 546
                 - Protection of Subscriber's Identity
             - Issues
                 - Provides only unilateral authentication i.e. visitor network is not authenticated
-                - Subject to fake base station atack
+                - Subject to fake base station attack
                 - Authentication triplets can be used indefinitely
                 - No integrity protection services
                 - Short length of encryption
                 - Weakness in A3 and A8
         - UMTS Security (3G)
-            - Reuse fo 2nd Generation Principles
+            - Reuse of 2nd Generation Principles
                 - Removable hardware security module
                 - Radio interface encryption
                 - Limited trust of visitor network
                 - Protection of end user identity
             - Updates
-                - Deal with attacks from a faked base station
+                - Deal with attacks from a fake base station
                 - Deal with lack of encryption in some network
                 - Data integrity
             - New Features
@@ -880,7 +880,7 @@ Wireless Network Security CIS 546
                 - WiFi - most popular WLAN technology, based on IEEE 802.11
             - Infrastructure Based Mode
                 - Access Point and Wireless Stations
-                - STA only community through the AP
+                - STA only communicate through the AP
                 - AP is assigned a service set identifier SSID
                 - If APs SSID are equal, and correct credential supplied, client handed over to strongest signal
                 - AP uses different channels to avoid interference
@@ -919,7 +919,7 @@ Wireless Network Security CIS 546
                 - Message Confidentiality
                     - RC4 - Stream Cipher
                         - For each message
-                            - RC4 is intiialized with shared secret
+                            - RC4 is initialized with shared secret
                             - RC4 produces a pseudo-random byte sequence
                             - Sequence is XORed to the message
                             - Essential that each message is encrypted with a different key stream
@@ -937,7 +937,7 @@ Wireless Network Security CIS 546
                 - Key Management
                     - Keys
                         - Default Key - shared, group, multicast, broadcast
-                            - Shared to all STA, used for braodcase messages
+                            - Shared to all STA, used for broadcast messages
                         - Key Mapping - individual, per-station, unique
                             - Shared to specific STA, used for communication between STA and AP
                         - In practice, only default keys are supported, each STA uses the same shared secret key, in principle STAs can decrypt each other's messages
@@ -960,7 +960,7 @@ Wireless Network Security CIS 546
         - WEP Security Flaws
             - Reality - does not achieve any of the design goals...
             - Authentication and Access Control
-                - Authentication is one way i..e AP is not authenticated to STA and STA is vulnerable to rogue AP
+                - Authentication is one way i.e. AP is not authenticated to STA and STA is vulnerable to rogue AP
                 - Same shared key is used for both authentication and encryption
                 - No session key is established during authentication
                     - Once STA has authenticated and associated to the AP, attacker can send message using MAC address of STA, replay of STA messages is possible
@@ -969,12 +969,12 @@ Wireless Network Security CIS 546
                 - Attacker can manipulate messages despite the ICV mechanism and encryption
                 - No replay protection at all because IV is not mandated to be incremented after each message
             - Confidentiality
-                - IV resuse - IV space is tool small i..e 16,777,216 possible IVs because of 24 bits
+                - IV resuse - IV space is tool small i.e. 16,777,216 possible IVs because of 24 bits
                     - After around 17 million messages, IV reused
                     - IV space is used at about 7 hours if AP at 11Mbs transmits 700 packets per second
                     - In many IVs, IVs are initialized at 0 at startup i.e. devices switched on at nearly same time use same sequence, and with both using default key, IV collisions are readily available
                 - Weak RC4 Keys
-                    - For some seed values, Rc4 output is not really random
+                    - For some seed values, RC4 output is not really random
                     - First few bytes of output reveals alot, breaking key is easier
             - Lessons Learned
                 - Engineering security protocols is difficult
@@ -988,29 +988,29 @@ Wireless Network Security CIS 546
                 - Authentication Framework - Extensible Authentication Protocol
                 - Strong Protocols - Transport Layer Security
                 - Shared Session Key
-                - Encryption/Integirty Split Keys
+                - Encryption/Integrity Split Keys
             - Overview of 802.11i
-                - Robust Security Network - AES, erquires new hardware, integrity with CBC-MAC, encryption CTR
+                - Robust Security Network - AES, requires new hardware, integrity with CBC-MAC, encryption CTR
                 - Temporal Key Integrity Protocol
-                - TKIP -> WiFi Protected Access - runs on old software, corrects WEP flwas
+                - TKIP -> WiFi Protected Access - runs on old software, corrects WEP flaws
                 - WiFi Protected Access 2
                 - Authentication Model
                     - Supplicant requests access to services (mobile device)
                     - Authenticator controls access to the services (access point)
                     - Authentication Server authorizes access to the services (application on AP or dedicated machine)
                     - Port - logical state implemented in software in the AP
-                    - Note - successful authenticatqon results not only in switching port on, but also in a session key between mobile device and authentiacvtion server
+                    - Note - successful authentication results not only in switching port on, but also in a session key between mobile device and authentication server
                 - Extensible Authentication Protocol
                     - Carrier protocol designed to transport messages of authentication protocols
                     - Messages
                         - EAP request - supplication to authentication
-                        - EAP response - authenitcation server to supplicant
+                        - EAP response - authentication server to supplicant
                         - EAP success - signals success
                         - EAP failure - signals failure
                 - EAPOL - Extensible Authentication Protocol over LAN
                     - EAP messages encapsulated into LAN protocols
                     - EAP messages between STA and the AP
-                - RADIUS Remote Access Dial-In User Servic
+                - RADIUS Remote Access Dial-In User Service
                     - EAP messages between AP and Auth Server
                 - Key Hierarchies in WAP
                     - Pairwise Master Key - session key established during session procedure, STA, AP, and Auth Server, used to derive encryption and integrity
@@ -1042,7 +1042,7 @@ Wireless Network Security CIS 546
         - Inventory Control, E-Passport, Electronic Toll Collection, Medical Implants
         - Near Field Communication - RFID tag and reader
     - Security and Privacy Issues
-        - Source - tags resposne to any reader requests enables eavesdropping, unauthorized reading, owner tracking, and cloning
+        - Source - tags respond to any reader requests enables eavesdropping, unauthorized reading, owner tracking, and cloning
         - Challenges - constraints of tag in terms of computation, memory, and power, and usability requirements
         - Major Attacks
             - Eavesdropping
@@ -1072,7 +1072,7 @@ Wireless Network Security CIS 546
             - Blocker 
                 - Binary Tree Walking - reader reads multiple devices, how to determine which tags are present i.e. singulation procedure
                 - Privacy Zone - set bits of ID starting with 0 or 1, blocker tag special device simulates a collision
-            - RFID Enhanceer Proxy
+            - RFID Enhancer Proxy
             - RFID Guardian
             - Disadvantages - specialized auxillary device
     - Countermeasures for Crypto Capable Tags
@@ -1080,8 +1080,8 @@ Wireless Network Security CIS 546
             - Reader must try all possible keys until it finds the right one, verification may be too slow
         - Synchronization Approach
             - Counter Value + Key Shared between Tag and Reader
-            - Tag responds with it scurernt psuedonym and incremenets counter
-            - Reader - matain table with counters, find pseudonym in tables
+            - Tag responds with its current psuedonym and increments counter
+            - Reader - mantain table with counters, find pseudonym in tables
         - Hash-Chain Based Approach
             - Tag - tag responds with pseudonym and hash of state
             - Forward Secrecy - even if a disposed tag is broken and its current state is determined, previous states cannot be computer
@@ -1191,11 +1191,11 @@ Wireless Network Security CIS 546
         - Bluetooth Threats
             - Bluesnarfing - attackers gain access to device by exploitng firmware flaw in older devices
             - Bluejacking - attackers send an unsolicited message to user of bluetooth device, message entices users to respond, if respond problem occurs
-            - Bluebugging - Bluetooth attack, exploting security flaw to gain access to device and commands e.g. eavesdrop, send messaegs, access data
-            - Car Whisperer - software tool, exploits key implementation issue in hands free bluetooth car kits, attacjer can send or receive audio
+            - Bluebugging - Bluetooth attack, exploting security flaw to gain access to device and commands e.g. eavesdrop, send messages, access data
+            - Car Whisperer - software tool, exploits key implementation issue in hands free bluetooth car kits, attacker can send or receive audio
             - Fuzzing Attacks - sending malformed or non standard data and observing reaction
         - Best Practices
-            - Keeo your OS up to date
+            - Keep your OS up to date
             - Turn off Bluetooth or make it not discoverable
             - Avoid sharing sensitive information
             - Avoid connecting in public

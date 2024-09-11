@@ -1,0 +1,267 @@
+Security and Privacy in Cloud Computing
+
+1. 09/03/2024 - Summary of Lecture
+    - Key Information
+        - Class Time - 2:00-4:45PM EST 09/03/2024-12/13/2024
+        - Topics
+            - Storage Security and Privacy
+            - Computation Security and Privacy
+            - Secure Virtualization and Cloud Platform Security
+            - Trusted Cloud Computing Technology
+            - Key Management in the Cloud
+            - Cloud Forensics
+            - Cloud-Related Regulatory and Compliance Issues
+            - Business and Security Risk Models
+        -  Books - Intro_NW_SC_Cloud_Service.pdf - Slide 2
+        - Course Learning Goals
+            - Terminology and Concepts - SaaS, PaaS, IaaS
+            - Encryption Techniques - Transit/At-Rest
+            - Benefits - Cloud Computing
+                - Security, Privacy, Guidance, 
+            - Challenges - Cloud Computing
+                - Threats, Challenges 
+            - Threats - Topology Attack, Virtualization Attack, Side Channel Attack, Outsourced Data Security
+            - Identity and Access Management Best Practices for Controlling User Access
+            - Multi-Factor Authentication and SSO
+            - Privacy Data Regulations - GDPR, HIPAA, CCPA
+            - Audit and Compliance - Internal Policy Compliance and Governance Factors
+            - Security-As-A-Service
+            - Networking - Software Defined Networking SDN, Network Function Virtualization NFV, Quality of Experience QoE, IoT
+        - Outcomes
+        - Topics Covered - Syllabus Outline
+            - Security Basics and Review
+            - Evolution of Cloud Computing and Infrastucture
+            - Attack Surfaces
+            - Data Security and Storage
+            - Identity and Access Management
+            - Security Management in the Cloud - Common Services
+            - Virtualization Security, Outsourced Security
+            - Audit and Compliance
+            - Cloud Service Providers
+            - Foundations of Modern Networking SDN, NFV, QoE, IoT
+        - Paper Idea - Achieving HIPAA Compliance in Cloud Computing
+    - Review of Network Security Principles
+        - Network Security Concepts
+            - Introduction
+                - Information = Asset
+                - Goal - Secure Asset from Attack
+                - CIA - Confidentiality, Integrity, and Availability
+                    - No Unauthorized Access - Confidential
+                    - No Unauthorized Change - Integrity
+                    - Available
+            - Concepts
+                - Computer Security - tools to protect physical machine
+                - Network Security - policies and practices to prevent and monitor unauthorized accesss, misuse, modification, or denial of a network or accessibility
+                - Internet Security - measures to deter, prevent, detect, and correct security violations that involve transmission of data
+            - Standards Organizations
+                - NIST - National Institute of Standards and Technology
+                - ISOC - Internet Society
+                - IETF - Internet Engineering Task Force
+                - ISO - International Organization for Standardization
+            - Level of Impact
+                - High - loss has a servere catastrophic effect
+                - Medium - serious effect
+                - Low - limited adverse effect
+            - Security Attack 
+                - Active - alter system resources or their operation (defend)
+                - Passive - learn or make use of info, does not effect system resources (monitor)
+            - Taxonomy of Attacks
+                - Confidentiality - Snooping, Traffic Analysis
+                - Integrity - Modification, Masquerading, Replaying, Repudiation
+                - Availability - DOS
+            - Design Principles
+            - Techniques
+                - Cryptography
+                    - Symmetric Key Encipherment - K = K
+                        - Text -> Encrypt Algorithm -> Shared Key -> Transmitted Cipher -> Decrypt
+                        - Decrypt Inverse of Encrypt
+                    - Asymmetric Key Encipherment - K, K'
+                    - Hashing
+                - Steganography
+                    - Hiding Infromation
+            - Cryptography History
+                - Substitution Ciphers
+                - Monoalphabetic Ciphers
+                    - Additive or Shift - Caesar Cipher
+                - Polyalphabetic Cipher
+                    - Start with K = n. Shift value each time
+                - Transposition Cipher
+                    - Changes location of symbols
+                - Modern Symmetric Key Ciphers - Bit Oriented
+                    - Convert text to bits and process
+            - Symmetric Block Encryption Algorithms (k = K)
+                - Block Cipher - n-bit plaintext -> encryption - n-bit cipher text
+                    - Transposition, Substitution, XOR, Shifting, Swapping, Splitting, Combining
+                - Examples
+                    - Data Encryption Standard - REVIEW
+                    - 3 Data Encryption Standard - 3 Keys x DES
+                    - Advanced Encryption Standard
+            - Asymetric Ciphers (K, K') - (public, private) - (encrypt, decrypt)
+                - How are keys created and managed?
+                - RSA - Rivest, Shamir, and Adelman
+            - World Wide Web
+                - WWW - Distributed Client-Server Service
+        - Block Encryption Algorithms
+        - Cloud Computing
+            - Evolution
+                - Mainframe -> Minicomputer -> PCs -> Client-Server -> IP Networks -> Mobile Devices -> Cloud
+                - NIST - model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources
+                - Examples - networks, servers, storage, applications, services - rapidly provisioned and release with minimal management effort
+            - Software As A Service - Minimal Management
+            - Platform As A Service - Medium Management
+            - Infrastructure As A Service - High Management
+            - Deployment
+                - Public Cloud - available to general public or a larger industry group
+                - Private Cloud - operated solely for an organization
+                - Hybrid Cloud
+            - Concentration of Resources = Concentration of Risk
+            - Features
+            - Attributes
+                - Deployment Speed, Start Up Costs, Usage/Subscription Costs, Multi-Tenancy
+            - Essential Characteristics
+                - On-Demand, Network Access, Elasticity, Measured Service
+        - Layer Security (Network, Transport, Application)
+
+2. 09/10/2024
+    - Cloud Computing - new computing paradigm, involving data and computation outsourcing
+        - Quick History
+            - 60s Computing Utility - Multiplexed Information and Computing Service - Computing = Service
+                - Failure - lack of communication technology, personal computers became cheaper and more powerful
+            - 90s - Grid Computing - mainframe with multiple users
+            - Post 90s - large data center w/ low utilization, switch to virtualization and sell excess
+        - Cloud vs. Grid
+            - Cloud - flexible, pay as you go, scalable, service oriented
+            - Grid - no usage pay, application oriented
+        - Internet Today - hosts, servers, links, packets
+            - Backbones - large networks owned by some communication companies
+        - Cloud Computing - new computing paradigm, involving data and computation outsourcing
+        - Benefits
+            - Clients
+                - Infinite and elastic resource scalability, increase/decrease
+                - On-demand jut in time provisioning
+                - No operational costs
+            - Providers
+                - Utilization of resources
+        - Interfaces
+            - Frontend
+                - Client Infrastructure, User Interface
+            - Backend
+                - Storage, Services, Applications, Security
+        - Attributes
+            - Multitenancy - resources are shared i.e. multiple users of the same resource at network, host, and application level
+            - Massive Scalability - ability to scale up/down systems, bandwidth, and storage
+            - Elasticity - users can increase/decrease their computing resources, adapt to unpredictable changes in demand
+            - Pay As You Go - only pay for resources you use
+            - Self-Provisioning of Resources - reduce reliance on IT by enabling anyone to obtain resources
+        - Cloud Delivery Models
+            - SaaS, PaaS, IaaS
+                - IaaS - selling virtualized hardware - Amazon EC2
+                - PaaS - access to a configurable platform/API - Google App Engine
+                - SaaS - software that runs on top of a cloud - Google Docs
+        - Cloud Providers
+            - Google, Amazon, Microsoft, IBM
+        - Cloud Deployment Models
+            - Public, Hybrid, Private
+        - Cloud Domains
+            - High Performance Computing, Analytics, Finance, Web, Other
+        - Technologies (Pre-Existin)
+        - Architecture
+            - Client -> Public Internet -> [SaaS -> PaaS -> IaaS]
+            - Benefit - multiple devices, wherever you are, browser = main interface
+            - High Speed Broadband Access - widely available, fast, powerful, networking
+        - Transmission of Digital Signals
+            - Baseband Transmission - entire bandwidth consumed by a single signal without changing digital to analog
+            - Broadband Transmission - multiple signals are sent using multiple frequencies simultaneously by a single channel
+        - Storage Devices
+            - Logical - File, SQL Database, NoSQL Database, Other
+            - Hardware - Disks
+        - Virtualization Technologies
+            - Virtualization - abstraction of compute resources (CPU, network, storage, memory, application, database) from applications and end users consuming the service
+            - Enables - multitenancy, scalability, shared resources
+            - Hypervisor Environment
+                - Goal - run instances of various operating systems in a public cloud
+                - Hypervisor - application that runs on top of physical machine hardware layer
+                - Hypervisor Actions - manage virtual cpu, memory, event channels, and memory shared by virtual machines, control I/O and memory access
+        - Application Programming Interface
+            - API - enable management and control of cloud services and resources
+            - API Forms - Language, Protocol, etc.
+        - Cloud Services Delivery Model
+            - Types
+                - Evolving, Nascent, Maturing
+            - SaaS
+                - You - Data
+                - Cloud Provider - Applications, Runtime, Middleware, OS, Virtualization, Servers, Storage, Networking
+            - PaaS
+                - You - Data, Applications
+                - Cloud Provider - Runtime, Middleware, OS, Virtualization, Servers, Storage, Networking
+            - IaaS
+                - You - Data, Applications, Runtime, Middleware, OS
+                - Cloud Provider - Virtualization, Servers, Storage, Networking
+        - Software-As-A-Service Model
+            - Benefits
+                - Organization to outsource hosting and management of applications
+                - Software vendors manage control, use, distribution, and access to software
+                - End user can access SaaS over common client, browser
+            - Negatives
+                - SaaS applications frequently are not customizable
+        - Platform-As-A-Service Model
+            - Benefits
+                - Scalability, reliability, and security
+                - Maintain security of source code and intellectual property
+                - Pay-As-You-Go
+        - Infrastructure-As-A-Service Model
+            - Benefits
+                - Scalability
+                - Pay As You Go
+                - Purchase Granularity and Timeliness
+                - Top Class Technolgoy and Resources
+                - Reduce Reliance on IT Specialty
+        - Key Drivers to Adopting Cloud
+            - Low Capitol, and Low Predictable Operational Costs
+            - Economies of Scale
+            - Open Standards
+            - Sustainability
+        - Impact of Cloud Computing on users
+            - Individual Consumers - already making use of cloud
+            - Individual Businesses - low entry costs for cloud services
+            - StartUp - IT department is low priority
+            - Small and Medium Size Business
+            - Enterprise Business
+        - Governance in the Cloud
+            - On-Premise - everything
+            - On-Premise Hosted - everything
+            - IaaS - 
+            - PaaS -
+            - SaaS
+        - Barriers to Adoption
+            - Security and Privacy Barriers - HIPAA
+            - Data - Confidentiality, Integrity, Available
+        - Anatomy of Fear
+            - Confidentiality
+            - Integrity
+            - Available
+            - Massive Data Mining
+            - Increased Attack Surface
+            - Auditability and Forensics
+            - Legal and Transitive Trust Issues
+        - Threats, Vulnerabilities, and Enemies
+            - Threat Model - analyzing a security problem, design mitigation strategies, and evaluation solutions
+                - Identify attackers, assets, threats, and other components
+                    - Insider, Outsider, Cloud Provider
+                - Rank the threats
+                - Choose mitigation strategies
+                - Build solutions based on the strategies
+            - STRIDE
+                - Spoofing
+                    - Mitigation - authentication, protect secrets, do not store secrets
+                - Tampering
+                    - Mitigation - authorization, hashes, MACs, digital signatures, tamper resistance
+                - Repudiation
+                    - Mitigation - digital signatures, timestamps, audit trails
+                - Information Disclosure
+                    - Mitigation - authorization, encryption, protect secrets
+                - Denial of Service
+                    - Mitigation - authentication, authorization, filtering, throttling, quality of service
+                - Elevation fo Privilege
+                    - Mitigation - run with least privilege
+

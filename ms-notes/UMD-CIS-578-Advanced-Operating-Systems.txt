@@ -1,0 +1,83 @@
+Security and Privacy in Cloud Computing
+
+1. 09/05/2024 - Summary of Lecture
+    - Introduction
+        - Operating System - intermediary between a user of a computer and the computer hardware
+        - System Structure
+            - Hardware - basic computign resources e.g. CPU, memory, I/O devices
+            - Operating System
+            - Application Programs - compilers, browsers, database, video games
+            - Users - people, machines, other computers
+            - Bottom Up - Hardware -> Operating System -> Application Programs -> Users
+        - System Definition
+            - Resource Allocator - manage all resources, decides between conflicting requests for efficient and fair resource use
+            - Control Program - controls execution of programs to prevent errors and improper use of the computer
+            - Kernel - program running at all times on the computer
+                - Goal - handle core functions that are really important e.g. scheduler
+        - Computer Start-Up (Multi-Step)
+            - Problem - OS needs to interface with hardware it does not know about
+            - Solution - Firmware, enough data to identify locations to load OS
+            - Bootstrap Program - BIOS - ROM or EPROM - initialize all aspects of system
+        - Organization
+            - Memory
+            - Bus
+            - Components - CPU, Disk, USB, Graphiucs
+        - Interrupt
+            - Trap or Exception to generate an interrupt
+            - Control transfers to the interrupt service routine through the interrupt vector, address of all service routines
+            - Alternative - Polling
+            - Interrupt Handling
+                - Preserve state of the CPU by storing registers and program counter
+                - State - values in registers, program execution point, stack, heap, program code
+        - Storage Hierarchy
+            - Registers (Fast, Expensive, Small)
+            - Cache
+            - Main Memory
+            - Solid State Disk
+            - Hard Disk
+            - Optical Disk
+            - Magnetic Tapes (Slow, Cheap, Large)
+            - Access Time - .n nanoseconds to 5m nanoseconds
+        - Caching
+            - Storing important, frequently used data, closer to the CPU
+            - If data in cache, cache hit, if not, cache miss, must load data to cache
+        - Direct Memory Access
+            - For certain devices, driver should talk directly to memory, improving speed of system
+            - Data can be transferred in a block
+            - CPU is not involved
+        - How a Modern Computer Works - Von Neumann
+            - Program, Data - Sequence of Bytes
+            - Simplify to handle instructions
+        - Processing
+            - Multiprocessor Architecture - single main memory, multiple CPUs
+            - Asymmetric - each processor is assigned a specific task
+            - Symmetric - each processor performs all tasks
+        - Multi-Programming
+            - Organization of jobs so CPU always has one to execute
+            - Jobs are run via job scheduling
+            - A single CPU can be multi-programmed
+        - Multi-Threading - single program whose tasks are split amongst multiple threads
+        - Timesharing - multiple userrs on a single system, keep CPU busy
+        - Modes
+            - User - abstracted layer through which user's request access to computer resources
+            - Kernel - privileged access to important resources and system calls
+            - Transition
+                - User Process -> System Call -> Trap to Kernel Mode -> Execute System Call -> Return from Trap
+        - Process Management
+            - Process - mental model for a program
+            - Requirements - CPU, memory, I/O, files, data, program counter, registers
+        - Protection and Security
+            - Protection - mechanism for controlling access of processes or users to resources defined by the OS
+            - Security - defense of the system against internal and external attacks
+            - Users
+                - User Identities - name, id, number
+                - User ID assocaited with all files
+                - Group Identifier - set of users to be defined and controls managed
+                - Privilege Escalation - allows user to change to effective ID with more rights
+        - Model of Computer Networks/Systems
+            - Client/Server - client communicates with hosted servers
+            - Peer to Peer - clients directly communication with each other
+    - OS Structure
+        - Operating System Services
+            - user interface, program execution, I/O operations, file system, communications, error detection
+            - resource allocation, accounting, protection and security
