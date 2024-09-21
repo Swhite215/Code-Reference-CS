@@ -81,3 +81,40 @@ Security and Privacy in Cloud Computing
         - Operating System Services
             - user interface, program execution, I/O operations, file system, communications, error detection
             - resource allocation, accounting, protection and security
+
+2. 09/12/2024
+    - Clustered Systems
+        - Asymmetric Clustering - one machine in hot-standby mode
+        - Symmetric Clustering - multiple nodes running applications monitoring each other
+    - OS Structure
+        - Multiprogramming - efficiency, CPU switches between jobs to keep the CPU and I/O busy via job scheduling
+        - Multitasking - efficiency - CPU switches jobs so frequenlty that multiple users can interact
+    - User to Kernel Mode
+        - Context Switch
+        - Watchdog Timer
+    - Process
+        - What - program in exeuction
+        - Resources - CPU, memory, I/O, files, daat
+        - Registers
+            - Program Counter - location of next instruction, one pc per thread
+        - Management
+            - Create and delete both user and system processes
+            - Suspend and resume processes
+            - Synchronization
+            - Communication
+            - Deadlock Handling
+    - Memory
+        - Management
+            - Memory Usage
+            - Memory Input and Output
+            - Allocating and Deallocating Memory
+            - Disk Scheduling
+        - Files
+            - Create, delete, manipulate, map, backup
+    - SMp vs. AMP
+        - Multiprocessor - use more than one CPU to improve performance
+        - Symmetry - all CPUs are equal
+        - Asymmetry - varying CPU responsibilities and capabilities
+        - Instructions and Data Streams
+            - Single Instruction SIngle Data
+            - 
