@@ -81,3 +81,70 @@ Security and Privacy in Cloud Computing
         - Operating System Services
             - user interface, program execution, I/O operations, file system, communications, error detection
             - resource allocation, accounting, protection and security
+
+2. 09/12/2024
+    - View of Operating System
+        - Kernel - Mono vs. Micro
+            - Monolithic - shared, + performance, - security
+            - Micro - isolated, message passing, +security, - performance
+        - Application Programming Interface
+            - System Call Implementation
+                - Name = Unique ID
+                - Unique ID - optimized look up of call through index into an array
+            - Parameter Passing
+                - Registers - fast, normally only a few registers are available
+                - Block Memory - store all, pass starting in a list, immediate access by memory address multiple times
+                - Stack - push and pop, must push and pop to target value
+            - Types of System Call
+                - File Management
+                - Memory Management
+                - Communication
+                - Parallel Programming
+            - Background Services/Processes
+                - Background - process started, memory allocated, put process to sleep
+        - Design
+            - Policy - what will be done
+            - Mechanism - how will it be done
+        - Layered Approach
+            - Layer 0 (Hardware) -> Layer X (Kernel) -> Layer N (User)
+        - Microkernel System Structure
+            - Positive - separation of concerns, modularity, reduction of bugs
+            - Negative - communication between microkernels,
+            - Goal - essential kernel mode functionality is encapsulated as independent kernels that communication with each other
+            - Other - Loadable Kernel Module
+    - SMP vs. AMP
+        - Multiprocessing/Multiprocessors
+            - Why:
+                - Limitation of a single CPU
+                - Multiple Users
+                - Multiple Applications
+                - Multi-Tasking
+                - Responsiveness and Throughput
+            - Issue: how do I make use of multiple processors?
+        - Symmetric Multiprocessing - all cores are treated equally
+        - Asymmetric Multiprocessing - one or more cores are specialized
+        - Instructions and Data Streams
+            - Single Instruction Single Data - single instruction on single piece of data (traditional)
+            - Multiple Instruction Multiple Data - multiple instructions for multiple pieces of data
+            - Single Instruction Multiple Data - same instruction on multiple pieces of data (graphics processing)
+            - Multiple Instruction Single Data - redundancy, verification
+        - Processor Coupling
+            - Tightly Coupled - CPUs are connected over a bus
+                - + access to a shared central memory
+            - Loosely Coupled - processors interconnected via a high speed communication system
+                - + isolation
+        - Architectures
+            - Message Passing
+                - - latency
+                - + isolation
+            - Shared Memory - multiple programs acceessing same memory
+                - + low latency, easy
+        - Memory Access
+            - Bus Based Uniform Memory Access - access time for each CORE is uniform
+            - Non Uniform Based Memory Access - access time to local memory for process is faster than access to another processors's remote memory
+        - Operating System Distribution
+            - Option #1 - OS on all CPUs
+            - Option #2 - OS on one CPU, system calls passed to Main CPU for processing
+            - Option #3 - Kernel is on everything
+
+        
