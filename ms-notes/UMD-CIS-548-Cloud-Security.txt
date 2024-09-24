@@ -262,6 +262,169 @@ Security and Privacy in Cloud Computing
                     - Mitigation - authorization, encryption, protect secrets
                 - Denial of Service
                     - Mitigation - authentication, authorization, filtering, throttling, quality of service
-                - Elevation fo Privilege
+                - Elevation of Privilege
                     - Mitigation - run with least privilege
 
+3. 09/24/2024
+    - Infrastructure Security
+        - What - practices and measures implemented to protect the underlying infrastructure of cloud computing environments from various threats and vulnerabilities
+        - Why
+            - Protect sensitive data
+            - Ensure business continuity
+            - Mitigate cyber threats
+            - Build trust with customers
+        - Who
+            - Cloud Provider - secure the infrastructure
+            - Cloud Customer - secure their data and applications
+    - Challenges and Best Practices
+        - Challenges
+            - Data breaches, unauthorized access, insider threats, compliance issues
+        - Best Practices
+            - Encryption, IAM, network security, monitoring and logging, regular audits and assessments
+    - Security Automation Emerging Trends
+        - Zero Trust Architecture - no inherent trust
+        - Cloud Native Security - dynamic, microservices driven architecture
+        - AI and Machine Learning for Threat Detection
+        - Regulatory Requirements
+    - Cloud Deployment Models
+        - Public - managed by CSP
+        - Private - manaed by organization
+            - + greater control and customization, satisfy strict security and compliance needs
+        - Hybrid - two of above
+        - Community - managed by several organizations
+        - Comparisons - Slides 10 and 11
+    - Cloud Service Models
+        - SaaS - data = user
+        - PaaS - all = CSP, software and data = user
+        - IaaS - majority = user
+        - Comparisons - Slide 18, 19, and 20
+    - Tradeoffs and Provisions
+        - IaaS - network security, vulnerability management, IAM
+        - PaaS - IAM, data security, compliance
+        - SaaS - data ownership, incident response
+    - CIA Triad
+        - Confidentiality
+        - Integrity
+        - Availability
+        - Accountability
+        - Authenticity
+    - Security Levels of Impact
+        - High - severe loss and effect
+        - Moderate - serious loss and effect
+        - Low - limited loss and effect
+    - Security Challenges
+        - Shared Responsibility Model - provider and user
+        - Complexity
+        - Visibility
+        - Compliance
+    - Aspects of Security
+        - Threat
+            - Data Breaches - unauthorized access, use, disclosure, disruption
+            - DOS - denial of service
+            - Malware - malicious software
+            - Account Compromises - unauthorized access
+            - Insider Threats - malicious or negligent actions
+        - Attack
+            - Zombie
+            - Service Injection
+            - Attack on Virtualization
+            - Man in the Middle
+            - Metadata
+            - Phishing
+            - Backdoor
+            - CSP Level 1
+                - Guest Hopping - attack trys to get access to one VM by penetrating another VM on same hardware
+                - SQL Injection - injecting SQL commands into database of an application
+            - CSP Level 2
+                - Malicious Insider - exposed or misused
+                - Side Channel - place VM on same physical machine to access info on victim's machine
+        - Data Related Security
+            - Data Breach
+            - Data Lock In - lose data if migrating
+            - Data Remanence - residual representation of data that has been nominally erased or removed
+            - Data Recovery - data loss
+            - Data Locality - users know where data is stored
+        - Mechanism
+        - Service
+        - RFC 4949 (Threats and Attacks)
+    - Infrastructure Security - Network Level
+    - Mitigating Risk Factors
+        - VPN Tunnels - secure channel between on-premise and cloud provider
+        - IAM Systems
+        - Load Balancers
+        - CSPM Tools - Cloud Security Posture Management
+    - Security in Networking Devices
+        - Hubs - Input Port -> All Ports (Physical)
+        - Switch - Input Port -> Target Port (Data Link)
+        - Router - Route to Other (Network)
+    - Access Control
+        - What - ability to limit and control the access to host systems and applications via communication links
+    - Network Level
+        - Data in Transit - confidentiality and integrity
+        - Logging - CSP primarily
+        - Reassigned IP Address
+        - Availability of Cloud Resources
+        - Physically Separated Tiers become Logically Separated
+    - Ensuring Data Confidentiality and Integrity
+        - Secure Protocols
+    - Ensuring Proper Access Control
+        - Correctly Reassign IP Addresses
+        - Address Resolution Protocol - Lag in MAC Updates
+    - Ensuring Availability
+        - DNS Security
+        - DDOS Security
+    - Attack Surface
+        - Layering - Deep to Shallow
+        - Attack - Small to Large
+        - Ideal - Small Attacj Surface and Deep Layering
+    - Bad Guys
+        - Eavesdrop
+        - Insert Messages
+        - Impersonate
+        - Hijack
+        - DOS
+    - Network Level Attacks
+        - Domain Hijacking - change name of a domain without the knowledge or permission from domain's owner
+        - DNS Attack - cross site scripting, user enters right url, and hacker redirects to own website
+        - IP Spoofing
+        - DOS Attack - overflow network server or webserver with frequent requests
+        - Man in the Middle - insecure socket layer, eavesdrop
+        - Network Sniffing - unencrypted data
+    - Tool - Wireshark
+        - Packet Sniffer
+            - Packet Capturer - copy outgoing and incoming frames
+            - Packet Analyzer - extract headers and analyze message
+    - Encapsulation and Decapsulation
+        - Encapsulation
+            - Application -> Transport -> Network -> Datalink -> Physical -> Router = Header++ Each Layer
+            - Application HTTP
+            - Transport - [4, HTTP]
+            - Network - [3, 4, HTTP]
+            - Data Link - [2, 3, 4, HTTP]
+    - Network Level Mitigation
+        - Preventive Controls
+        - Detective Controls
+    - Host Level
+        - Cloud - Hypervisor (Zero-Day)
+        - User - Virtual Machine
+            - SSH Private Keys, Images, Vulnerable Services
+    - Application Level
+        - Economic Denial of Sustainability
+        - Denial of Service
+        - End User Security
+        - Web Security
+        - Attacks
+            - Cloud Malware Injection
+            - Cookie Poisoning
+            - Backdoor and Debug
+            - Hidden Field Manipulation
+        - Solutions
+            - Minimize Lack of Trust
+            - Minimize Loss of Control
+            - Minimize Multi-Tenancy
+    - Guidance
+        - Least Privilege Access
+        - Strong Authentication and Authorization
+        - Monitor and Audit
+        - Software Update
+        - Disaster Recovery Plan
