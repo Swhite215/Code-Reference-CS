@@ -138,7 +138,7 @@ Security and Privacy in Cloud Computing
                 - - latency
                 - + isolation
             - Shared Memory - multiple programs acceessing same memory
-                - + low latency, easy
+                - + low latency, easy, difficult to scale
         - Memory Access
             - Bus Based Uniform Memory Access - access time for each CORE is uniform
             - Non Uniform Based Memory Access - access time to local memory for process is faster than access to another processors's remote memory
@@ -146,5 +146,137 @@ Security and Privacy in Cloud Computing
             - Option #1 - OS on all CPUs
             - Option #2 - OS on one CPU, system calls passed to Main CPU for processing
             - Option #3 - Kernel is on everything
+    - Von Neumann Model
+        - What - program instructions and data are both stored as sequences of bits in computer memory
+        - Memory Interface
+            - Memory Address Bus - memory addres for the addres bus
+            - Memory Data Bus - ?
+            - Address Space - amount of data that can be stored
+            - Addressability - number of bits stored in each memory location
+        - Processing Unit
+            - Arithmetic and Logic Unit - arithmetic, boolean, logical
+            - Word Length - number of bits processed by the ALU
+        - Control Unit
+            - What - directs execution of the program, prevent bus conflicts and timing/propogation problems
+            - Program Counter - points to next instruction
+            - Instruction Register - currently executing instruction
+            - Status Register - last instruction executed and system parameters
+        - Reduced Instruction Set Computer - one instruction per clock cycle
+        - Complex Instruction Set Computer - multiple clock cycles per instruction
+        - Bottleneck - all instructions and data has to be fetched from memory, path to memory is bottleneck
+    - Process Continued
+        - What - program in exeuction
+        - Program - passive
+        - Process - active
+        - Parts
+            - Code
+            - Program Counter
+            - Stack - temporary data, grows down
+            - Data - global variables
+            - Heap - dynamic memory, grows up
+        - States - new, running, waiting, ready, terminated
+        - Diagram - new -> ready, ready -> running, running -> ready, running -> waiting, running -> terminated
+        - Process Control Block
+            - Process State
+            - Process Number
+            - Program Counter
+            - Registers
+            - Memory Limits
+            - Open Files
+        - Scheduling
+            - Job Queue - set of all processes in the system
+            - Ready Queue - all processes residing in main memory, ready and waiting to execute
+            - Device Queues - set of processes waiting for an I/O device
+            - Schedulers
+                - Short Term - selects which process should be executed next and allocates CPU
+                - Long Term - selects which processes should be brought into ready queue, controls multiprogramming, mix of CPU and I/O
+                - Mid Term - remove process from memory, store on disk, bring back in from disk i.e. swapping
+            - Bounds
+                - I/O Bound - spends more time doing I/O than computations, many short CPU bursts
+                - CPU Bound - spends more time doing computations, very few long CPU bursts
+        - Context Switch
+            - Context = PCB
+            - What - when CPU switches to another process, the system must save the state of the old process and load the saved data for the new process
+        - Process Creation
+            - Parent - initial process
+            - Children - created by parent
+            - Process Identifier - PID
+            - Resource Sharing
+                - Parent and Children share all resources
+                - Children share subset of Parent's resources
+                - Parent and Children share no resources
+            - Execution Options
+                - Parent and Children execute concurrently
+                - Parent waits until Children terminate
 
-        
+3. 09/19/2024
+    - Multitasking in Mobile Systems
+        - Foreground Process - controlled via user interface
+        - Background Process - in memory, running, but not on display, cost on resources if background process number grows unbounded
+    - Queues
+        - Ready Queue - linked list of PCBs
+        - Device Queue - for each device, a linked list of PCBs, offloaded work for file access
+    - Process Creation - fork() and exec()
+        - Tree of Processes in Linux
+            - Create first process - must load this process directly from memory on init, must be coded and defined e.g. assembly language
+            - Process ID 1 - starts other procesess
+            - Question - every process is a child of what process? init
+        - fork() - system call to create a new process, why, duplicate of parent, change PCB to new contents i.e. new program
+        - exec() - system call used after fork() to create a new process
+        - exit() - system call used to end execution
+        - wait() - system call used by parent to wait for child
+        - If parent or child never terminate, they never release their resources
+        - Improvement - dont copy all data if all is not going to be used, waste of energy
+    - Process Termination
+        - Cascading termination - all children etc
+        - How is Chrome like a mini operating system? Multiple processes that handle specific tasks
+    - Interprocess Communication
+        - Message Passing
+            - Good - process are isolated, security
+            - Bad - messages add overhead
+        - Shared Memory
+            - Good - fast, easy to setup, good performance
+            - Bad - if any process corrupts memory, it affects the other, security
+        - Cooperasting Processes
+            - Independent - process cannot affedct or be affected by exeuction of another
+            - Cooperating - process can affect or be affected by execution of another process
+        - Direct Communication
+            - Process A -> Process B
+            - A communication link must be established
+        - Indirect Communication (Mailbox)
+            - Messages are directed and received from mailboxes
+            - Link established if process share a common mailbox
+        - Communication
+            - stdin, stdout, stderr
+            - dir | sort > output.txt
+    - Synchronization
+        - Blocking (synchronous, order is preserved, wasting time)
+            - Blocking Send - sender is blocked until the message is received
+            - Blocking Receive - receiver is blocked until a message is available
+        - Non-Blocking (asynchronous)
+            - Non-Blocking Send - sender sends the message and continues
+            - Non-Blocking Receive - receiver receives valid or null
+    - Buffering
+        - Queues of messages attached to the link
+        - Zero Capacity - no messages are queued
+        - Bounded Capacity - sender must wait if link full
+        - Unbounded Capacity - sender never waits
+    - Socket
+        - Endpoint for communication, IP and Port
+        - < 1024 are well known ports
+        - 127.0.01 - loopback
+    - Pipe
+        - Conduit allowing two processes to communicate
+        - Ordinary Pipe - parent child relationship, unidirectional, producer writes to one end, consumer reads from other end
+        - Direction: Unidirectional vs. Bidirectional
+    - Signals
+        - Events emitted, that can be processed with a signal handler to perform a certain task
+        - Security - how do you avoid signals emitted from programs from affecting others? - user control
+    - Threads
+        - Concurrency vs. Parallelism
+            - Concurrency - multiple processes on single core
+            - Parallelism - multiple concurrent processes on multiple cores
+        - Single Thread vs. Multi Threaded
+            - Threads can share code, data, and files
+            - Threads have their own registers and stack
+            - Context Switch between threads in the same process is faster than context switch between two processes
