@@ -4,7 +4,7 @@ Security and Privacy in Cloud Computing
     - Introduction
         - Operating System - intermediary between a user of a computer and the computer hardware
         - System Structure
-            - Hardware - basic computign resources e.g. CPU, memory, I/O devices
+            - Hardware - basic computing resources e.g. CPU, memory, I/O devices
             - Operating System
             - Application Programs - compilers, browsers, database, video games
             - Users - people, machines, other computers

@@ -63,7 +63,7 @@ Operating Systems CIS 450
             - ./thread 100000 - doesn't produce expected value... why?
             - Issue
                 - This relates to how instructions are executed
-                - A key part of the porogram, where the shared counter is incremented, takes three instructions
+                - A key part of the program, where the shared counter is incremented, takes three instructions
                     - Load the value
                     - Increment the value
                     - Store back to memeory
