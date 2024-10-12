@@ -376,7 +376,7 @@ Security and Privacy in Cloud Computing
     - Attack Surface
         - Layering - Deep to Shallow
         - Attack - Small to Large
-        - Ideal - Small Attacj Surface and Deep Layering
+        - Ideal - Small Attack Surface and Deep Layering
     - Bad Guys
         - Eavesdrop
         - Insert Messages
@@ -428,3 +428,166 @@ Security and Privacy in Cloud Computing
         - Monitor and Audit
         - Software Update
         - Disaster Recovery Plan
+
+4. 10/01/2024
+    - Data Security and Storage
+        - Cloud Security 
+            - What - traditional data confidentiality, integrity, availability, and privacy issues +extra
+            - High Level Concerns
+                - Loss of Control
+                - Compliance
+                - Reliability
+                - Data Security
+                - Security Management
+            - Customer Concerns
+                - Someone is controlling my data
+                - My data is on the same storage as data from other users
+                - I only have one copy
+                - Still responsible for compliance
+                - Where is my data stored?
+                - How is my data segregated?
+            - Threat Tree
+                - Threat 1 Data in Wrong Hands
+                    - Accidentally Compromised
+                        - Human Nature
+                        - Cloud Enforcement Failure
+                        - H/W Repai 
+                    - Deliberately Compromise
+                        - Inside Job
+                        - Inside Job
+                        - Data Transmission Observed
+            - Aspects of Data Security in the Cloud
+                - Data in Transit - in transit
+                    - Threat - eavesdropping, MITM
+                - Data at Rest - at rest
+                    - Threat - unauthorized access, theft, leakage
+                - Processing of Data - handling
+                    - Threat - unauthorized access, breach, leakage, loss
+                - Data Lineage - tracing
+                    - Threat - tampering, loss
+                - Data Provenance - documenting
+                    - Threat - tampering, loss
+                - Data Remanence - residuald
+                    - Threat - data recovery
+            - Hardware Layer
+                - What - physical resources e.g. servers, routers, switches, colling systems in data centers
+                - Responsibilities - hardware, fault tolerance, traffic management, power and cooling
+            - Infrastructure Layer
+                - What - virtualization layer, hypervisors, and virtual machines
+                - Virtualization Technology
+                    - What - allow a system to predent to be more than one system i.e. abstractions
+                    - Benefits - resource utilization, flexible management, easy provisioning
+                    - Lifecyle
+                        - IT Service Request
+                        - VM Provision - define server configuration based on user requirements
+                        - VMs in Operation
+                        - Release VM
+                    - Migration Techniques
+                        - Live/Hot - movement of a virtual machine from one physical host to another while powered on
+                            - VM state is copied
+                            - Source VM is suspended
+                            - Network is routed into target VM
+                            - Target VM starts
+                        - Regular/Cold - movement of a powered off virtual machine
+                            - Configuration, logs, and disk are moved from source to hos 
+                            - VM is registerd with new host
+                            - Old version of VM is deleted from source host
+                    - Migration Type 
+                        - Physical to Virtual - salvage a system, consolidate physical servers
+                        - Virtual to Virtual - upgrade host hardware, os, or hypervisor
+                        - Virtual to Physical - recovering a physical from a VM backup
+                        - Physical to Physical - upgrading hardware
+            - Platform Layer
+                - What - OS and application frameworks
+            - Application layer
+                - What - actual cloud applications
+        - Cloud Data Storage
+            - Challenges
+                - Data Security
+                - Data Location
+                - Mixing or Commingling
+                - Data Discovery
+                - Data Persistence
+                - Distributed Transaction Atomicity
+                - Performance and Cost Effectiveness
+                - Interoperability
+                - Data Center and Storage Architecture
+                - Data Backup and Recovery
+                - Replicaiton and Consistency
+                - Scalability
+                - Accessibility
+            - Concerns
+                - Vendor Security
+                - Isolation/Segregation
+                - Data Location
+                - Management Interface
+                - Reputation Sharing
+                - Provider's Viability
+                - Compliance
+                - Data Loss and Leakage
+                - Data Recovery
+            - Protections
+                - Data Classification
+                - Encryption
+                - Authentication
+                - Vulnerability Assessment
+                - Monitor
+                - Backup
+                - Notification
+                - Do Not Trust the Server
+            - Mitigtaions
+                - Data Encryption
+                - MultiTenancy
+                - Data Lineage and Provenance
+                - Data Provenance
+                - Data Remanence - something deleted responsibly
+                - Data Availability - Service Level Agreements
+        - How
+            - How to ensure cloud is not tampered with?
+                - Trust
+                - Auditing
+                - Unforgeable Proof/Attestation
+            - How to determine if a node is trustworthy?
+                - Remote Attestation
+        - Attacks
+            - Collaborative
+            - Mapping
+            - Controlling VM Instantiation
+            - Cross VM Side Channel
+            - Information Extraction
+        - Encryption
+            - Services
+                - Virtual Private Networks
+                - Encryption Key Management
+                - Virtual Storage Encryption
+                - Communications Encryption
+                - Application Encryption
+                - Database
+                - Digital Signatures
+                - Integrity Validation
+            - Forms
+                - Symmetric (K,K)
+                - Asymmetric (K, K')
+        - Storage Types
+            - File System - folders within folders
+            - Websites - groups of files
+            - Logs - telemetry information
+            - Database - large collection of data organized for quick retrieval
+                - Flat File Database - one large table with all records containing the same information
+                - Relational Database - many tables with different schemas and relationships between tables
+            - On-Premise
+                - Direct Attached Storage - physically attached
+                - Network Attached Storage - network attached
+                - Storage Area Network - network of storage devices, data stored in blocks, complex
+        - Cloud Storage Technologies
+            - Object - pictures, anything, etc.
+            - File System - hard to scale
+            - Block Storage - kernel level, scales well
+            - Choosing
+                - Object - maximizes potential, less expensive, eventually consistent, Write OOnce Read Many
+                - File - managed and mounted
+                - Block - faster performance, frequently changing data, strongly consistent
+        - Storage Optimization Techniques
+            - Transfer or Read/Write Throughput
+            - Input/Ouput Operations Per Second
+            - Latency
