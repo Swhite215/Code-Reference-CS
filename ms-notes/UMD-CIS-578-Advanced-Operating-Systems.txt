@@ -508,4 +508,114 @@ Security and Privacy in Cloud Computing
                 - What do you do when a deadlock is detected? Recent, long running, short?
             - Ignore and Pretend - Life
     - Networking
-        - Review computer_networking_a_top_down_approach 
+        - Review computer_networking_a_top_down_approach
+
+7. 10/17/2024
+    - Networking
+        - Packet Switching - large messages are broken down into smaller segments called packages
+            - Why - individual packets can traverse the internet in different paths
+            - Why - users are bursty, which makes dedicated circuits less attractive
+            - Why - individual packets can adapt to network conditions
+            - Why - data arriving without error, reduce size of what is sent to reduce possibility of error
+            - Issue - congestion possible
+            - Issue - packet delay
+            - Issue - packet loss, indirect knowledge requiring resend
+        - Circuit Switching - dedicated end to end resources
+            - Why - large telecom industries if constantly sending data
+        - Network of Networks
+            - Tier 1 Internet Service Providers, Regional Internet Service Providers, Content Provider Network, Access Internet Service Provider
+        - Metrics
+            - Packet Loss
+            - Throughput - average rate from end to end, smallest communication channel limits throughput
+        - Internet Protocol Stack
+            - Application - HTTP, SMTP, FTP
+            - Transport - TCP, UDP - process to process data transfer
+            - Network - routing datagram
+            - Link - data transfer between neighboring network elements, Ethernet, WiFi
+            - Physical - bits on the wire
+        - Open System Interconnection Model
+            - Physical
+            - Data
+            - Network
+            - Transport
+            - Sessions
+            - Presentation
+            - Application
+        - Encapsulation
+            - Structure
+                - Applicaiton - prepare message
+                - Transport - break message into segments w/ TCP or UDP Header
+                - Network - add IP header
+                - Link - transfer to next device
+                - Physical - bits on the wire
+            - Idea
+                - Choosing size of M is important, should be larger than headers to make trip worth it
+        - Attacks
+            - Distributed Denial of Service - overwhelm resource with bogus traffic
+            - Packet Sniffing - capture and analyze packet traffic
+            - IP Spoofing - send packet with false source address
+    - Applications
+        - Client Server Architecture
+            - Structure
+                - Server - always on host, permanent IP address
+                - Client - communicate with server, dynamic IP address, does not communicate directly to other clients
+            - Benefits
+                - Security of server
+            - Issues
+                - Scaling requires adding servers - linearly
+        - Peer to Peer
+            - Structure
+                - End User - Client and Server
+            - Benefits
+                - Scales as new peers are added - logarithmic
+            - Issues
+                - Security is reduced in this situation, a malignant peer can alter and send bad data directly to others
+        - Process Communication
+            - Processes
+                - Client - initiates communication
+                - Server - waits to be contacted
+            - Sockets
+            - Addressing
+            - Protocols
+                - Message Type e.g. request, response
+                - Message Syntax - fields in message
+                - Semantics - meaning of information in fields
+                - Rules - when and how processes send and respond
+        - Transport Service
+            - Data Integrity, Timing, Throughput, Security
+        - Internet Transport Protocol Services
+            - TCP
+                - Reliable Transport - was something sent or not
+                - Flow Control - sender wont overwhelm receiver
+                - Congestion Control - throttle send when network overloaded
+                - Connection Oriented - setup required between client and server processes
+                - NO: timing, minimum throughput guarantee, security
+            - UDP
+                - Unreliable Data Transfer
+                - NO: reliability, flow control, congestion control, timing, throughput, guarantee, security
+        - Securing TCP
+            - Secure Socket Layer - provides encrypted TCP connection
+        - HTTP
+            - Persistent - maintain a connection
+            - Non-Persistent - establish connection, complete request and response, close connection
+        - Web Caches - satisfy clients without involving origin server
+            - How do we store information?
+            - How do we track information?
+            - How do we know the freshness of data?
+            - Conditional Get - if modified since - 304 Not Modified or Modified, faster than downloading entire asset
+    - Distributed Name Service DNS
+        - What - hostname to IP address translation
+        - What - distributed to avoid single point of failure, handle request volume, and perform maintenance
+        - Structure
+            - Root DNS Servers - 13 root level
+            - Top Level Domain Servers - com, org, edu
+            - Authoritative Domain Server - organizations own DNS server
+        - Issue - when creating initial link, entries must be entered manually to server
+        - Iterated - local dns repeatedly queries domains upward until it finds an answer
+        - Recursive - dns servers query their higher tier and return responses, a lot of pressure on root server
+        - Records
+            - A - hostname to IP address
+            - NS - hostname of authoritative name server for domain
+            - CNAME - canonical e.g. closer versions ford.com to ford.jp
+            - MX - mailserver to name
+        
