@@ -390,3 +390,122 @@ Security and Privacy in Cloud Computing
                 - At Least Once - idempotent, run function again and answer does not change
                 - At Most Once - zero, dont know, or once
                 - Zero or Once - transactional, makes sense in practice
+
+5. 10/3/2024 -
+
+6. 10/10/2024 -
+    - CPU Scheduling
+        - Multilevel Feedback Queue
+            - Types of Processes
+                - System - high priority, low quantum
+                - Interactivv
+                - Batch
+                - Student - low priority - high quantum
+            - Action - move processes through queues by increasing priority
+        - Thread Scheduling
+            - User Level Thread
+            - Kernel Level Thread
+            - Note - when threads are supported, threads are scheduled instead of processes
+            - Process Contention Scope - fair allocation per process, priority set by programmer
+            - System Contention Scope - all threads in contention with all other threads
+        - Multiprocessor Scheduling
+            - Symmetric Multiprocessing - each processor is self scheduling, all processses in commoon ready queu
+            - Processor Affinity - process has affinity for processor on which it is currently running
+                - Soft Affinity - will run on another processor, attractive for trying to maximize processor use
+                - Hard Affinity - will only run on dedicated processor, may result in idle processor
+                - Switching
+                    - Cache is an issue when switching to new processor, which will slow down the CPU
+            - Load Balancing - attempt to keep workload evenly distributed across all processors
+                - Push Migration - push  task from overloaded CPU to another CPU
+                - Pull Migration - idle processors pull waiting tasks from busy processor
+        - Multithreaded Multicore System
+            - Thread - rotate between compute and memory to ensure CPU and I/O bound jobs are always 
+        - Real Time CPU Scheduling
+            - Soft Real Time - no guarantee as when critical real time process will be scheduled
+            - Hard Real Time - task must be serviced by its deadline i.e. fixed time interval
+            - Latencies
+                - Interrupt Latency - time from arrival of interrupt to start of routine that services interrupt
+                - Dispatch Latency - time for schedule to take current process off CPU and switch to another
+                - Time Frame - Interrupt Processing + Dispatch Latency + Real Time Process Execution
+            - Priotity Based Scheduling
+                - Scheduler must support preemtive, priority based scheduling, and ability to meet deadlines
+                - Periodic - ones require CPU at constant intervals
+            - Rate Monotonic Scheduling
+                - Priority - assigned based on the inverse of its period
+                - Short Period = High Priority
+                - Long Period =  Lower Priority
+                - Missed Deadlines
+                    - As you mix odd integer intervals may result in missed deadlines, we need integer multiples
+                - Earliest Deadline First Scheduling - priorities are assigned according to deadlines
+                    - Earlier the deadline, higher the priority
+                    - Later the deadline, lower the priority
+        - Linux Scheduling
+            - Version 2.54 - Constant Order Scheduling - Priority
+                - Realtime != Meeting Deadline
+                - Lower numerical jobs has a higher priority i.e. scheduled more quickly
+                - Nice, allowing to give up priority, to reduce priority
+                - Issue = poor response time for interactive processes
+                - Red Black Trees - grab highest priority job in as little time as possible
+                    - When CPU is available, can rebalance the tree for the highest priority
+                - Virtual Run Time - tracked, scheduler picks task with lowest virtual run time to run
+        - Windows Scheduling
+            - Priority Based Preemptive Scheduling
+            - Highest priority thread runs next
+        - Algorithmic Evaluation
+            - What - How to select CPU scheduling algortithm for an OS?
+            - Deterministic Modeling - analytic evaluation, take a predetermined workload and define performance of each algorithm for that workload
+                - For each algorithm, calculate minimum average waiting time
+                - Problem - how to scale this simulation to large numbers of processes and threads
+            - Queueing Models
+                - Describe the arrival of processes, and CPU and I/O bursts probabilistically
+                - Commonlyl exponentialy and described by mean, statistical distribution
+                - Computes average throughput, utilization, waiting time, etc.
+            - Simulations
+                - Generate ranom CPU or I/O bursts and arrival times
+                - Run simulation with particular scheduling and evaluate performance statistics
+    - Deadlock 
+        - Four Simultaneous Necessary Conditions
+            - Mutual Exclusion - only one process at a time can use a resource
+            - Hold and Wait - a process holding at least one resource is waiting to acquire additional resources held by other processes
+            - No Preemption - a resource can be released only voluntarily by the process holding it
+            - Circular Wait - set of processes each waiting for a resource held by another process
+        - Deadlock - NONE of the tasks can make progress on their individual job
+            - Reality - if deadlock occurs, quit and give up
+        - Resource Allocation Graph
+            - Process - running process
+            - Resource - critical section resource
+            - Request Edge - directed edge from process to resource
+            - Assignment Edge - directed edge from resource to process
+            - Example One - not deadlock, if process 3 finishes and relinquishes R3, the remaining processes will run
+            - Example Two - deadlock, circular wait
+            - Example Three - cycle but no deadlock, one process has a resource and needs nothing else
+            - Facts
+                - If no cycles -> no deadlock
+                - If cycle ->
+                    - if only one instance per resource type, then deadlock
+                    - If several instances per resource type, possibly deadlock
+        - Handling Deadlocks
+            - Deadlock Prevention
+                - Remove mutual exclusion
+                - Remove hold and wait - when requesting a resource, cannot be holding another
+                - Add Preemption - release all resources if requesting a held resource
+                - Remove circular wait - impose a total ordering of all resource types, must request in particular order
+            - Deadlock Avoidance
+                - A Prioi - all processes need to know resources required, impossible
+                - Safe State - for all processes the resources needed can be satisfied with cur∂rently available resources
+                - Facts
+                    - If system in safe state -> no deadlocks
+                    - If system in unsafe state -> possibility of deadlock
+                - Algorithms
+                    - Resource allocation graph
+                    - Banker's Algorithm
+                        - Each process makes claim
+                        - When requesting process must wait
+                        - When all resources obtained, must return in finite time
+            - Allow Deadlock and Recover
+                - Detect Deadlock
+                - Wait for Graph - search cycle, if cycle there is exists a deadlock, algorithm is O(n^2 x m)
+                - What do you do when a deadlock is detected? Recent, long running, short?
+            - Ignore and Pretend - Life
+    - Networking
+        - Review computer_networking_a_top_down_approach 
