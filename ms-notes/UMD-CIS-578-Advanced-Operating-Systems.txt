@@ -461,7 +461,7 @@ Security and Privacy in Cloud Computing
                 - Commonlyl exponentialy and described by mean, statistical distribution
                 - Computes average throughput, utilization, waiting time, etc.
             - Simulations
-                - Generate ranom CPU or I/O bursts and arrival times
+                - Generate random CPU or I/O bursts and arrival times
                 - Run simulation with particular scheduling and evaluate performance statistics
     - Deadlock 
         - Four Simultaneous Necessary Conditions
