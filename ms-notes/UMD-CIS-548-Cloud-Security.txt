@@ -591,3 +591,98 @@ Security and Privacy in Cloud Computing
             - Transfer or Read/Write Throughput
             - Input/Ouput Operations Per Second
             - Latency
+
+5. 10/22/2024
+    - Identity and Access Management
+        - Goal
+            - AAAA - Authentication, Authorization, Auditing, Administration
+                - Authentication
+                - Authorization
+                - Auditing
+                - Administration
+            - What - authenticating users and services
+                - Manage User Identities
+                - Provision and Deprovision Users
+                - Authenticating Users
+                - Authorizing Users
+                - Reporting
+                - Single Sign-Ond
+        - Account Management
+            - Account Types
+                - Root - master user in a cloud account or compute systeem, complete access and permissions
+                - IAM Accounts
+            - Identity
+                - Digital Entity to which one can attach roles and permissions
+                - User permissions based on job responsibilitis
+                - Resource identity provided to access a resource
+                - Service accounts are accounts assigned to resources
+                - User accounts allow users to access cloud resources
+                - Create accounts using the cloud platform IAM dashboard
+                - Identity vault stores identities and their credentials
+            - Policies
+                - What - user accounts should accurately reflect users who can legitimately access
+                - Compromised accounts should be locked out for proteftion
+                - Privilege creep is limited and monitored
+                - Unused accounts are closed
+                - Active account may be modified, deactivated, deleted
+            - Risks
+                - Loss of Control
+                - Compliance
+                - Provider Transparency
+        - Identity and Access Management Security
+            - Common Authentication Methods - multi-factor authentication, biometrics, digital certificates
+            - Role Based Access Control RBAC -  specific roles to users or groups which define what actions they can perform and what resources they can access
+            - Least Privilege Principle - minimum level of access
+            - Identity Federation - access resources across multiple cloud services or platform using a single set of credentials
+        - IAM
+            - Enterprise IAM
+            - Cloud IAM
+        - Challenges
+            - Number of devices
+            - Amount of data
+            - Infrastructure is moving out of direct control e.g. IT
+            - Devices are moving out of control of IT
+        - Access Planes
+            - Tenant Administration - manages per tenant components
+            - End User Access - access
+            - Intra-Cloud Access - service to service, web services
+            - Provider Administration - controls and manages the service components
+        - Main Functionality
+            - User, software, or hardware is who they say they are through authenticating credentials
+            - Grant only the appropriate level of access
+            - Review and examine authentication, authorization, and activites to determine the adequacy
+        - Workflow
+            - Authentication
+                - User -> Username/Passsword -> Verify -> Approve or Deny
+            - Authorization
+                - User -> Assigned Privilege -> Accesses a Resource -> Privileges Transparent
+        - Architecture
+            - Authentication Management
+            - User Management
+            - Authorization Mangement
+            - Access Management
+            - Data Management
+            - Monitoring, Auditing, Reporting
+        - Standards
+            - Security Assertion Markup Language - avoid duplication of identities - SAML
+                - User navigates to Google
+                - Google redirects to SSO URL
+                - Browser redirects to SSO URL
+                - Customer parsese SAML
+                - Customer generates response
+                - Response returns to browser
+                - Browser returns response to Google
+                - Google is logged in
+            - Service Provisioning Markup Language - automatic prevision
+            - Extensible Access Control Markup Language - provision user accounts with appropriate privileges
+            - Open Authentication - REVIEW
+            - Lightweight Directory Access Protocol
+            - Multifactor Authentication - requires two or more pieces of information
+            - Digital Certificates
+        - Issues
+            - Certificate Expiration - must be replaced
+            - Certificate Misconfiguration
+            - Bad Credentials
+            - Privilege Escalation Attack
+            - Internal or External Role Changes
+        - 
