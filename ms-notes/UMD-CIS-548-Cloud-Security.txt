@@ -685,4 +685,116 @@ Security and Privacy in Cloud Computing
             - Bad Credentials
             - Privilege Escalation Attack
             - Internal or External Role Changes
-        - 
+
+6. 11/05/2024
+    - Security Management in the Cloud
+        - Traditional to CLoud
+            - Consolidate
+            - Virtualize
+            - Standardize
+            - Share Resources
+            - Automate
+            - Cloud
+        - Key Aspects
+            - Identity and Access Management
+            - Data Encryption
+            - Network Security
+            - Compliance and Governance
+            - Security Monitoring and Logging
+            - Security Patch Managment
+            - Incident Response and Disaseter Recovery
+            - Multi-Factor Authentication
+            - API Security
+            - Threat Intelligence
+            - Security Policies and Training
+            - Vendor Security Assurance
+        - Issues
+            - Secure Outsourcing - trusting 3rd party with sensitive information
+            - Accountability - who is responsible for compliance
+            - Multiple Tenancy - several customers running processes on same hardware
+            - Degree of Independence - hardware without sharing details
+            - Sensitive Data - customers may be unwilling to reveal sensitive data
+        - Threats
+            - Security Concerns During Migration
+            - Data Breaches
+            - Denial of Service
+            - Account Hijacking
+            - Poor Account Management
+            - Data Loss with No Backups
+            - Insecure Interfaces
+            - User Error
+            - Insider Threats
+            - Advanced Persistent Threats
+        - Techniques
+            - DevSecOps
+                - What - Workflows form a single unending cycle, iterative process of control, plan, implement, evaluate, and maintain
+                - Stages - Security, Operations, Development
+            - Microsegmentation
+                - What - Granular control of traffic and workflows, security policies travel with the resource
+        - Information Technology Infrastructure Library
+            - What - set of best practi es and guideliens that define an integrated process based approach
+            - Objectives
+                - Align IT Services
+                - Improve Quality of IT Services
+                - Reduce Long Term Costs of IT Services
+            - Standards
+                - Policies - objectievs
+                - Processes - what has to happen
+                - Procedures - who does what and when
+                - Work Instructions - guidance for specific actions
+            - Deming Cycle - Plan, Do, Check, Act or Plan, Do, Check, Adjust
+            - IT Security Management Components
+                - Service Support
+                    - Incident
+                    - Problem
+                    - Configuration
+                    - Change
+                    - Release
+                - Service Delivery
+                    - Service Level
+                    - Availability
+                    - Capacity
+                    - Financial
+                    - Continuity
+                - Levels
+                    - Impact - measure of business criticality
+                    - Urgency - speed which an incident or problem requires resolution
+                    - Priority - order in which incident or problem needs to be resolved
+        - ISO - International Standard Organization
+            - ISO 20000 - Service Management
+                - Change Managemnt - ensure all changes are assessed, approved, implemented, and reviewed
+                - Risk Management
+                - Service Level Agreements
+                - Incident Management
+                - Supplier Managemetn
+                - Compliance with Regulatory Requirements
+            - ISO 27001 - Risk Management
+                - Requirements
+                    - Establish an Information Security Management System
+                    - Conduct Risk Assessments
+                    - Define Controls
+                    - Continuously Improve Security
+                    - Ensure COmpliance and Certification
+                - Principles
+                    - Shared Responsiblity Model
+                    - Risk Assessment and Mitigation
+                    - Data Protection and Privacy Compliance
+                    - Access Control and Identity Management
+                    - Supply Chain Security
+                    - Incident Management
+                    - Monitoring
+        - CLoud Providers
+            - Virtual Network
+                - Rule - allow and deny traffic based on granular rules
+                - AWS Network Access Control - network policies
+                - AWS Network Access Control List - limit or allow traffic
+                - AWS Security Groups - virtual firewalls
+                - AWS Flow Logs - monitor all traffic
+                - Azure Virtual Networks - perimeter network, restrict and manage internet traffic
+                - Azure Network Virtual Alliance - VM running in perimieter network controlling traffic between DMZ and other subnets
+                - Azure Demilitarized Zone - provide internal resources with a transitive connection to external resources
+                - Azure Network Security Group - firewall style protection at the subnet level
+                - Azure Application Security Group - 
+                - GCP Virtual Private Cloud
+                - GCP Virtual Firewall
+                - GCP Flow Logs
