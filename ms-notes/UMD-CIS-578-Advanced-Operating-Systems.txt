@@ -710,3 +710,33 @@ Security and Privacy in Cloud Computing
                 - External - total memory space exists to satisfy a request but it is not contiguous
                 - Internal - allocated memory may be slighlty larger than requested, internal to partition, not used
                 - Compaction - collect all available free memory and form one large chunk (external fragmentation)
+
+9. 11/07/2024
+    - Segmentation - memory management schema that supports user view of memory
+        - Unit - main program, procedure, function, method, object, local variables, common block stack, symbol table arrays
+        - Goal - keep memory address of units together to optimize
+        - Table - maps two dimensonal physical addresses, each with base i.e. starting address, limit i.e length of segment
+        - Segment Table Base Register - segment tables location in memory
+        - Segment Table Length Register - indicates number of segments used by a program
+    - Paging
+        - Divide physical memory into fixed size blocks called frames
+        - Divide logical memory into blocks of same size called pages
+        - Keep track of all free frames
+        - To run a program of size N pages, need to find N free frames and load program
+        - Setup a page table to translate logical to physical addresses
+        - Size is power of 2, between 512 bytes and 16 Mbytes
+    - Address Translation Schema
+        - Page Number P - index into page table which contains base address of each page in physical memory
+        - Page Offset D - combined with base address to define the physical memory address that is sent to the memory unit
+        - Flow - Logical Memory Page Number -> Index to Frame Number in Page Table -> Frame Number is Location in Physical Memory
+        - Issue - Translation, must be optimized for speed
+        - Benefit - can dynamically move pages between frames while updating table, fixed size you get no external fragmentation
+        - Tradeoff - Smaller Framesize = Larger Table - How to determine?
+    - Translation Look Aside Buffer - Cache for Page to Frame
+        - Translate Page Number to Frame Number
+        - Effective Access Time- Review Formula
+        - Goal - increase as high as possible likelihood to find translation in TLB
+        - Memory Protection
+            - Valid-Invalid Bit - VALID - associated page is in the process logical address space
+            - Valid-Invalid Bit - INVALID - page is not in the process logical address space
+            - Goal - reduce how much needs to be changes to accurately and quickly track known relationships
