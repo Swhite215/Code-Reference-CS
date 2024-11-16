@@ -409,7 +409,7 @@ Security and Privacy in Cloud Computing
             - Process Contention Scope - fair allocation per process, priority set by programmer
             - System Contention Scope - all threads in contention with all other threads
         - Multiprocessor Scheduling
-            - Symmetric Multiprocessing - each processor is self scheduling, all processses in commoon ready queu
+            - Symmetric Multiprocessing - each processor is self scheduling, all processses in commoon ready queue
             - Processor Affinity - process has affinity for processor on which it is currently running
                 - Soft Affinity - will run on another processor, attractive for trying to maximize processor use
                 - Hard Affinity - will only run on dedicated processor, may result in idle processor
@@ -543,7 +543,7 @@ Security and Privacy in Cloud Computing
             - Application
         - Encapsulation
             - Structure
-                - Applicaiton - prepare message
+                - Application - prepare message
                 - Transport - break message into segments w/ TCP or UDP Header
                 - Network - add IP header
                 - Link - transfer to next device
@@ -650,7 +650,7 @@ Security and Privacy in Cloud Computing
     - Transmission Control Protocol Overview
         - Characteristics
             - Point to Point - one sender one receiver
-            - Reliable, In-Order Bute Stream
+            - Reliable, In-Order Byte Stream
             - Pipelined
             - Full Duplex Data
             - Connection-Oriented
@@ -710,3 +710,58 @@ Security and Privacy in Cloud Computing
                 - External - total memory space exists to satisfy a request but it is not contiguous
                 - Internal - allocated memory may be slighlty larger than requested, internal to partition, not used
                 - Compaction - collect all available free memory and form one large chunk (external fragmentation)
+
+
+
+
+
+
+    - Main Memory
+        - Shared Pages
+            - Shared Code - can have a single page in physical memory, add multiple references to this frame in the page table
+            - Private Data - each process keeps copy and data is spread out in pages
+        - Two Level Page Table Scheme
+            - Outer Page Table -> Page Table -> Memory
+            - Benefit - two smaller searches can be faster than one
+            - Issue - now three requests and extra memory to manage
+        - 64 Bit Logical Address Space - 2^12
+            - Two Level Scheme is Not Sufficient - Three Level Paging Scheme
+            - Hashed Page Tables - search through a set of hashes
+            - Inverted Page Table - search through available frames
+    - Virtual Memory
+        - Important - the entire program code is not needed at the same time, can improve CPU utiliziation and reduce I/O
+        - What - separation of user logical memory from physical memory, logical address space can be much larger than physical address space
+        - Memory Management Unit - dedicated hardware to translate virtual memory to physical memory
+        - Goal - minimize cache misses
+        - Page Fault - page is needed but it is not in memory
+            - Find Free Frame
+            - Trap
+            - Page in on Backing Store
+            - Bring in Missing Page
+            - Reset Page Table
+            - Restart Instruction
+        - Aspects of Demand Paging
+            - Pure Demand Paging - do not load page into physical memory until you actually need it
+            - Locality of Reference - load page and next N pages
+            - Actions
+                - Interrupt
+                - Read Page (bulk of time)
+                - Restart Process
+            - Effective Access Time - REVIEW
+            - Optimizations
+                - Pool of Zeroed Out Memory Pages/Frames
+                - Full on Memory - Unload, Load, Reset
+        - Page Replacement
+            - Track - modified/dirty bit, only modiifed pages are written to disk
+            - Steps
+                - Find Location of Desired Page
+                - Find Free Frame (Use Free, Replace Victim Frame, Write Victim Frame to Disk if Dirty)
+                - Bring in Desired Page
+                - Restart Instruction
+            - Frame Allocation Algorithm - how many frames for each process and which fraems to replace
+            - Paeg Replacement Algorithm - goal is lowest page fault rate on both first access and reaccess
+            - Note - as frames increase, page faults drop until they plateau
+            - Algorithms
+                - First In First Out, can allocate more frames and get more page faults Belady's Anomaly*
+                - Optimal Algorithm - can do if we have perfect knowledge, remove page that will not be used for longest period of time
+                - Least Recently Used - replace page that has not been used in the most amount of time
