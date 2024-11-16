@@ -798,3 +798,108 @@ Security and Privacy in Cloud Computing
                 - GCP Virtual Private Cloud
                 - GCP Virtual Firewall
                 - GCP Flow Logs
+
+7. 11/12/2024
+    - Privacy in the Cloud
+        - Control, Liability, and Accountability 
+        - Cloud Customers Biggest Concerns
+            - Lost of Control - 48%
+            - Integration - 41%
+            - Data Loss and Privacy Risks - 38%
+        - Goal - embed data privacy as a core functionality
+    - Liability - depends on Service Level Agreements and Contract
+    - Challenges - REVIEW
+    - Organization
+        - Technology Risks
+        - Organization Risks
+            - Department Impact - financial and other
+            - Employeee Impact - guide employees to adapt to current trends
+        - Environment Risks
+        - Adoption Process - Evaluation, Proof of Concept, Adoption Decision, Implementation and Integration, Confirmation, IT Governance
+    - Organization Impact and Risk
+    - Dark Side of the Cloud
+    - Cloud Privacy Issues
+        - Data stored in a location that does not belong to bank
+        - Handing over data
+        - How do 3rd party vendors guarantee data will not be contaminated
+        - Does remote work compromise security?
+    - Major Issues
+        - Access
+        - Compliance
+        - Storage
+        - Retention
+        - Audit and Monitoring
+        - Destruction
+        - Priacy Breaches
+        - Law
+    - Tools
+        - Virtual Private Networks
+        - Two Factor Authentictaion
+        - Data Encryption
+        - Digital Signatures
+    - Privacy - accountability of organizations to data subjects as well as the transparency to an organizations practice
+    - PII - Personally Identifiable Information
+    - Four Privacy Challenge Categories
+        - Protect PII
+        - Ensure COnformance to Federal Information Processing Standards
+        - Compliance with Laws and Regulations
+        - Multi-Jurisdictional Requirements
+    - Privacy Challenge in the Cloud
+        - Data Confidentiality - authorized access to data only
+        - Data Loss - 
+        - Geographical Data Storage - data is out of legal jurisdiction
+        - Multi-Tenancy Security Issues - attacks against co-tenants
+        - Transparency - what can we know abotu security
+        - Hypervisor
+        - Managerial - lack of control, security
+    - Data Life Cycle
+        - Generation
+            - Ownership - who owns the PII?
+            - Classification - how and when is PII classified?
+            - Governance - is there a governance structure to ensure PII is managed and protected?
+        - Use
+            - Internal vs. External
+            - Third Party - is information shared?
+            - Appropriateness - is the use consistent with prupose?
+            - Discover/Subpoena - can organization comply with legal requirements?
+        - Transfer
+            - Public vs. Private
+            - Access Control - are there appropriate access controls?
+            - Encryption - is PII encrypted?
+        - Transformation
+            - Derivation - are the original protection and use limitations maintained?
+            - Integrity - is the integrity of PII maintained?
+            - Aggregation - Is data in the cloud aggregated so that it is no longer identifiable?
+        - Storage
+            - Access Control - are there appropriate controls?
+            - Structured vs. Unstructured - how is the data stored to enable access and management?
+            - Integrity -
+            - Encryption - is PII stored encrypted?
+        - Archival
+            - Legal and Compliance - PII may have requirements that dictate how long to store and archive
+            - Off Site - - is long term off site storage available?
+            - Media Concerns - is information stored on media that will be accessible in the future?
+            - Retention - how long is data retained?
+        - Destruction
+            - Secure - is PII destroyed in a secure manner?
+            - Complete - is the information completely destroyed?
+    - Organization for Economic Cooperation and Development
+        - Collection Limitation - limit to minimum amount of data require for the purpose
+        - Data Quality 
+        - Purpose Specification
+        - Use Limitation - do not disclose, make available or use for any other purpose without consent 
+        - Security Safeguards - data should be protected by reasonable safeguards
+        - Openness
+        - Individual Participation
+        - Accountability - organization is responsible
+        - Retention and Destruction - personal data should be retained no longer than needed
+        - Transfer - do not transfer data to countries that dont provide the same level of privacy protection
+    - Frameworks:
+        - Electronic Privacy Communication Act
+        - Federal Information Security Management Act
+        - Gramm-Leach-Biley Act
+        - HIPAA
+        - FERPA
+        - HITECH
+        - Asia Pacific Economic Cooperation
+        - EU Directive
