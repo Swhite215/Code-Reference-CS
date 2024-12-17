@@ -391,16 +391,85 @@ Security and Privacy in Cloud Computing
                 - At Most Once - zero, dont know, or once
                 - Zero or Once - transactional, makes sense in practice
 
-5. 10/3/2024 -
+5. 10/3/2024 - Process Synchronization
+    - Problem: Producer and Consumer
+        - Producer - creates data
+        - Consumer - consumes data
+    - Race Condition
+        - counter++ and counter--, if you can't guarantee the order of execution, the value in the register may not be what is expected
+        - What - when two or more threads or processes attempt to update the same shared value
+        - Critical Section Problem - when one process is in critical section, must communicate this to other processes to ensure only one enters
+        - Critical Section - make as small as possible i.e. enter, change value, and exit. Larger the critical section, more likelihood that other processes will be impacted
+    - Solution
+        - Mutual Exclusion - no other prcoess can be executing in critical section
+        - Progress - all process need to make progress
+        - Bounded Waiting - limit to waiting
+        - Preemption - allows preemption of process when running in kernel mode
+    - Peterson's Solution
+        - Turn - which process can enter?
+        - Flag - are you ready to enter?
+        - Check Flag -> If Flag and Your Turn -> Enter -> Exit
+        - Issues - how does hardware implement the checks, etc.?
+    - Locks
+        - Acquire -> Critical Section -> Release Lock
+    - Synchronization Hardware
+        - Test and Set - Atomic - Test Target Value, Update Target, Return New Value
+        - Compare and Swap - Atomic - Compare memory with value, if same, update memory location
+    - Mutex Locks (SpinLock)
+        - Software Abstraction - Atomic - acquire and release are implemented in hardware
+    - Sempahore
+        - S - integer value
+        - wait(), while resources <= S, wait to be available, decrement S and enter critical section
+        - signal(), increment S
+        - Counting Sempahore - s can be range of values
+        - Binary Semaphore - mutex
+        - Can violate bounded waiting while in critical section... 
+    - Issues
+        - Deadlock - two or more processes waiting indefinetely
+        - Starvation - process never removed from semaphore queue in which it is suspended
+        - Priority Inversion - lower priority process holds a lock needed by higher priority
+    - Problems
+        - Readers-Writers Problem - many readers at once, only one writer at a time
+    - Condition Variables - wait() - suspend, signal() - resume one process\
+    - CPU Scheduling
+        - Basic Concepts
+            - Goal - keep CPU as busy as possible
+            - CPU is mixed with processes that are CPU bound or I/O bound
+            - CPU burst times are mostly small
+        - Dispatcher - givers control of the CPU to the process selected by the short term scheduler
+        - Criteria
+            - CPU Utilization
+            - Throughput - number of procesese that finish in a unit of time
+            - Turnaround Time - time to execute a process
+            - Waiting Time - amount of time a process has been waiting in ready queue
+            - Response Time - amount of time between request and first response
+    - Scheduling Algorithms
+        - First Come First Served - prcoess executes in entirety in the order that they arrive
+            - Convoy Effect - short process behind long process
+        - Shortest Job First - optimal, however requires knowing the next burst time of a process, length can be an aspect of burst history
+            - Exponential Averaging - use estimate for burst times for shortest job first
+        - Shortest Remaining Time First - preempty process when a job of a shorter burst time arrives
+        - Priority Scheduling
+            - Priority - lower number = higher priority
+            - Preemptiion - higher priority replaces lower priority
+            - Nonpreemptive - lower pririty is not removed
+            - Starvatio - low priority processes may never execute
+            - Solution to Starvation - Aging - as time progressses, increase the priorty of the queue
+        - Round Robin - same time quantum for all in queue, a lot of processes and short quantum can lead to thrashing, one process and long quantum that is FCFS
+
 
 6. 10/10/2024 -
     - CPU Scheduling
         - Multilevel Feedback Queue
             - Types of Processes
                 - System - high priority, low quantum
-                - Interactivv
-                - Batch
+                - Interactive - Foreground - RR
+                - Batch - Background - FCFS
                 - Student - low priority - high quantum
+            - Queues
+                - Small Quantum - High Priority
+                - Medium Quantum - Medium Priority
+                - Large Quantum - Low Priority
             - Action - move processes through queues by increasing priority
         - Thread Scheduling
             - User Level Thread
@@ -409,14 +478,14 @@ Security and Privacy in Cloud Computing
             - Process Contention Scope - fair allocation per process, priority set by programmer
             - System Contention Scope - all threads in contention with all other threads
         - Multiprocessor Scheduling
-            - Symmetric Multiprocessing - each processor is self scheduling, all processses in commoon ready queue
+            - Symmetric Multiprocessing - each processor is self scheduling, all processses in common ready queue
             - Processor Affinity - process has affinity for processor on which it is currently running
                 - Soft Affinity - will run on another processor, attractive for trying to maximize processor use
                 - Hard Affinity - will only run on dedicated processor, may result in idle processor
                 - Switching
                     - Cache is an issue when switching to new processor, which will slow down the CPU
             - Load Balancing - attempt to keep workload evenly distributed across all processors
-                - Push Migration - push  task from overloaded CPU to another CPU
+                - Push Migration - push task from overloaded CPU to another CPU
                 - Pull Migration - idle processors pull waiting tasks from busy processor
         - Multithreaded Multicore System
             - Thread - rotate between compute and memory to ensure CPU and I/O bound jobs are always 
@@ -428,7 +497,7 @@ Security and Privacy in Cloud Computing
                 - Dispatch Latency - time for schedule to take current process off CPU and switch to another
                 - Time Frame - Interrupt Processing + Dispatch Latency + Real Time Process Execution
             - Priotity Based Scheduling
-                - Scheduler must support preemtive, priority based scheduling, and ability to meet deadlines
+                - Scheduler must support preemptive, priority based scheduling, and ability to meet deadlines
                 - Periodic - ones require CPU at constant intervals
             - Rate Monotonic Scheduling
                 - Priority - assigned based on the inverse of its period
@@ -458,7 +527,7 @@ Security and Privacy in Cloud Computing
                 - Problem - how to scale this simulation to large numbers of processes and threads
             - Queueing Models
                 - Describe the arrival of processes, and CPU and I/O bursts probabilistically
-                - Commonlyl exponentialy and described by mean, statistical distribution
+                - Commonly exponential and described by mean, statistical distribution
                 - Computes average throughput, utilization, waiting time, etc.
             - Simulations
                 - Generate random CPU or I/O bursts and arrival times
@@ -492,7 +561,7 @@ Security and Privacy in Cloud Computing
                 - Remove circular wait - impose a total ordering of all resource types, must request in particular order
             - Deadlock Avoidance
                 - A Prioi - all processes need to know resources required, impossible
-                - Safe State - for all processes the resources needed can be satisfied with cur∂rently available resources
+                - Safe State - for all processes the resources needed can be satisfied with currently available resources
                 - Facts
                     - If system in safe state -> no deadlocks
                     - If system in unsafe state -> possibility of deadlock
@@ -725,7 +794,7 @@ Security and Privacy in Cloud Computing
             - Hashed Page Tables - search through a set of hashes
             - Inverted Page Table - search through available frames
     - Virtual Memory
-        - Important - the entire program code is not needed at the same time, can improve CPU utiliziation and reduce I/O
+        - Important - the entire program code is not needed at the same time, can improve CPU utilization and reduce I/O
         - What - separation of user logical memory from physical memory, logical address space can be much larger than physical address space
         - Memory Management Unit - dedicated hardware to translate virtual memory to physical memory
         - Goal - minimize cache misses
@@ -754,7 +823,7 @@ Security and Privacy in Cloud Computing
                 - Find Free Frame (Use Free, Replace Victim Frame, Write Victim Frame to Disk if Dirty)
                 - Bring in Desired Page
                 - Restart Instruction
-            - Frame Allocation Algorithm - how many frames for each process and which fraems to replace
+            - Frame Allocation Algorithm - how many frames for each process and which frames to replace
             - Paeg Replacement Algorithm - goal is lowest page fault rate on both first access and reaccess
             - Note - as frames increase, page faults drop until they plateau
             - Algorithms
@@ -783,9 +852,106 @@ Security and Privacy in Cloud Computing
         - Tradeoff - Smaller Framesize = Larger Table - How to determine?
     - Translation Look Aside Buffer - Cache for Page to Frame
         - Translate Page Number to Frame Number
-        - Effective Access Time- Review Formula
-        - Goal - increase as high as possible likelihood to find translation in TLB
+        - Effective Access Time - Review Formula
+        - Goal - increase to high as possible likelihood to find translation in TLB
         - Memory Protection
             - Valid-Invalid Bit - VALID - associated page is in the process logical address space
             - Valid-Invalid Bit - INVALID - page is not in the process logical address space
             - Goal - reduce how much needs to be changes to accurately and quickly track known relationships
+
+10. 11/14/2024
+    - Virtual Memory
+        - Goal - take chunk of hard drive and make it look like memory, separate user logical memory from physical memory
+        - Action - reading from memory requires reading more than intended due to constraints of physica hard disk drive
+        - Pattern - Virtual Memory (Page) -> Memory Map -> Physical Memory Address -> Data
+        - Virtual Address Space
+    - Shard Library Using Virtual Memory
+        - Keep shared libraries referenced in memory as they may be used by multiple prcoesses
+    - Demand Paging
+        - Goal - bring page into memory only when needed
+        - Lazy Swapper - never swap a page into memory unless call
+    - Locality
+        - It is likely you will yse near memory addresses when accessing one - Spatial
+        - It is likely you will use the same data multiple times - Temporal
+    - Page and Frame Replacement Algorhtms
+        - Frame - How many frames to give each process and which to replace
+        - Page - how can we reduce page fault rate
+        - Insight - as frames increase, number of page defaults decrease, up to a point
+    - Optimal Algorithm - replace the page that will not be used for the longest time... impossible
+    - Least Recently Used Approximation Algorithm
+        - Use past knowledge, replace the page that has not been used in the most amount of time
+        - How do you measure which page has been accessed?
+            - Counter - every time page is referenced, copy clock into counter, look at smallest counter, overhead is challenging
+            - Stack - double link form, page referenced, move to top of stack, bottom of stack is least recently used
+            - Reference Bit - initial 0, when referenced, set to 1, replace page with 0, but doesnt know oldest...
+            - Second Change Algorithm
+                - Whenever page is not available, move through where you are in circular queue and find next page
+                - If page to be replaced has RB = 0, replace
+                - If page to be replaced has RB = 1, set to RB = 0 and keep in memory
+                - Insight into system use of pages
+                - Worst Case - go through entire list one O(n)
+            - Enhanced Second Change Algorithm
+                - Dirty Bit - 1 when a page is modified (written to)
+                - If dirty, page has change and must be written back to disk
+                - If clean, page can be removed without writing to disk, saving time
+                - Keep 1,1, Eject 0,0
+    - Page Buffering Algorithms
+        - Goal - keep a pool of free frames
+        - Reality - OS guesses about future page access
+            - This does not work for systems that are optimizing their use of memory e.g. relational database management systems
+            - In some cases, application can be promoted acces to the disk to take advantage of optimizations
+            - Double Buffering - 
+    - Allocation of Frames
+        - Minimum or Fixed Allocation - always allocate X to any process
+        - Equal Allocation - split available frames into equal amount
+        - Priority Allocation - allocate according to the priority
+        - Proportional Allocation - allcacte according to the size of process
+    - Global vs. Local
+        - Global Replacement - replace a frame from all sets of frames, optimizes overall throughput
+        - Local Replacement - each process replaces a frame from its own set of allcoated frames
+    - Thrashing - degree of multiprogramming leads to higher cpu utilization, up to a point where you are spending too much time context switching
+    - Working Set Model
+        - Each process has a number of pages
+        - If number is too small, can incur page faults
+        - If number is too large, can load pages not used by process
+        - If number is infinite, entire program
+        - Requires per process tracking of pages in memory and page faults (overhead)
+    - Page Fault Frequency - Approximation to Working Set
+        - Establish Page Fault Frequency Boundary Upper and Lower
+        - Keep track of page faults per process
+        - If rate is low, reduce frames allocated to process
+        - If rate is high, allocate additional frames to process
+        - If rate is in boundary, dont do anything
+    - Memory Mapped Files
+        - Goal - file access speed is treated as RAM
+        - Action - load DLL in shared memory and keep it there, issue loss of power and loss of data
+    - Allocating Kernel Memory
+        - Buddy System - fixed power of 2 allocator
+        - Large Chunk -> Divide by 2 (REPEAT)
+        - Efficient allocation and deallocation
+
+11. 11/21/2024
+    - Hard Disk Drive
+        - Insights
+            - more data inside than outside
+        - Address Mapping
+            - Constant Linear Velocity - keep same density read, must speed arm as arm extends outward
+            - Constant Angular Velocity - keep motor speed constant, write fewer bits internally, waste capacity, easy
+        - Physical Realities
+            - Energy to move actuator
+            - Dealing with inertia - read a sector at a time
+        -  Disk Scheduling
+            - Read/Write Buffers
+            - First Come First Served - processed in the order that they arrive, queue of sector destinations, reverse direction has a cost i.e. moving up and moving down, largest delay
+            - Shortest Seek Time First - request closes to the current head position is served next, can cause starvation, optimal
+            - Elevator Algorithm SCAN - disk head moves in one direction large to small, serviving all requests in its path, then reverses small to large, some requests may wait longer
+            - C-SCAN - disk head moves one direction, serving all requests in its path, then returns to start without reading and starts again
+            - LOOK - 
+    - Solid State Drives
+        - Read from multiple blocks at a time
+        - Gate - NAND
+        - NVM Device Controller
+            - Valid Page -> Invalid Page -> Valid Page
+            - Read - no cost
+            - Write - lifespan reduction
+            - Wear Leveling - avoid putting things in the same place and instead spread data writes across new pages

@@ -245,7 +245,7 @@ Summarization of Content
             - Creates a Copy
             - RAID 01-10 Possible
             - Issue - Consistent Update Problem
-        - RAID Level 4: Parity
+        - RAID Level 4: Parity - CHECK NUMBER
             - XOR to Determing Values Held in Disk
             - Additive Parity and Substractive Parity
         - RAID Level 5: Rotating Parity
