@@ -955,3 +955,79 @@ Security and Privacy in Cloud Computing
             - Read - no cost
             - Write - lifespan reduction
             - Wear Leveling - avoid putting things in the same place and instead spread data writes across new pages
+
+12. 12/05/2024
+    - Final Topics to Review
+        - Disk Scheduling
+        - RAID
+    - Solid State Drivers
+        - NAND - Flash Memory Based Drives, easier to manufacture and its cheaper, NOR is faster
+        - Speed - Parallelization of R/W
+        - Challenegs
+            - Write - Pages 4KB
+            - Read - Blocks 128-256KB
+            - Issue - Book Keeping and Write Amplification
+                - Mark -> Copy -> Erase
+            - Write Amplification - write triggers garbage collection/compaction
+                - One or more blocks must be read, erased, and rewritten before the write can proceed
+            - Garbage Collection - recover space when needed
+            - New SATA Command Trim - allows the OS to tell the SSD that specific blocks are invalid and may be garbage collected
+            - Wear Leveling - writing reduces the flash cell longevity, try to even out writes to cells
+        - SSD Controllers
+        - Flavors of NAND Flash Memory
+            - Multi-Level Cell - higher capacity and cheaper, need error correction, 3000-5000 write cycles, more power
+            - Single Level Cell - one bit per flash cell, lower capacity and more expensive, 10000 - 100000
+    - File System Implementation
+        - Question: how do we impose a structure on something that stores bits?
+        - Question: why do most data storage systems prefer Linux?
+            - Linux is open source, could be updated without powering down, file system
+        - Question: what is the logical way of organizing a large chunk of data?
+            - Main Folder -> Offices -> Groups -> Projects -> People
+            - Issue - max depth and max name size...
+        - Flow: Application -> Logical File System -> File Organization Module -> Basic File System -> I/O Control -> Devices
+        - Format File Control Block (Metadata)
+            - File Permission 
+            - File Dates
+            - File Owner, Group, Access Control List
+            - File Size
+            - File Data Blocks
+        - In-Memory File System Structures - directory structure file control block + user space + kernel memory + secondary storage
+        - Virtual File System - object oriented way of implementing file systems
+        - Question: Why do we like indirection? Gives flexibility as to how to solve the problem - single system call and use polymorphism to achieve ends
+        - Directory Implementation
+            - Linear list of file names with pointer to the data blocks
+            - Question: What happens when data becomes too large? time consuming to perform actions
+            - Hash Table - issue could be collision and it is fixed size
+        - Allocation Methods
+            - Contiguous - each file occupies a set of contiguous blocks
+                - Simple, random access, wasteful of space, files cannot grow
+                - Question: What if you do not have contiguous blocks?
+            - Extant - add a layer of indirection on contiguous i.e. multiple contiguous groups make up the file
+            - Linked - store starting location and address of the next LL, simple, no wasted space, need to step through sequence to get to end, NO RANDOM access
+            - Indexed (Modern) - allows random access, maximum use of space, and initial formatting of disk
+                - Index Table - for each file, what are the associated blocks?
+                    - RAM - find block and offset for specific data
+                    - Downside - must manage larger list and metadata
+                - No external fragmentation as the blocks are fixed size
+                - Two Indexes - outer index and block of index table to map to specific file
+                - Question: What is file is small? Can store file and metadata directly in the control block
+                - Indirects
+                    - Direct Block - actual file or first level index i.e. on pointer
+                    - Double Indirect - two levels of pointers
+                    - Triple Indirect - three levels of pointers
+                - Question: how do we mark what is available?
+                    - Bit Vector, one bit for each block that says in use or not in use, can add single bits for general idea of used and free
+                - Question: What is performance problem of indexed when writing large amounts of data?
+                    - Issue - disk is going to block, use direct memory access or caching
+                    - Issue - did not write cache to hard drive
+                    - Log Structured File System (Journaled)
+                        - Record each update to the file system as a transaction
+                        - All transactions are writen to a log
+                        - Commited is when a transaction is writen to the log, however, file system update may not yet be done
+                        - When the file system is written to, the transaction is removed from the log
+                        - If the file system crashes, all remaining transaction in the log must still be performed
+                        - Priority - write the log/journal first to persistent memory ASAP
+        - Sun Network File System (NFS) - access a file as if it is part of the local file system, requires RPC and TCP/IP
+            - OS Layer - Unix File System Interface
+            - Virtual File System - API
+            - NFS Service Layer - NFS Protocol
