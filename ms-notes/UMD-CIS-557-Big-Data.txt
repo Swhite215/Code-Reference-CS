@@ -1,0 +1,29 @@
+Big Data
+
+1. 01/06/2025 - Introduction
+    - Course Objectives
+        - Big Data Concepts
+        - Technologies
+        - Processing and Techniques
+    - What is Data Mining?
+        - Big Data - no standard term
+        - Generators - almost everyone and every device
+        - Dumo - Data has changed over time
+        - Goal - extract knowledge and model from data
+    - Three V
+        - Volume - size (gigabytes, terabytes, petabytes)
+        - Velocity - speed
+        - Variety - types
+    - Directions in Modeling
+        - Statistical Modeling - describes the distribution of data e.g. Gaussian is mean and standard deviation
+        - Predictive Methods - use some variabels to predict unknown or futrue values of other variables
+    - Machine Learning Classification
+        - Topic - movies and tv shows
+        - Data - Instance - Record - Entry - Data Point
+        - Features - length, genre, seasons
+        - Goal - map rows and columns into open space, where every column is an axis in your space, orthogonal to each other
+        - Decision Boundary - separation between classifications based on features
+        - Prediction - input feature values and map them to the open space and then based on decision boundary return classification
+        - Training Set - produces decision boundary
+        - Test Set - unknown data that will be classified
+        - Overfit - performance on training set is so high it is difficult to map new data 
