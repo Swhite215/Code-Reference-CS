@@ -1,4 +1,4 @@
-Security and Privacy in Cloud Computing
+Advanced Operating Systems
 
 1. 09/05/2024 - Summary of Lecture
     - Introduction
@@ -1031,3 +1031,124 @@ Security and Privacy in Cloud Computing
             - OS Layer - Unix File System Interface
             - Virtual File System - API
             - NFS Service Layer - NFS Protocol
+
+13. 12/12/2024
+    - Virtual Machines
+        - Fundamental Idea
+            - Abstract hardware of a single computer into several different execution environments
+            - Components - host, virtual machine manager or hypervisor, guest
+            - Difficulty - managing kernel to vm to virtual machine manager to hardware
+        - Implementation of VMMs
+            - Type 0 - hardware based solutions that provide support for virtual machine creation and management
+                - Fast, tightly coupled to hardware
+            - Type 1 - operating system like software built to provide virtualization
+                - Location - commonly found in data centers
+                - What - special purpose os that run natively on HW
+            - Type 1 - general purpose operating systems that provide standard functions as well as VMM functions
+
+            - Type 2 - applications that run on standard operating system but provide VMM features to guest operating systems
+        - Implmentation
+            - Paravirtualization - technique in which guest OS is modified to work with VMM
+            - Programming Environment Virtualization - VMMs do not virtualize real hardware but instead create an optimized vcirtual system
+            - Emulators - allow applications written for one hardware environment to run on a very different hardware environment
+                - Why? - application custom written for hardware, but if hardware is old or failing, emulate the environment while you rewrite
+                - Why? - old applications you desire to run on new hardware
+            - Application Containment - not virtualization, provides virtualization like features by segregation
+            - Templating - create an OS + application VM, provide it to customer
+            - Live Migration - move a running a VM from one host to another while VM is running, hardware fails, optimization, etc.
+        - Benefits - virtual machines can be moved host to host for optimal resource use
+            - Freeze, suspend, run, stop, clone
+        - Questions
+            - How can VMs be helpful? Kernel development on virtual machine gives access to abstracted layer through virtual machine manager making it easier to debug
+            - How do you switch from virtual user mode to virtual kernel mode?
+                - Trap a system call for the hardware
+                - Send to virtual machine manager
+                - Send message to hardware
+                - Receive response by VMM
+                - Send to kernel on VM
+            - How to optimize instructions used frequently? Execute and then cache, memoize?
+            - How to deal with memory?
+                - Nested Page Tables - each guest has a page table, can cause slowdowns due to TLB misses
+                - Hardware Support - support for nested page tables with direct memory access
+            - What happens to scheduling as VMs increase? many context switchs leads to a slow down
+            - What do you do with hardware MAC and IP addresses?
+                - lk
+        - OS Component - CPU Scheduling
+            - Issues - cycle stealing by VMM and oversubscription of CPU means guest dont get CPU cycles they expect
+            - Issues - system time is inaccurate due to pausing virtual machines, should use network time protocol
+        - OS Component - I/O
+            - Network Address Translation - each local machine has its own IP and MAC and virtual machine manager translates
+            - Bridging - assign hardware MAC and IP to vm, only can use one VM at a time
+        - OS Component - Live Migration
+            - Source VMM establishes target
+            - Create new VCPU
+            - Send all read only guest memory pages
+            - Send all read write pages to the target
+            - Reapt until all are clean
+            - Stop source VM
+            - Send final update
+            - Direct traffic
+    - Distributed Systems
+        - Centralized - all guests talk to central server
+        - Decentralized - limited connectivity between central servers
+        - Distributed - any server connected to any other server
+        - Views
+        - Definitions
+            - Decentralized - necessarily spread processes and resources across multiple computers
+                - Robust if shared nodes are redundant and well maintained
+            - Distributed - sufficiently spread processes and resources across multiple computers
+                - Robust if all nodes equal
+        - Misconceptions
+            - Centralized solutions do not scale well
+                - Logically Centralized - Domain Name System, should use physical redundancy
+            - Centralized s9olutions have a single point of failure
+                - Generally not true e.g. the root of DNS
+        - Perspective
+            - Architecture
+            - Process
+            - Communication
+            - Coordination
+            - Naming
+            - Consistency
+            - Replication
+            - Fault Tolerance
+            - Security
+        - Sharing Resources
+            - Cloud Based Shared Storage
+            - Peer to Peer Assisted Multimedia
+            - Shared Mail
+            - Shared Web Hosting - content distribution network
+        - Transparency - hide that things are physically distributed
+            - Middleware Layer - clients think they are talking to a big system, instead redirecting requests to where they need to go
+            - Access - hide diffreence in data representaiton
+            - Location - where an object is located
+            - Reloation - object may be moved to another location while in use
+            - Migration - object may move to another location
+            - Replication - hide an object is replicated
+            - Concurrency - hide object may be shared
+            - Failure - hide failure and recovery of an object
+            - Idea - exposing distribution may be good for finding failures
+        - Openness - can be used or integrated into othert systerms
+            - Need - interfaces, interoperability, portability, extensible
+        - Policies vs. Mechanisms
+            - Policy - what do we want to happen?
+            - Mechanism - how do we make it happen?
+        - Strict Separation
+        - Dependability - a component provides services to clients
+            - Avaiability, Reliability, Safety, Maintainability
+            - Reliability - mean time to failure, mean time to solution
+        - Confidentiality - information is discloed only to authorized
+        - Integrity - information has not been modified in an unauthorized way
+        - Authorization - does user have access
+        - Authentication - who is the user
+        - Trust - do the actions align with expectations
+        - Scale
+            - Number of users or processes (Size)
+                - Solution - multiple servers, load balancers, etc
+            - Maximum distance between nodes (Geographical)
+                - Solution - more LANs, alternate paths, monitoring
+            - Number of administrative domains (Administrative)
+            - Issue - if moving computations to client, need to do additional error checkign as relying on its computations
+        - Distributed Shared Memory Systems - multicore is easier than multicomputerm try to implemnent a shared memory model on a computer
+            - Solution - Cluster Computing with high speed interconnect, compute nodes, high performance file system and management node
+        - Worse is Better - desire a core set of functions and features that work well and then build on it i.e. decentralized

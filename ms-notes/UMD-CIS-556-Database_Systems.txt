@@ -1,0 +1,82 @@
+Database Systems
+
+1. 01/06/2025 - Introduction
+    - Topics
+        - Basic Concepts
+        - Entity Relationship Model
+        - Relational Model
+        - Relational Algebra
+        - SQL Language
+        - Missing Information and Views
+        - Database Design
+        - Query Optimization
+        - Transaction Management
+        - Non-Relational DBs and DB Security
+    - Definitions
+        - Data - facts or values obtained from observation or measurement
+        - Information - interpretation of facts
+        - Database (DB) - a collection of related persistent data used by an enterprise
+            - Schema - description of the data (intension), changes infrequently
+            - Instance - collection of data stored in the database at a particular moment in time (extension), changes frequently
+        - Database System
+            - Metadata - data about other data
+            - Metalanguage - language used to describe another language 
+            - Metasearch - search engine making use of other search engines
+            - Software - database management system, utilities (loading, reorganizing, backup, analyzing), tools (design, development)
+            - Hardware - secondary storage, memory, processors, DB machine
+            - Users - users of database system
+    - How to Manage Persistent Data
+        - File Processsing - each application mananges its own information
+            - Issues - redundancy, inconsistency
+        - Database - data are integrated and shared
+            - Benefits - reduction of redundancy, efforts, consistency, sharing, independence (change strucutre without affecting program) and abstraction, views, security restrictions, integrity constraints, data deduction, data retrieval
+    - Data Independence - ability to modify a schema at one level without affecting the schema at the next higher level
+        - Three Schema Architecture (ANSI/SPARC)
+            - Internal Level - how data is stored in the storage medium
+            - Conceptual Level - describes the logical structure of the entire DB
+            - External Level - describes the part of the DB that a particular user group is interested in
+        - Physical Data Independence - change internal schema without affecting conceptual schema or external schema
+        - Logical - change conceptual schema without affecting external schemas
+    - Data Model - a set of concepts for describing data types, relationships, constraints, semantics, and behaviors
+        - Conceptual - object based logical models, describe data in terms of objects and interrelationships
+            - Close to the way many users perceive data
+            - Conceptual and external schemas
+            - Examples - entity relationship model, object oriented model, semantic model, functional model
+        - Implementation - record based logical model
+            - Represent data using record structure
+            - Conceptual and external schemas
+            - Relational model, network model, hierarchical model
+        - Physical Data Model - how data is stored in the computer
+            - Internal schemas
+            - Unifying model and frame memory
+    - Database Lanaguage (DBL)
+        - What - schema specifications
+            - View Definition Lanaguage - external
+            - Data Definition Language - conceptual
+            - Storage Definition Language - internal schema
+        - What - data manipulation
+            - Data Manipulational Language (retrieve, insert, delete, modify, update)
+        - What - data control
+        - Data Control Language (privilege, transaction)
+        - Uses of Database Language
+            - Stand Alone - interactive, unplanned, data manipulation language (DML)
+            - Embedded - embeded in host language, planned request, data sublanguage (DSL)
+        - Unified Language
+            - Database Programming Language - add DBL features to programming language
+            - 4th Generation Language - add programming language to DBL
+    - Other Interfaces
+        - Call Level ODBC
+        - Call Level JDBC
+        - Menu, Form, Graphic, Natural Language, Voice, Combination
+    - Database Users
+        - Application Programmers, Casual, Parametric, Sophisticated, Stand Alone
+        - Casual - interactive queries
+        - Parametric - canned transactions
+        - Sophisticated - full DBL
+        - Stand Alone - menu/graphic interfaces
+        - Database Administrator
+            - Logical Design of Conceptual Schema
+            - Internal Schema of Physical Design
+            - External Schema for Users
+            - Security Checks
+            - DBS Maintenance (backup, recovery, performance)
