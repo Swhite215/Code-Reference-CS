@@ -10,6 +10,7 @@ Big Data
         - Generators - almost everyone and every device
         - Dumo - Data has changed over time
         - Goal - extract knowledge and model from data
+        - Goal - discover patterns and models that are valid, useful, unexpected, and understandable
     - Three V
         - Volume - size (gigabytes, terabytes, petabytes)
         - Velocity - speed
@@ -17,6 +18,12 @@ Big Data
     - Directions in Modeling
         - Statistical Modeling - describes the distribution of data e.g. Gaussian is mean and standard deviation
         - Predictive Methods - use some variabels to predict unknown or futrue values of other variables
+        - Descriptive Methods - find human interpretable patterns that describe data
+            - PageRank - represent each website with a score, if a website has many hyperlinks to it, the score increases
+            - Clustering - create groups of clusters of data points, with each cluster revealing something about the group
+        - Feature Based Model - look for the most extreme example of phenomen and represent the data by these items
+            - Frequent Itemsets - makes sense for data that consists of baskets of small sets of items e.g. market basket
+            - Similar Items - find pair of sets that have a relatively large fraction of their elements in common
     - Machine Learning Classification
         - Topic - movies and tv shows
         - Data - Instance - Record - Entry - Data Point
@@ -26,4 +33,39 @@ Big Data
         - Prediction - input feature values and map them to the open space and then based on decision boundary return classification
         - Training Set - produces decision boundary
         - Test Set - unknown data that will be classified
-        - Overfit - performance on training set is so high it is difficult to map new data 
+        - Overfit - performance on test set is poor, and performance on training set is extremely high
+    - Analytic Answers
+        - Total Information Awarenmess - a plan to mine all data, including credit card receipts, hotel records, travel data, and many other
+        - Bonferroni's Principle - if you look in more places for interesting patterns than your amount of data will support, you are bound to find crap
+        - Example
+            - Goal - we want to find unrelated people who on two different days were both at the same hotel
+            - 10^9 peopple being tracked i.e. 10,000,000,000
+            - 1,000 days are being reviewed
+            - Each person stays in a hotel 1% of the time
+            - A hotel holds 100 people
+            - There are 10^5 hotels
+            - What is the probability that a person stays in a hotel on any day? 0.01
+            - What is the probability that two people stay in a hotel on any day? 0.01 * 0.01 = 0.0001
+            - What is the probability that these two people stay in the same hotel on any day?  0.0001 / 10^5 = 1x10^-9
+            - What is the probability that these two people stay in the same hotel on two days? 10^-9 squared which is 10^-18
+            - n chose m, n days how many m combinations? (n! / (n-m)!m!)
+                - m is 2 that is two people
+                - n! / (n-2)!2!
+                - n(n-1)(n-2)(n-3).../(n-2)(n-3)....*2
+                - n^2-n/2
+                - n^2/2
+                - (10^9)^2/2 = 5*10^17
+                - (10^3)^2/2 - 5*10^5
+                - Goal - number of possible combinuations of two days, times number of possible combinations of two people, times probability
+            - 250,000 suspicious pairs of people
+    - Things Useful to Know
+        - TF.IDF - the formal measure of how concentrated into relatively few documents are the occurences of a given word - if you see how frequent a word is e.g. the or a.
+        - Inverse Document Frequency
+            - Frequency TF - for word I in document j, frequence of i in document j divided by max kfkj i.e. most frequent word in the document 
+            - IDF - log(total number of documents divided by how many documents have the word i in them)
+            - For the article  "the", T.IDF should be high, logn(1) is 0, not important
+        - Hash Functions - takes a hash key value as an argument and produces a bucket number, which is an integer. normally in the range 0 to B-1, where B is the number of buckets
+            - What is the ideal value of B? if all even numbers, the bucket is the same as results are 0
+            - Prime number, which cannot be factored, are ideal for number of buckets
+        - Base E of Natural Logarithms (Review)
+        - Power Laws (Review)
