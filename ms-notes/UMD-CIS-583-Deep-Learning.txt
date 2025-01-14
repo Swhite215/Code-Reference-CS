@@ -1,0 +1,45 @@
+Deep Learning
+
+1. 01/09/2025 - Introduction
+    - Algorithmic Agent
+        - Goal - deliver from San Francisco to New York
+        - Solution - Djikstra's Algorithm
+    - Reasoning Agent
+        - Goal - predict the most likely next output given the input
+        - Solution - Large Language Model
+    - Machine Learning - machine learns from experience and data input
+        - Image Classification
+        - Image Generation
+        - Prediction
+    - Deep Learning
+        - Disciminative Model Application - learn and model the decision boundary between different classes in input data
+        - Generative Model Application - model the underlying distribution of the data and then generate new samples that are similar to training data
+        - Application
+            - Regression
+            - Image Classification
+            - Object Detection
+            - Image Segmentation
+            - Language Translation
+            - Image Retrieval
+            - Visual Q&A
+            - Image Captioning
+            - Text to Image
+            - Mixed Text-Image Generation
+        - Model 
+            - Linear Models
+            - Fully Connected Neural network
+            - Convultional Neural Network
+            - Recurrent Neural Networks
+            - Transformer Block
+        - Training Tools
+            - Gradient Descent
+            - Data Normalization
+            - Data Augmentation
+            - Regularization
+            - Dropout
+            - Weight Decay
+            - Weight Initialization
+            - Batch Normalization
+            - Activation Function
+            - Learning Rate Decay
+            - Tranfer Learning
