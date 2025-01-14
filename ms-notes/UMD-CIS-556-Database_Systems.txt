@@ -80,3 +80,122 @@ Database Systems
             - External Schema for Users
             - Security Checks
             - DBS Maintenance (backup, recovery, performance)
+
+2. 01/13/2025
+    -  Database Management System Components
+        - Examples
+            - User - Database Administrator
+                - Data Definition Language, Data Definition Language Compiler -> Produce System Catalog/Data Dictionary/Metadata
+                - Privileged Commands -> Runtime Database Processors -> Create User, Grant Privileges, Manage the Database
+            - User - Casual
+                - Interactive Query -> Query Compiler (Validate Semantics and Syntax) -> Query Optimizer -> Runtime Database Processor -> Do A Thing
+            - User - Application Programmers
+               - Application Programs -> Precompiler (Host and Database Language) -> Host Langauge Compiler -> Compiled/Canned Transactions -> Runtime Database Processor -> Do A Thing
+        - Concurrency Control
+        - Backup/Recovery
+        - Stored Data Manager (Buffer/Cache)
+    - Main DBMS Functionality
+        - Define a particular database
+        - Construct or load initial content
+        - Manipulate the database (retrieve or modify)
+        - Processing and sharing by a set of concurrent users
+        - Enforcing security restrictions
+        - Presenting and visualizing data
+        - Maintaining the database
+        - Backing up and recovering the database
+    - Database Architecture
+        - Centralized Architecture - everything runs on a physical machine
+            - Components - operating system, database management system, compilers, application programs, terminal, text editors, display monitors
+            - Disadvantage - a lot of requirements for running this machine
+        - Client/Server
+            - Components - Server runs DBMS, client runs application
+            - Thick Client - (Display and Applicaiton), Server - DBMS
+                - Advantage - running application on client side, separate to enhance security
+                - Disadvantage - if application needs a lot of data, communication cost is high
+            - Thin Client - (Display), Server - Application and DBMS 
+                - Advantage - quickly obtain data needed for the application
+                - Disadvantage - security
+            - Three Tier Architecture
+                - Interface (Presentation) - Client
+                - Application (Business Logic) - Web or Application Server
+                - Data Access (Database Service) - Database Server
+    - Database Classification
+        - Models
+            - Relational (Oracle)
+            - Object Oriented (GemStone)
+            - Network (IDMS)
+            - Hierarchical (IMS)
+            - Object Relational (Oracle)
+            - XML (Lore)
+        - Users
+            - Single User (Advanced File Systems)
+            - Multi-User
+        - Sites
+            - Centralized - all database in one place
+            - Distributed - database in multiple locations
+                - Homogenous - each site runs the same type of DBMS
+                - Heterogenous - each site may use a different type of DBMS and DB
+        - Purpose
+            - General Purpose - any type of application
+            - Special Purpose - embedded
+    - Advanced Database System
+        - Active DB - database will send results based on conditions
+        - Distributed DB - manage database from multiple sites
+        - Parallel DB - parallel processing for database system
+        - Deductive DB - how to derive information from new data
+        - Fuzzy DB - how to manage less precise data
+        - Data Warehousing - centralize data from multiple databases for analysis
+        - Data Mining - learn about your data and make discoveries
+        - Spatial DB - queries or data related to location or space
+        - Temporal DB - extend data with a time dimension
+        - Multimedia DB - store multiple types of files e.g. iamges, videos, etc.
+        - Mobile DB - data saved in mobile devices
+        - Web DB - application, cookies, local, session
+        - Real Time - must process data within a particular time constraint
+        - Bioinformatics - genetics, large amount of data
+        - Transaction Workflows
+        - Database Security
+        - Big Data
+        - NoSQL Databases
+    - Entity Relationship Models
+        - Objective - ER, E-R, or E/R
+            - Goal - used to model the real world and aligns with how many users perceive data
+            - Goal - model the world during db design
+        - Database Design Procedure
+            - Requirements Collection and Analysis
+                - Data Requirements - Data
+                    - (ER) Conceptual Design - translate informal requirements to model what data should look like producing high level model and diagram (Enterprise Schema)
+                    - Logical Design - convert conceptual design to model(s) for a specific database management system producing logical schema
+                    - Physical Design - convert logical design to internal schema aware of storage producing an internal schema
+                - Functional Requirements - Operations
+                    - Functional Analysis - produce high level transaction specification
+                    - Application Program Design - design how to enable transactions on a particular DBMS
+                    - Transaction Implementation
+        - Key Concepts
+            - Entity - on object that exists and is distinguishable from other objects
+                - Types
+                    - Physical Entity - employee or car
+                    - Conceptual Entity - department, project, holiday
+                - Entity Set - a set of entities of the same type e.g. all employees or all projects, (RECTANGLE)
+                - Entity Type - a set of characteristics that defines an entity set
+                - Attribute - property of an entity you want expressely represented in the model - (OVAL)
+                    - Composite - an attribute derived from a set of simple attributes concatenated together
+                    - Simple - lowest level of singular attribute
+                - Valued
+                    - Single Valued - an attribute has a single value (SINGLE OVAL)
+                    - Mulitvalued - an attribute can have multiple values (DOUBLE OVAL)
+                        - Benefit - can store an extensible number of values
+                        - Con - how do you distinguish between the values in meaningful ways?
+                    - NULL
+                - ...
+                    - Base - value is value e.g. salary
+                    - Derived - value can be obtained through analysis of other attributes e.g. age from birthdate
+            - Relationship - an association among n entities
+                - N - degree of the relationship
+                    - N = 2, binary, employee works for a department
+                    - N = 3, ternary, a supplier makes a particular part for a particular project
+                    - N > 3, very rarely used'
+                - Relationship Set - a set of relationships of the same type
+                - Relationship Type - a set of characteristics that define a relationship set (DIAMOND)
+                - Role Name - signifies the role that an entity type plays in a relationship
+            - Constraint
