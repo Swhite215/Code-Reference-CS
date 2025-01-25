@@ -12,7 +12,7 @@ Deep Learning
         - Image Generation
         - Prediction
     - Deep Learning
-        - Disciminative Model Application - learn and model the decision boundary between different classes in input data
+        - Discriminative Model Application - learn and model the decision boundary between different classes in input data
         - Generative Model Application - model the underlying distribution of the data and then generate new samples that are similar to training data
         - Application
             - Regression
@@ -28,7 +28,7 @@ Deep Learning
         - Model 
             - Linear Models
             - Fully Connected Neural network
-            - Convultional Neural Network
+            - Convolutional Neural Network
             - Recurrent Neural Networks
             - Transformer Block
         - Training Tools
@@ -42,4 +42,196 @@ Deep Learning
             - Batch Normalization
             - Activation Function
             - Learning Rate Decay
-            - Tranfer Learning
+            - Transfer Learning
+
+2. 01/16/2025
+    - Regression and Classification
+        - Regression - predict continuous outcomes e.g. predict the size of a house based on size
+        - Classification - predict categorical outcomes e.g. identify house type
+    - Building A Model
+        - Regression - model is linear line, given any value, predict the price
+        - Classification - model is plot with categorical distinctions
+    - Make a Model Prediction
+        - Regression - given house size is 550 sqft, we predict the price will be
+        -  Classification - given hous esize is 550 sqft, we predict the type is apartment
+    - Linear Regression
+        - Linear Model
+            - Equation: f(x)=a0​+a1​x1​+…+an​xn
+            - Inputs: 1, x1, x2, ... , xn
+                - 1 dimensional input to 1 dimensional output (line)
+                - 2 dimensional input to 1 dimensional output (plane)
+            - Prediction: f(x) = a0 + a1*x1
+                - Example f(x) = 5 + 10x, f(x = 3) = 5 + 10*3 = 5 + 30 = 35
+                - Example f(x) = 5 + 10x1 + 10x2 = 5 + (30) + (30) = 65
+        - Linear Model Training
+            - Perfect Linear Model - y: prediction, a1: slope, ao: intercept, only need two points needed
+            - Reality - noise data i.e. input data is not perfect 
+            - Goal - Data driven optimization
+            - Steps
+                - 1. define an error term i.e. the distance from a particular point to the linear line
+                - 2. define a loss function i.e. considers all the errors for all datapoints in the dataset, summation of all errors
+                - 3. minimize the loss function with respect to the parameters i.e. how do I reduce the overall summation error by adjusting my linear equation parameters i.e. a0, a1, etc.
+                - 4. Set gradient as 0, error term is quadratic, property is a local min or maximum, at that point, derivative of the function should be 0
+                - 5. Once you have a0 and a1, training is complete
+                - 6. Convert loss functions
+                - 7. Make prediction using results to produce a value
+            - Notes
+                - more data inpoint more rows, and more variables more columns
+            - Example
+                - x1 = [2,2], x2 = [3,4], x3 = [4,5], x4 = [6, 8]
+                - y1 = 10, y2 = 12, y3 = 15, y4 = 18
+                - What is A i.e. Amxn where m = rows and n = columns
+                    - M = number of datapoints i.e. 4
+                    - n = 1 + x1 A and x1 B
+                    - A = [1, 2, 2]
+                      [1, 3, 4]
+                      [1, 4, 5]
+                      [1, 6, 8]
+                - What is y? Y is vector 4x1
+                    - y = [10]
+                        [12]
+                        [15]
+                        [18]
+                - What is a? a = (At * A)^-1*At*y
+        - Linear Model Notes
+            - Solution; One, None, Multiple
+                - Example: single data point, results are infinite that grow through that point
+                - Rule: number of knowns equal number of data points
+    - Linear Classification
+        - Binary Classification - 0 or 1, predict is a single value
+            - Logistic Model - probability of Yes and No i.e. p(YES) + p(NO) = 1 or p(No) = 1 - p(YES)
+            - Sigmoid Function f(x) = 1/(1+e^-x), upperbound is one on y axis, lower bound is 0
+                - Input linear equation Ax as x in the equation to produce a probability
+                - If predicted value is greater than 0.5 then yes, otherwise no
+            - How do we get a0 and an?
+                - Dataset, X1, x2, ... Xn with a y1, y2, y = 0 or 1
+                - 1. Define an error term, why was natural log added?
+                    - If y = 1, p(y) is large than 1
+                    - If y = 0,  1 - p(y) is small
+                    - Cross Entropy - way to define how similar your predicted distribution to your ground distribution
+                - 2. Define a loss function, average of error terms
+                - 3. Minimize loss function
+        - Multi-Class Classification - multiple categorical outcomes e.g. an image contains cat or a dog
+            - Image Classification - input image -> category label
+                - Image - two dimensional input
+                    - 2x2 pixels - four pixels
+                - How to use linear classifier?
+                    - Stretch or flatten the image into a single vector [10 5 7 3] each number a pixel
+                    - We have a linear classifier, we need three equations to represent each category
+                - Weight x Input Image + Bias = Class
+                - Output - largest, or instead probability
+                - How to perform classification?
+                    - Obtain s1, s2, s3 and convert to probabilities P1, P2, P3. Summation of P1 + P2 + P3 = 1
+                    - Normalization - 21 / (21 + 8 + 11) = .525, 8 / (21 + 8 + 11) = .2, 11 / (21 + 8 + 11) -.275
+                    - Softmax - p1 = e^s1 / (e^s1 + e^s2 + e^s3)
+                        - How do we get W and b?
+                        - 1. Define the error term - cross entropy
+                        - 2 Define a loss function - mean error
+                        - 3. Minimize the loss function - 
+
+3. 01/23/2025
+    - Optimization in Machine Learning
+        - Objective - minimize loss functions i.e. adjust model parameters to make a good prediction
+            - Quadratic Functin - minimization involves setting the gradient as 0
+                - Equation is 10x^2 + 3x + 4
+                - Derivative is 20x + 3
+                - 0 = 20x + 3
+        - Issue - loss function can be very complicated and solving gradient = 0 is very challenging
+        - Technique #1 - Grid Search - global search method
+            - Loss Function - L(theta) 
+            - Search Boundary - [x_left, x_right]
+            - Step Size - delta, increase step to determine next sample to evaluate for the loss function
+            - Goal - what is smallest value of L? theta that produces that is your model parameter
+            - Issues
+                - Disccretized steps i.e. you miss continuous values
+                - Dimensionality curse - 1D = 10, 2D = 10 * 10, 3D = 10^3
+        - Technique #2 - Gradient Descent
+            - Loss Function - derivative of the loss function is the gradient
+            - Start Point - where you begin accessing
+            - Learning Rate - alpha, how much you change your input value to test the loss function
+            - Stop Condition
+            - Which direction?
+            - Calculations
+                - Analytic Approach - if you have a function, take derivative, plug in value to get gradient
+                - Numeric Approach - use a formula, plug in a tiny delta, verifies analytic gradient
+                - One Dimensional - If a derivative is positive, the loss decreasing direction is negative i.e. you should reduce your x value to produce a smaller value i.e. head towards 0
+                - In N-Dimensional - the gradient of the function is the vector of partial derivatives along each dimension
+                    - L(x,y) = 2x^2 + 3y^2, Gradient is 4x+6y
+                    - L(1,1) = 2+3 = 5, L'(1,1) = [4, 6] 
+            - Recommendation - always us analytic gradient, but check implementation with numerical gradient
+            - Tool - PyTorch i.e. automatic gradient descent tools
+            - Issue
+                - #1 - this technique is subject to starting point
+                - #2 - too large a learning rate and you might jump back and forth
+                - #3 - subject to local minimums
+    - Optimizing a Linear Classifier for Image Classification
+        - Model Parameters - S = wx+ B
+        - Calculate Gradients
+            - The total gradient with respect to theta is the average of all the gradients for each error term
+            - Parameter One - width
+            - Parameter Two - bias
+            _ Example
+                - Image = x1 and x2
+                - Score = Weight Matrix times Image Matrix plus Bias Matrix
+                - O - e^sn
+                - P1 - probability, what you are tring to increase 
+            - As a Tree
+                - Error Term - dependent on P1 - Root
+                - P1 - dependent on O1 and O2
+                - O1 - dependent on S1
+                - O2 - dependent on S2
+                - S1 - leaf
+                - S2 -leaf
+            - Gradient Calculation - Chain Rule
+                - Derivative of e with respect to s1 is three parts
+                    - Derivative of e with respect to p1
+                    - Derivative of p1 with respect to o1
+                    - Derivative of o1 with respect to s1
+                - Error Term with Respect to Weight - 36:00
+                - Error Term with Resepct to Bias - 36:00
+            - Derivative of Natural Logs - derivative of e^x with respect to x is e^x
+            - Derivative of Exponential Function - derivative of lnx is 1/x
+            - Derivative of Quotient - derivative of u(x)/v(x) = u'(x)v(x) - u(x)v'(x)/v(x)^2
+        - Generalization - suppose you have k classes that is p1 through pk, probability for each k
+            - Only the ground truth key row do you minus 1 to get gradient with resepct to your weight matrix
+            - One Hot Vector - 1k is  vector that contains all zeroes except in the kth position
+            - Goal - average of all error terms is your gradeint, for each data sample you will have probability and one hot vector which will give you gradeient with resepct to W
+            - Note - if you have N data samples we need to calculate this N times and average them
+        - Involved Example - 42:00 - Optimizing a Linear Classifer for Image Classification
+            - Key Steps
+                - Image Classification - S = Weight * Samples + Bias
+                - Calculate Gradients of Error Terms
+                    - s = wxn + b - score
+                    - p = softmax(s) - probabilties as a function of s
+                    - error = ln(pn)
+                - Calculate Total Loss from Gradient of Error Terms and Current Weight and Bias
+                - Adjust Weight and Bias to reduce Total Loss
+                    - Derivativer of Error with Respect to S (e1 and e2)
+                    - Derivative of Error with Respect to Weight (e1 and e2)
+                    - Derivative of Error with Respect to Bias (e1 and e2)
+                - Determine Gradient of Weight
+                - Determine Gradient of Bias
+                - Update Weight
+                - Update Bias
+                - Calculate New Total Loss
+    - Regularization
+        - Issue - sometimes the model overfits
+            - Example - 5 degree polynomial model first the 5 points perfectly
+            - New point will produce a large error given the overfit model
+            - Notes - training set low errors, poor performance on new data
+        - Data Split
+            - Training Data - adjust model weight and tune hyper parameters
+            - Validation Data - check model performance, tune hyperparameters, check if overfitting
+            - Testing Data - final test
+        - How can we detect model overfitting?
+            - Look at the training loss, if it goes down, while the validation loss is increasing, it means model is overfit
+        - How to prvent overfitting?
+            - Weight Regularization Loss
+            - Dropout
+            - Batch Normalization
+        - Regularization Loss
+            - Loss function is a weighted combination of data loss (fit to training data) and regularization loss (prevent overfitting)
+            - We want to mimize data loss and at the same time minimize regularization loss
+            - Note - prefer small weights and spread weights
+                - W1 [0.5, 0.5] is preferred to W2 [1, 0]
+        - 
