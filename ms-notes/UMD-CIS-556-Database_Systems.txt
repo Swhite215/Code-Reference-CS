@@ -194,8 +194,63 @@ Database Systems
                 - N - degree of the relationship
                     - N = 2, binary, employee works for a department
                     - N = 3, ternary, a supplier makes a particular part for a particular project
-                    - N > 3, very rarely used'
+                    - N > 3, very rarely used
                 - Relationship Set - a set of relationships of the same type
                 - Relationship Type - a set of characteristics that define a relationship set (DIAMOND)
-                - Role Name - signifies the role that an entity type plays in a relationship
+                - Role Name - signifies the role that an entity type plays in a relationship (normally omitted)
+                - Single Link = Optional, Double Link = Required
             - Constraint
+
+3. 01/21/2025
+    - Relationship
+        - Recursive Relationship Type - the same entity type participates more than once in a relationship type in different roles (role name must be used)
+            - Example - Supervisor supervises supervisee, supervisee themselves supervisor others and supervisors themselvs are supervised
+            - Role - on link indicate role. line from employee to supervision, 2, i.e. employee is subordinate to supervisor, or 1, employee supervises another
+        - Attributes of Relationship
+            - Hours, how long does an employee work on particular projects?
+    - Constraints
+        - Domain Constraint - the values of an attribute must come from its domain i.e. the set of allowed values
+            - This is not represented in the ER diagram
+            - Example - name is string of characters no greater than 64
+        - Null - a special value representing not applicable, unknown, etc.
+        - Uniqueness or Key Constraint
+            - Key - one or more attributes that can uniquely identify an entity from an entity set
+        - Mapping Constraints (Cardinality Ratio) - specify the # of relationship from a relationship type that an entity can participate in
+            - Binary - 1:1, employee manages at most one department
+            - One to Many - 1:M or M:1, many employees work for one department or one department has many employees
+            - Diagram, place number of the line connecting the entity and the relationship type
+            - Many to Many
+            - Many to Many to Many
+            - 1 to 1 to Many - one supplier builds a particular part for many projects
+        - Participation Contraints
+            - Total Participation - every entity from one entity type must have a relationship with at least one entity from another entity type
+            - Partial Participation - otherwise
+            - Note - you should not have double link on both sides, as it is necessary to create one entity first to establish relationship
+    - Example - 1:00 - Review When Doing Homework #1
+    - Enhanced Entity Relationship Concepts
+        - Weak Entity Type - does not have any key of its own
+            - Example - Dependent Entity of Employee: name, sex, birth, relationship
+            - Identifying Relationship - Double Diamond of owner to weak entity type
+            - How do we identify entities of weak entity type?
+                - A weak entity can be uniquely identified by owner key + partial key
+        - Specialization - process of defining a set of subclasses (subtypes) of an entity type
+            - Example 
+                - Employee Entity, Entity Set - name, ssn, birthdate, address
+                - Secretary Entity, Entity Set += gwam
+                - Engineer Entity, Entity Set += type
+                - Salaried Entity, Entity Set += Salary
+            - Notation = U from subtype to disjoint (d) on line showing relationship, or u from subtype to overlapping (o) on line showing relationship
+                - Disjoint, no entity belongs to multiple subtypes
+            - Note - an entity in a sub class inherits all the attributes of its corresponding entity in the superclass
+            - Note - an entity in a sub class inherits all the relationships in which the corresponding entity in the superclass participates
+        - Generalization - the process of defining a generalized entity type from the given entity types i.e. reverse of specialization
+            - Example - you have Secretary, Technician, Engineer, and Manager entity types, they share common attributes, a generic entity can be derived for the shared common attributes
+        - Condition Defined Specialization - define entity by value of an attribute to derive sub class
+        - User Defined Specialization - each entity of a subclass is individually specified by the user
+        - Disjointness Conatraint - subclasses of a specialization are disjoint
+        - Completeness Constraint
+            - Total Specialization - every entity in superclass participates in a specialization
+            - Partial Specialization - not every entity in superclass participates in a specialization
+        - Specialization Lattice
+            - Entity to Sub Entity to Sub Entity, etc...
+        - Specialization Hierarchy
