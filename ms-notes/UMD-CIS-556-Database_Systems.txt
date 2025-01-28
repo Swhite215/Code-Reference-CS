@@ -254,3 +254,56 @@ Database Systems
         - Specialization Lattice
             - Entity to Sub Entity to Sub Entity, etc...
         - Specialization Hierarchy
+
+4. 01/27/2025
+    - Enhanced Entity Relationship Concepts
+        - Category (UNION) - a subset of the union of multiple superclasses (super class is independent)
+            - Notation (u), single line is partial, double line is total
+        - Aggregation - an abstraction through which relationships are treated as higher level entities
+            - Example (REVIEW)
+                - Entites - employee, project
+                - Relationships - many employees work on many projects
+                - Machinery is based on which employees work on which projects
+    - Relational Model
+        - Reality - no commerical database management system uses entity relational model to implement
+        - Relational DBMS - Oracle, DB2, Sybase, SQL Server, Informix, INgres, Paradox
+        - Features
+            - Advantages - simple (everything is tables), mathematical base
+            - Concepts
+                - Relation (Table)
+                    - Domain - a set of atomic values
+                        - Atomic - indivisible, conventional relational DB
+                        - Composite - has components, nested relational DB and object-relational DB
+                        - Specify - name and a data type
+                    - Relational Schema - table heading made up of a name and a set of attributes
+                    - Attribute - the name of a role played by a domain in the relational schema
+                    - Relation Instance - table heading (relational schema) and a set of n-tuples (table rows)
+                        - Subset of the cartesian production (all possible combinations): D1 x D2 x ... x Dn where Di = Domain(Ai) union null
+                        - Ordering of tuples is unimportant
+                        - Ordering of attributes is unimportant as long as the correspondence between attributes and their values is maintained
+                        - There should be no duplicate tuples
+                    - Relational Cardinality - how many rows in the table
+                - Integrity Constraints - restrictions of values
+                    - Domain - each value must come from the relevant domain
+                    - NOT-NULL - NULL value is not allowed for an attribute if so specified
+                    - Key Constraintt
+                        - Superkey - a set of one or more attributes which can uniquely identify a tuple in any relation instance of the given relation schema
+                        - Candidate Key - a super key which contains no extraneous attributes i.e. no proper subset is a SK
+                            - E.g. if you have student number and name as a super key, name is technically extraneous
+                            - A relation may have several candidate keys, once specified uniques is enforced for them
+                         - Primary Key - a candidate key that is chosen by the DB designer as the prinsiple means of identifying tuples in a relation
+                            - Only one primary key for a relation, attribute is underlined in the schema
+                            - Entity Integrity Constraint - NULL is not allowed for any attribute in the Primary Key (USE THIS ON TEST)
+                        - Primary Key -> Candidate Key -> Super Key
+                        - Super Key != Candidate Key != Primary key
+                    - Referential Integrity Constraint - ensure that a value that appears in one relation R for a given set G of attributes, must also appear for a Candidate Key in another relation S
+                        - Foreign Key - each value for a Foreign Key can be either in the referenced relation or NULL, the referenced set of attributes do not have to be a Candidate Key
+                    - Functional Dependency - X (a subset of attributes in the table) functionally determines Y (another subset of attributes in the table)
+                        - Birthdate (X) determines age (Y), two instances of the same birthdate should produce the same age value, however two instances of age does not determine the same birthdate
+                        - Student Number (x) determines Name, Birthdate, and Age (Y). Primary Key can determine any attribute
+                    - Semantic Integrity Constraints
+                        - User defined assertions e.g. age must be greater than 0 and less than 150
+                - Relational Database
+                    - Relational DB Schema - a set of relation schemas and a set of integriy constraints
+                    - Relational DB Instance - a set of relation instances that satisfy all the integrity constraints
+                - Operations
