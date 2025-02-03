@@ -234,4 +234,97 @@ Deep Learning
             - We want to mimize data loss and at the same time minimize regularization loss
             - Note - prefer small weights and spread weights
                 - W1 [0.5, 0.5] is preferred to W2 [1, 0]
-        - 
+4. 01/30/2025
+    - Neural Networks & Backpropogation
+        - Issue - Linear classifiers are not that powerful
+        - Options
+            - Feature Transformation - convert or modify values to produce a distribution whose classes are more easily bounded by a linear line
+                - Issue - how do you find a good feature transformation?
+            - Neural Network - learn the feature transformation and build a classifier for the data
+        - Linear Classifier - s = wight * inuts + bias, probability = softmax(s), tune with gradient descent
+            - Each score output is a combination of input and weights, weight and bias can be learned
+        - Two Layer Neural Network
+            - Layer One - width and bias
+            - Layer Two - width and bias
+            - Activation
+            - Network
+                - Input x times weight one and add bias one to produce h1
+                - Input h1 times weight two and add bias two to prduce s
+                - Softmax to produce probabilitie 
+        - Activation Functions
+            - No matter how many layers you have, if you do not have an activation functions it will continue to function as as linear classifier
+            - Activation Function - non linear e.g. sigmoid
+            - Each new layer has as input the previous layers output
+        - Deep Neural Networks - many many layers
+        - Return to Activation Function
+            - Rectified Linear Unit or ReLU, if value is larger than 0 get x, if value less than 0 get 0
+            - Sigmoid - not good for deep neural networks
+        - Back Propogation - How do we adjust parameters in our neural network?
+            - Parameters - W1, W2, ..., WN and B1, B2, ..., BN
+            - Gradient Descent - given learning rate, intial W and B, adjust them to reduce loss
+            - Idea - backpropogate loss to weight gradient
+            - Computation Graph Example -
+                - x = 2, y = 1, z = 0
+                - f(x,y,z) = x * (y + z)
+                - Gradient
+                    - Derivative with respect to x = (y+z)
+                    - Derivative of x with respect to y = x
+                    - Derivative of x with respect to z = x
+                    - Result is 3x1 vector
+                - Idea - use graph structure to denote the function
+                - Forward Pass - given input, produce intermediate and final ouputs
+                    - y + x = v
+                    - x * v = f
+                - Backward Pass - Calculate Gradient
+                    - Derivative of f with respect to f - 1 why?
+                    - Derivative of f with respect to x - 1 why?
+                    - Derivative of f with respect to v - 2 why?
+                    - Dervivative of f with respect to y is
+                        - Derivative of f with respect to v - 2 why?
+                        - Derivative of v with respect to y - 1 why?
+                    - Derivative of f with respect to z is
+                        - Derivative of f with respect to v - 2 why?
+                        - Derivative of v with respect to z - 2 why?
+                - Why Forward and Backward? Allows you to move through each step forward or backward
+                    - Downstream Gradient = Local Gradient * Upstream Gradient
+            - Another Computation Graph Example - l = max(wx +b, 0)
+                - Goal derivative of l with resepct to bias
+                - Goal Derivitave of l with respect to v
+                - Goal derivative of l with respect to weight
+                - Goal derivative of l with respec to x
+                - Goal derivative of l with respect to l = 1
+                - Goal derivative of ReLU if s > 0 = 1 else 0
+            - Compuation Graph - calculate all derivatives for all parameters using forward and then back in order to update the function - DO BY HAND
+                - Note - you must cache forward passing results to calculate the gradient later
+                - Add = Gradient Distributor - i.e. it will always take your upstream gradient value and send it backwards
+                - Multiple = Swapper and Multiplier
+                    - Upstream Gradient multiplied by Lower Gradient
+                - Max - Router
+                    - Gradient becomes 0 or the same
+                - Copy = Gradient Adder, gradient of downstream is gradient of both upstream gradients
+        - Calculate Gradient for Weight and Bias of Neural Network for Layer One
+            - Goal
+                - loss with respect to b
+                - loss with respect to w
+            - Steps
+                - Go through first layer to produce the end value
+                - Gradient of l with respect to h - upstream gradient with respect to ReLU
+                - Gradient ReLu is 1 if greater than 0 and 0 otherwise
+                - Gradient of l with respect to s - 0 or 1
+                - Gradient of l with respect to b
+                    - Gradient of l with respect to s times gradient of s with respect to b (1)
+                - Gradient of l with respect to v
+                    - Gradient of l with repect to s times gradient of s with respect to v (1)
+                - Gradient of l with respect to w
+                - Gradient of l with respect to x
+        - Produce Probabilities Layer Two
+            - Goal
+                - Loss with resepct to b
+                - Loss with respect to w
+                - Loss with respect to h
+            - Once we have the gradient with respect to h, we can contionue to calculate the gradients for the first layer
+        - How to adjust parameters?
+            - Stochastic Gradient Descent -> Backpropogation
+            - Basic Idea - calculate forward pass and Pytorch will do back propogratrion
+        - Autograd PyTorch - REVIEW
+
