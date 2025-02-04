@@ -307,3 +307,94 @@ Database Systems
                     - Relational DB Schema - a set of relation schemas and a set of integriy constraints
                     - Relational DB Instance - a set of relation instances that satisfy all the integrity constraints
                 - Operations
+
+5. 02/03/2025
+    - Relational Algebra
+        - Key Database Operations
+            - Retrieval
+            - Insert
+            - Delete
+            - Update
+        - Database Language
+            - Abstract
+                - Relational Algebra
+                - Tuple Relational Calculus
+                - Domain Relational Calculus
+            - Commericial
+                - SQL - Structured Query Language (All Above)
+                - QBE (Domain Relational Calculus)
+                - QUEL (Tuple Relational Calculus)
+                - ISBL (Relational Algebra)
+        - Algebra
+            - Two Parts
+                - Non empty set called domain
+                - one or more operations on the domain
+            - Example - Arithmetic Algebra
+                - Domain - set of real numbers
+                - Operation - additiona, substraction, division, multiplication
+        - Relational Algebra
+            - Property
+                - Closure Property - each operation operates on one or more relations and returns one relation
+            - Domain - set of relations or tables
+            - Operations
+                - Unary (One Table)
+                    - Select - sigma - select tuples satisfying F (conditions) from R (relation)
+                        - Example: Find the tuples for all projects controlled by department 4
+                            - sigma where department = 4 from PROJECT relation
+                            - Heading of result table is the same as the operand table
+                        - Example: Find the tuples for all projects controlled by department 1 or located at Houston
+                            - sigma
+                                - where department = 1 OR location = Huston ffrom PROJECT relation
+                        - Predicates - equal, not equal, less than, less than or equal to, greater than, greater than or equal to
+                        - Logical Connectives - AND, OR, NOT
+                    - Project - pi - project R (relation) over attributes in L (target attribute list) and REMOVE DUPLICATES tuples if any
+                        - Example: List each employee's last name, first name, and salary
+                            - pi list target attribute L [lname, fname, salary] from EMPLOYEE relation
+                        - Example: Find the locations of all departments
+                            - pi list locations from DEPT_LOCATIONS relation
+                        - Example: Retrieve the number and location of each project controlled by department 4 (NESTED)
+                            - pi list number and location FROM sigma where department = 4 FROM PROJECT relation
+                            - Intermediate Relation - sigma where department = 3 FROM PROJECT relation
+                - General Rename Operation
+                    - Table name "S" or column names "B1", "B2", "BN"
+                        - Note: required if both tables are the same name
+                - Join
+                    - Cartesian Product - ALL possible combination of tuples from relation R and relation S
+                        - Name SNO      Grade SNO
+                            X    4          A   4
+                                            B   3
+                        - Result
+                            Name  SNO  Grade SNO
+                            x     4    A     4
+                            x     4    B     3
+                    - Join
+                        - Example: List all students name, sno, and grade i.e. sigma where student.SNO = grade.SNO (STUDENT x GRADE)
+                        - This does not automatically eliminate duplicate columns, those have to be removed using a project operation e.g. you have SNO from both STUDENT relation and GRADE relation
+                    - Natural Join
+                        - Steps
+                            - Perform Cartesian Product RxS
+                            - Perform a Select to force equality on those attributes that appear in both relation R and relation S
+                            - Remove Duplicate Columns
+                        - Questions
+                            - If you have multiple pairs of attributes? Then you need to make each pair equal to each other i.e. R.A = S.A AND R.B = S.B
+                            - If you have no common attributes? Then the result is Cartesian Product
+                - Set
+                    - Union RuS
+                        - Conditions R, S must be union compatible i.e. R, S have the same degree and domain of the ith attribute of R = domain of the ith attribute of S
+                            - Degree = same number of columns
+                            - Domain of ith attribute i.e. 1st column is integer for both tables
+                        - Goal - get all tuples from both relations
+                        - Example: Find all students and instructors
+                    - Intersection RnS
+                        - Condition R,S must be union compatible
+                        - Goal - get all tuples that are in both relations
+                    - Difference - R-S
+                        - Condition R,S must be union compatible
+                        - Goal - get all from R relation that are NOT in relation S
+                    - Division R/S
+                        - Example: find each student who has taken all courses required for B.Sc. Degree
+                        - Goal - a tuple t is in R/S if for every tuple u in S the concatenation tu of t and u is in R
+                        - Dividend - R
+                        - Divisor - S
+                        - Quotient - R/S
+
