@@ -388,3 +388,98 @@ Big Data
                 - GET AND STORE OUTPUT: hadoop fs -get /user/cloudera/output
                 - SUBMIT OUTPUT FOLDER:
                 - SUBMIT EXECUTION RESULTS FROM VISUALIZER: localhost:8088
+
+4. 02/03/2025
+    - Frequent Itemsets
+        - Goal - find items that appear frequently together e.g. supermarket or restaurant orders or amazon shopping carts
+        - Approach - process the sales data collected with barcode scanners to find dependencies among items
+        - Classic Rule
+            - If someone buys diaper and milk, then he/she is likley to buy beer
+            - If someone buys beer, it is not true they will likely buy diapers
+        - Market Based Model
+            - Items - things that are sold, products
+            - Basket - set of items or products
+            - Discover - association rules i.e.people who bought item or basket tend to buy other item or basket
+        - Examples
+            - Baskets = sentences, Items = documents, detect documents that have many similar sentences in common
+            - Baskets = documents, Items = words, detect words that go together in the same documents
+            - Baskets = patients, Items = drugs and side effects, detect combination of drugs that result in certain side effects
+                - Extension - absence of an item needs to be observed as well as presence
+        - General Many to Many Mappin 
+            - We are loking about connections among items NOT baskets
+        - Outline
+            - First Define
+                - Determine Frequent Itemsets
+                    - Goal - find set of items that appear together frequently in baskets
+                    - Support for Itemset I - number of baskets containing all items in I
+                        - Support for Milk and Bread - number of baskets with milk and bread - probability out of total number of baskets
+                    - Question - how frequent is frequent?
+                    - Support Threshold s - set of items that appear in at least s baskets are called frequent itemsets - given or derived
+                    - Example (EXAM)
+                        - Support Threshold s = 3 baskets
+                        - Items - m = 5, c = 5, b = 6, {m,b} = 4, {c, b} = 3,, {c, j} = 3 
+                - Create Association Rules
+                    - If a basket contains all of, then it is likely to contain j
+                    - Confidence - support of I union J divided by support of I
+                        - Confidence of milk implies diapers is support of milk and diapers divided by support of milk
+                        - Upper Bound - 1 i.e. 100%
+                    - Note - not all high confidence rules are interesting, e.g. is a particular item frequent
+                    - Interest - confidence of the rule minus the probability of the rule
+                         - Interest = confidence of milk implies diapers minus probability of baskets that contain milk by itself
+                         - If interest is low, little to no relation
+                         - Threshold usually above 0.5 or lower than -0.5
+                         - Negative means inverse relationship that is if you purchase something you are likely not to purchase another item
+                    - Example
+                        - Association Rule {m,b} -> c
+                        - Confidence i.e. confidence of milk and bread implies coke
+                            - Union of {m,b,c} divided by {m,b} i.e. .25 / .5 = 1/4 / 1/2 = .5
+                            - Union of {m,b,c} divided by {m,b} i.e. 2 / 4 = 1/2 = .5
+                        - Interest i.e. confidence of the rule minus the probability of the rule
+                            -  .5 - 5/8 = -0.125 - NOT INTERESTING
+                    - Example - Find all association rules with support >= s and confidence >= c and interest > x
+                        - If high support and high confidence, then both will be frequent
+            - Mining Association Rules
+                - Determine Frequent Itemsets - consumes memory
+                - Create Association Rules
+                    - For every subset A of I, generate a rule A implies whatever remains
+                    - Measure confidence and interest and determine which ones to keep
+                    - Variant 1 - single pass to compute the rule confidence c(A,B -> C,D) == supoort(A,B,C,D) / support(A,B)
+                    - Variant 2 - If (A,B,C -> D) is below confidence so is (A,B) -> (C,D)
+                        - Why? support(A,B) is larger, producing smaller confidence
+                - Example
+                    - Support Threshold - 3
+                    - Confidence Threshold - 0.75
+                    - Determine Frequent Itemsets
+                        - {m}, {c}, {b}, {j}
+                        - {m,b}, {m,c}, {c,b}, {c,j}
+                        - {m,c,b}
+                    - Create Rules
+                        - b implies m - support(b,m) / support(b) = 4 / 6
+                        - m implies b - support(m,b) / support(m) = 4 / 5
+                        - b implies c = support(b,c) / support(b) = 5 / 6
+                    - Derive Confidence
+                    - Derive Interest
+                - Prune/Eliminate Rules
+                    - Maximal Frequent Itemsets - no immediate (one more item) superset is frequent
+                    - Closed Itemsest - no immediate superset has the same count > 0 - do not care about support threshold
+                    - Closed FrequentItemSets - no immediate superset has the same count > 0 - should be equal or greater than support threshold
+            - Finding Frequent Itemsets
+                - Note - typically data is kept in flat files rather than in a database system
+                    - Stored on disk, basket-by-basjet, baskets are small but there are many baskets and many items
+                        - Use k nested loops to generate all sets of size k
+                            - Pair - 2 nested loops - for x = i to n; for y = j to m; return {i,j}
+                            - Trios - 3 nested loops
+                - Note - the true cost of mining disk resident data is usually the number of disk I/Os
+                - Note - in practice, association rule algorityhms read the data in passes - all baskets read in turn
+                - Note - we measure the cost as the number of passes
+                - Note - main memory is the critical resources
+                    - As we read baskets, increment, save to disk, loop - this is an issue
+                - The hardest problem often turns out to be finding the frequent pair of items
+                    - n choose 2 = n^2/2
+                    - Approach - generate all the itemsets but only count those itemsets that in the end turn out to be frequent
+                - Naive Algorithm - read file once, generate all pairs, count support for all pairs, determine confidence
+                    - N^2/2 pairs are generated
+                    - Each count is 4 bytes of memory
+                    - Memory needed is N^2/2 * 4 = 2n^2 bytes
+                    - If n is 100,000 then you need 10,000,000,000 * 2 = 20,000,000,000 i.e. 20GB of memory
+                    - Memory must exceed n^2 items
