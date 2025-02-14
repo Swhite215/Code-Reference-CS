@@ -451,3 +451,65 @@ Deep Learning
                         - For each column, take the columns mu and sigma to normalize each value
                     - Learnable Scale and Shift Parameters - What is zero mean, unit variance is too hard to constrain?
                     - What values should we use during Test Time? Keep a running average mu and sigma
+
+6. Convolutional Neural Network Architectures
+    - Review 
+        - LeNet-5 - used for hand written digit recognition
+        - Normalization Layer - REVIEW
+    - Architectures
+        - AlexNet
+            - Image -> Convoution -> Pooling -> Convolution -> Pooling -> Convolution -> Convolutional -> Convolutional -> Pool -> Fully Connected Neural Network -> FC -> FC -> Softmax
+            - Output Size - REVIEW - (Input Size - Filter Size + 2 * Padding) / stride
+            - # of Parameters - REVIEW - Number of Filters x Size of Filter
+            - Memory - REVIEW - 
+            - FLOPs - REVIEW
+            - Notes
+                - Most of the memory usage is in the early convolutional layers - WHY?
+                - Most of parameters are in the fully connected layers - WHY?
+                - Most of FLOPs are in the convolution layers - WHY?
+        - VGG
+            - Design Rules
+                - All convolutional layers are 3x3 with stride 1 and pad 1 i.e. same receptive field with less params, less FLOPs and more nonlinearities
+                - All max pool are 2x2 with stride 2, after pool, double # channels i.e. less memory usage, same FLOPs, and more parameters
+            - Stages
+                - c -> c -> p
+                - c -> c -> p
+                - c -> c -> c -> p
+                - c -> c -> c -> p
+                - c -> c -> c -> p
+                - FC -> FC -> FC -> Softmax
+        - GoogleNet
+            - Problem Solved - first layer takes too much memory for VGG, solution is to aggressively down sample
+            - Notes
+                - Layers - 22
+                - Inception Modules - use different convolution filters of different sizes will handle objects at multiple scales better
+                - Global Average Pooling - reduce fully connected network layers
+        - ResNet
+            - Notes
+                - Layers - 152
+                - Issue #1 - deeper model seems to be underfitting i.e. deeper model is harder to optimize
+                - Solution #1 - make it learn identity functions easier
+        - ResNext
+            - Notes
+                - Group Convolution - each filter has the same number of channels as input, divide filters into groups and each group looks at a subset of inputs
+                - Depthwise Convolution - each filter in each group applies to one channel
+        - PyTorch
+            - Grouped Convolution - torch.nn.Conv2d
+    - Model Trade Offs
+        - Memory Usages vs. Number of Parameters vs. Number of FLOPs
+    - Essential Questions to Answer for Exam
+        - Why is pooling used?
+        - Why does output size matter?
+        - How do you produce an output size equal to inpuyt size?
+        - How do you calculate essential paramters e.g. output size, # of parameters, memory, FLOPs, etc.
+        - How does AlexNet compare to VGG?
+        - VGG to GoogleNet?
+        - GoogleNet to ResNet?
+        - What is a convolutional layer?
+        - Why is ReLu used?
+        - Why is Fully Connected Layer used?
+        - Why is softmax used?
+        - What is a skip connection?
+        - What is Bottlenext skip connection and why is it used?
+        - What is down sampling?
+        - What is up sampling?
