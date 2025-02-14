@@ -398,3 +398,55 @@ Database Systems
                         - Divisor - S
                         - Quotient - R/S
 
+6. 02/10/2025
+    - Relational Algebra
+        - Basic Operations
+            - Complete - a query is relationally complete if it can express any query expressible by select, project, cartesian product, union, and intersection
+            - Work Horse - select, project, and join
+        - Extended Operations
+            - Generalized Project - allow arithmetic expressions to be used in target L
+                - Example: List the SSN and the new salary of each employee, where the new salary = salary * 1.2
+            - Aggregate Function Operation - grouping attributes, operand attributes, aggregate functions
+                - SUM, AVG, MAX, MIN, COUNT, SUMD, AVGD
+                - Input - Table
+                - Parameter A - grouping attributes
+                - Parameter B - operand attributes
+                - Parameter F - aggregation function
+            - Example - find the number of employees and the average salary for each dept
+                - SELECT DISTINCT COUNT(ssn), department, AVG salary FROM employees group by dept
+            - OUTER JOIN - extended natural join or general join
+                - NATURAL JOIN - match from both tables
+                - Left Outer Natural Join - take all tuples in R that do not match any tuple in S, pad them with NULL values for all other attributes in S, and add them to the result of the natural join of R x S
+                - Right Outer Natural Join - take all tuples in S that do not match any tuple in R, pad them with null values for all other attributes in R, and add them to the result of the natural join of R x S
+                -  Full Outer Join - take all tuples in R that do not match any tuple in S, and all tuples in S that do not match any tuple in R, pad them with null values for all other attributes in S and R respectively and add them to the result of the natural join of R x S
+        - Other Operations - semijoin, semidifference, not tested
+        - Updates
+            - Insertion - union student and new tuple to insert the tuple
+            - Deletion - difference of student and condition to remove tuples and then create neww result
+            - Update - delete and then insert
+        - Other Abstract Languages
+            - Tuple Relational Calculus -  
+            - Domain Relational Calculus - 
+    - Structured Query Language
+        - History - 1:00:00
+        - Features - relationally complete, non-procedural, declarative
+        - Overview - Integrated
+            - Data Definition Language DDL
+                - Create - schema, table, view, domain, index, etc
+                - Alter - table, domain
+                - Drop - schema, table, view, domain, index, etc
+                - Grant - privileges
+            - Data Manipulation Language DML
+                - Select, Insert, Update, Delete
+                - Transaction Commit - begin, commit, rollback
+            - Usage Patterns
+                - Interactively
+                - Embedded
+        - Detailed Information
+            - DDL
+                - CREATE SCHEMA [DB SCHEMA NAME] AUTHORIZATION [USER ID]
+                - CREATE TABLE [TABLE NAME] {FIELD, DATA TYPE, CONSTRAINT}xN PRIMARY KEY [FIELD], FOREIGN KEY[FIELD]
+            - DML
+                - Query - SELECT ... FROM ... WHERE, duplicates not removed
+                    - By default duplicates are not removed
+                    
