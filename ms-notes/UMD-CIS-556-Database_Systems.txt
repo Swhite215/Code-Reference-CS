@@ -450,3 +450,86 @@ Database Systems
                 - Query - SELECT ... FROM ... WHERE, duplicates not removed
                     - By default duplicates are not removed
                     
+7. 02/17/2025
+    - Queries
+        - Two Way Join
+            - Example - find the name and number of each department located in Houston
+            - Example - SELECT d_name, DEPARTMENT.d_number from DEPARTMENT JOIN DEPT_LOCATIONS WHERE DEPARTMENT.d_number = DEPT_LOCATIONS.d_number and d_location = 'Houston'
+        - Table Alias and Column Renaming
+            - Table Alias - SELECT * FROM RELATION alias
+            - Column Renaming - SELECT alias.field as name
+        - N-Way join
+        - Joined Table
+            - R NATURAL JOIN S
+            - R JOIN S USING a
+            - R JOIN S ON R.a = S.a
+            - R NATURAL LEFT OUTER JOIN S
+            - R NATURAL RIGHT OUTER JOIN S
+            - R NATURAL FULL OUTER JOIN S
+            - R NATURAL INNER JOIN S
+        - Nested Queries
+            - SELECT * FROM WHERE (SELECT * FROM WHERE) - Outer Query (Sub Query)
+            - A NOT IN (Sub Query)
+            - A <COMP> ALL (Sub Query) - <COMP> - compare
+            - NOT EXISTS (Sub Query)
+            - NOT UNIQUE (Sub Query)
+            - Correlated Nested Query - outer query field is used in sub query comparison
+            - Example - Find the SSNs of employees who are in a research department but dont have dependents
+                - SELECT * FROM DEPENDENT WHERE X.ssn = Y.ssn - employees that have dependents
+                - NOT EXISTS (SELECT * FROM DEPENDENT WHERE X.ssn = Y.ssn) - employees that no not have dependents
+                - SELECT * FROM DEPARTMENT Y WHERE X.dnumber = Y.dnumber and dname = 'Research'- employees in a research department
+                - WHERE EXISTS (SELECT * FROM DEPARTMENT Y WHERE X.dnumber = Y.dnumber and dname = 'Research') - employees must be in
+                - SELECT ssn from EMPLOYEE X
+            - Aggregate Functions
+                - MAX, MIN, AVG, COUNT, SUM
+            - Grouping
+                - Example - find the average salary for each department
+                    - SELECT number, avg(salary) from employee GROUP by number
+                - Example - Find the average salary for each department which has at least three employees
+                    - SELECT number, average salary from EMPLOYEE, group by number HAVING COUNT(*) >= 3 - removes a group if count is < 3
+        - General Query Structure
+            - SELECT DISTINCT items [Attributes, Aggregate, Arithmetic]
+            - FROM tables
+            - WHERE condition - OPTIONAL
+            - GROUP BY columns - OPTIONAL
+            - HAVING condition - OPTIONAL
+            - ORDER BY columns - OPTIONAL
+            - Execution Order
+                - FROM tables
+                - WHERE condition
+                - GROUP by columns
+                - HAVING condition
+                - SELECT DISTINCT items
+                - ORDER by columns
+        - Queries with Set Operations - both must be union compatible same number of columns and same domain
+            - Query 1 UNION Query 2
+            - Query 1 INTERSECT Query 2
+            - Query 1 EXCEPT Query 2
+            - NOTE: duplicates by default are removed
+    - Updates
+        - INSERT
+            - Ways
+                - INSERT Command - INSERT INTO PROJECT VALUES ()
+                    - INSERT INTO TABLE Sub Query - INSERT INTO DEPENDENT SELECT * FROM EMPLOYEE
+                - Load Utility
+        - DELETE
+            - DELETE FROM TABLE WHERE CONDITION
+        - UPDATE
+            - UPDATE TABLE SET attribute = value WHERE CONDITION
+    - Embedded SQL
+        - Setup
+            - Shared Variable Declaration
+            - EXEC SQL BEGIN DECLARE SECTION ; CODE ; EXEC SQL END DECLARE SECTION ;
+            - CONNECT TO <SERVER NAME> AS <CONNECTION NAME> AUTHORIZATION <USER ID AND PASSWORD
+            - SET CONNECTION <CONNECTION NAME>
+            - DISCONNECT <CONNECTION NAME>
+        - Singleton Retrieval
+            - into - used in embedded sql statement to store retrieved sql data in program variables for use.
+        - Multi-Tuple Retrieval
+            - EXEC SQL DECLARE EMP CURSOR FOR SELECT <columns> FROM TABLE WHERE <conditions> FOR UPDATE OF
+            - EXEC SQL OPEN EMP - query executed and cursor set
+            - EXEC SQL FETCH FROM TABLE into <variables> - get data from cursor and advance
+            - Repeatedly call fetch untill nothing remaiuns
+            - EXEC SQL CLOSE EMPY - close cursor
+            - Cursor - Pointer to beginning of results, move cursor to get the next tuple, fetch advances the cursor and gets values
+        - Dynamic SQL - sql can be generated during program execution, as opposed to static sql

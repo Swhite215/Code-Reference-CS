@@ -8,10 +8,10 @@ Big Data
     - What is Data Mining?
         - Big Data - no standard term
         - Generators - almost everyone and every device
-        - Dumo - Data has changed over time
+        - Note - Data has changed over time
         - Goal - extract knowledge and model from data
         - Goal - discover patterns and models that are valid, useful, unexpected, and understandable
-    - Three V
+    - Three Vs
         - Volume - size (gigabytes, terabytes, petabytes)
         - Velocity - speed
         - Variety - types
@@ -21,7 +21,7 @@ Big Data
         - Descriptive Methods - find human interpretable patterns that describe data
             - PageRank - represent each website with a score, if a website has many hyperlinks to it, the score increases
             - Clustering - create groups of clusters of data points, with each cluster revealing something about the group
-        - Feature Based Model - look for the most extreme example of phenomen and represent the data by these items
+        - Feature-Based Model - look for the most extreme example of phenomen and represent the data by these items
             - Frequent Itemsets - makes sense for data that consists of baskets of small sets of items e.g. market basket
             - Similar Items - find pair of sets that have a relatively large fraction of their elements in common
     - Machine Learning Classification
@@ -39,7 +39,7 @@ Big Data
         - Bonferroni's Principle - if you look in more places for interesting patterns than your amount of data will support, you are bound to find crap
         - Example
             - Goal - we want to find unrelated people who on two different days were both at the same hotel
-            - 10^9 peopple being tracked i.e. 10,000,000,000
+            - 10^9 people being tracked i.e. 10,000,000,000
             - 1,000 days are being reviewed
             - Each person stays in a hotel 1% of the time
             - A hotel holds 100 people
@@ -56,12 +56,12 @@ Big Data
                 - n^2/2
                 - (10^9)^2/2 = 5*10^17
                 - (10^3)^2/2 - 5*10^5
-                - Goal - number of possible combinuations of two days, times number of possible combinations of two people, times probability
+                - Goal - number of possible combinations of two days, times number of possible combinations of two people, times probability
             - 250,000 suspicious pairs of people
     - Things Useful to Know
         - TF.IDF - the formal measure of how concentrated into relatively few documents are the occurences of a given word - if you see how frequent a word is e.g. the or a.
         - Inverse Document Frequency
-            - Frequency TF - for word I in document j, frequence of i in document j divided by max kfkj i.e. most frequent word in the document 
+            - Frequency TF - for word I in document j, frequency of i in document j divided by max kfkj i.e. most frequent word in the document 
             - IDF - log(total number of documents divided by how many documents have the word i in them)
             - For the article  "the", T.IDF should be high, logn(1) is 0, not important
         - Hash Functions - takes a hash key value as an argument and produces a bucket number, which is an integer. normally in the range 0 to B-1, where B is the number of buckets
@@ -536,8 +536,8 @@ Big Data
                 - Action Three
                     - Bitmap - Vector with 0's and 1's
                     - Number of bits are number of buckets
-                    - Bit is 1 if frequent
-                    - Bit is 0 if no frequent
+                    - Bit is 1 if frequent i.e. over threshold
+                    - Bit is 0 if no frequent i.e. under threshold
                 - Action Four
                     - Take frequent singletons AND their pair must hash to a one in the bit table, if both apply, then they are a candidate pair
                     - Frequent Bucket or Bit does not tell you which is frequent
