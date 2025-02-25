@@ -533,3 +533,108 @@ Database Systems
             - EXEC SQL CLOSE EMPY - close cursor
             - Cursor - Pointer to beginning of results, move cursor to get the next tuple, fetch advances the cursor and gets values
         - Dynamic SQL - sql can be generated during program execution, as opposed to static sql
+
+7. 02/24/2025
+    - Missing Information
+        - Issue - NULLs in database lead to a lot of problems
+        - Types - unknown, not applicable, does not exist, undefined
+        - NULL for Scalar Expression - mathematic epxression that involves a NULL value
+            - Exceptions 
+                - SUM, AVG, MAX, MIN ignore any NULL in the argument
+                - COUNT - NULLs are treated as non NULL values
+        - NULL Converting Operator
+            - IF NULL(e1, e2) - e1 if e1 NOT NULL, else e2
+            - COALESCE(CITY, 'City Unknown) - replace with another value if NULL
+        - 3 Valued Logic
+            - Age > 30
+                - true - age > 30
+                - false - age <= 30
+                - unknown - age is NULL
+            - General Rule - you get unknown if any value is NULL
+            - Example - Find the lasat names of employees in dept. 4 who dont have a middle initial
+                - WRONG - SELECT LNAME FROM EMPLOYEE WHGERE MINIT = NULL AND DNUM = 4
+                - CORRECT - SELECT LNAME FROM EMPLOYEE WHERE MINIT IS NULL AND DNUM = 4
+            - Table - 23:00
+            - Example
+                - A = 3, B = 4, and C = NULL
+                - (A > B AND B = C) - false
+                - NOT(A > C) - unknown
+                - Maybe (A < B) - false
+                - Maybe (B > C) - true
+                - SELECT Name FROM STUDENT WHERE age > 30 IS UNKNOWN
+        - Question
+            - Can we treat truth value unknown as false before the end? No
+            - Example - NOT (Age > 30)
+                - If Age > 30 is unknown, and false, then result is true
+                - IF Age > 30 is true, then result is false
+        - Duplicates and Ordering
+            - ALL NULLs are considered to be equal to one another for ordering and duplicates removing purposes
+            - NULLs are > or < all non-null values for ordering purposes, depending on the system
+            - Integrity constraint is violated if it is fale i.e. true and unknwon are ok
+                - Age > 0 => NULL allowed
+                - Null value theory still has many flaws
+    - Views
+        - Definition - a virtual table that is derived (as the rsult of a query) from other tables, but itself may not physically exist in DB
+            - A window into the underlying data
+            - A named, derived, un-materialized table
+            - snapshot - named, derived, materialized, read only -> need to be refreshed periodically
+        - Advantages - logical data independence, security, different views, shorthand
+        - Create
+            - CREATE VIEW name columns AS query
+            - CREATE VIEW name AS (SELECT LNAME, SSN, SALARY FROM EMPLOYEE WHERE DNO = 5)
+        - Drop
+            - DROP VIEW name
+        - Query
+            - SELECT * FROM view WHERE CONDITION
+        - Processing Technqiues
+            - View Materialization - evaluate the view first, then query the result
+            - Query Modification - merge the view and query to get a new query
+        - Update
+            - Note - views are not always updatable, views using aggregate functions are usually not updatable
+            - UPDATE VIEW SET Salary = Salary * 1.05
+            - INSERT INTO view VALUES ()
+                - INSERT INTO EMPLOYEE VALUES () - WITH CHECK can work
+                - INSERT INTO, missing primary key should cause UPDATE to fail
+    - Relational Database Design
+        - Review
+            - Entity Relationship Model - Entity
+            - Relational Database Model - Relations
+        - ER to Relation Mapping
+            - Regular Entity Type (New Table)
+                - Example - Employee
+                - Convert to Table - EMP(Employee #, First Name, Middle Name, Last Name, Salary)
+                - Multivalued Attribute - PHONE(Phone # and Employee #) - create separate table
+            - Weak Entity Type (New Table)
+                - Example Employee and Dependents
+                - Convert to Table - Dependent([Employee SSN, Name], Sex, Birth Date, Relationship)
+            - Many to Many Relationship Type - New Table
+                - Example - Employees and Projects
+                - Create PROJ_WORK([Employee # FK, Project # FK], Hours Worked)
+            - One to One Relationship (If, Pick Required Relation to Add)
+                - Example - Department and Manager
+                - Create Management Table (Employee # FK, Department # FK, Start Date) - NOT OPTIMAL
+                - Add to Employment Table (Employee #, ...., Department #) - NOT OPTIMAL - an employee may not manage a department
+                - Add to Department Table (Department #, ..., Employee #) - BEST - every department must have a manager
+            - One to Many Relationship (Pick the M Side)
+                - Create Project Management Table (Employee #, Project #, Start Date) - NOT OPTIMAL
+                - Add to Project Table (Project #, ..., Start Date, Emp#)
+            - Weak Entity with M:M Relationship
+                - Example - one dependent with multiple employees, employees with multiple dependents
+                - Create Dependency Table (SSN, Name, Sex, Rel) - redundant
+                - Create Dependency Table w/Attributes as Key and Employee Dependency Table
+                - Use an Artificial Key - key does not belong to
+            - N-Ary Relationship
+                - Example - Project, Supplier, Part
+                - Create Table (S#, Project#, Part#, EXTRA)
+            - Specialization and Generalization
+                - Examlple - Employee with Secretary Specialization
+                - Create Secretary Table (Employee #, EXTRA)
+            - Category (Union)
+                - Example - (Person, Bank, Company) u Owner
+                    - Create Surrogate Key - OwnerID, in Bank/Company numerical, in Person, SSN
+                - Example - (Car, Truck) u Registered Vehicle
+                    - Add Vehicle ID
+            - Aggregate
+                - Example - Employee, Project, Employee Works On, Machinery
+                - Create Uses (Employee #, Project #, Machine #)
+            

@@ -140,7 +140,7 @@ Big Data
         - Architectures
             - Single Node Architecture - CPU, memory, and disk are on the same device, data loaded from disk to memory, algorithm is run against all data, results are written to storage
                 - Issue(s) - What if you cannot store all data on disk? What if you cannot store all data in memory?
-            - Clsuter Architecture
+            - Cluster Architecture
                 - Rack - 16-64 nodes (CPU, memory, disk), 1Gbps between nodes
                 - Switch - connects racks and other switches, 2-10 Gbps between racks
         - Motivation
@@ -562,3 +562,97 @@ Big Data
                         - In what scenario is PCY better than a priori?
                             - PCY is using 12, A Priori is using 4
                             - If 2/3 of candidate pairs are eliminated than PCY is better
+
+6. 02/17/2025
+    - Quick Review
+        - Naive Approach
+            - Passes - 1
+            - Memory - 2n^2
+            - Storage
+                - Triangular Matrix
+                - Table of Triples
+        - A Priori
+            - Passes - 2
+                - Pass 1 - Singletons
+                - Pass 2 - Frequent Singletons -> Candidate Pairs -> Frequent Pairs
+            - Storage
+                - Triangular Matrix - Must do reindexing trick
+                - Table of Triples  
+        - PCY Algorithm
+            - Passes - Review Above
+            - Question
+                - Does a frequent bucket mean a frequent
+                - How do you determine buckets? Take remaining memory after first pass, divide by four bytes to get a reasonable bucket number
+            - Memory
+                - Must use Table of Triples - 12 bytes for each pair 3x larger than Triangular Matrix
+                - To save memory, should eliminate 2/3 of candidate pairs
+    - Multistage Algorithm
+        - Three Passes
+            - Pass 1 - Item Counts and Produce First Hash Table and Bitmap of Buckets
+            - Pass 2 - Second Hash Table
+                - Conditions - singleton is frequent and has one result should be 1
+                - Action - hash the pair with a second hash function and create a second set of buckets with counts
+                - Action - create second bitmap, 0 and 1 based on new buckets 
+            - Pass 3 - Frequent Item, Bitmap 1 and Bitmap 2, Counts of Candidate Pairs
+                - Candidate Pair
+                    - Each singleton in pair should be frequent by itself
+                    - Pair should hash to 1 in first bit map - we do not keep the information so hash must be checked again
+                    - Pair should hash to 1 in second bit map
+            - Memory - REVIEW
+            - Note - can increase the number of hash tables
+            - Note - hash functions must be different
+            - Why over PCY?
+                - Multistage Algorithms works by eliminating pairs, allowing you to tackle larger datasets.
+            - Issue - in multistage, there is a point of diminishing returns, since the bit vectors eventually consume all of main memory
+    - Multihash
+        - Idea - use several independent hash functions and produce both hash tables and bitmaps in the first pass
+        - Issue - multiple hash tables with lower number of buckets may result in more frequent buckets i.e. requiring more work later on, counts about double, infrequent buckets are the helpful ones because they help you eliminate
+        - Note - if numbers in infrequent buckets are low, than when doubled likely to be okay as it is under threshold
+        - Benefit - the bit vectors occupy exactly what on PCY bitmap does, but too many hash functions makes all counts >= support threshold
+    - Algorithms w/ Less 2 Passes
+        - Issue - some frequent itemsets may be missed - false negative - frequent in whole not in sample - cannot be eliminated
+        - Issue - false positive - frequent in sample but not in whole
+        - Simple Algorithm
+            - Actions
+                - Action - take a random sample of the market baskets
+                - Action - run a-priori or another in main memory
+                - Action - count candidate pairs to identify frequent pairs, if you count all pairs then it is the naive approache
+            - Benefits
+                - Dont pay for disk I/O each time we increase the size of itemsets
+                - Pass - read or write from disk, this is no longer happening
+                - Reduces support threshold proportionally to match the sample size
+                - This pattern eliminates 
+            - Questoin - how does this algorithm reduce false positives? Do a second pass to verify the frequenct on entire dataset
+            - Question - how do we reduce false negatives? Lower the support threshold
+        - SON (Savasere, Omiecinski, and Navathe)
+            - Actions
+                - Divide data into multiple samples
+                - Repeatedly read the subset and using a proportionally reduced support threshold and identify candidate pairs
+                - On second pass, count all the candidate item sets and determine which are frequent in the entire set
+                - Monotonicity - an item cannot be frequent in the entire set of baskets unless it is frequent in at least one subset
+            - Note
+                - This lends itself to Hadoop or Spark HDFS etc.
+                - Hadoop
+                    - Divide into chunk
+                    - Each chunk processed on each node with a lwoered threshold
+                    - Output of each reduce will list candidate pairs
+                    - Each machines sends its own list of candidate pairs to each other node
+                    - Each node will count the candidate pairs in its own chunk
+                    - Count for each candidate pairs sent to reduce node for aggregation
+            - Benefits
+                - You will not have any false negatives
+        - Toivonen
+            - Note - less than two passes and does not need distributed computing
+            - Issue - you may have to peform it several times an unknown number of times
+            - Actions
+                - Lower the support threshold more than a proportional amount to try to avoid false negatives
+                - Identify all singletons
+                - From the sample, identify candidate pairs AND negative border (if an item set is not frequent but all its immediate subsets are frequent)
+                    - ABCD is in negative border if, ABC, ACD, BCD, and ABD are frequent
+                - Full pass on entire dataset to eliminate false positives, considering both candidate pairs and negative border
+                    - Deaing with canddidates and the negative border that is not frequent in the sample but may be
+            - Benefits
+                - If all the item sets in the negative border turn out NOT to be frequent, you are good, no false negatives or false postiives
+            - Issue
+                - If any set in the negative border if frequent, you must repeat because 
+            - Note - when processing the sample by A-Priori, each member of Ck is either in Lk or in the negative border, never both
