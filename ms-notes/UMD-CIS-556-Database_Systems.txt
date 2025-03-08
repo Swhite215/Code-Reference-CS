@@ -307,3 +307,334 @@ Database Systems
                     - Relational DB Schema - a set of relation schemas and a set of integriy constraints
                     - Relational DB Instance - a set of relation instances that satisfy all the integrity constraints
                 - Operations
+
+5. 02/03/2025
+    - Relational Algebra
+        - Key Database Operations
+            - Retrieval
+            - Insert
+            - Delete
+            - Update
+        - Database Language
+            - Abstract
+                - Relational Algebra
+                - Tuple Relational Calculus
+                - Domain Relational Calculus
+            - Commericial
+                - SQL - Structured Query Language (All Above)
+                - QBE (Domain Relational Calculus)
+                - QUEL (Tuple Relational Calculus)
+                - ISBL (Relational Algebra)
+        - Algebra
+            - Two Parts
+                - Non empty set called domain
+                - one or more operations on the domain
+            - Example - Arithmetic Algebra
+                - Domain - set of real numbers
+                - Operation - additiona, substraction, division, multiplication
+        - Relational Algebra
+            - Property
+                - Closure Property - each operation operates on one or more relations and returns one relation
+            - Domain - set of relations or tables
+            - Operations
+                - Unary (One Table)
+                    - Select - sigma - select tuples satisfying F (conditions) from R (relation)
+                        - Example: Find the tuples for all projects controlled by department 4
+                            - sigma where department = 4 from PROJECT relation
+                            - Heading of result table is the same as the operand table
+                        - Example: Find the tuples for all projects controlled by department 1 or located at Houston
+                            - sigma
+                                - where department = 1 OR location = Huston ffrom PROJECT relation
+                        - Predicates - equal, not equal, less than, less than or equal to, greater than, greater than or equal to
+                        - Logical Connectives - AND, OR, NOT
+                    - Project - pi - project R (relation) over attributes in L (target attribute list) and REMOVE DUPLICATES tuples if any
+                        - Example: List each employee's last name, first name, and salary
+                            - pi list target attribute L [lname, fname, salary] from EMPLOYEE relation
+                        - Example: Find the locations of all departments
+                            - pi list locations from DEPT_LOCATIONS relation
+                        - Example: Retrieve the number and location of each project controlled by department 4 (NESTED)
+                            - pi list number and location FROM sigma where department = 4 FROM PROJECT relation
+                            - Intermediate Relation - sigma where department = 3 FROM PROJECT relation
+                - General Rename Operation
+                    - Table name "S" or column names "B1", "B2", "BN"
+                        - Note: required if both tables are the same name
+                - Join
+                    - Cartesian Product - ALL possible combination of tuples from relation R and relation S
+                        - Name SNO      Grade SNO
+                            X    4          A   4
+                                            B   3
+                        - Result
+                            Name  SNO  Grade SNO
+                            x     4    A     4
+                            x     4    B     3
+                    - Join
+                        - Example: List all students name, sno, and grade i.e. sigma where student.SNO = grade.SNO (STUDENT x GRADE)
+                        - This does not automatically eliminate duplicate columns, those have to be removed using a project operation e.g. you have SNO from both STUDENT relation and GRADE relation
+                    - Natural Join
+                        - Steps
+                            - Perform Cartesian Product RxS
+                            - Perform a Select to force equality on those attributes that appear in both relation R and relation S
+                            - Remove Duplicate Columns
+                        - Questions
+                            - If you have multiple pairs of attributes? Then you need to make each pair equal to each other i.e. R.A = S.A AND R.B = S.B
+                            - If you have no common attributes? Then the result is Cartesian Product
+                - Set
+                    - Union RuS
+                        - Conditions R, S must be union compatible i.e. R, S have the same degree and domain of the ith attribute of R = domain of the ith attribute of S
+                            - Degree = same number of columns
+                            - Domain of ith attribute i.e. 1st column is integer for both tables
+                        - Goal - get all tuples from both relations
+                        - Example: Find all students and instructors
+                    - Intersection RnS
+                        - Condition R,S must be union compatible
+                        - Goal - get all tuples that are in both relations
+                    - Difference - R-S
+                        - Condition R,S must be union compatible
+                        - Goal - get all from R relation that are NOT in relation S
+                    - Division R/S
+                        - Example: find each student who has taken all courses required for B.Sc. Degree
+                        - Goal - a tuple t is in R/S if for every tuple u in S the concatenation tu of t and u is in R
+                        - Dividend - R
+                        - Divisor - S
+                        - Quotient - R/S
+
+6. 02/10/2025
+    - Relational Algebra
+        - Basic Operations
+            - Complete - a query is relationally complete if it can express any query expressible by select, project, cartesian product, union, and intersection
+            - Work Horse - select, project, and join
+        - Extended Operations
+            - Generalized Project - allow arithmetic expressions to be used in target L
+                - Example: List the SSN and the new salary of each employee, where the new salary = salary * 1.2
+            - Aggregate Function Operation - grouping attributes, operand attributes, aggregate functions
+                - SUM, AVG, MAX, MIN, COUNT, SUMD, AVGD
+                - Input - Table
+                - Parameter A - grouping attributes
+                - Parameter B - operand attributes
+                - Parameter F - aggregation function
+            - Example - find the number of employees and the average salary for each dept
+                - SELECT DISTINCT COUNT(ssn), department, AVG salary FROM employees group by dept
+            - OUTER JOIN - extended natural join or general join
+                - NATURAL JOIN - match from both tables
+                - Left Outer Natural Join - take all tuples in R that do not match any tuple in S, pad them with NULL values for all other attributes in S, and add them to the result of the natural join of R x S
+                - Right Outer Natural Join - take all tuples in S that do not match any tuple in R, pad them with null values for all other attributes in R, and add them to the result of the natural join of R x S
+                -  Full Outer Join - take all tuples in R that do not match any tuple in S, and all tuples in S that do not match any tuple in R, pad them with null values for all other attributes in S and R respectively and add them to the result of the natural join of R x S
+        - Other Operations - semijoin, semidifference, not tested
+        - Updates
+            - Insertion - union student and new tuple to insert the tuple
+            - Deletion - difference of student and condition to remove tuples and then create neww result
+            - Update - delete and then insert
+        - Other Abstract Languages
+            - Tuple Relational Calculus -  
+            - Domain Relational Calculus - 
+    - Structured Query Language
+        - History - 1:00:00
+        - Features - relationally complete, non-procedural, declarative
+        - Overview - Integrated
+            - Data Definition Language DDL
+                - Create - schema, table, view, domain, index, etc
+                - Alter - table, domain
+                - Drop - schema, table, view, domain, index, etc
+                - Grant - privileges
+            - Data Manipulation Language DML
+                - Select, Insert, Update, Delete
+                - Transaction Commit - begin, commit, rollback
+            - Usage Patterns
+                - Interactively
+                - Embedded
+        - Detailed Information
+            - DDL
+                - CREATE SCHEMA [DB SCHEMA NAME] AUTHORIZATION [USER ID]
+                - CREATE TABLE [TABLE NAME] {FIELD, DATA TYPE, CONSTRAINT}xN PRIMARY KEY [FIELD], FOREIGN KEY[FIELD]
+            - DML
+                - Query - SELECT ... FROM ... WHERE, duplicates not removed
+                    - By default duplicates are not removed
+                    
+7. 02/17/2025
+    - Queries
+        - Two Way Join
+            - Example - find the name and number of each department located in Houston
+            - Example - SELECT d_name, DEPARTMENT.d_number from DEPARTMENT JOIN DEPT_LOCATIONS WHERE DEPARTMENT.d_number = DEPT_LOCATIONS.d_number and d_location = 'Houston'
+        - Table Alias and Column Renaming
+            - Table Alias - SELECT * FROM RELATION alias
+            - Column Renaming - SELECT alias.field as name
+        - N-Way join
+        - Joined Table
+            - R NATURAL JOIN S
+            - R JOIN S USING a
+            - R JOIN S ON R.a = S.a
+            - R NATURAL LEFT OUTER JOIN S
+            - R NATURAL RIGHT OUTER JOIN S
+            - R NATURAL FULL OUTER JOIN S
+            - R NATURAL INNER JOIN S
+        - Nested Queries
+            - SELECT * FROM WHERE (SELECT * FROM WHERE) - Outer Query (Sub Query)
+            - A NOT IN (Sub Query)
+            - A <COMP> ALL (Sub Query) - <COMP> - compare
+            - NOT EXISTS (Sub Query)
+            - NOT UNIQUE (Sub Query)
+            - Correlated Nested Query - outer query field is used in sub query comparison
+            - Example - Find the SSNs of employees who are in a research department but dont have dependents
+                - SELECT * FROM DEPENDENT WHERE X.ssn = Y.ssn - employees that have dependents
+                - NOT EXISTS (SELECT * FROM DEPENDENT WHERE X.ssn = Y.ssn) - employees that no not have dependents
+                - SELECT * FROM DEPARTMENT Y WHERE X.dnumber = Y.dnumber and dname = 'Research'- employees in a research department
+                - WHERE EXISTS (SELECT * FROM DEPARTMENT Y WHERE X.dnumber = Y.dnumber and dname = 'Research') - employees must be in
+                - SELECT ssn from EMPLOYEE X
+            - Aggregate Functions
+                - MAX, MIN, AVG, COUNT, SUM
+            - Grouping
+                - Example - find the average salary for each department
+                    - SELECT number, avg(salary) from employee GROUP by number
+                - Example - Find the average salary for each department which has at least three employees
+                    - SELECT number, average salary from EMPLOYEE, group by number HAVING COUNT(*) >= 3 - removes a group if count is < 3
+        - General Query Structure
+            - SELECT DISTINCT items [Attributes, Aggregate, Arithmetic]
+            - FROM tables
+            - WHERE condition - OPTIONAL
+            - GROUP BY columns - OPTIONAL
+            - HAVING condition - OPTIONAL
+            - ORDER BY columns - OPTIONAL
+            - Execution Order
+                - FROM tables
+                - WHERE condition
+                - GROUP by columns
+                - HAVING condition
+                - SELECT DISTINCT items
+                - ORDER by columns
+        - Queries with Set Operations - both must be union compatible same number of columns and same domain
+            - Query 1 UNION Query 2
+            - Query 1 INTERSECT Query 2
+            - Query 1 EXCEPT Query 2
+            - NOTE: duplicates by default are removed
+    - Updates
+        - INSERT
+            - Ways
+                - INSERT Command - INSERT INTO PROJECT VALUES ()
+                    - INSERT INTO TABLE Sub Query - INSERT INTO DEPENDENT SELECT * FROM EMPLOYEE
+                - Load Utility
+        - DELETE
+            - DELETE FROM TABLE WHERE CONDITION
+        - UPDATE
+            - UPDATE TABLE SET attribute = value WHERE CONDITION
+    - Embedded SQL
+        - Setup
+            - Shared Variable Declaration
+            - EXEC SQL BEGIN DECLARE SECTION ; CODE ; EXEC SQL END DECLARE SECTION ;
+            - CONNECT TO <SERVER NAME> AS <CONNECTION NAME> AUTHORIZATION <USER ID AND PASSWORD
+            - SET CONNECTION <CONNECTION NAME>
+            - DISCONNECT <CONNECTION NAME>
+        - Singleton Retrieval
+            - into - used in embedded sql statement to store retrieved sql data in program variables for use.
+        - Multi-Tuple Retrieval
+            - EXEC SQL DECLARE EMP CURSOR FOR SELECT <columns> FROM TABLE WHERE <conditions> FOR UPDATE OF
+            - EXEC SQL OPEN EMP - query executed and cursor set
+            - EXEC SQL FETCH FROM TABLE into <variables> - get data from cursor and advance
+            - Repeatedly call fetch untill nothing remaiuns
+            - EXEC SQL CLOSE EMPY - close cursor
+            - Cursor - Pointer to beginning of results, move cursor to get the next tuple, fetch advances the cursor and gets values
+        - Dynamic SQL - sql can be generated during program execution, as opposed to static sql
+
+7. 02/24/2025
+    - Missing Information
+        - Issue - NULLs in database lead to a lot of problems
+        - Types - unknown, not applicable, does not exist, undefined
+        - NULL for Scalar Expression - mathematic epxression that involves a NULL value
+            - Exceptions 
+                - SUM, AVG, MAX, MIN ignore any NULL in the argument
+                - COUNT - NULLs are treated as non NULL values
+        - NULL Converting Operator
+            - IF NULL(e1, e2) - e1 if e1 NOT NULL, else e2
+            - COALESCE(CITY, 'City Unknown) - replace with another value if NULL
+        - 3 Valued Logic
+            - Age > 30
+                - true - age > 30
+                - false - age <= 30
+                - unknown - age is NULL
+            - General Rule - you get unknown if any value is NULL
+            - Example - Find the lasat names of employees in dept. 4 who dont have a middle initial
+                - WRONG - SELECT LNAME FROM EMPLOYEE WHGERE MINIT = NULL AND DNUM = 4
+                - CORRECT - SELECT LNAME FROM EMPLOYEE WHERE MINIT IS NULL AND DNUM = 4
+            - Table - 23:00
+            - Example
+                - A = 3, B = 4, and C = NULL
+                - (A > B AND B = C) - false
+                - NOT(A > C) - unknown
+                - Maybe (A < B) - false
+                - Maybe (B > C) - true
+                - SELECT Name FROM STUDENT WHERE age > 30 IS UNKNOWN
+        - Question
+            - Can we treat truth value unknown as false before the end? No
+            - Example - NOT (Age > 30)
+                - If Age > 30 is unknown, and false, then result is true
+                - IF Age > 30 is true, then result is false
+        - Duplicates and Ordering
+            - ALL NULLs are considered to be equal to one another for ordering and duplicates removing purposes
+            - NULLs are > or < all non-null values for ordering purposes, depending on the system
+            - Integrity constraint is violated if it is fale i.e. true and unknwon are ok
+                - Age > 0 => NULL allowed
+                - Null value theory still has many flaws
+    - Views
+        - Definition - a virtual table that is derived (as the rsult of a query) from other tables, but itself may not physically exist in DB
+            - A window into the underlying data
+            - A named, derived, un-materialized table
+            - snapshot - named, derived, materialized, read only -> need to be refreshed periodically
+        - Advantages - logical data independence, security, different views, shorthand
+        - Create
+            - CREATE VIEW name columns AS query
+            - CREATE VIEW name AS (SELECT LNAME, SSN, SALARY FROM EMPLOYEE WHERE DNO = 5)
+        - Drop
+            - DROP VIEW name
+        - Query
+            - SELECT * FROM view WHERE CONDITION
+        - Processing Technqiues
+            - View Materialization - evaluate the view first, then query the result
+            - Query Modification - merge the view and query to get a new query
+        - Update
+            - Note - views are not always updatable, views using aggregate functions are usually not updatable
+            - UPDATE VIEW SET Salary = Salary * 1.05
+            - INSERT INTO view VALUES ()
+                - INSERT INTO EMPLOYEE VALUES () - WITH CHECK can work
+                - INSERT INTO, missing primary key should cause UPDATE to fail
+    - Relational Database Design
+        - Review
+            - Entity Relationship Model - Entity
+            - Relational Database Model - Relations
+        - ER to Relation Mapping
+            - Regular Entity Type (New Table)
+                - Example - Employee
+                - Convert to Table - EMP(Employee #, First Name, Middle Name, Last Name, Salary)
+                - Multivalued Attribute - PHONE(Phone # and Employee #) - create separate table
+            - Weak Entity Type (New Table)
+                - Example Employee and Dependents
+                - Convert to Table - Dependent([Employee SSN, Name], Sex, Birth Date, Relationship)
+            - Many to Many Relationship Type - New Table
+                - Example - Employees and Projects
+                - Create PROJ_WORK([Employee # FK, Project # FK], Hours Worked)
+            - One to One Relationship (If, Pick Required Relation to Add)
+                - Example - Department and Manager
+                - Create Management Table (Employee # FK, Department # FK, Start Date) - NOT OPTIMAL
+                - Add to Employment Table (Employee #, ...., Department #) - NOT OPTIMAL - an employee may not manage a department
+                - Add to Department Table (Department #, ..., Employee #) - BEST - every department must have a manager
+            - One to Many Relationship (Pick the M Side)
+                - Create Project Management Table (Employee #, Project #, Start Date) - NOT OPTIMAL
+                - Add to Project Table (Project #, ..., Start Date, Emp#)
+            - Weak Entity with M:M Relationship
+                - Example - one dependent with multiple employees, employees with multiple dependents
+                - Create Dependency Table (SSN, Name, Sex, Rel) - redundant
+                - Create Dependency Table w/Attributes as Key and Employee Dependency Table
+                - Use an Artificial Key - key does not belong to
+            - N-Ary Relationship
+                - Example - Project, Supplier, Part
+                - Create Table (S#, Project#, Part#, EXTRA)
+            - Specialization and Generalization
+                - Examlple - Employee with Secretary Specialization
+                - Create Secretary Table (Employee #, EXTRA)
+            - Category (Union)
+                - Example - (Person, Bank, Company) u Owner
+                    - Create Surrogate Key - OwnerID, in Bank/Company numerical, in Person, SSN
+                - Example - (Car, Truck) u Registered Vehicle
+                    - Add Vehicle ID
+            - Aggregate
+                - Example - Employee, Project, Employee Works On, Machinery
+                - Create Uses (Employee #, Project #, Machine #)
+            

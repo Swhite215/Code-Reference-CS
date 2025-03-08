@@ -244,3 +244,283 @@ Deep Learning
         - Compute the gradient of the loss with respect to weights and biases.
         - Update weights and biases using gradient descent.
         - Repeat for multiple iterations (epochs) until convergence.
+        
+4. 01/30/2025
+    - Neural Networks & Backpropogation
+        - Issue - Linear classifiers are not that powerful
+        - Options
+            - Feature Transformation - convert or modify values to produce a distribution whose classes are more easily bounded by a linear line
+                - Issue - how do you find a good feature transformation?
+            - Neural Network - learn the feature transformation and build a classifier for the data
+        - Linear Classifier - s = wight * inuts + bias, probability = softmax(s), tune with gradient descent
+            - Each score output is a combination of input and weights, weight and bias can be learned
+        - Two Layer Neural Network
+            - Layer One - width and bias
+            - Layer Two - width and bias
+            - Activation
+            - Network
+                - Input x times weight one and add bias one to produce h1
+                - Input h1 times weight two and add bias two to prduce s
+                - Softmax to produce probabilitie 
+        - Activation Functions
+            - No matter how many layers you have, if you do not have an activation functions it will continue to function as as linear classifier
+            - Activation Function - non linear e.g. sigmoid
+            - Each new layer has as input the previous layers output
+        - Deep Neural Networks - many many layers
+        - Return to Activation Function
+            - Rectified Linear Unit or ReLU, if value is larger than 0 get x, if value less than 0 get 0
+            - Sigmoid - not good for deep neural networks
+        - Back Propogation - How do we adjust parameters in our neural network?
+            - Parameters - W1, W2, ..., WN and B1, B2, ..., BN
+            - Gradient Descent - given learning rate, intial W and B, adjust them to reduce loss
+            - Idea - backpropogate loss to weight gradient
+            - Computation Graph Example -
+                - x = 2, y = 1, z = 0
+                - f(x,y,z) = x * (y + z)
+                - Gradient
+                    - Derivative with respect to x = (y+z)
+                    - Derivative of x with respect to y = x
+                    - Derivative of x with respect to z = x
+                    - Result is 3x1 vector
+                - Idea - use graph structure to denote the function
+                - Forward Pass - given input, produce intermediate and final ouputs
+                    - y + x = v
+                    - x * v = f
+                - Backward Pass - Calculate Gradient
+                    - Derivative of f with respect to f - 1 why?
+                    - Derivative of f with respect to x - 1 why?
+                    - Derivative of f with respect to v - 2 why?
+                    - Dervivative of f with respect to y is
+                        - Derivative of f with respect to v - 2 why?
+                        - Derivative of v with respect to y - 1 why?
+                    - Derivative of f with respect to z is
+                        - Derivative of f with respect to v - 2 why?
+                        - Derivative of v with respect to z - 2 why?
+                - Why Forward and Backward? Allows you to move through each step forward or backward
+                    - Downstream Gradient = Local Gradient * Upstream Gradient
+            - Another Computation Graph Example - l = max(wx +b, 0)
+                - Goal derivative of l with resepct to bias
+                - Goal Derivitave of l with respect to v
+                - Goal derivative of l with respect to weight
+                - Goal derivative of l with respec to x
+                - Goal derivative of l with respect to l = 1
+                - Goal derivative of ReLU if s > 0 = 1 else 0
+            - Compuation Graph - calculate all derivatives for all parameters using forward and then back in order to update the function - DO BY HAND
+                - Note - you must cache forward passing results to calculate the gradient later
+                - Add = Gradient Distributor - i.e. it will always take your upstream gradient value and send it backwards
+                - Multiple = Swapper and Multiplier
+                    - Upstream Gradient multiplied by Lower Gradient
+                - Max - Router
+                    - Gradient becomes 0 or the same
+                - Copy = Gradient Adder, gradient of downstream is gradient of both upstream gradients
+        - Calculate Gradient for Weight and Bias of Neural Network for Layer One
+            - Goal
+                - loss with respect to b
+                - loss with respect to w
+            - Steps
+                - Go through first layer to produce the end value
+                - Gradient of l with respect to h - upstream gradient with respect to ReLU
+                - Gradient ReLu is 1 if greater than 0 and 0 otherwise
+                - Gradient of l with respect to s - 0 or 1
+                - Gradient of l with respect to b
+                    - Gradient of l with respect to s times gradient of s with respect to b (1)
+                - Gradient of l with respect to v
+                    - Gradient of l with repect to s times gradient of s with respect to v (1)
+                - Gradient of l with respect to w
+                - Gradient of l with respect to x
+        - Produce Probabilities Layer Two
+            - Goal
+                - Loss with resepct to b
+                - Loss with respect to w
+                - Loss with respect to h
+            - Once we have the gradient with respect to h, we can contionue to calculate the gradients for the first layer
+        - How to adjust parameters?
+            - Stochastic Gradient Descent -> Backpropogation
+            - Basic Idea - calculate forward pass and Pytorch will do back propogratrion
+        - Autograd PyTorch - REVIEW
+
+5. 02/09/2025
+    - Deep Learning Software PyTorch
+        - Tensor - multi dimensional rays of numerical data
+        - Features (Review and Practice)
+    - Convulational Neural Network
+        - Fully Connected Layer
+            - 4 X input nodes
+            - 3 S output nodes
+            - Output is a factor of all 4 x inpute nodes
+        - Data Dimensions
+            - Previously DxN, D = rows, N = columns
+            - Now - AxT, A = rows and number of data samples, T = number of columns
+            - Now - NxCxHxW
+                - N - number of data samples in a batch
+                - C - number of channels
+                - H - image height
+                - W - image width
+        - Convulational Layer
+            - Problem - grey image, one channel, channel value is 0 through 255
+                - H = 32
+                - W = 32
+                - Convulational Filter - channel x H x W - 1x5x5
+                - Basic Idea - do a dot product of the filter with respect to a portion of the image, produces one value, add bias
+                - Shift - produce another value using filter, move across the entire imnage
+                - Note - filters can have h/w greater than 1
+            - Problem - RGB-D, red, green, blue, and depth
+            - Problem
+                - Setup
+                    - Image Size - 4x4
+                    - Filter - 3x3
+                    - Output Size - 2x2
+                - Action
+                    - Multiply square by square
+                    - Sum
+                    - Add Bias
+                - Shift Filter
+                - Repeat Action [1-3s]
+                - Output Size - Image Size - Filter Size + 1
+                    - 4 - 3 + 1 = 2
+            - Problem
+                - Stage One Setup
+                    - Channel - Three RGB
+                    - Image Size - 32x32
+                    - Filter - 3x5x5
+                    - Output Size = Image Size - Filter Size + 1 = 32 - 5 + 1 = 28
+                    - Possibility - multiple filters each with different weights
+                - Action
+                    - Dot Product - (RxF1 + BxF1 + GxF1) + Bias = 1 Pixel on one output images
+                    - Dot Product - (RxF2 + BxF2 + GxF2) + Bias = 1 Pixel on another output images
+                - Stage Two Setup
+                    - Channel - Two
+                    - Image Size - 28x28
+                    - Filter 
+                    - Output Size =  Image Size - Filter Size + 1 = 
+                    - Question - HOW DID YOU GET SECOND FILTER?
+            - Problem
+                - Padding - add pixels around input image, normally values of zero, this increases size of image output, making it possible to produce an image of the same size
+                - Stride - how far you move before applying fitler again
+                - Output Size w Padding AND Stride
+                    - Output Size = (Input Size - Filter Size + 2 * Padding) / stride + 1
+                - Special Case - Padding Size = Filter Size - 1 / 2 will produce an output imge of same size
+                - Receptive Field
+                    - Each time you do a convulation you produce a new ouput, resulting in a pxie.
+                    - RF - region of the imput image that influences a particular neuron in a layer
+                        - As you go backward from the pixel in convolutional layers, the region of influence increases
+                    - Receptive Field Size = 1 + Number of Layers * (K-1)
+                        - Number of Layers Before= 3
+                        - K = Kernel or Filter Size = 3
+                        - RFS = 1 + 3*(3-1) = 7 i.e. 7x7 Receptive Field
+            - Problem - Stacked Convolutional Layer
+                - Input Image: N x C1 x (S1 x S1)
+                - Filter: C2 x C1 x (K1 x K1)
+                - Issue - if you only use one layer, it becomes linear
+                - Solution - add ReLu i.e. a non-linear activation function, to produce results that are non-linear
+            - Problem
+                - Channels - 3
+                - Image Size - 32x32
+                - Filter Size - 10 x 3 x 5 x 5
+                - Stride - 1
+                - Pad - 2
+                - Output Size = (Input Size - Filter Size + 2 * Padding) / stride
+                    - (32 - 5 + 2 * 2) / 1 + 1 = 27 + 4 + 1 = 32 or 10 x 32 x 32 = 10240 pixels
+                - Learnable Parameters?
+                    - Number of Filters x Size of Filter
+                    - Size of Filter = 3 x 5 x 5 + 1 = 76
+                    - Number of Filters = 10
+                    - LP = 10 * 76 = 760
+                - Number of Multiple-Add Operations?
+                    - Filter Size - 3 x 5 x 5 = 75
+                    - Number of Outputs = 10 x 32 x 32 = 10240
+                    - Total = Filter Size * NUmber of Outputs
+                        - 75 * 10240 = 76800
+                - PyTorch Conv2D ((input, output, kernel size, stride, padding))
+                    - Filter - 3 x 5 x 5
+                    - Layers - 10
+                    - Input Channel - 3
+                    - Output Channel - 10
+                    - Kernel Size = 5
+                - Problem - Large Images require Computations
+                    - Solution - Pooling Layer
+                        - Pooling - Take image and downsample, produicing a smaller image
+                        - Max Pooling - take the maximum value for each pooling region
+                        - Average Pooling - computes the average value of each pooling region
+                        - Global Average Pooling
+                        - Adaptive Pooling
+                - Problem - Classic Convultional Layers
+                    - Input Image -> Convultional Layer -> ReLu -> Pooling -> Output Image
+                - Problem - Classic LeNet-5
+                    - Architecture - [Convultional Layer -> ReLU -> Pool] x N -> Flattern (Stretch to Single Vector) -> [Linear Layer -> ReLU] x N -> Linear Layer -> Softmax
+                    - Notes
+                        - Spatial Size Decreases HxW
+                        - Channels Increase 1 -> 20 -> 50
+                        - Design - reduce spatial size but increase channels, less spatial size to reduce memory, icnrease channels to learn more features    
+                - Batch Normalization
+                    - Normalize the output so thaty have zero mean and unit variance
+                    - Why? stabilization the optimization process so we can train a deeper network
+                    - We have N x D matrix i.e. N = samples, D = features
+                    - Do normilzation on each feature dimension i.e. column
+                        - Extract column, add all values in the column and do average over n
+                        - Extract column, and calculate standard deviation
+                        - For each column, take the columns mu and sigma to normalize each value
+                    - Learnable Scale and Shift Parameters - What is zero mean, unit variance is too hard to constrain?
+                    - What values should we use during Test Time? Keep a running average mu and sigma
+
+6. Convolutional Neural Network Architectures
+    - Review 
+        - LeNet-5 - used for hand written digit recognition
+        - Normalization Layer - REVIEW
+    - Architectures
+        - AlexNet
+            - Image -> Convoution -> Pooling -> Convolution -> Pooling -> Convolution -> Convolutional -> Convolutional -> Pool -> Fully Connected Neural Network -> FC -> FC -> Softmax
+            - Output Size - REVIEW - (Input Size - Filter Size + 2 * Padding) / stride
+            - # of Parameters - REVIEW - Number of Filters x Size of Filter
+            - Memory - REVIEW - 
+            - FLOPs - REVIEW
+            - Notes
+                - Most of the memory usage is in the early convolutional layers - WHY?
+                - Most of parameters are in the fully connected layers - WHY?
+                - Most of FLOPs are in the convolution layers - WHY?
+        - VGG
+            - Design Rules
+                - All convolutional layers are 3x3 with stride 1 and pad 1 i.e. same receptive field with less params, less FLOPs and more nonlinearities
+                - All max pool are 2x2 with stride 2, after pool, double # channels i.e. less memory usage, same FLOPs, and more parameters
+            - Stages
+                - c -> c -> p
+                - c -> c -> p
+                - c -> c -> c -> p
+                - c -> c -> c -> p
+                - c -> c -> c -> p
+                - FC -> FC -> FC -> Softmax
+        - GoogleNet
+            - Problem Solved - first layer takes too much memory for VGG, solution is to aggressively down sample
+            - Notes
+                - Layers - 22
+                - Inception Modules - use different convolution filters of different sizes will handle objects at multiple scales better
+                - Global Average Pooling - reduce fully connected network layers
+        - ResNet
+            - Notes
+                - Layers - 152
+                - Issue #1 - deeper model seems to be underfitting i.e. deeper model is harder to optimize
+                - Solution #1 - make it learn identity functions easier
+        - ResNext
+            - Notes
+                - Group Convolution - each filter has the same number of channels as input, divide filters into groups and each group looks at a subset of inputs
+                - Depthwise Convolution - each filter in each group applies to one channel
+        - PyTorch
+            - Grouped Convolution - torch.nn.Conv2d
+    - Model Trade Offs
+        - Memory Usages vs. Number of Parameters vs. Number of FLOPs
+    - Essential Questions to Answer for Exam
+        - Why is pooling used?
+        - Why does output size matter?
+        - How do you produce an output size equal to inpuyt size?
+        - How do you calculate essential paramters e.g. output size, # of parameters, memory, FLOPs, etc.
+        - How does AlexNet compare to VGG?
+        - VGG to GoogleNet?
+        - GoogleNet to ResNet?
+        - What is a convolutional layer?
+        - Why is ReLu used?
+        - Why is Fully Connected Layer used?
+        - Why is softmax used?
+        - What is a skip connection?
+        - What is Bottlenext skip connection and why is it used?
+        - What is down sampling?
+        - What is up sampling?

@@ -1,0 +1,658 @@
+Big Data
+
+1. 01/06/2025 - Introduction
+    - Course Objectives
+        - Big Data Concepts
+        - Technologies
+        - Processing and Techniques
+    - What is Data Mining?
+        - Big Data - no standard term
+        - Generators - almost everyone and every device
+        - Note - Data has changed over time
+        - Goal - extract knowledge and model from data
+        - Goal - discover patterns and models that are valid, useful, unexpected, and understandable
+    - Three Vs
+        - Volume - size (gigabytes, terabytes, petabytes)
+        - Velocity - speed
+        - Variety - types
+    - Directions in Modeling
+        - Statistical Modeling - describes the distribution of data e.g. Gaussian is mean and standard deviation
+        - Predictive Methods - use some variabels to predict unknown or futrue values of other variables
+        - Descriptive Methods - find human interpretable patterns that describe data
+            - PageRank - represent each website with a score, if a website has many hyperlinks to it, the score increases
+            - Clustering - create groups of clusters of data points, with each cluster revealing something about the group
+        - Feature-Based Model - look for the most extreme example of phenomen and represent the data by these items
+            - Frequent Itemsets - makes sense for data that consists of baskets of small sets of items e.g. market basket
+            - Similar Items - find pair of sets that have a relatively large fraction of their elements in common
+    - Machine Learning Classification
+        - Topic - movies and tv shows
+        - Data - Instance - Record - Entry - Data Point
+        - Features - length, genre, seasons
+        - Goal - map rows and columns into open space, where every column is an axis in your space, orthogonal to each other
+        - Decision Boundary - separation between classifications based on features
+        - Prediction - input feature values and map them to the open space and then based on decision boundary return classification
+        - Training Set - produces decision boundary
+        - Test Set - unknown data that will be classified
+        - Overfit - performance on test set is poor, and performance on training set is extremely high
+    - Analytic Answers
+        - Total Information Awarenmess - a plan to mine all data, including credit card receipts, hotel records, travel data, and many other
+        - Bonferroni's Principle - if you look in more places for interesting patterns than your amount of data will support, you are bound to find crap
+        - Example
+            - Goal - we want to find unrelated people who on two different days were both at the same hotel
+            - 10^9 people being tracked i.e. 10,000,000,000
+            - 1,000 days are being reviewed
+            - Each person stays in a hotel 1% of the time
+            - A hotel holds 100 people
+            - There are 10^5 hotels
+            - What is the probability that a person stays in a hotel on any day? 0.01
+            - What is the probability that two people stay in a hotel on any day? 0.01 * 0.01 = 0.0001
+            - What is the probability that these two people stay in the same hotel on any day?  0.0001 / 10^5 = 1x10^-9
+            - What is the probability that these two people stay in the same hotel on two days? 10^-9 squared which is 10^-18
+            - n chose m, n days how many m combinations? (n! / (n-m)!m!)
+                - m is 2 that is two people
+                - n! / (n-2)!2!
+                - n(n-1)(n-2)(n-3).../(n-2)(n-3)....*2
+                - n^2-n/2
+                - n^2/2
+                - (10^9)^2/2 = 5*10^17
+                - (10^3)^2/2 - 5*10^5
+                - Goal - number of possible combinations of two days, times number of possible combinations of two people, times probability
+            - 250,000 suspicious pairs of people
+    - Things Useful to Know
+        - TF.IDF - the formal measure of how concentrated into relatively few documents are the occurences of a given word - if you see how frequent a word is e.g. the or a.
+        - Inverse Document Frequency
+            - Frequency TF - for word I in document j, frequency of i in document j divided by max kfkj i.e. most frequent word in the document 
+            - IDF - log(total number of documents divided by how many documents have the word i in them)
+            - For the article  "the", T.IDF should be high, logn(1) is 0, not important
+        - Hash Functions - takes a hash key value as an argument and produces a bucket number, which is an integer. normally in the range 0 to B-1, where B is the number of buckets
+            - What is the ideal value of B? if all even numbers, the bucket is the same as results are 0
+            - Prime number, which cannot be factored, are ideal for number of buckets
+        - Base E of Natural Logarithms (Review)
+        - Power Laws (Review)
+
+2. 01/13/2025 - Hadoop
+    - Things Useful to Know
+        - Power Laws - linear relationship between logarithms of two variables, if x is the horizontal axis and y is the vertical axis, then the relationship is log base 10 y = 6-2 log base 10x
+            - X axis - rank of the book, Y axis - number of sales
+            - How to find the formula?
+                - 1a. Determine slope, delta y over delta x (y=ax+b) [LINEAR]
+                - 1b. Determine slope, log y = alogx + b, log delta y over log delta x [LOGARITHMIC]
+                    - log(1) - log(1,000,000) / log(1000) - log(1)
+                    - 0 - 6 / 3 - 0 = -6/3 = -2
+                - 1c. Determine y Intercept b
+                    - logy = -2logx + b
+                    - log(1) = -2log(1000) + b
+                    - 0 = -2(3) + b
+                    - 0 = -6 + b
+                    - 6 = b
+                - 1d. Form Equation
+                    - logy = -2logx + 6
+                - 1e. Formula is linear relationship between logarithms of two variables
+            - How do we take advantage of e to get the actual relationship
+                - e to the power of log y = e to the power of (-2logx + 6)
+                - y = e to the power of -2logx X e to the power of c (CONSTANT)
+                - y = e to the power of logx to the power of -2 X e to the power of c
+                - y = cx^-2
+                - 1,000,000 = c(1)^-2
+                - 1,000,000 = c
+                - y = 10^6x^-2
+    - Data
+        - Challenges - usage, quality, context, streaming, scalability
+        - Data Modalities - ontologies, structured, networks, text, multimedia, signals
+        - Operators - collect, prepare, represent, model, reason, visualize
+    - Data Mining Cultures
+        - Databases - large scale data, simplex queries
+        - Machine Learning - small data, complex models
+        - Theory - randomized algorithms
+        - Culture
+            - DB - analytic processing i.e. queries that examine large amounts of data
+            - ML - inference of models
+    - Learning Objectives
+        - Working with high dimensional data
+            - Locality sensitive hashing, clutering, dimensionality reduction
+        - Working with infinite/never ending data
+            - Filtering data streams, web advertising, queries on streams
+        - Working with labeled data
+        - Working with MapReduce
+        - Working with Data Streams
+        - Working with Machine Learning
+            - Support Vector Machine, decisions trees, perceptron, kNN
+    - Applications and Tools
+        - Recommender Systems
+        - Market Basket Analysis
+        - Duplicate Document Detection
+        - Linear Algebra (Recommender System)
+        - Dynamic Programming (Frequent ItemSets)
+        - Hashing (LSH, Bloom Filters)
+    - MapReduce and the New Software Stack
+        - What is Hadoop? open source data storage and processing platform
+        - Setting Up Hadoop
+            - Hadoop Binaries - local, Cloudera's DEMO VM, Cloud
+            - Data Storage - local filesystem or hadoop distributed file system, cloud
+            - Map Reduce - local, cloud
+            - Other Libraries and Tools - vendor tools, libraries
+        - Philosophy
+            - Objective - complete work on a large set of data
+            - Actions
+                - Divide work i.e. data across machines
+                - Perform action on data
+                - Combine results to produce final value
+        - Architectures
+            - Single Node Architecture - CPU, memory, and disk are on the same device, data loaded from disk to memory, algorithm is run against all data, results are written to storage
+                - Issue(s) - What if you cannot store all data on disk? What if you cannot store all data in memory?
+            - Cluster Architecture
+                - Rack - 16-64 nodes (CPU, memory, disk), 1Gbps between nodes
+                - Switch - connects racks and other switches, 2-10 Gbps between racks
+        - Motivation
+            - Data - 20+ billion web pages, each web page is 20kb = 400TB of data
+            - Read - if reading data 30-35MB/sec from disk it would take ~4 months to read the web
+            - Today's Paradigm - cluster of nodes with ethernet connecting them
+        - Large Scale Computing
+            - Challenges
+                - How do you distribute computation?
+                - Which machine should do what work?
+                - How do we write the code for this problem?
+                - How do we deal with machine failures?
+            - Idea and Solution
+                - #1 - Redundancy for Reliability
+                    - Issue - copying data over a network takes time
+                    - Idea - bring computation close to the data, store files multiple times for reliability and redundancy, algorithm runs on this machine
+                    - Solutions - MapReduce, Google File System, Hadoop Distributed File System                
+                - #2 - Storage Infrastructure
+                    - Issue - if nodes fail, how to store data persistently?
+                    - Idea - Distributed File System i.e. global file name space
+                    - Usage Pattern - huge files, data rarely updated in place, reads and appends are common
+                    - Note - Hadoop isn't necessarily great for real time
+                - #3 - Distributed File System
+                    - Idea - Chunk Servers - file is split into contiguous chunks 16-64mb, each chunk is replicated, try to keep replicas in different racks, each chunk server is a compute server
+                    - Idea - Master Node - stores metadata about where files are stored, might be replicated
+                    - Idea - Client Library - talks to master to find chunk servers, connects directly to chunk servers to access data
+                    - Why store on different racks? if a switch fails, access to no data stored on a particular rack
+        - Programming Model: MapReduce
+            - Example Task
+                - Objective - count the number of times each distinct word appears in the file
+                - Data - huge amount of data, assume all web pages
+                - Case 1 - file is too large for memory, but all word,count pairs fit in memory
+                - Case 2 - storing words and counts would be large, task is naturally parallelizable
+            - Overview: MapReduce
+                - Essential Actions
+                    - READ DATA
+                    - Map - extract something you care about (keys)
+                    - GROUP BY KEY - sort and shuffle
+                    - Reduce - aggregate, summarize, filter, or transform
+                    - WRITE RESULT
+                - Map - Function (YOU)
+                    - Input Key Value Pairs - Document, key = file name, value = lines in file
+                    - Output Intermediate Key Value Pairs - key = word, value = 1
+                - Reduce - Function (YOU)
+                    - Sort to Key Value Groups - the, the, the, game, game, game, name, name
+                    - Reduce to Output Key Value Pairs - aggregate the values for each key i.e. the - 3, game - 3, name - 2
+                - Other - System (HADOOP)
+            - Overview #2: Map Reduce
+                - Input - Set of Key Value Pairs
+                - Map(k,v) - takes input key value pair and outputs a set of intermediate key-value pairs (k',v') (Key = Document, Value = Words)
+                - Reduce - takes intermediate key-value pair (k', <v'>) and ouputs a a set of key value pairs (k', v'') (Key = Word, Value = 1)
+                - Reduce(k, v) - takes key value pair and outputs a set of output key value pairs (key = word, value = aggregate count)
+            - Example Word Counting: MapReduce
+                - #1 - Obtain Big Document and split into chunks
+                - #2 - Map takes file and outputs word and value of 1
+                - #3 - Reduce - Group by Key, collect all pairs with the same key
+                - #4 - Reduce - take grouped keys and aggregate them together
+            - Note on Global Count
+                - Issue - how do I aggregate values together to determine global count?
+                - Solution - hash function will take intermediate key value pairs and send them to reduce nodes, and in the reduce nodes grouping is done and reduce is applied
+                - Each word is the input to the hash function, producing a unique number
+                - X MOD B, x is intermediate key, B is number of buckets or reduce nodes
+                - X MOD 3, output is either 0, 1, or 2, intermediate key goes to a particular node
+                - Whichever map node the X occurs on, due to the hash, it will be sorted to the same reduce node, all unique words must go to same bucket which is same reduce node
+            - Pseudo Code
+                - map(key, value) - key = document, value = text
+                    - for each word in value, emit(word, 1)
+                - reduce(key, values) - key = word, values = iterator
+                    - result = 0, for each count in values: result += v, emit(key, result)
+            - MapReduce Environment Features
+                - Partitioning the input data
+                - Scheduling the program's execution across a set of machines
+                - Performing the group by key step
+                - Handling machine failures
+                - Managing required inter-machine communication
+            - MapReduce a Diagram - Slide 25
+            - MapReduce Node Diagarm - Slide 26
+                - Map Nodes - 3, Reduce Nodes - 2
+        - Data Flow - Map Reduce
+            - Input and Output are stored on Distributed File System i.e. Hadoop Distributed File System
+            - Intermediate results are stored on local File System of Map and Reduce workers
+                - Why? It would involve duplicating and take processing power and network bandwidth
+            - Final Output is often input to another MapReduce task
+        - Coordination Master
+            - Task Status (idle, in progress, completed)
+            - Idle Tasks - get scheduled as workers become availbale
+            - When a map task completes, it sends the master location and size, Master pushes this info to reducers
+            - Ping workers periodically to detect failures
+        - Failures
+            - Map Worker Failure - all map tasks are reset
+            - Reduce Worker Failure - only in progress tasks are reset to idle
+            - Master Failure - MapReduce task is aborted and client is notified
+        - How many Map and Reduce Jobs?
+            - Make M much larger than the number of nodes in the cluster
+            - One Distributed File System chunk per map is common
+            - Usually R is smaller than M, because output is spread across R files, if R is large, intermediate map files explode and cause high network traffic
+        - Task Granularity and Pipelining
+            - Master - Assign Tasks
+            - Worker 1 - Map 1 and Map 3
+            - Worker 2 - Map 2
+            - Worker 3 - Reduce 1
+            - Worker 4 - Reduce 2
+        - Refinement: Combiners
+            - Opportunity - perform aggregation earlier
+            - Action - on the same Map, combine values of all keys of a single mapper to reduce data needing to be copied and shuffled
+            - Note - combiners can only be used if Reduce is commutative and associative
+                - Commutative - A + B = B + C (Addition, Subtraction)
+                - Associative - (A + B) + C = A + (B + C) (Addition, Subtraction)
+                - Average - Sum = 1 + 2 + 3 / 3 and Sum = 4 + 5 / 2 can be S1 + S2 / C1 and C2
+                - Median - no...
+        - Refinement: Partition Function
+            - Sometimes it is useful to override the hash function
+            - Example; Host Size
+                - Host = url, size, date
+                - Goal - for each host, find the total number of bytes of all URLs
+                - Override the hash function use the hostname of the url instead of the entire URL, to ensure all urls with same host name are sent to each machine
+        - Assignment: Language Model
+            - Statistical Machine Translation - need to count number of times every 5 word csequence occurs in a large corpus of documents
+                - Map
+                    - Key1 - the dog and the cat, value = 1
+                    - Key2 - dog and the cat played, value = 1
+                - Reduce
+                    - Combine the counts
+
+3. 01/28/2025   
+    - Three Example to Use Map Reduce
+        - Matrix Vector Multiplication
+            - Review
+                - Matrix M - i rows and j columns
+                - Vector V - j rows
+                - Output Vector X - i rows, one column
+                - X1 = M11 * V1 +  M12 * V2 + M13 * V3 ....
+                    - Xi = Summation Mij * Vj
+                - X2 = M21 * V1 + M22 * V2 + M23 * V3 ....
+            - Map Reduce
+                - Inputs
+                    - Input Matrix: i, j and mij
+                    - Value = mij * vj
+                    - Intermedaite Key Value Pair(i, Mij*Vj)
+                - Output Intermediate - keys are something you care about, and hash function will ensure each intermediate key goes to same node
+                    - Output: i = N, i is common
+                    - Why? Reduce Node will add all togetherd
+        - Join by Map Reduce
+            - Join - compute the natural join R(A,B)  S(B,C) or two relations
+                - R and S are each stored in files
+                - Tuple is two values (a,b) or (b,c)
+            - Inputs
+                - R - a,b and bit if R
+                - S - b,c and bit if S
+            - What shouild the intermediate key be? b so a and c are joined
+                - From R intermediate output is (b, (a, R))
+                - From S intermediate output is (b, (c, S))
+            - Reduce Function - join the values together
+                - Key List - (b, [(a1, R), (a2, R), (c1, S), (c2, S)])
+            - What scenario will cause failure?
+                - If B is the same value, this will cause all values sent to reduce node to be the entire dataset, likely causing a memory issue
+        - Matrix Matrix Multiplication
+            - Notes
+                - Matrix M (i rows, j columns)
+                - Matrix N (j rows, k columns)
+                - Output Matrix P (i rows, k columns)
+            - P1 - M11 * N11 + M12 * N21 + M13 * N31
+                - Fixed (i and k), j changes
+            - Pik = j summation of Mij * Njk
+            - MapReduce One Pass
+                - Input Key Value Pairs
+                    - M - i, j and Mij and M bit
+                    - N - j, k, and Njk and N bit
+                - Intermediate Key
+                    - i, k, the same I and k should go to the same reduced node
+                - Intermediate Value 
+                    - j, Mij, M Bit
+                    - j, njk, N bit
+                - Reduce Node - multiplication and addition
+                    - Multiple any M and Ns that have the same j
+                    - Add any M and N that have the same i,k
+                - Map Function
+                    - key = (i, k) and value = M, j, mij 
+                    - key = (i,k) and value = N, j, njk
+            - MapReduce Two Pass i.e. MapReduce -> MapReduce
+                - First MapReduce - Multiplication
+                    - Intermediate Key is j
+                        - M - key = j and value is M, i, mij
+                        - N - key = j and value is N, k, nkj
+                    - Reduce - multiple same mij and nkj that share j
+                        - Output Key - (i,k), value = mij * njk
+                - Second MapReduce - Addition
+                    - Map - Identity Function - Pass to Reduce
+                    - Reduce - add any M and N that have the same (i,k)
+                        - Output (i,k) and sum
+        - Reducer Size
+            - Issue - B is all the same, all data goes to same reducer
+                - Solution
+                    - Reducer Size, maximum number of inputs a reducer can have denoted by = q i.e. the length of the value list
+                        - If q is small, than you force a lot of parallel processing
+                    - Replication Rate - average number of key value pairs generated by the mappers - denoted by r
+                    - If I have I input, p reducers which each receives q (maximum input), each mapper producers r
+                        - What is R? divide output by input
+                        - Ouput = p * q
+                        - r = Output divided by input i.e. pq/i
+        - Spark
+            - Transformations - map, filter, join, union, intersection, distinct
+                - Build RDD from another RDD
+                - Do not occur till an Action has been called
+            - Actions - count, collect, reduce, save
+                - Trigger transformation and then...
+                - Applied to an RDD to produce a value
+            - General DAGs
+                - RDD -> Transformation -> RDD
+                - Supports general task graphs, pipeline functions where possible, cache aware data reuse and locality
+        - Hadoop vs. Spark
+            - Spark - speed, flexbility, ease of use, ease to program, real time
+            - Why Hadoop?
+                - Hadoop is better when it comes to very very large datasets
+                - Spark requires a lot of memory
+        - To Do List
+            - Chapter 2 - Mining Massive Dataserts
+            - Work on Word Count Program
+            - Project
+        - General Overview of Running Hadoop on Cloudera
+            - Copy Code and Instructions to VM
+            - Open New Project in Eclipse and Add Files
+                - Add External Jars
+                    - usr/lib/hadoop/ALL JARs
+                    - usr/lib/hadoop/lib/ALL JARs
+                    - usr/lib/hadoop/client0.2/ALL JARs
+                - Create New Class named WordCount - (default package)
+                - Paste Code into WordCount.java
+            - Add Input File
+                - Clouder's Home -> Workspace -> Project
+                    - Create folder input
+                    - Create file input/TestWC.txt
+                    - Type whatever...
+            - Run Program (Green Button) as Java Application
+            - Conditional: Select WordCount if prompted
+            - Refresh to View the Output Folder
+            - Run Again - DELETE OUTPUT FOLDER BEFORE RUNNING AGAIN
+            - Create Jar File
+                - Folder -> Export Java -> Jar -> myproject.jar
+            - Run on VM Cluster
+                - CREATE INPUT FOLDER IN CLUSTER: hadoop fs -mkdir -p user/cloudera/input
+                - PUT INPUT FILE IN INPUT FOLDER: hadoop fs -put /home/cloudera/Desktop/TestWC.txt /user/cloudera/input
+                - RUN PROGRAM: hadoop jar /home/cloudera/workspace/myproject.jar WordCount /user/cloudera/input /user/cloudera/output
+                - OPEN VISUALIZER: localhost:8088
+                - GET AND STORE OUTPUT: hadoop fs -get /user/cloudera/output
+                - SUBMIT OUTPUT FOLDER:
+                - SUBMIT EXECUTION RESULTS FROM VISUALIZER: localhost:8088
+
+4. 02/03/2025
+    - Frequent Itemsets
+        - Goal - find items that appear frequently together e.g. supermarket or restaurant orders or amazon shopping carts
+        - Approach - process the sales data collected with barcode scanners to find dependencies among items
+        - Classic Rule
+            - If someone buys diaper and milk, then he/she is likley to buy beer
+            - If someone buys beer, it is not true they will likely buy diapers
+        - Market Based Model
+            - Items - things that are sold, products
+            - Basket - set of items or products
+            - Discover - association rules i.e.people who bought item or basket tend to buy other item or basket
+        - Examples
+            - Baskets = sentences, Items = documents, detect documents that have many similar sentences in common
+            - Baskets = documents, Items = words, detect words that go together in the same documents
+            - Baskets = patients, Items = drugs and side effects, detect combination of drugs that result in certain side effects
+                - Extension - absence of an item needs to be observed as well as presence
+        - General Many to Many Mappin 
+            - We are loking about connections among items NOT baskets
+        - Outline
+            - First Define
+                - Determine Frequent Itemsets
+                    - Goal - find set of items that appear together frequently in baskets
+                    - Support for Itemset I - number of baskets containing all items in I
+                        - Support for Milk and Bread - number of baskets with milk and bread - probability out of total number of baskets
+                    - Question - how frequent is frequent?
+                    - Support Threshold s - set of items that appear in at least s baskets are called frequent itemsets - given or derived
+                    - Example (EXAM)
+                        - Support Threshold s = 3 baskets
+                        - Items - m = 5, c = 5, b = 6, {m,b} = 4, {c, b} = 3,, {c, j} = 3 
+                - Create Association Rules
+                    - If a basket contains all of, then it is likely to contain j
+                    - Confidence - support of I union J divided by support of I
+                        - Confidence of milk implies diapers is support of milk and diapers divided by support of milk
+                        - Upper Bound - 1 i.e. 100%
+                    - Note - not all high confidence rules are interesting, e.g. is a particular item frequent
+                    - Interest - confidence of the rule minus the probability of the rule
+                         - Interest = confidence of milk implies diapers minus probability of baskets that contain milk by itself
+                         - If interest is low, little to no relation
+                         - Threshold usually above 0.5 or lower than -0.5
+                         - Negative means inverse relationship that is if you purchase something you are likely not to purchase another item
+                    - Example
+                        - Association Rule {m,b} -> c
+                        - Confidence i.e. confidence of milk and bread implies coke
+                            - Union of {m,b,c} divided by {m,b} i.e. .25 / .5 = 1/4 / 1/2 = .5
+                            - Union of {m,b,c} divided by {m,b} i.e. 2 / 4 = 1/2 = .5
+                        - Interest i.e. confidence of the rule minus the probability of the rule
+                            -  .5 - 5/8 = -0.125 - NOT INTERESTING
+                    - Example - Find all association rules with support >= s and confidence >= c and interest > x
+                        - If high support and high confidence, then both will be frequent
+            - Mining Association Rules
+                - Determine Frequent Itemsets - consumes memory
+                - Create Association Rules
+                    - For every subset A of I, generate a rule A implies whatever remains
+                    - Measure confidence and interest and determine which ones to keep
+                    - Variant 1 - single pass to compute the rule confidence c(A,B -> C,D) == supoort(A,B,C,D) / support(A,B)
+                    - Variant 2 - If (A,B,C -> D) is below confidence so is (A,B) -> (C,D)
+                        - Why? support(A,B) is larger, producing smaller confidence
+                - Example
+                    - Support Threshold - 3
+                    - Confidence Threshold - 0.75
+                    - Determine Frequent Itemsets
+                        - {m}, {c}, {b}, {j}
+                        - {m,b}, {m,c}, {c,b}, {c,j}
+                        - {m,c,b}
+                    - Create Rules
+                        - b implies m - support(b,m) / support(b) = 4 / 6
+                        - m implies b - support(m,b) / support(m) = 4 / 5
+                        - b implies c = support(b,c) / support(b) = 5 / 6
+                    - Derive Confidence
+                    - Derive Interest
+                - Prune/Eliminate Rules
+                    - Maximal Frequent Itemsets - no immediate (one more item) superset is frequent
+                    - Closed Itemsets - no immediate superset has the same count > 0 - do not care about support threshold
+                    - Closed FrequentItemSets - no immediate superset has the same count > 0 - should be equal or greater than support threshold
+            - Finding Frequent Itemsets
+                - Note - typically data is kept in flat files rather than in a database system
+                    - Stored on disk, basket-by-basket, baskets are small but there are many baskets and many items
+                        - Use k nested loops to generate all sets of size k
+                            - Pair - 2 nested loops - for x = i to n; for y = j to m; return {i,j}
+                            - Trios - 3 nested loops
+                - Note - the true cost of mining disk resident data is usually the number of disk I/Os
+                - Note - in practice, association rule algorityhms read the data in passes - all baskets read in turn
+                - Note - we measure the cost as the number of passes
+                - Note - main memory is the critical resources
+                    - As we read baskets, increment, save to disk, loop - this is an issue
+                - The hardest problem often turns out to be finding the frequent pair of items
+                    - n choose 2 = n^2/2
+                    - Approach - generate all the itemsets but only count those itemsets that in the end turn out to be frequent
+                - Naive Algorithm - read file once, generate all pairs, count support for all pairs, determine confidence
+                    - N^2/2 pairs are generated
+                    - Each count is 4 bytes of memory
+                    - Memory needed is N^2/2 * 4 = 2n^2 bytes
+                    - If n is 100,000 then you need 10,000,000,000 * 2 = 20,000,000,000 i.e. 20GB of memory
+                    - Memory must exceed n^2 items
+
+5. 02/10/2025
+    - Frequent Items Sets
+        - Counting Pairs in Memory
+            - Triangular Matrix
+                - Notes - pairs diagonal is empty and order does not matter i.e. upperhalf triangle is all needed
+                - Size = n^2 * Memory
+                - Action
+                    - Allocate Memory - 2n^2 bytes
+                    - Loop through baskets and increment the count
+                    - Each count consumes 4 bytes of memory
+                - Benefit
+                    - Items - n
+                    - Size - n^2, only use half so n^2/2
+            - Table of Triples
+                - Action
+                    - Loop through baskets, each time it finds a pair, it appends it to the table
+                - Size = n^2 * Memory
+                - Why would this be used? Triangular Matrix - allocate memory in advance whether the pair exists or not
+                - Better if number of existing pairs to be less than 1/3 of the total number of possible pairs
+            - Questions
+                - Question - can we use both approaches?
+                - Question - can we use triangular matrix? memory is already allocated for n^2
+                - Question - can we use table of triples? yes
+            - A Priori Algorithm
+                - Montonicity
+                    - if a set of items I appears at least s time, so does every subset J of I
+                    - Contrapositive - if item I does not appear in s baskets, then no pair including i can appear in s baskets                                              
+                - Note - two pass approach limits the need for main memory, this is an advantage in terms of memory
+                - Note - lowers the number generated by only working with frequent singletons
+                - Approach
+                    - First Pass - read entire data set and count all singletons. using support threshold determine frequent singleton
+                    - Second Pass - read entire data set and create pairs from frequent singletons, if a singleton is NOT frequent, neither will its pair be...
+                - Pairs - N*^2 / 2 - should be LESS than those produced by naive i.e. it can handle larger data sets
+                - Trick - re number frequent items sets 1, 2, and keep a table relating new numbers to original item numbers
+                - Example 1:18:00 - if previous frequent pairs have already been excluded, triples with those pairs should also be as well
+                - High Frequency
+                    - Frequent Triples - Three Passes
+                        - Pass 1 - Singletons -> Filter by Support Threshold -> Frequent Singletons
+                        - Pass 2 - Candidate Pairs -> Filter by Support Threshold -> Frequent Pairs
+                        - Pass 3 - Candidate Triples -> Filter by Suppot Threshold -> Frequent Triples
+                    - Frequent Quad - Four Passes
+                - What should support threshold be? 1%
+            - Park Chen Yu PCY Algorithm
+                - Action One
+                    - During first pass, count items AND generate pairs from singletons, hashing them into hash table with odd number of buckets
+                    - NOTE - DO NOT PUT THE PAIR IN THE BUCKET, just increment the count by one each time
+                    - Result - all pairs are created and a hash function is applied, pairs are not kept
+                - Action Two
+                    - Filter singletons by support threshold to get frequent singletons
+                - Action Three
+                    - Bitmap - Vector with 0's and 1's
+                    - Number of bits are number of buckets
+                    - Bit is 1 if frequent i.e. over threshold
+                    - Bit is 0 if no frequent i.e. under threshold
+                - Action Four
+                    - Take frequent singletons AND their pair must hash to a one in the bit table, if both apply, then they are a candidate pair
+                    - Frequent Bucket or Bit does not tell you which is frequent
+                    - However, if bucket count is lower than threshold, it is impossible any of them will be frequent
+                    - Generated candidate pairs is smaller, allowing you to work with larger datasets easier, in-frequent buckets are ideal to know
+                - Action Five
+                - Question
+                    - If only ij and mp map to bucket 0, then the count represents the total number of times I have seen them
+                    - What is the compression rate?
+                        - One number is 4 bytes i.e. 32 bits, but bit vector only needs a single bit so 32:1
+                - Passes
+                    - Pass 1 - maintain a hash table with as many buckets as needed
+                        - Generate a pair, hash the pair to a bucket, add 1 to th count for th ebucket
+                - Notes
+                    - If a bucket contains a frequent pair, then the bucket is surely frequent
+                    - For a bucket with a total count less than threshold, it is sure to not be frequent
+                - Main Memory Details
+                    - Storing Counts
+                        - Triangular Matrix - no... best case is renumber indexes, all memory is allocated at start
+                        - Table of Triples - 
+                    - Question
+                        - In what scenario is PCY better than a priori?
+                            - PCY is using 12, A Priori is using 4
+                            - If 2/3 of candidate pairs are eliminated than PCY is better
+
+6. 02/17/2025
+    - Quick Review
+        - Naive Approach
+            - Passes - 1
+            - Memory - 2n^2
+            - Storage
+                - Triangular Matrix
+                - Table of Triples
+        - A Priori
+            - Passes - 2
+                - Pass 1 - Singletons
+                - Pass 2 - Frequent Singletons -> Candidate Pairs -> Frequent Pairs
+            - Storage
+                - Triangular Matrix - Must do reindexing trick
+                - Table of Triples  
+        - PCY Algorithm
+            - Passes - Review Above
+            - Question
+                - Does a frequent bucket mean a frequent
+                - How do you determine buckets? Take remaining memory after first pass, divide by four bytes to get a reasonable bucket number
+            - Memory
+                - Must use Table of Triples - 12 bytes for each pair 3x larger than Triangular Matrix
+                - To save memory, should eliminate 2/3 of candidate pairs
+    - Multistage Algorithm
+        - Three Passes
+            - Pass 1 - Item Counts and Produce First Hash Table and Bitmap of Buckets
+            - Pass 2 - Second Hash Table
+                - Conditions - singleton is frequent and has one result should be 1
+                - Action - hash the pair with a second hash function and create a second set of buckets with counts
+                - Action - create second bitmap, 0 and 1 based on new buckets 
+            - Pass 3 - Frequent Item, Bitmap 1 and Bitmap 2, Counts of Candidate Pairs
+                - Candidate Pair
+                    - Each singleton in pair should be frequent by itself
+                    - Pair should hash to 1 in first bit map - we do not keep the information so hash must be checked again
+                    - Pair should hash to 1 in second bit map
+            - Memory - REVIEW
+            - Note - can increase the number of hash tables
+            - Note - hash functions must be different
+            - Why over PCY?
+                - Multistage Algorithms works by eliminating pairs, allowing you to tackle larger datasets.
+            - Issue - in multistage, there is a point of diminishing returns, since the bit vectors eventually consume all of main memory
+    - Multihash
+        - Idea - use several independent hash functions and produce both hash tables and bitmaps in the first pass
+        - Issue - multiple hash tables with lower number of buckets may result in more frequent buckets i.e. requiring more work later on, counts about double, infrequent buckets are the helpful ones because they help you eliminate
+        - Note - if numbers in infrequent buckets are low, than when doubled likely to be okay as it is under threshold
+        - Benefit - the bit vectors occupy exactly what on PCY bitmap does, but too many hash functions makes all counts >= support threshold
+    - Algorithms w/ Less 2 Passes
+        - Issue - some frequent itemsets may be missed - false negative - frequent in whole not in sample - cannot be eliminated
+        - Issue - false positive - frequent in sample but not in whole
+        - Simple Algorithm
+            - Actions
+                - Action - take a random sample of the market baskets
+                - Action - run a-priori or another in main memory
+                - Action - count candidate pairs to identify frequent pairs, if you count all pairs then it is the naive approache
+            - Benefits
+                - Dont pay for disk I/O each time we increase the size of itemsets
+                - Pass - read or write from disk, this is no longer happening
+                - Reduces support threshold proportionally to match the sample size
+                - This pattern eliminates 
+            - Questoin - how does this algorithm reduce false positives? Do a second pass to verify the frequenct on entire dataset
+            - Question - how do we reduce false negatives? Lower the support threshold
+        - SON (Savasere, Omiecinski, and Navathe)
+            - Actions
+                - Divide data into multiple samples
+                - Repeatedly read the subset and using a proportionally reduced support threshold and identify candidate pairs
+                - On second pass, count all the candidate item sets and determine which are frequent in the entire set
+                - Monotonicity - an item cannot be frequent in the entire set of baskets unless it is frequent in at least one subset
+            - Note
+                - This lends itself to Hadoop or Spark HDFS etc.
+                - Hadoop
+                    - Divide into chunk
+                    - Each chunk processed on each node with a lwoered threshold
+                    - Output of each reduce will list candidate pairs
+                    - Each machines sends its own list of candidate pairs to each other node
+                    - Each node will count the candidate pairs in its own chunk
+                    - Count for each candidate pairs sent to reduce node for aggregation
+            - Benefits
+                - You will not have any false negatives
+        - Toivonen
+            - Note - less than two passes and does not need distributed computing
+            - Issue - you may have to peform it several times an unknown number of times
+            - Actions
+                - Lower the support threshold more than a proportional amount to try to avoid false negatives
+                - Identify all singletons
+                - From the sample, identify candidate pairs AND negative border (if an item set is not frequent but all its immediate subsets are frequent)
+                    - ABCD is in negative border if, ABC, ACD, BCD, and ABD are frequent
+                - Full pass on entire dataset to eliminate false positives, considering both candidate pairs and negative border
+                    - Deaing with canddidates and the negative border that is not frequent in the sample but may be
+            - Benefits
+                - If all the item sets in the negative border turn out NOT to be frequent, you are good, no false negatives or false postiives
+            - Issue
+                - If any set in the negative border if frequent, you must repeat because 
+            - Note - when processing the sample by A-Priori, each member of Ck is either in Lk or in the negative border, never both
