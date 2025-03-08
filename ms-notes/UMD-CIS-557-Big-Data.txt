@@ -264,3 +264,22 @@ Big Data
                     - Key2 - dog and the cat played, value = 1
                 - Reduce
                     - Combine the counts
+    - Problems with MapReduce
+        - Difficulty of programming directly in MR, many problems arent easily described
+        - Performance bottlenecks or batch not fitting use cases, writes everything to disk
+    - Data Flow Systems
+        - MapReduce uses two ranks i.e. Map and Reduce
+        - General
+            - Allow any number of tasks/ranks
+            - Allow functions other than Map and Reduce
+    - Spark
+        - Benefits
+            - intermediate results are kept in memory instead of disk
+            - Caches data for repetitive queries
+            - RDDs spread across the cluster
+        - Design
+            - Directed Acyclic Graph (DAG)
+            - Resilient Distributed Datasets (RDD)
+                - Partitioned Collection of Records
+                - Can only write once, need new RDD each time to make a change
+    -

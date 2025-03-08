@@ -29,7 +29,7 @@ Database Systems
         - File Processsing - each application mananges its own information
             - Issues - redundancy, inconsistency
         - Database - data are integrated and shared
-            - Benefits - reduction of redundancy, efforts, consistency, sharing, independence (change strucutre without affecting program) and abstraction, views, security restrictions, integrity constraints, data deduction, data retrieval
+            - Benefits - reduction of redundancy, efforts, consistency, sharing, independence (change structure without affecting program) and abstraction, views, security restrictions, integrity constraints, data deduction, data retrieval
     - Data Independence - ability to modify a schema at one level without affecting the schema at the next higher level
         - Three Schema Architecture (ANSI/SPARC)
             - Internal Level - how data is stored in the storage medium
@@ -205,7 +205,7 @@ Database Systems
     - Relationship
         - Recursive Relationship Type - the same entity type participates more than once in a relationship type in different roles (role name must be used)
             - Example - Supervisor supervises supervisee, supervisee themselves supervisor others and supervisors themselvs are supervised
-            - Role - on link indicate role. line from employee to supervision, 2, i.e. employee is subordinate to supervisor, or 1, employee supervises another
+            - Role - on link indicate role, line from employee to supervision, 2, i.e. employee is subordinate to supervisor, or 1, employee supervises another
         - Attributes of Relationship
             - Hours, how long does an employee work on particular projects?
     - Constraints
@@ -247,7 +247,7 @@ Database Systems
             - Example - you have Secretary, Technician, Engineer, and Manager entity types, they share common attributes, a generic entity can be derived for the shared common attributes
         - Condition Defined Specialization - define entity by value of an attribute to derive sub class
         - User Defined Specialization - each entity of a subclass is individually specified by the user
-        - Disjointness Conatraint - subclasses of a specialization are disjoint
+        - Disjointness Constraint - subclasses of a specialization are disjoint
         - Completeness Constraint
             - Total Specialization - every entity in superclass participates in a specialization
             - Partial Specialization - not every entity in superclass participates in a specialization
@@ -266,7 +266,7 @@ Database Systems
                 - Machinery is based on which employees work on which projects
     - Relational Model
         - Reality - no commerical database management system uses entity relational model to implement
-        - Relational DBMS - Oracle, DB2, Sybase, SQL Server, Informix, INgres, Paradox
+        - Relational DBMS - Oracle, DB2, Sybase, SQL Server, Informix, Ingres, Paradox
         - Features
             - Advantages - simple (everything is tables), mathematical base
             - Concepts
@@ -286,12 +286,12 @@ Database Systems
                 - Integrity Constraints - restrictions of values
                     - Domain - each value must come from the relevant domain
                     - NOT-NULL - NULL value is not allowed for an attribute if so specified
-                    - Key Constraintt
+                    - Key Constraint
                         - Superkey - a set of one or more attributes which can uniquely identify a tuple in any relation instance of the given relation schema
                         - Candidate Key - a super key which contains no extraneous attributes i.e. no proper subset is a SK
                             - E.g. if you have student number and name as a super key, name is technically extraneous
                             - A relation may have several candidate keys, once specified uniques is enforced for them
-                         - Primary Key - a candidate key that is chosen by the DB designer as the prinsiple means of identifying tuples in a relation
+                         - Primary Key - a candidate key that is chosen by the DB designer as the principle means of identifying tuples in a relation
                             - Only one primary key for a relation, attribute is underlined in the schema
                             - Entity Integrity Constraint - NULL is not allowed for any attribute in the Primary Key (USE THIS ON TEST)
                         - Primary Key -> Candidate Key -> Super Key
