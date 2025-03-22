@@ -331,7 +331,7 @@ Database Systems
                 - one or more operations on the domain
             - Example - Arithmetic Algebra
                 - Domain - set of real numbers
-                - Operation - additiona, substraction, division, multiplication
+                - Operation - addition, substraction, division, multiplication
         - Relational Algebra
             - Property
                 - Closure Property - each operation operates on one or more relations and returns one relation
@@ -344,7 +344,7 @@ Database Systems
                             - Heading of result table is the same as the operand table
                         - Example: Find the tuples for all projects controlled by department 1 or located at Houston
                             - sigma
-                                - where department = 1 OR location = Huston ffrom PROJECT relation
+                                - where department = 1 OR location = Huston from PROJECT relation
                         - Predicates - equal, not equal, less than, less than or equal to, greater than, greater than or equal to
                         - Logical Connectives - AND, OR, NOT
                     - Project - pi - project R (relation) over attributes in L (target attribute list) and REMOVE DUPLICATES tuples if any
@@ -416,7 +416,7 @@ Database Systems
                 - SELECT DISTINCT COUNT(ssn), department, AVG salary FROM employees group by dept
             - OUTER JOIN - extended natural join or general join
                 - NATURAL JOIN - match from both tables
-                - Left Outer Natural Join - take all tuples in R that do not match any tuple in S, pad them with NULL values for all other attributes in S, and add them to the result of the natural join of R x S
+                - Left Outer Natural Join - take all tuples  in R that do not match any tuple in S, pad them with NULL values for all other attributes in S, and add them to the result of the natural join of R x S
                 - Right Outer Natural Join - take all tuples in S that do not match any tuple in R, pad them with null values for all other attributes in R, and add them to the result of the natural join of R x S
                 -  Full Outer Join - take all tuples in R that do not match any tuple in S, and all tuples in S that do not match any tuple in R, pad them with null values for all other attributes in S and R respectively and add them to the result of the natural join of R x S
         - Other Operations - semijoin, semidifference, not tested
@@ -520,7 +520,7 @@ Database Systems
         - Setup
             - Shared Variable Declaration
             - EXEC SQL BEGIN DECLARE SECTION ; CODE ; EXEC SQL END DECLARE SECTION ;
-            - CONNECT TO <SERVER NAME> AS <CONNECTION NAME> AUTHORIZATION <USER ID AND PASSWORD
+            - CONNECT TO <SERVER NAME> AS <CONNECTION NAME> AUTHORIZATION <USER ID AND PASSWORD>
             - SET CONNECTION <CONNECTION NAME>
             - DISCONNECT <CONNECTION NAME>
         - Singleton Retrieval
@@ -570,7 +570,7 @@ Database Systems
         - Duplicates and Ordering
             - ALL NULLs are considered to be equal to one another for ordering and duplicates removing purposes
             - NULLs are > or < all non-null values for ordering purposes, depending on the system
-            - Integrity constraint is violated if it is fale i.e. true and unknwon are ok
+            - Integrity constraint is violated if it is false i.e. true and unknwon are ok
                 - Age > 0 => NULL allowed
                 - Null value theory still has many flaws
     - Views
@@ -627,7 +627,7 @@ Database Systems
                 - Example - Project, Supplier, Part
                 - Create Table (S#, Project#, Part#, EXTRA)
             - Specialization and Generalization
-                - Examlple - Employee with Secretary Specialization
+                - Example - Employee with Secretary Specialization
                 - Create Secretary Table (Employee #, EXTRA)
             - Category (Union)
                 - Example - (Person, Bank, Company) u Owner
