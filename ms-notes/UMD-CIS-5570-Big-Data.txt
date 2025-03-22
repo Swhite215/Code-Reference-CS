@@ -656,3 +656,45 @@ Big Data
             - Issue
                 - If any set in the negative border if frequent, you must repeat because 
             - Note - when processing the sample by A-Priori, each member of Ck is either in Lk or in the negative border, never both
+
+7. 03/10/2025
+    - Finding Similar Items
+        - Example Problems
+            - Pages with similar words
+            - Customers who purchased similar products
+            - Images with similar features
+            - Entity resolution
+        - Similar Documents
+            - Goal - given a body of documents, find pairs of documents with a lot of text in common
+                - Example - mirror website, plagiarism
+                - Comparisons - N choose 2, n2 / 2 or n2  - n / 2
+            - Techniques
+                - Shingling - convert documents, emails, etc to sets
+                    - k-shingle or k-gram is a sequence of k characters that appears in the document
+                        - Example - k = 2, doc = abcab, Set is {ab, bc, ca}
+                        - Changing a word only affects k-shingles within distance k-1 from thw word
+                        - Reordering paragraphs only affects the 2k shingles that cross paragraph boundaries 
+                        - Example
+                            - The dog which chased the cat
+                            - The dog that chased the cat
+                    - Practice - k = 8, 9, or 10
+                        - character = 4 bytes, 10 * 4 = 40 bytes
+                    - Tokens - to save space, we can hash them to 4 bytes, called tokens
+                        - Hashing can cause collisions, 
+                - Jaccard Similarity - measure similarity of sets before min hashing
+                    - Value - intersection of set divided by union
+                    - Action - theoretically construct a matrix, practically you will run out of memory
+                        - First Column - universal set of shingles i.e. all unique shingles
+                        - Further Columns for Documents - 1 if shingle is in document
+                    - Formula
+                        - Variable - a = 1,1, b = 1,0, c = 0,1, d = 0,0
+                        - Simularity(C1, C2) = a / (a + b + c) or Number of Times 1,1 divided by (1,1 + 1,0 + 0,1)
+                - Minhashing - convert large sets to short signatures i.e. list of integers, while preserving similarity
+                    - Experimental - Permute the Rows - will run out of memory
+                    - Example
+                        - Hash Function
+                        - Input Matrix
+                        - Signature Matrix
+                    - Preserving Similarity - compression can mean information is lost, if similar pre hash then similar post hash
+                    - Shingling -> Compare Similarity -> Minhashing -> Compare Similarity
+                - Locality Sensitive Hashing - produce candidate pairs
