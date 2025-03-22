@@ -200,6 +200,9 @@ Deep Learning
         - Involved Example - 42:00 - Optimizing a Linear Classifer for Image Classification
             - Key Steps
                 - Image Classification - S = Weight * Samples + Bias
+                    - W - Matrix where rows = Classes and columns = features
+                    - S - Matrix where columns = for a particular sample, each feature value for that sample
+                    - B - W * X results in a m x n matrix, Bias must have the same number of rows to perform addition AND bias must have the same number of values as they are classes i.e. m of W.
                 - Calculate Gradients of Error Terms
                     - s = wxn + b - score
                     - p = softmax(s) - probabilties as a function of s
@@ -234,6 +237,14 @@ Deep Learning
             - We want to mimize data loss and at the same time minimize regularization loss
             - Note - prefer small weights and spread weights
                 - W1 [0.5, 0.5] is preferred to W2 [1, 0]
+    - Steps to Train a Linear Classifier Using Cross-Entropy Loss
+        - Compute class scores using S = W*X + b
+        - Apply the softmax function to obtain class probabilities.
+        - Compute the cross-entropy loss.
+        - Compute the gradient of the loss with respect to weights and biases.
+        - Update weights and biases using gradient descent.
+        - Repeat for multiple iterations (epochs) until convergence.
+        
 4. 01/30/2025
     - Neural Networks & Backpropogation
         - Issue - Linear classifiers are not that powerful
