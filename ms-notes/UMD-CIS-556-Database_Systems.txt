@@ -637,5 +637,87 @@ Database Systems
             - Aggregate
                 - Example - Employee, Project, Employee Works On, Machinery
                 - Create Uses (Employee #, Project #, Machine #)
-            
-            
+
+8. 03/17/2025
+    - Relational Database Design
+        - ER To Relation Mapping
+        - Further Discussion on Functional Dependencies
+            - Trivial and Nontrivial FDs
+                - R - relational schema
+                - X - a srt of attributes in R
+                - Y - a set of attributes in R
+            - Functional Dependency
+                - X -> Y, for any tuples t1 and t2 in any relation, if t1[x] = t2[x] then t1[y] = t2[y]
+                - Example - birthdate determines age, always true
+                - Example - age determines birthdate, not always true
+            - Trivial - if y is a subset of x, then X determines y
+                - Example - birthdate -> age - non trivial
+                - Example - age -> age, trivial
+                - Example - SNO and Age -> SNO, trivial
+                - Example - SNO -> Age and Name, nontrivial
+            - Closure of a Set of Functional Dependencies
+                - Example
+                    - SNO -> Birthdate Age and FeeDiscount
+                    - Birthdate -> Age
+                    - Age -> FeeDiscount
+                    - Birthdate -> FeeDiscount (Definition) - logically implied
+                - Definition - the set of all functional dependencies implied by F is called the closure of F denoted by F+
+            - Armstrong's Axxioms
+                - Reflexive Rule - if Y is a subset of X, then X determines Y, trivial
+                - Augmentation Rule - if X determines Y, then XZ determines YZ
+                    - Example - if birthdate determines age, birthdate and feediscount determines age and feediscount
+                - Transitive Rule - if X determines Y and Y determines Z, then X determines Z
+                    - Example - if birthdate determines age, and age determines feediscount, then birthdate determines feediscount
+                - Theorem - Armstrong's Axioms are sound i.e. derive FDs in F+ and complete i.e. derive all FDs in F+
+            - Minimal Cover
+                - One designer specifies three functional dependencies
+                - Another finds another functional dependencies
+                - Both closures are equivalent denoted by F = E
+            - Goals
+                - We should choose set of FDs that has no redundancy i.e. minimal cover
+                    - Fmin is minimum cover of F i.e. Fmin = F
+                    - For every x determines y in Fmin, y is a single attribute
+                    - If you remove any functional dependency from Fmin, then Fmin != F
+                    - For every x determine Y in Fmin, if remove any attribute from x, Fmin != F
+            - Closure of a Set of Attributes
+                - X - a set of attributes
+                - F - a set of functional dependencies 
+                - The set of all attributes determined by the given X under F is called the closure of X under F denoted by X+
+                - Prove Superkey - if X+ includes all attributes, X is a superkey
+            - Calculate Minimum Cover (REVIEW)
+                - Example - F = {}
+                    - S# -> BDate, Age, FeeDiscount
+                    - BDate -> Age
+                    - Age -> FeeDiscount
+                - Step 1: Fmin = F - starting
+                - Step 2: Put in Canonical Format (one attribute on right)
+                    - S# -> BDate
+                    - S# -> Age
+                    - S# -> FeeDiscount
+                    - BDate -> Age
+                    - Age -> FeeDiscount
+                - Step 3: Remove Redundant Attributes
+                - Step 4:  Calculate Closure without using S# -> BDate
+                    - S#+ = S#, Age, FeeDiscount dont get BDate and not redundant
+                    - S#+ without S# -> Age
+                        - S# -> BDate
+                        - BDate -> Age
+                        - S# -> Age by implied i.e. redundant
+                - Step 5: Fmin = minimum cover
+            - Decomposition of Relation
+                - Problems with DB Design
+                    - #1 - redundant information, table includes all project information which is repeated for each tuple possible
+                    - #2 - insertion anomalies - cannot insert an employee without a project and cannot insert a project without an emnployee
+                    - #3 - delete anomalies - project information is lost if delete last employee working on it
+                    - #4 - modification anomalies - if change a project name, need to change many tuples
+                - Solution: Decomposition of Large Relation
+                    - Decompose - take larger table, and based on redundant information, create relations that cover all attributes in the original table
+                        - Desired Property: Lossless Join - join of smaller tables does not result in loss from original table
+                            - Spurious Tuples - lost information, before we knew the SSN for each employee, but now we dont, due to incorrect tuples formed by cartesian product
+                            - Theorem
+                                - Let Relation = Relation 1 Union Relation 2
+                                - F a set of functional dependencies on R.
+                                - Relation1, Relational 2 is losses decomposition of R if and only if at least one of the following FDs is in F+
+                                    - R1 intersect R2 determines R1 e.g. location is in both R1 and R2, however location does not determine any other value, not lossless
+                                    - R1 intersect R2 determines R2 e.g. SSN is in both R1 and R2, and SSN can determine every value in R1 so it is lossless decomposition
+                        - Desired Property: Dependency Preserving
