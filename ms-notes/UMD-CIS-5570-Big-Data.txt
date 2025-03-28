@@ -693,8 +693,142 @@ Big Data
                     - Experimental - Permute the Rows - will run out of memory
                     - Example
                         - Hash Function
-                        - Input Matrix
+                        - Input Matrix - look for first time of c having a 1 in what row
+                            - Sequence In Order - look for first time of c having a 1 in what row
+                            - Sequence in Reverse Order - look for first time of c having a 1 in what row
+                            - Sequence in Random Order - look for first time of c having a 1 in what row
+                            - Which should it be? Does not matter, just be consistent
                         - Signature Matrix
                     - Preserving Similarity - compression can mean information is lost, if similar pre hash then similar post hash
-                    - Shingling -> Compare Similarity -> Minhashing -> Compare Similarity
+                    - Shingling -> Compare Jaccard Similarity -> Minhashing -> Compare Signature Similarity
+                        - Property - similarity of signature matrix is same
+                    - Issue
+                        - 1 billion shingles, for each permutation, 100 permutations, 100 billion, 4 bytes, 400GB of ram
+                - Minhashing Feasible Way
+                    - Instead of 100 permutations, use 100 hash functions
+                    - Intuition
+                    - Order
+                        - Start Signature Matrix
+                        - Number of Hash = Rows 
+                    - Output - compressed rows of signatures
+                    - SIgnature Similarity
                 - Locality Sensitive Hashing - produce candidate pairs
+                    - Goal - find documents with jaccard similarity at least s (threshold original similarity)
+                    - General Idea - use a function that tells whether x and y is a candidate pair
+
+8. 03/17/2025
+    - Locality Sensitive Hashing
+        - Goal - find documents with Jaccard similarity at least s (threshold) - 80%
+        - General Idea - use a function f(x,y) that tells whether x and y is a candidate pair, a pair of elements whose similarity must be evaluated
+        - For Min-Hash
+            - Hash columns of signature matrix to many buckets, each pair that is matched to the same bucket is a candidate pair
+        - Steps
+            - Divide Signature Matrix Rows into Bands (R Rows)
+            - For each band, apply a hash function with k buckets, k should be large as possible to avoid missing
+                - Why? if you have enough k buckets, only same should hash to same bucket
+            - 
+        - Review - Example of Bands Compression
+        - Issue - Jaccard and Signature similarity may not be the same
+        - Question
+            - Assumptions
+                - C1 and C2 are similar 80%
+                - Bands 20
+                _ Rows Per Band 5
+                - Total Rows 100
+                - Total Columns 10000
+            - Probability C1 and C2 have one row is similar? 80%
+            - Probability C1 and C2 are not similar? 1-.8 = 20%
+            - Probability C1 and C2 are smiliar in one band? .8^5
+            - Probability C1 and C2 are not equal in band? 1 - (.8 ^ 5)
+            - Probability C1 and C2 are not equal in all bands? (1 - (.8 ^ 5)) ^ 20
+            - Probability C1 and C2 are equal in one band? 1 - ((1 - (.8 ^ 5)) ^ 20) (DETECTED)
+            - Insight - 99.9XX percentage you will detect
+        - Question
+            - Assumptions
+                - C1 and C2 are similar 30%
+                - Bands 20
+                _ Rows Per Band 5
+                - Total Rows 100
+                - Total Columns 10000
+            - Probability C1 and C2 have one row is similar? .3
+            - Probability C1 and C2 are not similar? 1 - .3
+            - Probability C1 and C2 are smiliar in one band? .3 ^ 5
+            - Probability C1 and C2 are not equal in band? 1 - (.3 ^ 5)
+            - Probability C1 and C2 are not equal in all bands? (1 - (.3 ^ 5)) ^ 20
+            - Probability C1 and C2 are equal in one band? 1 - ((1 - (.3 ^ 5)) ^ 20)
+    - LSH Tradeoff
+        - Decisions
+            - Number of min hahses i.e. rows in signature matrix
+            - Number of bands
+                - Less Bands = Higher False Negatives, less chances to hash to same bucket
+                - More Bands = Higher False Positives, more chances to 
+            - Number of rows per bands
+        - Idea
+            - If similarity is below threshold, hope 0% chance to hash to bucket
+            - If similarity is above threshold, hope 100% chance to hash to bucket
+    - Three Steps
+        - Shingling: Convert documents to sets
+        - MinHashing - Convvert large sets to short signatures while preserving similarity
+        - Locality Sensitive Hashing - focus on pairs of signatures likely to be from similar documents
+    - Distance Measures
+        - Idea
+            - Similar points are close
+        - Axioms
+            - d is a distance measure if it is a function from pairs of points to real numbers
+                - distance must be greater than or equal to 0
+                - distance of zero means point is same
+                - distance from point to point is same in both directions
+                - distance from x to y must be greater than distance x to z plus z to y
+        - Euclidean Distance
+            - L2 Norm = square root of the sum of the squares of the differences between x and y in each dimension
+                - Trianble 5, 4, 3
+                    - sqrt((9 - 5)^2 + (8-5)^2)
+            - L1 Norm = sum of the differences in each dimension (manhattan distance)
+                - Trianble 5,4,3
+                - 4 + 3 = 7
+        - Cosine Distance - for vectors
+            - angle between the vectors
+            - p1 * p2 / |p1||p2| = output
+            - cosine(output) = angle
+        - Jaccard Distance - for sets
+            - 1 minus Jaccard Similarity
+                - Jaccard Similarity - (2 / 5) - always equal to or less than 1
+                - Distance - 1 - (2/5) = 3/5 - always greater than or equal to 0
+        - Edit Distance - for strings
+            - number of insertions and deletes to chane one string to another
+            - length of s1 + length of s2 - 2 (Longest Common Subsequence)
+            - s1 = 5
+            - s2 = 6
+            - LCS = 4
+            - 5 + 6 - 2(4) = 3
+        - Hamming Distance - for bit vectors
+            - number of positions in which they defer
+    - Recommender Systems: Content Based Systems & Collaborative Filtering
+        - Example
+            - Customer X buys Metallica, Megadeath
+            - Customer Y buys Metallica, Recommend Megadeath
+        - Scarcity to Abundance
+        - The Long Tail - choose products by rank up to a point where sales are worthwhile to pursue, Amazon can do them all, enjoying profit from all
+        - Types of Recommendations
+            - Editorial and Hand Curated - essential, favorite, etc.
+            - Simple Aggregates - top 10, most popular, recent uploads
+            - Tailored to Individuals - netflix, amazon
+        - Formal Model
+            - X - set of customers
+            - S - set of items
+            - Utility Function - take x and S and produce ratings
+            - R - set of ratings, totally ordered, 0-5
+        - Key Problems
+            - Gathering known ratings
+                - Explicit - ask people to rate items
+                - Implicit - learn ratings from user actions
+            - Extrapolate unknown ratings from known ones
+                - Problem - utility matrix is sparse
+                - Problem - cold start i.e. new items have no ratings and new users have no history
+            - Evaluate extrapolation methods - measure success/performance of recommendation methods
+        - Approaches
+            - Content-Based
+                - Main Idea - recommend items to customer x similar to previous items rated highly by x
+                    - Only focus on the customer
+            - Collaborative
+        

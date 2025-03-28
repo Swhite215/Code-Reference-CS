@@ -524,3 +524,147 @@ Deep Learning
         - What is Bottlenext skip connection and why is it used?
         - What is down sampling?
         - What is up sampling?
+
+7. Object Detection and Image Segmentation
+    - Computer Vision Tasks
+        - Classification - cat, dog, (no spatial information)
+        - Semantic Segmentation - grass, cat, tree, sky, no object, (pixels)
+        - Object Detection - dog, cat, dog (multiple objects)
+        - Instance Segmentation - dog, dog, cat (multiple objects)
+    - Classification to Object Detection
+        - Definition - set of detected objects
+            - For each object predict
+                - Category Lablel
+                - Bounding Box
+        - Challenges
+            - Multiple Outputs
+            - Multiple Types of Outputs (What/Where) (Label/Box)
+            - Large Images
+    - Object Detection
+        - Bounding Boxes - axis aligned or object oriented
+        - Modal - bounding boxes cover only the visible portion
+        - Amodel - box covers the entire extent of the object, even occluded
+        - Intersection Over Union - how can we compare our predition to ground truth?
+            - Area of Intersection / Area of Union
+            - IOU > .5 decent
+            - IOU > .7 pretty good
+            - IOU > .9 perfect
+        - Single Object
+            - Goal - output label and bounding box
+            - Action - treat localization as a regression problem
+            - Technique - Sliding Window
+                - Try to classify each crop as object or background
+                - Parameters - # of boxes, size, and stride
+                - Issue - if you have a large image you m ay have a large number of boxes
+            - Technique - Region Proposal - Region Based CNN
+                - Goal - try to find a small set of boxes that cover the image
+                - Action - resize images from regions of interest and make a classifcation for each region
+            - Technique - R-CNN's Box Regression
+                - Model - Transform
+                    - 
+                - Region Proposal
+                    - Center (x,y)
+                    - Width (w)
+                    - Height (h)
+                - Output Box
+                    - x is x + (w*tx)
+                    - y is y + (h*ty)
+                    - w is w * exp(tw)
+                    - h is h * exp(th)
+                - Ground Truth Transform Equation - Reduce Error
+            - Training: R-CNN Training
+                - Action - categorize each region proposal as positive, negative or neutral
+                - Action - negative class no box target
+                - Action - class target
+                - Action - box target
+                - Order
+                    - Run Proposal Method to Get Region Proposals
+                    - Runn CNN on each proposal to get class scores, transforms
+                    - Threshold class scores to get a set of detections
+                - Problems
+                    - Overlapping
+                        - Solution - non-max suppression
+                            - Select next highest scoring box
+                            - Elminate lower scoring boxes with IoU > threshold
+                            - If any boxes remain, GOTO 1
+                    - R-CNN - speed of execution due to forward passes
+                        - Solution - Fast R-CNN
+                            - Run ConvNet on image to generate image features
+                            - Produce regions of interest from image features
+                            - For each region, run CNN to get class cores
+                            - Runn CNN on each proposal to get bounding boxes
+                    - Fast R-CNN Feature Crop
+                        - How do you crop features correctly?
+                        - Solution - perform linear projection to scale image
+                        - Solution - snap images to cell
+                        - Solution - form regions to standard feature size
+                    - Fast vs Slow
+                        - Fast - fraction of a time but region is most of the time
+                        - Solution - Region Proposal Network to predict proposals from featurets
+                            - Produce Image Feature with Anchor Point
+                            - Put Box at Each Anhor Point
+                            - Classify each as Positive (Object) or Negative (No Object)
+                    - Dealing with Scale
+                        - Multi Stage Multiscale Features
+            - Technique Single Stage Detector
+                - RetinaNet - directly predict object or background
+            - Technique: Single Stage Anchor Free Detector
+    - Semantic Segmentation
+        - Definition
+            - Things - object categories that can be separate into instance
+            - Stuff - object categories that cannot be
+        - Technique: Fully Convolutional Network
+        - Technique: Downsampling and Upsampling
+            - Downsampling - High to Low Res for Feature Detection
+            - Upsampling - Low to High Res for Feature Area Detection
+    - Instance Segmentation
+        - Object Detection for Bounding Boxes
+        - For Each Bounding Box Pixel - Predict
+
+8. Recurrent Neural Network
+    - RNN - Process Sequence
+        - One to One - Image Classification
+        - One to Many - Image Captioning
+        - Many to One - Video Classification
+        - Many to Many - Machine Translation
+    - Internal State
+        - new state = a function of old state and input vector at some time step
+    - Vanilla Recurrent Neural network
+        - State - single hidden vector h
+    - RNN Computational Graph
+        - h -> weight and new input -> h -> weight and new input continue
+    - RNN Computational Graph - Many to Many
+    - RNN Computational Graph - Many to One
+    - RNN Sequence to Sequence
+        - Encoder -> RNN -> RNN -> Decoder
+        - Hidden Middle State - code context information
+    - RNN Next Token Prediction
+        - Token - convert string into numerical value or vector
+        - Take numerical vector input and use layers to predict next letter
+        - Combine together
+        - Take sample output and go through process again, continuoulsy predicting next letter
+        - Learnable Weight - Embedding, Hidden, Output
+        - Action - encode inputs as one hot vector
+        - Backpropogation Through Time - forward through entire sequence to compute loss, then backward through entire sequence to compute gradient
+    - RNN Image Captioning
+        - Image -> Convolutional Network to Produce Feature Vectors -> RNN to Identify Captions
+    - RNN LSTM - Long Short Term Memory
+        - Input Gate - whether to write to cell
+        - Forget Gate - whether to erase cell
+        - Output Gate - how much to reveal cell
+        - Gate Gate - how much to write to cell
+    - RNN Layers - Multi Layer
+        - As layers increase...
+    - RNN Many to Many Cross Attention
+        - Review...
+    - RNN Cross Attention for Image Captioning
+    - RNN Attention Tranformer
+        - Similarity Function - use dot product + softmax to measure similarity
+        - Query, Key -> Similarity
+            - Dot Product Query and Key
+        - Similarity - Attention Weights
+    - RNN Attention - Self Attention
+        - Review...
+
+
+            
