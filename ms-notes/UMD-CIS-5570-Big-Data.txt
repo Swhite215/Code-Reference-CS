@@ -830,5 +830,144 @@ Big Data
             - Content-Based
                 - Main Idea - recommend items to customer x similar to previous items rated highly by x
                     - Only focus on the customer
+                - Plan of Action
+                    - User Likes
+                    - Item Profiles
+                    - Create User Profile
+                    - Compare Distance of User Profile to Item Profiles
             - Collaborative
         
+9. 3/24/2025
+    - Content Based
+        - Side Note
+            - TF - term frequency of term i in doc j
+                - frequency of term / count of most frequent word in the Document
+            - IDF - Inverse Document Frequency
+                - log(total number of docs / number of docs that mention term i)
+            - TF-IDF Score = TF x IDF
+        - User Profiles
+            - Boolean Utility Matrix
+                - Items are movies, only feature is Actor
+                - Suppose
+                    - User X has watched 5 movies
+                    - 2 movies featuring Actor A
+                    - 3 movies featuring Actor B
+                    - Feature A's Weight = 2/5
+                    - Feature B's Weight = 3/5
+                - 1. Item Profiles
+                    - M1 - Actor A = 0 or 1, Actor B = 0 or 1 = [1,0]
+                    - M2 - Actor A = 0 or 1, Actor B = 0 or 1 = [1,0]
+                    - M3 - Actor A = 0 or 1, Actor B = 0 or 1 = [0,1]
+                    - M4 - Actor A = 0 or 1, Actor B = 0 or 1 = [0,1]
+                    - M5 - Actor A = 0 or 1, Actor B = 0 or 1 = [0,1]
+                - 2. User Profile = mean of item profiles
+                    - Linear Combination
+                    - X = 2/5A + 3/5B
+                - 3. Measure Distance Cosine - angle small = recommend, angle large = do not recommend
+            - Star Ratings
+                - Suppose
+                    - A's movies are rated 3 and 5
+                    - B's movies rated 1, 2, and 4
+                    - Average Rating = 3 + 5 + 1 + 2 + 4 = 15 / 5 = 3
+                - Normalized Rating to User Profile
+                    - A: 3 - 3 = 0
+                    - A: 5 - 3 = 2
+                    - A Weight = (0 + 2)/2 = 1
+                    - B: 1 - 3 = -2
+                    - B: 2 - 3 = -1
+                    - B: 4 - 3 = 1
+                    - B Weight = (-2 + -1 + 1)/3 = -2/3
+                    - IMPORTANT = X = 1A - 2/3B
+                - Distance - Measure User Vector to Every Movie Vector
+                    - cos(user vector, item profile) = user profile * item profile / magnitude of X and magnitude of i
+                        - Magnitude of X = sqrt(1^2 - (2/3)^2)
+        - Advantages of Content Based
+            - Focus on the user and what you like
+        - Disadvantages
+            - Other users are not considered
+            - Features might be difficult
+            - Overspecialization
+    - Collaborative Filtering
+        - Idea
+            - Consider User X
+            - Find set N of other users whose ratings are similar to x's rating
+            - Estimate x's rating based on ratings of users in N
+        - Finding Similar Users
+            - Let rx be the vector of user x's ratings
+            - Jaccard Similarity - Intersection / Union
+                - Intersection = 2
+                - Union = 4
+                - JS = 2/4 = .5
+                - Issue - rating values are ignored
+            - Cosine Distance
+                - Similarity Metric - Users
+                    - Intuition - we want similarity between A and B to be greater than similarity between A and C
+                    - Jaccard Similarity
+                        - sim(a,b) = intersection / union = 1/5 = 
+                        - sim(a,c) = intersection / union = 2/4 = 
+                    - Cosine Similarity
+                    - Missing Ratings are treated as negative, modify to Centered Cosine Similarity or Pearson Correlation Coefficient
+                        - Subtract average of x from all x, average of y from all y
+                - From Similarity Metric to Recommendation 
+                    - Estimate rating of user x to i item - take ratings of similar users and sum them and divide by total
+                - Similarity Metric - Items
+                    - Find similar items
+                    - Estimate rating for item i based on ratings for similar items
+                    - Use similarity metrics and prediction functions as in user user model
+                    - Rating of User X to Item I
+                        - Summation of items j that belongs to the neighborhood of the items rated by x
+        - Item to Item Collaborative Filtering
+            - Estimate rating of movie 1 by user 5, neighborhood of 2 (most two similar items to movie 1)
+            - Step One - Find Similarity Between Movie 1 and Movie 2-6
+                - Pearson Correlation or Centered Cosine Similarity
+                    - Subtract average of item from all ratings
+                    - Perform Centered Cosine Similarity
+                    - Identify Two Highest Similarity
+                    - (Similarity Times Rating + Similarity Times Rating)/(Similarity + Similarity)
+                    - Skip - if user has no rating, dont perform
+        - Item to Item vs User to User
+            - Item to item - complexity is reduced, items are limited in aspects and scope, humans are complex and varied
+        - Pros/Cons of Collaborative Filtering
+            - Pros
+                - Works on any kind of item
+                - No feature selection is needed
+            - Cons
+                - Cold Start - need enough users to find a match
+                - Sparsity - user/ratings matrix is sparse
+                - First Rater - cannot recommend an item that has not been rated
+                - Popularity Bias - tends to recommend popular items
+    - Hybrid Methods
+        - Add Content Based Methods to Collaborative Filtering
+        - Global Baseline
+            - Goal - get Joe's rating
+            - Input
+                - Movie Mean
+                - Sixth Sense 0.5 above average
+                - Joe rates .2 stars below average so 3.5
+                - Baseline - global mean + movie average - joe variance of average = 4 stars
+        - Local Neighborhood - 1 Neighborhood
+            - Joe rated Signs 1 star
+            - Sixth Sense - 4 - 1 = 3 stars
+        - Common Practice
+            - Subtract global baseline from similar movies
+    - Remarks and Practical Tips
+        - How many computations to check? Number of movies - O(|X|)
+        - Pre Compute - O(K*|X|)
+        - How?
+            - Locality Sensitive Hashing - near neighbor search in high dimensions
+        - Evaluation
+            - Hide existing ratings = Test Set
+            - Root Mean Square Error - REVIEW
+            - 0/1 Model
+                - Coverage - number of items/users for which system can make prediction
+                - Precision - accuracy of predictions
+                - Receiver Operating Characteristic - tradeoff curve between false positives and false negatives
+        - Problems with Error
+            - Narrow focus on accuracy sometimes misses the point
+                - Prediction Diversity
+                - Prediction Context
+                - Order of Predictions
+            - Practice
+                - Precision at Top 10
+                - Rank Correlation
+

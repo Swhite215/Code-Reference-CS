@@ -662,7 +662,7 @@ Database Systems
                     - Age -> FeeDiscount
                     - Birthdate -> FeeDiscount (Definition) - logically implied
                 - Definition - the set of all functional dependencies implied by F is called the closure of F denoted by F+
-            - Armstrong's Axxioms
+            - Armstrong's Axioms
                 - Reflexive Rule - if Y is a subset of X, then X determines Y, trivial
                 - Augmentation Rule - if X determines Y, then XZ determines YZ
                     - Example - if birthdate determines age, birthdate and feediscount determines age and feediscount
@@ -721,3 +721,41 @@ Database Systems
                                     - R1 intersect R2 determines R1 e.g. location is in both R1 and R2, however location does not determine any other value, not lossless
                                     - R1 intersect R2 determines R2 e.g. SSN is in both R1 and R2, and SSN can determine every value in R1 so it is lossless decomposition
                         - Desired Property: Dependency Preserving
+
+9. 03/24/2025
+    - Decomposition of Relation - REVIEW
+        - Dependency Preservation - functional dependencies should not be loss or arduous to derive
+        - Restriction of F to Relations - set of functional dependencies in the closure of F that includes only attribtues in R
+    - Normalization - REVIEW
+        - Idea - process during which an unsatisfactory relation schema is decomposed into smaller relation schemas that posses some desirable properties
+        - 1st Normal Form - domain of all attributes contain atomic values only and the value of any attribute in a tuple must be a single value from the relevant domain
+            - No composite or multivalued attributes
+        - 2nd Normal Form -  R is in 2NF with respect to a set of Functional Dependencies if R is in 1NF and no nonkey attribute is partially dependent on any candidate key i.e. every nonkey attribute is fully dependent on every candidate key
+            - Full Functional Dependency - removing any attribute from X would make this functional dependency no longer valid
+            - A is fully dependent on X therwise A is partially dependent
+                - Student # and Course # -> Grade (FULL)
+                    - Remove Course # - you can no longer determine grade
+                    - Remove Student # - you can no longer determine grade
+                - S#, SName -> Age (PARTIAL)
+                    - Remove SName - can determine age
+            - NonKey Attribute - not a member of any candidate key
+            - Key Attribute - member of candidate key
+            - S#, C#, Grade
+                - Grade - nonkey, and is fully dependent on S# and C#
+            - S#, P#, ProfessorName, Project
+                - ProfessorName, nonkey, however, is partially dependent on S# and P#, P# determines
+        - 3rd Normal Form - R is in 3NF with respect to a set of Functional Dependencies if R is in 2NF and no nonkey attribute is transitvely dependent on any candidate key of R
+            - Transitive FD - X -> A, if there is Z that is not a subset of any candidate key such that X -> Z and Z -> A
+            - Example
+                - P#, Department, DepartmentOffice
+                    - P# -> Department
+                    - Department -> Department Office
+                    - P# -> Department Office - Transitive i.e. P# -> Dept -> Dept Office
+                    - Update Anomlay - cannot insert the office information for a dept unless the department has a professor
+            - Theorem - R is in 3NF with respect to a set of Functional Dependencies if and only if for every Functional Dependency in the closure of F, at least one of the following hold
+                - alpha -> Beta, trivial
+                - alpha is a superkey for Relation
+                - every attribute in Beta - alpha is a member of a candidate key
+                - if every functional dependency satisfies one of the above, R is in 3NF
+        - Algorithm to 3NF
+            - Relationa

@@ -398,7 +398,8 @@ Deep Learning
                 - Padding - add pixels around input image, normally values of zero, this increases size of image output, making it possible to produce an image of the same size
                 - Stride - how far you move before applying fitler again
                 - Output Size w Padding AND Stride
-                    - Output Size = (Input Size - Filter Size + 2 * Padding) / stride + 1
+                    - Output Size = ((Input Size - Filter Size + 2 * Padding) / stride) + 1
+                    - Example - (32 - 5 + 2 * 2) / (1 + 1) = 31/2
                 - Special Case - Padding Size = Filter Size - 1 / 2 will produce an output imge of same size
                 - Receptive Field
                     - Each time you do a convulation you produce a new ouput, resulting in a pxie.
@@ -422,6 +423,7 @@ Deep Learning
                 - Output Size = (Input Size - Filter Size + 2 * Padding) / stride
                     - (32 - 5 + 2 * 2) / 1 + 1 = 27 + 4 + 1 = 32 or 10 x 32 x 32 = 10240 pixels
                 - Learnable Parameters?
+                    - LP = (Input Channels * Kernel Size * Kernel Size + 1) * Output Filters
                     - Number of Filters x Size of Filter
                     - Size of Filter = 3 x 5 x 5 + 1 = 76
                     - Number of Filters = 10
@@ -649,6 +651,8 @@ Deep Learning
     - RNN Image Captioning
         - Image -> Convolutional Network to Produce Feature Vectors -> RNN to Identify Captions
     - RNN LSTM - Long Short Term Memory
+        - Total LSM Parameters = 4 * (Hidden Size * Input Size + Hidden Size * Hidden Size + H)
+            - 
         - Input Gate - whether to write to cell
         - Forget Gate - whether to erase cell
         - Output Gate - how much to reveal cell
