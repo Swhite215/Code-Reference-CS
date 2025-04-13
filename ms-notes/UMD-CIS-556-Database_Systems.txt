@@ -758,4 +758,111 @@ Database Systems
                 - every attribute in Beta - alpha is a member of a candidate key
                 - if every functional dependency satisfies one of the above, R is in 3NF
         - Algorithm to 3NF
-            - Relationa
+            - Relational
+
+10. 03/31/2025
+    - Query Processing and Optimization
+        - Objective - seek an efficient exeuction plan for a given query
+        - Order
+            - Query in High Language
+            - Scanning, Parsing and Validating
+            - Intermediate Form of Query - Query Tree
+            - Query Optimizer
+            - Execution Plan
+            - Query Code Generator
+            - Code to Execute Query
+                - Interpreted Mode - executed directly
+                - Compiled Mode - stored and executed later
+            - Runtime Database Processor
+            - Query Result
+    - Query Processing Algorithms
+        - Processing Projection (pi)
+            - Usually computed together with sigma select or join
+            - Duplicates can be removed by sorting
+        - Processing Select (sigma)
+            - Linear Search - fetch and test each tuple in R sequentially - n
+            - Binary Search - assume tuples are sorted by an attribute log(n)
+                - Check middle, if less, set start to start and end to middle, if more, set start to middle and end to end
+                - Repeat
+            - Index Search with a Key - use a key value to search an index tree to get qualified tuples
+                - Index Tree - B+ Tree (REVIEW)
+                - Root -> Branch -> Leaf -> Tuple Memory Addresses
+                - Issue - blocks containing memory addresses might lead to jumping back and forth
+                - Use - how many tuples satisfy the condition?
+            - Indexes
+                - Primary Key - unique
+                - Secondary index - on a nonkey attribute
+                - Clustering Index - tuples with the same value for the indexed attributes are clustered together in the data file
+                    - Only one clustering index is allowed for each table
+                    - Several secondary indexes are allowed for each table, can be unique or non-unique
+            - Hash Search - use a has function instead of an index to get qualified tuples
+                - Data are saved into several buckets based on hash output
+                - Hash value to get bucket, look at all tuples in bucket
+                - Selectivity of Query
+                    - Percentage of tuples that satisfy the condition
+                    - # of tuples that satisfy condition over magnitude of R
+        - Processing Join Operation
+            - Nested Loop - for each tuple in outer table, retrieve every tuple from inner table and check whether the two tuples satisfy the join condition
+            - Indexed Join - for each tuple in outer table, retrieve all matching tuples from the outer table via an index
+            - Hash Join - for each tuple in outer table, retrieve all matching tuples from the inner table bucket via a hash function
+            - Sort/Merge Join - sort the two operand tables on the joining attributes first, then merge two tables
+            - Selectivity - # of result tuples / Magnitude R1 * Magnitude of R2
+    - Query Optmization
+        - Heuristic Based - set of rules
+            - Goal - tries to transform a user specific query into an equivalent but more efficient query based on some rules
+            - Example - Find students in CIS department whose ages are over 30
+                - Simple - join student and department then check age and dept name
+                - Equivalent - select student over 30, select dept name = CIS, join student and department
+            - Rules 
+                - Perform select as early as possible
+                - Combine select with join
+                - Perform project as early as possible
+        - Cost Based - analyze costs
+            - Goal - uses cost formulas to estimate the cost of each feasible processing algorithm, then choose the one with the smallest cost
+            - Example - join two relations and estimate
+                - Nested Loop - 2000 I/O
+                - Indexed Join - 1500 I/O
+                - Hash Join - 900 I/O
+    - Transaction Management
+        - Transaction Definition - the execution of  aprogram unit that accesses and/or changes data in a db
+            - Example - Transfer $50 from Account A to Account B
+                - STEPS
+                    - TRANSACTION BEGIN
+                    - read(A)
+                    - A = A - 50
+                    - write(A)
+                    - read(B)
+                    - B = B + 50
+                    - write(B)
+                    - TRANSACTION COMMIT 
+                - Failure
+                    - Undo write(A) or write(B) or both
+            - Properties
+                - Atomicity - a transaction is either performed in its entirety or not performed at all
+                - Consistency - a transaction must take a DB from one consistent state to another
+                - Isolation - a transaction should not make its updated visible to other transaction until thew transaction is committed
+                - Durability - commited changes to the DB by a transaction must never be lost
+            - States
+                - Active - Executing
+                - Partially Committed - after last statement has been executed
+                - Failed - after discovery that normal execution can no longer proceed
+                - Committed - after successful completion
+                - Terminated - transaction leaves the system
+        - Concurrency Control - allows multiple users to run transaction concurrently
+            - Issue - uncontrolled concurrency transaction may cause problems
+            - Anomalies
+                - Lost Update Problem
+                    - Two transactions take turns and result in an incorrect output due to read and write pattern without protecting critical resource
+                - Uncommited Dependency Problem
+                    - Other dependency writes, failure in another transaction causes a rollback
+                - Inconsistent Analysis Problem
+            - Serializability
+                - Schedule S of N Transaction - sequential ordering of operations
+                - Serial Schedule S  - different serial scheudles may produce different results
+                    - Conflict Table - Two Transactions and Conflict
+                        - read(a), read(a) - no conflict
+                        - read(a), write(a) - CONFLICT
+                        - If 1 or more is write, CONFLICT
+                    - Conflict Equivalence - 
+
+        - Data Recovery - recovers the data in a DB after a transaction fails
