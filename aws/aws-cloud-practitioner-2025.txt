@@ -1,0 +1,105 @@
+AWS Certified Cloud Practioner Exam
+
+1. Introduction to the Cloud
+    - Cloud Practitioner Essentials
+        - Client-Server Model
+            - Client - Customer
+            - Server - Employee
+            - Flow
+                - Client sends request to server
+                - Server sends response to client
+        - Pay for What You Use
+    - What is Cloud Computing?
+        - History
+            - 2000 - Amazon eCommerce
+            - 2004 - Amazon Simple Queue Services
+            - 2006 - Elastic Compute
+            - Present
+        - Cloud Computing - on demand delivery of it resources over the internet with pay as you go pricing
+        - Data Center - ware house scale computing offering economies of scale
+    - Benefits of the AWS Cloud
+        - Pay-As-You-Go
+            - Capital Expenditure - fixed and initial expenses
+            - Operating Expenditure - ongoing expenses
+        - Economies of Scale
+        - On-Demand Resources
+        - Expeditious
+        - Global
+    - AWS Global Infrastructure
+        - High Availability - guaranteeing uptime for particular resources
+        - Fault Tolerance - maintaining operation through failures
+        - Regions - Paris, Tokyo, Sao Paolo
+        - AZ - Availability Zones, 2-3 per region
+        - Data Center - 1 or more per availability zone
+    - Shared Responsibility
+        - Security - Amazon and Customer
+        - Amazon - Security of the Cloud
+            - Compute, Storage, Database, Network Software Updates
+            - Hardware
+        - Customer - Security in the the Cloud
+            - Customer Data
+            - Client Side Encryption
+    - Applying Cloud Concepts to Real Life Use Cases
+
+2. Compute
+    - Introduction to Amazon EC2
+        - EC2 - Elastic Compute Cloud
+        - Benefits - flexibility, quickness, pay for what you use
+        - Multi-Tenancy - multiple virtual machines on hardware
+        - Hypervision - virtual machine isolation and sharing
+        - Configurations
+            - OS, applications, 3rd party software
+        - Vertical Scaling - up and down compute resources
+        - Network Configuration
+    - Amazon EC2 Instance Types
+        - Instance Family - combination of cpu, storage, and networking
+        - Families - general, compute optimized, memory optimized, accelerated, storage optimized
+        - Size
+    - Provisioning
+        - API - Application Programming Interface
+        - AWS Management Console - graphical user interface
+        - AWS Command Line - terminal access. automation through scripting
+            - AWS Cloud Shell - aws terminal with pre-installed packages
+        - AWS SDK - programming language interfaces
+    - EC2 Demo
+        - Required Configurations
+    - EC2 Pricing
+        - On-Demand - duration, per second or hour, that you use, helps determine baseline
+        - Savings Plan - lower EC2 prices for a commitment to 1-3 years of a set term 67% discounts
+        - Reserved Instances - predictable usage, 75% discount 1-3 years, upfront, partial, and no upfront payments
+        - Spot Instances - 90% discount, AWS can reclaim, 2 minute warning
+        - Dedicated Hosts - isolation with full control of server
+        - Dedicated Instances - isolation without control of server
+    - Scaling Amazon EC2
+        - Capacity - maximum and minimums
+        - Scalability - growth over time
+            - Up (Vertical) = more powerful machines
+            - Out (Horizontal) = more machines
+        - Elasticity - dynamic on-demand adjustment of resources
+        - Auto Scaling
+            - Dynamic Scaling - adjusts in real time to fluctuations in demand
+            - Predictive Scaling - preemptive scheduling based on anticipated demand
+            - Auto Scaling Groups - collections of EC2 instances that can scale in or out
+            - Configuration
+                - Minimum Capacity - least number of EC2 instances required, launch immediately
+                - Desired Capacity - ideal number of instances needed to handle the current workload
+                - Maximum Capacity - upper limit on number of instances that can be launched, preventing over-scaling and controlling costs
+    - Directing Traffic with Elastic Load Balancing
+        - Coffee Example
+            - Host - Elastic Load Balancer
+        - Elastic Load Balancer - take request and route them to instances
+        - Routing Methods
+            - Round Robin - distribute traffic evenly across all servers in a cyclic manner
+            - Least Connections - route traffic to server with fewest active connections
+            - IP Hash - use clients IP to consistently route to same server
+            - Least Response Time - direct traffice to server with fastest response time
+    - Messaging and Queuing
+        - Messaging - form of communication between components
+        - Queueing - storage of messages for ordered processing of events
+        - Coupling
+            - Tight - one component fails can cause failures in others
+            - Loose - operation without all components
+        - Simple Queue Service
+            - Queue - where messages are played
+        - Simple Notification Service
+            - Immediate notification to end users with SMS, Email, and Push Notification
