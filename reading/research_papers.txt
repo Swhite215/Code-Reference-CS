@@ -58,4 +58,4 @@ Various Read Whitepapers and Dissertations:
   - Software Defined Far Memory in Warehouse Scale Computers
     - Software approach to proactively compress cold memory pages to effectively create a far memory tier in software
   - NVM Based Hybrid BFS with Memory Efficient Data Structure
-    - Merges redundant datra structures to a single graph data structure, while offloading infrequent accessed graphs on NVMs based on the detailed analysis of access patterns
+    - Merges redundant data structures to a single graph data structure, while offloading infrequent accessed graphs on NVMs based on the detailed analysis of access patterns
