@@ -103,3 +103,256 @@ AWS Certified Cloud Practioner Exam
             - Queue - where messages are played
         - Simple Notification Service
             - Immediate notification to end users with SMS, Email, and Push Notification
+
+3. Exploring Computing Services
+    - Types
+        - Managed - operational responsibilities are primarily AWS
+            - Elastic Load Balancer, Simple Queue Service, Serverless Computing
+            - Customer - customer data, client-side data encryption, server-side encryption, network traffic protection
+            - AWS - Platform and Application management, OS, network, firewall, software for compute, hardware
+        - Unmanaged - customer has greater control of configuration e.g. os patches
+            - Customer += platform and application management, os, network, firewall configuration
+            - Amazon EC2
+    - AWS Lambda
+        - Upload Code - custom code to execute - Runtime
+        - Define Trigger - action to respond to (HTTP Request, )
+        - Excute - run code
+        - Max Duration - 15 minutes
+        - Integrations - many already exist
+        - Example
+            - Create Queue
+            - Send Message
+            - Create Lambda w/ Blueprint - SQS
+            - Enable Policy LAMBERT Role
+            - Setup Trigger and Select Queue
+    - Containers and Orchestration on AWS
+        - Containers - way to package and run applications consistently across different environments
+        - Managed - Amazon Elastic Container Service
+            - Orchestration Service - scale up and down
+            - Amazon ECS - streamline, define parameters, fully managed
+            - Amazon Elastic Kubernetes Service - open source, more complex, more customizable
+        - Amazon Elastic Container Registry - repository for images, based on Open Container Initiative standards
+        - Amazon EC2 - manage virtual machines
+        - Fargate - serverless
+    - Additional Compute Services
+        - AWS Elastic Beanstalk - deploy and manage applications, simplified provisioning, configuration management
+        - AWS Batch - heavy duty data processing, infrastructure management, parallel processing, automatic scaling
+        - AWS Lightsail - simple cost effective managed hosting for websites
+        - AWS Outposts - hybrid cloud solution, consistent environments, low latency, data residency
+
+4. Going Global
+    - Components
+        - Edge Locations - fast local delivery - content delivery network
+        - Infrastucture as Code AWS CloudFormation
+    - Choosing AWS Regions
+        - Isolation - no data goes in or out without explicit permissions
+        - Compliance - data must be placed in particular AWS regions due to compliance
+            - AWS GovCloud - us goverment agencies and contractors
+        - Proximity - how close you are to your customer base
+        - Feature Availability - closest region may not have all features others do
+        - Pricing - some regional factors like tax structure and energy cost influence price 
+    - Deep Dive
+        - Redundancy
+            - Multiple Availability Zones - swap AZs when they fail
+            - Multiple Regions
+        - Disaster Recovery
+        - Fault Tolerance
+        - Amazon CloudFront - content delivery network
+        - Route 53 - Domain Name Service offered by AWS
+        - Outposts - hybrid cloud
+    - Infrastructure as Code
+        - Issue - create multiple reasources across regions and accounts and requires consistency and readability
+        - AWS CloudFormation - declarative resource provisioning
+
+5. Networking
+    - Components
+        - Amazon Virtual Private Cloud - provision an isolated section of the cloud
+        - Subnet - chunks of IP addresses, public or private, organize resources e.g. private database or transaction information, public customer facing
+    - Organizing AWS Cloud Resources
+        - Connectivity
+            - Internet Gateway - public internet access
+            - Virtual private Gateway - private internet access
+            - AWS Direct Connect - private fiber connection from server to AWS Virtual Private Cloud
+        - Additional Ways to Connect
+            - AWS Client VPN - service to connect remote works and on-premises networks to the cloud
+            - AWS Site-to-Site VPN - secure connection between data center or branch offices and AWS Cloud resources
+            - AWS PrivateLink - highly available, scalable technology that you can use to privately connect your VPC to services and resourcs as they are in your VPC
+            - AWS Direct Connect - physical connection
+    - Subnets, Security Groups, and Network Access Control Lists
+        - Network Access Control List - review packets to enter or leave subnet (STATELESS)
+        - Security Group - Instance Level Control - blocked input traffic by default (STATEFUL)
+        - Round Trip of a Packet
+            - Subnet 1 EC2 A - Sends Packet
+            - Subnet 1 Security Group Passes Packet
+            - Subnet 1 ACL Reviews Outbound
+            - Subnet 2 ACL Reviews Inbound
+            - Subnet 2 Securtiy Group Passes Packet
+            - Subnet 2 EC2 B - Receives Packet
+    - Global Networking
+        - Amazon Route 53 - Domain Name Service
+            - Latency, Geolocation, Weighted Round Robin
+        - AmazonCloudFront - Content Delivery Network
+        - AWS Global Accelerator - networking service for applicationa availability, performance, and security
+    - Global Architectures
+        - Virtual Private Network - private encryupted tunnel to access Virtual Private Cloud
+            - Limitations - network bandwidth, compliance
+        - Direct Connect - traffic routed from corporate data center to direct connect and then to private virtual cloud
+        - VPN vs Direct Connect
+            - VPN - secure, flexible, remote, small scale, backup connection for failover
+            - Direct - high bandwidth, direct, secure
+
+6. Storage
+    - Introduction to Storage
+        - Block 
+            - divides data into pieces called blocks
+            - direct data access
+            - used for applications
+            - Types
+                - Amazob EC2 Instance Store
+                - Amazon Elastic Block Store
+        - Object 
+            - self contained units, unique id, and metadata
+            - rewrite full object
+            - organized into buckets
+            - Types
+                - Amazon Simple Storage Service
+        - File Storage 
+            - hierarchial file system shared across applicaitons
+            - shared access e.g. content management
+            - Types
+                - Amazon Elastic File System
+                - Amazon FSx
+        - Additional
+            - AWS Storage Gateway - hybrid cloud storage service that provides on-premise access to virtually unlimited storage
+            - AWS Elastic Disaster Recovery - streamlines recovery of physical, virtual, and cloud based servers
+        - Database
+    - EC2 Instance Stores and Amazon Elastic Block Store
+        - Block Level Storage - file, series of bytes, individual pieces can be updated
+        - Instance Store Volumes - attached to host, ephemeral
+        - Amazon Elastic Block Store - persistent, size, type, and configuration, attach to instance
+            - Input/Output Per Second
+            - Amazon EBS Snapshots - incremental backups
+            - Capabilities
+                - Data Migration of EBS Volumes
+                - Unaffected by EC2 Instance Type Changes
+                - Snapshots for Recovery
+                - Optimize cost based on type and usage
+                - Adjust performance characteristics for individual applications
+    - Amazon Elastic Block Store Data Lifecycle
+        - Amazon EBS Snapshots
+            - Incremental Snapshot - snapshot only changes
+            - Full Snapshot - point in time copy of everything
+        - Amazon Data Lifecycle Manager
+            - Schedule snapshots
+            - Set retention
+            - Manage lifecyle
+        - Amazon Data Lifecyle Manager Flow
+            - Create an EBS snapshots policy
+            - Select target resource type (EBS volume or EC2 instance as target)
+            - Exclude volumes (root or data)
+            - Set custom schedules - automate creation, retention, and deletion of EBS snapshots
+            - Apply additional actions - tags, archiving, fast snapshot restore, cross-region copying, and cross account sharing
+    - Amazon Simple Storage Service
+        - Objects - single data files
+            - videos, images, metadata, documents, application data
+            - Up to 5TB
+        - Bucket - organized group of objects, can be versioned
+        - 99.999999999% durability intact over one year
+        - Scaling and managing is controlled by AWS
+        - Security
+            - Private access by default
+            - Bucket policies
+            - Identity-Based Policies
+            - Encryption - at rest and in transit
+            - Time limited pre-signed url
+            - Amazon S3 Access Points
+            - Amazon S3 Audit Logs
+        - Classes
+            - Standard - access data regularly
+            - Standard-Infrequent Access - less regulary but rapid access for long-term backups, disaster recovery files, and so on
+            - Glacier Instant Retrieval - rarely accesses and requires millisecodn retrieval
+            - Glacier Flexible Retrieval - accessed 1-2 times per year
+            - Glacier Deep Archive - compliance or digital preservation, 7-10 years of storage for regulatory compliance
+            - Express One Zone and One Zone IA - cut cost and improve speeds if redundancy is not necessary
+            - Outposts - object storage on-premise
+        - Lifecycle Policies
+            - Configure class switching
+            - Storage Class Analysis - optimize classes based in needs
+            - Intelligent Tiering - switch between frequent access, infrequent access, archive instant, and access deep archive
+    - Amazon Elastic File System
+        - Amazon EFS - Shared File System
+            - Multiple instances can access the EFS at the same time
+            - Lifecycle policies - move data between classes based on use
+            - Linux Network File System
+            - Regional resources
+            - Automatically scales
+        - Classes
+            - Standard and Standard-Infrequent Access - multi-az resilienct with highest levels of durability and availability, higher costs
+            - One Zone and One Zone-Infrequent Access - single az to reduce costs
+            - Archive Storage -  cost optimized for data is accessed only a few times a year or less and does not require millisecond latencies
+        - Amazon EBS - volumes attached to EC2 instances, availability zone resource
+        - Lifecycle
+            - Transition to IA - move to IA if not accessed for 30 days
+            - Transition to Archive - move to archive is not accessed for 90 days
+            - Transition to Standard - move to standard, by default files are not moved back to standard
+    - Amazon FSx
+        - Benefits
+            - File System Integration - industry standard file system protocols
+            - Managed Infrastructure - aws managed
+            - Scalable Storage - dynamic resource adjustment
+            - Cost Effective - charge for used storage and moving infrequently accessed data to lower-cost tiers
+        - File Systems
+            - Amazon FSx for Windows File Server
+            - Amazon FSx for NetApp ONTAP
+            - Amazon FSx fro OpenZFS
+            - Amazon FSx for Lustre
+    - AWS Storage Gateway
+        - S3 File Gateway - on-premise applications access directly in S3, accessible from all applications
+        - Volume Gateway - local block storage volumes, auto backup
+            - Cached Volume - stores primary data in the cloud while frequently accessed is cached locally
+            - Stored Volume - stores data locally while async backup to cloud as Elastic Block Store snapshots
+        - Tape Gateway - for those still using physical backups to transition tape data to cloud
+        - Benefit
+            - Disaster Recovery, Data Archiving
+    - Amazon Elastic Disaster Recovery
+        - Action - replicate critical workloads, block-level data, physical and virtual serves
+        - Benefits - business resilience, disaster recovery, cost optimization
+    - Comparing Storage Services
+        - S3 - static assets, documents, files, etc., auto-scaling
+        - Amazon Elastic Block Store Volumes - optimized for transactional workflows, block level access for database
+
+7. Databases
+    - Types of Databases
+        - Fully Managed
+        - Managed
+        - Unmanaged
+    - Relational Database Service
+        - RDBMS - Database Management System
+            - Structured Query Language - interaction with RDBMS
+            - Data Definition Language
+        - AWS Database Migration Service
+                - Lift and Shift - extract, copy, and store relations
+        - Amazon Relational Database Service
+            - Automated patching, backups, recover, failover, shared responsibility
+            - Multi AZ deployment
+            - Engines - AUrroa, MySQL, PostGresSQL, Microsoft SQL Server, MariaDB, and Oracle
+        - Amazon Aurora - Fully Managed RDS - PostgresSQL, MySQL, DSQL, 15 Aurora Replicas
+        - AWS Backup
+    - NoSQL
+        - Amazon DynamoDB - store in non-relational fashion e.g. JSON
+            - Flexible schema, data = items + attributes, add or remove attributes
+            - Performance - single digit millisecond performance, globally distributed
+    - In-Memory Caching Services
+        - Issue - performance bottlenecks, high volumes of rerequests for static data
+        - Solution - introduce a high speed easily accessible cache, in memory
+        - Tools - Redis, Vslkry, Memcached
+        - Amazon ElastiCache - deploy, operate, and scale, cost optimization tool
+            - Use Cases - gaming platform analytics, content delivery system
+            - Setup - EC2 = Server, RDS = Databasse, Cache = Amazon ElastiCache
+    - Additional Database Services
+        - Amazon DynamoDB - Key Value
+        - Amazon DocumentDB - complex varied information
+        - Amazon Neptune - Graph for interconnected data
+        - Amazon Managed Blockchain
+        - Database Accelerators - DAX
+        - AWS Backup - EBS volumes, RDS tables, EFS files, dynamo etc.
